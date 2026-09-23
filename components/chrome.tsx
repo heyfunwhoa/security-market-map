@@ -1,19 +1,12 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { AS_OF } from "@/lib/schema";
 import { formatDate } from "@/lib/format";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
 
 const LINKS = [
   { href: "/domains", label: "Domains" },
@@ -52,10 +45,20 @@ function NavLinks({ onNavigate, className }: { onNavigate?: () => void; classNam
 }
 
 export function SiteHeader() {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    function onKey(event: KeyboardEvent) {
+      if (event.key === "Escape") setOpen(false);
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
   return (
-    <header className="border-b border-border bg-background/90 backdrop-blur">
+    <header className="border-b border-border bg-background/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3">
-        <Link href="/" className="min-w-0">
+        <Link href="/" className="min-w-0" onClick={() => setOpen(false)}>
           <span className="block font-heading text-lg leading-none tracking-tight">
             Security Atlas
           </span>
@@ -64,20 +67,28 @@ export function SiteHeader() {
           </span>
         </Link>
         <NavLinks className="ml-auto hidden items-center gap-0.5 lg:flex" />
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="outline" size="icon" className="ml-auto lg:hidden" aria-label="Open menu">
-              <Menu />
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="right">
-            <SheetHeader>
-              <SheetTitle>Security Atlas</SheetTitle>
-            </SheetHeader>
-            <NavLinks className="mt-6 flex flex-col gap-1" />
-          </SheetContent>
-        </Sheet>
+        <button
+          type="button"
+          className="ml-auto inline-flex size-8 items-center justify-center rounded-lg border border-border bg-background lg:hidden"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          aria-controls="mobile-nav"
+          onClick={() => setOpen((value) => !value)}
+        >
+          {open ? <X /> : <Menu />}
+        </button>
       </div>
+      {open ? (
+        <div id="mobile-nav" className="border-t border-border px-4 py-3 lg:hidden">
+          <p className="px-2.5 pb-2 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
+            Security Atlas
+          </p>
+          <NavLinks
+            onNavigate={() => setOpen(false)}
+            className="flex flex-col gap-1"
+          />
+        </div>
+      ) : null}
     </header>
   );
 }
