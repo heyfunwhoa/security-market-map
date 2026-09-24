@@ -11,8 +11,8 @@ Security categories are difficult to navigate. A product may be described as ide
 ## What the map covers
 
 - **Identity:** access management, IGA, PAM, CIEM, and nonhuman identities
-- **Application security:** code, dependencies, secrets detection, APIs, and ASPM
-- **Cloud security:** CSPM, workload protection, and CNAPP
+- **Application security:** static, interactive, and dynamic testing, dependencies, secrets detection, APIs, runtime protection, supply chain, and ASPM
+- **Cloud security:** CSPM, CNAPP, cloud vulnerability assessment, containers, infrastructure as code, and cloud detection
 - **Data security:** DSPM, DLP, classification, and encryption
 - **Network and access:** firewalls, ZTNA, SSE, and SASE
 - **Security operations:** SIEM, XDR, MDR, and threat intelligence

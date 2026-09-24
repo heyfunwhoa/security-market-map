@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { AreaDiagram, CredentialChainDiagram, IdentityStructureDiagram } from "@/components/area-diagram";
+import { CloudAppShortlist } from "@/components/cloud-app-shortlist";
 import { PageIntro } from "@/components/chrome";
 import {
   companyLenses,
@@ -147,6 +148,8 @@ export default function ConnectionsPage() {
           </li>
         </ul>
       </section>
+
+      <CloudAppShortlist />
 
       <section className="mt-10">
         <h2 className="text-3xl tracking-tight">Three kinds of identity, four jobs</h2>

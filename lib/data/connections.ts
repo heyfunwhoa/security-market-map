@@ -887,6 +887,144 @@ export const sacrLanes: { name: string; topic: string | null; local: string; not
   },
 ];
 
+export const cloudAppEcosystem: {
+  name: string;
+  diagram: string;
+  acronyms: string;
+  note: string;
+  href: string;
+  domains: string[];
+  categoryIds: string[];
+  examples: SeedLink[];
+}[] = [
+  {
+    name: "Application security testing",
+    diagram: "App testing",
+    acronyms: "SAST, IAST, DAST",
+    note: "Static analysis reads the change before it runs. Interactive testing watches a test from inside the app. Dynamic testing hits a running app from the outside. A name here may sell one of those, or only the queue that correlates them. ArmorCode is the correlation candidate, not a scanner.",
+    href: "/categories/sast",
+    domains: ["appsec"],
+    categoryIds: ["sast", "iast", "dast", "aspm"],
+    examples: [
+      vendor("Veracode", "veracode"),
+      vendor("Semgrep", "semgrep"),
+      vendor("StackHawk", "stackhawk"),
+      vendor("Snyk", "snyk"),
+      vendor("Checkmarx", "checkmarx"),
+      vendor("Probely", "probely"),
+      vendor("Mend", "mend"),
+      vendor("ArmorCode", "armorcode"),
+      vendor("Synopsys", "synopsys"),
+    ],
+  },
+  {
+    name: "Cloud security",
+    diagram: "Cloud security",
+    acronyms: "CNAPP, infrastructure as code, containers, cloud detection",
+    note: "CNAPP is a suite label. Infrastructure-as-code review, container controls, and cloud detection are different modules. AWS is already seeded as a secrets product. No AWS cloud-security module is checked. Gem, Lacework, and Dazz are listed with ownership not re-checked.",
+    href: "/categories/cnapp",
+    domains: ["cloud"],
+    categoryIds: ["cnapp", "iac-security", "container-security", "cloud-detection"],
+    examples: [
+      vendor("Wiz", "wiz"),
+      vendor("Gem Security", "gem-security"),
+      vendor("Amazon Web Services", "amazon-web-services"),
+      vendor("Palo Alto Networks", "palo-alto-networks"),
+      vendor("Sysdig", "sysdig"),
+      vendor("CrowdStrike", "crowdstrike"),
+      vendor("Orca Security", "orca-security"),
+      vendor("Upwind", "upwind"),
+      vendor("Lacework", "lacework"),
+      vendor("Uptycs", "uptycs"),
+      vendor("Dazz", "dazz"),
+      vendor("Gomboc", "gomboc"),
+      vendor("Aqua Security", "aqua"),
+    ],
+  },
+  {
+    name: "Cloud vulnerability management",
+    diagram: "Cloud vulns",
+    acronyms: "Scanning and assessment",
+    note: "This is assessment of cloud workloads and images. A missing package is not a public storage bucket, and a product that only ranks findings is not the scanner. Qualys, Tenable, Rapid7, and Wiz were already on the map for other jobs. Silk and Avalor are candidates whose ownership was not re-checked.",
+    href: "/categories/cloud-vulnerability",
+    domains: ["cloud"],
+    categoryIds: ["cloud-vulnerability", "it-vulnerability-management", "cspm"],
+    examples: [
+      vendor("Qualys", "qualys"),
+      vendor("Silk Security", "silk-security"),
+      vendor("Tenable", "tenable"),
+      vendor("Avalor", "avalor"),
+      vendor("Wiz", "wiz"),
+      vendor("Rapid7", "rapid7"),
+      vendor("ArmorCode", "armorcode"),
+      vendor("Cycode", "cycode"),
+    ],
+  },
+  {
+    name: "SaaS security",
+    diagram: "SaaS security",
+    acronyms: "CASB and SaaS posture",
+    note: "A secure web gateway and a SaaS configuration check answer different questions. Zscaler is the edge vendor. AppOmni and Zluri were already seeded, Zluri on identity governance. Spin.AI and Obsidian are posture candidates. Adaptive Shield is listed with ownership not re-checked.",
+    href: "/categories/sspm",
+    domains: ["cloud", "corporate"],
+    categoryIds: ["sspm", "network-edge"],
+    examples: [
+      vendor("Zscaler", "zscaler"),
+      vendor("Spin.AI", "spin-ai"),
+      vendor("Obsidian Security", "obsidian-security"),
+      vendor("AppOmni", "appomni"),
+      vendor("Zluri", "zluri"),
+      vendor("Adaptive Shield", "adaptive-shield"),
+    ],
+  },
+  {
+    name: "Software supply chain",
+    diagram: "Supply chain",
+    acronyms: "SCA, SBOM, secrets",
+    note: "A dependency finding, a bill of materials, and a secret in the repo are three jobs. An SBOM does not prove the build was protected. GitGuardian stays a secrets-detection product. Chainguard is associated with images, not assumed to be an SCA scanner. ArmorCode appears again as the correlation layer.",
+    href: "/categories/software-supply-chain",
+    domains: ["appsec"],
+    categoryIds: ["software-supply-chain", "sca", "secrets-detection", "aspm"],
+    examples: [
+      vendor("Chainguard", "chainguard"),
+      vendor("Endor Labs", "endor-labs"),
+      vendor("Scribe Security", "scribe-security"),
+      vendor("Jit", "jit"),
+      vendor("Arnica", "arnica"),
+      vendor("Xygeni", "xygeni"),
+      vendor("GitGuardian", "gitguardian"),
+      vendor("Aikido Security", "aikido"),
+      vendor("Apiiro", "apiiro"),
+      vendor("OX Security", "ox-security"),
+      vendor("Kusari", "kusari"),
+      vendor("ArmorCode", "armorcode"),
+      vendor("Stacklok", "stacklok"),
+      vendor("RapidFort", "rapidfort"),
+      vendor("Legit Security", "legit-security"),
+      vendor("Socket", "socket"),
+    ],
+  },
+  {
+    name: "Application runtime security",
+    diagram: "App runtime",
+    acronyms: "WAF, RASP, API",
+    note: "These controls sit on live traffic. They can block a request. They do not patch the code. Cloudflare, Imperva, and Salt were already seeded. Noname is listed with ownership not re-checked. Sweet is filed as cloud runtime until a page shows application-layer blocking.",
+    href: "/categories/app-runtime",
+    domains: ["appsec"],
+    categoryIds: ["app-runtime", "waf-waap", "api-security"],
+    examples: [
+      vendor("Noname Security", "noname"),
+      vendor("Traceable", "traceable"),
+      vendor("Cequence", "cequence"),
+      vendor("Cloudflare", "cloudflare"),
+      vendor("Imperva", "imperva"),
+      vendor("Sweet Security", "sweet-security"),
+      vendor("Salt Security", "salt-security"),
+      vendor("ClearVector", "clearvector"),
+    ],
+  },
+];
+
 export const companyLenses: { company: string; href: string; focus: string; beside: string }[] = [
   {
     company: "Truffle Security",
