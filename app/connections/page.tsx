@@ -7,8 +7,8 @@ import {
   groups,
   identityKinds,
   nhiTypes,
+  namedShortlists,
   owaspRisks,
-  readings,
   segments,
   type SeedLink,
 } from "@/lib/data/connections";
@@ -246,30 +246,23 @@ export default function ConnectionsPage() {
       </section>
 
       <section className="mt-12">
-        <h2 className="text-3xl tracking-tight">Research named, not copied</h2>
+        <h2 className="text-3xl tracking-tight">The names, not the report titles</h2>
         <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
-          Gartner and Forrester titles below are the reports used to frame this page. Their pages were
-          not retrieved, so nothing in a comparison cell depends on them. Mention in a report is not a
-          ranking.
+          Gartner and Forrester describe the markets. This list is who shows up in a competitive
+          conversation. The analyst pages were not retrieved, so none of these names is an analyst
+          placement.
         </p>
-        <ul className="mt-4 grid gap-3">
-          {readings.map((reading) => (
-            <li key={reading.title} className="rounded-xl border border-border bg-card p-4 text-sm leading-6">
-              <span className="font-medium">
-                {reading.href ? (
-                  <a href={reading.href} className="text-primary hover:underline">
-                    {reading.title}
-                  </a>
-                ) : (
-                  reading.title
-                )}
-              </span>
-              <span className="mt-1 block text-muted-foreground">
-                {reading.published}. {reading.use}
-              </span>
-            </li>
+        <div className="mt-4 grid gap-3">
+          {namedShortlists.map((row) => (
+            <article key={row.market} className="rounded-xl border border-border bg-card p-4">
+              <h3 className="text-xl">{row.market}</h3>
+              <p className="mt-2 text-sm leading-6">
+                <SeedLinks items={row.examples} />
+              </p>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">{row.frame}</p>
+            </article>
           ))}
-        </ul>
+        </div>
       </section>
     </main>
   );

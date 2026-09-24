@@ -6,6 +6,7 @@ import {
   companyLenses,
   credentialChain,
   groups,
+  namedShortlists,
   owaspRisks,
   segments,
 } from "./data/connections";
@@ -83,6 +84,7 @@ describe("catalog integrity", () => {
       ...credentialChain.map((step) => step.href),
       ...segments.flatMap((segment) => [segment.href, ...segment.examples.map((item) => item.href)]),
       ...groups.flatMap((group) => group.examples.map((item) => item.href)),
+      ...namedShortlists.flatMap((row) => row.examples.map((item) => item.href)),
       ...owaspRisks.map((risk) => risk.href),
       ...companyLenses.map((row) => row.href),
     ].filter((href): href is string => typeof href === "string" && href.startsWith("/"));
