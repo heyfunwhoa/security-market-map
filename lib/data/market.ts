@@ -582,7 +582,7 @@ export const vendors: Vendor[] = [
     formerNames: [],
     website: "https://oasis.security/",
     positioning:
-      "NHI security vendor. The about page describes discovery, owners, and lifecycle. SACR reported on 31 Jul 2026 that Cyera had announced an intent to acquire Oasis. This seed does not treat that deal as closed.",
+      "NHI security vendor. The about page describes discovery, owners, and lifecycle. Cyera's 3 Sep 2026 release says the acquisition is complete and that Oasis will operate as Cyera Identity. A combined enforcement workflow is not verified.",
     primaryCategoryIds: ["nhi", "agentic-runtime"],
     adjacentCategoryIds: ["agent-identity", "secrets-management", "dspm"],
     identityScopes: ["nhi", "agent"],
@@ -1597,21 +1597,21 @@ export const events: CatalogEvent[] = [
   {
     id: "evt-cyera-oasis",
     vendorId: "cyera",
-    date: null,
+    date: "2026-07-28",
     kind: "acquisition",
-    title: "Cyera announces an intent to acquire Oasis",
+    title: "Cyera says it is acquiring Oasis",
     summary:
-      "SACR's 31 Jul 2026 note says the intent was announced earlier that week. The note does not give a close date and says the data-plus-identity combination is unproven.",
-    sourceId: "src-sacr-cyera-oasis",
+      "The CEO blog announces the deal. Oasis's blog the same day calls it a letter of intent still in process. Integrated enforcement is not shown.",
+    sourceId: "src-cyera-oasis-blog",
   },
   {
     id: "evt-oasis-cyera",
     vendorId: "oasis",
-    date: null,
+    date: "2026-09-03",
     kind: "acquisition",
-    title: "Oasis is the announced target of Cyera",
+    title: "Cyera says the Oasis acquisition is complete",
     summary:
-      "Same SACR note. Keep Oasis as its own product record until a close and a surviving product name are sourced.",
-    sourceId: "src-sacr-cyera-oasis",
+      "The press release says Oasis will operate as Cyera Identity. This seed keeps a separate Oasis record because a shipping data-plus-identity workflow was not reviewed.",
+    sourceId: "src-cyera-oasis-close",
   },
 ];

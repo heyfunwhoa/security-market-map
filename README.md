@@ -34,7 +34,11 @@ Vendor inclusion is illustrative. It is not an endorsement or an analyst ranking
 
 ## Initial focus
 
-The first deep dive maps **secrets detection → secrets management → nonhuman identity → identity governance**. It explains where these products complement one another and where their capabilities compete.
+The first deep dive maps **secrets detection → secrets management → nonhuman identity → identity governance → agent runtime → data security**. The guided scenario is a coding agent that finds a credential, uses it against a cloud service, and tries to export data.
+
+AI security is its own domain: application testing, agent identity, runtime enforcement, MCP and tools, AI data boundaries, model deployment, and governance. SACR's ARISE and endpoint-control zones are labeled as SACR frameworks.
+
+The Cyera–Oasis case study separates the companies' strategic rationale and the 3 Sep 2026 completion statement from any claim that a joint enforcement workflow has been reviewed.
 
 ## Research standards
 

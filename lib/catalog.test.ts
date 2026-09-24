@@ -31,7 +31,7 @@ describe("catalog integrity", () => {
     );
     expect(identityCategories.length).toBeGreaterThanOrEqual(12);
     expect(catalog.categories.length).toBeGreaterThanOrEqual(40);
-    expect(catalog.domains).toHaveLength(10);
+    expect(catalog.domains).toHaveLength(11);
     expect(catalog.domains.map((domain) => domain.id)).toEqual([
       "identity",
       "corporate",
@@ -43,6 +43,7 @@ describe("catalog integrity", () => {
       "grc",
       "offensive",
       "platform",
+      "ai",
     ]);
     expect(catalog.domains.find((domain) => domain.id === "identity")?.depth).toBe("evidenced");
     expect(catalog.domains.filter((domain) => domain.id !== "identity").every((domain) => domain.depth === "mapped")).toBe(

@@ -207,6 +207,7 @@ export const sourceSchema = z.object({
   url: z.string().url(),
   canonicalUrl: z.string().url(),
   publisher: z.string().min(1),
+  author: z.string().min(1).nullable().optional(),
   sourceType: sourceTypeSchema,
   publishedAt: isoDate.nullable(),
   retrievedAt: isoDate,

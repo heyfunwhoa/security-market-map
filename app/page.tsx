@@ -12,6 +12,7 @@ import {
   reviewQueue,
   staleSources,
 } from "@/lib/coverage";
+import { marketViews } from "@/lib/data/brief";
 import { formatDate } from "@/lib/format";
 
 const PATH = [
@@ -70,9 +71,27 @@ export default function HomePage() {
           <Link href="/domains#questions">Questions, categories, and examples</Link>
         </Button>
         <Button asChild variant="outline">
-          <Link href="/connections">How NHI connects the budgets</Link>
+          <Link href="/attack-path">Coding-agent attack path</Link>
+        </Button>
+        <Button asChild variant="outline">
+          <Link href="/domains/ai">AI security</Link>
         </Button>
       </div>
+      <section className="mt-10">
+        <h2 className="text-3xl tracking-tight">Market map</h2>
+        <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
+          Nine buyer views. AI security is its own domain. A product can appear in more than one.
+        </p>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {marketViews.map((view) => (
+            <Link key={view.slug} href={view.href} className="rounded-xl border border-border bg-card p-4 hover:bg-muted">
+              <h3 className="text-lg">{view.name}</h3>
+              <p className="mt-2 text-sm leading-6">{view.problem}</p>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">{view.categories}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
 
       <div className="mt-8 grid gap-6 lg:grid-cols-[1.4fr_0.8fr]">
         <SearchPanel hits={searchIndex()} />

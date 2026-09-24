@@ -10,6 +10,9 @@ import { cn } from "@/lib/utils";
 
 const LINKS = [
   { href: "/domains", label: "Domains" },
+  { href: "/attack-path", label: "Attack path" },
+  { href: "/control-map", label: "Controls" },
+  { href: "/frameworks", label: "Frameworks" },
   { href: "/connections", label: "Connections" },
   { href: "/learn", label: "Learn" },
   { href: "/landscape", label: "Landscape" },
@@ -108,7 +111,10 @@ export function SiteFooter() {
   return (
     <footer className="mt-16 border-t border-border">
       <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-8 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-        <p>Seeded research for a cybersecurity analyst. Not a certification and not a ranking.</p>
+        <p>
+          Independent research notes. Not an official Gartner, Forrester, IDC, SACR, or vendor classification,
+          and not a ranking.
+        </p>
         <p>As of {formatDate(AS_OF)}</p>
       </div>
     </footer>

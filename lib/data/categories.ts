@@ -10,7 +10,7 @@ const identityDomains: Record<string, string[]> = {
   "secrets-detection": ["identity", "appsec"],
   "secrets-management": ["identity", "platform"],
   nhi: ["identity", "platform"],
-  "agent-identity": ["identity", "product"],
+  "agent-identity": ["identity", "product", "ai"],
   "identity-orchestration": ["identity", "appsec"],
   "adjacent-security": ["identity", "cloud", "data", "grc"],
 };
@@ -22,6 +22,7 @@ const extraAdjacent: Record<string, string[]> = {
   "secrets-detection": ["sast", "sca", "aspm"],
   "secrets-management": ["container-security"],
   "adjacent-security": ["cnapp", "dspm", "grc-controls", "aspm"],
+  "agent-identity": ["agentic-runtime", "mcp-security", "ai-data-security"],
 };
 
 const identitySeed: Omit<Category, "domainIds">[] = [

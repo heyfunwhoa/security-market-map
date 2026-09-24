@@ -40,6 +40,11 @@ export default function SourcesPage() {
                   <a className="font-medium text-primary hover:underline" href={source.url}>
                     {source.title}
                   </a>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    {source.author ?? "Author not recorded"}
+                    {source.publishedAt ? ` · published ${formatDate(source.publishedAt)}` : ""}
+                    {` · accessed ${formatDate(source.retrievedAt)}`}
+                  </p>
                   <p className="mt-1 text-muted-foreground">{source.excerpt}</p>
                 </td>
                 <td className="p-3">

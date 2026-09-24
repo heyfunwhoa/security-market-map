@@ -4,6 +4,7 @@ import { AreaDiagram } from "@/components/area-diagram";
 import { depthLabel } from "@/components/domain-map";
 import { PageIntro } from "@/components/chrome";
 import { catalog, domainBySlug, vendorById } from "@/lib/catalog";
+import { aiIntersections, REVIEWED } from "@/lib/data/brief";
 
 export function generateStaticParams() {
   return catalog.domains.map((domain) => ({ slug: domain.slug }));
@@ -28,6 +29,33 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
       <PageIntro kicker={depthLabel(domain.depth)} title={domain.name} lede={domain.charter} />
+      {domain.id === "ai" ? (
+        <section className="mt-6">
+          <p className="text-sm text-muted-foreground">Reviewed {REVIEWED}. SACR names on this page are frameworks, not Gartner categories.</p>
+          <div className="mt-4 overflow-x-auto rounded-xl border border-border">
+            <table className="w-full min-w-[36rem] text-left text-sm">
+              <thead className="bg-muted/60">
+                <tr>
+                  <th className="p-3">Neighboring control</th>
+                  <th className="p-3">Where it meets AI security</th>
+                </tr>
+              </thead>
+              <tbody>
+                {aiIntersections.map((row) => (
+                  <tr key={row.domain} className="border-t border-border align-top">
+                    <td className="p-3">
+                      <Link href={row.href} className="text-primary hover:underline">
+                        {row.domain}
+                      </Link>
+                    </td>
+                    <td className="p-3">{row.intersection}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      ) : null}
       <div className="mt-6">
         <AreaDiagram
           title={domain.name}
