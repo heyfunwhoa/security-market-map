@@ -1,11 +1,11 @@
 import Link from "next/link";
+import { AreaDiagram, CredentialChainDiagram, IdentityStructureDiagram } from "@/components/area-diagram";
 import { PageIntro } from "@/components/chrome";
 import {
-  capabilityBands,
   companyLenses,
   credentialChain,
+  estateAreas,
   groups,
-  identityKinds,
   nhiTypes,
   namedShortlists,
   owaspRisks,
@@ -53,26 +53,8 @@ export default function ConnectionsPage() {
           governance, and lifecycle. They do not share a buyer. A cell on a vendor page stays Unknown
           until a source is attached.
         </p>
-        <div className="mt-4 grid gap-3 md:grid-cols-3">
-          {identityKinds.map((kind) => (
-            <article key={kind.name} className="rounded-xl border border-border bg-card p-4">
-              <h3 className="text-xl">{kind.name}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{kind.examples}</p>
-              <p className="mt-3 text-sm leading-6">{kind.question}</p>
-            </article>
-          ))}
-        </div>
-        <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {capabilityBands.map((band) => (
-            <Link
-              key={band.name}
-              href={band.href}
-              className="rounded-xl border border-border bg-muted/50 p-4 hover:bg-muted"
-            >
-              <span className="font-medium">{band.name}</span>
-              <span className="mt-1 block text-sm text-muted-foreground">{band.items}</span>
-            </Link>
-          ))}
+        <div className="mt-4">
+          <IdentityStructureDiagram />
         </div>
       </section>
 
@@ -83,6 +65,9 @@ export default function ConnectionsPage() {
           vault does not prove who owns the identity. Gartner&apos;s August 2024 secrets-management
           note, which this atlas has not retrieved, is cited in the readings below for the same split.
         </p>
+        <div className="mt-4">
+          <CredentialChainDiagram steps={credentialChain} />
+        </div>
         <ol className="mt-4 grid gap-3 md:grid-cols-2">
           {credentialChain.map((step, index) => (
             <li key={step.problem}>
@@ -124,10 +109,34 @@ export default function ConnectionsPage() {
       <section className="mt-12">
         <h2 className="text-3xl tracking-tight">Segments, and where they overlap</h2>
         <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
-          Names are examples already in this seed, or marked when they are not. A vendor in two rows
-          is not a claim that both capabilities are licensed. Certificate lifecycle vendors are named
-          and left unseeded.
+          Each diagram is one problem in the middle and the companies named around it. Circles are the
+          same idea, not a rank. A name in two diagrams is not a claim that both capabilities are licensed.
         </p>
+        <div className="mt-4 grid gap-4 lg:grid-cols-2">
+          {segments.map((segment, index) => (
+            <AreaDiagram
+              key={segment.name}
+              title={segment.name}
+              problem={segment.problem}
+              href={segment.href}
+              examples={segment.examples}
+              fill={
+                [
+                  "oklch(0.84 0.05 240)",
+                  "oklch(0.84 0.05 155)",
+                  "oklch(0.84 0.05 80)",
+                  "oklch(0.84 0.05 300)",
+                  "oklch(0.84 0.05 30)",
+                  "oklch(0.84 0.04 200)",
+                  "oklch(0.84 0.05 55)",
+                  "oklch(0.84 0.04 130)",
+                  "oklch(0.84 0.05 220)",
+                  "oklch(0.84 0.05 190)",
+                ][index]
+              }
+            />
+          ))}
+        </div>
         <div className="mt-4 overflow-x-auto rounded-xl border border-border">
           <table className="w-full min-w-[52rem] text-left text-sm">
             <thead className="bg-muted/60">
@@ -252,6 +261,17 @@ export default function ConnectionsPage() {
           conversation. The analyst pages were not retrieved, so none of these names is an analyst
           placement.
         </p>
+        <div className="mt-4 grid gap-4 lg:grid-cols-2">
+          {estateAreas.map((area) => (
+            <AreaDiagram
+              key={area.name}
+              title={area.name}
+              problem={area.problem}
+              href={area.href}
+              examples={area.examples}
+            />
+          ))}
+        </div>
         <div className="mt-4 grid gap-3">
           {namedShortlists.map((row) => (
             <article key={row.market} className="rounded-xl border border-border bg-card p-4">

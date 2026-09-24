@@ -5,6 +5,7 @@ import {
   capabilityBands,
   companyLenses,
   credentialChain,
+  estateAreas,
   groups,
   namedShortlists,
   owaspRisks,
@@ -85,6 +86,7 @@ describe("catalog integrity", () => {
       ...segments.flatMap((segment) => [segment.href, ...segment.examples.map((item) => item.href)]),
       ...groups.flatMap((group) => group.examples.map((item) => item.href)),
       ...namedShortlists.flatMap((row) => row.examples.map((item) => item.href)),
+      ...estateAreas.flatMap((area) => [area.href, ...area.examples.map((item) => item.href)]),
       ...owaspRisks.map((risk) => risk.href),
       ...companyLenses.map((row) => row.href),
     ].filter((href): href is string => typeof href === "string" && href.startsWith("/"));

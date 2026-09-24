@@ -508,6 +508,73 @@ export const namedShortlists: {
   },
 ];
 
+export const estateAreas: { name: string; problem: string; href: string; examples: SeedLink[] }[] = [
+  {
+    name: "Network edge",
+    problem: "Which traffic and connections should be allowed?",
+    href: "/categories/network-edge",
+    examples: [
+      vendor("Palo Alto Networks", "palo-alto-networks"),
+      vendor("Zscaler", "zscaler"),
+      vendor("Netskope", "netskope"),
+      vendor("Fortinet", "fortinet"),
+      vendor("Check Point", "checkpoint"),
+      vendor("Cloudflare", "cloudflare"),
+    ],
+  },
+  {
+    name: "Endpoint",
+    problem: "Is a laptop, server, or mobile device compromised?",
+    href: "/categories/endpoint-security",
+    examples: [
+      vendor("CrowdStrike", "crowdstrike"),
+      vendor("SentinelOne", "sentinelone"),
+      vendor("Microsoft", "microsoft"),
+    ],
+  },
+  {
+    name: "Email",
+    problem: "Can we stop phishing and account compromise?",
+    href: "/categories/email-security",
+    examples: [
+      vendor("Proofpoint", "proofpoint"),
+      vendor("Abnormal Security", "abnormal"),
+      vendor("Mimecast", "mimecast"),
+      vendor("Microsoft", "microsoft"),
+    ],
+  },
+  {
+    name: "Exposure",
+    problem: "Which weaknesses should we fix first?",
+    href: "/categories/it-vulnerability-management",
+    examples: [
+      vendor("Tenable", "tenable"),
+      vendor("Qualys", "qualys"),
+      vendor("Rapid7", "rapid7"),
+      vendor("Censys", "censys"),
+      vendor("Pentera", "pentera"),
+    ],
+  },
+  {
+    name: "Data",
+    problem: "Where is sensitive data, and can it leave?",
+    href: "/categories/dspm",
+    examples: [vendor("Cyera", "cyera"), vendor("BigID", "bigid"), vendor("Varonis", "varonis")],
+  },
+  {
+    name: "Operations",
+    problem: "What happened, and how do we respond?",
+    href: "/categories/siem",
+    examples: [vendor("Splunk", "splunk"), vendor("Microsoft", "microsoft"), vendor("CrowdStrike", "crowdstrike")],
+  },
+  {
+    name: "Recovery",
+    problem: "Can we restore after the control fails?",
+    href: "/categories/grc-controls",
+    examples: [vendor("Rubrik", "rubrik"), vendor("Veeam", "veeam")],
+  },
+];
+
 export const companyLenses: { company: string; href: string; focus: string; beside: string }[] = [
   {
     company: "Truffle Security",
