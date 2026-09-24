@@ -28,6 +28,19 @@ function hubLines(title: string): string[] {
   return known[title] ?? shortLines(title);
 }
 
+function chainWord(capability: string) {
+  const known: Record<string, string> = {
+    "Secrets detection": "Detect",
+    "Secret verification": "Verify",
+    "Identity and credential discovery": "Owner",
+    "Revocation and remediation": "Revoke",
+    "Secrets management": "Issue",
+    "Workload identity and short-lived authentication": "Short-lived",
+    "Governance and permission analysis": "Access",
+  };
+  return known[capability] ?? shortLines(capability)[0];
+}
+
 function shortLines(label: string): string[] {
   const known: Record<string, string[]> = {
     "Truffle Security": ["Truffle"],
@@ -54,9 +67,9 @@ function shortLines(label: string): string[] {
 }
 
 function layout(count: number) {
-  const satellite = count >= 8 ? 36 : count >= 6 ? 42 : 48;
-  const orbit = count >= 8 ? 168 : count >= 6 ? 142 : 116;
-  const hub = orbit - 18;
+  const satellite = count >= 10 ? 32 : count >= 8 ? 36 : count >= 6 ? 42 : 48;
+  const orbit = count >= 10 ? 198 : count >= 8 ? 168 : count >= 6 ? 142 : 116;
+  const hub = orbit - 16;
   const pad = 8;
   const center = orbit + satellite + pad;
   return { satellite, orbit, hub, center, size: center * 2 };
@@ -90,13 +103,24 @@ export function AreaDiagram({
           aria-label={`${title}. ${problem}`}
           className="mx-auto h-auto w-full max-w-[28rem]"
         >
-          <g style={{ mixBlendMode: "multiply" }}>
-            <circle cx={center} cy={center} r={hub} fill={hubFill} />
+          <g>
+            <circle cx={center} cy={center} r={hub} fill={hubFill} fillOpacity={0.95} stroke="currentColor" strokeOpacity={0.28} />
             {examples.map((item, index) => {
               const angle = -Math.PI / 2 + (index * 2 * Math.PI) / examples.length;
               const x = center + Math.cos(angle) * orbit;
               const y = center + Math.sin(angle) * orbit;
-              return <circle key={item.label} cx={x} cy={y} r={satellite} fill={FILLS[index % FILLS.length]} />;
+              return (
+                <circle
+                  key={item.label}
+                  cx={x}
+                  cy={y}
+                  r={satellite}
+                  fill={FILLS[index % FILLS.length]}
+                  fillOpacity={0.92}
+                  stroke="currentColor"
+                  strokeOpacity={0.28}
+                />
+              );
             })}
           </g>
           {href ? (
@@ -134,18 +158,20 @@ export function AreaDiagram({
 }
 
 function DiagramLabel({ x, y, lines, size }: { x: number; y: number; lines: string[]; size: number }) {
-  const start = y - ((lines.length - 1) * (size + 2)) / 2 + size * 0.35;
+  const lineHeight = size + 3;
+  const firstDy = -((lines.length - 1) * lineHeight) / 2;
   return (
     <text
       x={x}
-      y={start}
+      y={y}
       textAnchor="middle"
+      dominantBaseline="central"
       fill="currentColor"
       style={{ fontFamily: "var(--font-heading)", fontSize: size }}
       className="pointer-events-none"
     >
       {lines.map((line, index) => (
-        <tspan key={`${line}-${index}`} x={x} dy={index === 0 ? 0 : size + 2}>
+        <tspan key={`${line}-${index}`} x={x} dy={index === 0 ? firstDy : lineHeight}>
           {line}
         </tspan>
       ))}
@@ -173,22 +199,29 @@ export function IdentityStructureDiagram() {
         because the jobs are not separate products.
       </figcaption>
       <svg viewBox="0 0 600 340" role="group" aria-label="Human, non-human, and agent identities above discovery, authentication, governance, and lifecycle" className="mt-2 h-auto w-full">
-        <g style={{ mixBlendMode: "multiply" }}>
+        <g>
           {kinds.map((kind) => (
-            <circle key={kind.label} cx={kind.cx} cy={92} r={68} fill={kind.fill} />
+            <circle key={kind.label} cx={kind.cx} cy={100} r={72} fill={kind.fill} fillOpacity={0.95} stroke="currentColor" strokeOpacity={0.28} />
           ))}
-          <rect x="36" y="188" width="528" height="112" rx="56" fill="oklch(0.88 0.04 80)" />
+          {jobs.map((job) => (
+            <circle key={job.label[0]} cx={job.cx} cy={248} r={58} fill="oklch(0.9 0.04 80)" fillOpacity={0.95} stroke="currentColor" strokeOpacity={0.28} />
+          ))}
         </g>
         {kinds.map((kind) => (
           <a key={kind.label} href={kind.href} aria-label={kind.label}>
-            <circle cx={kind.cx} cy={92} r={68} fill="transparent" className="stroke-transparent stroke-[3] hover:stroke-foreground" />
-            <DiagramLabel x={kind.cx} y={92} lines={kind.label === "Non-human" ? ["Non-human"] : [kind.label]} size={15} />
+            <circle cx={kind.cx} cy={100} r={72} fill="transparent" className="stroke-transparent stroke-[3] hover:stroke-foreground" />
+            <DiagramLabel x={kind.cx} y={100} lines={kind.label === "Non-human" ? ["Non-human"] : kind.label === "AI agent" ? ["AI agent"] : [kind.label]} size={16} />
           </a>
         ))}
         {jobs.map((job) => (
           <a key={job.label[0]} href={job.href} aria-label={job.label[0]}>
-            <circle cx={job.cx} cy={244} r={52} fill="transparent" className="stroke-transparent stroke-[3] hover:stroke-foreground" />
-            <DiagramLabel x={job.cx} y={244} lines={job.label[0] === "Authentication" ? ["Auth"] : job.label} size={14} />
+            <circle cx={job.cx} cy={248} r={58} fill="transparent" className="stroke-transparent stroke-[3] hover:stroke-foreground" />
+            <DiagramLabel
+              x={job.cx}
+              y={248}
+              lines={job.label[0] === "Authentication" ? ["Auth"] : job.label[0] === "Governance" ? ["Govern"] : job.label[0] === "Discovery" ? ["Discover"] : ["Lifecycle"]}
+              size={14}
+            />
           </a>
         ))}
       </svg>
@@ -201,21 +234,21 @@ export function CredentialChainDiagram({
 }: {
   steps: { problem: string; capability: string; href: string }[];
 }) {
-  const width = steps.length * 118;
+  const width = steps.length * 130;
   return (
     <figure className="rounded-2xl border border-border bg-card p-3">
       <figcaption className="px-1 text-sm leading-6 text-muted-foreground">
         Read left to right. Each circle is a different job created by one exposed credential.
       </figcaption>
       <div className="mt-2 overflow-x-auto">
-        <svg viewBox={`0 0 ${width} 150`} role="group" aria-label="Seven jobs created by one leaked credential" className="h-auto min-w-[44rem] w-full">
-          <line x1="40" y1="58" x2={width - 40} y2="58" stroke="currentColor" strokeOpacity="0.35" />
+        <svg viewBox={`0 0 ${width} 170`} role="group" aria-label="Seven jobs created by one leaked credential" className="h-auto min-w-[52rem] w-full">
+          <line x1="48" y1="78" x2={width - 48} y2="78" stroke="currentColor" strokeOpacity="0.35" />
           {steps.map((step, index) => {
-            const x = 58 + index * 118;
+            const x = 70 + index * 130;
             return (
               <a key={step.capability} href={step.href} aria-label={`${index + 1}. ${step.capability}. ${step.problem}`}>
-                <circle cx={x} cy={58} r={36} fill={FILLS[index % FILLS.length]} className="stroke-transparent stroke-[3] hover:stroke-foreground" />
-                <DiagramLabel x={x} y={54} lines={[String(index + 1), ...shortLines(step.capability).slice(0, 1)]} size={11} />
+                <circle cx={x} cy={78} r={48} fill={FILLS[index % FILLS.length]} fillOpacity={0.95} stroke="currentColor" strokeOpacity={0.28} />
+                <DiagramLabel x={x} y={78} lines={[String(index + 1), chainWord(step.capability)]} size={12} />
               </a>
             );
           })}

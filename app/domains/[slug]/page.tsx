@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { AreaDiagram } from "@/components/area-diagram";
 import { depthLabel } from "@/components/domain-map";
 import { PageIntro } from "@/components/chrome";
 import { catalog, domainBySlug, vendorById } from "@/lib/catalog";
@@ -27,6 +28,17 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
       <PageIntro kicker={depthLabel(domain.depth)} title={domain.name} lede={domain.charter} />
+      <div className="mt-6">
+        <AreaDiagram
+          title={domain.name}
+          problem="Categories in this domain. A category in two domains is drawn again on the neighboring page."
+          href={null}
+          examples={categories.map((category) => ({
+            label: category.name,
+            href: `/categories/${category.slug}`,
+          }))}
+        />
+      </div>
       {domain.depth === "mapped" ? (
         <p className="mt-4 max-w-3xl rounded-xl border border-border bg-card p-4 text-sm leading-6">
           This domain is a research map. Categories that are not also in identity have no capability

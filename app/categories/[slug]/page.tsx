@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { AreaDiagram } from "@/components/area-diagram";
 import { ClaimList } from "@/components/claims";
 import { FlowStrip } from "@/components/category-map";
 import { PageIntro } from "@/components/chrome";
@@ -96,6 +97,24 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
           ))}
         </ul>
       </section>
+      {products.length > 0 ? (
+        <div className="mt-8">
+          <AreaDiagram
+            title={category.name}
+            problem={
+              products.length > 12
+                ? `${category.buyerQuestion} The diagram shows 12 of ${products.length} primary products.`
+                : category.buyerQuestion
+            }
+            href={null}
+            examples={products.slice(0, 12).flatMap((product) => {
+              const vendor = vendorById(product.vendorId);
+              if (!vendor) return [];
+              return [{ label: vendor.name, href: `/vendors/${vendor.slug}` }];
+            })}
+          />
+        </div>
+      ) : null}
       <section className="mt-8">
         <h2 className="text-2xl">Primary products</h2>
         <ul className="mt-3 grid gap-2 sm:grid-cols-2">
