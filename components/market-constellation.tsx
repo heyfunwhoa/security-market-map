@@ -136,7 +136,7 @@ export const marketCircles: MarketCircle[] = [
     lines: ["Data"],
     question: "Where is sensitive data, who can reach it, and can it leave?",
     categories: "Discovery and classification, DSPM, DLP, encryption and key management",
-    examples: "Microsoft Purview, Varonis, Cyera, BigID",
+    examples: "Cyera, Teleskope, Concentric AI, Varonis, BigID",
     href: "/domains/data",
     cx: 790,
     cy: 210,

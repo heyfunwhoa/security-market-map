@@ -121,7 +121,7 @@ export const vendors: Vendor[] = [
     positioning:
       "Entra ID is the workforce directory for many accounts. ID Governance, PIM, Workload ID, and Agent ID are separate documented capabilities. Do not treat a single Entra logo as IGA, PAM, NHI, and agent authorization at once.",
     primaryCategoryIds: ["workforce-identity", "iga"],
-    adjacentCategoryIds: ["pam", "nhi", "agent-identity", "secrets-management", "siem"],
+    adjacentCategoryIds: ["pam", "nhi", "agent-identity", "secrets-management", "siem", "dspm", "dlp"],
     identityScopes: ["human", "nhi", "agent"],
     verificationStatus: "research_candidate",
     openQuestions: [

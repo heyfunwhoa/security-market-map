@@ -13,7 +13,7 @@ Security categories are difficult to navigate. A product may be described as ide
 - **Identity:** access management, IGA, PAM, CIEM, and nonhuman identities
 - **Application security:** static, interactive, and dynamic testing, dependencies, secrets detection, APIs, runtime protection, supply chain, and ASPM
 - **Cloud security:** CSPM, CNAPP, cloud vulnerability assessment, containers, infrastructure as code, and cloud detection
-- **Data security:** DSPM, DLP, classification, and encryption
+- **Data security:** DSPM, data access governance, database controls, DLP, encryption, and privacy
 - **Network and access:** firewalls, ZTNA, SSE, and SASE
 - **Security operations:** SIEM, XDR, MDR, and threat intelligence
 - **Exposure management:** vulnerabilities, attack surface, and prioritization

@@ -8,6 +8,7 @@ import {
   estateAreas,
   groups,
   cloudAppEcosystem,
+  dataSecurityEcosystem,
   identityEras,
   nhiEcosystem,
   namedShortlists,
@@ -95,6 +96,11 @@ describe("catalog integrity", () => {
       ...identityEras.map((era) => era.href),
       ...nhiEcosystem.flatMap((box) => [box.href, ...box.examples.map((item) => item.href)]),
       ...cloudAppEcosystem.flatMap((box) => [
+        box.href,
+        ...box.categoryIds.map((id) => `/categories/${id}`),
+        ...box.examples.map((item) => item.href),
+      ]),
+      ...dataSecurityEcosystem.flatMap((box) => [
         box.href,
         ...box.categoryIds.map((id) => `/categories/${id}`),
         ...box.examples.map((item) => item.href),

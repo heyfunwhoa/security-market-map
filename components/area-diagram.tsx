@@ -112,6 +112,14 @@ function shortLines(label: string): string[] {
     "Software composition analysis": ["SCA"],
     "Application security posture": ["ASPM"],
     "Application runtime protection": ["App", "runtime"],
+    "Data security posture": ["DSPM"],
+    "Data loss prevention": ["DLP"],
+    "Data access governance": ["Data", "access"],
+    "Database security": ["Database"],
+    "Encryption and tokenization": ["Encryption"],
+    "Concentric AI": ["Concentric"],
+    "Symmetry Systems": ["Symmetry"],
+    Teleskope: ["Teleskope"],
   };
   if (known[label]) return known[label];
   if (label.length <= 12) return [label];

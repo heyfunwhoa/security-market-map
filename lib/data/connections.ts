@@ -576,7 +576,13 @@ export const estateAreas: { name: string; problem: string; href: string; example
     name: "Data",
     problem: "Where is sensitive data, and can it leave?",
     href: "/categories/dspm",
-    examples: [vendor("Cyera", "cyera"), vendor("BigID", "bigid"), vendor("Varonis", "varonis")],
+    examples: [
+      vendor("Cyera", "cyera"),
+      vendor("Teleskope", "teleskope"),
+      vendor("Concentric AI", "concentric-ai"),
+      vendor("BigID", "bigid"),
+      vendor("Varonis", "varonis"),
+    ],
   },
   {
     name: "Operations",
@@ -1021,6 +1027,94 @@ export const cloudAppEcosystem: {
       vendor("Sweet Security", "sweet-security"),
       vendor("Salt Security", "salt-security"),
       vendor("ClearVector", "clearvector"),
+    ],
+  },
+];
+
+export const dataSecurityEcosystem: {
+  name: string;
+  diagram: string;
+  acronyms: string;
+  note: string;
+  href: string;
+  domains: string[];
+  categoryIds: string[];
+  examples: SeedLink[];
+}[] = [
+  {
+    name: "Data security posture",
+    diagram: "DSPM",
+    acronyms: "DSPM, discovery, classification",
+    note: "This is where the sensitive data sits and which identities can reach it. Cyera, Teleskope, and Concentric AI are the names buyers add beside BigID and Varonis. A company page that also says DLP or AI security is not a checked second product. Theom's ownership was not re-checked.",
+    href: "/categories/dspm",
+    domains: ["data"],
+    categoryIds: ["dspm", "ai-data-security", "privacy-governance"],
+    examples: [
+      vendor("Cyera", "cyera"),
+      vendor("Teleskope", "teleskope"),
+      vendor("Concentric AI", "concentric-ai"),
+      vendor("BigID", "bigid"),
+      vendor("Varonis", "varonis"),
+      vendor("Sentra", "sentra"),
+      vendor("Securiti", "securiti"),
+      vendor("Symmetry Systems", "symmetry-systems"),
+      vendor("Normalyze", "normalyze"),
+      vendor("Theom", "theom"),
+      vendor("Eureka", "eureka-security"),
+      vendor("Microsoft", "microsoft"),
+    ],
+  },
+  {
+    name: "Data loss prevention",
+    diagram: "DLP",
+    acronyms: "Email, endpoint, web, SaaS",
+    note: "DLP is the channel on the way out. Endpoint, email, web, and SaaS are different enforcement points. Forcepoint is the incumbent name. Nightfall, Strac, and Code42 are narrower candidates. Proofpoint, Netskope, and Zscaler already sit on email or the edge. Microsoft is the suite name buyers call Purview. No block is checked.",
+    href: "/categories/dlp",
+    domains: ["data"],
+    categoryIds: ["dlp", "email-security", "insider-risk"],
+    examples: [
+      vendor("Forcepoint", "forcepoint"),
+      vendor("Fortra", "fortra"),
+      vendor("Nightfall", "nightfall"),
+      vendor("Strac", "strac"),
+      vendor("Code42", "code42"),
+      vendor("Proofpoint", "proofpoint"),
+      vendor("Netskope", "netskope"),
+      vendor("Zscaler", "zscaler"),
+      vendor("Cyberhaven", "cyberhaven"),
+      vendor("Microsoft", "microsoft"),
+    ],
+  },
+  {
+    name: "Data access and databases",
+    diagram: "Data access",
+    acronyms: "Governance and database controls",
+    note: "This is who may query a dataset, and what the database recorded. It is not joiner-mover-leaver, and it is not a scan of every bucket. Cyral's ownership was not re-checked.",
+    href: "/categories/data-access-governance",
+    domains: ["data"],
+    categoryIds: ["data-access-governance", "database-security"],
+    examples: [
+      vendor("Immuta", "immuta"),
+      vendor("Privacera", "privacera"),
+      vendor("Satori", "satori"),
+      vendor("Cyral", "cyral"),
+      vendor("Varonis", "varonis"),
+      vendor("Imperva", "imperva"),
+    ],
+  },
+  {
+    name: "Encryption and tokenization",
+    diagram: "Encryption",
+    acronyms: "Keys, tokens, protected fields",
+    note: "Encryption protects a copy. It does not find the data and it does not decide who should have the account. A secrets vault is a neighboring control.",
+    href: "/categories/data-encryption",
+    domains: ["data"],
+    categoryIds: ["data-encryption", "secrets-management"],
+    examples: [
+      vendor("Virtru", "virtru"),
+      vendor("Fortanix", "fortanix"),
+      vendor("PKWARE", "pkware"),
+      vendor("HashiCorp", "hashicorp"),
     ],
   },
 ];

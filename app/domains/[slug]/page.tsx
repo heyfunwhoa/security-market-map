@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AreaDiagram } from "@/components/area-diagram";
-import { CloudAppShortlist } from "@/components/cloud-app-shortlist";
+import { CloudAppShortlist, DataSecurityShortlist } from "@/components/cloud-app-shortlist";
 import { depthLabel } from "@/components/domain-map";
 import { PageIntro } from "@/components/chrome";
 import { catalog, domainBySlug, vendorById } from "@/lib/catalog";
@@ -106,6 +106,7 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
         </ul>
       </section>
       <CloudAppShortlist domainId={domain.id} />
+      <DataSecurityShortlist domainId={domain.id} />
       <section className="mt-8">
         <h2 className="text-2xl">Categories</h2>
         <ul className="mt-3 grid gap-3 md:grid-cols-2">

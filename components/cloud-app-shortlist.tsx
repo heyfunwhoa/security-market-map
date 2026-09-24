@@ -1,30 +1,25 @@
 import Link from "next/link";
 import { AreaDiagram } from "@/components/area-diagram";
 import { catalog } from "@/lib/catalog";
-import { cloudAppEcosystem } from "@/lib/data/connections";
+import { cloudAppEcosystem, dataSecurityEcosystem } from "@/lib/data/connections";
 
-export function CloudAppShortlist({
-  domainId,
-  categoryId,
+type ShortlistBox = (typeof cloudAppEcosystem)[number];
+
+function Shortlist({
+  title,
+  lede,
+  boxes,
 }: {
-  domainId?: string;
-  categoryId?: string;
+  title: string;
+  lede: string;
+  boxes: ShortlistBox[];
 }) {
-  const boxes = cloudAppEcosystem.filter((box) => {
-    if (domainId) return box.domains.includes(domainId);
-    if (categoryId) return box.categoryIds.includes(categoryId);
-    return true;
-  });
   if (boxes.length === 0) return null;
 
   return (
     <section className="mt-10">
-      <h2 className="text-2xl">Cloud and application security shortlist</h2>
-      <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
-        Names below come from a cloud and application security shortlist. Circles are the same size
-        because this is not a rank. A name in a box is not a checked capability. ArmorCode is drawn
-        in more than one box. Several ownership questions are still open.
-      </p>
+      <h2 className="text-2xl">{title}</h2>
+      <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">{lede}</p>
       <div className="mt-4 grid gap-6">
         {boxes.map((box) => {
           const related = catalog.categories.filter((category) => box.categoryIds.includes(category.id));
@@ -55,5 +50,33 @@ export function CloudAppShortlist({
         })}
       </div>
     </section>
+  );
+}
+
+function selectBoxes(boxes: ShortlistBox[], domainId?: string, categoryId?: string) {
+  return boxes.filter((box) => {
+    if (domainId) return box.domains.includes(domainId);
+    if (categoryId) return box.categoryIds.includes(categoryId);
+    return true;
+  });
+}
+
+export function CloudAppShortlist({ domainId, categoryId }: { domainId?: string; categoryId?: string }) {
+  return (
+    <Shortlist
+      title="Cloud and application security shortlist"
+      lede="Names below come from a cloud and application security shortlist. Circles are the same size because this is not a rank. A name in a box is not a checked capability. ArmorCode is drawn in more than one box. Several ownership questions are still open."
+      boxes={selectBoxes(cloudAppEcosystem, domainId, categoryId)}
+    />
+  );
+}
+
+export function DataSecurityShortlist({ domainId, categoryId }: { domainId?: string; categoryId?: string }) {
+  return (
+    <Shortlist
+      title="Data security shortlist"
+      lede="DSPM finds the data. Access governance and the database control decide who can read it. DLP watches a channel on the way out. Encryption protects a copy. Circles are the same size. A name is not a checked capability. The same company can appear in more than one box."
+      boxes={selectBoxes(dataSecurityEcosystem, domainId, categoryId)}
+    />
   );
 }
