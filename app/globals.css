@@ -132,4 +132,17 @@
   h3 {
     font-family: var(--font-heading);
   }
+
+  #site-menu > summary {
+    list-style: none;
+  }
+  #site-menu > summary::-webkit-details-marker {
+    display: none;
+  }
+  #site-menu:not([open]) .menu-close {
+    display: none;
+  }
+  #site-menu[open] .menu-open {
+    display: none;
+  }
 }

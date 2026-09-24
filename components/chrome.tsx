@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
@@ -19,7 +19,7 @@ const LINKS = [
   { href: "/sources", label: "Sources" },
 ];
 
-function NavLinks({ onNavigate, className }: { onNavigate?: () => void; className?: string }) {
+function NavLinks({ className }: { className?: string }) {
   const pathname = usePathname();
   return (
     <nav className={className} aria-label="Primary">
@@ -29,7 +29,6 @@ function NavLinks({ onNavigate, className }: { onNavigate?: () => void; classNam
           <Link
             key={link.href}
             href={link.href}
-            onClick={onNavigate}
             aria-current={active ? "page" : undefined}
             className={cn(
               "rounded-md px-2.5 py-1.5 text-sm hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
@@ -45,20 +44,20 @@ function NavLinks({ onNavigate, className }: { onNavigate?: () => void; classNam
 }
 
 export function SiteHeader() {
-  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const seenPath = useRef(pathname);
 
   useEffect(() => {
-    function onKey(event: KeyboardEvent) {
-      if (event.key === "Escape") setOpen(false);
-    }
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
+    if (seenPath.current === pathname) return;
+    seenPath.current = pathname;
+    const menu = document.getElementById("site-menu");
+    if (menu instanceof HTMLDetailsElement) menu.open = false;
+  }, [pathname]);
 
   return (
-    <header className="border-b border-border bg-background/95 backdrop-blur">
+    <header className="relative z-50 border-b border-border bg-background">
       <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3">
-        <Link href="/" className="min-w-0" onClick={() => setOpen(false)}>
+        <Link href="/" className="min-w-0">
           <span className="block font-heading text-lg leading-none tracking-tight">
             Security Atlas
           </span>
@@ -67,28 +66,39 @@ export function SiteHeader() {
           </span>
         </Link>
         <NavLinks className="ml-auto hidden items-center gap-0.5 lg:flex" />
-        <button
-          type="button"
-          className="ml-auto inline-flex size-8 items-center justify-center rounded-lg border border-border bg-background lg:hidden"
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          onClick={() => setOpen((value) => !value)}
-        >
-          {open ? <X /> : <Menu />}
-        </button>
+        <details id="site-menu" className="ml-auto lg:hidden">
+          <summary
+            aria-label="Open menu"
+            aria-controls="mobile-nav"
+            className="flex size-8 cursor-pointer list-none items-center justify-center rounded-lg border border-border bg-background [&::-webkit-details-marker]:hidden"
+          >
+            <Menu className="menu-open size-4" />
+            <X className="menu-close size-4" />
+          </summary>
+          <nav
+            id="mobile-nav"
+            aria-label="Primary"
+            className="absolute top-full right-0 left-0 z-50 border-t border-border bg-background px-4 py-2 shadow-lg"
+          >
+            {LINKS.map((link) => {
+              const active = pathname === link.href || pathname.startsWith(`${link.href}/`);
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  aria-current={active ? "page" : undefined}
+                  className={cn(
+                    "block border-b border-border px-1 py-3 text-base last:border-b-0",
+                    active ? "font-semibold text-foreground" : "text-foreground",
+                  )}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
+          </nav>
+        </details>
       </div>
-      {open ? (
-        <div id="mobile-nav" className="border-t border-border px-4 py-3 lg:hidden">
-          <p className="px-2.5 pb-2 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
-            Security Atlas
-          </p>
-          <NavLinks
-            onNavigate={() => setOpen(false)}
-            className="flex flex-col gap-1"
-          />
-        </div>
-      ) : null}
     </header>
   );
 }
