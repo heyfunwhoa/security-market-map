@@ -506,6 +506,23 @@ export const namedShortlists: {
       vendor("Veeam", "veeam"),
     ],
   },
+  {
+    market: "Detection, exposure, and the edge",
+    frame: "Gartner and Forrester publish separate notes for XDR, MDR, NDR, threat intelligence, WAAP, exposure, OT, insider risk, ratings, and AI application security. These are the companies buyers name. The report pages were not retrieved, and this is not a placement.",
+    examples: [
+      vendor("CrowdStrike", "crowdstrike"),
+      vendor("Arctic Wolf", "arctic-wolf"),
+      vendor("ExtraHop", "extrahop"),
+      vendor("Recorded Future", "recorded-future"),
+      vendor("Akamai", "akamai"),
+      vendor("CyCognito", "cycognito"),
+      vendor("Axonius", "axonius"),
+      vendor("Claroty", "claroty"),
+      vendor("BitSight", "bitsight"),
+      vendor("Lakera", "lakera"),
+      vendor("Island", "island"),
+    ],
+  },
 ];
 
 export const estateAreas: { name: string; problem: string; href: string; examples: SeedLink[] }[] = [
@@ -570,8 +587,138 @@ export const estateAreas: { name: string; problem: string; href: string; example
   {
     name: "Recovery",
     problem: "Can we restore after the control fails?",
-    href: "/categories/grc-controls",
-    examples: [vendor("Rubrik", "rubrik"), vendor("Veeam", "veeam")],
+    href: "/categories/cyber-recovery",
+    examples: [
+      vendor("Rubrik", "rubrik"),
+      vendor("Veeam", "veeam"),
+      vendor("Cohesity", "cohesity"),
+      vendor("Commvault", "commvault"),
+    ],
+  },
+  {
+    name: "XDR",
+    problem: "Which host, identity, and email signals become one case?",
+    href: "/categories/xdr",
+    examples: [
+      vendor("CrowdStrike", "crowdstrike"),
+      vendor("SentinelOne", "sentinelone"),
+      vendor("Microsoft", "microsoft"),
+      vendor("Palo Alto Networks", "palo-alto-networks"),
+    ],
+  },
+  {
+    name: "Managed detection",
+    problem: "Who responds when we do not have the overnight shift?",
+    href: "/categories/mdr",
+    examples: [
+      vendor("Arctic Wolf", "arctic-wolf"),
+      vendor("Expel", "expel"),
+      vendor("Red Canary", "red-canary"),
+      vendor("Secureworks", "secureworks"),
+    ],
+  },
+  {
+    name: "Network detection",
+    problem: "What moves on the network that an endpoint agent cannot see?",
+    href: "/categories/ndr",
+    examples: [
+      vendor("ExtraHop", "extrahop"),
+      vendor("Vectra AI", "vectra"),
+      vendor("Corelight", "corelight"),
+      vendor("Darktrace", "darktrace"),
+    ],
+  },
+  {
+    name: "Threat intelligence",
+    problem: "Which reporting does detection actually use?",
+    href: "/categories/threat-intelligence",
+    examples: [
+      vendor("Recorded Future", "recorded-future"),
+      vendor("Flashpoint", "flashpoint"),
+      vendor("Google", "google"),
+    ],
+  },
+  {
+    name: "SaaS posture",
+    problem: "Which connected apps and OAuth grants are still standing?",
+    href: "/categories/sspm",
+    examples: [vendor("AppOmni", "appomni"), vendor("Grip Security", "grip")],
+  },
+  {
+    name: "Application edge",
+    problem: "What blocks a request before it reaches the application?",
+    href: "/categories/waf-waap",
+    examples: [
+      vendor("Cloudflare", "cloudflare"),
+      vendor("Akamai", "akamai"),
+      vendor("F5", "f5"),
+      vendor("Imperva", "imperva"),
+    ],
+  },
+  {
+    name: "Microsegmentation",
+    problem: "Which workloads may talk to each other?",
+    href: "/categories/microsegmentation",
+    examples: [vendor("Illumio", "illumio"), vendor("Akamai", "akamai")],
+  },
+  {
+    name: "External attack surface",
+    problem: "What is exposed that the asset list missed?",
+    href: "/categories/external-attack-surface",
+    examples: [vendor("Censys", "censys"), vendor("CyCognito", "cycognito")],
+  },
+  {
+    name: "Asset inventory",
+    problem: "Which tool is the source of truth for what exists?",
+    href: "/categories/security-asset-management",
+    examples: [vendor("Axonius", "axonius"), vendor("JupiterOne", "jupiterone")],
+  },
+  {
+    name: "OT and IoT",
+    problem: "What is on the plant or device network?",
+    href: "/categories/ot-security",
+    examples: [
+      vendor("Claroty", "claroty"),
+      vendor("Dragos", "dragos"),
+      vendor("Nozomi Networks", "nozomi"),
+      vendor("Armis", "armis"),
+    ],
+  },
+  {
+    name: "Insider risk",
+    problem: "Who already has access and is moving data?",
+    href: "/categories/insider-risk",
+    examples: [
+      vendor("DTEX Systems", "dtex"),
+      vendor("Securonix", "securonix"),
+      vendor("Proofpoint", "proofpoint"),
+    ],
+  },
+  {
+    name: "Security ratings",
+    problem: "Whose outside-in score changes a supplier decision?",
+    href: "/categories/security-ratings",
+    examples: [
+      vendor("BitSight", "bitsight"),
+      vendor("SecurityScorecard", "securityscorecard"),
+      vendor("Black Kite", "black-kite"),
+    ],
+  },
+  {
+    name: "Enterprise browser",
+    problem: "Is the control the browser or the identity that opens the app?",
+    href: "/categories/enterprise-browser",
+    examples: [vendor("Island", "island")],
+  },
+  {
+    name: "AI application security",
+    problem: "Is the issue the model, or the identity the agent uses?",
+    href: "/categories/ai-application-security",
+    examples: [
+      vendor("Lakera", "lakera"),
+      vendor("HiddenLayer", "hiddenlayer"),
+      vendor("Robust Intelligence", "robust-intelligence"),
+    ],
   },
 ];
 
