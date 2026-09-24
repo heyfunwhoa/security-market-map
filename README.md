@@ -1,6 +1,49 @@
-# Security Atlas
+# Security Market Map
 
-A cybersecurity analyst’s coverage map of the security estate. Identity is the evidenced slice: every comparison cell is a sourced claim, a conflict, or Unknown. Corporate IT, application security, product security, cloud, data, security operations, GRC, validation, and platform security are mapped beside it. Those domains name the buyer, the budget, and the research-candidate vendors. They do not invent feature checkmarks.
+An evidence-linked guide to the cybersecurity market: what each solution category does, which problems it solves, where categories overlap, and how vendors position themselves.
+
+Built by Kristen Aing as a portfolio project combining enterprise security sales, competitive research, and product thinking.
+
+## Why this exists
+
+Security categories are difficult to navigate. A product may be described as identity security, secrets management, cloud security, or application security depending on its capabilities and buyer. This project makes those relationships easier to explore without treating every vendor as a direct competitor.
+
+## What the map covers
+
+- **Identity:** access management, IGA, PAM, CIEM, and nonhuman identities
+- **Application security:** code, dependencies, secrets detection, APIs, and ASPM
+- **Cloud security:** CSPM, workload protection, and CNAPP
+- **Data security:** DSPM, DLP, classification, and encryption
+- **Network and access:** firewalls, ZTNA, SSE, and SASE
+- **Security operations:** SIEM, XDR, MDR, and threat intelligence
+- **Exposure management:** vulnerabilities, attack surface, and prioritization
+- **AI security:** agent identity, authorization, data access, and application controls
+
+Identity is the evidenced slice: every comparison cell is a sourced claim, a conflict, or Unknown. The other domains name the buyer, the budget, and research-candidate vendors. They do not invent feature checkmarks.
+
+## What each category page explains
+
+1. The problem it solves
+2. Typical buyers and stakeholders
+3. Core capabilities and common terminology
+4. Adjacent and overlapping categories
+5. Example vendors and their positioning
+6. Sources, publication dates, and confidence notes
+
+Vendor inclusion is illustrative. It is not an endorsement or an analyst ranking.
+
+## Initial focus
+
+The first deep dive maps **secrets detection → secrets management → nonhuman identity → identity governance**. It explains where these products complement one another and where their capabilities compete.
+
+## Research standards
+
+- Link material claims to a public source.
+- Record when a source was published and when it was reviewed.
+- Separate vendor claims from independently supported findings.
+- Identify analysis as interpretation.
+- Do not reproduce paywalled analyst reports or present an analyst category as a universal market definition.
+- Update or flag claims when positioning or product capabilities change.
 
 ## Run locally
 
@@ -24,29 +67,16 @@ Copy `.env.example` if you want the optional adapter flags. Leave `FIRECRAWL_API
 
 - Next.js App Router, TypeScript, Tailwind, and accessible UI primitives.
 - Typed seed in `lib/data`, validated with Zod in `lib/schema.ts`.
-- `lib/catalog.ts` merges the identity seed with the wider ecosystem, derives each domain’s category list from `category.domainIds`, and throws if a cross-reference is broken.
-- Comparison (`lib/compare.ts`) fills a cell only from claims that are in force. Category membership is not evidence.
-- Coverage (`lib/coverage.ts`) marks stale sources from the retrieval date and the source’s volatility window.
-- Budget (`lib/budget.ts`) is three-year arithmetic on numbers you type. It is not a forecast.
-- Territory (`lib/territory.ts`) keeps account notes in `localStorage`. A blank incumbent is unknown and is left out of the score.
-- Ingestion (`lib/ingestion`) can preview a manual source. Firecrawl and Exa adapters report whether a key is present and throw if called.
-
-A later move to a database can replace the seed imports behind the same catalog functions. Nothing in the UI talks to a database today.
-
-## Provenance
-
-Claims link to a source URL, a retrieval date, and a verification status. Vendor-published is not verified. Conflicting claims stay side by side (the Idira naming pair is the seeded example). Promotional prices are labeled as promotional. Analyst pages in the seed record that no rank was copied. Research-candidate vendors outside identity have positioning and open questions, not capability assertions.
-
-## How the domains overlap
-
-A category can sit in more than one domain. Secrets detection is identity and application security. PAM is identity and corporate security. CIEM is identity and cloud. A CNAPP suite is a cloud label, not proof that CSPM, CIEM, workload, and code are all licensed. Product security is the practice that ships something a customer trusts. Application security is the testing toolchain. GRC and customer-trust tools collect evidence from the other domains. They do not scan code or vault a secret.
-
-Relationships are scoped to a use case. Two products can be complements for a leaked key and adjacent budgets for a cloud finding.
+- `lib/catalog.ts` merges the identity seed with the wider ecosystem and throws if a cross-reference is broken.
+- Comparison fills a cell only from claims that are in force. Category membership is not evidence.
+- Coverage marks stale sources from the retrieval date and the source’s volatility window.
+- Budget is three-year arithmetic on numbers you type. It is not a forecast.
+- Territory notes stay in `localStorage`. A blank incumbent is unknown and is left out of the score.
 
 ## How to add a sourced claim
 
 1. Add the source in `lib/data/sources.ts` with the canonical URL, publisher, retrieval date, and volatility.
-2. Add the claim in `lib/data/claims.ts`. Set `subjectType`, `subjectId`, `capabilityId`, polarity, source URL, observed date, and verification status.
+2. Add the claim in `lib/data/claims.ts`. Set the subject, capability, polarity, source URL, observed date, and verification status.
 3. If two current pages disagree, point `conflictsWith` both ways.
 4. Run `npm test`. The catalog refuses a claim whose source, product, or capability does not exist, and a conflict that is not symmetric.
 5. Do not fill a cell because a vendor is in the category. Absence of a statement stays Unknown.
@@ -54,12 +84,18 @@ Relationships are scoped to a use case. Two products can be complements for a le
 ## Data limits
 
 - Identity claims were checked against public pages as of 23 Sep 2026. They go stale. The source ledger shows which ones are past their window.
-- Mapped domains are a taxonomy plus named research candidates. SAST, SCA, CSPM, vulnerability management, disclosure, and customer-trust capabilities exist so a comparison can be asked. No claim answers them.
+- Mapped domains are a taxonomy plus named research candidates. No claim answers SAST, SCA, CSPM, or the other non-identity capabilities.
 - No analyst placement, list price, customer logo, or feature-parity grid was invented.
 - Account notes never leave the browser.
 
-## Next three improvements
+## Status
 
-1. A human review queue that may call Firecrawl or Exa, then parks every extraction as unpublished until someone accepts the claim.
-2. Move the catalog to a database with the same Zod shapes, so edits are not a code change.
-3. Account briefs that can be copied into a CRM, plus a scheduled recrawl of sources already marked volatile.
+The map is runnable. Identity carries cited claims. The surrounding domains are mapped, with Unknown left visible where a source has not been recorded.
+
+## About
+
+I’m an enterprise cybersecurity seller with experience across network security, detection and response, and application security. This project is a way to make complex security markets useful for sales discovery, competitive analysis, and learning.
+
+## Disclaimer
+
+This is an independent educational and portfolio project. It is not affiliated with Gartner, Forrester, IDC, or any vendor mentioned.

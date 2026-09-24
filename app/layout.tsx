@@ -16,8 +16,8 @@ const fraunces = Fraunces({
 
 export const metadata: Metadata = {
   title: {
-    default: "Security Atlas",
-    template: "%s · Security Atlas",
+    default: "Security Market Map",
+    template: "%s · Security Market Map",
   },
   description:
     "A cybersecurity analyst's coverage map across identity, corporate IT, application security, product security, and neighboring domains. Identity is the evidenced slice. Unknown stays unknown.",

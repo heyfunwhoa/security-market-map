@@ -59,7 +59,7 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3">
         <Link href="/" className="min-w-0">
           <span className="block font-heading text-lg leading-none tracking-tight">
-            Security Atlas
+            Security Market Map
           </span>
           <span className="text-xs text-muted-foreground">
             Analyst coverage · as of {formatDate(AS_OF)}
