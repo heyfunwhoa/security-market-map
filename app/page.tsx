@@ -70,7 +70,7 @@ export default function HomePage() {
           <Link href="/domains#questions">Questions, categories, and examples</Link>
         </Button>
         <Button asChild variant="outline">
-          <Link href="/learn">I&apos;m new to identity</Link>
+          <Link href="/connections">How NHI connects the budgets</Link>
         </Button>
       </div>
 

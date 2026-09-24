@@ -311,6 +311,46 @@ export const relationships: Relationship[] = [
     rationale: "Detection of identity abuse and governance of standing access are sequential. Silverfort's capabilities are still unknown in this seed.",
     sourceId: null,
   },
+  {
+    id: "rel-truffle-akeyless",
+    fromProductId: "trufflehog",
+    toProductId: "akeyless",
+    type: "complement",
+    useCaseId: "uc-detect",
+    rationale:
+      "Finding a leaked credential and issuing its replacement are different problems. This edge is a landscape connection. It is not evidence that either product performs the other's job. Akeyless capability cells remain unknown.",
+    sourceId: null,
+  },
+  {
+    id: "rel-truffle-oasis-nhi",
+    fromProductId: "trufflehog",
+    toProductId: "oasis",
+    type: "complement",
+    useCaseId: "uc-nhi",
+    rationale:
+      "An exposed secret is not the identity record. TruffleHog's sourced claim is discovery and verification. Oasis's sourced claims are inventory, owner, and lifecycle language. A buyer can need both.",
+    sourceId: "src-oasis-about",
+  },
+  {
+    id: "rel-akeyless-c1",
+    fromProductId: "akeyless",
+    toProductId: "c1-platform",
+    type: "complement",
+    useCaseId: "uc-nhi",
+    rationale:
+      "Issuing a machine credential and deciding whether that identity should still have access are different questions. Akeyless cells are unknown. C1's governance language is vendor-published. Do not score this as one bundle.",
+    sourceId: null,
+  },
+  {
+    id: "rel-workos-c1",
+    fromProductId: "workos",
+    toProductId: "c1-platform",
+    type: "adjacent_budget",
+    useCaseId: "uc-ciam",
+    rationale:
+      "WorkOS is seeded for enterprise identity inside a SaaS product. C1 is seeded for workforce and non-human governance. Agent authorization can sit near both budgets. That adjacency is not a WorkOS capability claim.",
+    sourceId: null,
+  },
 ];
 
 export const pricingSignals: PricingSignal[] = [

@@ -365,4 +365,17 @@ export const sources: Source[] = [
     excerpt:
       "Internal note. The homepage was not enough to attach a specific NHI lifecycle capability. Recheck before a call.",
   },
+  {
+    id: "src-owasp-nhi-2025",
+    title: "OWASP Non-Human Identities Top 10, 2025, table of contents",
+    url: "https://owasp.org/www-project-non-human-identities-top-10/2025/table-of-contents/",
+    canonicalUrl: "https://owasp.org/www-project-non-human-identities-top-10/2025/table-of-contents/",
+    publisher: "OWASP",
+    sourceType: "standard",
+    publishedAt: "2024-12-24",
+    retrievedAt: "2026-09-24",
+    volatility: "moderate",
+    excerpt:
+      "OWASP lists ten NHI risks for 2025, from improper offboarding and secret leakage through human use of an NHI. The project ranks risks. It does not rank products.",
+  },
 ];

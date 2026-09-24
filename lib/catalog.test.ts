@@ -1,6 +1,14 @@
 import { describe, expect, it } from "vitest";
 import { buildBudget } from "./budget";
 import { catalog, catalogProblems } from "./catalog";
+import {
+  capabilityBands,
+  companyLenses,
+  credentialChain,
+  groups,
+  owaspRisks,
+  segments,
+} from "./data/connections";
 import { compareProducts, evidenceCell } from "./compare";
 import { conflictingClaims, isSourceStale } from "./coverage";
 import type { Claim } from "./schema";
@@ -67,6 +75,30 @@ describe("catalog integrity", () => {
       expect(relationship.useCaseId.length).toBeGreaterThan(0);
       expect(relationship.rationale.length).toBeGreaterThan(20);
     }
+  });
+
+  it("points landscape connections at real seed pages", () => {
+    const hrefs = [
+      ...capabilityBands.map((band) => band.href),
+      ...credentialChain.map((step) => step.href),
+      ...segments.flatMap((segment) => [segment.href, ...segment.examples.map((item) => item.href)]),
+      ...groups.flatMap((group) => group.examples.map((item) => item.href)),
+      ...owaspRisks.map((risk) => risk.href),
+      ...companyLenses.map((row) => row.href),
+    ].filter((href): href is string => typeof href === "string" && href.startsWith("/"));
+
+    for (const href of hrefs) {
+      const slug = href.split("/").filter(Boolean).at(-1);
+      if (href.startsWith("/vendors/")) {
+        expect(catalog.vendors.some((vendor) => vendor.slug === slug), href).toBe(true);
+      } else if (href.startsWith("/categories/")) {
+        expect(catalog.categories.some((category) => category.slug === slug), href).toBe(true);
+      } else if (href.startsWith("/use-cases/")) {
+        expect(catalog.useCases.some((useCase) => useCase.slug === slug), href).toBe(true);
+      }
+    }
+    expect(catalog.relationships.some((relationship) => relationship.id === "rel-truffle-akeyless")).toBe(true);
+    expect(catalog.claims.some((claim) => claim.id === "claim-owasp-nhi-top10")).toBe(true);
   });
 
   it("does not record an analyst rank", () => {
