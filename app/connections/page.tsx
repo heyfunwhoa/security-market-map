@@ -6,8 +6,11 @@ import {
   credentialChain,
   estateAreas,
   groups,
+  identityEras,
+  nhiEcosystem,
   nhiTypes,
   namedShortlists,
+  sacrLanes,
   owaspRisks,
   segments,
   type SeedLink,
@@ -45,6 +48,105 @@ export default function ConnectionsPage() {
         title="Non-human identity is a discipline, not one product category"
         lede="It overlaps identity governance, secrets management, privileged access, cloud permissions, and agent authorization. An API key is a credential. The identity is the application, workload, service account, or agent that credential represents. This page is a synthesis of that landscape. It is not a Magic Quadrant, a Wave, or a feature comparison."
       />
+
+      <section className="mt-10">
+        <h2 className="text-3xl tracking-tight">Four eras of enterprise identity</h2>
+        <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
+          Software Analyst Cyber Research describes these eras in its September 2026 ARISE note. Each
+          era keeps the previous controls. The gap is what those controls were not built to decide.
+          This is their framing, not a ranking of products.
+        </p>
+        <ol className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+          {identityEras.map((era) => (
+            <li key={era.era}>
+              <Link href={era.href} className="block h-full rounded-xl border border-border bg-card p-4 hover:bg-muted">
+                <span className="text-xs font-semibold tracking-wide text-primary uppercase">{era.era}</span>
+                <span className="mt-2 block text-base leading-6">{era.name}</span>
+                <span className="mt-3 block text-sm leading-6 text-muted-foreground">Actor: {era.actor}</span>
+                <span className="mt-2 block text-sm leading-6">Control: {era.control}</span>
+                <span className="mt-2 block text-sm leading-6 text-muted-foreground">{era.gap}</span>
+              </Link>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="mt-12">
+        <h2 className="text-3xl tracking-tight">The non-human identity ecosystem</h2>
+        <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
+          Boxes follow SACR&apos;s 2024 NHI guide and ecosystem graphic: authentication is not
+          governance, and a vault is not either one. Names are who they place in the box. A name
+          here is not a sourced capability.
+        </p>
+        <div className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+          {nhiEcosystem.map((box) => (
+            <article key={box.name} className="rounded-xl border border-border bg-card p-4">
+              <h3 className="text-lg">
+                <Link href={box.href} className="hover:underline">
+                  {box.name}
+                </Link>
+              </h3>
+              <p className="mt-1 text-sm leading-6 text-muted-foreground">{box.note}</p>
+              <p className="mt-3 text-sm leading-6">
+                <SeedLinks items={box.examples} />
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-12">
+        <h2 className="text-3xl tracking-tight">Where SACR files the research</h2>
+        <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
+          Their publication is organized as security operations, cloud and AppSec, data and AI agent
+          security, and identity and network security. Each lane below opens the closest place in
+          this map. The essays were read. Their vendor scores were not copied.
+        </p>
+        <div className="mt-4 grid gap-3 md:grid-cols-2">
+          {sacrLanes.map((lane) => (
+            <article key={lane.name} className="rounded-xl border border-border bg-card p-4">
+              <h3 className="text-lg">
+                <Link href={lane.local} className="hover:underline">
+                  {lane.name}
+                </Link>
+              </h3>
+              <p className="mt-2 text-sm leading-6">{lane.note}</p>
+              {lane.topic ? (
+                <a className="mt-2 inline-block text-sm text-primary hover:underline" href={lane.topic}>
+                  SACR topic
+                </a>
+              ) : null}
+            </article>
+          ))}
+        </div>
+        <ul className="mt-4 space-y-2 text-sm leading-6">
+          <li>
+            <a className="text-primary hover:underline" href="https://softwareanalyst.substack.com/p/the-complete-guide-to-the-growing">
+              NHI guide, September 2024
+            </a>
+          </li>
+          <li>
+            <a className="text-primary hover:underline" href="https://softwareanalyst.substack.com/p/runtime-security-for-ai-agents-an">
+              Runtime security for AI agents, March 2026
+            </a>
+          </li>
+          <li>
+            <a className="text-primary hover:underline" href="https://softwareanalyst.substack.com/p/the-ciso-guide-to-endpoint-control">
+              Endpoint control and prevention, July 2026
+            </a>
+          </li>
+          <li>
+            <a className="text-primary hover:underline" href="https://softwareanalyst.substack.com/p/fast-take-cyeras-acquisition-of-oasis">
+              Cyera and Oasis, July 2026
+            </a>
+          </li>
+          <li>
+            <a className="text-primary hover:underline" href="https://softwareanalyst.substack.com/p/arise-agentic-runtime-identity-security">
+              ARISE, September 2026
+            </a>
+          </li>
+        </ul>
+      </section>
 
       <section className="mt-10">
         <h2 className="text-3xl tracking-tight">Three kinds of identity, four jobs</h2>

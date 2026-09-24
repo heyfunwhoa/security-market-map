@@ -7,7 +7,10 @@ import {
   credentialChain,
   estateAreas,
   groups,
+  identityEras,
+  nhiEcosystem,
   namedShortlists,
+  sacrLanes,
   owaspRisks,
   segments,
 } from "./data/connections";
@@ -87,6 +90,9 @@ describe("catalog integrity", () => {
       ...groups.flatMap((group) => group.examples.map((item) => item.href)),
       ...namedShortlists.flatMap((row) => row.examples.map((item) => item.href)),
       ...estateAreas.flatMap((area) => [area.href, ...area.examples.map((item) => item.href)]),
+      ...identityEras.map((era) => era.href),
+      ...nhiEcosystem.flatMap((box) => [box.href, ...box.examples.map((item) => item.href)]),
+      ...sacrLanes.map((lane) => lane.local),
       ...owaspRisks.map((risk) => risk.href),
       ...companyLenses.map((row) => row.href),
     ].filter((href): href is string => typeof href === "string" && href.startsWith("/"));

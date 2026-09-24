@@ -720,6 +720,171 @@ export const estateAreas: { name: string; problem: string; href: string; example
       vendor("Robust Intelligence", "robust-intelligence"),
     ],
   },
+  {
+    name: "Agent runtime",
+    problem: "Should this agent action continue right now?",
+    href: "/categories/agentic-runtime",
+    examples: [
+      vendor("Aembit", "aembit"),
+      vendor("Apono", "apono"),
+      vendor("Oasis Security", "oasis"),
+      vendor("Astrix Security", "astrix"),
+      vendor("C1", "c1"),
+      vendor("Noma Security", "noma"),
+      vendor("Keycard", "keycard"),
+      vendor("Cyata", "cyata"),
+    ],
+  },
+  {
+    name: "Endpoint control",
+    problem: "What is the laptop doing above the process tree?",
+    href: "/categories/endpoint-control",
+    examples: [
+      vendor("CrowdStrike", "crowdstrike"),
+      vendor("SentinelOne", "sentinelone"),
+      vendor("Palo Alto Networks", "palo-alto-networks"),
+      vendor("Cyberhaven", "cyberhaven"),
+      vendor("Neo Security", "neo-security"),
+      vendor("Bay Security", null),
+      vendor("Bloom Security", null),
+      vendor("Glow Security", null),
+    ],
+  },
+];
+
+export const identityEras: { era: string; name: string; actor: string; control: string; gap: string; href: string }[] = [
+  {
+    era: "Era 1",
+    name: "Human identity and perimeter access",
+    actor: "Employee, contractor, partner, administrator",
+    control: "Authentication, directory membership, manager approval, periodic review",
+    gap: "Review happens at human speed, often after the activity.",
+    href: "/categories/workforce-identity",
+  },
+  {
+    era: "Era 2",
+    name: "Cloud, SaaS, and zero trust",
+    actor: "Users, devices, cloud apps, SaaS, APIs",
+    control: "A decision per request, with device and risk signals",
+    gap: "The decision is still about reaching a resource, not an autonomous chain of actions.",
+    href: "/categories/network-edge",
+  },
+  {
+    era: "Era 3",
+    name: "Non-human identities, secrets, and automation",
+    actor: "Service accounts, API keys, OAuth grants, workloads, CI jobs, bots",
+    control: "PAM, vaults, cloud IAM, NHI inventory, identity posture",
+    gap: "Most controls assume a predictable script, job, or pipeline.",
+    href: "/categories/nhi",
+  },
+  {
+    era: "Era 4",
+    name: "Agentic execution",
+    actor: "Agents using delegated authority, memory, tools, APIs, and data",
+    control: "Runtime identity enforcement, tool governance, intent, and an audit of the action",
+    gap: "The agent can choose the next step at machine speed, before a review.",
+    href: "/categories/agentic-runtime",
+  },
+];
+
+export const nhiEcosystem: { name: string; note: string; href: string; examples: SeedLink[] }[] = [
+  {
+    name: "IAM",
+    note: "Human directory. Partial view of machines.",
+    href: "/categories/workforce-identity",
+    examples: [vendor("Microsoft", "microsoft"), vendor("Okta", "okta")],
+  },
+  {
+    name: "IGA",
+    note: "Access reviews. Not a machine inventory by default.",
+    href: "/categories/iga",
+    examples: [vendor("Saviynt", "saviynt"), vendor("SailPoint", "sailpoint")],
+  },
+  {
+    name: "ITDR",
+    note: "Identity detection. Not NHI lifecycle.",
+    href: "/categories/itdr",
+    examples: [vendor("CrowdStrike", "crowdstrike"), vendor("Silverfort", "silverfort")],
+  },
+  {
+    name: "NHI authentication",
+    note: "SACR's 2024 split: who is the machine, and may it connect.",
+    href: "/categories/nhi",
+    examples: [vendor("Aembit", "aembit"), vendor("Corsha", "corsha")],
+  },
+  {
+    name: "NHI governance",
+    note: "Discovery, owners, and lifecycle. Not the same as authentication.",
+    href: "/categories/nhi",
+    examples: [
+      vendor("Clutch Security", "clutch"),
+      vendor("Entro Security", "entro"),
+      vendor("Astrix Security", "astrix"),
+      vendor("Natoma", "natoma"),
+      vendor("Oasis Security", "oasis"),
+      vendor("Token Security", "token-security"),
+    ],
+  },
+  {
+    name: "Microsegmentation",
+    note: "Workload-to-workload policy on the same graphic.",
+    href: "/categories/microsegmentation",
+    examples: [vendor("TrustFour", "trustfour"), vendor("Illumio", "illumio")],
+  },
+  {
+    name: "Cloud identity",
+    note: "Human and non-human permissions in cloud and SaaS.",
+    href: "/categories/ciem",
+    examples: [
+      vendor("Veza", "veza"),
+      vendor("Apono", "apono"),
+      vendor("Andromeda Security", "andromeda-security"),
+      vendor("SlashID", "slashid"),
+    ],
+  },
+  {
+    name: "CIEM",
+    note: "Cloud entitlements. A module is not an IGA suite.",
+    href: "/categories/ciem",
+    examples: [vendor("Wiz", "wiz"), vendor("Microsoft", "microsoft"), vendor("Sonrai Security", "sonrai")],
+  },
+  {
+    name: "PAM, secrets, and vaults",
+    note: "Where the credential is stored or brokered.",
+    href: "/categories/pam",
+    examples: [
+      vendor("Delinea", "delinea"),
+      vendor("Palo Alto Networks", "palo-alto-networks"),
+      vendor("HashiCorp", "hashicorp"),
+    ],
+  },
+];
+
+export const sacrLanes: { name: string; topic: string | null; local: string; note: string }[] = [
+  {
+    name: "Security operations",
+    topic: "https://softwareanalyst.substack.com/t/security-operations",
+    local: "/domains/secops",
+    note: "Detection, response, and the endpoint layer SACR is now calling control and prevention.",
+  },
+  {
+    name: "Cloud and AppSec",
+    topic: "https://softwareanalyst.substack.com/t/cloud-and-appsec",
+    local: "/domains/cloud",
+    note: "Cloud posture and application security. A CNAPP finding is not an AppSec finding.",
+  },
+  {
+    name: "Data and AI agent security",
+    topic: null,
+    local: "/categories/agentic-runtime",
+    note: "DSPM, DLP, and runtime control of agents. Cyera and Oasis are the announced convergence example.",
+  },
+  {
+    name: "Identity and network security",
+    topic: "https://softwareanalyst.substack.com/t/identity-and-network-security",
+    local: "/domains/identity",
+    note: "Human IAM through NHI, PAM, and the network decisions that still depend on an identity.",
+  },
 ];
 
 export const companyLenses: { company: string; href: string; focus: string; beside: string }[] = [

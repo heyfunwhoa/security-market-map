@@ -79,6 +79,11 @@ function shortLines(label: string): string[] {
     "DTEX Systems": ["DTEX"],
     "Red Canary": ["Red", "Canary"],
     "Arctic Wolf": ["Arctic", "Wolf"],
+    "Agentic runtime enforcement": ["Agent", "runtime"],
+    "Endpoint control and prevention": ["Endpoint", "control"],
+    "Andromeda Security": ["Andromeda"],
+    "Noma Security": ["Noma"],
+    "Neo Security": ["Neo"],
   };
   if (known[label]) return known[label];
   if (label.length <= 12) return [label];
