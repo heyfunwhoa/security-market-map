@@ -2,6 +2,7 @@ import Link from "next/link";
 import { CategoryMap } from "@/components/category-map";
 import { ClaimList, DistinctionCards } from "@/components/claims";
 import { DomainMap } from "@/components/domain-map";
+import { MarketConstellation } from "@/components/market-constellation";
 import { SearchPanel } from "@/components/search-panel";
 import { Button } from "@/components/ui/button";
 import { catalog, searchIndex } from "@/lib/catalog";
@@ -51,16 +52,22 @@ export default function HomePage() {
         Coverage notes for a cybersecurity analyst
       </p>
       <h1 className="mt-3 max-w-3xl text-4xl tracking-tight text-balance sm:text-5xl">
-        A map of the security estate, with evidence only where a source exists.
+        The security market, mapped by what each solution protects.
       </h1>
       <p className="mt-4 max-w-3xl text-lg leading-8 text-muted-foreground">
-        Corporate IT, application security, product security, cloud, data, operations, and identity sit
-        on one map because the budgets collide. Identity is the evidenced slice. The other domains are
-        mapped: owners, categories, and research candidates. A cell without a source says Unknown.
+        A useful way to see the market is to follow an attack. Security teams buy a control at each
+        point, plus tools that detect incidents and manage risk across the whole environment. This is a
+        practical map, not one analyst taxonomy. A quadrant places vendors inside a defined market. It
+        does not rank a company across cybersecurity.
+      </p>
+      <MarketConstellation />
+      <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">
+        Names on the next page are examples, not placements. Identity is the only slice in this atlas
+        with cited claims. Everywhere else, a capability cell stays Unknown.
       </p>
       <div className="mt-6 flex flex-wrap gap-3">
         <Button asChild>
-          <Link href="/domains">Browse the domains</Link>
+          <Link href="/domains#questions">Questions, categories, and examples</Link>
         </Button>
         <Button asChild variant="outline">
           <Link href="/learn">I&apos;m new to identity</Link>
