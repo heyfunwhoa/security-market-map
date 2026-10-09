@@ -1,4 +1,5 @@
 import { StatusPill } from "@/components/chrome";
+import { VendorReviewForm } from "@/components/vendor-review-form";
 import { formatDate } from "@/lib/format";
 import type { VendorMonitorView } from "@/lib/research/vendor-monitor";
 
@@ -9,16 +10,30 @@ const FRESHNESS = {
   failed: "Last check failed",
 } as const;
 
-export function VendorResearchPanel({ view }: { view: VendorMonitorView }) {
+const PERSISTENCE = {
+  offline_fixture: "Offline fixture",
+  process_memory: "This server process",
+  durable_file: "Local ledger file",
+} as const;
+
+export function VendorResearchPanel({
+  view,
+  onReviewed,
+}: {
+  view: VendorMonitorView;
+  onReviewed?: (view: VendorMonitorView) => void;
+}) {
   return (
     <section className="mt-8 rounded-xl border border-border bg-card p-4" aria-labelledby="vendor-research-heading">
       <h2 id="vendor-research-heading" className="text-2xl">
         Vendor research
       </h2>
       <p className="mt-2 text-sm leading-6 text-muted-foreground">
-        {view.persistence === "process_memory"
-          ? `Saved in this server process for ${view.vendorName}. The check still used the offline fixture.`
-          : `Offline fixture for ${view.vendorName}.`}{" "}
+        {view.persistence === "durable_file"
+          ? `Saved on this machine for ${view.vendorName}. The check still used the offline fixture.`
+          : view.persistence === "process_memory"
+            ? `Saved in this server process for ${view.vendorName}. The check still used the offline fixture.`
+            : `Offline fixture for ${view.vendorName}.`}{" "}
         Inngest can schedule this check, and the result stays a pending vendor claim. Live website monitoring has
         not been run, and this panel does not publish catalog changes.
       </p>
@@ -35,7 +50,7 @@ export function VendorResearchPanel({ view }: { view: VendorMonitorView }) {
         </div>
         <div>
           <dt className="text-muted-foreground">Persistence</dt>
-          <dd className="font-medium">{view.persistence === "offline_fixture" ? "Offline fixture" : "This server process"}</dd>
+          <dd className="font-medium">{PERSISTENCE[view.persistence]}</dd>
         </div>
       </dl>
 
@@ -68,6 +83,26 @@ export function VendorResearchPanel({ view }: { view: VendorMonitorView }) {
                 {finding.publisher}. Event date {formatDate(finding.eventDate)}. Category {finding.categoryId}. Product{" "}
                 {finding.productId ?? "not linked"}. Previous excerpt: {finding.previousExcerpt ?? "none stored"}.
               </p>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <h3 className="mt-6 text-lg">Proposals</h3>
+      {view.proposals.length === 0 ? (
+        <p className="mt-2 text-sm text-muted-foreground">No proposal was stored.</p>
+      ) : (
+        <ul className="mt-2 space-y-3">
+          {view.proposals.map((proposal) => (
+            <li key={proposal.id} className="rounded-lg border border-border p-3 text-sm leading-6">
+              <StatusPill status={proposal.reviewStatus} />
+              <p className="mt-2">{proposal.statement}</p>
+              {view.persistence === "offline_fixture" ||
+              !onReviewed ||
+              proposal.reviewStatus === "accepted" ||
+              proposal.reviewStatus === "rejected" ? null : (
+                <VendorReviewForm proposalId={proposal.id} onReviewed={onReviewed} />
+              )}
             </li>
           ))}
         </ul>
