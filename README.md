@@ -74,6 +74,7 @@ Copy `.env.example` if you want the optional adapter flags. Leave `FIRECRAWL_API
 - `lib/catalog.ts` merges the identity seed with the wider ecosystem and throws if a cross-reference is broken.
 - Comparison fills a cell only from claims that are in force. Category membership is not evidence.
 - Coverage marks stale sources from the retrieval date and the source’s volatility window.
+- The phase 1 research ledger in `lib/research` checks an offline fixture, queues pending proposals, and does not publish them. See `docs/research-engine.md`. Live Exa and Firecrawl monitoring is not implemented.
 - Budget is three-year arithmetic on numbers you type. It is not a forecast.
 - Territory notes stay in `localStorage`. A blank incumbent is unknown and is left out of the score.
 
@@ -84,6 +85,7 @@ Copy `.env.example` if you want the optional adapter flags. Leave `FIRECRAWL_API
 3. If two current pages disagree, point `conflictsWith` both ways.
 4. Run `npm test`. The catalog refuses a claim whose source, product, or capability does not exist, and a conflict that is not symmetric.
 5. Do not fill a cell because a vendor is in the category. Absence of a statement stays Unknown.
+6. A research proposal is not a catalog claim. Accepting one in `lib/research` does not edit this seed. Copy a reviewed statement into the files above in a separate change, and leave the older claim in place when positioning changes.
 
 ## Data limits
 
