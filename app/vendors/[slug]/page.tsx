@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ClaimList } from "@/components/claims";
 import { PageIntro, StatusPill } from "@/components/chrome";
-import { VendorResearchPanel } from "@/components/vendor-research-panel";
+import { ResearchPanelLive } from "@/components/research-panel-live";
 import {
   catalog,
   claimsForSubject,
@@ -58,7 +58,7 @@ export default async function VendorPage({ params }: { params: Promise<{ slug: s
         Scope marked for filtering: {vendor.identityScopes.map(scopeLabel).join(", ")}. Scope is a
         research starting point, not a certified coverage claim.
       </p>
-      {monitor ? <VendorResearchPanel view={monitor} /> : null}
+      {monitor ? <ResearchPanelLive initial={monitor} /> : null}
 
       <section className="mt-8">
         <h2 className="text-2xl">Products</h2>

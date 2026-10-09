@@ -85,8 +85,8 @@ These paths stay idle until you configure them:
 | Serve `/api/inngest` | `INNGEST_DEV=1` for local development, or `INNGEST_SIGNING_KEY` for Cloud. Otherwise the route returns HTTP 503. |
 | Send events from this app to Inngest Cloud | `INNGEST_EVENT_KEY`. Local dev does not need it. |
 | Collect a live vendor page | Not available. `FIRECRAWL_API_KEY` and `EXA_API_KEY` do not enable a crawl. |
-| Keep research history after a restart, or across more than one server | Not available. There is no database and no migration. |
-| Publish a finding into the map | A person copies a reviewed statement into `lib/data`. The workflow does not do this. |
+| Keep research history on one machine after a restart | The default file `.data/research-ledger.json`, or `RESEARCH_LEDGER_PATH`. Set the path to `memory` to skip the file. Two servers still do not share a ledger. |
+| Publish a finding into the map | A person copies a reviewed statement into `lib/data`. Recording a review in the ledger does not do this. |
 
 Local Dev Server, in two terminals:
 

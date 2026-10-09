@@ -1,16 +1,28 @@
+import { z } from "zod";
 import { fixtureRetrievalAdapter, type RetrievedDocument } from "./adapters";
 import { assertResearchLedger, createLedger, researchProblems, type ResearchLedger } from "./ledger";
 import { normalizeMonitoredUrl } from "./normalize";
 import { isCheckDue } from "./policy";
 import { checkMonitoredSource } from "./pipeline";
-import { loadResearchLedger, peekResearchLedger, saveResearchLedger } from "./runtime-store";
+import { applyReviewDecision } from "./review";
+import {
+  ResearchLedgerPersistenceError,
+  loadResearchLedger,
+  peekResearchLedger,
+  readPersistedResearchLedger,
+  researchLedgerPath,
+  restoreResearchLedger,
+  saveResearchLedger,
+} from "./runtime-store";
 import {
   materialAlertSchema,
   monitoredSourceSchema,
   researchFindingSchema,
+  reviewDecisionKindSchema,
   sourcePolicySchema,
   workflowRunSchema,
   type MaterialAlert,
+  type ProposalReviewStatus,
   type ResearchFinding,
   type WorkflowRun,
 } from "./schema";
@@ -351,8 +363,60 @@ export function markResearchFailed(input: {
   return run;
 }
 
+const reviewRequestSchema = z.object({
+  proposedClaimId: z.string().regex(/^prop-[a-f0-9]+$/),
+  decision: reviewDecisionKindSchema,
+  reviewer: z.string().trim().min(1).max(80),
+  rationale: z.string().trim().min(1).max(500),
+});
+
+export type ReviewRecordResult =
+  | {
+      ok: true;
+      published: false;
+      proposalId: string;
+      reviewStatus: ProposalReviewStatus;
+      decisionId: string;
+    }
+  | { ok: false; status: 400 | 404; error: string };
+
+export function recordVendorReview(input: unknown): ReviewRecordResult {
+  const parsed = reviewRequestSchema.safeParse(input);
+  if (!parsed.success) return { ok: false, status: 400, error: "Review input is invalid." };
+  let ledger: ResearchLedger;
+  try {
+    ledger = loadResearchLedger(createHashicorpLedger);
+  } catch (error) {
+    if (error instanceof ResearchLedgerPersistenceError) return { ok: false, status: 400, error: error.message };
+    throw error;
+  }
+  const backup = structuredClone(ledger);
+  try {
+    const applied = applyReviewDecision(ledger, {
+      ...parsed.data,
+      decidedAt: new Date().toISOString().slice(0, 10),
+    });
+    saveResearchLedger(ledger);
+    return {
+      ok: true,
+      published: false,
+      proposalId: applied.proposal.id,
+      reviewStatus: applied.proposal.reviewStatus,
+      decisionId: applied.decision.id,
+    };
+  } catch (error) {
+    restoreResearchLedger(backup);
+    const message = error instanceof Error ? error.message : "Review was not recorded.";
+    return {
+      ok: false,
+      status: message.includes("is not in the ledger") ? 404 : 400,
+      error: message,
+    };
+  }
+}
+
 export type VendorMonitorView = {
-  persistence: "offline_fixture" | "process_memory";
+  persistence: "offline_fixture" | "process_memory" | "durable_file";
   liveMonitoring: false;
   vendorId: string;
   vendorName: string;
@@ -363,6 +427,7 @@ export type VendorMonitorView = {
   freshness: "current" | "due" | "never" | "failed";
   frequency: string;
   findings: ResearchFinding[];
+  proposals: { id: string; statement: string; reviewStatus: ProposalReviewStatus }[];
   versions: { id: string; retrievedAt: string; excerpt: string; contentHash: string }[];
   alerts: MaterialAlert[];
   workflowRuns: WorkflowRun[];
@@ -405,6 +470,13 @@ export function vendorMonitorView(
     freshness,
     frequency: source?.monitoringFrequency ?? "quarterly",
     findings: ledger.findings.filter((finding) => finding.vendorId === plan.vendorId),
+    proposals: ledger.proposals
+      .filter((proposal) => proposal.monitoredSourceId === vaultMonitoredSource.id)
+      .map((proposal) => ({
+        id: proposal.id,
+        statement: proposal.statement,
+        reviewStatus: proposal.reviewStatus,
+      })),
     versions: ledger.snapshots
       .filter((snapshot) => snapshot.monitoredSourceId === vaultMonitoredSource.id)
       .map((snapshot) => ({
@@ -441,9 +513,9 @@ export async function previewHashicorpMonitor(): Promise<VendorMonitorView> {
 }
 
 export async function currentVendorMonitorView(): Promise<VendorMonitorView> {
-  const runtime = peekResearchLedger();
+  const runtime = peekResearchLedger() ?? readPersistedResearchLedger();
   if (runtime && runtime.workflowRuns.some((run) => run.vendorId === hashicorpMonitor.vendorId)) {
-    return vendorMonitorView(runtime, "process_memory");
+    return vendorMonitorView(runtime, researchLedgerPath() ? "durable_file" : "process_memory");
   }
   return previewHashicorpMonitor();
 }
