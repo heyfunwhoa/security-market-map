@@ -3,16 +3,22 @@ import {
   monitoredSourceSchema,
   proposedClaimSchema,
   retrievalRunSchema,
+  materialAlertSchema,
+  researchFindingSchema,
   reviewDecisionSchema,
   sourcePolicySchema,
   sourceSnapshotSchema,
+  workflowRunSchema,
   type DetectedChange,
+  type MaterialAlert,
   type MonitoredSource,
   type ProposedClaim,
+  type ResearchFinding,
   type RetrievalRun,
   type ReviewDecision,
   type SourcePolicy,
   type SourceSnapshot,
+  type WorkflowRun,
 } from "./schema";
 
 export type ResearchLedger = {
@@ -23,6 +29,9 @@ export type ResearchLedger = {
   changes: DetectedChange[];
   proposals: ProposedClaim[];
   decisions: ReviewDecision[];
+  findings: ResearchFinding[];
+  alerts: MaterialAlert[];
+  workflowRuns: WorkflowRun[];
 };
 
 export function createLedger(): ResearchLedger {
@@ -34,6 +43,9 @@ export function createLedger(): ResearchLedger {
     changes: [],
     proposals: [],
     decisions: [],
+    findings: [],
+    alerts: [],
+    workflowRuns: [],
   };
 }
 
@@ -176,6 +188,40 @@ export function researchProblems(ledger: ResearchLedger): string[] {
   unique(
     ledger.decisions.map((decision) => decision.id),
     "review decision",
+    problems,
+  );
+  for (const finding of ledger.findings) {
+    const parsed = researchFindingSchema.safeParse(finding);
+    if (!parsed.success) problems.push(`Research finding ${finding.id} failed validation`);
+    if (!proposals.has(finding.proposalId)) problems.push(`Research finding ${finding.id} proposal missing`);
+    if (!snapshots.has(finding.snapshotId)) problems.push(`Research finding ${finding.id} snapshot missing`);
+    if (!changes.has(finding.changeId)) problems.push(`Research finding ${finding.id} change missing`);
+  }
+  for (const alert of ledger.alerts) {
+    const parsed = materialAlertSchema.safeParse(alert);
+    if (!parsed.success) problems.push(`Material alert ${alert.id} failed validation`);
+    if (!changes.has(alert.changeId)) problems.push(`Material alert ${alert.id} change missing`);
+    if (alert.findingId && !ledger.findings.some((finding) => finding.id === alert.findingId)) {
+      problems.push(`Material alert ${alert.id} finding missing`);
+    }
+  }
+  for (const workflowRun of ledger.workflowRuns) {
+    const parsed = workflowRunSchema.safeParse(workflowRun);
+    if (!parsed.success) problems.push(`Workflow run ${workflowRun.id} failed validation`);
+  }
+  unique(
+    ledger.findings.map((finding) => finding.id),
+    "research finding",
+    problems,
+  );
+  unique(
+    ledger.alerts.map((alert) => alert.id),
+    "material alert",
+    problems,
+  );
+  unique(
+    ledger.workflowRuns.map((run) => run.id),
+    "workflow run",
     problems,
   );
   return problems;

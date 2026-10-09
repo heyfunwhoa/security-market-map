@@ -71,6 +71,10 @@ export const reviewDecisionKindSchema = z.enum([
 
 export const proposalOriginSchema = z.enum(["offline_fixture", "mocked_adapter", "human_entry"]);
 
+export const evidenceClassSchema = z.enum(["sourced_fact", "vendor_claim", "ai_hypothesis"]);
+
+export const workflowStatusSchema = z.enum(["completed", "failed"]);
+
 const EXCERPT_LIMIT = 420;
 
 function issue(ctx: z.RefinementCtx, path: string, message: string) {
@@ -248,6 +252,70 @@ export const proposedClaimSchema = z
     }
   });
 
+export const researchFindingSchema = z
+  .object({
+    id: z.string().min(1),
+    proposalId: z.string().min(1),
+    snapshotId: z.string().min(1),
+    changeId: z.string().min(1),
+    vendorId: z.string().min(1),
+    productId: z.string().min(1).nullable(),
+    categoryId: z.string().min(1),
+    classification: sourceClassificationSchema,
+    evidenceClass: evidenceClassSchema,
+    title: z.string().min(1),
+    publisher: z.string().min(1),
+    sourceUrl: z.string().url(),
+    excerpt: z.string().max(EXCERPT_LIMIT),
+    retrievedAt: isoDate,
+    eventDate: isoDate.nullable(),
+    previousExcerpt: z.string().max(EXCERPT_LIMIT).nullable(),
+    previousHash: z.string().min(1).nullable(),
+    verificationStatus: z.literal("needs_review"),
+    generatedByModel: z.literal(false),
+  })
+  .superRefine((finding, ctx) => {
+    if (finding.evidenceClass === "ai_hypothesis") {
+      issue(ctx, "evidenceClass", "This workflow does not store AI-generated hypotheses.");
+    }
+    if (finding.evidenceClass === "vendor_claim" && finding.verificationStatus !== "needs_review") {
+      issue(ctx, "verificationStatus", "A vendor claim stays in review until a person publishes it.");
+    }
+  });
+
+export const materialAlertSchema = z.object({
+  id: z.string().min(1),
+  vendorId: z.string().min(1),
+  productId: z.string().min(1).nullable(),
+  changeId: z.string().min(1),
+  findingId: z.string().min(1).nullable(),
+  summary: z.string().min(1),
+  detectedAt: isoDate,
+  previousExcerpt: z.string().max(EXCERPT_LIMIT).nullable(),
+  nextExcerpt: z.string().max(EXCERPT_LIMIT),
+  status: z.enum(["open", "dismissed"]),
+});
+
+export const workflowRunSchema = z
+  .object({
+    id: z.string().min(1),
+    vendorId: z.string().min(1).nullable(),
+    functionId: z.string().min(1),
+    status: workflowStatusSchema,
+    attempt: z.number().int().nonnegative(),
+    startedAt: isoDate,
+    finishedAt: isoDate.nullable(),
+    failureReason: z.string().min(1).nullable(),
+  })
+  .superRefine((run, ctx) => {
+    if (run.status === "failed" && !run.failureReason) {
+      issue(ctx, "failureReason", "A failed workflow run records a reason.");
+    }
+    if (run.status === "completed" && run.failureReason) {
+      issue(ctx, "failureReason", "A completed workflow run does not carry a failure reason.");
+    }
+  });
+
 export const reviewDecisionSchema = z.object({
   id: z.string().min(1),
   proposedClaimId: z.string().min(1),
@@ -275,3 +343,7 @@ export type ProposalReviewStatus = z.infer<typeof proposalReviewStatusSchema>;
 export type ReviewDecisionKind = z.infer<typeof reviewDecisionKindSchema>;
 export type ReviewDecision = z.infer<typeof reviewDecisionSchema>;
 export type ProposalOrigin = z.infer<typeof proposalOriginSchema>;
+export type EvidenceClass = z.infer<typeof evidenceClassSchema>;
+export type ResearchFinding = z.infer<typeof researchFindingSchema>;
+export type MaterialAlert = z.infer<typeof materialAlertSchema>;
+export type WorkflowRun = z.infer<typeof workflowRunSchema>;

@@ -2,6 +2,8 @@
 
 Phase 1 is an offline foundation for checking public sources, noticing meaningful changes, and queuing evidence-backed proposals. It does not publish catalog claims, and it does not call Exa or Firecrawl.
 
+The HashiCorp vendor workflow in `docs/inngest.md` schedules that checker with Inngest. It still uses a fixture. Live monitoring has not been run.
+
 Live monitoring has not been run. A key in the environment does not enable a live fetch. `npm test` covers the fixture path only.
 
 ## What this phase does
@@ -20,7 +22,7 @@ The exercised source is the public OWASP Non-Human Identities Top 10 (2025) page
 - It does not declare a vendor capability verified.
 - It does not invent pricing, product capabilities, or analyst rankings.
 - It does not download full text from analyst, paywalled, or restricted sources.
-- It does not start from the Next.js UI. The sources page is unchanged and does not run a check.
+- The sources page and the HashiCorp vendor page show the offline fixture. They do not start a live check.
 - It does not add a database. The ledger is an in-memory append-only object.
 
 ## Files
