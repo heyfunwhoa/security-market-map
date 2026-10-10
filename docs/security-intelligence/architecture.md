@@ -2,6 +2,15 @@
 
 **Status:** design + curated seed only; **not** a deployed database, ingestion service, API, or Market Map UI feature. This PR lives in Security Market Map as a review venue, **not** as a decision that Market Map owns intelligence long term.
 
+## Design references
+
+- [Relationships and defensible edges](relationship-vocabulary.md)
+- [Identity resolution, time, correction and editorial review](temporal-review-identity.md)
+- [Phased implementation and other repositories](expansion-backlog.md)
+- [Read-only API contract](api-contract.md)
+- [Source registry](source-registry.md)
+- [Typed cross-consumer fixture contract](../../lib/security-intelligence-contract.ts)
+
 ## Ownership and boundaries
 
 Create one independently owned **Security Intelligence service** after this contract is validated with two consumers. It owns normalized incident, malware, actor, vulnerability, package, ATT&CK-technique, relationship, source and claim records. A consumer never writes the canonical database directly.
@@ -84,6 +93,14 @@ Define enforced enums/checks, strict source foreign keys and privacy/publishing 
 - Consumer v0 API shapes are defined without implementing live endpoints.
 - Market Map and Academy integration sketches are testable without copying records into each product.
 - Add a future independent service/repository **only when** two consumers need the same API in practice.
+
+## Missing models to add by phase
+
+- **P1 asset/exposure taxonomy:** asset type, environment, ownership, identity class, affected versions, trust boundaries; default to anonymized/synthetic lab assets.
+- **P1 supporting frameworks:** MITRE D3FEND (defensive behavior), CWE (weaknesses), CAPEC (attack patterns) complement, but never replace, ATT&CK (adversary behavior). Each has separate identifiers and version/licensing requirements.
+- **P1 package/SBOM:** package ecosystem + purl + version, package dependency links, CycloneDX/SPDX metadata, VEX applicability; avoid treating "vulnerable" and "exploited" as synonymous.
+- **P2 logs/telemetry:** if teaching labs need event examples, use OCSF-style normalized *synthetic* event records, not real customer telemetry.
+- **P2 search/AI:** evaluation-gated retrieval with exact citations, unanswered gaps surfaced as unknown; third-party source text is never a tool instruction.
 
 ## Decisions still open
 
