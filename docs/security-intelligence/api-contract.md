@@ -35,6 +35,15 @@ Never expose raw snapshots or unreviewed draft claims through public endpoints.
 }
 ```
 
+### Multi-directional exploration (future filters, not working UI)
+
+- **Incident-first:** incident → approved technique/weakness/asset edges → documented defenses → market categories → safe labs.
+- **Technique-first:** versioned ATT&CK technique → incident reports → evidence-backed controls, capabilities and labs.
+- **Package-first:** ecosystem/name/version → advisories or malicious publications → sourced incident associations → remediation guidance.
+- **Control-first:** validated control scope → techniques/weaknesses addressed → supporting sources → product capability claims (separately reviewed).
+
+Every navigable edge carries `claimId`, source IDs, review state and temporal applicability. Missing edges render **Not evaluated**, never a false negative or inferred attribution. The read contract must support bounded graph queries without exposing unreviewed drafts. See [relationship vocabulary](relationship-vocabulary.md).
+
 ### Endpoint safety and compatibility
 
 - IDs are stable strings and URL-safe, with accepted `kind` enum values and bounded `limit` (default 20, max 100).
