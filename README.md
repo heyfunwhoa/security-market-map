@@ -65,7 +65,39 @@ npm run lint
 npm run build
 ```
 
-Copy `.env.example` if you want the optional adapter flags. Leave `FIRECRAWL_API_KEY` and `EXA_API_KEY` empty. The app runs on the local seed and does not call those adapters at startup.
+Copy `.env.example` to `.env.local` if you want the optional flags. Leave `FIRECRAWL_API_KEY` and `EXA_API_KEY` empty. The app runs on the local seed and does not call those adapters at startup.
+
+## Vendor research
+
+The published catalog stays in `lib/data`. A separate ledger can record one HashiCorp Vault check from an offline fixture and queue it as a pending vendor claim. Details are in `docs/inngest.md` and `docs/research-engine.md`.
+
+These paths work with no external account:
+
+- Pages, including the research panel on `/sources` and `/vendors/hashicorp`.
+- `GET /api/research/status`, which returns the offline fixture until this process has saved a run.
+- `npm test`, which covers deduplication, excerpt history, material alerts, and the Inngest function settings.
+
+These paths stay idle until you configure them:
+
+| Capability | What you must set |
+| --- | --- |
+| Run the scheduled functions | Locally, `INNGEST_DEV=1` and the Inngest Dev Server below. In a deployment, Inngest Cloud keys. `next start` does not fire the Monday cron by itself. |
+| Serve `/api/inngest` | `INNGEST_DEV=1` for local development, or `INNGEST_SIGNING_KEY` for Cloud. Otherwise the route returns HTTP 503. |
+| Send events from this app to Inngest Cloud | `INNGEST_EVENT_KEY`. Local dev does not need it. |
+| Collect a live vendor page | Not available. `FIRECRAWL_API_KEY` and `EXA_API_KEY` do not enable a crawl. |
+| Keep research history after a restart, or across more than one server | Not available. There is no database and no migration. |
+| Publish a finding into the map | A person copies a reviewed statement into `lib/data`. The workflow does not do this. |
+
+Local Dev Server, in two terminals:
+
+```bash
+INNGEST_DEV=1 npm run dev
+npx inngest-cli@latest dev
+```
+
+Register `http://127.0.0.1:43123/api/inngest` in the Dev Server. Leave `INNGEST_DEV` unset on any public host.
+
+To deploy the functions, host this Next.js app, set `INNGEST_EVENT_KEY` and `INNGEST_SIGNING_KEY` from the Inngest Cloud app, leave `INNGEST_DEV` unset, and sync `https://<host>/api/inngest`. That sync has not been done from this repository. A successful sync still checks the offline fixture. It does not monitor the public web, and a second instance will not see the first instance's ledger.
 
 ## Architecture
 
@@ -74,6 +106,7 @@ Copy `.env.example` if you want the optional adapter flags. Leave `FIRECRAWL_API
 - `lib/catalog.ts` merges the identity seed with the wider ecosystem and throws if a cross-reference is broken.
 - Comparison fills a cell only from claims that are in force. Category membership is not evidence.
 - Coverage marks stale sources from the retrieval date and the source’s volatility window.
+- The phase 1 research ledger in `lib/research` checks an offline fixture, queues pending proposals, and does not publish them. See `docs/research-engine.md`. Inngest can schedule the HashiCorp fixture. See `docs/inngest.md`. Live Exa, Firecrawl, and Inngest Cloud monitoring are not implemented.
 - Budget is three-year arithmetic on numbers you type. It is not a forecast.
 - Territory notes stay in `localStorage`. A blank incumbent is unknown and is left out of the score.
 
@@ -84,6 +117,7 @@ Copy `.env.example` if you want the optional adapter flags. Leave `FIRECRAWL_API
 3. If two current pages disagree, point `conflictsWith` both ways.
 4. Run `npm test`. The catalog refuses a claim whose source, product, or capability does not exist, and a conflict that is not symmetric.
 5. Do not fill a cell because a vendor is in the category. Absence of a statement stays Unknown.
+6. A research proposal is not a catalog claim. Accepting one in `lib/research` does not edit this seed. Copy a reviewed statement into the files above in a separate change, and leave the older claim in place when positioning changes.
 
 ## Data limits
 

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ClaimList } from "@/components/claims";
 import { PageIntro, StatusPill } from "@/components/chrome";
+import { VendorResearchPanel } from "@/components/vendor-research-panel";
 import {
   catalog,
   claimsForSubject,
@@ -11,6 +12,7 @@ import {
   vendorBySlug,
 } from "@/lib/catalog";
 import { availabilityLabel, formatDate, relationshipLabel, scopeLabel } from "@/lib/format";
+import { previewHashicorpMonitor } from "@/lib/research/vendor-monitor";
 
 export function generateStaticParams() {
   return catalog.vendors.map((vendor) => ({ slug: vendor.slug }));
@@ -36,6 +38,7 @@ export default async function VendorPage({ params }: { params: Promise<{ slug: s
   const changelog = [...vendorClaims, ...productClaims].sort((a, b) =>
     (b.publishedAt ?? b.observedAt).localeCompare(a.publishedAt ?? a.observedAt),
   );
+  const monitor = vendor.id === "hashicorp" ? await previewHashicorpMonitor() : null;
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
@@ -55,6 +58,7 @@ export default async function VendorPage({ params }: { params: Promise<{ slug: s
         Scope marked for filtering: {vendor.identityScopes.map(scopeLabel).join(", ")}. Scope is a
         research starting point, not a certified coverage claim.
       </p>
+      {monitor ? <VendorResearchPanel view={monitor} /> : null}
 
       <section className="mt-8">
         <h2 className="text-2xl">Products</h2>

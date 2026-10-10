@@ -58,6 +58,7 @@ export const availabilitySchema = z.enum([
 ]);
 export const volatilitySchema = z.enum(["stable", "moderate", "fast"]);
 export const claimPolaritySchema = z.enum(["asserts", "denies", "limits"]);
+export const claimSubjectTypeSchema = z.enum(["vendor", "product", "category", "capability"]);
 export const categoryGroupSchema = z.enum([
   "entry",
   "governance",
@@ -218,7 +219,7 @@ export const sourceSchema = z.object({
 export const claimSchema = z.object({
   id: z.string().min(1),
   statement: z.string().min(1),
-  subjectType: z.enum(["vendor", "product", "category", "capability"]),
+  subjectType: claimSubjectTypeSchema,
   subjectId: z.string().min(1),
   capabilityId: z.string().nullable(),
   polarity: claimPolaritySchema,

@@ -2,6 +2,10 @@
  * Optional discovery adapters. Nothing in the app calls these at startup.
  * A future job may call `discover` only after a person submits a source,
  * then park the result in the human review queue.
+ *
+ * Phase 1 research checks do not call `discover`. Offline fixtures and mocked
+ * responses live in `lib/research/adapters.ts`. Live Exa and Firecrawl
+ * retrieval is not implemented.
  */
 
 export type DiscoveredPage = {
