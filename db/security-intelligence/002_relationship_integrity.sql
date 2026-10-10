@@ -16,7 +16,7 @@ BEGIN
  OR (NEW.predicate='exploits' AND (s_kind NOT IN ('incident','campaign') OR o_kind <> 'vulnerability'))
  OR (NEW.predicate IN ('addresses','mitigates') AND (s_kind <> 'control' OR o_kind NOT IN ('technique','weakness')))
  OR (NEW.predicate='implements' AND (s_kind <> 'product' OR o_kind <> 'capability'))
- OR (NEW.predicate='categorized_as' AND (s_kind <> 'capability' OR o_kind <> 'capability')) THEN
+ OR (NEW.predicate='categorized_as' AND (s_kind <> 'capability' OR o_kind <> 'category')) THEN
   RAISE EXCEPTION 'Invalid subject/object kinds for %', NEW.predicate;
  END IF;
  RETURN NEW;
