@@ -22,7 +22,7 @@ CREATE TABLE security_intelligence.source_snapshots (
 );
 CREATE TABLE security_intelligence.entities (
  id uuid PRIMARY KEY,
- kind text NOT NULL CHECK(kind IN ('incident','campaign','actor','malware','vulnerability','package','package_version','technique','weakness','control','product','capability','organization','asset')),
+ kind text NOT NULL CHECK(kind IN ('incident','campaign','actor','malware','vulnerability','package','package_version','technique','weakness','control','product','capability','category','organization','asset')),
  external_key text NOT NULL,
  display_name text NOT NULL CHECK(length(btrim(display_name)) > 0),
  created_at timestamptz NOT NULL DEFAULT now(),
