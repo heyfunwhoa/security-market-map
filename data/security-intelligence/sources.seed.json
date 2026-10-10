@@ -1,0 +1,42 @@
+[
+  {
+    "id": "source:cisa-solarwinds-2020",
+    "publisher": "CISA",
+    "type": "government_alert",
+    "url": "https://www.cisa.gov/news-events/alerts/2020/12/13/active-exploitation-solarwinds-software",
+    "publishedOn": "2020-12-13",
+    "lastReviewedOn": "2026-10-10",
+    "cadence": "event_driven",
+    "rightsNote": "Store citations and limited summaries; check CISA reuse terms before redistribution."
+  },
+  {
+    "id": "source:cisa-shai-hulud-alert",
+    "publisher": "CISA",
+    "type": "government_alert",
+    "url": "https://content.govdelivery.com/accounts/USDHSCISA/bulletins/3f408db",
+    "publishedOn": "2025-09-23",
+    "lastReviewedOn": "2026-10-10",
+    "cadence": "event_driven",
+    "rightsNote": "Store citations and limited summaries; check CISA/GovDelivery reuse terms."
+  },
+  {
+    "id": "source:mitre-stix",
+    "publisher": "MITRE ATT&CK",
+    "type": "reference_dataset",
+    "url": "https://github.com/mitre-attack/attack-stix-data",
+    "publishedOn": null,
+    "lastReviewedOn": "2026-10-10",
+    "cadence": "monthly",
+    "rightsNote": "Review ATT&CK licensing and attribution requirements before import or republication."
+  },
+  {
+    "id": "source:osv-api",
+    "publisher": "OSV",
+    "type": "vulnerability_api",
+    "url": "https://google.github.io/osv.dev/api/",
+    "publishedOn": null,
+    "lastReviewedOn": "2026-10-10",
+    "cadence": "weekly",
+    "rightsNote": "Review source and advisory licensing before distributing data."
+  }
+]

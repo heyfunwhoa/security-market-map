@@ -1,0 +1,49 @@
+name: Security intelligence schema validation
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'db/security-intelligence/**'
+      - '.github/workflows/security-intelligence-schema.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'db/security-intelligence/**'
+      - '.github/workflows/security-intelligence-schema.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  postgres-schema:
+    name: PostgreSQL migration and integrity tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: test_user
+          POSTGRES_PASSWORD: test_password
+          POSTGRES_DB: intelligence_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U test_user -d intelligence_test"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      PGHOST: localhost
+      PGPORT: 5432
+      PGUSER: test_user
+      PGPASSWORD: test_password
+      PGDATABASE: intelligence_test
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Apply foundation and relationship migrations
+        run: |
+          psql -v ON_ERROR_STOP=1 -f db/security-intelligence/001_foundation.sql
+          psql -v ON_ERROR_STOP=1 -f db/security-intelligence/002_relationship_integrity.sql
+      - name: Test publication, type validation and retraction
+        run: psql -v ON_ERROR_STOP=1 -f db/security-intelligence/integrity.test.sql

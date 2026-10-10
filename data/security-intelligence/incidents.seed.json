@@ -1,0 +1,47 @@
+[
+  {
+    "id": "incident:cisa-solarwinds-2020",
+    "title": "SolarWinds Orion supply-chain compromise",
+    "kind": "supply_chain",
+    "disclosedOn": "2020-12-13",
+    "occurredOn": null,
+    "summary": "CISA reported active exploitation involving affected SolarWinds Orion software versions.",
+    "epistemicStatus": "reported",
+    "reviewStatus": "seed_reviewed",
+    "affectedEcosystems": [
+      "enterprise_software"
+    ],
+    "sourceIds": [
+      "source:cisa-solarwinds-2020"
+    ],
+    "techniqueIds": [],
+    "packageIds": [],
+    "uncertaintyNotes": [
+      "Exact occurrence date, complete victim list and attack-technique links are outside this seed's verified scope."
+    ],
+    "lastReviewedOn": "2026-10-10"
+  },
+  {
+    "id": "incident:cisa-shai-hulud-2025",
+    "title": "Shai-Hulud npm ecosystem compromise",
+    "kind": "supply_chain",
+    "disclosedOn": "2025-09-23",
+    "occurredOn": null,
+    "summary": "CISA issued an alert describing a self-replicating npm ecosystem supply-chain compromise and attempted credential theft.",
+    "epistemicStatus": "reported",
+    "reviewStatus": "seed_reviewed",
+    "affectedEcosystems": [
+      "npm"
+    ],
+    "sourceIds": [
+      "source:cisa-shai-hulud-alert"
+    ],
+    "techniqueIds": [],
+    "packageIds": [],
+    "uncertaintyNotes": [
+      "Affected individual packages and versions require package-level primary evidence before asserting links.",
+      "No ATT&CK technique is asserted until a separate sourced mapping review."
+    ],
+    "lastReviewedOn": "2026-10-10"
+  }
+]
