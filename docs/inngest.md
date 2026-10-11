@@ -76,11 +76,13 @@ Open the Dev Server, invoke `research-vendor` with:
 { "data": { "vendorId": "hashicorp", "asOf": "2026-10-09" } }
 ```
 
-The dev server shows the run, the step, and a failure if one is thrown. A successful local invoke writes the process-memory ledger. `GET /api/research/status` returns that ledger when the same server process handled the run. The static vendor page keeps showing the offline preview baked at build time. Neither result is a live crawl.
+The dev server shows the run, the step, and a failure if one is thrown. A successful local invoke writes `.data/research-ledger.json` unless `RESEARCH_LEDGER_PATH=memory`. `GET /api/research/status` reads that file after a restart of one machine. The sources page and the HashiCorp page start from the offline preview, then replace it when the status route has a saved run. Neither result is a live crawl.
+
+`POST /api/research/review` records a review decision on that ledger. `published` is false. The catalog seed is not edited. The route has no login. Do not expose it on a public host until access control exists.
 
 ## Deployment
 
-Register `https://<host>/api/inngest` in Inngest Cloud and set the event and signing keys in the host's environment. Leave `INNGEST_DEV` unset there. The route is dynamic. A host without `INNGEST_SIGNING_KEY` returns HTTP 503 from `/api/inngest` and will not sync. No Neon migration is included. A durable research history needs a database this repository does not have. Process memory is lost when the server exits.
+Register `https://<host>/api/inngest` in Inngest Cloud and set the event and signing keys in the host's environment. Leave `INNGEST_DEV` unset there. The route is dynamic. A host without `INNGEST_SIGNING_KEY` returns HTTP 503 from `/api/inngest` and will not sync. No Neon migration is included. The ledger file is local to one machine and is not shared across hosts. A hosted database is still required before Cloud runs on more than one instance.
 
 ## Tests
 

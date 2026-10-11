@@ -1,7 +1,7 @@
 import { ClaimList } from "@/components/claims";
 import { PageIntro, StatusPill } from "@/components/chrome";
 import { SourceIntake } from "@/components/source-intake";
-import { VendorResearchPanel } from "@/components/vendor-research-panel";
+import { ResearchPanelLive } from "@/components/research-panel-live";
 import { catalog } from "@/lib/catalog";
 import { conflictingClaims, reviewQueue, staleSources } from "@/lib/coverage";
 import { formatDate, sourceTypeLabel } from "@/lib/format";
@@ -25,7 +25,7 @@ export default async function SourcesPage() {
         title="The ledger, the stale pile, and the conflicts"
         lede="Every published claim in the atlas points here. Recrawl windows are short for marketing pages and longer for standards. Adapters for Firecrawl and Exa exist and are not called when the app starts. The HashiCorp monitor below is an offline fixture."
       />
-      <VendorResearchPanel view={monitor} />
+      <ResearchPanelLive initial={monitor} />
 
       <section className="mt-8 overflow-x-auto rounded-xl border border-border">
         <table className="w-full min-w-[40rem] text-sm">
