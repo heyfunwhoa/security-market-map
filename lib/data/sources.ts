@@ -490,4 +490,18 @@ export const sources: Source[] = [
     excerpt:
       "Cyera says the acquisition closed on 3 Sep 2026 and that Oasis will operate as Cyera Identity, connecting to Cyera's data intelligence layer. That is the company's statement, not a reviewed product workflow.",
   },
+  {
+    id: "src-infisical-secrets",
+    title: "Infisical secrets management overview",
+    url: "https://infisical.com/docs/documentation/getting-started/choose-a-product/secrets-management/overview",
+    canonicalUrl:
+      "https://infisical.com/docs/documentation/getting-started/choose-a-product/secrets-management/overview",
+    publisher: "Infisical",
+    sourceType: "official_docs",
+    publishedAt: null,
+    retrievedAt: "2026-10-11",
+    volatility: "moderate",
+    excerpt:
+      "Infisical docs say Secrets Management is a central store for secrets used by applications and infrastructure. It replaces .env files, hardcoded credentials, and secrets shared through channels such as Slack.",
+  },
 ];
