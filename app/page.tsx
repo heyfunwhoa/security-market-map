@@ -158,7 +158,7 @@ export default function HomePage() {
         <div>
           <h2 className="text-3xl tracking-tight">Recently dated claims</h2>
           <p className="mt-2 text-sm text-muted-foreground">
-            Newest published or observed date first. Vendor-published is not the same as verified.
+            Newest published or observed date first. Vendor said this means the company page. Independent source means a public standard.
           </p>
           <div className="mt-4">
             <ClaimList claims={recent} />

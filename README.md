@@ -44,7 +44,7 @@ The Cyera–Oasis case study separates the companies' strategic rationale and th
 
 - Link material claims to a public source.
 - Record when a source was published and when it was reviewed.
-- Separate vendor claims from independently supported findings.
+- Separate vendor claims from independently supported findings. A claim is marked verified only when the source is an independent public standard. A vendor doc, marketing page, or press release stays labeled as what the vendor said.
 - Identify analysis as interpretation.
 - Do not reproduce paywalled analyst reports or present an analyst category as a universal market definition.
 - Update or flag claims when positioning or product capabilities change.
