@@ -952,4 +952,27 @@ export const claims: Claim[] = [
     conflictsWith: [],
     notes: "Company press release. Close and the Cyera Identity name are vendor-published. A data signal changing an identity decision is not verified.",
   }),
+  claim({
+    id: "claim-infisical-store",
+    statement:
+      "Infisical's secrets management documentation says Secrets Management is a central store for the secrets used by applications and infrastructure. The page says this replaces .env files, hardcoded credentials, and secrets shared between team members through channels such as Slack, and that secrets stored there can be delivered to the systems that use them.",
+    subjectType: "product",
+    subjectId: "infisical",
+    capabilityId: null,
+    polarity: "asserts",
+    sourceId: "src-infisical-secrets",
+    sourceUrl:
+      "https://infisical.com/docs/documentation/getting-started/choose-a-product/secrets-management/overview",
+    sourceType: "official_docs",
+    publishedAt: null,
+    observedAt: "2026-10-11",
+    effectiveFrom: null,
+    effectiveTo: null,
+    confidence: "high",
+    verificationStatus: "vendor_published",
+    lastCheckedAt: "2026-10-11",
+    conflictsWith: [],
+    notes:
+      "Official docs retrieved 11 Oct 2026. This is what Infisical published. The same page also mentions rotation, short-lived credentials, and brokering to AI agents. Those are not recorded as capabilities from this page. Open source versus cloud is not stated here.",
+  }),
 ];
