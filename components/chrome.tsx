@@ -122,8 +122,8 @@ export function SiteFooter() {
 }
 
 const PILL_LABELS: Record<string, string> = {
-  verified: "Verified",
-  vendor_published: "Vendor-published",
+  verified: "Independent source",
+  vendor_published: "Vendor said this",
   needs_review: "Needs review",
   conflicting: "Conflicting",
   superseded: "Superseded",

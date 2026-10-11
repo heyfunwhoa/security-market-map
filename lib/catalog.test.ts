@@ -27,6 +27,23 @@ describe("catalog integrity", () => {
     expect(catalogProblems(catalog)).toEqual([]);
   });
 
+  it("reserves verified for an independent public standard", () => {
+    const verified = catalog.claims.filter((claim) => claim.verificationStatus === "verified");
+    expect(verified.map((claim) => claim.id).sort()).toEqual(["claim-owasp-nhi", "claim-owasp-nhi-top10"]);
+    expect(verified.every((claim) => claim.sourceType === "standard")).toBe(true);
+    const vendorClaim = catalog.claims.find((claim) => claim.id === "claim-vault-dynamic");
+    expect(vendorClaim?.verificationStatus).toBe("vendor_published");
+    const problems = catalogProblems({
+      ...catalog,
+      claims: catalog.claims.map((claim) =>
+        claim.id === "claim-vault-dynamic" ? { ...claim, verificationStatus: "verified" as const } : claim,
+      ),
+    });
+    expect(problems.some((problem) => problem.includes("claim-vault-dynamic") && problem.includes("cannot be verified"))).toBe(
+      true,
+    );
+  });
+
   it("meets the seed minimums", () => {
     const identityCategories = catalog.categories.filter((category) =>
       category.domainIds.includes("identity"),

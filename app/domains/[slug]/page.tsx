@@ -76,8 +76,8 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
         </p>
       ) : (
         <p className="mt-4 max-w-3xl rounded-xl border border-border bg-card p-4 text-sm leading-6">
-          Claims in this domain carry a source, a date, and a verification status. Vendor-published is
-          not the same as verified. A blank cell is Unknown.
+          Claims in this domain carry a source, a date, and a label. Vendor said this means the
+          company page. Independent source means a public standard. A blank cell is Unknown.
         </p>
       )}
       <dl className="mt-8 grid gap-4 text-sm leading-6 md:grid-cols-2">

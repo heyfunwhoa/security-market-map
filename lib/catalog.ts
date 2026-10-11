@@ -200,6 +200,11 @@ export function catalogProblems(catalog: Catalog): string[] {
     if (source && source.url !== claim.sourceUrl) {
       problems.push(`Claim ${claim.id} source URL does not match its source`);
     }
+    if (claim.verificationStatus === "verified" && claim.sourceType !== "standard") {
+      problems.push(
+        `Claim ${claim.id} cannot be verified from a ${claim.sourceType} source. Verified is reserved for an independent public standard. A vendor page stays vendor-published. An analyst page stays in review unless the report itself is licensed.`,
+      );
+    }
     if (claim.capabilityId && !capabilityIds.has(claim.capabilityId)) {
       problems.push(`Claim ${claim.id} capability missing`);
     }

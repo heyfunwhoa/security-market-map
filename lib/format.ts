@@ -67,9 +67,9 @@ export function sourceTypeLabel(type: string): string {
 export function verificationLabel(status: string): string {
   switch (status) {
     case "verified":
-      return "Verified";
+      return "Independent source";
     case "vendor_published":
-      return "Vendor-published";
+      return "Vendor said this";
     case "needs_review":
       return "Needs review";
     case "conflicting":
