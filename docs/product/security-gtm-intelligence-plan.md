@@ -31,3 +31,7 @@ KRU-58 repeats the same workflow/configuration for IGA, with 5–10 approved sou
 KRU-57 coordinates later authenticated read-only evidence handoff; separate owning-repo PRs and security gates. PostgreSQL persistence for SMM knowledge is deferred until consumer need and additive migration design are reviewed; no shared DB credentials or direct ASE database reads.
 
 **Cursor:** strong coding model / Sonnet-class or Auto/Balance where offered; medium effort for adapter, high for correction/schema/privacy review. No application suite ran for this planning doc. Runtime PRs must record exact checks and remain unmerged for review.
+
+## Persona ownership in the connected sales flow
+
+Reuse existing lib/data/personas.ts (including appsec, platform, ai-owner and iga-owner) and native category IDs. These role profiles remain generic starting guidance; do not infer an account stakeholder, champion/economic buyer or buying intent from them. The [shared sales-flow spec](https://github.com/heyfunwhoa/technical-docs-platform/blob/docs/security-gtm-intelligence-foundation-20261011/product/security-gtm-intelligence-foundation/sales-flow.md) defines role revision references and field authority. Company messaging overlays and actual stakeholders stay in company systems. Review existing buying-center/role PRs before schema expansion; no second persona catalog.
