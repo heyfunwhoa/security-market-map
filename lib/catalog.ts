@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { searchHits as filterSearchHits, type SearchHit } from "./search";
 import {
   AS_OF,
   capabilitySchema,
@@ -313,12 +314,7 @@ export function vendorById(id: string): Vendor | undefined {
   return catalog.vendors.find((vendor) => vendor.id === id);
 }
 
-export type SearchHit = {
-  href: string;
-  kind: string;
-  title: string;
-  text: string;
-};
+export type { SearchHit };
 
 export function searchIndex(): SearchHit[] {
   return [
@@ -368,9 +364,5 @@ export function searchIndex(): SearchHit[] {
 }
 
 export function searchHits(query: string, hits: SearchHit[] = searchIndex()): SearchHit[] {
-  const needle = query.trim().toLowerCase();
-  if (needle.length < 2) return [];
-  return hits
-    .filter((hit) => `${hit.title} ${hit.text} ${hit.kind}`.toLowerCase().includes(needle))
-    .slice(0, 12);
+  return filterSearchHits(query, hits);
 }

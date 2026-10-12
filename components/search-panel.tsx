@@ -1,44 +1,116 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import Link from "next/link";
-import { searchHits, type SearchHit } from "@/lib/catalog";
-import { Input } from "@/components/ui/input";
+import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
+import { Search } from "lucide-react";
+import { searchHits, type SearchHit } from "@/lib/search";
+import { Button } from "@/components/ui/button";
+import {
+  CommandDialog,
+  CommandEmpty,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
 
-export function SearchPanel({ hits }: { hits: SearchHit[] }) {
+export const OPEN_SEARCH_EVENT = "atlas-search-open";
+
+export function openSearch() {
+  window.dispatchEvent(new Event(OPEN_SEARCH_EVENT));
+}
+
+export function SearchCommand({ hits }: { hits: SearchHit[] }) {
+  const router = useRouter();
+  const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const results = useMemo(() => searchHits(query, hits), [query, hits]);
 
+  useEffect(() => {
+    function onKey(event: KeyboardEvent) {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        setOpen((current) => !current);
+      }
+    }
+    function onOpen() {
+      setOpen(true);
+    }
+    window.addEventListener("keydown", onKey);
+    window.addEventListener(OPEN_SEARCH_EVENT, onOpen);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener(OPEN_SEARCH_EVENT, onOpen);
+    };
+  }, []);
+
+  function choose(href: string) {
+    setOpen(false);
+    setQuery("");
+    router.push(href);
+  }
+
+  return (
+    <>
+      <Button
+        type="button"
+        variant="outline"
+        size="sm"
+        onClick={() => setOpen(true)}
+        aria-label="Search the map"
+        aria-keyshortcuts="Control+K Meta+K"
+      >
+        <Search />
+        <span className="sr-only">Search</span>
+      </Button>
+      <CommandDialog
+        open={open}
+        onOpenChange={(next) => {
+          setOpen(next);
+          if (!next) setQuery("");
+        }}
+        title="Search the map"
+        description="Search domains, vendors, products, use cases, glossary terms, and claims."
+      >
+        <CommandInput
+          value={query}
+          onValueChange={setQuery}
+          placeholder="Try Opal Zero, standing privilege, or vault"
+          aria-label="Search the map"
+        />
+        <CommandList aria-label="Search results">
+          <CommandEmpty>
+            {query.trim().length < 2 ? "Type at least two letters." : "Nothing in the seed matches that."}
+          </CommandEmpty>
+          {results.map((hit) => (
+            <CommandItem
+              key={`${hit.kind}-${hit.href}-${hit.title}`}
+              value={`${hit.kind} ${hit.href} ${hit.title}`}
+              onSelect={() => choose(hit.href)}
+            >
+              <span className="mt-0.5 shrink-0 text-xs tracking-wide text-muted-foreground uppercase">
+                {hit.kind}
+              </span>
+              <span className="font-medium">{hit.title}</span>
+            </CommandItem>
+          ))}
+        </CommandList>
+      </CommandDialog>
+    </>
+  );
+}
+
+export function SearchPanel() {
   return (
     <div className="rounded-xl border border-border bg-card p-4">
-      <label htmlFor="atlas-search" className="text-sm font-semibold">
-        Search the map
-      </label>
-      <Input
-        id="atlas-search"
-        type="search"
-        value={query}
-        onChange={(event) => setQuery(event.target.value)}
-        placeholder="Try Opal Zero, standing privilege, or vault"
-        className="mt-2 h-10 bg-background"
-        aria-controls="atlas-search-results"
-      />
-      <ul id="atlas-search-results" className="mt-3 space-y-2" aria-live="polite">
-        {query.trim().length >= 2 && results.length === 0 ? (
-          <li className="text-sm text-muted-foreground">Nothing in the seed matches that.</li>
-        ) : null}
-        {results.map((hit) => (
-          <li key={`${hit.kind}-${hit.href}-${hit.title}`}>
-            <Link
-              href={hit.href}
-              className="block rounded-md px-2 py-1.5 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            >
-              <span className="text-xs tracking-wide text-muted-foreground uppercase">{hit.kind}</span>
-              <span className="mt-0.5 block text-sm font-medium">{hit.title}</span>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <p className="text-sm font-semibold">Search the map</p>
+      <p className="mt-1 text-sm leading-6 text-muted-foreground">
+        Domains, vendors, products, use cases, glossary terms, and claims. The same search is in the header.
+      </p>
+      <Button type="button" variant="outline" className="mt-3" onClick={openSearch}>
+        <Search />
+        Search
+        <span className="text-xs text-muted-foreground">Ctrl K</span>
+      </Button>
     </div>
   );
 }

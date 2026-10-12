@@ -7,6 +7,7 @@ import { cellStatusLabel } from "@/lib/format";
 import { compareProducts } from "@/lib/compare";
 import type { Capability, Claim, Product, UseCase } from "@/lib/schema";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 const PRESETS: { id: string; label: string; useCaseId: string; productIds: string[] }[] = [
@@ -63,6 +64,7 @@ export function CompareWorkbench({
   const pathname = usePathname();
   const [useCaseId, setUseCaseId] = useState(initialUseCase);
   const [selected, setSelected] = useState<string[]>(initialProducts.slice(0, 4));
+  const [productQuery, setProductQuery] = useState("");
 
   const useCase = useCases.find((item) => item.id === useCaseId) ?? useCases[0];
 
@@ -101,6 +103,17 @@ export function CompareWorkbench({
   );
 
   const capabilityName = (id: string) => capabilities.find((item) => item.id === id)?.name ?? id;
+  const productName = (id: string) => products.find((product) => product.id === id)?.name ?? id;
+  const needle = productQuery.trim().toLowerCase();
+  const matches = needle
+    ? products
+        .filter((product) => product.name.toLowerCase().includes(needle))
+        .sort((a, b) => a.name.localeCompare(b.name))
+        .slice(0, 8)
+    : [];
+  const matchCount = needle
+    ? products.filter((product) => product.name.toLowerCase().includes(needle)).length
+    : 0;
 
   return (
     <div>
@@ -130,15 +143,27 @@ export function CompareWorkbench({
         </select>
       </div>
       <p className="mt-4 text-sm text-muted-foreground" id="compare-help">
-        Choose two to four products. Four columns stay readable. Start with C1, Opal, SailPoint, and
+        Type a product name to add it. Four columns stay readable. Start with C1, Opal, SailPoint, and
         Saviynt, then swap Entra or Okta. Add Vault when the use case is secrets or NHI. A blank cell
         would be misleading, so missing evidence says Unknown.
       </p>
-      <ul className="mt-3 grid gap-2 sm:grid-cols-2" aria-describedby="compare-help">
-        {products
-          .slice()
-          .sort((a, b) => a.name.localeCompare(b.name))
-          .map((product) => {
+      <div className="mt-3 max-w-md" aria-describedby="compare-help">
+        <Label htmlFor="compare-pick">Add a product</Label>
+        <Input
+          id="compare-pick"
+          type="search"
+          value={productQuery}
+          onChange={(event) => setProductQuery(event.target.value)}
+          placeholder="Type a product name"
+          className="mt-1 h-9 bg-background"
+          aria-controls="compare-matches"
+          autoComplete="off"
+        />
+        <ul id="compare-matches" className="mt-2 space-y-2">
+          {needle && matches.length === 0 ? (
+            <li className="text-sm text-muted-foreground">No product name matches that.</li>
+          ) : null}
+          {matches.map((product) => {
             const on = selected.includes(product.id);
             const disabled = !on && selected.length >= 4;
             return (
@@ -158,6 +183,20 @@ export function CompareWorkbench({
               </li>
             );
           })}
+        </ul>
+        {matchCount > matches.length ? (
+          <p className="mt-2 text-xs text-muted-foreground">Type more of the name to narrow the list.</p>
+        ) : null}
+      </div>
+      <ul className="mt-3 flex flex-wrap gap-2" aria-label="Products in the matrix">
+        {selected.map((id) => (
+          <li key={id}>
+            <Button type="button" variant="outline" size="sm" onClick={() => toggle(id)}>
+              {productName(id)}
+              <span className="text-xs text-muted-foreground">Remove</span>
+            </Button>
+          </li>
+        ))}
       </ul>
 
       {selected.length < 2 ? (
