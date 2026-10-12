@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Source_Sans_3 } from "next/font/google";
 import { SiteFooter, SiteHeader } from "@/components/chrome";
+import { searchIndex } from "@/lib/catalog";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
 
@@ -37,7 +38,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           >
             Skip to content
           </a>
-          <SiteHeader />
+          <SiteHeader hits={searchIndex()} />
           <script
             dangerouslySetInnerHTML={{
               __html:

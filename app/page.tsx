@@ -5,7 +5,7 @@ import { DomainMap } from "@/components/domain-map";
 import { MarketConstellation } from "@/components/market-constellation";
 import { SearchPanel } from "@/components/search-panel";
 import { Button } from "@/components/ui/button";
-import { catalog, searchIndex } from "@/lib/catalog";
+import { catalog } from "@/lib/catalog";
 import {
   capabilitiesWithoutStrongEvidence,
   productsWithoutCapabilityEvidence,
@@ -94,7 +94,7 @@ export default function HomePage() {
       </section>
 
       <div className="mt-8 grid gap-6 lg:grid-cols-[1.4fr_0.8fr]">
-        <SearchPanel hits={searchIndex()} />
+        <SearchPanel />
         <aside className="rounded-xl border border-border bg-card p-4 text-sm leading-6">
           <p className="font-semibold">As of {formatDate(catalog.asOf)}</p>
           <p className="mt-2 text-muted-foreground">

@@ -7,6 +7,8 @@ import { Menu, X } from "lucide-react";
 import { AS_OF } from "@/lib/schema";
 import { formatDate } from "@/lib/format";
 import { cn } from "@/lib/utils";
+import type { SearchHit } from "@/lib/search";
+import { SearchCommand } from "@/components/search-panel";
 
 const LINKS = [
   { href: "/domains", label: "Domains" },
@@ -35,7 +37,7 @@ function NavLinks({ className }: { className?: string }) {
             href={link.href}
             aria-current={active ? "page" : undefined}
             className={cn(
-              "rounded-md px-2.5 py-1.5 text-sm hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+              "rounded-md px-1.5 py-1.5 text-sm whitespace-nowrap hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
               active ? "bg-muted font-semibold text-foreground" : "text-muted-foreground",
             )}
           >
@@ -47,7 +49,7 @@ function NavLinks({ className }: { className?: string }) {
   );
 }
 
-export function SiteHeader() {
+export function SiteHeader({ hits }: { hits: SearchHit[] }) {
   const pathname = usePathname();
   const seenPath = useRef(pathname);
 
@@ -61,7 +63,7 @@ export function SiteHeader() {
   return (
     <header className="relative z-50 border-b border-border bg-background">
       <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3">
-        <Link href="/" className="min-w-0">
+        <Link href="/" className="shrink-0">
           <span className="block font-heading text-lg leading-none tracking-tight">
             Security Market Map
           </span>
@@ -69,8 +71,10 @@ export function SiteHeader() {
             Analyst coverage · as of {formatDate(AS_OF)}
           </span>
         </Link>
-        <NavLinks className="ml-auto hidden items-center gap-0.5 lg:flex" />
-        <details id="site-menu" className="ml-auto lg:hidden">
+        <div className="ml-auto flex items-center gap-2">
+          <NavLinks className="hidden items-center gap-0.5 lg:flex" />
+          <SearchCommand hits={hits} />
+        <details id="site-menu" className="lg:hidden">
           <summary
             aria-label="Open menu"
             aria-controls="mobile-nav"
@@ -102,6 +106,7 @@ export function SiteHeader() {
             })}
           </nav>
         </details>
+        </div>
       </div>
     </header>
   );
