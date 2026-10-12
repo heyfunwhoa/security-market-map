@@ -1,7 +1,7 @@
 # Security Market Map — Product Requirements Document
 
 > **Status:** Draft for owner review | **Owner:** security-market-map | **Reviewed:** 2026-10-10 | **Visibility:** Follow repository classification; do not copy private artifacts into public summaries.
-> **Authority:** This repo's implementation/README. Shared template in `heyfunwhoa/technical-docs-platform/templates/product-prd.md` (draft PR #4). Confirm status against code and tests before treating this as a current implementation inventory.
+> **Authority:** This repo's implementation and README. Product direction stays in [research-atlas-vision.md](research-atlas-vision.md) and [build-and-learn-roadmap.md](build-and-learn-roadmap.md). This checklist does not claim that every item below is already implemented.
 
 ## Executive summary
 **Product:** Evidence-linked cybersecurity landscape.
