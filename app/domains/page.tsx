@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { DomainMap } from "@/components/domain-map";
-import { MarketConstellation, marketCircles } from "@/components/market-constellation";
+import { MarketConstellation } from "@/components/market-constellation";
+import { marketCircles } from "@/lib/market-circles";
 import { PageIntro } from "@/components/chrome";
 import { catalog } from "@/lib/catalog";
 
