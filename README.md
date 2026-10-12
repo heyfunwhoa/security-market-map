@@ -141,3 +141,7 @@ This is an independent educational and portfolio project. It is not affiliated w
 ## Proposed shared security intelligence foundation
 
 The [Security Intelligence architecture proposal](docs/security-intelligence/architecture.md) defines a reusable evidence model, [read-only API contract](docs/security-intelligence/api-contract.md), [source registry](docs/security-intelligence/source-registry.md), and two source-linked example incidents. **Design and seed data only:** no deployed database, automated collection, or new public API. The future shared service should remain independent of this Market Map and support Builder Academy, Detector Atlas, and other authorized consumers.
+
+## Reusable Security & GTM Intelligence Foundation
+
+[Owning-repo implementation plan](docs/product/security-gtm-intelligence-plan.md) links shared architecture and the reviewed-evidence pilot. It is subordinate to existing product/module PRDs; no live integration or paid usage is enabled.
