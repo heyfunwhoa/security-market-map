@@ -37,6 +37,8 @@ Represent these separately; connect with explicit scoped relationships and evide
 - Learn detection engineering → job family/skills → SIEM/XDR/detection-as-code → MITRE ATT&CK mapping → training exercise.
 - Explore agent identity → NHI/PAM/IGA + agent runtime → controls, buyers, current analyst definitions → related projects.
 
+**SecOps pilot interpretation:** [LimaCharlie MSSP/MDR competitive evidence slice](secops-mssp-competitive-evidence-slice.md) shows how case-study proof, buyer jobs and product/category overlap can be mapped without publishing unreviewed feature cells or inventing a named vendor displacement. It is a documentation proposal, not implemented live data.
+
 ## Product boundaries
 - Preserve current identity evidence, source ledger, Zod catalog, and unknown-cell semantics.
 - Public resource is an independent educational product, not analyst redistribution.
