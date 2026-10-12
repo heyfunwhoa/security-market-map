@@ -6,7 +6,12 @@ import { evidenceCell } from "@/lib/compare";
 
 export const metadata = { title: "Learn" };
 
-export default function LearnPage() {
+export default async function LearnPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ scenario?: string }>;
+}) {
+  const { scenario } = await searchParams;
   const scenarios: ScenarioView[] = catalog.scenarios.map((scenario) => ({
     ...scenario,
     steps: scenario.steps.map((step) => {
@@ -54,10 +59,10 @@ export default function LearnPage() {
         <DistinctionCards items={catalog.distinctions} />
       </section>
 
-      <section className="mt-12">
+      <section className="mt-12" id="scenarios">
         <h2 className="text-3xl">Two calls</h2>
         <div className="mt-4">
-          <ScenarioPlayer scenarios={scenarios} />
+          <ScenarioPlayer scenarios={scenarios} initialScenarioId={scenario} />
         </div>
       </section>
     </main>

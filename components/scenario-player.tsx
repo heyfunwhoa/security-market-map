@@ -13,9 +13,16 @@ export type ScenarioView = Omit<Scenario, "steps"> & {
   })[];
 };
 
-export function ScenarioPlayer({ scenarios }: { scenarios: ScenarioView[] }) {
-  const [scenarioId, setScenarioId] = useState(scenarios[0]?.id ?? "");
-  const [stepId, setStepId] = useState(scenarios[0]?.steps[0]?.id ?? "");
+export function ScenarioPlayer({
+  scenarios,
+  initialScenarioId,
+}: {
+  scenarios: ScenarioView[];
+  initialScenarioId?: string;
+}) {
+  const initial = scenarios.find((item) => item.id === initialScenarioId) ?? scenarios[0];
+  const [scenarioId, setScenarioId] = useState(initial?.id ?? "");
+  const [stepId, setStepId] = useState(initial?.steps[0]?.id ?? "");
   const scenario = scenarios.find((item) => item.id === scenarioId) ?? scenarios[0];
   const step = scenario.steps.find((item) => item.id === stepId) ?? scenario.steps[0];
 
@@ -25,6 +32,7 @@ export function ScenarioPlayer({ scenarios }: { scenarios: ScenarioView[] }) {
         {scenarios.map((item) => (
           <button
             key={item.id}
+            id={item.id}
             type="button"
             role="tab"
             aria-selected={item.id === scenario.id}
