@@ -2,11 +2,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AreaDiagram } from "@/components/area-diagram";
 import { FlowStrip } from "@/components/category-map";
+import { ClaimList } from "@/components/claims";
 import { CloudAppShortlist, DataSecurityShortlist } from "@/components/cloud-app-shortlist";
 import { depthLabel } from "@/components/domain-map";
 import { PageIntro } from "@/components/chrome";
-import { catalog, domainBySlug, vendorById } from "@/lib/catalog";
-import { glossaryForDomain, questionsForDomain } from "@/lib/domain-study";
+import { catalog, domainBySlug, sourceById, vendorById } from "@/lib/catalog";
+import { claimsForDomain, claimsForGlossaryTerm, glossaryForDomain, questionsForDomain } from "@/lib/domain-study";
 import { aiIntersections, REVIEWED } from "@/lib/data/brief";
 
 export function generateStaticParams() {
@@ -26,6 +27,7 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
   const categories = catalog.categories.filter((category) => domain.categoryIds.includes(category.id));
   const questions = questionsForDomain(domain.slug);
   const terms = glossaryForDomain(domain.categoryIds, catalog.glossary);
+  const claims = claimsForDomain(domain.categoryIds, catalog.claims, catalog.products, catalog.vendors);
   const neighbors = catalog.domains.filter((item) => domain.neighborIds.includes(item.id));
   const products = catalog.products.filter((product) =>
     product.primaryCategoryIds.some((id) => domain.categoryIds.includes(id)),
@@ -38,6 +40,9 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
         title={domain.name}
         lede="Read the question, the charter, then each category. Words link to the learn page when a definition already exists."
       />
+      <p className="mt-6 max-w-3xl text-sm leading-6 text-muted-foreground">
+        Question, charter, categories, and words are teaching notes. They are not sourced claims.
+      </p>
       <section className="mt-8" aria-labelledby="study-question">
         <h2 id="study-question" className="text-2xl">
           Question
@@ -116,6 +121,13 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
                   </Link>
                 </h3>
                 <p className="mt-2 text-sm leading-6">{term.definition}</p>
+                {claimsForGlossaryTerm(term.id, catalog.claims).map((claim) => (
+                  <p key={claim.id} className="mt-3 text-sm leading-6">
+                    <a href={claim.sourceUrl} className="text-primary hover:underline">
+                      {sourceById(claim.sourceId)?.title ?? "Source"}
+                    </a>
+                  </p>
+                ))}
               </li>
             ))}
           </ul>
@@ -157,6 +169,9 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
             </ul>
           </div>
         )}
+        <div className="mt-4">
+          <ClaimList claims={claims} />
+        </div>
       </section>
       {domain.id === "ai" ? (
         <section className="mt-6">
