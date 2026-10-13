@@ -14,17 +14,6 @@ export default function FrameworksPage() {
       />
       <p className="mt-4 text-sm text-muted-foreground">Reviewed {REVIEWED}.</p>
 
-      <section className="mt-8 rounded-xl border border-border p-4">
-        <h2 className="text-xl tracking-tight">Reusable framework register</h2>
-        <p className="mt-2 text-sm leading-6 text-muted-foreground">
-          Explore security standards, knowledge bases, analyst models and learning workflows.
-          Each reference records its purpose, limitations and review status.
-        </p>
-        <a className="mt-3 inline-block text-sm text-primary hover:underline focus-visible:outline-2 focus-visible:outline-offset-4" href="https://github.com/heyfunwhoa/technical-docs-platform/tree/9ef20979b0ae439e754d24be89a89985185c48d9/frameworks">
-          Open the shared framework inventory
-        </a>
-      </section>
-
       <section className="mt-10">
         <h2 className="text-2xl tracking-tight">NHI lifecycle</h2>
         <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
