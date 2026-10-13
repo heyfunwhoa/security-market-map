@@ -1666,6 +1666,28 @@ function product(partial: Product): Product {
 
 export const ecosystemVendors: Vendor[] = [
   vendor({
+  "id": "metomic",
+  "slug": "metomic",
+  "name": "Metomic",
+  "formerNames": [],
+  "website": "https://www.metomic.io/",
+  "positioning": "Metomic describes its SaaS DSPM foundation and expansion into AI-agent data security. Vendor-reported; reviewed 2026-10-13.",
+  "primaryCategoryIds": [
+    "dspm"
+  ],
+  "adjacentCategoryIds": [
+    "dlp",
+    "ai-data-security"
+  ],
+  "identityScopes": [
+    "not_an_identity_control"
+  ],
+  "verificationStatus": "research_candidate",
+  "openQuestions": [
+    "Which SaaS stores, AI controls and remediation actions are included in the purchased edition?"
+  ]
+}),
+  vendor({
     id: "snyk",
     slug: "snyk",
     name: "Snyk",
@@ -1814,9 +1836,9 @@ export const ecosystemVendors: Vendor[] = [
     name: "Tenable",
     formerNames: [],
     website: "https://www.tenable.com/",
-    positioning: "IT vulnerability management vendor. Some products reach cloud and web apps. Do not treat the company name as SCA, CSPM, and VM at once.",
+    positioning: "IT vulnerability management vendor. Some products reach cloud and web apps. Do not treat the company name as SCA, CSPM, and VM at once. Tenable markets integrated DSPM within Tenable One Cloud Exposure. Vendor-reported DSPM scope reviewed 2026-10-13.",
     primaryCategoryIds: ["it-vulnerability-management"],
-    adjacentCategoryIds: ["cspm", "dast", "cloud-vulnerability"],
+    adjacentCategoryIds: ["cspm", "dast", "cloud-vulnerability", "dspm"],
     identityScopes: ["not_an_identity_control"],
     verificationStatus: "research_candidate",
     openQuestions: ["Which Tenable product, and is the asset a server, a cloud account, or a web app?"],
@@ -1931,8 +1953,7 @@ export const ecosystemVendors: Vendor[] = [
     name: "Cyera",
     formerNames: [],
     website: "https://www.cyera.com/",
-    positioning:
-      "Data security posture vendor. Company pages say Cyera agreed to acquire Oasis on 28 Jul 2026 and completed that deal on 3 Sep 2026, with Oasis to operate as Cyera Identity. No classification or joint-enforcement claim is checked here.",
+    positioning: "Data security posture vendor. Company pages say Cyera agreed to acquire Oasis on 28 Jul 2026 and completed that deal on 3 Sep 2026, with Oasis to operate as Cyera Identity. No classification or joint-enforcement claim is checked here. Cyera markets DSPM for data discovery, classification and data-risk visibility. Vendor-reported DSPM scope reviewed 2026-10-13.",
     primaryCategoryIds: ["dspm"],
     adjacentCategoryIds: ["ciem", "privacy-governance", "nhi", "agentic-runtime", "ai-data-security", "data-access-governance"],
     identityScopes: ["not_an_identity_control"],
@@ -1948,7 +1969,7 @@ export const ecosystemVendors: Vendor[] = [
     name: "Varonis",
     formerNames: [],
     website: "https://www.varonis.com/",
-    positioning: "Data access and file-system security vendor. Often adjacent to identity. Not assumed to be IGA or DSPM for every cloud.",
+    positioning: "Varonis markets DSPM with data discovery, access intelligence and automated risk remediation. Vendor-reported positioning reviewed 2026-10-13; feature depth and effectiveness remain untested.",
     primaryCategoryIds: ["dspm"],
     adjacentCategoryIds: ["iga", "dlp", "data-access-governance"],
     identityScopes: ["human"],
@@ -2247,7 +2268,7 @@ export const ecosystemVendors: Vendor[] = [
     name: "BigID",
     formerNames: [],
     website: "https://bigid.com/",
-    positioning: "Data discovery and privacy vendor named beside Cyera and Varonis. Classification is not the same as blocking exfiltration.",
+    positioning: "BigID markets DSPM alongside data discovery, classification and AI data security. Vendor-reported positioning reviewed 2026-10-13; feature depth and effectiveness remain untested.",
     primaryCategoryIds: ["dspm"],
     adjacentCategoryIds: ["privacy-governance", "dlp", "data-access-governance"],
     identityScopes: ["not_an_identity_control"],
@@ -2260,9 +2281,9 @@ export const ecosystemVendors: Vendor[] = [
     name: "Rubrik",
     formerNames: [],
     website: "https://www.rubrik.com/",
-    positioning: "Backup and recovery vendor. Resilience budget, not a GRC suite and not an identity control.",
+    positioning: "Backup and recovery vendor. Resilience budget, not a GRC suite and not an identity control. Rubrik describes its DSPM offering as formerly Laminar in a vendor-published customer story. Vendor-reported DSPM scope reviewed 2026-10-13.",
     primaryCategoryIds: ["cyber-recovery"],
-    adjacentCategoryIds: ["siem", "grc-controls"],
+    adjacentCategoryIds: ["siem", "grc-controls", "dspm"],
     identityScopes: ["not_an_identity_control"],
     verificationStatus: "research_candidate",
     openQuestions: ["Is the buy backup, ransomware recovery, or data security posture?"],
@@ -3339,7 +3360,7 @@ export const ecosystemVendors: Vendor[] = [
     name: "Sentra",
     formerNames: [],
     website: "https://www.sentra.io/",
-    positioning: "DSPM candidate. No classification or access-path claim is checked.",
+    positioning: "Sentra markets a data security platform spanning DSPM and AI data readiness. Vendor-reported positioning reviewed 2026-10-13; feature depth and effectiveness remain untested.",
     primaryCategoryIds: ["dspm"],
     adjacentCategoryIds: ["data-access-governance", "ai-data-security"],
     identityScopes: ["not_an_identity_control"],
@@ -3352,7 +3373,7 @@ export const ecosystemVendors: Vendor[] = [
     name: "Securiti",
     formerNames: [],
     website: "https://securiti.ai/",
-    positioning: "Named on both privacy and data-security shortlists. A privacy workflow is not a DSPM scan.",
+    positioning: "Securiti markets a data security posture management solution. Vendor-reported positioning reviewed 2026-10-13; feature depth and effectiveness remain untested.",
     primaryCategoryIds: ["dspm", "privacy-governance"],
     adjacentCategoryIds: ["dlp", "data-access-governance"],
     identityScopes: ["not_an_identity_control"],
@@ -3365,7 +3386,7 @@ export const ecosystemVendors: Vendor[] = [
     name: "Symmetry Systems",
     formerNames: [],
     website: "https://www.symmetry-systems.com/",
-    positioning: "Data security candidate often discussed next to identity and data stores. No access graph is checked.",
+    positioning: "Symmetry Systems markets DataGuard with data security posture management. Vendor-reported positioning reviewed 2026-10-13; feature depth and effectiveness remain untested.",
     primaryCategoryIds: ["dspm"],
     adjacentCategoryIds: ["data-access-governance", "ciem"],
     identityScopes: ["not_an_identity_control"],
