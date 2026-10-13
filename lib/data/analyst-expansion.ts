@@ -3,47 +3,8 @@ import type { Claim, Product, Source, Vendor } from "../schema";
 // Analyst-informed discovery; product statements retain their original publisher provenance.
 // See docs/market-research/analyst-dspm-secrets-expansion.md for access and review limits.
 
+// Arexdata and AvePoint reuse their canonical ecosystem vendor records from the consolidated DSPM discovery.
 export const expandedVendors: Vendor[] = [
-  {
-    "id": "arexdata",
-    "slug": "arexdata",
-    "name": "Arexdata",
-    "formerNames": [],
-    "website": "https://www.arexdata.com/en/",
-    "positioning": "Arexdata markets DSPM for centralized data, access and permissions visibility across local and cloud repositories.",
-    "primaryCategoryIds": [
-      "dspm"
-    ],
-    "adjacentCategoryIds": [],
-    "identityScopes": [
-      "not_an_identity_control"
-    ],
-    "verificationStatus": "research_candidate",
-    "openQuestions": [
-      "Validate connectors, deployment and enforcement scope; the fetched English URL serves Spanish content.",
-      "Which edition, deployment, connectors, costs and remediation approval controls fit the buyer's environment?"
-    ]
-  },
-  {
-    "id": "avepoint",
-    "slug": "avepoint",
-    "name": "AvePoint",
-    "formerNames": [],
-    "website": "https://www.avepoint.com/solutions/security-posture-management",
-    "positioning": "AvePoint markets DSPM with sensitive-data discovery, access visibility and governance across its platform.",
-    "primaryCategoryIds": [
-      "dspm"
-    ],
-    "adjacentCategoryIds": [],
-    "identityScopes": [
-      "not_an_identity_control"
-    ],
-    "verificationStatus": "research_candidate",
-    "openQuestions": [
-      "Confirm which Confidence Platform components and licenses implement the required controls.",
-      "Which edition, deployment, connectors, costs and remediation approval controls fit the buyer's environment?"
-    ]
-  },
   {
     "id": "dece-software",
     "slug": "dece-software",

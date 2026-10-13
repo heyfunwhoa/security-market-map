@@ -114,3 +114,7 @@ Unknown across offerings: negotiated price, total cost, support terms, regional 
 - Market Map: proposed typed catalog update. Joy Index: defer duplicate storage; consume this public reference after owner review. ASE / Revenue OS: no store updates or inferred account intent. Academy: workflow context only; existing lesson remains the home.
 - Correction: revert affected typed records and sources through a reviewed PR; preserve the reason and superseded evidence in the review record.
 - Validation results and exact command outcomes are recorded in the PR. Checks passing is not publication or independent product verification.
+
+## Integration of overlapping discovery work
+
+This change consolidates the proposed DSPM discovery from PR #48 at `adb4c924ff524ad49f652c23ff9bf486070900c4`. Arexdata and AvePoint each have one canonical vendor record in `lib/data/ecosystem.ts`; their product records and original publisher sources/claims in `analyst-expansion.ts` remain intact. TrustLogix and Lightbeam and all eight discovery sources/claims are retained, with the [original discovery brief](dspm-analyst-discovery.md). The two PRs must not be merged independently: review this consolidated PR instead; PR #48 remains open for maintainer disposition. No evidence status is upgraded by consolidation.
