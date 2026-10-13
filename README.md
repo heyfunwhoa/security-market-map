@@ -42,6 +42,8 @@ The Cyera–Oasis case study separates the companies' strategic rationale and th
 
 ## Research standards
 
+**Agentic SecOps / MSSP industry research:** [October 2026 competitive landscape](docs/market-research/agentic-secops-competitive-landscape.md) groups vendors by buyer job, original source and unverified comparison hypotheses. This is editorial research, not yet published as typed catalog claims.
+
 - Link material claims to a public source.
 - Record when a source was published and when it was reviewed.
 - Separate vendor claims from independently supported findings. A claim is marked verified only when the source is an independent public standard. A vendor doc, marketing page, or press release stays labeled as what the vendor said.
