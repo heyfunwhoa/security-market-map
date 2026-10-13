@@ -260,7 +260,7 @@ export function CompareWorkbench({
           role="region"
           aria-label="Product capability comparison"
           tabIndex={0}
-          className="mt-6 max-w-full overflow-x-auto rounded-xl border border-border focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+          className="relative mt-6 max-w-full overflow-x-auto rounded-xl border border-border focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
         >
           <table className="w-full min-w-[44rem] border-collapse text-sm">
             <caption className="p-3 text-left text-sm text-muted-foreground">
