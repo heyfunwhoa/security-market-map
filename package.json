@@ -8,7 +8,8 @@
     "start": "next start --hostname 0.0.0.0 --port 43123",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:research-integrity": "node --experimental-strip-types --test scripts/catalog-integrity.test.mjs"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

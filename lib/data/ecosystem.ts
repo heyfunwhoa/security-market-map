@@ -3575,6 +3575,98 @@ export const ecosystemVendors: Vendor[] = [
     verificationStatus: "research_candidate",
     openQuestions: ["Files, mainframe, or application data?"],
   }),
+  vendor({
+  "id": "avepoint",
+  "slug": "avepoint",
+  "name": "AvePoint",
+  "formerNames": [],
+  "website": "https://www.avepoint.com/",
+  "positioning": "AvePoint markets DSPM through its Confidence Platform, with sensitive-data discovery, access governance and remediation.",
+  "primaryCategoryIds": [
+    "dspm"
+  ],
+  "adjacentCategoryIds": [
+    "data-access-governance"
+  ],
+  "identityScopes": [
+    "not_an_identity_control"
+  ],
+  "verificationStatus": "research_candidate",
+  "openQuestions": [
+    "Which repositories and remediation actions are included in the proposed license?",
+    "Pricing and measured effectiveness remain Unknown; validate against buyer requirements.",
+    "Confirm which Confidence Platform components and licenses implement the required controls.",
+    "Which edition, deployment, connectors, costs and remediation approval controls fit the buyer's environment?"
+  ]
+}),
+  vendor({
+  "id": "arexdata",
+  "slug": "arexdata",
+  "name": "Arexdata",
+  "formerNames": [],
+  "website": "https://www.arexdata.com/",
+  "positioning": "Arexdata markets DSPM combining data discovery, classification, audit trails and data access governance.",
+  "primaryCategoryIds": [
+    "dspm"
+  ],
+  "adjacentCategoryIds": [
+    "data-access-governance"
+  ],
+  "identityScopes": [
+    "not_an_identity_control"
+  ],
+  "verificationStatus": "research_candidate",
+  "openQuestions": [
+    "Which cloud, on-premises and endpoint connectors support enforcement rather than visibility only?",
+    "Pricing and measured effectiveness remain Unknown; validate against buyer requirements.",
+    "Validate connectors, deployment and enforcement scope; the fetched English URL serves Spanish content.",
+    "Which edition, deployment, connectors, costs and remediation approval controls fit the buyer's environment?"
+  ]
+}),
+  vendor({
+  "id": "trustlogix",
+  "slug": "trustlogix",
+  "name": "TrustLogix",
+  "formerNames": [],
+  "website": "https://www.trustlogix.ai/",
+  "positioning": "TrustLogix markets TrustDSPM for data-access visibility, excessive-permission analysis and remediation recommendations.",
+  "primaryCategoryIds": [
+    "dspm"
+  ],
+  "adjacentCategoryIds": [
+    "data-access-governance"
+  ],
+  "identityScopes": [
+    "not_an_identity_control"
+  ],
+  "verificationStatus": "research_candidate",
+  "openQuestions": [
+    "Which classification inputs and access controls are native to TrustDSPM versus separate modules?",
+    "Pricing and measured effectiveness remain Unknown; validate against buyer requirements."
+  ]
+}),
+  vendor({
+  "id": "lightbeam",
+  "slug": "lightbeam",
+  "name": "Lightbeam",
+  "formerNames": [],
+  "website": "https://www.lightbeam.ai/",
+  "positioning": "Lightbeam markets DSPM using its Data Identity Graph for sensitive-data discovery, contextual risk assessment and remediation.",
+  "primaryCategoryIds": [
+    "dspm"
+  ],
+  "adjacentCategoryIds": [
+    "data-access-governance"
+  ],
+  "identityScopes": [
+    "not_an_identity_control"
+  ],
+  "verificationStatus": "research_candidate",
+  "openQuestions": [
+    "Which deployment models, connectors and automated remediation actions are available in the selected edition?",
+    "Pricing and measured effectiveness remain Unknown; validate against buyer requirements."
+  ]
+}),
 ];
 
 export const ecosystemProducts: Product[] = [

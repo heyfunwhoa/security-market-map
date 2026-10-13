@@ -8,6 +8,8 @@ Give an enterprise AE, future Head of Sales, technical seller or job candidate a
 
 **First applied case:** [Agentic SecOps and MSSP/MDR competitive landscape](agentic-secops-competitive-landscape.md).
 
+**DSPM and secrets expansion:** [Analyst-informed vendor and product inventory](analyst-dspm-secrets-expansion.md), with public Gartner, SACR and Forrester source limits and original product evidence.
+
 ## 1. Choose the buyer's decision
 
 Start with a specific decision in a specific environment:
@@ -120,7 +122,7 @@ A useful review ends with an explicit decision for **each potential consumer**:
 - **Builder Academy:** propose a sanitized educational update if the concept is stable and generalizable.
 - **No update:** document it. This is often the right result for promotional, duplicate, stale or low-materiality posts.
 
-The cross-repository operating rules belong in Technical Docs Platform's proposed [Research Intelligence Lifecycle](https://github.com/heyfunwhoa/technical-docs-platform/blob/main/governance/research-intelligence-lifecycle.md); this domain playbook adds concrete buyer-based comparisons, not another standard or adapter.
+Use the accepted [Research Evidence Boundary ADR](https://github.com/heyfunwhoa/technical-docs-platform/blob/main/architecture/ADR-001-research-evidence-boundary.md) for current cross-repository ownership. The proposed Research Intelligence Lifecycle path was not present on main when checked 2026-10-13 and is not an adopted dependency. Use [Contributing research](../../CONTRIBUTING.md) for the submission checklist and publication stages.
 
 ## What not to automate yet
 

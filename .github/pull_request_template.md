@@ -18,3 +18,11 @@ What user problem does this solve? Link any related issue or research source.
 
 ## Learning note
 What changed, what was tested, and what did you learn?
+
+## Research changes (N/A for unrelated changes)
+- [ ] Followed [Contributing research](../CONTRIBUTING.md); linked a completed review record
+- [ ] Checked parent/product/alias history; preserved stable IDs and unknown dates
+- [ ] `npm run test:research-integrity`
+- [ ] Owner, reviewer, next review date and rights constraints recorded
+- [ ] Recorded current stage: researched / reviewed / checks passed / merged / published and verified
+- [ ] Deployment evidence or docs-only N/A recorded; no claim of publication from CI alone

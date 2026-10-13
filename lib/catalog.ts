@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { identityProblems, provenanceProblems } from "./catalog-integrity";
 import { searchHits as filterSearchHits, type SearchHit } from "./search";
 import {
   AS_OF,
@@ -55,6 +56,10 @@ import { customerStories, pricingSignals, relationships } from "./data/relations
 import { sources } from "./data/sources";
 import { useCases } from "./data/use-cases";
 
+import { includeSecretsDetection, secretsSweepVendors, secretsSweepProducts, secretsSweepSources, secretsSweepClaims } from "./data/secrets-sweep";
+
+import { expandedVendors, expandedProducts, expandedSources, expandedClaims, includeExpandedDspm } from "./data/analyst-expansion";
+
 const allCategories = [...categories, ...ecosystemCategories];
 
 const domains: Domain[] = domainSeeds.map((seed) => ({
@@ -89,13 +94,13 @@ function parseCatalog(): Catalog {
     asOf: AS_OF,
     domains: z.array(domainSchema).parse(domains),
     categories: z.array(categorySchema).parse(allCategories),
-    vendors: z.array(vendorSchema).parse([...vendors, ...ecosystemVendors]),
-    products: z.array(productSchema).parse([...products, ...ecosystemProducts]),
+    vendors: z.array(vendorSchema).parse([...vendors, ...ecosystemVendors, ...secretsSweepVendors, ...expandedVendors].map(includeSecretsDetection).map(includeExpandedDspm)),
+    products: z.array(productSchema).parse([...products, ...ecosystemProducts, ...secretsSweepProducts, ...expandedProducts]),
     capabilities: z.array(capabilitySchema).parse([...capabilities, ...ecosystemCapabilities]),
     useCases: z.array(useCaseSchema).parse([...useCases, ...ecosystemUseCases]),
     personas: z.array(personaSchema).parse([...personas, ...ecosystemPersonas]),
-    sources: z.array(sourceSchema).parse(sources),
-    claims: z.array(claimSchema).parse(claims),
+    sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources]),
+    claims: z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims]),
     relationships: z.array(relationshipSchema).parse([...relationships, ...ecosystemRelationships]),
     stories: z.array(customerStorySchema).parse(customerStories),
     pricing: z.array(pricingSignalSchema).parse(pricingSignals),
@@ -107,7 +112,12 @@ function parseCatalog(): Catalog {
 }
 
 export function catalogProblems(catalog: Catalog): string[] {
-  const problems: string[] = [];
+  const { asOf: _asOf, ...collections } = catalog;
+  void _asOf;
+  const problems = [
+    ...identityProblems(collections),
+    ...provenanceProblems(catalog.sources, catalog.claims, catalog.capabilities.map((item) => item.id)),
+  ];
   const categoryIds = new Set(catalog.categories.map((item) => item.id));
   const domainIds = new Set(catalog.domains.map((item) => item.id));
   const vendorIds = new Set(catalog.vendors.map((item) => item.id));
@@ -366,3 +376,4 @@ export function searchIndex(): SearchHit[] {
 export function searchHits(query: string, hits: SearchHit[] = searchIndex()): SearchHit[] {
   return filterSearchHits(query, hits);
 }
+
