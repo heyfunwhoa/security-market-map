@@ -32,6 +32,7 @@ export default async function ComparePage({
           useCases={catalog.useCases}
           capabilities={catalog.capabilities}
           claims={catalog.claims}
+          sources={catalog.sources}
           asOf={catalog.asOf}
           initialUseCase={useCaseId}
           initialProducts={requested}
@@ -40,3 +41,4 @@ export default async function ComparePage({
     </main>
   );
 }
+

@@ -5,23 +5,39 @@ import { usePathname, useRouter } from "next/navigation";
 import { StatusPill } from "@/components/chrome";
 import { cellStatusLabel } from "@/lib/format";
 import { compareProducts } from "@/lib/compare";
-import type { Capability, Claim, Product, UseCase } from "@/lib/schema";
+import type { Capability, Claim, Product, Source, UseCase } from "@/lib/schema";
 import { Button } from "@/components/ui/button";
+import { ComparisonEvidence } from "@/components/comparison-evidence";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-const PRESETS: { id: string; label: string; useCaseId: string; productIds: string[] }[] = [
+const PRESETS: {
+  id: string;
+  label: string;
+  useCaseId: string;
+  productIds: string[];
+}[] = [
   {
     id: "iga",
     label: "C1, Opal, SailPoint, Saviynt",
     useCaseId: "uc-jml",
-    productIds: ["c1-platform", "opal-platform", "sailpoint-isc", "saviynt-eic"],
+    productIds: [
+      "c1-platform",
+      "opal-platform",
+      "sailpoint-isc",
+      "saviynt-eic",
+    ],
   },
   {
     id: "platform",
     label: "Swap in Entra and Okta",
     useCaseId: "uc-jml",
-    productIds: ["c1-platform", "opal-platform", "entra-id-governance", "okta-iga"],
+    productIds: [
+      "c1-platform",
+      "opal-platform",
+      "entra-id-governance",
+      "okta-iga",
+    ],
   },
   {
     id: "agent",
@@ -39,7 +55,12 @@ const PRESETS: { id: string; label: string; useCaseId: string; productIds: strin
     id: "detect",
     label: "Secrets detection",
     useCaseId: "uc-detect",
-    productIds: ["trufflehog", "github-secret-scanning", "gitguardian", "gitleaks"],
+    productIds: [
+      "trufflehog",
+      "github-secret-scanning",
+      "gitguardian",
+      "gitleaks",
+    ],
   },
 ];
 
@@ -48,6 +69,7 @@ export function CompareWorkbench({
   useCases,
   capabilities,
   claims,
+  sources,
   asOf,
   initialUseCase,
   initialProducts,
@@ -56,6 +78,7 @@ export function CompareWorkbench({
   useCases: UseCase[];
   capabilities: Capability[];
   claims: Claim[];
+  sources: Source[];
   asOf: string;
   initialUseCase: string;
   initialProducts: string[];
@@ -63,7 +86,9 @@ export function CompareWorkbench({
   const router = useRouter();
   const pathname = usePathname();
   const [useCaseId, setUseCaseId] = useState(initialUseCase);
-  const [selected, setSelected] = useState<string[]>(initialProducts.slice(0, 4));
+  const [selected, setSelected] = useState<string[]>(
+    initialProducts.slice(0, 4),
+  );
   const [productQuery, setProductQuery] = useState("");
 
   const useCase = useCases.find((item) => item.id === useCaseId) ?? useCases[0];
@@ -102,8 +127,10 @@ export function CompareWorkbench({
     [selected, useCase, claims, asOf],
   );
 
-  const capabilityName = (id: string) => capabilities.find((item) => item.id === id)?.name ?? id;
-  const productName = (id: string) => products.find((product) => product.id === id)?.name ?? id;
+  const capabilityName = (id: string) =>
+    capabilities.find((item) => item.id === id)?.name ?? id;
+  const productName = (id: string) =>
+    products.find((product) => product.id === id)?.name ?? id;
   const needle = productQuery.trim().toLowerCase();
   const matches = needle
     ? products
@@ -112,14 +139,21 @@ export function CompareWorkbench({
         .slice(0, 8)
     : [];
   const matchCount = needle
-    ? products.filter((product) => product.name.toLowerCase().includes(needle)).length
+    ? products.filter((product) => product.name.toLowerCase().includes(needle))
+        .length
     : 0;
 
   return (
     <div>
       <div className="flex flex-wrap gap-2">
         {PRESETS.map((preset) => (
-          <Button key={preset.id} type="button" variant="outline" size="sm" onClick={() => applyPreset(preset)}>
+          <Button
+            key={preset.id}
+            type="button"
+            variant="outline"
+            size="sm"
+            onClick={() => applyPreset(preset)}
+          >
             {preset.label}
           </Button>
         ))}
@@ -143,9 +177,10 @@ export function CompareWorkbench({
         </select>
       </div>
       <p className="mt-4 text-sm text-muted-foreground" id="compare-help">
-        Type a product name to add it. Four columns stay readable. Start with C1, Opal, SailPoint, and
-        Saviynt, then swap Entra or Okta. Add Vault when the use case is secrets or NHI. A blank cell
-        would be misleading, so missing evidence says Unknown.
+        Type a product name to add it. Four columns stay readable. Start with
+        C1, Opal, SailPoint, and Saviynt, then swap Entra or Okta. Add Vault
+        when the use case is secrets or NHI. A blank cell would be misleading,
+        so missing evidence says Unknown.
       </p>
       <div className="mt-3 max-w-md" aria-describedby="compare-help">
         <Label htmlFor="compare-pick">Add a product</Label>
@@ -161,7 +196,9 @@ export function CompareWorkbench({
         />
         <ul id="compare-matches" className="mt-2 space-y-2">
           {needle && matches.length === 0 ? (
-            <li className="text-sm text-muted-foreground">No product name matches that.</li>
+            <li className="text-sm text-muted-foreground">
+              No product name matches that.
+            </li>
           ) : null}
           {matches.map((product) => {
             const on = selected.includes(product.id);
@@ -177,7 +214,11 @@ export function CompareWorkbench({
                 >
                   <span className="font-medium">{product.name}</span>
                   <span className="mt-0.5 block text-xs text-muted-foreground">
-                    {on ? "In the matrix" : disabled ? "Remove one to add this" : "Add"}
+                    {on
+                      ? "In the matrix"
+                      : disabled
+                        ? "Remove one to add this"
+                        : "Add"}
                   </span>
                 </button>
               </li>
@@ -185,13 +226,23 @@ export function CompareWorkbench({
           })}
         </ul>
         {matchCount > matches.length ? (
-          <p className="mt-2 text-xs text-muted-foreground">Type more of the name to narrow the list.</p>
+          <p className="mt-2 text-xs text-muted-foreground">
+            Type more of the name to narrow the list.
+          </p>
         ) : null}
       </div>
-      <ul className="mt-3 flex flex-wrap gap-2" aria-label="Products in the matrix">
+      <ul
+        className="mt-3 flex flex-wrap gap-2"
+        aria-label="Products in the matrix"
+      >
         {selected.map((id) => (
           <li key={id}>
-            <Button type="button" variant="outline" size="sm" onClick={() => toggle(id)}>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => toggle(id)}
+            >
               {productName(id)}
               <span className="text-xs text-muted-foreground">Remove</span>
             </Button>
@@ -201,16 +252,32 @@ export function CompareWorkbench({
 
       {selected.length < 2 ? (
         <p className="mt-6 rounded-lg border border-dashed px-4 py-6 text-sm">
-          Select at least two products. There is no overall ranking to show instead.
+          Select at least two products. There is no overall ranking to show
+          instead.
         </p>
       ) : (
-        <div className="mt-6 overflow-x-auto rounded-xl border border-border">
+        <div
+          role="region"
+          aria-label="Product capability comparison"
+          tabIndex={0}
+          className="relative mt-6 max-w-full overflow-x-auto rounded-xl border border-border focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+        >
           <table className="w-full min-w-[44rem] border-collapse text-sm">
+            <caption className="p-3 text-left text-sm text-muted-foreground">
+              {useCase.name} · {asOf}. Inspect supporting sources in each cell;
+              this is not a product ranking.
+            </caption>
             <thead className="bg-muted/60">
               <tr>
-                <th className="p-3 text-left font-semibold">Capability</th>
+                <th scope="col" className="p-3 text-left font-semibold">
+                  Capability
+                </th>
                 {selected.map((id) => (
-                  <th key={id} className="p-3 text-left font-semibold">
+                  <th
+                    scope="col"
+                    key={id}
+                    className="p-3 text-left font-semibold"
+                  >
                     {products.find((product) => product.id === id)?.name ?? id}
                   </th>
                 ))}
@@ -218,28 +285,29 @@ export function CompareWorkbench({
             </thead>
             <tbody>
               {rows.map((row) => (
-                <tr key={row.capabilityId} className="border-t border-border align-top">
-                  <th className="p-3 text-left font-medium">{capabilityName(row.capabilityId)}</th>
+                <tr
+                  key={row.capabilityId}
+                  className="border-t border-border align-top"
+                >
+                  <th scope="row" className="p-3 text-left font-medium">
+                    {capabilityName(row.capabilityId)}
+                  </th>
                   {selected.map((id) => {
                     const cell = row.cells[id];
                     return (
                       <td key={id} className="p-3">
                         <StatusPill status={cell.status} />
-                        <p className="sr-only">{cellStatusLabel(cell.status)}</p>
-                        {cell.claims.length === 0 ? (
-                          <p className="mt-2 text-muted-foreground">Unknown. No sourced claim.</p>
-                        ) : (
-                          <ul className="mt-2 space-y-2">
-                            {cell.claims.map((claim) => (
-                              <li key={claim.id}>
-                                <p>{claim.statement}</p>
-                                <a className="text-primary underline-offset-4 hover:underline" href={claim.sourceUrl}>
-                                  Source · {claim.lastCheckedAt}
-                                </a>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
+                        <p className="sr-only">
+                          {cellStatusLabel(cell.status)}
+                        </p>
+                        <ComparisonEvidence
+                          key={`${useCase.id}-${id}-${row.capabilityId}`}
+                          cell={cell}
+                          sources={sources}
+                          productName={productName(id)}
+                          capabilityName={capabilityName(row.capabilityId)}
+                          asOf={asOf}
+                        />
                       </td>
                     );
                   })}
@@ -261,3 +329,4 @@ export function CompareWorkbench({
     </div>
   );
 }
+
