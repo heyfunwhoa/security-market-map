@@ -30,15 +30,16 @@ test("accepts consistent provenance and a known capability", () => {
 test("checks the current merged vendor, product, source and claim records", async () => {
   const market = await import("../lib/data/market.ts");
   const ecosystem = await import("../lib/data/ecosystem.ts");
+  const expanded = await import("../lib/data/analyst-expansion.ts");
   const sweep = await import("../lib/data/secrets-sweep.ts");
   const { sources } = await import("../lib/data/sources.ts");
   const { claims } = await import("../lib/data/claims.ts");
   const { capabilities } = await import("../lib/data/capabilities.ts");
   const collections = {
-    vendors: [...market.vendors, ...ecosystem.ecosystemVendors, ...sweep.secretsSweepVendors],
-    products: [...market.products, ...ecosystem.ecosystemProducts, ...sweep.secretsSweepProducts],
-    sources: [...sources, ...sweep.secretsSweepSources],
-    claims: [...claims, ...sweep.secretsSweepClaims],
+    vendors: [...market.vendors, ...ecosystem.ecosystemVendors, ...sweep.secretsSweepVendors, ...expanded.expandedVendors],
+    products: [...market.products, ...ecosystem.ecosystemProducts, ...sweep.secretsSweepProducts, ...expanded.expandedProducts],
+    sources: [...sources, ...sweep.secretsSweepSources, ...expanded.expandedSources],
+    claims: [...claims, ...sweep.secretsSweepClaims, ...expanded.expandedClaims],
   };
   assert.deepEqual(identityProblems(collections), []);
   assert.deepEqual(provenanceProblems(collections.sources, collections.claims,
