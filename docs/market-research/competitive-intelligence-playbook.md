@@ -8,6 +8,8 @@ Give an enterprise AE, future Head of Sales, technical seller or job candidate a
 
 **First applied case:** [Agentic SecOps and MSSP/MDR competitive landscape](agentic-secops-competitive-landscape.md).
 
+**DSPM and secrets expansion:** [Analyst-informed vendor and product inventory](analyst-dspm-secrets-expansion.md), with public Gartner, SACR and Forrester source limits and original product evidence.
+
 ## 1. Choose the buyer's decision
 
 Start with a specific decision in a specific environment:

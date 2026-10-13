@@ -58,6 +58,8 @@ import { useCases } from "./data/use-cases";
 
 import { includeSecretsDetection, secretsSweepVendors, secretsSweepProducts, secretsSweepSources, secretsSweepClaims } from "./data/secrets-sweep";
 
+import { expandedVendors, expandedProducts, expandedSources, expandedClaims, includeExpandedDspm } from "./data/analyst-expansion";
+
 const allCategories = [...categories, ...ecosystemCategories];
 
 const domains: Domain[] = domainSeeds.map((seed) => ({
@@ -92,13 +94,13 @@ function parseCatalog(): Catalog {
     asOf: AS_OF,
     domains: z.array(domainSchema).parse(domains),
     categories: z.array(categorySchema).parse(allCategories),
-    vendors: z.array(vendorSchema).parse([...vendors, ...ecosystemVendors, ...secretsSweepVendors].map(includeSecretsDetection)),
-    products: z.array(productSchema).parse([...products, ...ecosystemProducts, ...secretsSweepProducts]),
+    vendors: z.array(vendorSchema).parse([...vendors, ...ecosystemVendors, ...secretsSweepVendors, ...expandedVendors].map(includeSecretsDetection).map(includeExpandedDspm)),
+    products: z.array(productSchema).parse([...products, ...ecosystemProducts, ...secretsSweepProducts, ...expandedProducts]),
     capabilities: z.array(capabilitySchema).parse([...capabilities, ...ecosystemCapabilities]),
     useCases: z.array(useCaseSchema).parse([...useCases, ...ecosystemUseCases]),
     personas: z.array(personaSchema).parse([...personas, ...ecosystemPersonas]),
-    sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources]),
-    claims: z.array(claimSchema).parse([...claims, ...secretsSweepClaims]),
+    sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources]),
+    claims: z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims]),
     relationships: z.array(relationshipSchema).parse([...relationships, ...ecosystemRelationships]),
     stories: z.array(customerStorySchema).parse(customerStories),
     pricing: z.array(pricingSignalSchema).parse(pricingSignals),
