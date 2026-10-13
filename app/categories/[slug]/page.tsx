@@ -1,3 +1,4 @@
+import { AcademyLinks } from "@/components/academy-links";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AreaDiagram } from "@/components/area-diagram";
@@ -76,6 +77,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
       <p className="mt-6 text-sm leading-6">{category.exampleWorkflow}</p>
       <CloudAppShortlist categoryId={category.id} />
       <DataSecurityShortlist categoryId={category.id} />
+      <AcademyLinks categoryId={category.id} />
       <section className="mt-8">
         <h2 className="text-2xl">Adjacent categories</h2>
         <ul className="mt-3 flex flex-wrap gap-2">
