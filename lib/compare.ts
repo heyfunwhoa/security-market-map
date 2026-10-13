@@ -1,4 +1,4 @@
-import type { Claim } from "./schema";
+import type { Claim, Source } from "./schema";
 
 export type CellStatus =
   | "evidenced"
@@ -11,6 +11,7 @@ export type CellStatus =
 export type EvidenceCell = {
   status: CellStatus;
   claims: Claim[];
+  supersededClaims?: Claim[];
 };
 
 const STRONG = new Set(["verified", "vendor_published", "conflicting"]);
@@ -37,7 +38,7 @@ function pairConflicts(claims: Claim[]): boolean {
  * A cell is evidence about one product and one capability.
  * Category membership never fills a cell.
  */
-export function evidenceCell(
+function activeEvidenceCell(
   claims: Claim[],
   productId: string,
   capabilityId: string,
@@ -61,7 +62,9 @@ export function evidenceCell(
   }
   if (denies.length > 0) {
     return {
-      status: denies.some((claim) => STRONG.has(claim.verificationStatus)) ? "not_supported" : "unverified",
+      status: denies.some((claim) => STRONG.has(claim.verificationStatus))
+        ? "not_supported"
+        : "unverified",
       claims: relevant,
     };
   }
@@ -73,8 +76,38 @@ export function evidenceCell(
     return { status: "limited", claims: relevant };
   }
   if (limits.length > 0) return { status: "limited", claims: relevant };
-  if (strongAsserts.length > 0) return { status: "evidenced", claims: relevant };
+  if (strongAsserts.length > 0)
+    return { status: "evidenced", claims: relevant };
   return { status: "unverified", claims: relevant };
+}
+
+/** Superseded statements stay attributable but never support the current cell. */
+export function evidenceCell(
+  claims: Claim[],
+  productId: string,
+  capabilityId: string,
+  asOf: string,
+  sources?: Source[],
+): EvidenceCell {
+  const cell = activeEvidenceCell(claims, productId, capabilityId, asOf);
+  const supersededClaims = claims.filter(
+    (claim) =>
+      claim.subjectType === "product" &&
+      claim.subjectId === productId &&
+      claim.capabilityId === capabilityId &&
+      claim.verificationStatus === "superseded" &&
+      claim.observedAt <= asOf,
+  );
+  const missingSource =
+    sources !== undefined &&
+    cell.claims.some(
+      (claim) => !sources.some((source) => source.id === claim.sourceId),
+    );
+  return {
+    ...cell,
+    status: missingSource ? "unverified" : cell.status,
+    supersededClaims,
+  };
 }
 
 export type ComparisonRow = {
@@ -87,6 +120,7 @@ export function compareProducts(input: {
   capabilityIds: string[];
   claims: Claim[];
   asOf: string;
+  sources?: Source[];
 }): ComparisonRow[] {
   return input.capabilityIds.map((capabilityId) => {
     const cells: Record<string, EvidenceCell> = {};
@@ -96,9 +130,9 @@ export function compareProducts(input: {
         productId,
         capabilityId,
         input.asOf,
+        input.sources,
       );
     }
     return { capabilityId, cells };
   });
 }
-
