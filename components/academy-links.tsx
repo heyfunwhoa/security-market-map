@@ -14,7 +14,7 @@ export function AcademyLinks({ categoryId }: { categoryId: string }) {
         {previews.map((preview) => (
           <li key={preview.id} className="rounded-xl border border-border p-4">
             <h3 className="font-semibold">
-              <a className="text-primary hover:underline focus-visible:outline-2 focus-visible:outline-offset-4" href={preview.href}>
+              <a className="inline-flex min-h-11 items-center rounded-sm text-primary hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring" href={preview.href}>
                 {preview.title}
               </a>
             </h3>
