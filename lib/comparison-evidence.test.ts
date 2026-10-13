@@ -66,7 +66,7 @@ describe("comparison source disclosure", () => {
       expect(html).toContain(
         "Missing evidence does not mean the capability is absent",
       );
-      expect(html).not.toContain("<details");
+      expect(html).not.toContain("Supporting sources");
     }
   });
   it("surfaces conflict and scope warnings outside the disclosure", () => {
@@ -86,17 +86,149 @@ describe("comparison source disclosure", () => {
   });
 });
 
-
-
 describe("comparison review readiness", () => {
   it("does not turn an unreviewed denial into confirmed absence", () => {
-    expect(evidenceCell([{ ...claim, polarity: "denies", verificationStatus: "needs_review" }], "fixture-product", "fixture-capability", "2026-10-12").status).toBe("unverified");
-    expect(evidenceCell([{ ...claim, polarity: "denies" }], "fixture-product", "fixture-capability", "2026-10-12").status).toBe("not_supported");
+    expect(
+      evidenceCell(
+        [{ ...claim, polarity: "denies", verificationStatus: "needs_review" }],
+        "fixture-product",
+        "fixture-capability",
+        "2026-10-12",
+      ).status,
+    ).toBe("unverified");
+    expect(
+      evidenceCell(
+        [{ ...claim, polarity: "denies" }],
+        "fixture-product",
+        "fixture-capability",
+        "2026-10-12",
+      ).status,
+    ).toBe("not_supported");
   });
   it("keeps stale and unavailable freshness warnings outside optional details", () => {
-    const source: Source = { id: "fixture-source", title: "Synthetic source", url: claim.sourceUrl, canonicalUrl: claim.sourceUrl, publisher: "Fixture", sourceType: "official_docs", publishedAt: null, retrievedAt: "2026-01-01", volatility: "fast", excerpt: "Fixture" };
-    expect(render([claim], [source]).split("<details")[0]).toContain("Source refresh due");
-    expect(render([claim]).split("<details")[0]).toContain("Source freshness unavailable");
-    expect(render([claim], [{ ...source, retrievedAt: "2026-10-01" }])).not.toContain("Source refresh due");
+    const source: Source = {
+      id: "fixture-source",
+      title: "Synthetic source",
+      url: claim.sourceUrl,
+      canonicalUrl: claim.sourceUrl,
+      publisher: "Fixture",
+      sourceType: "official_docs",
+      publishedAt: null,
+      retrievedAt: "2026-01-01",
+      volatility: "fast",
+      excerpt: "Fixture",
+    };
+    expect(render([claim], [source]).split("<details")[0]).toContain(
+      "Source refresh due",
+    );
+    expect(render([claim]).split("<details")[0]).toContain(
+      "Source freshness unavailable",
+    );
+    expect(
+      render([claim], [{ ...source, retrievedAt: "2026-10-01" }]),
+    ).not.toContain("Source refresh due");
+  });
+});
+
+describe("synthetic correction acceptance", () => {
+  const source: Source = {
+    id: "fixture-source",
+    title: "Synthetic source",
+    url: claim.sourceUrl,
+    canonicalUrl: claim.sourceUrl,
+    publisher: "Fixture",
+    sourceType: "official_docs",
+    publishedAt: null,
+    retrievedAt: "2026-10-01",
+    volatility: "fast",
+    excerpt: "Fixture only",
+  };
+  const superseded: Claim = {
+    ...claim,
+    verificationStatus: "superseded",
+    notes: "Corrected by fixture-correction after scope review.",
+  };
+  const correction: Claim = {
+    ...claim,
+    id: "fixture-correction",
+    polarity: "denies",
+    statement:
+      "Fictional product does not support this workflow in the documented edition.",
+    observedAt: "2026-10-10",
+    lastCheckedAt: "2026-10-10",
+    notes:
+      "Synthetic correction; replaces fixture-claim. Vendor-reported, not independently tested.",
+  };
+
+  it("changes the affected result and retains excluded history and original provenance", () => {
+    expect(
+      evidenceCell([claim], claim.subjectId, claim.capabilityId!, "2026-10-12")
+        .status,
+    ).toBe("evidenced");
+    const cell = evidenceCell(
+      [superseded, correction],
+      claim.subjectId,
+      claim.capabilityId!,
+      "2026-10-12",
+      [source],
+    );
+    expect(cell.status).toBe("not_supported");
+    expect(cell.claims.map((item) => item.id)).toEqual(["fixture-correction"]);
+    expect(cell.supersededClaims).toEqual([superseded]);
+    const html = render([superseded, correction], [source]);
+    expect(html.split("<details")[0]).toContain(
+      "Corrected / superseded evidence",
+    );
+    expect(html).toContain("Superseded history");
+    expect(html).toContain(correction.statement);
+    expect(html).toContain('href="https://example.test/docs"');
+    expect(html).toContain("Vendor-reported; not independently validated");
+  });
+  it("does not resurrect superseded support when no replacement exists", () => {
+    const cell = evidenceCell(
+      [superseded],
+      claim.subjectId,
+      claim.capabilityId!,
+      "2026-10-12",
+    );
+    expect(cell.status).toBe("unknown");
+    expect(cell.claims).toEqual([]);
+    expect(render([superseded])).toContain("Superseded history");
+  });
+  it("fails closed for a missing source registry entry while preserving the original URL", () => {
+    const cell = evidenceCell(
+      [claim],
+      claim.subjectId,
+      claim.capabilityId!,
+      "2026-10-12",
+      [],
+    );
+    expect(cell.status).toBe("unverified");
+    const html = renderToStaticMarkup(
+      createElement(ComparisonEvidence, {
+        cell,
+        sources: [],
+        productName: "Fixture",
+        capabilityName: "Fixture",
+        asOf: "2026-10-12",
+      }),
+    );
+    expect(html).toContain("Source freshness unavailable");
+    expect(html).toContain('href="https://example.test/docs"');
+  });
+  it("keeps reviewed independent evidence distinct from publisher-reported and stale evidence", () => {
+    const html = render(
+      [{ ...claim, verificationStatus: "verified", sourceType: "standard" }],
+      [{ ...source, sourceType: "standard" }],
+    );
+    expect(html.split("<details")[0]).toContain(
+      "Reviewed · independent source",
+    );
+    expect(html).not.toContain("Vendor-reported;");
+    expect(
+      render([claim], [{ ...source, retrievedAt: "2026-01-01" }]).split(
+        "<details",
+      )[0],
+    ).toContain("Stale:");
   });
 });
