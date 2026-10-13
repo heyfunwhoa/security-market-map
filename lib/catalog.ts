@@ -55,6 +55,8 @@ import { customerStories, pricingSignals, relationships } from "./data/relations
 import { sources } from "./data/sources";
 import { useCases } from "./data/use-cases";
 
+import { includeSecretsDetection, secretsSweepVendors, secretsSweepProducts, secretsSweepSources, secretsSweepClaims } from "./data/secrets-sweep";
+
 const allCategories = [...categories, ...ecosystemCategories];
 
 const domains: Domain[] = domainSeeds.map((seed) => ({
@@ -89,13 +91,13 @@ function parseCatalog(): Catalog {
     asOf: AS_OF,
     domains: z.array(domainSchema).parse(domains),
     categories: z.array(categorySchema).parse(allCategories),
-    vendors: z.array(vendorSchema).parse([...vendors, ...ecosystemVendors]),
-    products: z.array(productSchema).parse([...products, ...ecosystemProducts]),
+    vendors: z.array(vendorSchema).parse([...vendors, ...ecosystemVendors, ...secretsSweepVendors].map(includeSecretsDetection)),
+    products: z.array(productSchema).parse([...products, ...ecosystemProducts, ...secretsSweepProducts]),
     capabilities: z.array(capabilitySchema).parse([...capabilities, ...ecosystemCapabilities]),
     useCases: z.array(useCaseSchema).parse([...useCases, ...ecosystemUseCases]),
     personas: z.array(personaSchema).parse([...personas, ...ecosystemPersonas]),
-    sources: z.array(sourceSchema).parse(sources),
-    claims: z.array(claimSchema).parse(claims),
+    sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources]),
+    claims: z.array(claimSchema).parse([...claims, ...secretsSweepClaims]),
     relationships: z.array(relationshipSchema).parse([...relationships, ...ecosystemRelationships]),
     stories: z.array(customerStorySchema).parse(customerStories),
     pricing: z.array(pricingSignalSchema).parse(pricingSignals),
@@ -366,3 +368,4 @@ export function searchIndex(): SearchHit[] {
 export function searchHits(query: string, hits: SearchHit[] = searchIndex()): SearchHit[] {
   return filterSearchHits(query, hits);
 }
+
