@@ -29,3 +29,7 @@ Use the existing summary-card pattern, native anchors, existing border/type/spac
 ## Maintenance and rollback
 Review links when Academy routes change. Change preview metadata through a PR. The framework-register CTA is omitted from the public UI because Technical Docs is private. A commit-pinned link does not grant public access. Add a separately reviewed public-safe projection only after its destination and visibility have been verified; do not expose the private repository or fetch it at runtime.
 Remove the AcademyLinks import and render call to roll back category cards; no data migration is needed.
+
+## Verification and evidence handoff · 2026-10-13
+
+The original source-only pilot statement above is historical. [KRU-78 verification](kru-78-verification.md) now records passing public HTTP/content checks for all three destinations, local responsive/keyboard checks, and the remaining Market Map deployment verification gate. It also records the owner-reviewed handoff to [KRU-54](https://linear.app/krusty/issue/KRU-54) (offline importer) and [KRU-61](https://linear.app/krusty/issue/KRU-61) (later exercises). No importer or exercise implementation is added here.
