@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { identityProblems, provenanceProblems } from "./catalog-integrity";
 import { searchHits as filterSearchHits, type SearchHit } from "./search";
 import {
   AS_OF,
@@ -109,7 +110,12 @@ function parseCatalog(): Catalog {
 }
 
 export function catalogProblems(catalog: Catalog): string[] {
-  const problems: string[] = [];
+  const { asOf: _asOf, ...collections } = catalog;
+  void _asOf;
+  const problems = [
+    ...identityProblems(collections),
+    ...provenanceProblems(catalog.sources, catalog.claims, catalog.capabilities.map((item) => item.id)),
+  ];
   const categoryIds = new Set(catalog.categories.map((item) => item.id));
   const domainIds = new Set(catalog.domains.map((item) => item.id));
   const vendorIds = new Set(catalog.vendors.map((item) => item.id));
