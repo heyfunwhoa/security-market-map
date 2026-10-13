@@ -72,3 +72,7 @@ These links are references to original public pages, not copyrighted page copies
 - Propose reviewed entities, capabilities and claim/source records through the existing claim + source schema, tests and review workflow. No scraping, paid APIs, new database, or automatic publication introduced here.
 - Share this public-safe research by URL with the private Joy Index Interview Intelligence workspace, which owns interviewer prompts and candidate decisions; do not copy private notes or paths into this public repository. For a repeatable process, use the [Competitive Intelligence Playbook](competitive-intelligence-playbook.md).
 - Cross-project evidence collection, when actually available, should use reviewed contracts in Technical Docs and the source pipeline, not direct DB access.
+
+## Audience and persona companion
+
+[Current-state LimaCharlie audience and buyer personas](limacharlie-audience-personas.md) (2026-10-13) separates sourced positioning from working role hypotheses, qualification questions and unknown segment economics. Research candidate only; not typed application data.
