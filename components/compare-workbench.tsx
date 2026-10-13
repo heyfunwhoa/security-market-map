@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { StatusPill } from "@/components/chrome";
 import { cellStatusLabel } from "@/lib/format";
 import { compareProducts } from "@/lib/compare";
-import type { Capability, Claim, Product, UseCase } from "@/lib/schema";
+import type { Capability, Claim, Product, Source, UseCase } from "@/lib/schema";
 import { Button } from "@/components/ui/button";
 import { ComparisonEvidence } from "@/components/comparison-evidence";
 import { Input } from "@/components/ui/input";
@@ -69,6 +69,7 @@ export function CompareWorkbench({
   useCases,
   capabilities,
   claims,
+  sources,
   asOf,
   initialUseCase,
   initialProducts,
@@ -77,6 +78,7 @@ export function CompareWorkbench({
   useCases: UseCase[];
   capabilities: Capability[];
   claims: Claim[];
+  sources: Source[];
   asOf: string;
   initialUseCase: string;
   initialProducts: string[];
@@ -301,6 +303,7 @@ export function CompareWorkbench({
                         <ComparisonEvidence
                           key={`${useCase.id}-${id}-${row.capabilityId}`}
                           cell={cell}
+                          sources={sources}
                           productName={productName(id)}
                           capabilityName={capabilityName(row.capabilityId)}
                           asOf={asOf}
@@ -326,3 +329,4 @@ export function CompareWorkbench({
     </div>
   );
 }
+

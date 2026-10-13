@@ -59,7 +59,12 @@ export function evidenceCell(
   if (pairConflicts(relevant) || (asserts.length > 0 && denies.length > 0)) {
     return { status: "conflicting", claims: relevant };
   }
-  if (denies.length > 0) return { status: "not_supported", claims: relevant };
+  if (denies.length > 0) {
+    return {
+      status: denies.some((claim) => STRONG.has(claim.verificationStatus)) ? "not_supported" : "unverified",
+      claims: relevant,
+    };
+  }
 
   const strongAsserts = asserts.filter((claim) =>
     STRONG.has(claim.verificationStatus),
@@ -96,3 +101,4 @@ export function compareProducts(input: {
     return { capabilityId, cells };
   });
 }
+

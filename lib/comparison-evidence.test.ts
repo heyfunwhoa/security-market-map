@@ -3,7 +3,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { ComparisonEvidence } from "../components/comparison-evidence";
 import { evidenceCell } from "./compare";
-import type { Claim } from "./schema";
+import type { Claim, Source } from "./schema";
 
 const claim: Claim = {
   id: "fixture-claim",
@@ -25,7 +25,7 @@ const claim: Claim = {
   conflictsWith: [],
   notes: "Only the named edition is covered.",
 };
-const render = (claims: Claim[]) =>
+const render = (claims: Claim[], sources: Source[] = []) =>
   renderToStaticMarkup(
     createElement(ComparisonEvidence, {
       cell: evidenceCell(
@@ -34,6 +34,7 @@ const render = (claims: Claim[]) =>
         "fixture-capability",
         "2026-10-12",
       ),
+      sources,
       productName: "Fictional product",
       capabilityName: "Example capability",
       asOf: "2026-10-12",
@@ -82,5 +83,20 @@ describe("comparison source disclosure", () => {
         "<details",
       )[0],
     ).toContain("Evidence needs review");
+  });
+});
+
+
+
+describe("comparison review readiness", () => {
+  it("does not turn an unreviewed denial into confirmed absence", () => {
+    expect(evidenceCell([{ ...claim, polarity: "denies", verificationStatus: "needs_review" }], "fixture-product", "fixture-capability", "2026-10-12").status).toBe("unverified");
+    expect(evidenceCell([{ ...claim, polarity: "denies" }], "fixture-product", "fixture-capability", "2026-10-12").status).toBe("not_supported");
+  });
+  it("keeps stale and unavailable freshness warnings outside optional details", () => {
+    const source: Source = { id: "fixture-source", title: "Synthetic source", url: claim.sourceUrl, canonicalUrl: claim.sourceUrl, publisher: "Fixture", sourceType: "official_docs", publishedAt: null, retrievedAt: "2026-01-01", volatility: "fast", excerpt: "Fixture" };
+    expect(render([claim], [source]).split("<details")[0]).toContain("Source refresh due");
+    expect(render([claim]).split("<details")[0]).toContain("Source freshness unavailable");
+    expect(render([claim], [{ ...source, retrievedAt: "2026-10-01" }])).not.toContain("Source refresh due");
   });
 });

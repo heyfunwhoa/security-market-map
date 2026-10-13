@@ -1,3 +1,5 @@
+import type { Source } from "../lib/schema";
+import { isSourceStale } from "../lib/coverage";
 import type { EvidenceCell } from "../lib/compare";
 import { sourceTypeLabel, verificationLabel } from "../lib/format";
 
@@ -7,11 +9,13 @@ export function ComparisonEvidence({
   productName,
   capabilityName,
   asOf,
+  sources = [],
 }: {
   cell: EvidenceCell;
   productName: string;
   capabilityName: string;
   asOf: string;
+  sources?: Source[];
 }) {
   if (cell.claims.length === 0) {
     return (
@@ -21,6 +25,10 @@ export function ComparisonEvidence({
       </p>
     );
   }
+
+  const sourceIds = [...new Set(cell.claims.map((claim) => claim.sourceId))];
+  const missingSources = sourceIds.filter((id) => !sources.some((source) => source.id === id));
+  const stale = sources.filter((source) => sourceIds.includes(source.id) && isSourceStale(source, asOf));
 
   return (
     <div className="mt-2 space-y-3 break-words">
@@ -39,6 +47,12 @@ export function ComparisonEvidence({
               ? "Sources conflict. Resolve the disagreement before relying on this cell."
               : "Evidence needs review. This is not verified support."}
         </p>
+      ) : null}
+      {stale.length > 0 ? (
+        <p className="text-sm font-medium">Source refresh due at this comparison date. Recheck {stale.map((source) => source.title).join(", ")} before relying on this evidence.</p>
+      ) : null}
+      {missingSources.length > 0 ? (
+        <p className="text-sm font-medium">Source freshness unavailable. The source registry entry is missing; review required.</p>
       ) : null}
       <details className="rounded-md border border-border p-2">
         <summary className="min-h-11 cursor-pointer py-2 font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring">
@@ -100,3 +114,4 @@ export function ComparisonEvidence({
     </div>
   );
 }
+
