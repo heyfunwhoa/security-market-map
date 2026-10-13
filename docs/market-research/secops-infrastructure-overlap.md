@@ -97,4 +97,4 @@ Security Market Map owns this public research. See the [existing landscape](agen
 - Private learning consumers should link this document rather than duplicate its vendor registry.
 - Account intelligence and revenue scenarios: no changes; no account-specific evidence or validated economics supplied.
 - Academy: defer until a stable educational use case is selected.
-- The proposed shared Research Intelligence Lifecycle path returned 404 during this change. Local provenance and publication rules govern this candidate note; no compliance with the unavailable document is claimed.
+- The proposed Research Intelligence Lifecycle path remains unavailable. Follow [Contributing research](../../CONTRIBUTING.md) and the accepted [Research Evidence Boundary ADR](https://github.com/heyfunwhoa/technical-docs-platform/blob/main/architecture/ADR-001-research-evidence-boundary.md): Research Hub owns collection/evidence packages; Market Map consumes approved evidence. This manual candidate note creates no collector or automatic publishing path.
