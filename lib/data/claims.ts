@@ -308,7 +308,7 @@ export const claims: Claim[] = [
     polarity: "asserts",
     sourceId: "src-opal-press",
     sourceUrl: "https://www.opal.dev/media-press/opal-zero-launch",
-    sourceType: "vendor_marketing",
+    sourceType: "press_release",
     publishedAt: "2026-09-17",
     observedAt: checked,
     effectiveFrom: "2026-09-17",
