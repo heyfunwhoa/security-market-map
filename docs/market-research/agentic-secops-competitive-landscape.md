@@ -70,5 +70,5 @@ These links are references to original public pages, not copyrighted page copies
 
 - The typed live app catalog remains the canonical published source: `lib/data`. **Do not create badges or feature booleans from this Markdown alone.**
 - Propose reviewed entities, capabilities and claim/source records through the existing claim + source schema, tests and review workflow. No scraping, paid APIs, new database, or automatic publication introduced here.
-- Share this public-safe research by URL with the private [Joy Index interview brief](https://github.com/heyfunwhoa/joy-index/blob/main/career/interview-intelligence/opportunities/limacharlie-competitive-brief.md), which owns interviewer prompts and candidate decisions; do not copy private notes into this repository.
+- Share this public-safe research by URL with the private Joy Index Interview Intelligence workspace, which owns interviewer prompts and candidate decisions; do not copy private notes or paths into this public repository. For a repeatable process, use the [Competitive Intelligence Playbook](competitive-intelligence-playbook.md).
 - Cross-project evidence collection, when actually available, should use reviewed contracts in Technical Docs and the source pipeline, not direct DB access.
