@@ -15,6 +15,9 @@ For tasks affecting requirements, architecture, security, data integrity, CI, re
 
 Use links rather than copying shared rules. Preserve this repo's Next.js guidance, local security and data boundaries, and authoritative PRD. Treat policy adoption and actual CI/security enforcement as separate claims. If the private Technical Docs repo is inaccessible to the agent, report that limitation rather than guessing. Check for existing issues/PRs, provide acceptance-criteria-to-test evidence, and stop before merging or deploying without human approval.
 
+## UI and motion bank
+
+Before UI, layout or animation work, read [local UI bank adoption](docs/ui-bank-adoption.md) and the linked workbench patterns. Inspect existing local components first, record reuse/adapt/new decisions, and preserve this app's tokens, privacy and domain rules. Record responsive, keyboard/focus, reduced-motion and state verification in the PR. Candidate or demo availability is not evidence of shipped adoption. Report inaccessible references rather than claiming compliance.
 
 ## Competitive research and cross-project handoff
 
