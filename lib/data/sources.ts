@@ -1,6 +1,42 @@
 import type { Source } from "../schema";
 
 export const sources: Source[] = [
+{
+  "id": "src-teleskope-data-security-20261013",
+  "title": "Teleskope data security positioning",
+  "url": "https://www.teleskope.ai/products/understand",
+  "canonicalUrl": "https://www.teleskope.ai/products/understand",
+  "publisher": "Teleskope",
+  "sourceType": "vendor_marketing",
+  "publishedAt": null,
+  "retrievedAt": "2026-10-13",
+  "volatility": "fast",
+  "excerpt": "Teleskope describes contextual sensitive-data classification, a continuously updated data map, and visibility into identities with access."
+},
+{
+  "id": "src-concentric-ai-data-security-20261013",
+  "title": "Concentric AI data security positioning",
+  "url": "https://concentric.ai/platform/data-security-posture-management/",
+  "canonicalUrl": "https://concentric.ai/platform/data-security-posture-management/",
+  "publisher": "Concentric AI",
+  "sourceType": "vendor_marketing",
+  "publishedAt": null,
+  "retrievedAt": "2026-10-13",
+  "volatility": "fast",
+  "excerpt": "Concentric AI markets DSPM with semantic discovery of structured and unstructured data, access-aware risk assessment, and remediation."
+},
+{
+  "id": "src-nightfall-data-security-20261013",
+  "title": "Nightfall data security positioning",
+  "url": "https://www.nightfall.ai/",
+  "canonicalUrl": "https://www.nightfall.ai/",
+  "publisher": "Nightfall",
+  "sourceType": "vendor_marketing",
+  "publishedAt": null,
+  "retrievedAt": "2026-10-13",
+  "volatility": "fast",
+  "excerpt": "Nightfall markets sensitive-data discovery and classification alongside data exfiltration prevention across SaaS, endpoints, email, and AI workflows."
+},
   {
     id: "src-c1-rebrand",
     title: "We Are C1",
