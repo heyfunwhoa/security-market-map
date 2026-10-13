@@ -34,7 +34,8 @@ export function ComparisonEvidence({
     <div className="mt-2 space-y-3 break-words">
       <p className="text-xs text-muted-foreground">
         {cell.claims.length} source-linked{" "}
-        {cell.claims.length === 1 ? "claim" : "claims"} · comparison as of{" "}
+        {cell.claims.length === 1 ? "claim" : "claims"} across {sourceIds.length}{" "}
+        {sourceIds.length === 1 ? "source" : "sources"} · comparison as of{" "}
         {asOf}
       </p>
       {cell.status === "limited" ||
@@ -63,7 +64,9 @@ export function ComparisonEvidence({
           </span>
         </summary>
         <ul className="mt-2 space-y-4">
-          {cell.claims.map((claim) => (
+          {cell.claims.map((claim) => {
+            const source = sources.find((entry) => entry.id === claim.sourceId);
+            return (
             <li key={claim.id} className="space-y-2">
               <p>{claim.statement}</p>
               <p className="text-xs">
@@ -74,13 +77,21 @@ export function ComparisonEvidence({
                 className="inline-block min-h-11 py-2 text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
                 href={claim.sourceUrl}
               >
-                Open source
+                {source?.title || "Open source"}
                 <span className="sr-only">
                   {" "}
                   for {productName}: {claim.statement}
                 </span>
               </a>
               <dl className="space-y-1 text-xs text-muted-foreground">
+                <div>
+                  <dt className="inline font-medium">Publisher: </dt>
+                  <dd className="inline">{source?.publisher ?? "Registry entry unavailable"}</dd>
+                </div>
+                <div>
+                  <dt className="inline font-medium">Retrieved: </dt>
+                  <dd className="inline">{source?.retrievedAt ?? "Registry entry unavailable"}</dd>
+                </div>
                 <div>
                   <dt className="inline font-medium">Last checked: </dt>
                   <dd className="inline">{claim.lastCheckedAt}</dd>
@@ -96,6 +107,12 @@ export function ComparisonEvidence({
                   <dd className="inline">{claim.sourceId}</dd>
                 </div>
               </dl>
+              {source?.excerpt ? (
+                <figure className="border-l-2 border-border pl-2 text-sm">
+                  <figcaption className="font-medium">Source excerpt</figcaption>
+                  <blockquote>{source.excerpt}</blockquote>
+                </figure>
+              ) : null}
               {claim.notes ? (
                 <p className="border-l-2 border-border pl-2 text-sm">
                   <strong>Qualification: </strong>
@@ -103,7 +120,8 @@ export function ComparisonEvidence({
                 </p>
               ) : null}
             </li>
-          ))}
+            );
+          })}
         </ul>
       </details>
       <p className="text-xs leading-5 text-muted-foreground">
