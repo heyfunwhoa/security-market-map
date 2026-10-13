@@ -72,3 +72,16 @@ Browser checks could not run: no installed Chromium and the Playwright browser a
 For the account exercise, correct initiative evidence, revoke person evidence, and reset; verify latest source state, historical evidence and next action agree. For the comparison, inspect at least one supported, unknown and scoped/conflicting example; open the source and confirm its label/date/qualification matches the original record. Check horizontal scrolling stays inside the table region.
 
 Rollback: revert the pilot component/test and this record; no migrations, data changes or package changes. These source paths are the consumer record for this pilot; no shared package or automatic update propagation was added.
+
+
+## Component reference candidates — 2026-10-13
+
+Status: proposed reference guidance, not installed, approved or shipped UI. Owner: repository maintainer.
+
+Consult the [central adoption map](https://github.com/heyfunwhoa/technical-docs-platform/blob/e2467007171d3a4b9d121eb883ce36b586dce5eb/engineering/ui-reference-audit.md) and the [complete UI-bank source audit](https://github.com/heyfunwhoa/byjoyaing-portfolio/blob/7f48e7499255feb80879822fed2f87a99ba477ee/docs/design/component-source-audit.md) before selecting a new component. These immutable references are proposed in [Technical Docs PR #31](https://github.com/heyfunwhoa/technical-docs-platform/pull/31) and [Portfolio PR #137](https://github.com/heyfunwhoa/byjoyaing-portfolio/pull/137); a valid source link is not approval. The shared catalog holds the upstream inventory; keep local decisions here instead of copying the catalog.
+
+Prioritize the existing Radix Tabs learning-scenario pilot (PR #36), semantic comparison Table, source disclosure/Sheet and filter state feedback. Preserve source dates, qualifications and Unknown labels. Optional dnd-kit comparison ordering is a later candidate, not a graph-layout replacement or a change to evidence ranking. Sandpack is not needed on research pages. This source audit does not merge/deploy PR #36 or alter comparison/evidence rules.
+
+The shadcn index's Base UI examples are references; preserve this app's actual component family and tokens. Current dnd-kit React APIs differ from legacy core/sortable examples. Sandpack runtime/Nodebox terms and external data flow require separate review before any runnable lab. No dependencies, code execution, automatic refresh or automatic cross-repo synchronization are added by this note.
+
+Before implementation, inspect actual call sites, record source/package version and license obligations, and verify responsive layout, keyboard/focus, reduced motion and relevant error/empty/denied states. Add non-drag controls for reordering and exact numeric inputs for financial sliders. Documentation inspection is not browser QA or security certification. Rollback: remove this section; no runtime or data changes.
