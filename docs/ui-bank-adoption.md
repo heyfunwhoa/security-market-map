@@ -51,3 +51,24 @@ Use synthetic examples for reusable demos. Progressive disclosure is not access 
 4. Revisit the pinned standard deliberately when it changes; never auto-copy updates.
 
 This documentation adds no runtime component, dependency, CI enforcement or deployment.
+
+
+## First implementation pilot · 2026-10-12
+
+Status: implemented on a feature branch; not merged, deployed, or browser-verified by this record. Owner: repository maintainer.
+
+- Destination: `/compare`, `components/compare-workbench.tsx` → `components/comparison-evidence.tsx`.
+- Bank patterns: `data`, `disclosure`, `context`. Reuses existing comparison engine, status pills and semantic table; native disclosure is sufficient, so no new overlay or dependency.
+- Flow: visible comparison status → expandable supporting statements/source links/review dates → qualifications and always-visible general limitations. Unknown, conflict, limited and unverified warnings remain outside the disclosure.
+- Table gains a caption, explicit row/column headers and a labeled keyboard-focusable horizontal scroll region. Comparison semantics and source records are unchanged.
+- Verification: three Vitest rendering/evidence tests pass; scoped strict TypeScript passes for the new component/test; edited workbench transpiles. Full application typecheck remains required.
+
+### Verification limits and remaining acceptance
+
+Tests used the repository's Vitest configuration with an isolated install of its React 19.2.8 and Vitest 3.2.4 versions. This was a selected source snapshot, not a full checkout or lockfile install. Full lint, production build, complete test suite and deployment verification remain pending. No usability claim is made.
+
+Browser checks could not run: no installed Chromium and the Playwright browser archive download failed. Before merge, verify the real destination at 375/768/1280px and 200% zoom, keyboard Enter/Space disclosure toggling, visible focus, no page overflow, long text/source wrapping and device reduced motion. No animation was added. Native disclosure keeps focus on its summary. Source details are optional; status and limitations stay visible. Loading/network failures are not newly introduced by these synchronous components.
+
+For the account exercise, correct initiative evidence, revoke person evidence, and reset; verify latest source state, historical evidence and next action agree. For the comparison, inspect at least one supported, unknown and scoped/conflicting example; open the source and confirm its label/date/qualification matches the original record. Check horizontal scrolling stays inside the table region.
+
+Rollback: revert the pilot component/test and this record; no migrations, data changes or package changes. These source paths are the consumer record for this pilot; no shared package or automatic update propagation was added.
