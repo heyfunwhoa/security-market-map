@@ -6,6 +6,8 @@
 
 Give an enterprise AE, future Head of Sales, technical seller or job candidate a reusable way to understand cybersecurity competitors **by what buyers are trying to accomplish**. Map the market once with evidence; reuse the same verified public research in private interview preparation, GTM planning and future account research. Do not pretend a company is a direct head-to-head competitor merely because both use an analyst category or buzzword.
 
+**Additional applied case:** [Secrets management: Infisical and alternatives](secrets-management-comparison.md) — candidate research with evidence, buyer criteria and validation gaps.
+
 **First applied case:** [Agentic SecOps and MSSP/MDR competitive landscape](agentic-secops-competitive-landscape.md).
 
 ## 1. Choose the buyer's decision
