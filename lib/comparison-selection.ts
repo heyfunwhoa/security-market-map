@@ -1,5 +1,9 @@
 import type { Category, Product, UseCase } from "./schema";
 
+/** Category membership never establishes capability support. */
+export const SECRETS_MANAGEMENT_COMPARISON_URL =
+  "/compare?category=secrets-management&use=uc-vault&products=infisical,vault,akeyless";
+
 export const SECRETS_COMPARISON_URL =
   "/compare?category=secrets-detection&use=uc-detect&products=trufflehog,github-secret-scanning,gitguardian,gitleaks";
 

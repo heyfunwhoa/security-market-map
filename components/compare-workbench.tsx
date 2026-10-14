@@ -55,6 +55,12 @@ const PRESETS: {
     productIds: ["c1-platform", "opal-zero", "entra-agent-id", "idira"],
   },
   {
+    id: "secrets-three",
+    label: "Infisical, Vault, Akeyless",
+    useCaseId: "uc-vault",
+    productIds: ["infisical", "vault", "akeyless"],
+  },
+  {
     id: "vault",
     label: "Vault and the secrets shortlist",
     useCaseId: "uc-vault",
