@@ -4,9 +4,21 @@ import {
   comparisonSelection,
   productsInCategory,
   SECRETS_COMPARISON_URL,
+  SECRETS_MANAGEMENT_COMPARISON_URL,
 } from "./comparison-selection";
 
 describe("category comparison navigation", () => {
+  it("opens the source-first secrets-management shortlist", () => {
+    const query = Object.fromEntries(
+      new URL(SECRETS_MANAGEMENT_COMPARISON_URL, "https://example.test").searchParams,
+    );
+    expect(comparisonSelection(query, catalog)).toEqual({
+      categoryId: "secrets-management",
+      useCaseId: "uc-vault",
+      productIds: ["infisical", "vault", "akeyless"],
+    });
+  });
+
   it("opens the existing secrets slice with two evidence-backed capabilities", () => {
     const query = Object.fromEntries(
       new URL(SECRETS_COMPARISON_URL, "https://example.test").searchParams,
