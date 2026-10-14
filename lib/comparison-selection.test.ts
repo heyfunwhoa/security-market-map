@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { catalog } from "./catalog";
+import { evidenceCell } from "./compare";
 import {
   comparisonSelection,
   productsInCategory,
@@ -17,6 +18,20 @@ describe("category comparison navigation", () => {
       useCaseId: "uc-vault",
       productIds: ["infisical", "vault", "akeyless"],
     });
+  });
+
+  it("does not promote a product overview to atomic capability evidence", () => {
+    const cell = (productId: string, capabilityId: string) =>
+      evidenceCell(catalog.claims, productId, capabilityId, "2026-10-13", catalog.sources);
+    expect(cell("vault", "cap-dynamic-secrets").status).toBe("evidenced");
+    expect(cell("vault", "cap-pki").status).toBe("evidenced");
+    expect(cell("infisical", "cap-dynamic-secrets").status).toBe("unknown");
+    expect(cell("akeyless", "cap-pki").status).toBe("unknown");
+    const dynamic = cell("vault", "cap-dynamic-secrets");
+    expect(dynamic.claims.some((claim) =>
+      claim.verificationStatus === "vendor_published" &&
+      claim.sourceUrl.startsWith("https://developer.hashicorp.com/")
+    )).toBe(true);
   });
 
   it("opens the existing secrets slice with two evidence-backed capabilities", () => {
