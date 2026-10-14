@@ -48,6 +48,22 @@ For any real evaluation, record:
 
 **Example apples-to-apples POC:** same three tenant profiles, same 5 integrations, 10 defined alert scenarios, permission matrix, and a 30-day estimated operational cost; score detection fidelity, human intervention, setup effort, audit/rollback, and recurring cost. No real comparison scores exist in this research.
 
+## Artemis Security — enterprise AI-native SOC candidate (2026-10-14)
+
+**Entity:** Artemis Security, https://artemissecurity.com/ (not Alethea's distinct \"Artemis for Security\" physical/online-threat platform). **Relationship to LimaCharlie:** **partial overlap, potential direct substitute for particular enterprise SOC detection/investigation/response budgets**, not a proven head-to-head replacement for LimaCharlie's programmable SecOps or MSSP/MDR infrastructure. **Status:** source-linked candidate awaiting human review; no typed product/capability assertions or competitive edge published.
+
+- **Vendor-reported positioning [AR1, AR2]:** AI-native security operations using a living model of users, accounts, devices and resources to support detection, investigation and response. The company describes intelligent federated telemetry; actual coverage and data locality require verification.
+- **Vendor-reported model announcement [AR3]:** Orion-1 was announced **2026-10-08** for threat detection, investigation, attack reconstruction, hunting and correlation. The vendor's benchmark and superiority descriptions are self-reported; preview/availability, reproducibility and performance on representative customer data remain unverified.
+- **Company milestone [AR4]:** Artemis announced emerging from stealth with **$70M aggregate seed + Series A financing** on **2026-04-15**; funding is company-reported context, not evidence of product performance or adoption.
+- **Buyer decision:** An enterprise SOC could compare Artemis's packaged AI-native investigation/response model with building or modernizing composable detections and response on LimaCharlie/Grid alongside existing tools. Test whether both are on an actual buyer shortlist before claiming direct displacement.
+- **Differentiation hypothesis (unproven):** Artemis emphasizes an integrated AI-native investigation and response experience; LimaCharlie emphasizes programmable sensors, APIs, telemetry/detection/response infrastructure and Grid workers [LC1, LC2]. Either may coexist with incumbent tools. Neither positioning establishes feature parity.
+- **Explicit Unknown:** native sensors, exact endpoint coverage, multi-tenant isolation/MSSP resale, open APIs and export, custom detector control, model selection/BYOK, response approval and rollback, pricing/unit economics, region and data retention, broad Orion-1 availability, independent accuracy and actual win/loss frequency. Do not infer absence from missing documentation.
+- **Comparison validation:** use identical synthetic alert and tenant scenarios; review source onboarding, correlation traceability, permissions/human approvals, audit/rollback, extensibility, ownership, per-workload cost and implementation effort. No head-to-head results currently exist.
+- **Owner/review:** Security Market Map research editor / repository maintainer; **next check 2026-11-12** or material release; **observed 2026-10-14**. Public original URLs may be linked; do not copy protected text or ingest private interview/customer data.
+- **Downstream disposition:** Security Market Map candidate **update** (this section); typed catalog **defer** pending human evidence review; private Career Command Center **defer** to its owner as read-only public source; Account Signal Engine **no account signal** without account-specific corroboration; GTM Revenue OS **no change** to modeled assumptions; Builder Academy **no change**.
+
+**Original sources:** [AR1] https://artemissecurity.com/ (vendor product page, observed 2026-10-14); [AR2] https://artemissecurity.com/about/ (vendor positioning, observed 2026-10-14); [AR3] https://artemissecurity.com/company-news/introducing-orion-1-the-leading-frontier-model-for-cyber-defense/ (vendor announcement, published 2026-10-08, observed 2026-10-14); [AR4] https://artemissecurity.com/company-news/announcing-artemis-security-that-understands-what-it-protects/ (vendor announcement, published 2026-04-15, observed 2026-10-14).
+
 ## Public original sources (vendor claims unless marked otherwise)
 
 - **[LC1]** LimaCharlie documentation, platform overview: https://docs.limacharlie.io/
