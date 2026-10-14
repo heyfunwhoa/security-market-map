@@ -45,3 +45,10 @@ export function comparisonSelection(
     .slice(0, 4);
   return { categoryId, useCaseId, productIds };
 }
+
+/** Preset navigation must keep the comparison category aligned with its use case. */
+export function comparisonPresetCategory(presetId: string): string {
+  if (presetId === "secrets-three" || presetId === "vault") return "secrets-management";
+  if (presetId === "detect") return "secrets-detection";
+  return "";
+}

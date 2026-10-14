@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { productsInCategory } from "@/lib/comparison-selection";
+import { comparisonPresetCategory, productsInCategory } from "@/lib/comparison-selection";
 import { useMemo, useRef, useState, useTransition } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { StatusPill } from "@/components/chrome";
@@ -142,7 +142,7 @@ export function CompareWorkbench({
     commit(
       preset.useCaseId,
       preset.productIds,
-      preset.id === "detect" ? "secrets-detection" : "",
+      comparisonPresetCategory(preset.id),
     );
   }
 
