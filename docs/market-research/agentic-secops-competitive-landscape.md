@@ -48,6 +48,30 @@ For any real evaluation, record:
 
 **Example apples-to-apples POC:** same three tenant profiles, same 5 integrations, 10 defined alert scenarios, permission matrix, and a 30-day estimated operational cost; score detection fidelity, human intervention, setup effort, audit/rollback, and recurring cost. No real comparison scores exist in this research.
 
+
+## FDE-like supervisors versus AI SOC investigators — proposed buyer comparison (October 14, 2026)
+
+**Scope and evidence:** Vendor-described positioning, not audited feature parity. Human forward-deployed engineers are customer-facing technical implementers; Grid's AI FDE is an AI-based builder/supervisor. Human FDE headcount does not automatically identify a Grid buyer.
+
+| Vendor / product | Initial architectural emphasis | Buyer evaluation |
+| --- | --- | --- |
+| LimaCharlie Grid [LC2] | AI FDE creates/supervises security workers on programmable telemetry, detection, response and APIs | Inspect, test and govern generated artifacts across tenants? |
+| Torq [TQ] | Agentic SOC and security automation | Can teams generate and govern workers with reliable change control? |
+| Tines [TI] | Workflow automation and governed agents | What needs manual configuration versus AI creation? |
+| 7AI [7A1] | AI SOC agents and federated SIEM | What federated data and agent capabilities are usable? |
+| Exaforce [EX] | Security data platform and AI investigations | What is prepackaged versus programmable? |
+| Runlayer [RL1] | Broad enterprise AI agent governance/MCP/runtime — adjacent | Could it complement rather than replace SecOps tooling? |
+
+**Distinction:** AI SOC investigator executes investigations; AI FDE designs/maintains workers; human FDE implements customer-specific solutions. These can overlap across vendors.
+
+**BYOK/LLM:** BYOK credentials do not equal arbitrary model compatibility. Validate supported session/provider matrix, token and platform costs, key custody, data locality, governance and evaluation outcomes.
+
+**Synthetic comparison protocol:** Ten fictional alerts and three fictional tenants; existing SIEM coexistence; agent-generated detection/investigation; approvals; version/rollback; setup/maintenance hours; false-positive/false-negative tests; total model/infrastructure cost. No vendor scores are available.
+
+**[RL1] Source:** https://www.runlayer.com/platform — vendor positioning, observed 2026-10-14. Runlayer is not asserted as a direct substitute.
+
+**Disposition:** Research candidate awaiting human review. No changes to typed app claims or deployed comparisons.
+
 ## Public original sources (vendor claims unless marked otherwise)
 
 - **[LC1]** LimaCharlie documentation, platform overview: https://docs.limacharlie.io/
