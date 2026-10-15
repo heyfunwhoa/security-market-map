@@ -97,3 +97,45 @@ All URLs below were retrieved during the research conversation on 2026-10-13. Of
 [16] TruffleHog primary repository: https://github.com/trufflesecurity/trufflehog
 
 No employer, private interview, customer, credential or pipeline data included. No scanner executed or third-party repository modified.
+
+
+## Focused Infisical–Vault–Akeyless capability slice (candidate, 2026-10-14)
+
+**Status:** candidate, owner/editorial review pending. Evidence observed 2026-10-14 from original public vendor documentation; publication dates unknown (null), versions not specified unless linked pages identify them. Source types below are official documentation or vendor pricing; confidence is **medium** for explicitly documented functionality and **low** for entitlement or cross-product inference. Review label: `needs_review`. Vendor documentation is **not** independent functional verification. No production claims, efficacy, rankings, or source-independent `verified` states follow from these entries.
+
+**Stable catalog identifiers:** vendors `infisical`, `hashicorp`, `akeyless`; products `infisical`, `vault`, `akeyless`. Reuse `cap-dynamic-secrets`, `cap-pki`, `cap-secret-discovery`, `cap-secret-verification`, `cap-credential-custody`, `cap-session-control` only where their **exact definitions** match the claim. Existing `claim-infisical-store`, `claim-vault-dynamic`, `claim-vault-pki` and corresponding sources remain authoritative catalog records; do not duplicate them. Other dimensions are candidate atomic requirements pending source-to-existing-capability reconciliation, not implicitly new catalog entries.
+
+Interpretation: **Documented** = specific vendor-published functionality; **Limited** = documentation has an explicit scope/target/edition boundary; **Unknown** = no adequate exact product-level evidence; **Unverified** = an assumption has not been tested; **Unsupported** = requires affirmative explicit negative vendor evidence (none established here); **Conflicting** = requires attributable contradictory sources (none established here). Neither Unknown nor Unverified means Unsupported. Product-specific rows intentionally do not equate a separate vendor product to base secrets-manager functionality.
+
+| Atomic buyer requirement | Infisical (`infisical`) | HashiCorp Vault (`vault`) | Akeyless (`akeyless`) |
+| --- | --- | --- | --- |
+| Store application secrets centrally | Documented [F1] (existing `claim-infisical-store`) | Documented for KV secrets engine [V1] | Documented: static secrets [A1] |
+| Enforce access to specific secret paths | Documented; edition-specific RBAC details require proof [F1,F2] | Documented auth/policy association [V2] | Documented access policy concept; exact scope/edition requires review [A1] |
+| Retrieve secrets at runtime | Documented; specific CLI/SDK/agent integration must be checked [F1] | Documented KV read/auth flow [V1,V2] | Documented; deployment/gateway routing must be evaluated [A1,A2] |
+| Issue a credential on demand | Limited by credential target and plan; dynamic secrets listed in Advanced [F1,F2] | Documented dynamic database credential engines; existing `claim-vault-dynamic` [V3,V4] | Documented dynamic secret types; target/Gateway dependency [A1,A2] |
+| Rotate an existing standing credential automatically | Limited: supported targets and Pro plan packaging; do not equate with issuance [F2] | Limited: static roles/engine-specific operations, not every KV secret [V3] | Limited: rotated secret types and rotator/target prerequisites [A1,A3] |
+| Explicitly expire/revoke an issued credential | Unknown per Infisical target; short-lived issuance does not prove all target revocations [F1] | Documented for leased dynamic credentials, not equivalent to deleting KV entries [V4] | Unknown for each dynamic target/lease; demonstration needed [A1,A2] |
+| Issue/manage X.509 certificates | Separate certificate functionality; secrets-manager SKU parity Unknown [F1,F2] | Documented PKI secrets engine (existing `claim-vault-pki`) [V5] | Unknown exact PKI product/edition from reviewed sources [A1] |
+| Authenticate machine/workload callers | Documented at platform level; exact method and entitlement to verify [F1] | Documented auth methods for people and machines [V2] | Documented product access patterns; auth type/plan needs review [A1,A2] |
+| Detect exposed credentials in source repositories | Separate Infisical scanner; coverage/verification and purchased scope Unknown [F2] | Vault Radar is distinct from base Vault; base `vault` detection Unknown [V6] | Separate GitHub scanning claim requires exact official scanner documentation, edition and coverage [A1] |
+| Broker/record privileged remote sessions | Separate PAM product scope; no base secrets-manager equivalence established [F1] | Unknown for base Vault; category adjacency is not proof [V6] | Unknown complete PAM/session-control behavior; do not infer from remote access wording [A3] |
+
+### Original evidence URLs and constraints
+
+| Key | Publisher/source type | Original URL | Atomic evidence and limits |
+| --- | --- | --- | --- |
+| F1 | Infisical / official docs | https://infisical.com/docs/documentation/getting-started/choose-a-product/secrets-management/overview | Central secret storage and delivery; different product areas must remain separate |
+| F2 | Infisical / vendor pricing | https://infisical.com/pricing | Commercial package distinctions; exact purchased plan, deployment, and integration remain unknown |
+| V1 | HashiCorp / official docs | https://developer.hashicorp.com/vault/docs/secrets/kv/kv-v1 | KV storage; do not infer leased/dynamic credentials from KV |
+| V2 | HashiCorp / official docs | https://developer.hashicorp.com/vault/docs/auth | User/workload authentication methods; external configuration required |
+| V3 | HashiCorp / official docs | https://developer.hashicorp.com/vault/docs/secrets/databases | Database issuance and engine-specific rotation; plugin/target applicability differs |
+| V4 | HashiCorp / official docs | https://developer.hashicorp.com/vault/docs/concepts/lease | Dynamic lease renew/revoke semantics; not universal deletion guarantees |
+| V5 | HashiCorp / official docs | https://developer.hashicorp.com/vault/docs/secrets/pki/setup | PKI issuance; CA and role configuration required |
+| V6 | HashiCorp / official product documentation | https://developer.hashicorp.com/vault/docs | Product families including Vault Radar; separate product scopes |
+| A1 | Akeyless / official docs | https://docs.akeyless.io/docs/manage-your-secrets-overview | Static, dynamic, rotated taxonomy; not a complete coverage matrix |
+| A2 | Akeyless / official docs | https://docs.akeyless.io/docs/gateway-overview | Gateway architecture/prerequisites; deployment validation needed |
+| A3 | Akeyless / official docs | https://docs.akeyless.io/docs/cli-reference-rotated-secrets | Rotated-secret CLI parameters; target types do not establish universal coverage |
+
+**Observation and review fields (all rows):** `observedAt=2026-10-14`; `lastCheckedAt=2026-10-14` for this candidate research only; `publishedAt=null`; `effectiveFrom=null`; `effectiveTo=null`; `verificationStatus=needs_review` for any future typed promotion, with `vendor_published` retained to describe the evidence rather than being treated as independent verification; `confidence=medium` for direct documented behaviors and `low` for product/plan boundary hypotheses. Version/edition is **Unknown** unless explicitly stated above; deployment/target details must remain in claim notes. No negative, conflicting, or superseded claim is established by these sources.
+
+**Remaining human review:** reconcile exact atomic IDs and verified source page content; distinguish Infisical Secrets Management from Secret Scanning, certificate management and PAM; distinguish Vault from Vault Radar and KV from leased engines; establish Akeyless PKI, secret scanning and privileged-access product boundaries; validate per-target supported rotations, credential revocation behavior, plans and editions; review link freshness and publication/version metadata. Existing Research Hub owns collection and approval; this PR is only a manually authored **candidate brief**. Promote to `lib/data` typed sources/claims only after editorial approval and research-integrity checks. Do not import private research, automatically collect, merge, or deploy.
