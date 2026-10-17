@@ -93,7 +93,7 @@ Status: review recommendation only; no runtime changes. Owner: repository mainta
 
 ### Route inventory
 
-The earlier inventory counted 19 route templates. Current `main` has **20 page templates**: the same route set plus `/frameworks/incident-lab`. No dedicated `/products/[slug]` route exists; product context is reached through vendor/catalog and comparison surfaces. API routes are excluded.
+The earlier inventory counted 19 route templates. Current `main` has **20 page templates**: the prior families below plus `/frameworks/incident-lab`, added in merged PR #72. That lab uses synthetic fixtures; its ATT&CK IDs are candidate-format fields, not claims mapped to an imported dataset. No dedicated `/products/[slug]` route exists; product context is reached through vendor/catalog and comparison surfaces. API routes are excluded.
 
 | Route family and current routes | User task and main interaction | What works; friction to address | Shared local components |
 | --- | --- | --- | --- |
@@ -113,7 +113,7 @@ The earlier inventory counted 19 route templates. Current `main` has **20 page t
 
 **Territory verification:** the prior walkthrough’s “New account” action showed “This page couldn’t load.” This audit independently opened deployed `/territory` and retried once; the same screen remained. We did not click New account or write local data. This reproduces a browser-visible route failure, but does not identify whether the cause is the app, deployment or browser transport. Track it as a verified symptom for the existing deployed-journey owner to diagnose, not as a proven application defect.
 
-**Ownership/review context:** current open PRs include taxonomy/research work (#60, #59, #57, #42), study paths (#22), source/research work (#45, #61), incident-reference docs (#71), and other unrelated governance/security changes. Review those before changing graph inputs. PR #62 is merged; its diff added the Infisical/Vault/Akeyless comparison preset, URL selection and selection test only. KRU-69 is owned by Kristen Aing and is the Infisical public-evidence/privacy pilot; it was reopened In Progress and is not a map-redesign ticket. KRU-76 completed one local category-to-comparison-to-source slice; KRU-93 completed the deployed check and explicitly excluded a graph rewrite. This plan adds no issue and does not enlarge those scopes.
+**Ownership/review context:** current open PRs include taxonomy/research work (#60, #59, #57, #42), study paths (#22), source/research work (#45, #61), incident-reference docs (#71), and other unrelated governance/security changes. PR #72, merged into the audited main SHA, added the incident-lab route; its PR description says candidate IDs are format-validated and no ATT&CK dataset is imported. Review those before changing graph inputs. PR #62 is merged; its diff added the Infisical/Vault/Akeyless comparison preset, URL selection and selection test only. KRU-69 is owned by Kristen Aing and is the Infisical public-evidence/privacy pilot; it was reopened In Progress and is not a map-redesign ticket. KRU-76 completed one local category-to-comparison-to-source slice; KRU-93 completed the deployed check and explicitly excluded a graph rewrite. This plan adds no issue and does not enlarge those scopes.
 
 ### Native market-map concept
 
