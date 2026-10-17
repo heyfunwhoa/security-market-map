@@ -156,6 +156,54 @@ function category(input: {
 
 export const ecosystemCategories: Category[] = [
   category({
+    id: "security-data-pipelines",
+    name: "Security data pipeline platforms (SDPP)",
+    group: "secops",
+    domainIds: ["secops", "platform"],
+    definition:
+      "Ingest, validate, normalize, enrich and route security telemetry before downstream SIEM, data-lake and detection systems. Pipeline health and cost controls are distinct from storage or alert investigation.",
+    buyerQuestion: "Can we deliver complete, trustworthy security telemetry to the right detection and analysis destinations at an acceptable cost?",
+    buyerOwner: "Security engineering, SOC platform engineering or detection infrastructure.",
+    triggers: ["SIEM ingestion cost spike", "Missing or malformed telemetry", "SIEM migration", "Multi-destination routing"],
+    budgetSource: "SecOps data infrastructure or SIEM/platform modernization; verify with the buyer.",
+    outcomes: ["Reliable telemetry delivery", "Schema consistency", "Controlled ingestion and routing cost"],
+    adjacentCategoryIds: ["siem", "soar", "cloud-detection", "xdr"],
+    exampleWorkflow:
+      "Cloud and endpoint events enter a pipeline, are normalized and checked for loss, and route selectively to hot detection storage and a longer-term lake.",
+    flow: {
+      actor: "Security telemetry producer",
+      credential: "Collector and destination authentication",
+      permission: "Which data source may route to which destination",
+      decision: "Pipeline parsing, policy, quality checks and routing rules",
+      action: "Transform, filter, buffer and forward events",
+      evidence: "Source health, delivery metrics, transform versions and routing logs",
+    },
+  }),
+  category({
+    id: "detection-engineering",
+    name: "Detection engineering lifecycle",
+    group: "secops",
+    domainIds: ["secops"],
+    definition:
+      "Design, test, version, deploy and measure security detections using known telemetry and attack behaviors. Distinct from a SIEM analytics engine or simply triaging alerts.",
+    buyerQuestion: "Can we prove our detection content fires on the right activity, remains reliable after data changes and improves investigation quality?",
+    buyerOwner: "Detection engineering lead or SOC engineering.",
+    triggers: ["Unverified detection coverage", "Rule noise", "Pipeline schema changes", "Detection migration"],
+    budgetSource: "SecOps engineering, detection platform or SIEM content operations; verify with the buyer.",
+    outcomes: ["Tested detection behavior", "Versioned and reviewed rule changes", "Actionable investigation evidence"],
+    adjacentCategoryIds: ["siem", "soar", "threat-intelligence", "breach-simulation", "security-data-pipelines"],
+    exampleWorkflow:
+      "An engineer writes a detection, replays synthetic attack and benign events through a test, reviews false positives, and ships a versioned rule to production.",
+    flow: {
+      actor: "Detection engineer",
+      credential: "Detection platform API or CI permissions",
+      permission: "Rule repository and deployment scope",
+      decision: "Test results, coverage rationale and reviewer approval",
+      action: "Publish or roll back a detection rule",
+      evidence: "Versioned rule, synthetic test results, deployment and alert quality metrics",
+    },
+  }),
+  category({
     id: "endpoint-security",
     name: "Endpoint security",
     group: "corporate",
