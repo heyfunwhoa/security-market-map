@@ -1,4 +1,4 @@
-import { evaluateClassification, type IncidentClassification } from "@/lib/incident-classifier";
+import { evaluateClassification, type IncidentClassification } from "./incident-classifier";
 
 /** Minimal shape of ASE's fixture-only output; no copied registry or exporter logic. */
 export type CandidateIntake = {
