@@ -13,6 +13,7 @@ export default function FrameworksPage() {
         lede="ARISE and Endpoint Control and Prevention come from Software Analyst Cyber Research. They are not Gartner categories. The NHI lifecycle below is a buyer checklist. The 2024 vendor landscape in that guide needs a current check."
       />
       <p className="mt-4 text-sm text-muted-foreground">Reviewed {REVIEWED}.</p>
+      <p className="mt-4"><Link href="/frameworks/incident-lab" className="inline-flex rounded-lg border border-border px-4 py-2 text-sm font-medium underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2">Open synthetic incident classification lab</Link></p>
 
       <section className="mt-10">
         <h2 className="text-2xl tracking-tight">NHI lifecycle</h2>

@@ -42,6 +42,10 @@ The Cyera–Oasis case study separates the companies' strategic rationale and th
 
 ## Research standards
 
+**Agentic SecOps / MSSP industry research:** [October 2026 competitive landscape](docs/market-research/agentic-secops-competitive-landscape.md) groups vendors by buyer job, original source and unverified comparison hypotheses. This is editorial research, not yet published as typed catalog claims.
+
+**Reusable method:** [Competitive Intelligence Playbook](docs/market-research/competitive-intelligence-playbook.md) covers buyer-led comparison, source quality, case studies, interview preparation, win/loss privacy and downstream GTM reuse.
+
 - Link material claims to a public source.
 - Record when a source was published and when it was reviewed.
 - Separate vendor claims from independently supported findings. A claim is marked verified only when the source is an independent public standard. A vendor doc, marketing page, or press release stays labeled as what the vendor said.
@@ -110,9 +114,13 @@ To deploy the functions, host this Next.js app, set `INNGEST_EVENT_KEY` and `INN
 - Budget is three-year arithmetic on numbers you type. It is not a forecast.
 - Territory notes stay in `localStorage`. A blank incumbent is unknown and is left out of the score.
 
+## Secrets detection sweep
+
+The [2026-10-13 sweep](docs/market-research/secrets-detection-sweep-2026-10-13.md) covers 60 product/project records across specialist scanners, OSS, AppSec/ASPM, cloud security, and integrations. The [typed additions](lib/data/secrets-sweep.ts) preserve product scope, publisher evidence, and review-needed states. Integration-only evidence does not populate native scanner capability cells.
+
 ## How to add a sourced claim
 
-1. Add the source in `lib/data/sources.ts` with the canonical URL, publisher, retrieval date, and volatility.
+1. Add the source in `lib/data/sources.ts` (or a focused typed module composed by `lib/catalog.ts`, such as `lib/data/secrets-sweep.ts`) with the canonical URL, publisher, retrieval date, and volatility.
 2. Add the claim in `lib/data/claims.ts`. Set the subject, capability, polarity, source URL, observed date, and verification status.
 3. If two current pages disagree, point `conflictsWith` both ways.
 4. Run `npm test`. The catalog refuses a claim whose source, product, or capability does not exist, and a conflict that is not symmetric.
@@ -145,3 +153,4 @@ The [Security Intelligence architecture proposal](docs/security-intelligence/arc
 ## Reusable Security & GTM Intelligence Foundation
 
 [Owning-repo implementation plan](docs/product/security-gtm-intelligence-plan.md) links shared architecture and the reviewed-evidence pilot. It is subordinate to existing product/module PRDs; no live integration or paid usage is enabled.
+
