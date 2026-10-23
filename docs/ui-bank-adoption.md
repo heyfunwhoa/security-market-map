@@ -85,3 +85,17 @@ Prioritize the existing Radix Tabs learning-scenario pilot (PR #36), semantic co
 The shadcn index's Base UI examples are references; preserve this app's actual component family and tokens. Current dnd-kit React APIs differ from legacy core/sortable examples. Sandpack runtime/Nodebox terms and external data flow require separate review before any runnable lab. No dependencies, code execution, automatic refresh or automatic cross-repo synchronization are added by this note.
 
 Before implementation, inspect actual call sites, record source/package version and license obligations, and verify responsive layout, keyboard/focus, reduced motion and relevant error/empty/denied states. Add non-drag controls for reordering and exact numeric inputs for financial sliders. Documentation inspection is not browser QA or security certification. Rollback: remove this section; no runtime or data changes.
+
+
+## Market-map explorer slice · 2026-10-17
+
+Status: implemented on review branch `ux/market-map-equal-weight`; PR #77 is open for review and has not been merged or deployed. Audit and full route-family plan: [UI/UX upgrade recommendation](https://github.com/heyfunwhoa/security-market-map/blob/review/ui-ux-map-upgrade-audit-20261017/docs/ui-bank-adoption.md#uiux-upgrade-audit-and-recommendation--2026-10-17).
+
+- User task: orient in the broad security market, inspect an area, then open its detail page. Destinations: `/` and `/domains` through the shared `MarketMapExplorer`.
+- Reuse/adapt: adapted the existing `MarketConstellation` and market-area copy; retained the existing data, detail links, page tokens and Next.js/React stack. Uses native buttons for selection and the existing Next link for navigation. No copied portfolio UI, new dependency, or additional primitive family.
+- Design decision: removed manually authored circle positions/radii because no metric gave them meaning. All selectable market-area tiles use the same fixed height. Accent color is explicitly decorative; it does not signal ranking, evidence strength or capability. The illustrative four-stage path remains separate from the market-area picker and links to the existing five-step coding-agent scenario. No unsupported inter-area edges are drawn.
+- Interaction/accessibility: native selection buttons expose `aria-pressed` and a full spoken name; the selected detail panel uses a polite live region and a separate “Open this area” link. Selection works through standard Enter/Space button behavior; focus styling remains visible. The layout stacks on narrow screens and uses two/three-column grids at wider breakpoints. Selection state changes immediately under reduced motion.
+- Verification: `npm test` — 93 tests pass; `npm run lint` — pass; `npx next typegen && npm run typecheck` — pass; `npm run build` — pass; `npm run test:research-integrity` — 7 checks pass. Added three server-rendered explorer assertions. Vitest now resolves the app’s existing `@/` alias.
+- Remaining QA: the cloud browser could not reach this workspace’s local preview (`127.0.0.1:36079`), so desktop/tablet/mobile visual review, 200% zoom and live keyboard interaction are not claimed. Before release, review 375/768/1280px, focus and selection announcements, long labels, no horizontal page overflow, reduced motion, and the detail links on a real preview.
+
+Rollback: revert the explorer, data rename, route-copy, test/config and this record; no catalog records, persistence, migrations or external connections changed.
