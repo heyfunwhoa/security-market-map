@@ -89,7 +89,7 @@ Before implementation, inspect actual call sites, record source/package version 
 
 ## Market-map explorer slice · 2026-10-17
 
-Status: implemented on review branch `ux/market-map-equal-weight`; no PR opened, merge, or deployment. Audit and full route-family plan: [UI/UX upgrade recommendation](https://github.com/heyfunwhoa/security-market-map/blob/review/ui-ux-map-upgrade-audit-20261017/docs/ui-bank-adoption.md#uiux-upgrade-audit-and-recommendation--2026-10-17).
+Status: implemented on review branch `ux/market-map-equal-weight`; PR #77 is open for review and has not been merged or deployed. Audit and full route-family plan: [UI/UX upgrade recommendation](https://github.com/heyfunwhoa/security-market-map/blob/review/ui-ux-map-upgrade-audit-20261017/docs/ui-bank-adoption.md#uiux-upgrade-audit-and-recommendation--2026-10-17).
 
 - User task: orient in the broad security market, inspect an area, then open its detail page. Destinations: `/` and `/domains` through the shared `MarketMapExplorer`.
 - Reuse/adapt: adapted the existing `MarketConstellation` and market-area copy; retained the existing data, detail links, page tokens and Next.js/React stack. Uses native buttons for selection and the existing Next link for navigation. No copied portfolio UI, new dependency, or additional primitive family.
