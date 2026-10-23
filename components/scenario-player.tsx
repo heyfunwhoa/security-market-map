@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import type { Scenario } from "@/lib/schema";
 
 export type ScenarioView = Omit<Scenario, "steps"> & {
@@ -15,29 +16,56 @@ export type ScenarioView = Omit<Scenario, "steps"> & {
 
 export function ScenarioPlayer({ scenarios }: { scenarios: ScenarioView[] }) {
   const [scenarioId, setScenarioId] = useState(scenarios[0]?.id ?? "");
-  const [stepId, setStepId] = useState(scenarios[0]?.steps[0]?.id ?? "");
   const scenario = scenarios.find((item) => item.id === scenarioId) ?? scenarios[0];
+
+  if (!scenario) {
+    return <p className="text-sm text-muted-foreground">No scenarios are available yet.</p>;
+  }
+
+  return (
+    <Tabs value={scenario.id} onValueChange={setScenarioId} className="block">
+      <TabsList
+        aria-label="Scenarios"
+        className="flex h-auto w-full flex-wrap justify-start gap-2 rounded-none bg-transparent p-0 group-data-horizontal/tabs:h-auto"
+      >
+        {scenarios.map((item) => (
+          <TabsTrigger
+            key={item.id}
+            value={item.id}
+            className="h-auto min-h-11 flex-none max-w-full rounded-full border-border px-3 py-1.5 whitespace-normal text-foreground transition-none data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+          >
+            {item.title}
+          </TabsTrigger>
+        ))}
+      </TabsList>
+      {scenarios.map((item) => (
+        <TabsContent
+          key={item.id}
+          value={item.id}
+          className="rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
+        >
+          <ScenarioSteps scenario={item} />
+        </TabsContent>
+      ))}
+    </Tabs>
+  );
+}
+
+function ScenarioSteps({ scenario }: { scenario: ScenarioView }) {
+  const [stepId, setStepId] = useState(scenario.steps[0]?.id ?? "");
   const step = scenario.steps.find((item) => item.id === stepId) ?? scenario.steps[0];
+
+  if (!step) {
+    return (
+      <div>
+        <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">{scenario.summary}</p>
+        <p className="mt-4 text-sm text-muted-foreground">No steps are available for this scenario yet.</p>
+      </div>
+    );
+  }
 
   return (
     <div>
-      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Scenarios">
-        {scenarios.map((item) => (
-          <button
-            key={item.id}
-            type="button"
-            role="tab"
-            aria-selected={item.id === scenario.id}
-            onClick={() => {
-              setScenarioId(item.id);
-              setStepId(item.steps[0].id);
-            }}
-            className="rounded-full border border-border px-3 py-1.5 text-sm aria-selected:bg-primary aria-selected:text-primary-foreground"
-          >
-            {item.title}
-          </button>
-        ))}
-      </div>
       <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">{scenario.summary}</p>
       <ol className="mt-4 grid gap-2 md:grid-cols-5">
         {scenario.steps.map((item, index) => (
@@ -90,3 +118,4 @@ export function ScenarioPlayer({ scenarios }: { scenarios: ScenarioView[] }) {
     </div>
   );
 }
+

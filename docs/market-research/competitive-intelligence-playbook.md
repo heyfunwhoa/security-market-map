@@ -8,6 +8,8 @@ Give an enterprise AE, future Head of Sales, technical seller or job candidate a
 
 **First applied case:** [Agentic SecOps and MSSP/MDR competitive landscape](agentic-secops-competitive-landscape.md).
 
+**DSPM and secrets expansion:** [Analyst-informed vendor and product inventory](analyst-dspm-secrets-expansion.md), with public Gartner, SACR and Forrester source limits and original product evidence.
+
 ## 1. Choose the buyer's decision
 
 Start with a specific decision in a specific environment:
@@ -88,6 +90,39 @@ Use `Unknown` where evidence is missing; no fabricated check marks, vendor ranki
 - **Account Signal Engine:** eventual permitted retrieval, versions and account/company signals under existing contracts, not a second public comparison database.
 - **GTM Revenue OS:** deal economics and scenario assumptions, never silently promoted vendor claims or confidential interview assertions.
 - **Technical Docs Platform:** governance for source provenance, privacy, agent workflow, shared data contracts and PR review. No duplicate standard here.
+
+
+## Discovery methods and freshness — how to find new evidence economically
+
+Start with **sources you already know**. Search/monitor in this order, increasing cost only when the earlier step fails to answer the question:
+
+| Channel | Best for | What enters review | Important limitation |
+| --- | --- | --- | --- |
+| Official RSS/Atom/JSON feeds and vendor release notes | New products, platform capabilities, deprecations, pricing announcements | Source-item metadata, timestamp and original URL | A title/keyword alone does not prove a capability |
+| Official documentation, pricing and developer API references | Specific feature claims and important exclusions | Narrow, source-backed claim with version/date | Docs may differ by edition, region, deployment and preview availability |
+| Public case studies, webinars and engineering talks | Usage examples, measurable buyer outcomes and workflows | Vendor/customer-attributed claims and selection-bias notes | Marketing/customer quotations aren't independent verification |
+| Exa targeted discovery and search | Find unregistered relevant originals and opposing evidence | Candidate URL + source/publisher + why relevant | Search snippet/AI summary is not an original citation |
+| Firecrawl targeted fetch, allowed page diffs | Extract/version approved public pages after discovery | Permitted content hash, retrieval record and passage pointer | Bound domain/page count, licensing, time and spending |
+| Independent technical testing and disclosed buyer evidence | Challenge positioning and validate real differentiators | Methodology, environmental limits, contrary findings | Conclusions may not generalize outside evaluated scenario |
+
+**Useful recurring research questions:** Who would the buyer shortlist today? Which incumbent can be expanded? What changed in Grid, AI agents, multi-tenancy, partner terms, pricing or retention? Which advertised feature is undocumented or only preview? Are there post-acquisition integration changes? What would disconfirm the perceived competitive advantage?
+
+**Suggested manual review frequency:** major source changes as they occur; weekly high-priority feed triage; monthly competitor/battlecard freshness review; quarterly taxonomy/relationship review. These are *review targets*, not a claim a scheduled job currently delivers them. The existing [ASE source registry](https://github.com/heyfunwhoa/account-signal-engine/blob/main/docs/research-hub/SOURCE-REGISTRY.md) has feed-specific intervals, which should not be overridden by this editorial cadence.
+
+## Downstream impact disposition
+
+A useful review ends with an explicit decision for **each potential consumer**:
+
+`research_change_id | reviewed_claim_ids | buyer_scenario | materiality | consumer | update/no_change/defer/blocked | why | owner | ticket_or_pr | as_of`
+
+- **Security Market Map:** publish typed claims only through current reviewed catalog workflow; `Unknown` remains valid.
+- **Career Command Center:** if an *active* relevant interview exists, suggest a new question, learning gap, or briefing citation. The private owner approves; don't inject public feed changes into interview notes automatically.
+- **Account Signal Engine sales workflow:** require corroborating account-specific context before treating competitor activity as an outreach signal.
+- **GTM Revenue OS:** only propose scenario assumptions, never overwrite business actuals or silently change simulated outputs.
+- **Builder Academy:** propose a sanitized educational update if the concept is stable and generalizable.
+- **No update:** document it. This is often the right result for promotional, duplicate, stale or low-materiality posts.
+
+Use the accepted [Research Evidence Boundary ADR](https://github.com/heyfunwhoa/technical-docs-platform/blob/main/architecture/ADR-001-research-evidence-boundary.md) for current cross-repository ownership. The proposed Research Intelligence Lifecycle path was not present on main when checked 2026-10-13 and is not an adopted dependency. Use [Contributing research](../../CONTRIBUTING.md) for the submission checklist and publication stages.
 
 ## What not to automate yet
 

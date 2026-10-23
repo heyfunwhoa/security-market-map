@@ -18,3 +18,9 @@ Use links rather than copying shared rules. Preserve this repo's Next.js guidanc
 ## UI and motion bank
 
 Before UI, layout or animation work, read [local UI bank adoption](docs/ui-bank-adoption.md) and the linked workbench patterns. Inspect existing local components first, record reuse/adapt/new decisions, and preserve this app's tokens, privacy and domain rules. Record responsive, keyboard/focus, reduced-motion and state verification in the PR. Candidate or demo availability is not evidence of shipped adoption. Report inaccessible references rather than claiming compliance.
+
+## Competitive research and cross-project handoff
+
+For vendor, category, competitor or cybersecurity market changes, read the [Competitive Intelligence Playbook](docs/market-research/competitive-intelligence-playbook.md) and [Contributing research](CONTRIBUTING.md), plus the accepted shared [Research Evidence Boundary ADR](https://github.com/heyfunwhoa/technical-docs-platform/blob/main/architecture/ADR-001-research-evidence-boundary.md). If the private Technical Docs reference is not available, follow this repo's existing claim/provenance rules and explicitly report the unavailable instruction rather than guessing.
+
+Search the current `lib/data` catalog and existing PRs first. Separate candidate research notes from **reviewed, published typed claims**. Never infer a direct competitor from similar category labels, or fill feature parity from marketing impressions. Preserve vendor-reported status, original source URLs, observed/published/reviewed dates, rights constraints, disagreement and Unknown. Routing to Job Interview Command Center, sales accounts or revenue scenarios is **proposed consumer work** requiring each owner's review; never auto-write their stores. No private interview facts in this public repo.
