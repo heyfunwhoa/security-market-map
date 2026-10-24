@@ -85,7 +85,7 @@ export const marketAreas: MarketArea[] = [
     id: "secops",
     name: "Security operations",
     question: "What happened, and how do we respond?",
-    categories: "SIEM, XDR, SOAR, threat intelligence, managed detection and response",
+    categories: "SIEM, security data pipelines, detection engineering, XDR, SOAR, threat intelligence, managed detection and response",
     examples: "Microsoft Sentinel, Splunk, Google SecOps, Palo Alto Cortex, Rapid7",
     href: "/domains/secops",
     fill: "oklch(0.84 0.05 20)",

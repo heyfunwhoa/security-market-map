@@ -29,5 +29,6 @@
 - Existing `siem`, `soar`, `cloud-detection`, `threat-intelligence`, `xdr` and `breach-simulation` remain canonical; the new categories model different jobs, not replacements.
 - Only category/buyer/workflow metadata is proposed in this PR. There are no new vendor `implements` edges, benchmark rankings, scores, pricing statements or integration claims.
 - Before future product-backed comparisons: original vendor evidence per feature, source type, date, edition, deployment boundary, rights, human review; unverified stays Unknown.
-- **Checks requested:** `npm run test:research-integrity`, `npm test`, `npx next typegen`, `npm run typecheck`, `npm run lint`, `npm run build`. They have not been executed in this connector-only change. PR CI results must be inspected.
+- The Security operations market-area label and domain charter name these jobs beside SIEM and SOAR. That label is taxonomy, not a vendor capability claim.
+- **Checks:** `npm run test:research-integrity`, `npm test`, `npx next typegen`, `npm run typecheck`, and `npm run lint` were run locally after merging current `main`. Confirm the same commands on the pushed head in CI before treating the branch as reviewed. Human review still precedes merge.
 - Human review and approval precede merge and deployment; no new crawler, schema store, or cross-repo write.

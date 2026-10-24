@@ -83,7 +83,7 @@ export const domainSeeds: DomainSeed[] = [
     slug: "secops",
     name: "Security operations",
     charter:
-      "How the organization detects and responds: SIEM, SOAR, and the identity alerts that land in the same queue. Detection is not the system that certifies access.",
+      "How the organization detects and responds: security telemetry pipelines, detection content, SIEM, SOAR, and the identity alerts that land in the same queue. A pipeline is not a detection rule, and detection is not the system that certifies access.",
     typicalOwner: "SOC manager or detection lead",
     budget: "SecOps. Identity threat tools are often sold here even when IAM owns the control.",
     depth: "mapped",
