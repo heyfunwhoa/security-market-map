@@ -1,4 +1,4 @@
-# Adaptive Security — market positioning (2026-10-13)
+# Adaptive Security — market positioning (2026-10-24)
 
 **Canonical entity:** Adaptive Security — https://www.adaptivesecurity.com/  
 **Do not conflate:** Adaptive Shield (SSPM; https://www.adaptive-shield.com/), a separate vendor already in this map.
@@ -19,14 +19,15 @@
 Comparisons are research candidates, NOT claims of direct feature parity or proven displacement.
 
 ## Evidence / freshness
-- Product overview, observed 2026-10-13: https://www.adaptivesecurity.com/
-- Pricing model: custom quote; products can be bundled or standalone: https://www.adaptivesecurity.com/pricing
-- Product updates: email security beta April 2026; voice phishing upgrades June 2026; other products: https://www.adaptivesecurity.com/resources/product-updates
-- Company Series B release dated 2025-12-16: $81M Series B; $146.5M cumulative funding; >500 enterprise customers at that date: https://www.adaptivesecurity.com/blog/adaptive-raises-series-b
+- Product overview checked 2026-10-24: the company currently presents security awareness training, phishing simulations, agentic email security and AI governance as one platform: https://www.adaptivesecurity.com/
+- Pricing checked 2026-10-24: Adaptive says pricing is per seat, quoted from employee count and selected products; optional add-ons such as voice phishing are priced separately: https://www.adaptivesecurity.com/pricing
+- Product updates checked 2026-10-24: email security remains labeled Beta on the product-update page; releases include Webhooks and REST API (October 8), Employee Digest (October 13), and Attachment Inspection (October 14). These are vendor announcements, not independent product tests: https://www.adaptivesecurity.com/resources/product-updates
+- Historical company Series B release, 2025-12-16: $81M Series B and >500 enterprise customers reported at that date: https://www.adaptivesecurity.com/blog/adaptive-raises-series-b
+- Current company page, checked 2026-10-24: Adaptive reports $150M raised and 2,000+ organizations; these are company-reported milestones, not independently audited financial or customer counts: https://www.adaptivesecurity.com/about
 - Press release corroboration: https://www.prnewswire.com/news-releases/adaptive-security-raises-81-million-series-b-to-stop-ai-powered-cyber-threats-302643174.html
 
 ## Review / integrity flags
 - Do not present customer, ARR, or product performance as audited financial facts.
 - Do not merge Adaptive Security and Adaptive Shield canonical vendor IDs.
 - Check current product GA versus beta, independent effectiveness, integrations, SKU and buyer before assigning competitive edges.
-- Review quarterly and upon material product/funding changes.
+- Next review target: 2026-11-24, or sooner after material product/funding changes.
