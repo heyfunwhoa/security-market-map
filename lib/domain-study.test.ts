@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { catalog } from "./catalog";
 import { claimsForDomain, claimsForGlossaryTerm, glossaryForDomain, questionsForDomain } from "./domain-study";
-import { marketCircles } from "./market-circles";
+import { marketAreas } from "./market-areas";
 
 describe("domain study path", () => {
-  it("opens a domain lesson from every map circle", () => {
-    expect(marketCircles.map((circle) => circle.href)).toEqual([
+  it("opens a domain lesson from every market area", () => {
+    expect(marketAreas.map((area) => area.href)).toEqual([
       "/domains/corporate",
       "/domains/identity",
       "/domains/corporate",

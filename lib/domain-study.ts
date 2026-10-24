@@ -1,4 +1,4 @@
-import { marketCircles } from "./market-circles";
+import { marketAreas } from "./market-areas";
 import type { Claim, GlossaryTerm } from "./schema";
 
 type Placed = { id: string; primaryCategoryIds: readonly string[] };
@@ -17,9 +17,9 @@ export type DomainQuestion = {
 };
 
 export function questionsForDomain(slug: string): DomainQuestion[] {
-  return marketCircles
-    .filter((circle) => circle.href === `/domains/${slug}`)
-    .map((circle) => ({ id: circle.id, name: circle.name, question: circle.question }));
+  return marketAreas
+    .filter((area) => area.href === `/domains/${slug}`)
+    .map((area) => ({ id: area.id, name: area.name, question: area.question }));
 }
 
 export function glossaryForDomain(categoryIds: readonly string[], glossary: readonly GlossaryTerm[]) {
