@@ -2,7 +2,7 @@ import Link from "next/link";
 import { CategoryMap } from "@/components/category-map";
 import { ClaimList, DistinctionCards } from "@/components/claims";
 import { DomainMap } from "@/components/domain-map";
-import { MarketConstellation } from "@/components/market-constellation";
+import { MarketMapExplorer } from "@/components/market-map-explorer";
 import { SearchPanel } from "@/components/search-panel";
 import { Button } from "@/components/ui/button";
 import { catalog } from "@/lib/catalog";
@@ -61,7 +61,7 @@ export default function HomePage() {
         practical map, not one analyst taxonomy. A quadrant places vendors inside a defined market. It
         does not rank a company across cybersecurity.
       </p>
-      <MarketConstellation />
+      <MarketMapExplorer />
       <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">
         Names on the next page are examples, not placements. Identity is the only slice in this atlas
         with cited claims. Everywhere else, a capability cell stays Unknown.

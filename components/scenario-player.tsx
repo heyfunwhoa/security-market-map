@@ -14,8 +14,15 @@ export type ScenarioView = Omit<Scenario, "steps"> & {
   })[];
 };
 
-export function ScenarioPlayer({ scenarios }: { scenarios: ScenarioView[] }) {
-  const [scenarioId, setScenarioId] = useState(scenarios[0]?.id ?? "");
+export function ScenarioPlayer({
+  scenarios,
+  initialScenarioId,
+}: {
+  scenarios: ScenarioView[];
+  initialScenarioId?: string;
+}) {
+  const initial = scenarios.find((item) => item.id === initialScenarioId) ?? scenarios[0];
+  const [scenarioId, setScenarioId] = useState(initial?.id ?? "");
   const scenario = scenarios.find((item) => item.id === scenarioId) ?? scenarios[0];
 
   if (!scenario) {
