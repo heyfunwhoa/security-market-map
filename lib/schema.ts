@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const AS_OF = "2026-09-23";
+export const AS_OF = "2026-10-13";
 
 export const sourceTypeSchema = z.enum([
   "official_docs",
@@ -384,3 +384,4 @@ export type FitWeights = z.infer<typeof fitWeightsSchema>;
 export type Evaluation = z.infer<typeof evaluationSchema>;
 export type BudgetInput = z.infer<typeof budgetInputSchema>;
 export type CatalogEvent = z.infer<typeof eventSchema>;
+
