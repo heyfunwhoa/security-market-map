@@ -15,7 +15,7 @@ export const marketAreas: MarketArea[] = [
     question: "Can we stop phishing and account compromise?",
     categories: "Email security, phishing detection, account takeover defense, security awareness",
     examples: "Proofpoint, Mimecast, Abnormal, Microsoft",
-    href: "/categories/email-security",
+    href: "/domains/corporate",
     fill: "oklch(0.86 0.06 25)",
   },
   {
@@ -33,7 +33,7 @@ export const marketAreas: MarketArea[] = [
     question: "Is a laptop, server, or mobile device compromised?",
     categories: "Endpoint protection, endpoint detection and response, mobile security",
     examples: "CrowdStrike, Microsoft Defender, SentinelOne",
-    href: "/categories/endpoint-security",
+    href: "/domains/corporate",
     fill: "oklch(0.86 0.03 70)",
   },
   {
@@ -42,7 +42,7 @@ export const marketAreas: MarketArea[] = [
     question: "Can we govern models, apps, agents, and their access?",
     categories: "AI posture, model and application testing, prompt-injection defenses, agent identity",
     examples: "Lakera, HiddenLayer, Robust Intelligence",
-    href: "/categories/ai-application-security",
+    href: "/domains/ai",
     fill: "oklch(0.86 0.05 190)",
   },
   {
@@ -60,7 +60,7 @@ export const marketAreas: MarketArea[] = [
     question: "Which traffic and connections should be allowed?",
     categories: "Firewalls, secure web gateway, ZTNA, SSE, SASE, segmentation",
     examples: "Palo Alto Networks, Fortinet, Zscaler, Netskope, Cloudflare",
-    href: "/categories/network-edge",
+    href: "/domains/corporate",
     fill: "oklch(0.88 0.06 85)",
   },
   {
@@ -85,7 +85,7 @@ export const marketAreas: MarketArea[] = [
     id: "secops",
     name: "Security operations",
     question: "What happened, and how do we respond?",
-    categories: "SIEM, XDR, SOAR, threat intelligence, managed detection and response",
+    categories: "SIEM, security data pipelines, detection engineering, XDR, SOAR, threat intelligence, managed detection and response",
     examples: "Microsoft Sentinel, Splunk, Google SecOps, Palo Alto Cortex, Rapid7",
     href: "/domains/secops",
     fill: "oklch(0.84 0.05 20)",
