@@ -14,7 +14,7 @@ Scope: public vendor descriptions and public filings; no private opportunity or 
 | Build, run and govern AI agents and cross-tool workflows | BlinkOps, Tines; LimaCharlie APIs/Grid as a comparison candidate | Tool permissions, approvals, deterministic actions, audit, evaluation and operating burden |
 | Obtain AI-assisted or agentic SOC operations | 7AI, Exaforce, BlinkOps; Abstract for detection and AI-enabled operations | Detection, triage, investigation and response coverage; human intervention; purchased service versus self-operation |
 
-These are analyst groupings, not exclusive categories, rankings, feature-equivalence assertions or confirmed competitive shortlists. Potential complements remain hypotheses until an architecture or supported integration is evidenced.
+These are editorial groupings of public vendor descriptions, not an analyst taxonomy, exclusive categories, rankings, feature-equivalence assertions, or confirmed competitive shortlists. Potential complements remain hypotheses until an architecture or supported integration is evidenced.
 
 ## Company index
 
