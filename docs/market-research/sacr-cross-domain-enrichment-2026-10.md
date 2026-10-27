@@ -6,8 +6,8 @@
 
 | Candidate | Existing Market Map anchor | Recommendation | Buyer decision / distinguishing test | SACR sources |
 | --- | --- | --- | --- | --- |
-| Security data pipeline platforms (SDPP) | `siem`, `soar` and security operations | Use the proposed id `security-data-pipelines` in PR #60. Do not add a second category. | Route, normalize, enrich, tier and monitor telemetry before detection; do not confuse with SIEM storage/analytics | S01, S02 |
-| Detection engineering lifecycle and case-first decision runtimes | `siem`, `soar`, `threat-intelligence` | Use the proposed id `detection-engineering` in PR #60. This is not a new top-level domain. | Author, test, deploy, validate and continuously tune detections; measure case decision quality rather than rule count | S03 |
+| Security data pipeline platforms (SDPP) | `siem`, `soar`, and `security-data-pipelines` | Use the id already on `main` from #60. Do not add a second category. | Route, normalize, enrich, tier and monitor telemetry before detection; do not confuse with SIEM storage/analytics | S01, S02 |
+| Detection engineering lifecycle and case-first decision runtimes | `siem`, `soar`, `threat-intelligence`, and `detection-engineering` | Use the id already on `main` from #60. This is not a new top-level domain. | Author, test, deploy, validate and continuously tune detections; measure case decision quality rather than rule count | S03 |
 | Continuous human risk management (HRM) | `security-awareness`, `insider-risk`, `email-security` | **Refine** awareness and link adjacent categories | Continuous context-aware interventions vs annual training or phishing-simulation completion | S04 |
 | Modern DLP: data truth, context, distributed enforcement | `dlp`, `dspm`, `insider-risk` | **Refine** existing; *do not* add duplicate DLP | Distinguish discovery/classification from browser/endpoint/API/inline blocking, remediation and verified evidence | S05 |
 | Risk and exposure prioritization / CTEM | `it-vulnerability-management`, `external-attack-surface`, `aspm`, `cnapp` | **Cross-category relationship** and possible exposure program topic | Prioritize exploitability, ownership and impact across code/cloud/runtime, not just CVSS | S06 |
@@ -59,4 +59,4 @@ Vendor examples are **leads**; this research brief does not assert independent c
 5. Run `npm run test:research-integrity`, `npm test`, `npx next typegen`, `npm run typecheck`, `npm run lint`, `npm run build` when typed changes are implemented. This document alone does not claim those commands ran.
 6. Keep source collection inside Research Hub and require human approval prior to public publication. No new collector or remote production writes.
 
-**Review status:** research captured. This pull request does not add typed categories. PR #60 is the proposed home for `security-data-pipelines` and `detection-engineering`; those ids are not on `main` until that pull request merges. No vendor capability publication, independently reproduced evaluation, or deployment is included here.
+**Review status:** research captured. This pull request does not add typed categories. `security-data-pipelines` and `detection-engineering` are already on `main` from #60. No vendor capability publication, independently reproduced evaluation, or deployment is included here.
