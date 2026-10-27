@@ -2796,12 +2796,12 @@ export const ecosystemVendors: Vendor[] = [
     formerNames: [],
     website: "https://www.natoma.ai/",
     positioning:
-      "Named on a 2024 SACR NHI shortlist beside Astrix, Clutch, Entro, and Oasis. On 26 Oct 2026 the public site returned HTTP 402 and Vercel DEPLOYMENT_DISABLED, so no current product sentence was retrieved. The shortlist placement is not a capability cell.",
+      "Named on a 2024 SACR NHI shortlist beside Astrix, Clutch, Entro, and Oasis. On 27 May 2026 Snowflake announced a definitive agreement to acquire Natoma, which it describes as an enterprise MCP platform for AI agents, to be integrated into the Snowflake AI Data Cloud. The standalone site did not serve a page on 26 Oct 2026. Neither the shortlist nor the acquisition is a capability cell.",
     primaryCategoryIds: ["nhi"],
     adjacentCategoryIds: ["agentic-runtime"],
     identityScopes: ["nhi"],
     verificationStatus: "research_candidate",
-    openQuestions: ["The public site did not serve a page on 26 Oct 2026. Is the product still sold, and under which name?"],
+    openQuestions: ["Has the Snowflake acquisition closed, and is Natoma still sold standalone or only inside Snowflake?"],
   }),
   vendor({
     id: "apono",

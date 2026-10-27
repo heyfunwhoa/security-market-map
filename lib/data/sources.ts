@@ -816,6 +816,19 @@ export const sources: Source[] = [
       "Homepage says Grip builds an app inventory and links assets to identities, and that it exposes AI and SaaS apps in use.",
   },
   {
+    id: "src-snowflake-natoma",
+    title: "Snowflake press release, intent to acquire Natoma",
+    url: "https://www.snowflake.com/en/news/press-releases/snowflake-announces-intent-to-acquire-natoma-providing-secure-connectivity-for-the-agentic-enterprise",
+    canonicalUrl: "https://www.snowflake.com/en/news/press-releases/snowflake-announces-intent-to-acquire-natoma-providing-secure-connectivity-for-the-agentic-enterprise",
+    publisher: "Snowflake",
+    sourceType: "press_release",
+    publishedAt: "2026-05-27",
+    retrievedAt: "2026-10-27",
+    volatility: "fast",
+    excerpt:
+      "On 27 May 2026 Snowflake said it had signed a definitive agreement to acquire Natoma, which it describes as an enterprise MCP platform for AI agents. Closing was subject to customary conditions. Snowflake said the capabilities would be integrated into its AI Data Cloud.",
+  },
+  {
     id: "src-natoma-home",
     title: "Natoma public site, retrieval on 26 Oct 2026",
     url: "https://natoma.ai/",

@@ -1817,6 +1817,27 @@ export const claims: Claim[] = [
     notes: "An app inventory linked to identities is not an NHI owner cell and not a service-account inventory. The word every is not a coverage test. Customer quotations, savings figures, and ratings are not adopted. A quotation about offboarding users and apps is not a decommission cell.",
   }),
   claim({
+    id: "claim-snowflake-natoma-intent",
+    statement:
+      "On 27 May 2026 Snowflake said it had signed a definitive agreement to acquire Natoma, which it describes as an enterprise MCP platform for AI agents. Snowflake said the capabilities would be integrated into its AI Data Cloud.",
+    subjectType: "vendor",
+    subjectId: "natoma",
+    capabilityId: null,
+    polarity: "asserts",
+    sourceId: "src-snowflake-natoma",
+    sourceUrl: "https://www.snowflake.com/en/news/press-releases/snowflake-announces-intent-to-acquire-natoma-providing-secure-connectivity-for-the-agentic-enterprise",
+    sourceType: "press_release",
+    publishedAt: "2026-05-27",
+    observedAt: "2026-10-27",
+    effectiveFrom: "2026-05-27",
+    effectiveTo: null,
+    confidence: "high",
+    verificationStatus: "vendor_published",
+    lastCheckedAt: "2026-10-27",
+    conflictsWith: [],
+    notes: "Announcement of a signed agreement. Closing was subject to customary conditions, and no close date was found in the sources checked. The MCP-platform description is not an NHI inventory, owner, or decommission cell. Integration into Snowflake is not shown as shipping.",
+  }),
+  claim({
     id: "claim-natoma-site",
     statement:
       "On 26 Oct 2026 the public Natoma site returned HTTP 402 and Vercel DEPLOYMENT_DISABLED. No product sentence was retrieved.",
@@ -1835,7 +1856,7 @@ export const claims: Claim[] = [
     verificationStatus: "needs_review",
     lastCheckedAt: "2026-10-26",
     conflictsWith: [],
-    notes: "The response body was Payment required. A 2024 shortlist placement is not a current capability. Re-check the site before a call.",
+    notes: "The response body was Payment required. A disabled standalone site is consistent with the Snowflake acquisition agreement recorded in claim-snowflake-natoma-intent. A 2024 shortlist placement is not a current capability.",
   }),
   claim({
     id: "claim-infisical-store",

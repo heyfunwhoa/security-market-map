@@ -413,6 +413,7 @@ describe("Cyera Identity and the NHI shortlist", () => {
     expect(catalog.claims.find((claim) => claim.id === "claim-appomni-discover")?.capabilityId).toBeNull();
     expect(catalog.claims.find((claim) => claim.id === "claim-grip-inventory")?.capabilityId).toBeNull();
     expect(catalog.claims.find((claim) => claim.id === "claim-natoma-site")?.verificationStatus).toBe("needs_review");
+    expect(catalog.claims.find((claim) => claim.id === "claim-snowflake-natoma-intent")?.capabilityId).toBeNull();
     const board = groups.find((group) => group.name === "NHI discovery, posture, and governance");
     expect(board?.body).not.toContain("Entro, Token Security, and Clutch do not");
     expect(board?.body).toContain("AppOmni");
