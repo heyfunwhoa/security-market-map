@@ -1594,6 +1594,131 @@ export const secretsSweepProducts: Product[] = [
     "useCaseIds": [
       "uc-detect"
     ]
+  },
+  {
+    "id": "varonis-secrets",
+    "slug": "varonis-secrets",
+    "vendorId": "varonis",
+    "name": "Varonis Dev Cycle secrets detection",
+    "positioning": "Varonis page for secrets in developer tools. The DSPM company record stays a different product.",
+    "primaryCategoryIds": [
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "dspm"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "The Dev Cycle page fetched 26 Oct 2026 describes secrets detection and does not give an edition or availability label. Rotation and token revocation on that page are not a separate capability cell.",
+    "officialUrl": "https://www.varonis.com/solutions/dev-cycle-data-security",
+    "useCaseIds": [
+      "uc-detect"
+    ]
+  },
+  {
+    "id": "bigid-secrets",
+    "slug": "bigid-secrets",
+    "vendorId": "bigid",
+    "name": "BigID Secrets Security",
+    "positioning": "BigID page for exposed credentials across data stores. The DSPM company record stays a different product.",
+    "primaryCategoryIds": [
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "dspm"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "The secrets security page fetched 26 Oct 2026 has no edition or availability label. Validity is named as risk context and is not a verification cell.",
+    "officialUrl": "https://bigid.com/secrets-security/",
+    "useCaseIds": [
+      "uc-detect"
+    ]
+  },
+  {
+    "id": "sentra-secrets",
+    "slug": "sentra-secrets",
+    "vendorId": "sentra",
+    "name": "Sentra cloud secrets scanning",
+    "positioning": "Sentra article about secrets in cloud copies of code and configuration. The DSPM company record stays a different product.",
+    "primaryCategoryIds": [
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "dspm"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "The article fetched 26 Oct 2026 has no publication date and no edition label. A file-extension count on the page is not adopted.",
+    "officialUrl": "https://www.sentra.io/learn/source-code-secrets-scanning-the-missing-half-of-your-cloud-data-security-strategy",
+    "useCaseIds": [
+      "uc-detect"
+    ]
+  },
+  {
+    "id": "strac-secrets",
+    "slug": "strac-secrets",
+    "vendorId": "strac",
+    "name": "Strac secret scanning",
+    "positioning": "Strac post that places secret scanning inside its DLP product. The DLP company record stays a different product.",
+    "primaryCategoryIds": [
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "dlp"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "The post is dated 10 Aug 2026 and does not name an edition. Phrases about active secrets are not a validity check.",
+    "officialUrl": "https://www.strac.io/blog/secret-scanning",
+    "useCaseIds": [
+      "uc-detect"
+    ]
+  },
+  {
+    "id": "teleskope-secrets",
+    "slug": "teleskope-secrets",
+    "vendorId": "teleskope",
+    "name": "Teleskope secrets elements",
+    "positioning": "Teleskope taxonomy family for passwords, API keys, private keys, seed phrases, and tokens. The DSPM company record stays a different product.",
+    "primaryCategoryIds": [
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "dspm"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "The taxonomy page says environments may still return v1 labels during migration. An example policy on a different page is not evidence that policy is enabled.",
+    "officialUrl": "https://docs.teleskope.ai/specifications/entity-taxonomy-v2",
+    "useCaseIds": [
+      "uc-detect"
+    ]
   }
 ];
 
@@ -2317,6 +2442,79 @@ export const secretsSweepSources: Source[] = [
     "retrievedAt": "2026-10-13",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Detects exposed secrets in Postman content."
+  },
+  {
+    "id": "src-secrets-sweep-varonis-secrets",
+    "title": "Varonis Dev Cycle Data Security — secrets detection scope",
+    "url": "https://www.varonis.com/solutions/dev-cycle-data-security",
+    "canonicalUrl": "https://www.varonis.com/solutions/dev-cycle-data-security",
+    "publisher": "Varonis",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-10-26",
+    "volatility": "fast",
+    "excerpt": "Research paraphrase: Detects exposed secrets and API keys in GitHub and Bitbucket, including commit history and pull requests, and credentials in images, packages, and JFrog artifacts."
+  },
+  {
+    "id": "src-secrets-sweep-bigid-secrets",
+    "title": "BigID Secrets Security — secrets detection scope",
+    "url": "https://bigid.com/secrets-security/",
+    "canonicalUrl": "https://bigid.com/secrets-security/",
+    "publisher": "BigID",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-10-26",
+    "volatility": "fast",
+    "excerpt": "Research paraphrase: Discovers exposed API keys, passwords, tokens, certificates, encryption keys, and credentials across cloud, SaaS, code, collaboration tools, databases, files, and AI environments."
+  },
+  {
+    "id": "src-secrets-sweep-sentra-secrets",
+    "title": "Sentra source-code secrets scanning — secrets detection scope",
+    "url": "https://www.sentra.io/learn/source-code-secrets-scanning-the-missing-half-of-your-cloud-data-security-strategy",
+    "canonicalUrl": "https://www.sentra.io/learn/source-code-secrets-scanning-the-missing-half-of-your-cloud-data-security-strategy",
+    "publisher": "Sentra",
+    "author": "Ron Reiter",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-10-26",
+    "volatility": "fast",
+    "excerpt": "Research paraphrase: Says the DSPM platform scans cloud copies of code, configuration, and documentation, including environment files, keys, certificates, and infrastructure-as-code."
+  },
+  {
+    "id": "src-secrets-sweep-strac-secrets",
+    "title": "Strac secret scanning — secrets detection scope",
+    "url": "https://www.strac.io/blog/secret-scanning",
+    "canonicalUrl": "https://www.strac.io/blog/secret-scanning",
+    "publisher": "Strac",
+    "sourceType": "vendor_marketing",
+    "publishedAt": "2026-08-10",
+    "retrievedAt": "2026-10-26",
+    "volatility": "fast",
+    "excerpt": "Research paraphrase: Places secret scanning inside Strac's DLP product and names Slack, GitHub, Jira, Confluence, and Google Drive."
+  },
+  {
+    "id": "src-secrets-sweep-teleskope-secrets",
+    "title": "Teleskope Entity Taxonomy v2 — secrets elements",
+    "url": "https://docs.teleskope.ai/specifications/entity-taxonomy-v2",
+    "canonicalUrl": "https://docs.teleskope.ai/specifications/entity-taxonomy-v2",
+    "publisher": "Teleskope",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-10-26",
+    "volatility": "fast",
+    "excerpt": "Research paraphrase: The Secrets family covers passwords, API keys, private keys, seed phrases, and tokens. Some environments may still return v1 labels."
+  },
+  {
+    "id": "src-secrets-sweep-concentric-secrets",
+    "title": "Concentric AI secrets and keys announcement",
+    "url": "https://concentric.ai/press-release/concentric-ai-announces-industrys-first-deep-learning-driven-detection-of-secrets-and-keys-within-todays-most-popular-on-premise-and-cloud-data-repositories/",
+    "canonicalUrl": "https://concentric.ai/press-release/concentric-ai-announces-industrys-first-deep-learning-driven-detection-of-secrets-and-keys-within-todays-most-popular-on-premise-and-cloud-data-repositories/",
+    "publisher": "Concentric AI",
+    "sourceType": "press_release",
+    "publishedAt": "2023-05-18",
+    "retrievedAt": "2026-10-26",
+    "volatility": "fast",
+    "excerpt": "Research paraphrase: Says the 18 May 2023 Semantic Intelligence update could detect hardcoded secrets and keys in data repositories and in email and messaging."
   }
 ];
 
@@ -3520,6 +3718,126 @@ export const secretsSweepClaims: Claim[] = [
     "lastCheckedAt": "2026-10-13",
     "conflictsWith": [],
     "notes": "Confirm public/private workspace coverage and plan. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
+  },
+  {
+    "id": "claim-secrets-sweep-varonis-secrets",
+    "statement": "Varonis's Dev Cycle page says the product detects exposed secrets and API keys across GitHub and Bitbucket repositories, including full commit history and pull requests, and finds credentials and tokens in Docker images, npm packages, and JFrog artifacts.",
+    "subjectType": "product",
+    "subjectId": "varonis-secrets",
+    "capabilityId": "cap-secret-discovery",
+    "polarity": "asserts",
+    "sourceId": "src-secrets-sweep-varonis-secrets",
+    "sourceUrl": "https://www.varonis.com/solutions/dev-cycle-data-security",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-10-26",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-10-26",
+    "conflictsWith": [],
+    "notes": "The same page says scans cover commits, pull requests, wiki pages, and build artifacts, including secrets that remain in commit history after deletion from the branch. Rotation, token revocation, and real-time alerts are not separate capability cells. No provider-validity check is described. Customer quotations are not adopted. The page has no publication date. Publisher-reported; no scanner benchmark or tenant test."
+  },
+  {
+    "id": "claim-secrets-sweep-bigid-secrets",
+    "statement": "BigID's secrets security page says the product discovers exposed API keys, passwords, tokens, certificates, encryption keys, and credentials across cloud, SaaS, code repositories, collaboration platforms, databases, files, and AI environments.",
+    "subjectType": "product",
+    "subjectId": "bigid-secrets",
+    "capabilityId": "cap-secret-discovery",
+    "polarity": "asserts",
+    "sourceId": "src-secrets-sweep-bigid-secrets",
+    "sourceUrl": "https://bigid.com/secrets-security/",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-10-26",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-10-26",
+    "conflictsWith": [],
+    "notes": "The page also says a detected secret does not by itself reveal whether it is active, and it lists validity among risk context. That is not a verification cell. Git history is not described. Superiority lines are not adopted. The page has no publication date. Publisher-reported; no scanner benchmark or tenant test."
+  },
+  {
+    "id": "claim-secrets-sweep-sentra-secrets",
+    "statement": "A Sentra article says its DSPM platform scans code, configuration, and documentation copied into the cloud estate, including environment files, cryptographic keys and certificates, and infrastructure-as-code, rather than limiting that scan to a source-code manager.",
+    "subjectType": "product",
+    "subjectId": "sentra-secrets",
+    "capabilityId": "cap-secret-discovery",
+    "polarity": "asserts",
+    "sourceId": "src-secrets-sweep-sentra-secrets",
+    "sourceUrl": "https://www.sentra.io/learn/source-code-secrets-scanning-the-missing-half-of-your-cloud-data-security-strategy",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-10-26",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-10-26",
+    "conflictsWith": [],
+    "notes": "The article's file-extension count is not adopted. Git-history scanning and provider validity checks are not described. The byline is a Sentra co-founder and the page has no publication date. Publisher-reported; no scanner benchmark or tenant test."
+  },
+  {
+    "id": "claim-secrets-sweep-strac-secrets",
+    "statement": "A Strac post dated 10 Aug 2026 says secret scanning is part of its data-loss-prevention product and that Strac discovers and classifies secrets and credentials. The post names Slack, GitHub, Jira, Confluence, and Google Drive as integrations.",
+    "subjectType": "product",
+    "subjectId": "strac-secrets",
+    "capabilityId": "cap-secret-discovery",
+    "polarity": "asserts",
+    "sourceId": "src-secrets-sweep-strac-secrets",
+    "sourceUrl": "https://www.strac.io/blog/secret-scanning",
+    "sourceType": "vendor_marketing",
+    "publishedAt": "2026-08-10",
+    "observedAt": "2026-10-26",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-10-26",
+    "conflictsWith": [],
+    "notes": "Regex, entropy, and machine learning are described as general methods and are not adopted as Strac's engine. 'Active secrets' is not a validity-check claim. Historical and real-time scanning are described as implementation choices, not as Git-history coverage. This is a blog post. Publisher-reported; no scanner benchmark or tenant test."
+  },
+  {
+    "id": "claim-secrets-sweep-teleskope-secrets",
+    "statement": "Teleskope's Entity Taxonomy v2 includes a Secrets family for passwords, API keys, private keys, seed phrases, and tokens.",
+    "subjectType": "product",
+    "subjectId": "teleskope-secrets",
+    "capabilityId": "cap-secret-discovery",
+    "polarity": "asserts",
+    "sourceId": "src-secrets-sweep-teleskope-secrets",
+    "sourceUrl": "https://docs.teleskope.ai/specifications/entity-taxonomy-v2",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-10-26",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-10-26",
+    "conflictsWith": [],
+    "notes": "The page says some environments may still return v1 labels during migration. This is a classification family, not a Git-history scanner and not a validity check. A policy-maker page lists an example credentials policy for files or code. That example is not evidence the policy is enabled. Docs review only; no scanner benchmark or tenant test."
+  },
+  {
+    "id": "claim-secrets-sweep-concentric-secrets",
+    "statement": "A Concentric AI press release dated 18 May 2023 says Semantic Intelligence could detect hardcoded secrets and key credentials, including API keys, encryption keys, tokens, and passwords, in on-premises and cloud data repositories and in email and messaging applications.",
+    "subjectType": "product",
+    "subjectId": "concentric-ai",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-secrets-sweep-concentric-secrets",
+    "sourceUrl": "https://concentric.ai/press-release/concentric-ai-announces-industrys-first-deep-learning-driven-detection-of-secrets-and-keys-within-todays-most-popular-on-premise-and-cloud-data-repositories/",
+    "sourceType": "press_release",
+    "publishedAt": "2023-05-18",
+    "observedAt": "2026-10-26",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "low",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-10-26",
+    "conflictsWith": [],
+    "notes": "The product overview at https://concentric.ai/product-overview fetched 26 Oct 2026 does not repeat secrets detection, so current packaging stays unknown and this claim does not fill a discovery cell. Industry-first language, false-positive language, and the customer quotation are not adopted. No Git-history or validity check is in this source."
   }
 ];
 
@@ -3530,6 +3848,7 @@ const detectionVendorIds = new Set([
   "apiiro",
   "aqua",
   "arnica",
+  "bigid",
   "checkmarx",
   "checkpoint",
   "codeant",
@@ -3564,14 +3883,18 @@ const detectionVendorIds = new Set([
   "secretlint",
   "semgrep",
   "sentinelone",
+  "sentra",
   "shhgit",
   "skyscanner",
   "snyk",
   "socket",
   "sonarsource",
+  "strac",
   "sysdig",
+  "teleskope",
   "thoughtworks",
   "truffle-security",
+  "varonis",
   "wiz",
   "xygeni",
   "yelp"

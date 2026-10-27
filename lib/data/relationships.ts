@@ -351,6 +351,126 @@ export const relationships: Relationship[] = [
       "WorkOS is seeded for enterprise identity inside a SaaS product. C1 is seeded for workforce and non-human governance. Agent authorization can sit near both budgets. That adjacency is not a WorkOS capability claim.",
     sourceId: null,
   },
+  {
+    id: "rel-varonis-secrets",
+    fromProductId: "varonis",
+    toProductId: "varonis-secrets",
+    type: "adjacent_budget",
+    useCaseId: "uc-detect",
+    rationale:
+      "The Varonis record is the DSPM product. Dev Cycle Data Security is the page that describes secrets, API keys, commit history, and build artifacts. Those sentences stay on the secrets record. A data-security agreement and a secrets scan can be sold together and still be different scope.",
+    sourceId: "src-secrets-sweep-varonis-secrets",
+  },
+  {
+    id: "rel-varonis-secrets-truffle",
+    fromProductId: "varonis-secrets",
+    toProductId: "trufflehog",
+    type: "adjacent_budget",
+    useCaseId: "uc-detect",
+    rationale:
+      "Varonis documents GitHub and Bitbucket history, pull requests, and artifacts. TruffleHog is a dedicated secrets scanner with a sourced verification claim. The pages do not make these substitutes, and no integration between them is recorded.",
+    sourceId: "src-secrets-sweep-varonis-secrets",
+  },
+  {
+    id: "rel-bigid-secrets",
+    fromProductId: "bigid",
+    toProductId: "bigid-secrets",
+    type: "adjacent_budget",
+    useCaseId: "uc-detect",
+    rationale:
+      "The BigID record is the DSPM product. The secrets security page is a different scope: exposed credentials across data stores and code. Discovery sentences stay on the secrets record. Classification of sensitive data is not that scan.",
+    sourceId: "src-secrets-sweep-bigid-secrets",
+  },
+  {
+    id: "rel-bigid-secrets-truffle",
+    fromProductId: "bigid-secrets",
+    toProductId: "trufflehog",
+    type: "adjacent_budget",
+    useCaseId: "uc-detect",
+    rationale:
+      "BigID's secrets page describes discovery across cloud, SaaS, code, collaboration tools, databases, files, and AI environments. It does not describe Git history or a provider validity check. TruffleHog's sourced verification stays on TruffleHog. This is not a substitute edge.",
+    sourceId: "src-secrets-sweep-bigid-secrets",
+  },
+  {
+    id: "rel-sentra-secrets",
+    fromProductId: "sentra",
+    toProductId: "sentra-secrets",
+    type: "adjacent_budget",
+    useCaseId: "uc-detect",
+    rationale:
+      "The Sentra record is the DSPM product. The secrets article describes scanning cloud copies of code and configuration. Those sentences stay on the secrets record. Data classification is not that scan.",
+    sourceId: "src-secrets-sweep-sentra-secrets",
+  },
+  {
+    id: "rel-sentra-secrets-truffle",
+    fromProductId: "sentra-secrets",
+    toProductId: "trufflehog",
+    type: "adjacent_budget",
+    useCaseId: "uc-detect",
+    rationale:
+      "Sentra's article describes scanning code and configuration copied into the cloud estate, and argues a repository scanner misses those copies. That is a different surface from TruffleHog, not evidence the two products replace each other.",
+    sourceId: "src-secrets-sweep-sentra-secrets",
+  },
+  {
+    id: "rel-strac-secrets",
+    fromProductId: "strac",
+    toProductId: "strac-secrets",
+    type: "adjacent_budget",
+    useCaseId: "uc-detect",
+    rationale:
+      "The Strac record is the SaaS DLP product. The 10 Aug 2026 post places secret scanning inside that DLP. The secrets sentences stay on the secrets record. A DLP policy is not assumed to be a credential detector until that page.",
+    sourceId: "src-secrets-sweep-strac-secrets",
+  },
+  {
+    id: "rel-strac-secrets-truffle",
+    fromProductId: "strac-secrets",
+    toProductId: "trufflehog",
+    type: "adjacent_budget",
+    useCaseId: "uc-detect",
+    rationale:
+      "Strac's post places secret scanning inside its DLP product and names SaaS integrations. TruffleHog is a dedicated secrets scanner. The post does not establish a substitute, and no integration between them is recorded.",
+    sourceId: "src-secrets-sweep-strac-secrets",
+  },
+  {
+    id: "rel-teleskope-secrets",
+    fromProductId: "teleskope",
+    toProductId: "teleskope-secrets",
+    type: "adjacent_budget",
+    useCaseId: "uc-detect",
+    rationale:
+      "The Teleskope record is the DSPM product. The secrets record is the taxonomy family for passwords, API keys, private keys, seed phrases, and tokens. Classification of other sensitive data stays off that record.",
+    sourceId: "src-secrets-sweep-teleskope-secrets",
+  },
+  {
+    id: "rel-teleskope-secrets-truffle",
+    fromProductId: "teleskope-secrets",
+    toProductId: "trufflehog",
+    type: "adjacent_budget",
+    useCaseId: "uc-detect",
+    rationale:
+      "Teleskope's taxonomy classifies passwords, API keys, private keys, seed phrases, and tokens. That is a data-element family, not a Git-history scanner and not a validity check. TruffleHog's verification claim stays on TruffleHog.",
+    sourceId: "src-secrets-sweep-teleskope-secrets",
+  },
+  {
+    id: "rel-cyera-secrets-adjacent",
+    fromProductId: "cyera",
+    toProductId: "trufflehog",
+    type: "adjacent_budget",
+    useCaseId: "uc-detect",
+    rationale:
+      "Cyera's DSPM page describes classification of sensitive data. No Cyera page fetched on 26 Oct 2026 was adopted as a credential detector. TruffleHog's job is finding exposed secrets. This edge keeps the data-security budget next to secret scanning. It is not a discovery claim and not a substitute.",
+    sourceId: null,
+  },
+  {
+    id: "rel-concentric-secrets-adjacent",
+    fromProductId: "concentric-ai",
+    toProductId: "trufflehog",
+    type: "adjacent_budget",
+    useCaseId: "uc-detect",
+    rationale:
+      "A press release dated 18 May 2023 said Semantic Intelligence could find hardcoded secrets in data repositories and messaging apps. The product overview fetched 26 Oct 2026 does not repeat that sentence, so the discovery cell stays empty. TruffleHog remains the secrets-scanner record. This is an adjacent budget, not a direct competitor.",
+    sourceId: "src-secrets-sweep-concentric-secrets",
+  },
 ];
 
 export const pricingSignals: PricingSignal[] = [
