@@ -3927,7 +3927,7 @@ export const ecosystemRelationships: Relationship[] = [
     type: "adjacent_budget",
     useCaseId: "uc-finding-route",
     rationale:
-      "A cloud posture finding and a dependency finding can appear in one platform pitch. The budgets and the fixers are still often different. Wiz's code coverage is not evidenced here.",
+      "A cloud posture finding and a dependency finding can appear in one platform pitch. The budgets and the fixers are still often different. The CNAPP record has no code-capability cell. Wiz Code is a separate product.",
     sourceId: null,
   },
   {
