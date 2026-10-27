@@ -91,9 +91,23 @@ Pages fetched and not typed in this pass: the 2 Oct 2025 IGA abstract, because i
 
 Pages fetched and not typed in this pass: [Critical Capabilities for Application Security Testing, 13 Oct 2025](https://www.gartner.com/en/documents/7052698), because the public text is a one-sentence market note plus an inclusion list of testing labels and vendors, which does not define dynamic testing, interactive testing, or secrets detection; [Invest Implications for SSPM, 31 Jul 2024](https://www.gartner.com/en/documents/5635091), because the public text is a demand forecast, not a definition of SaaS configuration or OAuth grants. The forecast was not adopted.
 
+## Fifth retrieval, later on 27 Oct 2026
+
+| Field | Catalog subject | Page retrieved 27 Oct 2026 | Bound |
+| --- | --- | --- | --- |
+| Workforce access management | `workforce-identity` | [Gartner, 24 Apr 2025](https://www.gartner.com/en/documents/6387343) | Organizations already implement access management. Zero trust, modernization, legacy applications, and resilience are the abstract's examples of pressure. The framework was not public. Does not define the directory, single sign-on, or multifactor authentication. Low confidence. |
+| Workforce identity verification | `workforce-identity` | [Gartner, 25 Feb 2026](https://www.gartner.com/en/documents/7501353) | Identity verification, common for customers, is applied to workforce onboarding and account recovery. Cost and value wording is not adopted. Not a verification cell. |
+| Breach and attack simulation | `breach-simulation` | [Gartner, 30 Jan 2024](https://www.gartner.com/en/documents/5155831) | Tools validate security-control effectiveness. Peer ratings on the same abstract are not copied. No technique list. |
+| Threat modeling | `threat-modeling` | [Gartner, 30 May 2024](https://www.gartner.com/en/documents/5477195) | Accurate threat modeling can be done with manual processes. Recommendations were not public. A product is not required by this sentence. |
+| Application runtime | `app-runtime` | [Gartner, 3 Aug 2026](https://www.gartner.com/en/documents/8219261) | Application detection and response operates during runtime at the application layer. The abstract's judgment that testing and frontline controls are not sufficient is not a finding that a named product failed. It does not define a web application firewall. |
+| Tokenization | `data-encryption` | [Gartner, 13 Aug 2024](https://www.gartner.com/en/documents/5674355) | A token replaces sensitive data. The original data still needs protection. The briefing is about blockchain tokenization. Encryption and key ownership are not defined. |
+| SaaS posture | `sspm` | [Forrester, 19 Aug 2022](https://www.forrester.com/report/embrace-a-paradigm-shift-in-saas-protection-saas-security-posture-management/RES177825) | Configuration management and access-anomaly detection and prevention. Customer interviews and the capability review were not retrieved. Not an OAuth cell and not identity governance. |
+
+Pages opened and not typed in this pass: the privacy-management buyers guide, 27 Mar 2026, because the public text is a return-on-investment recommendation and does not define records of processing, consent, or data-subject requests; the SaaS security roadmap, 5 Sep 2024, because it recommends visibility and control and does not define configuration or grants. The 2018 security-ratings document redirected to the Gartner homepage again, so it is not a source. A Forrester supply-chain blog names secret scanning inside a list of pipeline steps and also reports incident counts and affected companies. Those figures and the list are not a definition of secrets detection.
+
 ## Still without a category claim
 
-Security ratings, endpoint detection, workforce identity, dynamic testing, interactive testing, secrets detection, and SaaS posture still have no category claim. So do the categories this pass did not open: adjacent security, AI data security, application runtime, breach simulation, cloud vulnerability, customer trust, data-access governance, data encryption, database security, GRC controls, identity orchestration, model security, pentest programs, privacy governance, product-security programs, threat modeling, and vulnerability disclosure. Vendor-homepage sentences from the estate-layers work stay on their own claims. They were not copied onto these category sentences.
+Security ratings, endpoint detection, dynamic testing, interactive testing, and secrets detection still have no category claim. So do adjacent security, AI data security, cloud vulnerability, customer trust, data-access governance, database security, GRC controls, identity orchestration, model security, pentest programs, privacy governance, product-security programs, and vulnerability disclosure. Vendor-homepage sentences stay on their own claims. They were not copied onto these category sentences.
 
 ## Rights
 
