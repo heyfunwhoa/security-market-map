@@ -1649,6 +1649,22 @@ export const ecosystemCapabilities: Capability[] = [
     description: "A sourced claim that the product blocks or logs sensitive data on a named channel.",
     categoryId: "dlp",
   },
+  {
+    id: "cap-endpoint-detect",
+    slug: "endpoint-detect",
+    name: "Endpoint detection of malicious activity",
+    description:
+      "A sourced claim that the product detects malicious activity on an endpoint. A prevention bullet, an identity module name, or a managed service is a different sentence.",
+    categoryId: "endpoint-security",
+  },
+  {
+    id: "cap-backup-restore",
+    slug: "backup-restore",
+    name: "Protected copy and restore",
+    description:
+      "A sourced claim that the product keeps a protected copy and can restore from it. A tested restore, identity recovery, and data classification are separate questions.",
+    categoryId: "cyber-recovery",
+  },
 ];
 
 export const ecosystemUseCases: UseCase[] = [
@@ -1829,7 +1845,8 @@ export const ecosystemVendors: Vendor[] = [
     name: "Semgrep",
     formerNames: [],
     website: "https://semgrep.dev/",
-    positioning: "Code analysis vendor on SAST shortlists. Capabilities unverified here.",
+    positioning:
+      "Homepage retrieved 26 Oct 2026 describes static analysis, marketed as SAST, in CLI, CI, IDEs, and pull requests. SCA and secrets scanning are named on that page and are not separate cells.",
     primaryCategoryIds: ["sast"],
     adjacentCategoryIds: ["secrets-detection", "aspm"],
     identityScopes: ["not_an_identity_control"],
@@ -1842,7 +1859,8 @@ export const ecosystemVendors: Vendor[] = [
     name: "Checkmarx",
     formerNames: [],
     website: "https://checkmarx.com/",
-    positioning: "Established AppSec testing vendor. Confirm which testing products are in the renewal.",
+    positioning:
+      "Homepage retrieved 26 Oct 2026 says SAST runs in the IDE and CI, and that secrets detection blocks credentials before they enter Git. SCA is named as flagging risky dependencies and is not a vulnerable-dependency cell.",
     primaryCategoryIds: ["sast", "sca"],
     adjacentCategoryIds: ["dast", "aspm"],
     identityScopes: ["not_an_identity_control"],
@@ -1959,7 +1977,8 @@ export const ecosystemVendors: Vendor[] = [
     name: "Tenable",
     formerNames: [],
     website: "https://www.tenable.com/",
-    positioning: "IT vulnerability management vendor. Some products reach cloud and web apps. Do not treat the company name as SCA, CSPM, and VM at once. Tenable markets integrated DSPM within Tenable One Cloud Exposure. Vendor-reported DSPM scope reviewed 2026-10-13.",
+    positioning:
+      "IT vulnerability management vendor. Some products reach cloud and web apps. Do not treat the company name as SCA, CSPM, and VM at once. Tenable markets integrated DSPM within Tenable One Cloud Exposure. Vendor-reported DSPM scope reviewed 2026-10-13. On 26 Oct 2026 the homepage describes vulnerability management as asset discovery and exploit prioritization, and does not say missing patches. The cloud exposure sentence names misconfigurations, entitlements, and vulnerabilities together.",
     primaryCategoryIds: ["it-vulnerability-management"],
     adjacentCategoryIds: ["cspm", "dast", "cloud-vulnerability", "dspm"],
     identityScopes: ["not_an_identity_control"],
@@ -1972,7 +1991,8 @@ export const ecosystemVendors: Vendor[] = [
     name: "Qualys",
     formerNames: [],
     website: "https://www.qualys.com/",
-    positioning: "IT vulnerability management and compliance scanning. Confirm the module before comparing it to AppSec or CNAPP.",
+    positioning:
+      "On 26 Oct 2026 InstaScan matches disclosed CVEs to a live inventory. The page does not describe a missing-patch test. Confirm the module before comparing Qualys to AppSec or CNAPP.",
     primaryCategoryIds: ["it-vulnerability-management"],
     adjacentCategoryIds: ["cspm", "grc-controls", "cloud-vulnerability"],
     identityScopes: ["not_an_identity_control"],
@@ -1998,7 +2018,8 @@ export const ecosystemVendors: Vendor[] = [
     name: "Proofpoint",
     formerNames: [],
     website: "https://www.proofpoint.com/",
-    positioning: "Email security vendor. Adjacent to awareness. Not an identity threat product unless a specific SKU is sourced.",
+    positioning:
+      "Homepage retrieved 26 Oct 2026 describes collaboration, data, and AI security, including discovery of AI apps and agents and runtime policy. That page does not describe an email gateway. Not an identity threat product unless a specific SKU is sourced.",
     primaryCategoryIds: ["email-security", "insider-risk"],
     adjacentCategoryIds: ["security-awareness", "dlp"],
     identityScopes: ["not_an_identity_control"],
@@ -2024,7 +2045,8 @@ export const ecosystemVendors: Vendor[] = [
     name: "Splunk",
     formerNames: [],
     website: "https://www.splunk.com/",
-    positioning: "SIEM and observability vendor. Security content is a use case, not the whole company. No detection content is checked here.",
+    positioning:
+      "Homepage retrieved 26 Oct 2026 describes a data platform for security and observability that searches telemetry where it lives. Detection content is not described on that page.",
     primaryCategoryIds: ["siem"],
     adjacentCategoryIds: ["soar", "cloud-detection"],
     identityScopes: ["not_an_identity_control"],
@@ -2105,7 +2127,8 @@ export const ecosystemVendors: Vendor[] = [
     name: "Orca Security",
     formerNames: [],
     website: "https://orca.security/",
-    positioning: "Cloud security vendor on CNAPP shortlists beside Wiz. Modules are unverified here.",
+    positioning:
+      "Homepage retrieved 26 Oct 2026 says the platform unifies cloud posture and evaluates paths that include misconfigurations. Code, secrets, identity permissions, and data are named on the same page and are not separate cells.",
     primaryCategoryIds: ["cnapp", "cspm"],
     adjacentCategoryIds: ["ciem", "cwpp"],
     identityScopes: ["not_an_identity_control"],
@@ -2337,7 +2360,8 @@ export const ecosystemVendors: Vendor[] = [
     name: "Abnormal Security",
     formerNames: [],
     website: "https://abnormal.ai/",
-    positioning: "Email security vendor named beside Proofpoint and Microsoft for phishing and account takeover. Detection behavior is unverified.",
+    positioning:
+      "Homepage retrieved 26 Oct 2026 describes a behavioral platform for email, identity, and AI security. An identity graph lists humans, service accounts, and AI agents and is not an NHI inventory cell. The page does not say whether mail is held at a gateway or read by API.",
     primaryCategoryIds: ["email-security"],
     adjacentCategoryIds: ["itdr"],
     identityScopes: ["human"],
@@ -2350,7 +2374,8 @@ export const ecosystemVendors: Vendor[] = [
     name: "Mimecast",
     formerNames: [],
     website: "https://www.mimecast.com/",
-    positioning: "Email security and collaboration-protection incumbent. Often compared with Proofpoint. No control is checked.",
+    positioning:
+      "Homepage retrieved 26 Oct 2026 names email threat protection and says email security is where the company started. The page does not describe a quarantine or a block.",
     primaryCategoryIds: ["email-security"],
     adjacentCategoryIds: ["security-awareness"],
     identityScopes: ["not_an_identity_control"],
@@ -2363,7 +2388,8 @@ export const ecosystemVendors: Vendor[] = [
     name: "Rapid7",
     formerNames: [],
     website: "https://www.rapid7.com/",
-    positioning: "Vulnerability management and detection vendor. InsightVM and the SIEM or MDR offer are different budgets. Neither is checked.",
+    positioning:
+      "Homepage retrieved 26 Oct 2026 lists MDR, exposure management, attack surface management, SIEM, cloud security, vulnerability management, and threat intelligence as separate offers. None of those blurbs fills a patch, misconfiguration, or detection-content cell.",
     primaryCategoryIds: ["it-vulnerability-management", "siem"],
     adjacentCategoryIds: ["breach-simulation", "cloud-vulnerability"],
     identityScopes: ["not_an_identity_control"],
@@ -2415,7 +2441,8 @@ export const ecosystemVendors: Vendor[] = [
     name: "Rubrik",
     formerNames: [],
     website: "https://www.rubrik.com/",
-    positioning: "Backup and recovery vendor. Resilience budget, not a GRC suite and not an identity control. Rubrik describes its DSPM offering as formerly Laminar in a vendor-published customer story. Vendor-reported DSPM scope reviewed 2026-10-13.",
+    positioning:
+      "Homepage retrieved 26 Oct 2026 says the platform keeps immutable backups and can recover data sets across cloud, on-premises, and SaaS. Identity recovery and agent inventory on that page are not identity or agent cells. Rubrik describes its DSPM offering as formerly Laminar in a vendor-published customer story. Vendor-reported DSPM scope reviewed 2026-10-13.",
     primaryCategoryIds: ["cyber-recovery"],
     adjacentCategoryIds: ["siem", "grc-controls", "dspm"],
     identityScopes: ["not_an_identity_control"],
@@ -2428,7 +2455,8 @@ export const ecosystemVendors: Vendor[] = [
     name: "Veeam",
     formerNames: [],
     website: "https://www.veeam.com/",
-    positioning: "Backup incumbent. Compare it with Rubrik on recovery, not with an identity or SIEM product.",
+    positioning:
+      "Homepage retrieved 26 Oct 2026 says the platform keeps immutable copies and can restore cloud, Kubernetes, SaaS, on-premises, and identity workloads. Identity workloads are a restore target. DSPM on that page classifies data across the hybrid estate and does not name a store. Recovery budget, not an identity or SIEM product.",
     primaryCategoryIds: ["cyber-recovery"],
     adjacentCategoryIds: ["grc-controls"],
     identityScopes: ["not_an_identity_control"],
@@ -3918,7 +3946,8 @@ export const ecosystemProducts: Product[] = [
     slug: "crowdstrike-platform",
     vendorId: "crowdstrike",
     name: "CrowdStrike Falcon",
-    positioning: "Endpoint and XDR platform. Kept separate from the unverified identity SKU.",
+    positioning:
+      "Falcon homepage retrieved 26 Oct 2026 says endpoint detection and response detects and prioritizes malicious activity. Next-gen antivirus, Identity Protection, and Next-Gen SIEM are separate sentences and are not this cell. Kept separate from the identity product.",
     primaryCategoryIds: ["endpoint-security", "xdr"],
     adjacentCategoryIds: ["itdr", "mdr"],
     deployment: ["unknown"],
@@ -3933,7 +3962,8 @@ export const ecosystemProducts: Product[] = [
     slug: "sentinelone-platform",
     vendorId: "sentinelone",
     name: "SentinelOne Singularity",
-    positioning: "Endpoint and XDR platform. The identity SKU stays on its own row.",
+    positioning:
+      "Homepage retrieved 26 Oct 2026 describes endpoint and identity protection in one agent. The detection sentence is not limited to the endpoint, so the endpoint-detection cell stays empty.",
     primaryCategoryIds: ["endpoint-security", "xdr"],
     adjacentCategoryIds: ["itdr"],
     deployment: ["unknown"],
@@ -3992,8 +4022,9 @@ export const ecosystemRelationships: Relationship[] = [
     toProductId: "tenable",
     type: "direct_competitor",
     useCaseId: "uc-finding-route",
-    rationale: "Both are IT vulnerability-management candidates. Neither has a capability cell in this seed.",
-    sourceId: null,
+    rationale:
+      "Both are IT vulnerability-management candidates. On 26 Oct 2026 Qualys matches CVEs to an inventory, and Tenable describes asset discovery and exploit prioritization. Neither page says missing patches, so the vulnerability-findings cell stays empty. The edge is a shortlist, not parity.",
+    sourceId: "src-tenable-home",
   },
   {
     id: "rel-wiz-snyk",
@@ -4099,8 +4130,9 @@ export const ecosystemRelationships: Relationship[] = [
     toProductId: "tenable",
     type: "direct_competitor",
     useCaseId: "uc-finding-route",
-    rationale: "Vulnerability-management shortlist. Confirm whether Rapid7 is in the room for scanning or for detection.",
-    sourceId: null,
+    rationale:
+      "Vulnerability-management shortlist. On 26 Oct 2026 Rapid7 lists vulnerability management, SIEM, and MDR as separate offers, and neither Rapid7 nor Tenable says missing patches. Confirm which offer is in the room. The edge is a shortlist, not parity.",
+    sourceId: "src-rapid7-home",
   },
   {
     id: "rel-cyera-bigid",

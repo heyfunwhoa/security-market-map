@@ -74,16 +74,84 @@ describe("catalog integrity", () => {
   });
 
   it("does not invent capability evidence outside the identity domain", () => {
+    const sourcedOutside = new Set(["cap-sast", "cap-cspm", "cap-endpoint-detect", "cap-backup-restore"]);
     const outside = catalog.capabilities.filter((capability) => {
       const category = catalog.categories.find((item) => item.id === capability.categoryId);
       return category && !category.domainIds.includes("identity");
     });
     expect(outside.length).toBeGreaterThan(0);
     for (const capability of outside) {
-      expect(catalog.claims.some((claim) => claim.capabilityId === capability.id)).toBe(false);
+      const filled = catalog.claims.some((claim) => claim.capabilityId === capability.id);
+      expect(filled).toBe(sourcedOutside.has(capability.id));
     }
-    const cell = evidenceCell(catalog.claims, "snyk", "cap-sca", "2026-09-23");
-    expect(cell.status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "snyk", "cap-sca", "2026-10-26").status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "semgrep", "cap-sca", "2026-10-26").status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "checkmarx", "cap-sca", "2026-10-26").status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "tenable", "cap-vm", "2026-10-26").status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "qualys", "cap-vm", "2026-10-26").status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "rapid7", "cap-vm", "2026-10-26").status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "tenable", "cap-cspm", "2026-10-26").status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "veeam", "cap-dspm", "2026-10-26").status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "sentinelone-platform", "cap-endpoint-detect", "2026-10-26").status).toBe(
+      "unknown",
+    );
+    expect(evidenceCell(catalog.claims, "crowdstrike-identity", "cap-itdr", "2026-10-26").status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "proofpoint", "cap-dlp", "2026-10-26").status).toBe("unknown");
+  });
+
+  it("records sourced sentences for other security layers", () => {
+    const asOf = "2026-10-26";
+    expect(evidenceCell(catalog.claims, "semgrep", "cap-sast", asOf).status).toBe("evidenced");
+    expect(evidenceCell(catalog.claims, "checkmarx", "cap-sast", asOf).status).toBe("evidenced");
+    expect(evidenceCell(catalog.claims, "checkmarx", "cap-secret-discovery", asOf).status).toBe("evidenced");
+    expect(evidenceCell(catalog.claims, "checkmarx", "cap-secret-verification", asOf).status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "orca-security", "cap-cspm", asOf).status).toBe("evidenced");
+    expect(evidenceCell(catalog.claims, "orca-security", "cap-secret-discovery", asOf).status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "crowdstrike-platform", "cap-endpoint-detect", asOf).status).toBe("evidenced");
+    expect(evidenceCell(catalog.claims, "rubrik", "cap-backup-restore", asOf).status).toBe("evidenced");
+    expect(evidenceCell(catalog.claims, "veeam", "cap-backup-restore", asOf).status).toBe("evidenced");
+    expect(catalog.claims.find((claim) => claim.id === "claim-abnormal-behavior")?.capabilityId).toBeNull();
+    expect(catalog.claims.find((claim) => claim.id === "claim-splunk-telemetry")?.capabilityId).toBeNull();
+    expect(catalog.claims.find((claim) => claim.id === "claim-mimecast-email")?.capabilityId).toBeNull();
+    const qualys = catalog.relationships.find((item) => item.id === "rel-qualys-tenable");
+    expect(qualys?.type).toBe("direct_competitor");
+    expect(qualys?.rationale).toContain("missing patches");
+    expect(
+      catalog.relationships.filter(
+        (item) =>
+          item.type === "direct_competitor" &&
+          ["semgrep", "checkmarx", "orca-security", "crowdstrike-platform", "rubrik", "veeam", "splunk"].includes(
+            item.fromProductId,
+          ),
+      ),
+    ).toEqual([]);
+    const sourcedIds = new Set([
+      "claim-semgrep-sast",
+      "claim-checkmarx-sast",
+      "claim-checkmarx-secrets",
+      "claim-tenable-exposure",
+      "claim-tenable-cloud",
+      "claim-tenable-identity",
+      "claim-qualys-inventory",
+      "claim-rapid7-offers",
+      "claim-orca-posture",
+      "claim-abnormal-behavior",
+      "claim-proofpoint-channels",
+      "claim-mimecast-email",
+      "claim-crowdstrike-edr",
+      "claim-sentinelone-endpoint",
+      "claim-splunk-telemetry",
+      "claim-rubrik-restore",
+      "claim-veeam-restore",
+      "claim-veeam-dspm",
+    ]);
+    const joined = catalog.claims
+      .filter((claim) => sourcedIds.has(claim.id))
+      .map((claim) => `${claim.statement} ${claim.notes ?? ""}`)
+      .join("\n");
+    for (const banned of ["$385", "80%", "46×", "Fortune 100", "industry's first", "Magic Quadrant"]) {
+      expect(joined).not.toContain(banned);
+    }
   });
 
   it("keeps every claim tied to a source and a check date", () => {
