@@ -1760,19 +1760,48 @@ export const ecosystemUseCases: UseCase[] = [
 export const ecosystemPersonas: BuyerPersona[] = [
   {
     id: "it-security",
-    name: "IT security manager",
-    title: "Runs corporate security controls",
-    caresAbout: "Endpoints, email, patching, and the network edge.",
-    questions: ["Is this the corporate estate or the product?", "Who patches?"],
-    categoryIds: ["endpoint-security", "email-security", "it-vulnerability-management", "network-edge"],
+    name: "IT / corporate security",
+    title: "Protects the employee estate: endpoints, email, edge, and IT asset patching",
+    caresAbout:
+      "Corporate posture and response—not the product AppSec backlog and not the production vault path by default.",
+    questions: [
+      "Is this the corporate estate or the product?",
+      "Who patches laptops and corporate servers?",
+      "Does this purchase collide with an existing EDR or email gateway?",
+    ],
+    categoryIds: [
+      "endpoint-security",
+      "email-security",
+      "it-vulnerability-management",
+      "network-edge",
+      "security-awareness",
+    ],
   },
   {
     id: "product-security",
     name: "Product security lead",
-    title: "Owns how the product is built and tested",
-    caresAbout: "Review, disclosure, and the line between AppSec tools and the program.",
-    questions: ["What is the launch bar?", "Who triages?"],
+    title: "Owns the launch bar, design review, and disclosure for the product customers buy",
+    caresAbout:
+      "Threat modeling, secure engineering expectations, external reports, and the line between AppSec scanners and the program.",
+    questions: [
+      "What is the launch bar?",
+      "Who triages external reports?",
+      "Is the gap a program process or another scanner SKU?",
+    ],
     categoryIds: ["product-security-program", "threat-modeling", "vulnerability-disclosure", "sast"],
+  },
+  {
+    id: "platform-security",
+    name: "Platform security",
+    title: "Sets the security bar for the shared delivery and runtime platform",
+    caresAbout:
+      "CI/CD guardrails, golden images, admission policy, secrets delivery paths, and failures that hit many services the same way.",
+    questions: [
+      "If one CI template or base image is wrong, how many services fail the same way?",
+      "Who changes shared platform controls, and who accepts exceptions?",
+      "Is this a platform-rail gap or a cloud account posture gap?",
+    ],
+    categoryIds: ["container-security", "iac-security", "secrets-management", "aspm"],
   },
   {
     id: "soc-lead",

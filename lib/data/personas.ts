@@ -26,24 +26,28 @@ export const personas: BuyerPersona[] = [
   {
     id: "appsec",
     name: "AppSec lead",
-    title: "Finds secrets and owns the developer workflow",
-    caresAbout: "Detection, validity, and who rotates the key.",
+    title: "Owns application risk in code, dependencies, APIs, and secrets findings",
+    caresAbout:
+      "Detection coverage, noise, developer adoption, and who remediates—including rotating a leaked credential.",
     questions: [
-      "Which surfaces are in scope?",
-      "Who is allowed to revoke?",
+      "Which surfaces are in scope: code, deps, APIs, or runtime?",
+      "Who is allowed to revoke or close a finding?",
+      "Is this an AppSec ticket or an IT patch queue?",
     ],
-    categoryIds: ["secrets-detection", "nhi"],
+    categoryIds: ["sast", "sca", "dast", "api-security", "aspm", "secrets-detection", "nhi"],
   },
   {
     id: "platform",
-    name: "Platform or SRE",
-    title: "Runs the vault and the workloads",
-    caresAbout: "Dynamic credentials, PKI, and how a workload authenticates to the vault.",
+    name: "DevOps / platform engineering",
+    title: "Runs the paved road: pipelines, vault delivery, and workload identity",
+    caresAbout:
+      "Self-service delivery, dynamic credentials, and keeping teams on approved modules without ticket toil.",
     questions: [
       "Static storage or dynamic issuance?",
-      "Which clouds and data stores?",
+      "Which clouds and data stores must the platform support first?",
+      "Who changes the shared CI template when security raises the bar?",
     ],
-    categoryIds: ["secrets-management", "nhi"],
+    categoryIds: ["secrets-management", "nhi", "container-security", "iac-security"],
   },
   {
     id: "cloud-sec",
