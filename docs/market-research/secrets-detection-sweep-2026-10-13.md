@@ -90,6 +90,20 @@ Each numbered link is the original publisher source. Observed/reviewed date for 
 - **OSS lineage:** Betterleaks is separate from Gitleaks; Titus is separate from Nosey Parker; Kingfisher is separately maintained. Shared rules or ancestry do not establish equivalent detection. Credential Digger is in SAP's archived organization; maintenance/license checks remain necessary before adopting any OSS project.
 - **Packaging:** ggshield is an open-source client to a hosted engine. Socket Basics bundles TruffleHog. Harness orchestration and Qwiet analysis are separate records. ArmorCode, Tenable One connectors and Falcon/Legit integrations do not receive native-discovery checkmarks.
 
+## AppSec suite modules added 2026-10-26
+
+Cycode Secrets Detection and the other named modules from the table above were already catalog products. This pass adds AppSec suites whose current public pages describe a secrets module and that were still absent. Pages were fetched 2026-10-26. Publication dates are unknown. Statements are vendor-reported. No validity-check cell is filled. No direct-competitor edge is added.
+
+| Product | What the page supports | What it does not support | Source |
+| --- | --- | --- | --- |
+| Veracode Container and IaC secret rules | Secret rules for image, directory, and repository scans, including listed provider keys and customer regular expressions | SAST CWE-259 and CWE-798 findings. Those stay a different engine. Validity checks are not described. | https://docs.veracode.com/r/Run_Container_Security_scans |
+| Black Duck Secrets Scanning | Datasheet: source code, IaC templates, and other file types for hard-coded secrets | Detector list, Git history, and validity. The Sigma hardcoded-secrets checker in Polaris release notes is not this record. The `synopsys` shortlist record is not merged. | https://www.blackduck.com/resources/datasheets/secrets-detection.html |
+| OpenText SAST secrets analyzer | One analyzer in the 25.4.0 SAST docs can find secrets across file types. Configuration points to regular-expression analysis. | A separate secrets product, Git-history scanning, validity checks, and any marketing count of secret types. | https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/2540/sast-ugd-html-25.4.0/doc/2263_25.4/secretscanning.html |
+| DeepSource secrets detection | Commit scanning for hardcoded credentials with pattern matching and a model named Narada. Team or Enterprise is required. | The page's precision, recall, and false-positive percentages. Those vendor benchmarks are not adopted. | https://deepsource.com/docs/product/secrets-detection |
+| Codacy secret detection | Secret detection is a scan type. The table names Opengrep, Trivy, Checkov, PMD, Bandit, and Prospector by language. | A Codacy-authored detector. Scans run on push, not continuously. Complement edges point at the existing Trivy and Checkov products only. | https://docs.codacy.com/getting-started/supported-languages-and-tools/ |
+
+Sonatype Lifecycle documentation describes SCM scans that read manifests, lockfiles, and artifacts for component analysis. That is not a secrets module, so no Sonatype product was added.
+
 ## Remaining discovery / verification queue
 
 These are deliberately not positive feature assertions. Missing evidence means Unknown, not unsupported.
@@ -100,7 +114,7 @@ These are deliberately not positive feature assertions. Missing evidence means U
 | CrowdStrike native cloud / ASPM | Partner listing is documented. Obtain a current Falcon-native secrets scanner page before adding native scope. |
 | Sysdig current engine | Resolve replacement-engine support; do not reuse retired-engine claims. |
 | Doppler, AWS Secrets Manager, Azure Key Vault, Google Secret Manager | Vaulting alone excluded. Require a separately documented exposure scanner; git-secrets is a separate AWS OSS project. |
-| Veracode, Black Duck/Polaris, Snyk legacy checks, Sonatype | Verify product/edition-specific dedicated secret detection instead of treating hardcoded-password SAST rules or scanner integrations as full secret scanning. Snyk's new dedicated product is already included above. |
+| Veracode, Black Duck/Polaris, Snyk legacy checks, Sonatype | Checked 2026-10-26. Veracode Container and IaC secret rules, the Black Duck secrets-scanning datasheet, OpenText SAST's secrets analyzer, DeepSource secrets detection, and Codacy's named-tool secret detection are now catalog products. Veracode SAST CWE-259 and CWE-798 findings stay off that product. Sonatype Lifecycle's SCM scan reads manifests and artifacts for component analysis; that is not a secrets module and no Sonatype secrets product was added. Snyk's dedicated product was already included above. |
 | Upwind, Uptycs, Qualys, Prowler, KICS, Terrascan | Check precise native secret/credential rules and surfaces. CSPM/IaC posture coverage alone is insufficient. |
 | Varonis, BigID, Cyera, Sentra, Teleskope, Concentric, Strac | DSPM/DLP classifications may overlap; require explicit credential/secret detectors and deployment scope before promoting from adjacent candidate. Nightfall is already evidenced separately. |
 | Gitrob, detect-secrets forks, CredScan, Veles, LeakTK, newer small OSS scanners | Resolve canonical repo, maintained/archived status, license and whether wrapper, rule pack, or independent engine. Do not inflate company counts with forks. |

@@ -351,6 +351,26 @@ export const relationships: Relationship[] = [
       "WorkOS is seeded for enterprise identity inside a SaaS product. C1 is seeded for workforce and non-human governance. Agent authorization can sit near both budgets. That adjacency is not a WorkOS capability claim.",
     sourceId: null,
   },
+  {
+    id: "rel-codacy-trivy",
+    fromProductId: "codacy-secrets",
+    toProductId: "trivy",
+    type: "complement",
+    useCaseId: "uc-detect",
+    rationale:
+      "Codacy's secret-detection table names Trivy for several languages. That is a bundled use of Trivy. It is not evidence that Codacy wrote a separate detector, and it does not mean every language on the page uses Trivy.",
+    sourceId: "src-secrets-sweep-codacy-secrets",
+  },
+  {
+    id: "rel-codacy-checkov",
+    fromProductId: "codacy-secrets",
+    toProductId: "checkov",
+    type: "complement",
+    useCaseId: "uc-detect",
+    rationale:
+      "Codacy's secret-detection table names Checkov for infrastructure-as-code languages. Checkov's own secrets scan remains a separate product. Codacy naming Checkov is not a Checkov capability claim and not a validity check.",
+    sourceId: "src-secrets-sweep-codacy-secrets",
+  },
 ];
 
 export const pricingSignals: PricingSignal[] = [
