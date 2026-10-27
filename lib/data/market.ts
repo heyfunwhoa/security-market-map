@@ -548,7 +548,7 @@ export const vendors: Vendor[] = [
     formerNames: [],
     website: "https://entro.security/",
     positioning:
-      "Public site positions Entro on AI agents and non-human identities, including discovery and a vendor-named detection engine. No capability cell is filled from that homepage.",
+      "entro.security presented SailPoint Entro on 26 Oct 2026. The page describes discovery of AI agents and non-human identities, a human owner, and lifecycle language. The acquisition close date is not on the page. Customer quotations are not adopted.",
     primaryCategoryIds: ["nhi", "agentic-runtime"],
     adjacentCategoryIds: ["agent-identity", "secrets-detection", "itdr"],
     identityScopes: ["nhi", "agent"],
@@ -586,7 +586,7 @@ export const vendors: Vendor[] = [
     verificationStatus: "research_candidate",
     openQuestions: [
       "Which systems can it decommission, not only list?",
-      "Has the Cyera transaction closed, and which product name does the customer see?",
+      "A 30 Sep 2026 Cyera post says existing customers stay on the Oasis platform. Which name a new buyer sees is still open.",
     ],
   }),
   vendor({
@@ -1370,13 +1370,15 @@ export const products: Product[] = [
     slug: "entro",
     vendorId: "entro",
     name: "Entro",
-    positioning: "NHI and agent security candidate. Homepage positioning only.",
+    positioning:
+      "SailPoint Entro page. Discovery, a human owner, and lifecycle language are vendor-published. The acquisition close date is not on the page.",
     primaryCategoryIds: ["nhi", "agentic-runtime"],
     adjacentCategoryIds: ["agent-identity", "itdr"],
     deployment: ["unknown"],
     identityScopes: ["nhi", "agent"],
     availability: "unknown",
-    availabilityNote: unknown,
+    availabilityNote:
+      "entro.security presented the SailPoint Entro page on 26 Oct 2026. The acquisition close date is not stated there.",
     officialUrl: "https://entro.security/",
     useCaseIds: ["uc-nhi", "uc-agent"],
   }),
@@ -1406,7 +1408,8 @@ export const products: Product[] = [
     deployment: ["unknown"],
     identityScopes: ["nhi", "agent"],
     availability: "unknown",
-    availabilityNote: "About-page claims only. Deployment model was not confirmed.",
+    availabilityNote:
+      "About-page claims cover discovery, owners, and lifecycle. On 30 Sep 2026 Cyera said existing customers stay on the Oasis platform. Deployment model was not confirmed.",
     officialUrl: "https://www.oasis.security/about-us",
     useCaseIds: ["uc-nhi"],
   }),
@@ -1607,7 +1610,17 @@ export const events: CatalogEvent[] = [
     kind: "acquisition",
     title: "Cyera says the Oasis acquisition is complete",
     summary:
-      "The press release says Oasis will operate as Cyera Identity. This seed keeps a separate Oasis record because a shipping data-plus-identity workflow was not reviewed.",
+      "The press release says Oasis will operate as Cyera Identity and states a value of $1 billion. This seed keeps a separate Oasis record. A 30 Sep 2026 post says existing customers stay on the Oasis platform.",
     sourceId: "src-cyera-oasis-close",
+  },
+  {
+    id: "evt-oasis-platform-continues",
+    vendorId: "oasis",
+    date: "2026-09-30",
+    kind: "availability_note",
+    title: "Cyera says existing Oasis customers stay on the Oasis platform",
+    summary:
+      "The post says deployment and support do not change for existing customers, and that integration into Cyera's platform was still underway. Cyera Identity is a separate product record.",
+    sourceId: "src-cyera-oasis-customers",
   },
 ];

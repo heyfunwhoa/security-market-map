@@ -254,8 +254,9 @@ export const relationships: Relationship[] = [
     toProductId: "entro",
     type: "direct_competitor",
     useCaseId: "uc-nhi",
-    rationale: "Both are publicly positioned on non-human identity. Only Oasis has sourced inventory and owner claims here. Entro stays unknown.",
-    sourceId: "src-oasis-about",
+    rationale:
+      "NHI shortlist. Oasis has inventory, owner, and lifecycle language. The SailPoint Entro page served at entro.security on 26 Oct 2026 describes discovery, a human owner, and lifecycle language. The acquisition close date is not on that page. The edge is a shortlist, not parity.",
+    sourceId: "src-sailpoint-entro",
   },
   {
     id: "rel-oasis-astrix",
