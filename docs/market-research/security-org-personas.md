@@ -1,4 +1,4 @@
-# Security organization personas — AppSec → ProdSec → PlatformSec → DevOps platform → IT corporate
+# Security organization personas — core five plus adjacent seats
 
 As of: 2026-10-27 (America/Chicago). Owner: Security Market Map editorial maintainer.
 Status: source-linked research candidate; human review pending. Builds on domain seeds and typed buyer personas; does **not** invent ICP cutoffs, budget authority, or deal champions from titles alone.
@@ -6,7 +6,7 @@ Next manual review: 2026-11-27, or sooner after a material domain/persona catalo
 
 ## How to read this
 
-- **Domain** = coverage lane in the atlas (`appsec`, `product`, `platform`, `corporate`).
+- **Domain** = coverage lane in the atlas (`appsec`, `product`, `platform`, `corporate`, `cloud`, `data`, `secops`, `identity`, `grc`, `offensive`, `ai`).
 - **Job role** = organizational function (what the person does day to day).
 - **Buying persona** = seat in a purchase (evaluator, operator, budget owner possible). Titles do not prove budget.
 - **ICP** = account fit, not a person. Public positioning alone does not validate an ICP.
@@ -116,6 +116,92 @@ Everything in these profiles is a **working hypothesis** unless marked with a so
 - **Disconfirmation:** the stated pain is only in application code or cloud workload posture with no corporate estate owner.
 - **Source anchors:** Domain charter for `corporate` in this atlas; CIS Critical Security Controls as a common corporate-control vocabulary (framework reference, not a purchase proof).[^CIS]
 
+## Adjacent seats (wave 2)
+
+These seats show up in the same buying motions as the core five. They are **not** substitutes for AppSec/ProdSec/PlatformSec/DevOps/IT corporate; they are the people who sponsor, design, operate, or block those purchases.
+
+| Persona ID | Domain | One-line job (hypothesis) |
+| --- | --- | --- |
+| `ciso` | leadership across domains | Fund outcomes and set risk appetite; confirm who operates after signature |
+| `security-architect` | cross-cutting | Design reusable patterns; veto duplicate control planes |
+| `identity-security` | `identity` | Workforce + NHI program coherence (IGA/PAM/CIEM/agent seats underneath) |
+| `iga-owner` / `pam-owner` | `identity` | Specialist operators inside identity (already in typed catalog) |
+| `cloud-sec` | `cloud` | Cloud account posture, workloads, entitlements, cloud detection foundations |
+| `data-security` | `data` | Where data is, who can read it, what can leave |
+| `soc-lead` | `secops` | Detection/response queue and safe automation |
+| `detection-engineer` | `secops` | Detection content quality and maintainability |
+| `offensive-security` | `offensive` | Validate whether controls work (BAS / pentest / disclosure testing) |
+| `grc-owner` | `grc` | Evidence, third parties, customer trust questionnaires |
+| `ai-security` | `ai` | Controls for models, AI apps, agents, and AI data paths |
+| `ai-owner` | `ai` / platform | Ships the gateway; often not the security budget owner |
+| `engineering-manager` | engineering | Prioritizes remediation vs features; common AppSec influencer |
+
+### SEC-PER-06 — CISO / VP of security (`ciso`)
+
+- **Potential buying roles:** economic buyer or executive sponsor; authority must be confirmed per deal.
+- **Job:** improve defensible security outcomes within budget and governance.
+- **Discovery:** “Which security outcome warrants investment, and who operates the control after purchase?”
+- **Disconfirmation:** initiative lacks priority, sponsor, budget, or named operator.
+- **Do not assume:** CISO day-to-day ownership of vault, SAST, or EDR operations.
+
+### SEC-PER-07 — Security architect (`security-architect`)
+
+- **Potential buying roles:** influencer / technical evaluator.
+- **Job:** reusable secure patterns (identity, crypto, API, platform) and major design sign-off.
+- **Discovery:** “Which control must be shared versus team-local—and what already provides that path?”
+- **Disconfirmation:** architecture is purely advisory with no veto; purchase is a single-team tactical tool.
+
+### SEC-PER-08 — Identity security lead (`identity-security`)
+
+- **Job:** one coherent identity story across workforce, privilege, cloud entitlements, and non-humans.
+- **Specialists underneath:** `iga-owner`, `pam-owner` remain valid for scoped deals.
+- **Discovery:** “Is the pain joiner/leaver, standing privilege, machine identity, or cloud entitlements?”
+- **Disconfirmation:** only a single app certification project with no identity program owner.
+
+### SEC-PER-09 — Cloud security (`cloud-sec`)
+
+- **Job:** cloud control-plane posture, workload protection, entitlements, and cloud detection foundations.
+- **Boundary:** AppSec secures product behavior; PlatformSec secures shared delivery rails; Cloud secures where workloads live in provider accounts.[^PLATSEC-OWN]
+- **Discovery:** “Is CIEM already in the CNAPP—and who remediates account findings versus app findings?”
+
+### SEC-PER-10 — Data security (`data-security`)
+
+- **Job:** discover sensitive data, govern access, and control egress—without collapsing DSPM, DAG, DLP, and privacy into one SKU.
+- **Discovery:** “Is the missing fact where the data is, who can read it, or whether it can leave?”
+- **Disconfirmation:** pain is only code vulnerability or only endpoint DLP with no data-store scope.
+
+### SEC-PER-11 — SOC manager (`soc-lead`) and detection engineer (`detection-engineer`)
+
+- **SOC manager:** queue outcomes, coverage, staffing, safe automation approvals.
+- **Detection engineer:** expressible/testable content, telemetry gaps, tuning ownership.
+- **Discovery (SOC):** “Which queue costs the most time, and what would an unacceptable automated action look like?”
+- **Discovery (detection):** “Show a detection you cannot express cleanly today.”
+- **Disconfirmation:** no operating SOC / no content owner; purchase is only a preventive scanner.
+
+### SEC-PER-12 — Security validation / offensive (`offensive-security`)
+
+- **Job:** prove controls fail safely and map findings to fixers (BAS platform ≠ pentest program ≠ bug bounty intake).
+- **Discovery:** “Continuous simulation, point-in-time test, or disclosure triage—and which remediation queue?”
+- **Disconfirmation:** no appetite to remediate validated findings; report-only culture.
+
+### SEC-PER-13 — GRC or trust lead (`grc-owner`)
+
+- **Job:** evidence and outside questions; consumes operated controls, does not replace them.
+- **Discovery:** “Who operates the control you need evidence for—and is this our vendor review or a customer’s?”
+- **Disconfirmation:** buyer wants a scanner or SOC platform sold as “compliance done.”
+
+### SEC-PER-14 — AI security (`ai-security`) vs AI platform owner (`ai-owner`)
+
+- **AI security:** model/app/agent/data-path controls and approved actions.
+- **AI platform owner:** ships gateways and agents; may sponsor spend but often is not the security bar owner.
+- **Discovery:** “Is the risk the model, the app, the agent identity, or the data path—and who approves tool grants?”
+
+### SEC-PER-15 — Engineering manager (`engineering-manager`)
+
+- **Potential buying roles:** influencer / blocker for AppSec and platform adoption.
+- **Job:** schedule remediation beside features; reject controls without a paved path.
+- **Discovery:** “Is security work in the sprint, and what makes a finding actionable for your team?”
+
 ## Buying-committee collisions to qualify
 
 | Collision | What goes wrong | Qualification question |
@@ -125,13 +211,18 @@ Everything in these profiles is a **working hypothesis** unless marked with a so
 | PlatformSec policy vs DevOps delivery | Gate without paved road (or road without bar) | Who changes the shared template, and who accepts exceptions? |
 | IT VM vs AppSec SCA | Same word “vulnerability,” different queue | Is the asset an employee laptop/server image or a library in a repo? |
 | Cloud security vs PlatformSec | Account posture vs shared delivery rails | Is the failure a cloud control-plane gap or a CI/image/admission gap? |
+| DSPM vs DLP vs privacy | One “data” pitch, three jobs | Store discovery, egress channel, or policy/evidence? |
+| SOC tooling vs preventive control | Detection sold as prevention (or reverse) | Is the pain investigate/respond or stop/build differently? |
+| AI platform vs AI security | Gateway shipped without control ownership | Who can approve agent actions and data paths? |
+| GRC evidence vs control operator | Questionnaire answered without an operator | Who runs the control the evidence claims exists? |
+| CISO sponsor vs operator | Signature without adoption | Who is on-call for exceptions after go-live? |
 
 ## Fit worksheet (do not score leads from titles alone)
 
-1. Name the estate: product code, shared platform, cloud account, or corporate IT.
+1. Name the estate: product code, shared platform, cloud account, data store/channel, AI workflow, or corporate IT.
 2. Name the primary owner and the fixer queue.
 3. Name budget line hypotheses separately from champion enthusiasm.
-4. List retained commitments (existing SAST, EDR, vault, CNAPP).
+4. List retained commitments (existing SAST, EDR, vault, CNAPP, SIEM, DSPM).
 5. Agree evaluation measures and failure conditions before a bake-off.
 6. Record Unknowns explicitly—especially economic buyer and segment thresholds.
 
@@ -139,16 +230,16 @@ Everything in these profiles is a **working hypothesis** unless marked with a so
 
 | Claim ID | Statement | Status / source | Limit |
 | --- | --- | --- | --- |
-| SEC-ORG-C01 | Atlas domains already separate appsec, product, platform, and corporate | Local catalog; domain seeds | Not proof of any customer’s org chart |
+| SEC-ORG-C01 | Atlas domains already separate appsec, product, platform, corporate, and neighbors | Local catalog; domain seeds | Not proof of any customer’s org chart |
 | SEC-ORG-C02 | OWASP DevSecOps Guideline distinguishes AppSec vs platform paved-road roles | Practitioner guideline [^OWASP-ROLES] | Not budget authority; not universal titles |
 | SEC-ORG-C03 | Practitioner sources separate AppSec vs ProdSec and PlatformSec vs AppSec vs cloud | [^SNYK-PROD][^PLATSEC-OWN] | Vendor/practitioner framing; not independent interview validation |
-| SEC-ORG-H01 | Five-persona pains, triggers, measures in this note | Hypothesis | Validate in discovery |
+| SEC-ORG-H01 | Core-five and wave-two pains, triggers, measures in this note | Hypothesis | Validate in discovery |
 | SEC-ORG-U01 | Typical budget split, headcount ratios, and win rates across these seats | Unknown | Needs authorized deal/cohort evidence |
 
 ## Cross-repository disposition
 
-- **Security Market Map — update:** this research note; enrich typed personas `appsec`, `platform`, `product-security`, `it-security`; add `platform-security`. No fabricated capability cells.
-- **Builder Academy Roles DB — update:** add missing ProdSec, PlatformSec, and IT/corporate security role rows; keep existing AppSec and DevOps/platform rows.
+- **Security Market Map — update:** this research note; enrich/add typed personas for core five plus adjacent seats (`ciso`, `security-architect`, `identity-security`, `data-security`, `detection-engineer`, `offensive-security`, `ai-security`, `engineering-manager`, and enriched cloud/SOC/GRC/AI-platform rows). No fabricated capability cells.
+- **Builder Academy Roles DB — update:** keep/enrich AppSec, ProdSec, PlatformSec, DevOps, IT corporate, CISO, architect, cloud, IAM; add missing data, detection, offensive, AI security, and GRC rows.
 - **Private career preparation — update only by explicit request:** may reference this version for interview questions; no private answers belong here.
 - **GTM Revenue OS / Account Signal Engine — no automatic change:** role hypotheses are not account intent or enrichment facts.
 

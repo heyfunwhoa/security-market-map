@@ -74,9 +74,27 @@ describe("catalog integrity", () => {
     expect(catalog.claims.length).toBeGreaterThanOrEqual(12);
   });
 
-  it("keeps the five security-org personas distinct and category-linked", () => {
+  it("keeps security-org personas distinct and category-linked", () => {
     const byId = Object.fromEntries(catalog.personas.map((persona) => [persona.id, persona]));
-    const required = ["appsec", "product-security", "platform-security", "platform", "it-security"] as const;
+    const required = [
+      "appsec",
+      "product-security",
+      "platform-security",
+      "platform",
+      "it-security",
+      "ciso",
+      "security-architect",
+      "identity-security",
+      "cloud-sec",
+      "data-security",
+      "soc-lead",
+      "detection-engineer",
+      "offensive-security",
+      "grc-owner",
+      "ai-security",
+      "ai-owner",
+      "engineering-manager",
+    ] as const;
     for (const id of required) {
       expect(byId[id], id).toBeDefined();
       expect(byId[id].categoryIds.length).toBeGreaterThan(0);
@@ -93,6 +111,9 @@ describe("catalog integrity", () => {
     expect(byId.platform.name).toMatch(/DevOps|platform engineering/i);
     expect(byId["it-security"].name).toMatch(/corporate|IT/i);
     expect(byId.platform.id).not.toBe(byId["platform-security"].id);
+    expect(byId["ai-security"].id).not.toBe(byId["ai-owner"].id);
+    expect(byId["soc-lead"].id).not.toBe(byId["detection-engineer"].id);
+    expect(new Set(catalog.personas.map((persona) => persona.id)).size).toBe(catalog.personas.length);
   });
 
   it("does not invent capability evidence outside the identity domain", () => {

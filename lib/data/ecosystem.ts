@@ -1806,18 +1806,53 @@ export const ecosystemPersonas: BuyerPersona[] = [
   {
     id: "soc-lead",
     name: "SOC manager",
-    title: "Owns detection and response",
-    caresAbout: "Log coverage, alert quality, and safe automation.",
-    questions: ["Where do identity alerts go?", "What may a playbook disable?"],
+    title: "Owns detection and response operations and the analyst queue",
+    caresAbout:
+      "Log coverage, alert quality, escalation quality, and safe automation—without owning every preventive control.",
+    questions: [
+      "Where do identity and cloud alerts go today?",
+      "What may a playbook disable without human approval?",
+      "Is the pain coverage, noise, or staffing for investigations?",
+    ],
     categoryIds: ["siem", "soar", "itdr", "cloud-detection", "xdr", "mdr"],
+  },
+  {
+    id: "detection-engineer",
+    name: "Detection engineer",
+    title: "Builds, tests, and maintains detections and investigation content",
+    caresAbout: "Expressible rules, testable content, false-positive burden, and versioned change.",
+    questions: [
+      "Which detection can you not express cleanly in the current stack?",
+      "What telemetry is missing for a representative case?",
+      "Who owns exceptions and ongoing tuning?",
+    ],
+    categoryIds: ["siem", "soar", "cloud-detection", "itdr", "xdr"],
+  },
+  {
+    id: "offensive-security",
+    name: "Security validation / offensive",
+    title: "Tests whether preventive and detective controls actually work",
+    caresAbout:
+      "Attack paths that matter, safe simulation scope, and findings that map to a fixer—not a trophy report.",
+    questions: [
+      "Is this a continuous BAS platform, a pentest program, or both?",
+      "Who remediates validated findings, and in which queue?",
+      "Corporate estate or product attack surface?",
+    ],
+    categoryIds: ["breach-simulation", "pentest-program", "vulnerability-disclosure", "threat-modeling"],
   },
   {
     id: "grc-owner",
     name: "GRC or trust lead",
-    title: "Owns evidence and outside questions",
-    caresAbout: "Artifacts that match reality, and the difference between a customer review and an internal audit.",
-    questions: ["Who operates the control?", "Is this our vendor review or a customer's?"],
-    categoryIds: ["grc-controls", "customer-trust", "third-party-risk"],
+    title: "Owns evidence, risk registers, third parties, and outside questions",
+    caresAbout:
+      "Artifacts that match operated reality, and the difference between a customer review and an internal audit.",
+    questions: [
+      "Who operates the control you need evidence for?",
+      "Is this our vendor review or a customer's questionnaire?",
+      "Which evidence is missing versus which control is missing?",
+    ],
+    categoryIds: ["grc-controls", "customer-trust", "third-party-risk", "privacy-governance"],
   },
 ];
 

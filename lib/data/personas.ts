@@ -2,6 +2,44 @@ import type { BuyerPersona } from "../schema";
 
 export const personas: BuyerPersona[] = [
   {
+    id: "ciso",
+    name: "CISO / VP of security",
+    title: "Sets security outcomes, risk appetite, and which programs get funded",
+    caresAbout:
+      "Defensible outcomes within budget—without mistaking a title for day-to-day tool ownership.",
+    questions: [
+      "Which security outcome warrants investment this year?",
+      "Who operates the control after purchase?",
+      "What evidence would make you comfortable approving?",
+    ],
+    categoryIds: ["grc-controls", "siem", "endpoint-security", "iga", "cnapp"],
+  },
+  {
+    id: "security-architect",
+    name: "Security architect",
+    title: "Designs reusable controls and standards across apps, identity, and platform",
+    caresAbout: "Threat models, integration fit, and patterns teams can actually adopt.",
+    questions: [
+      "Which control must be shared versus team-local?",
+      "Does this duplicate an existing gateway or identity path?",
+      "What fails closed if the pattern is wrong?",
+    ],
+    categoryIds: ["threat-modeling", "workforce-identity", "secrets-management", "aspm", "cnapp"],
+  },
+  {
+    id: "identity-security",
+    name: "Identity security lead",
+    title: "Owns how humans and non-humans authenticate and stay justified",
+    caresAbout:
+      "Workforce IAM, NHI boundaries, and whether IGA, PAM, and cloud entitlements tell one story.",
+    questions: [
+      "Is the pain joiner/leaver, standing privilege, or machine identity?",
+      "Who certifies cloud entitlements today?",
+      "Are agents and workloads in the same program as people?",
+    ],
+    categoryIds: ["workforce-identity", "iga", "pam", "nhi", "ciem", "itdr", "agent-identity"],
+  },
+  {
     id: "iga-owner",
     name: "IGA program owner",
     title: "Runs certifications, joiners, and audit evidence",
@@ -52,23 +90,65 @@ export const personas: BuyerPersona[] = [
   {
     id: "cloud-sec",
     name: "Cloud security",
-    title: "Owns CNAPP and cloud entitlements",
-    caresAbout: "Effective access and whether IAM will certify it.",
+    title: "Owns cloud account posture, workloads, entitlements, and cloud detection foundations",
+    caresAbout:
+      "Effective access, misconfiguration blast radius, and whether identity will certify what CNAPP finds.",
     questions: [
       "Is CIEM already in the CNAPP?",
-      "Who remediates?",
+      "Who remediates account findings versus app findings?",
+      "Is this a cloud control-plane gap or a shared CI/image gap?",
     ],
-    categoryIds: ["ciem", "adjacent-security", "itdr"],
+    categoryIds: ["cspm", "cwpp", "ciem", "cnapp", "cloud-detection", "itdr", "adjacent-security"],
+  },
+  {
+    id: "data-security",
+    name: "Data security",
+    title: "Owns where sensitive data is, who can read it, and what can leave",
+    caresAbout:
+      "Discovery versus access governance versus egress—and not treating a store scan as email DLP.",
+    questions: [
+      "Is the pain finding the data, who can read it, or how it leaves?",
+      "Which channel: store, SaaS, email, endpoint, or AI tool path?",
+      "Does a CNAPP data module already claim this job?",
+    ],
+    categoryIds: ["dspm", "dlp", "data-access-governance", "privacy-governance", "data-encryption"],
+  },
+  {
+    id: "ai-security",
+    name: "AI security",
+    title: "Owns controls for models, AI apps, agents, tools, and the data those workflows touch",
+    caresAbout:
+      "Prompt and tool abuse, agent identity scope, and data leaving through AI paths—not only shipping the gateway.",
+    questions: [
+      "Is the risk the model, the app, the agent identity, or the data path?",
+      "Which gateway or proxy is already deployed?",
+      "Who can approve an agent action that changes production state?",
+    ],
+    categoryIds: ["ai-application-security", "ai-data-security", "ai-governance", "agent-identity", "nhi"],
   },
   {
     id: "ai-owner",
     name: "AI platform owner",
     title: "Ships agents and tool gateways",
-    caresAbout: "Sponsorship, tool scope, and not adding a second proxy.",
+    caresAbout:
+      "Delivery speed, sponsorship, tool scope, and not adding a second proxy—security bar often lands with AI security or identity.",
     questions: [
       "Which gateway is already deployed?",
       "Can an agent outgrow its sponsor?",
+      "Who owns the security review for a new tool grant?",
     ],
-    categoryIds: ["agent-identity", "nhi"],
+    categoryIds: ["agent-identity", "nhi", "ai-governance"],
+  },
+  {
+    id: "engineering-manager",
+    name: "Engineering manager",
+    title: "Prioritizes remediation against feature work for a product team",
+    caresAbout: "Clear ownership, realistic SLAs, and controls that do not stall delivery without a paved path.",
+    questions: [
+      "Who on your team owns security tickets today?",
+      "What would make a finding actionable without a war room?",
+      "Is security work estimated in the sprint or treated as interrupt?",
+    ],
+    categoryIds: ["sast", "sca", "aspm", "secrets-detection"],
   },
 ];
