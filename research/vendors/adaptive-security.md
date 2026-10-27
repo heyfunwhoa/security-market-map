@@ -21,13 +21,13 @@ Comparisons are research candidates, NOT claims of direct feature parity or prov
 ## Evidence / freshness
 - Product overview checked 2026-10-24: the company currently presents security awareness training, phishing simulations, agentic email security and AI governance as one platform: https://www.adaptivesecurity.com/
 - Pricing checked 2026-10-24: Adaptive says pricing is per seat, quoted from employee count and selected products; optional add-ons such as voice phishing are priced separately: https://www.adaptivesecurity.com/pricing
-- Product updates checked 2026-10-24: email security remains labeled Beta on the product-update page; releases include Webhooks and REST API (October 8), Employee Digest (October 13), and Attachment Inspection (October 14). These are vendor announcements, not independent product tests: https://www.adaptivesecurity.com/resources/product-updates
+- Product updates rechecked 2026-10-26: the October 8 Webhooks and REST API, October 13 Employee Digest, and October 14 Attachment Inspection posts describe Adaptive Email Security features as live for customers. An older post, dated April 16, 2026, is still titled “Adaptive Email Security (Beta)” and describes the original launch, including shadow mode. The historical Beta title is not the status of those October releases. These are vendor announcements, not independent product tests: https://www.adaptivesecurity.com/resources/product-updates
 - Historical company Series B release, 2025-12-16: $81M Series B and >500 enterprise customers reported at that date: https://www.adaptivesecurity.com/blog/adaptive-raises-series-b
 - Current company page, checked 2026-10-24: Adaptive reports $150M raised and 2,000+ organizations; these are company-reported milestones, not independently audited financial or customer counts: https://www.adaptivesecurity.com/about
 - Press release corroboration: https://www.prnewswire.com/news-releases/adaptive-security-raises-81-million-series-b-to-stop-ai-powered-cyber-threats-302643174.html
 
 ## Review / integrity flags
 - Do not present customer, ARR, or product performance as audited financial facts.
-- Do not merge Adaptive Security and Adaptive Shield canonical vendor IDs.
+- Do not merge Adaptive Security and Adaptive Shield canonical vendor IDs. The catalog already has research-candidate vendor `adaptive-shield` for the SSPM company at adaptive-shield.com. This note does not edit that record and does not add an Adaptive Security vendor id.
 - Check current product GA versus beta, independent effectiveness, integrations, SKU and buyer before assigning competitive edges.
 - Next review target: 2026-11-24, or sooner after material product/funding changes.
