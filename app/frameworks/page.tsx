@@ -9,10 +9,10 @@ export default function FrameworksPage() {
     <main className="mx-auto max-w-6xl px-4 py-10">
       <PageIntro
         kicker="Emerging frameworks"
-        title="SACR frameworks, labeled as SACR frameworks"
-        lede="ARISE and Endpoint Control and Prevention come from Software Analyst Cyber Research. They are not Gartner categories. The NHI lifecycle below is a buyer checklist. The 2024 vendor landscape in that guide needs a current check."
+        title="Pages from Software Analyst Cyber Research"
+        lede="Two sentences on this map come from pages re-read on 27 Oct 2026. Agentic runtime is the 3 Sep 2026 report. Endpoint control is the 22 Jul 2026 report. They are not Gartner categories. The NHI checklist cites a 27 Sep 2024 page. Lists on this page are not capability cells."
       />
-      <p className="mt-4 text-sm text-muted-foreground">Reviewed {REVIEWED}.</p>
+      <p className="mt-4 text-sm text-muted-foreground">Reviewed {REVIEWED}. That label is not a review of the sentences re-read on 27 Oct 2026.</p>
       <p className="mt-4"><Link href="/frameworks/incident-lab" className="inline-flex rounded-lg border border-border px-4 py-2 text-sm font-medium underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2">Open synthetic incident classification lab</Link></p>
 
       <section className="mt-10">
@@ -54,16 +54,20 @@ export default function FrameworksPage() {
           </article>
         </div>
         <p className="mt-3 text-sm text-muted-foreground">
-          Source: SACR and Kevin He, 18 Mar 2026.{" "}
-          <a className="text-primary hover:underline" href="https://softwareanalyst.substack.com/p/runtime-security-for-ai-agents-an">
-            Runtime security for AI agents
+          Source re-read 27 Oct 2026: SACR, 18 Mar 2026, updated 29 Jul 2026,{" "}
+          <a className="text-primary hover:underline" href="https://softwareanalyst.io/reports/the-runtime-enforcement-challenge-and-the-emerging-vendor-landscape">
+            The runtime enforcement challenge
           </a>
-          .
+          . The page does not name shadow agents, and it does not fill a block cell. An earlier Substack URL was not the page re-read that day.
         </p>
       </section>
 
       <section className="mt-10">
-        <h2 className="text-2xl tracking-tight">Endpoint control zones</h2>
+        <h2 className="text-2xl tracking-tight">Endpoint control labels</h2>
+        <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
+          These five labels are this map&apos;s reading. They were not copied into capability cells.
+          The report did not rank products and did not say this replaces endpoint detection.
+        </p>
         <ol className="mt-4 grid gap-3 md:grid-cols-2">
           {ecpZones.map((zone, index) => (
             <li key={zone.zone} className="rounded-xl border border-border p-4 text-sm leading-6">
@@ -75,11 +79,11 @@ export default function FrameworksPage() {
           ))}
         </ol>
         <p className="mt-3 text-sm text-muted-foreground">
-          Source: SACR, Lawrence Pingree, and Francis Odum, 22 Jul 2026.{" "}
-          <a className="text-primary hover:underline" href="https://softwareanalyst.substack.com/p/the-ciso-guide-to-endpoint-control">
+          Source re-read 27 Oct 2026: SACR, Francis Odum and Lawrence Pingree, 22 Jul 2026, updated 29 Jul 2026,{" "}
+          <a className="text-primary hover:underline" href="https://softwareanalyst.io/reports/the-ciso-guide-to-endpoint-control-and-prevention-ecp-the-next-architecture-for-endpoint-security">
             The CISO guide to endpoint control and prevention
           </a>
-          .
+          . The sentence kept from that page is on the endpoint-control category. An earlier Substack URL was not the page re-read that day.
         </p>
       </section>
 

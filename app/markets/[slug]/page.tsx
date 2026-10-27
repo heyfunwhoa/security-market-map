@@ -9,7 +9,7 @@ const pages: Record<
 > = {
   endpoint: {
     title: "Endpoint security",
-    lede: "EPP and EDR remain the device record. SACR's five-zone endpoint-control framework is a proposed next layer, not a Gartner category and not a replacement for EDR.",
+    lede: "EPP and EDR remain the device record. SACR's 22 Jul 2026 report, re-read 27 Oct 2026, defines endpoint control as visibility beyond the file and the process. That sentence does not replace endpoint detection. The five labels below are not capability cells.",
     body: [
       {
         heading: "EPP",
@@ -18,7 +18,7 @@ const pages: Record<
       },
       {
         heading: "EDR",
-        text: "Endpoint detection records processes, files, and related activity, then helps an analyst respond. SACR's July 2026 note says that record is still necessary and is blind to much of what happens in the browser, the IDE, and a local agent.",
+        text: "Endpoint detection records processes, files, and related activity, then helps an analyst respond. SACR's 22 Jul 2026 report expands visibility beyond that record into developer environments, SaaS applications, AI tools, and agent frameworks. It does not say the endpoint record is unnecessary, and it does not fill a detection cell.",
         href: "/categories/endpoint-security",
       },
       {
@@ -108,10 +108,21 @@ export default async function MarketViewPage({ params }: { params: Promise<{ slu
       </div>
       {slug === "endpoint" ? (
         <section className="mt-8">
-          <h2 className="text-2xl tracking-tight">SACR framework: five endpoint-control zones</h2>
+          <h2 className="text-2xl tracking-tight">Endpoint control labels</h2>
           <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
-            Attributed to Software Analyst Cyber Research, 22 Jul 2026. The zones are their proposal.
-            This map does not score vendors against them.
+            <a
+              className="text-primary hover:underline"
+              href="https://softwareanalyst.io/reports/the-ciso-guide-to-endpoint-control-and-prevention-ecp-the-next-architecture-for-endpoint-security"
+            >
+              SACR&apos;s 22 Jul 2026 report
+            </a>
+            , updated 29 Jul 2026 and re-read 27 Oct 2026, defines endpoint control and prevention as
+            visibility beyond operating systems, files, and processes. That sentence is on the{" "}
+            <Link href="/categories/endpoint-control" className="text-primary hover:underline">
+              endpoint-control category
+            </Link>
+            . These five labels were not copied from that page into capability cells. The page did not
+            rank products and did not say this replaces endpoint detection.
           </p>
           <ol className="mt-4 grid gap-3 md:grid-cols-2">
             {ecpZones.map((zone, index) => (

@@ -105,6 +105,16 @@ Pages fetched and not typed in this pass: [Critical Capabilities for Application
 
 Pages opened and not typed in this pass: the privacy-management buyers guide, 27 Mar 2026, because the public text is a return-on-investment recommendation and does not define records of processing, consent, or data-subject requests; the SaaS security roadmap, 5 Sep 2024, because it recommends visibility and control and does not define configuration or grants. The 2018 security-ratings document redirected to the Gartner homepage again, so it is not a source. A Forrester supply-chain blog names secret scanning inside a list of pipeline steps and also reports incident counts and affected companies. Those figures and the list are not a definition of secrets detection.
 
+## Attribution pass, later on 27 Oct 2026
+
+No new category claim. Visible sentences that named Gartner, Forrester, IDC, or “analysts” without a retrieved page were rewritten. The domains page no longer carries a spending forecast. The three cards that remain name the 23 Oct 2024 extended-detection abstract, the 19 Aug 2022 SaaS-posture summary, and the 3 Sep 2026 agentic-runtime report, and each says what that page did not say. The consolidation card is labeled as this map’s wording.
+
+Category descriptions for extended detection, network detection, threat intelligence, web and API protection, microsegmentation, cyber asset management, operational technology, security ratings, and cyber recovery no longer say “Analysts” did something the retrieved page did not say. They stay map wording. The category page already says the description is the map’s wording.
+
+The machine-identity shortlist no longer cites a 2025 machine-IAM note that was not retrieved. The agents shortlist no longer cites a 2026 Forrester remark or a March 2026 identity roadmap. The secrets shortlist now names the 12 Aug 2024 abstract and says the names are not that abstract’s vendor list.
+
+The gateway paragraph now matches the 18 Mar 2026 report re-read on 27 Oct 2026: a gateway can enforce and does not see why the agent acted; direct access sees behavior and does not itself enforce. Shadow agents, local coding tools, and a “structural limit” were removed because that page did not say them. The six runtime rows are labeled as this map’s questions. The five endpoint-control labels stay on the page and are not capability cells. The report link is the page re-read on 27 Oct 2026, not the earlier Substack URL. The endpoint market lede no longer calls those labels SACR’s five-zone framework. The connections page no longer says the 12 Aug 2024 secrets abstract was not retrieved, and it no longer says Gartner and Forrester describe the shortlist.
+
 ## Still without a category claim
 
 Security ratings, endpoint detection, dynamic testing, interactive testing, and secrets detection still have no category claim. So do adjacent security, AI data security, cloud vulnerability, customer trust, data-access governance, database security, GRC controls, identity orchestration, model security, pentest programs, privacy governance, product-security programs, and vulnerability disclosure. Vendor-homepage sentences stay on their own claims. They were not copied onto these category sentences.

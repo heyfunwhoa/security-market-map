@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { buildBudget } from "./budget";
 import { catalog, catalogProblems } from "./catalog";
+import { gatewayTradeoff, runtimeLayers } from "./data/brief";
 import {
   capabilityBands,
   companyLenses,
@@ -925,5 +926,34 @@ describe("Cyera Identity and the NHI shortlist", () => {
     const board = groups.find((group) => group.name === "NHI discovery, posture, and governance");
     expect(board?.body).not.toContain("Entro, Token Security, and Clutch do not");
     expect(board?.body).toContain("AppOmni");
+  });
+
+  it("does not attribute a lede or a shortlist to an analyst page that was not retrieved", () => {
+    for (const id of [
+      "xdr",
+      "ndr",
+      "threat-intelligence",
+      "waf-waap",
+      "microsegmentation",
+      "security-asset-management",
+      "ot-security",
+      "security-ratings",
+      "cyber-recovery",
+    ]) {
+      expect(catalog.categories.find((category) => category.id === id)?.definition, id).not.toContain("Analysts");
+    }
+    const machine = namedShortlists.find((row) => row.market === "Machine identity");
+    expect(machine?.frame).not.toMatch(/Gartner|Forrester|IDC/);
+    const agents = namedShortlists.find((row) => row.market === "Agents");
+    expect(agents?.frame).not.toMatch(/Gartner|Forrester|IDC/);
+    expect(agents?.frame).toContain("agentic-runtime");
+    const secrets = namedShortlists.find((row) => row.market === "Secrets");
+    expect(secrets?.frame).toContain("12 Aug 2024");
+    expect(gatewayTradeoff.gateway).toContain("18 Mar 2026");
+    expect(gatewayTradeoff.gateway.toLowerCase()).not.toContain("never hit");
+    expect(gatewayTradeoff.both.toLowerCase()).not.toContain("structural limit");
+    expect(runtimeLayers.find((layer) => layer.layer === "Intent-aware decision")?.depth).not.toContain("separate layer");
+    expect(runtimeLayers.find((layer) => layer.layer === "Pre-action enforcement")?.depth).not.toContain("production-relevant");
+    expect(runtimeLayers.find((layer) => layer.layer === "Pre-action enforcement")?.depth).toContain("3 Sep 2026");
   });
 });
