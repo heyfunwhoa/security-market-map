@@ -498,6 +498,80 @@ describe("catalog integrity", () => {
     expect(evidenceCell(catalog.claims, "tenable", "cap-vm", "2026-10-27").status).toBe("unknown");
     expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(35);
   });
+
+  it("keeps the identity, exposure, and AppSec sentences off cells, rosters, and prices", () => {
+    const ids = [
+      "claim-gartner-easm-20251231",
+      "claim-gartner-asm-20240409",
+      "claim-gartner-itdr-20251024",
+      "claim-sacr-itdr-20240501",
+      "claim-gartner-ciem-20250121",
+      "claim-sacr-browser-20231207",
+      "claim-sacr-sca-20240422",
+      "claim-sacr-ssc-pillar-20240422",
+      "claim-sacr-cspm-20240912",
+      "claim-sacr-ai-prompt-20250310",
+      "claim-sacr-ai-governance-20250310",
+      "claim-sacr-aiap-20260210",
+    ];
+    expect(catalog.categories.find((category) => category.id === "external-attack-surface")?.definition).not.toContain("Analysts");
+    expect(catalog.categories.find((category) => category.id === "enterprise-browser")?.definition).not.toContain("Analysts");
+    expect(catalog.categories.find((category) => category.id === "ai-application-security")?.definition).not.toContain("Analysts");
+    expect(catalog.categories.find((category) => category.id === "insider-risk")?.definition).not.toContain("Analysts");
+    expect(catalog.claims.find((claim) => claim.id === "claim-gartner-ciem-20250121")?.confidence).toBe("low");
+    expect(catalog.claims.filter((claim) => claim.sourceId === "src-sacr-sca-20240422")).toHaveLength(2);
+    expect(catalog.claims.filter((claim) => claim.sourceId === "src-sacr-ai-20250310")).toHaveLength(2);
+
+    for (const id of ids) {
+      const claim = catalog.claims.find((item) => item.id === id);
+      expect(claim, id).toBeDefined();
+      expect(claim?.subjectType).toBe("category");
+      expect(claim?.capabilityId).toBeNull();
+      expect(claim?.verificationStatus).toBe("needs_review");
+      expect(claim?.sourceType).toBe("analyst");
+      expect(claim?.lastCheckedAt).toBe("2026-10-27");
+      const source = catalog.sources.find((item) => item.id === claim?.sourceId);
+      expect(source?.url).toBe(claim?.sourceUrl);
+      expect(source?.retrievedAt).toBe("2026-10-27");
+      expect((source?.excerpt.length ?? 999)).toBeLessThanOrEqual(420);
+    }
+
+    const bounded = ids
+      .map((id) => {
+        const claim = catalog.claims.find((item) => item.id === id);
+        return `${claim?.statement ?? ""} ${claim?.notes ?? ""}`;
+      })
+      .join(" ")
+      .toLowerCase();
+    for (const banned of [
+      "magic quadrant",
+      "625",
+      "99%",
+      "85%",
+      "90%",
+      "77%",
+      "okta",
+      "sailpoint",
+      "island",
+      "talon",
+      "conceal",
+      "veza",
+      "wiz",
+      "orca",
+      "gitguardian",
+    ]) {
+      expect(bounded, banned).not.toContain(banned);
+    }
+    expect(evidenceCell(catalog.claims, "snyk", "cap-sca", "2026-10-27").status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "tenable", "cap-vm", "2026-10-27").status).toBe("unknown");
+    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(35);
+    for (const subjectId of ["endpoint-security", "security-ratings", "workforce-identity", "dast"]) {
+      expect(
+        catalog.claims.some((claim) => claim.subjectType === "category" && claim.subjectId === subjectId),
+        subjectId,
+      ).toBe(false);
+    }
+  });
 });
 
 describe("comparison", () => {
