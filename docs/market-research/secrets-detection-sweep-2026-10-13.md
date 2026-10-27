@@ -104,6 +104,15 @@ Cycode Secrets Detection and the other named modules from the table above were a
 
 Sonatype Lifecycle documentation describes SCM scans that read manifests, lockfiles, and artifacts for component analysis. That is not a secrets module, so no Sonatype product was added.
 
+## Wiz Code, added 2026-10-26
+
+Wiz secrets scanning was already a catalog product from the blog that describes Git history, pull requests, images, cloud resources, and provider validation. Wiz Code is the adjacent application-security product. Pages fetched 2026-10-26.
+
+| Product | What the page supports | What it does not support | Source |
+| --- | --- | --- | --- |
+| Wiz Code | The platform page lists secrets scanning and says it finds hardcoded secrets in code, infrastructure-as-code templates, and container images. The same page names SAST, SCA, infrastructure-as-code, and other modules. | Those other module names are not capability cells. Rule counts, exploitability, and AI-fix language are not adopted. The CNAPP record stays a different product and an adjacent budget. | https://www.wiz.io/platform/wiz-code |
+| Wiz SAST availability | A post dated 2 Dec 2025 says SAST was in public preview for Wiz Code customers, with repository and pull request scanning. | The platform page fetched 26 Oct 2026 does not repeat the preview label. Current availability stays unknown. No SAST capability cell is filled. | https://www.wiz.io/blog/introducing-wiz-sast-where-code-risk-meets-cloud-context |
+
 ## Remaining discovery / verification queue
 
 These are deliberately not positive feature assertions. Missing evidence means Unknown, not unsupported.

@@ -1222,6 +1222,35 @@ export const secretsSweepProducts: Product[] = [
     ]
   },
   {
+    "id": "wiz-code",
+    "slug": "wiz-code",
+    "vendorId": "wiz",
+    "name": "Wiz Code",
+    "positioning": "Wiz's application-security product. The platform page lists secrets scanning beside SAST, SCA, infrastructure-as-code, and other code modules. The CNAPP record stays separate.",
+    "primaryCategoryIds": [
+      "aspm",
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "sast",
+      "sca",
+      "cnapp"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "A 2 Dec 2025 Wiz post said Wiz SAST was in public preview for Wiz Code customers. The platform page fetched 26 Oct 2026 lists SAST and does not repeat that preview label. Current SAST availability stays unknown. Secrets scanning on that page has no availability label.",
+    "officialUrl": "https://www.wiz.io/platform/wiz-code",
+    "useCaseIds": [
+      "uc-detect",
+      "uc-finding-route"
+    ]
+  },
+  {
     "id": "orca-secrets",
     "slug": "orca-secrets",
     "vendorId": "orca-security",
@@ -2279,6 +2308,30 @@ export const secretsSweepSources: Source[] = [
     "retrievedAt": "2026-10-13",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Scans Git history, pull requests, and images for exposed secrets."
+  },
+  {
+    "id": "src-secrets-sweep-wiz-code",
+    "title": "Wiz Code — code security modules",
+    "url": "https://www.wiz.io/platform/wiz-code",
+    "canonicalUrl": "https://www.wiz.io/platform/wiz-code",
+    "publisher": "Wiz",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-10-26",
+    "volatility": "fast",
+    "excerpt": "Research paraphrase: Lists secrets scanning and says it finds hardcoded secrets in code, IaC templates, and container images."
+  },
+  {
+    "id": "src-secrets-sweep-wiz-sast-preview",
+    "title": "Wiz SAST public-preview post",
+    "url": "https://www.wiz.io/blog/introducing-wiz-sast-where-code-risk-meets-cloud-context",
+    "canonicalUrl": "https://www.wiz.io/blog/introducing-wiz-sast-where-code-risk-meets-cloud-context",
+    "publisher": "Wiz",
+    "sourceType": "vendor_marketing",
+    "publishedAt": "2025-12-02",
+    "retrievedAt": "2026-10-26",
+    "volatility": "fast",
+    "excerpt": "Research paraphrase: On 2 Dec 2025 Wiz said SAST was in public preview for Wiz Code customers."
   },
   {
     "id": "src-secrets-sweep-orca-secrets",
@@ -3374,6 +3427,46 @@ export const secretsSweepClaims: Claim[] = [
     "lastCheckedAt": "2026-10-13",
     "conflictsWith": [],
     "notes": "CNAPP scope is not implied for every CSPM product. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
+  },
+  {
+    "id": "claim-secrets-sweep-wiz-code-secrets",
+    "statement": "Wiz's Wiz Code page lists secrets scanning among its code-security modules and says it finds hardcoded secrets in code, infrastructure-as-code templates, and container images.",
+    "subjectType": "product",
+    "subjectId": "wiz-code",
+    "capabilityId": "cap-secret-discovery",
+    "polarity": "asserts",
+    "sourceId": "src-secrets-sweep-wiz-code",
+    "sourceUrl": "https://www.wiz.io/platform/wiz-code",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-10-26",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-10-26",
+    "conflictsWith": [],
+    "notes": "The page also names SAST, SCA, infrastructure-as-code, data classification in code, malware, CI/CD posture, and ASPM. Those names are not capability cells. Rule counts, exploitability, and AI-fix language are not adopted. Git history, pull requests, cloud resources, and provider validation stay on the separate wiz-secrets record. Publisher-reported, not independently tested."
+  },
+  {
+    "id": "claim-secrets-sweep-wiz-sast-preview",
+    "statement": "A Wiz post dated 2 Dec 2025 says Wiz SAST was in public preview for Wiz Code customers and included repository and pull request scanning.",
+    "subjectType": "product",
+    "subjectId": "wiz-code",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-secrets-sweep-wiz-sast-preview",
+    "sourceUrl": "https://www.wiz.io/blog/introducing-wiz-sast-where-code-risk-meets-cloud-context",
+    "sourceType": "vendor_marketing",
+    "publishedAt": "2025-12-02",
+    "observedAt": "2026-10-26",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-10-26",
+    "conflictsWith": [],
+    "notes": "The platform page fetched 26 Oct 2026 lists SAST and does not repeat the preview label. This claim does not settle current availability and does not fill a SAST capability cell. Customer quotations on either page are not adopted."
   },
   {
     "id": "claim-secrets-sweep-orca-secrets",

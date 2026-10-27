@@ -371,6 +371,26 @@ export const relationships: Relationship[] = [
       "Codacy's secret-detection table names Checkov for infrastructure-as-code languages. Checkov's own secrets scan remains a separate product. Codacy naming Checkov is not a Checkov capability claim and not a validity check.",
     sourceId: "src-secrets-sweep-codacy-secrets",
   },
+  {
+    id: "rel-wiz-code",
+    fromProductId: "wiz",
+    toProductId: "wiz-code",
+    type: "adjacent_budget",
+    useCaseId: "uc-finding-route",
+    rationale:
+      "The Wiz record is the CNAPP product. Wiz Code is the application-security product whose page lists secrets scanning, SAST, SCA, and infrastructure-as-code. A cloud-posture agreement and a code module can be sold together and still be different scope. Code findings stay off the CNAPP record.",
+    sourceId: "src-secrets-sweep-wiz-code",
+  },
+  {
+    id: "rel-wiz-code-secrets",
+    fromProductId: "wiz-code",
+    toProductId: "wiz-secrets",
+    type: "complement",
+    useCaseId: "uc-detect",
+    rationale:
+      "Wiz Code's page says the product finds hardcoded secrets in code, infrastructure-as-code templates, and container images. The secrets record cites a blog that also describes Git history, pull requests, cloud resources, and provider validation. Those broader sentences stay on the secrets record.",
+    sourceId: "src-secrets-sweep-wiz-code",
+  },
 ];
 
 export const pricingSignals: PricingSignal[] = [
