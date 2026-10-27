@@ -303,3 +303,104 @@ describe("staleness", () => {
     expect(isSourceStale(source!, catalog.asOf)).toBe(true);
   });
 });
+
+describe("Cyera Identity and the NHI shortlist", () => {
+  const asOf = "2026-10-26";
+
+  it("keeps Cyera Identity separate from the DSPM product and from Oasis", () => {
+    const identity = catalog.products.find((product) => product.id === "cyera-identity");
+    const dspm = catalog.products.find((product) => product.id === "cyera");
+    expect(identity?.vendorId).toBe("cyera");
+    expect(identity?.name).toBe("Cyera Identity");
+    expect(dspm?.primaryCategoryIds).toContain("dspm");
+    expect(dspm?.primaryCategoryIds).not.toContain("nhi");
+    expect(catalog.products.some((product) => product.id === "oasis")).toBe(true);
+
+    expect(evidenceCell(catalog.claims, "cyera-identity", "cap-nhi-inventory", asOf).status).toBe("evidenced");
+    expect(evidenceCell(catalog.claims, "cyera-identity", "cap-nhi-ownership", asOf).status).toBe("evidenced");
+    expect(evidenceCell(catalog.claims, "cyera-identity", "cap-nhi-lifecycle", asOf).status).toBe("evidenced");
+    expect(evidenceCell(catalog.claims, "cyera-identity", "cap-secret-discovery", asOf).status).toBe("evidenced");
+    expect(evidenceCell(catalog.claims, "cyera-identity", "cap-secret-verification", asOf).status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "cyera-identity", "cap-workload-federation", asOf).status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "cyera", "cap-nhi-inventory", asOf).status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "cyera", "cap-secret-discovery", asOf).status).toBe("unknown");
+
+    const close = catalog.claims.find((claim) => claim.id === "claim-cyera-oasis-complete");
+    expect(close?.statement).toContain("$1 billion");
+    expect(close?.capabilityId).toBeNull();
+    expect(close?.verificationStatus).toBe("vendor_published");
+    expect(catalog.events.some((event) => event.id === "evt-oasis-platform-continues" && event.date === "2026-09-30")).toBe(
+      true,
+    );
+
+    const company = catalog.relationships.find((item) => item.id === "rel-cyera-oasis");
+    expect(company?.type).toBe("complement");
+    expect(company?.sourceId).toBe("src-cyera-oasis-customers");
+    const fromIdentity = catalog.relationships.filter((item) => item.fromProductId === "cyera-identity");
+    expect(fromIdentity.map((item) => item.id).sort()).toEqual(["rel-cyera-identity-oasis", "rel-cyera-identity-vault"]);
+    expect(fromIdentity.every((item) => item.type !== "direct_competitor")).toBe(true);
+    expect(fromIdentity.find((item) => item.id === "rel-cyera-identity-oasis")?.type).toBe("complement");
+    expect(fromIdentity.find((item) => item.id === "rel-cyera-identity-vault")?.type).toBe("adjacent_budget");
+  });
+
+  it("fills only the NHI cells the current pages actually state", () => {
+    expect(evidenceCell(catalog.claims, "token-security", "cap-nhi-inventory", asOf).status).toBe("evidenced");
+    expect(evidenceCell(catalog.claims, "token-security", "cap-nhi-ownership", asOf).status).toBe("evidenced");
+    expect(evidenceCell(catalog.claims, "token-security", "cap-nhi-lifecycle", asOf).status).toBe("evidenced");
+    expect(evidenceCell(catalog.claims, "entro", "cap-nhi-inventory", asOf).status).toBe("evidenced");
+    expect(evidenceCell(catalog.claims, "entro", "cap-nhi-ownership", asOf).status).toBe("evidenced");
+    expect(evidenceCell(catalog.claims, "entro", "cap-nhi-lifecycle", asOf).status).toBe("evidenced");
+    expect(evidenceCell(catalog.claims, "clutch", "cap-nhi-inventory", asOf).status).toBe("evidenced");
+    expect(evidenceCell(catalog.claims, "clutch", "cap-nhi-ownership", asOf).status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "clutch", "cap-nhi-lifecycle", asOf).status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "aembit", "cap-workload-federation", asOf).status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "aembit", "cap-nhi-inventory", asOf).status).toBe("unknown");
+    expect(catalog.claims.find((claim) => claim.id === "claim-aembit-secretless")?.capabilityId).toBeNull();
+
+    for (const id of ["rel-oasis-entro", "rel-oasis-token", "rel-oasis-clutch"]) {
+      expect(catalog.relationships.find((item) => item.id === id)?.type).toBe("direct_competitor");
+    }
+    const aembit = catalog.relationships.find((item) => item.id === "rel-aembit-oasis");
+    expect(aembit?.type).toBe("adjacent_budget");
+    expect(aembit?.toProductId).toBe("oasis");
+    expect(catalog.relationships.find((item) => item.id === "rel-akeyless-aembit")?.type).toBe("adjacent_budget");
+  });
+
+  it("keeps Astrix and Entro on their own records after the June 2026 closes", () => {
+    expect(evidenceCell(catalog.claims, "astrix", "cap-nhi-inventory", asOf).status).toBe("evidenced");
+    expect(evidenceCell(catalog.claims, "astrix", "cap-nhi-ownership", asOf).status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "astrix", "cap-nhi-lifecycle", asOf).status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "astrix", "cap-workload-federation", asOf).status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "astrix", "cap-secret-discovery", asOf).status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "astrix", "cap-agent-inventory", asOf).status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "astrix", "cap-itdr", asOf).status).toBe("unknown");
+    expect(catalog.claims.find((claim) => claim.id === "claim-astrix-deploy")?.capabilityId).toBeNull();
+    expect(catalog.claims.find((claim) => claim.id === "claim-cisco-astrix-close")?.statement).toContain("29 Jun 2026");
+    expect(catalog.claims.find((claim) => claim.id === "claim-cisco-astrix-close")?.capabilityId).toBeNull();
+    expect(catalog.events.some((event) => event.id === "evt-astrix-cisco-close" && event.date === "2026-06-29")).toBe(true);
+
+    expect(evidenceCell(catalog.claims, "entro", "cap-agent-inventory", asOf).status).toBe("evidenced");
+    expect(evidenceCell(catalog.claims, "entro", "cap-itdr", asOf).status).toBe("evidenced");
+    expect(evidenceCell(catalog.claims, "entro", "cap-secret-discovery", asOf).status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "entro", "cap-secret-verification", asOf).status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "entro-secrets", "cap-secret-discovery", asOf).status).toBe("unverified");
+    expect(evidenceCell(catalog.claims, "sailpoint-isc", "cap-nhi-inventory", asOf).status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "sailpoint-isc", "cap-nhi-lifecycle", asOf).status).toBe("unknown");
+    expect(catalog.claims.find((claim) => claim.id === "claim-entro-slack")?.capabilityId).toBeNull();
+    expect(catalog.claims.find((claim) => claim.id === "claim-entro-close")?.statement).toContain("29 Jun 2026");
+    expect(catalog.claims.find((claim) => claim.id === "claim-entro-close")?.capabilityId).toBeNull();
+    expect(catalog.events.some((event) => event.id === "evt-entro-close" && event.date === "2026-06-29")).toBe(true);
+    expect(catalog.products.some((product) => product.id === "entro")).toBe(true);
+    expect(catalog.products.some((product) => product.id === "astrix")).toBe(true);
+
+    expect(catalog.relationships.find((item) => item.id === "rel-entro-sailpoint")?.type).toBe("complement");
+    expect(
+      catalog.relationships
+        .filter((item) => item.fromProductId === "astrix" && item.type === "direct_competitor")
+        .map((item) => item.id),
+    ).toEqual(["rel-astrix-appomni"]);
+    expect(
+      catalog.relationships.filter((item) => item.fromProductId === "entro" && item.type === "direct_competitor"),
+    ).toEqual([]);
+  });
+});

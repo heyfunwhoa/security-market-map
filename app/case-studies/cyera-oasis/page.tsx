@@ -7,6 +7,7 @@ const SOURCE_IDS = [
   "src-cyera-oasis-blog",
   "src-oasis-cyera-blog",
   "src-cyera-oasis-close",
+  "src-cyera-oasis-customers",
   "src-sacr-cyera-oasis",
 ];
 
