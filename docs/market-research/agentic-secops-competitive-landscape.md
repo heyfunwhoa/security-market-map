@@ -140,6 +140,8 @@ These links are references to original public pages, not copyrighted page copies
 
 [Current-state LimaCharlie audience and buyer personas](limacharlie-audience-personas.md) (2026-10-13) separates sourced positioning from working role hypotheses, qualification questions and unknown segment economics. Research candidate only; not typed application data.
 
+[Security organization personas](security-org-personas.md) (2026-10-27) separates AppSec, ProdSec, PlatformSec, DevOps/platform engineering, and IT corporate security for buyer-lane discovery. Research candidate; typed persona enrichments live in `lib/data`.
+
 ## Security data and builder infrastructure expansion
 
 See the [SecOps infrastructure overlap and company index](secops-infrastructure-overlap.md) for the 11-company research map spanning data pipelines, programmable SecOps, agent/workflow infrastructure and AI SOC capabilities. Candidate research only, not typed catalog publication.

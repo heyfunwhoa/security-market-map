@@ -46,6 +46,8 @@ The Cyera–Oasis case study separates the companies' strategic rationale and th
 
 **Reusable method:** [Competitive Intelligence Playbook](docs/market-research/competitive-intelligence-playbook.md) covers buyer-led comparison, source quality, case studies, interview preparation, win/loss privacy and downstream GTM reuse.
 
+**Security org personas:** [Core five plus adjacent seats](docs/market-research/security-org-personas.md) (AppSec/ProdSec/PlatformSec/DevOps/IT corporate, then CISO, architect, identity, cloud, data, SOC/detection, offensive, GRC, AI security, engineering manager) keeps job-role boundaries and discovery questions separate from ICP claims. Research candidate; landscape filters use the typed personas in `lib/data`.
+
 - Link material claims to a public source.
 - Record when a source was published and when it was reviewed.
 - Separate vendor claims from independently supported findings. A claim is marked verified only when the source is an independent public standard. A vendor doc, marketing page, or press release stays labeled as what the vendor said.
