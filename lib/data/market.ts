@@ -612,7 +612,7 @@ export const vendors: Vendor[] = [
     formerNames: [],
     website: "https://www.crowdstrike.com/",
     positioning:
-      "Endpoint and XDR vendor with identity-protection offers. The exact current SKU is unverified in this seed, so no ITDR capability is checked.",
+      "Endpoint and XDR vendor. The Falcon homepage retrieved 26 Oct 2026 describes endpoint detection and response as detecting and prioritizing malicious activity. Identity Protection is a module name on that page, so no ITDR cell is filled.",
     primaryCategoryIds: ["itdr", "endpoint-security"],
     adjacentCategoryIds: ["workforce-identity"],
     identityScopes: ["human"],
@@ -668,7 +668,7 @@ export const vendors: Vendor[] = [
     formerNames: [],
     website: "https://www.sentinelone.com/",
     positioning:
-      "XDR vendor. Identity-related SKUs exist in buyer conversations. The exact product and use case are unverified here, so nothing is checked.",
+      "Homepage retrieved 26 Oct 2026 describes endpoint and identity protection in one agent, and says the platform detects, contains, and responds. That detection sentence is not an endpoint-only cell and not an ITDR cell.",
     primaryCategoryIds: ["itdr", "endpoint-security"],
     adjacentCategoryIds: ["adjacent-security"],
     identityScopes: ["human"],
