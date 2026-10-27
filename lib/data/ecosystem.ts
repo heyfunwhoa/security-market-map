@@ -2001,14 +2001,14 @@ export const ecosystemVendors: Vendor[] = [
     name: "Cyera",
     formerNames: [],
     website: "https://www.cyera.com/",
-    positioning: "Data security posture vendor. Company pages say Cyera agreed to acquire Oasis on 28 Jul 2026 and completed that deal on 3 Sep 2026, with Oasis to operate as Cyera Identity. No classification or joint-enforcement claim is checked here. Cyera markets DSPM for data discovery, classification and data-risk visibility. Vendor-reported DSPM scope reviewed 2026-10-13.",
+    positioning: "Data security posture vendor. Company pages say Cyera completed the Oasis acquisition on 3 Sep 2026 and that the Oasis platform will operate as Cyera Identity. A 30 Sep 2026 post says existing Oasis customers stay on the Oasis platform while integration continues. Cyera Identity is a separate product. No joint data-and-identity enforcement claim is checked. Cyera markets DSPM for data discovery, classification and data-risk visibility. Vendor-reported DSPM scope reviewed 2026-10-13.",
     primaryCategoryIds: ["dspm"],
     adjacentCategoryIds: ["ciem", "privacy-governance", "nhi", "agentic-runtime", "ai-data-security", "data-access-governance"],
     identityScopes: ["not_an_identity_control"],
     verificationStatus: "research_candidate",
     openQuestions: [
       "Which data stores are in scope, and who remediates access?",
-      "Is Oasis a separate product in this account, or part of a Cyera conversation?",
+      "Is this account still on the Oasis platform, or already talking to Cyera Identity?",
     ],
   }),
   vendor({
@@ -2069,12 +2069,15 @@ export const ecosystemVendors: Vendor[] = [
     name: "Token Security",
     formerNames: [],
     website: "https://www.token.security/",
-    positioning: "NHI security specialist named on machine-identity shortlists beside Oasis and Entro. No capability is checked here.",
+    positioning:
+      "Token Security's homepage describes continuous discovery of AI agents and non-human identities, a human owner for each agent, and automatic decommissioning of orphaned identities. Which systems can be decommissioned is not listed. Customer quotations are not adopted.",
     primaryCategoryIds: ["nhi"],
     adjacentCategoryIds: ["secrets-detection", "iga"],
     identityScopes: ["nhi"],
     verificationStatus: "research_candidate",
-    openQuestions: ["Discovery only, or can it revoke and decommission?"],
+    openQuestions: [
+      "The homepage says orphaned identities are decommissioned. Which systems, and does the owner sentence cover service accounts or only AI agents?",
+    ],
   }),
   vendor({
     id: "aembit",
@@ -2082,12 +2085,13 @@ export const ecosystemVendors: Vendor[] = [
     name: "Aembit",
     formerNames: [],
     website: "https://www.aembit.io/",
-    positioning: "Workload identity and access vendor. Often discussed as an alternative to long-lived secrets. No issuance or policy claim is sourced here.",
+    positioning:
+      "Aembit's non-human identity page describes policy-based, secretless, just-in-time access between workloads and resources. It does not say federation, and it does not list targets. Inventory and decommissioning are not on that page.",
     primaryCategoryIds: ["nhi", "agentic-runtime"],
     adjacentCategoryIds: ["secrets-management", "agent-identity"],
     identityScopes: ["nhi"],
     verificationStatus: "research_candidate",
-    openQuestions: ["Does the workload authenticate without a stored secret, and for which targets?"],
+    openQuestions: ["The page says secretless just-in-time access. Which targets, and is the mechanism federation?"],
   }),
   vendor({
     id: "clutch",
@@ -2095,12 +2099,13 @@ export const ecosystemVendors: Vendor[] = [
     name: "Clutch Security",
     formerNames: [],
     website: "https://clutch.security/",
-    positioning: "NHI discovery and posture candidate. Treat it as a shortlist name until an official page is checked for owners, permissions, and revocation.",
+    positioning:
+      "Clutch's homepage describes continuous discovery of non-human identities across cloud, SaaS, and on-premises, and a graph it calls Identity Lineage. Lifecycle and threat response were not in the fetched text.",
     primaryCategoryIds: ["nhi"],
     adjacentCategoryIds: ["secrets-detection"],
     identityScopes: ["nhi"],
     verificationStatus: "research_candidate",
-    openQuestions: ["Which identity stores can it inventory, and what can it change?"],
+    openQuestions: ["The homepage describes discovery. Which stores are connected, and can it decommission an identity?"],
   }),
   vendor({
     id: "britive",
@@ -3764,6 +3769,23 @@ export const ecosystemProducts: Product[] = [
     }),
   ),
   product({
+    id: "cyera-identity",
+    slug: "cyera-identity",
+    vendorId: "cyera",
+    name: "Cyera Identity",
+    positioning:
+      "Cyera's identity page after the Oasis acquisition. It describes non-human identity discovery, owners, and lifecycle, and says it does not replace the vault. Growth figures are not adopted. A joint data-and-identity enforcement workflow is not verified.",
+    primaryCategoryIds: ["nhi", "agentic-runtime"],
+    adjacentCategoryIds: ["dspm", "secrets-detection", "secrets-management", "pam", "iga", "agent-identity"],
+    deployment: ["unknown"],
+    identityScopes: ["nhi", "agent"],
+    availability: "unknown",
+    availabilityNote:
+      "On 3 Sep 2026 Cyera said the Oasis platform will operate as Cyera Identity. On 30 Sep 2026 Cyera said existing Oasis customers stay on the Oasis platform with no deployment change, and that integration details were still coming.",
+    officialUrl: "https://www.cyera.com/platform/identity",
+    useCaseIds: ["uc-nhi", "uc-agent", "uc-detect"],
+  }),
+  product({
     id: "github-code-scanning",
     slug: "github-code-scanning",
     vendorId: "github",
@@ -3947,7 +3969,7 @@ export const ecosystemRelationships: Relationship[] = [
     type: "direct_competitor",
     useCaseId: "uc-nhi",
     rationale:
-      "NHI specialist shortlist. Oasis has sourced inventory and owner language. Token Security is a name on that shortlist with no capability cell.",
+      "NHI specialist shortlist. Oasis and Token both have vendor-published discovery and owner language. Token also describes automatic decommissioning, without naming the systems. The edge is a shortlist, not parity.",
     sourceId: "src-oasis-about",
   },
   {
@@ -3956,8 +3978,9 @@ export const ecosystemRelationships: Relationship[] = [
     toProductId: "clutch",
     type: "direct_competitor",
     useCaseId: "uc-nhi",
-    rationale: "Same NHI discovery shortlist. Clutch has no sourced capability in this seed.",
-    sourceId: null,
+    rationale:
+      "NHI discovery shortlist. Oasis has inventory, owner, and lifecycle language. Clutch's homepage supports discovery and a graph it calls Identity Lineage. Owners and decommissioning were not in the fetched Clutch text. The edge is a shortlist, not parity.",
+    sourceId: "src-clutch-nhi",
   },
   {
     id: "rel-akeyless-aembit",
@@ -3966,8 +3989,8 @@ export const ecosystemRelationships: Relationship[] = [
     type: "adjacent_budget",
     useCaseId: "uc-nhi",
     rationale:
-      "A vault stores or issues a secret. A workload-identity product tries to avoid a standing secret. Buyers compare them when the question is how a machine authenticates. Neither comparison cell is filled for Aembit, and Akeyless remains unknown.",
-    sourceId: null,
+      "A vault stores or issues a secret. Aembit's page says it replaces long-lived credentials with temporary secretless access between workloads and resources. That is a different job from a vault, and the page does not say federation. Akeyless cells remain unknown.",
+    sourceId: "src-aembit-nhi",
   },
   {
     id: "rel-wiz-sonrai",
@@ -3985,7 +4008,7 @@ export const ecosystemRelationships: Relationship[] = [
     type: "direct_competitor",
     useCaseId: "uc-nhi",
     rationale:
-      "Both get named for SaaS-to-SaaS and OAuth access. Astrix's sourced fact is the Cisco transition. AppOmni has no capability cell.",
+      "Both get named for SaaS-to-SaaS and OAuth access. Astrix's homepage supports an NHI inventory. Its availability fact is the Cisco transition: new standalone licenses ended 30 Jun 2026, and Cisco says the acquisition completed on 29 Jun 2026. AppOmni has no capability cell.",
     sourceId: "src-astrix-home",
   },
   {
@@ -4022,8 +4045,38 @@ export const ecosystemRelationships: Relationship[] = [
     type: "complement",
     useCaseId: "uc-nhi",
     rationale:
-      "SACR reports an announced intent for Cyera to acquire Oasis so data context and non-human identity could be sold together. The products stay separate here until a close is sourced. Neither capability cell is filled.",
-    sourceId: "src-sacr-cyera-oasis",
+      "Cyera's 3 Sep 2026 release says the Oasis acquisition is complete and that the platform will operate as Cyera Identity. A 30 Sep 2026 post says existing customers stay on the Oasis platform while integration continues. The records stay separate. A data signal changing an identity decision is not verified.",
+    sourceId: "src-cyera-oasis-customers",
+  },
+  {
+    id: "rel-cyera-identity-oasis",
+    fromProductId: "cyera-identity",
+    toProductId: "oasis",
+    type: "complement",
+    useCaseId: "uc-nhi",
+    rationale:
+      "Same acquisition lineage as the company records. Cyera Identity is the name on the 3 Sep 2026 release. The 30 Sep 2026 post says existing customers stay on the Oasis platform and that integration was still underway. The product records stay separate. A joint data-and-identity enforcement workflow is not verified.",
+    sourceId: "src-cyera-oasis-customers",
+  },
+  {
+    id: "rel-cyera-identity-vault",
+    fromProductId: "cyera-identity",
+    toProductId: "vault",
+    type: "adjacent_budget",
+    useCaseId: "uc-nhi",
+    rationale:
+      "The Cyera Identity FAQ says the product does not replace the vault and does not store secret values. Rotation into a vault the customer already has is a different job from issuing credentials. HashiCorp Vault is one named target, not a coverage test.",
+    sourceId: "src-cyera-identity",
+  },
+  {
+    id: "rel-aembit-oasis",
+    fromProductId: "aembit",
+    toProductId: "oasis",
+    type: "adjacent_budget",
+    useCaseId: "uc-nhi",
+    rationale:
+      "Aembit's page describes secretless just-in-time access between workloads and resources. Oasis has inventory, owner, and lifecycle language. Those are different jobs. The Aembit page does not say federation, and it is not a substitute for an NHI inventory.",
+    sourceId: "src-aembit-nhi",
   },
   {
     id: "rel-bitsight-securityscorecard",
