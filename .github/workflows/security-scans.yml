@@ -6,25 +6,29 @@ on:
   push:
     branches: [main]
 
+  workflow_dispatch:
+  schedule:
+    - cron: '27 12 * * 3'
+
 permissions:
   contents: read
 
 concurrency:
   group: security-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   trufflehog:
     name: TruffleHog introduced secrets
-    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
-      - uses: trufflesecurity/trufflehog@3bcf19f51e91a9655d84ddb623728c7620be482a # main, 2026-10-09
+      - uses: trufflesecurity/trufflehog@048de9ff07098d943136cd5231a0e93fbb3ea443 # main, 2026-10-09
         with:
+          version: "3.99.2"
           extra_args: --results=verified,unknown
 
   trivy:
@@ -32,7 +36,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:
           scan-type: fs
@@ -40,5 +46,19 @@ jobs:
           scanners: vuln,misconfig
           severity: HIGH,CRITICAL
           format: table
-          exit-code: "0"
+          exit-code: "1"
           skip-dirs: node_modules,.next
+
+  dependency-audit:
+    name: Production dependency audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+      - name: Audit locked production dependencies
+        run: npm audit --omit=dev --audit-level=high

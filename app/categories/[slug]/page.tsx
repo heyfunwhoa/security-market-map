@@ -1,3 +1,5 @@
+import { SECRETS_COMPARISON_URL } from "@/lib/comparison-selection";
+import { AcademyLinks } from "@/components/academy-links";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AreaDiagram } from "@/components/area-diagram";
@@ -26,6 +28,8 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
     product.primaryCategoryIds.includes(category.id),
   );
   const useCases = catalog.useCases.filter((useCase) => useCase.categoryIds.includes(category.id));
+  const primaryVendors = [...new Set(products.map((product) => product.vendorId))]
+    .flatMap((id) => { const vendor = vendorById(id); return vendor ? [vendor] : []; });
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
@@ -34,6 +38,20 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
         <span className="font-semibold">Buyer question. </span>
         {category.buyerQuestion}
       </p>
+      {category.id === "secrets-detection" ? (
+        <section className="mt-6 rounded-xl border border-border bg-card p-4" aria-labelledby="compare-category">
+          <h2 id="compare-category" className="text-2xl">Compare secrets detection evidence</h2>
+          <p className="mt-2 text-sm leading-6">
+            Start with TruffleHog, GitHub Secret Scanning, GitGuardian and Gitleaks,
+            then find other products in this category. Compare discovery and credential
+            verification separately; each supported statement links to its original source.
+            This shortlist is a starting point, not a ranking.
+          </p>
+          <Link href={SECRETS_COMPARISON_URL} className="mt-3 inline-flex min-h-11 items-center rounded-md border border-border px-3 text-sm font-medium text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring">
+            Compare secrets detection products
+          </Link>
+        </section>
+      ) : null}
       <section className="mt-8">
         <h2 className="text-2xl">Domains</h2>
         <ul className="mt-3 flex flex-wrap gap-2">
@@ -76,6 +94,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
       <p className="mt-6 text-sm leading-6">{category.exampleWorkflow}</p>
       <CloudAppShortlist categoryId={category.id} />
       <DataSecurityShortlist categoryId={category.id} />
+      <AcademyLinks categoryId={category.id} />
       <section className="mt-8">
         <h2 className="text-2xl">Adjacent categories</h2>
         <ul className="mt-3 flex flex-wrap gap-2">
@@ -105,16 +124,14 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
           <AreaDiagram
             title={category.name}
             problem={
-              products.length > 12
-                ? `${category.buyerQuestion} The diagram shows 12 of ${products.length} primary products.`
+              primaryVendors.length > 12
+                ? `${category.buyerQuestion} The diagram shows 12 of ${primaryVendors.length} primary vendors.`
                 : category.buyerQuestion
             }
             href={null}
-            examples={products.slice(0, 12).flatMap((product) => {
-              const vendor = vendorById(product.vendorId);
-              if (!vendor) return [];
-              return [{ label: vendor.name, href: `/vendors/${vendor.slug}` }];
-            })}
+            examples={primaryVendors.slice(0, 12).map((vendor) => ({
+              label: vendor.name, href: `/vendors/${vendor.slug}`,
+            }))}
           />
         </div>
       ) : null}

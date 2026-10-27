@@ -83,7 +83,7 @@ export const domainSeeds: DomainSeed[] = [
     slug: "secops",
     name: "Security operations",
     charter:
-      "How the organization detects and responds: SIEM, SOAR, and the identity alerts that land in the same queue. Detection is not the system that certifies access.",
+      "How the organization detects and responds: security telemetry pipelines, detection content, SIEM, SOAR, and the identity alerts that land in the same queue. A pipeline is not a detection rule, and detection is not the system that certifies access.",
     typicalOwner: "SOC manager or detection lead",
     budget: "SecOps. Identity threat tools are often sold here even when IAM owns the control.",
     depth: "mapped",
@@ -155,6 +155,54 @@ function category(input: {
 }
 
 export const ecosystemCategories: Category[] = [
+  category({
+    id: "security-data-pipelines",
+    name: "Security data pipeline platforms (SDPP)",
+    group: "secops",
+    domainIds: ["secops", "platform"],
+    definition:
+      "Ingest, validate, normalize, enrich and route security telemetry before downstream SIEM, data-lake and detection systems. Pipeline health and cost controls are distinct from storage or alert investigation.",
+    buyerQuestion: "Can we deliver complete, trustworthy security telemetry to the right detection and analysis destinations at an acceptable cost?",
+    buyerOwner: "Security engineering, SOC platform engineering or detection infrastructure.",
+    triggers: ["SIEM ingestion cost spike", "Missing or malformed telemetry", "SIEM migration", "Multi-destination routing"],
+    budgetSource: "SecOps data infrastructure or SIEM/platform modernization; verify with the buyer.",
+    outcomes: ["Reliable telemetry delivery", "Schema consistency", "Controlled ingestion and routing cost"],
+    adjacentCategoryIds: ["siem", "soar", "cloud-detection", "xdr"],
+    exampleWorkflow:
+      "Cloud and endpoint events enter a pipeline, are normalized and checked for loss, and route selectively to hot detection storage and a longer-term lake.",
+    flow: {
+      actor: "Security telemetry producer",
+      credential: "Collector and destination authentication",
+      permission: "Which data source may route to which destination",
+      decision: "Pipeline parsing, policy, quality checks and routing rules",
+      action: "Transform, filter, buffer and forward events",
+      evidence: "Source health, delivery metrics, transform versions and routing logs",
+    },
+  }),
+  category({
+    id: "detection-engineering",
+    name: "Detection engineering lifecycle",
+    group: "secops",
+    domainIds: ["secops"],
+    definition:
+      "Design, test, version, deploy and measure security detections using known telemetry and attack behaviors. Distinct from a SIEM analytics engine or simply triaging alerts.",
+    buyerQuestion: "Can we prove our detection content fires on the right activity, remains reliable after data changes and improves investigation quality?",
+    buyerOwner: "Detection engineering lead or SOC engineering.",
+    triggers: ["Unverified detection coverage", "Rule noise", "Pipeline schema changes", "Detection migration"],
+    budgetSource: "SecOps engineering, detection platform or SIEM content operations; verify with the buyer.",
+    outcomes: ["Tested detection behavior", "Versioned and reviewed rule changes", "Actionable investigation evidence"],
+    adjacentCategoryIds: ["siem", "soar", "threat-intelligence", "breach-simulation", "security-data-pipelines"],
+    exampleWorkflow:
+      "An engineer writes a detection, replays synthetic attack and benign events through a test, reviews false positives, and ships a versioned rule to production.",
+    flow: {
+      actor: "Detection engineer",
+      credential: "Detection platform API or CI permissions",
+      permission: "Rule repository and deployment scope",
+      decision: "Test results, coverage rationale and reviewer approval",
+      action: "Publish or roll back a detection rule",
+      evidence: "Versioned rule, synthetic test results, deployment and alert quality metrics",
+    },
+  }),
   category({
     id: "endpoint-security",
     name: "Endpoint security",
@@ -1666,6 +1714,28 @@ function product(partial: Product): Product {
 
 export const ecosystemVendors: Vendor[] = [
   vendor({
+  "id": "metomic",
+  "slug": "metomic",
+  "name": "Metomic",
+  "formerNames": [],
+  "website": "https://www.metomic.io/",
+  "positioning": "Metomic describes its SaaS DSPM foundation and expansion into AI-agent data security. Vendor-reported; reviewed 2026-10-13.",
+  "primaryCategoryIds": [
+    "dspm"
+  ],
+  "adjacentCategoryIds": [
+    "dlp",
+    "ai-data-security"
+  ],
+  "identityScopes": [
+    "not_an_identity_control"
+  ],
+  "verificationStatus": "research_candidate",
+  "openQuestions": [
+    "Which SaaS stores, AI controls and remediation actions are included in the purchased edition?"
+  ]
+}),
+  vendor({
     id: "snyk",
     slug: "snyk",
     name: "Snyk",
@@ -1814,9 +1884,9 @@ export const ecosystemVendors: Vendor[] = [
     name: "Tenable",
     formerNames: [],
     website: "https://www.tenable.com/",
-    positioning: "IT vulnerability management vendor. Some products reach cloud and web apps. Do not treat the company name as SCA, CSPM, and VM at once.",
+    positioning: "IT vulnerability management vendor. Some products reach cloud and web apps. Do not treat the company name as SCA, CSPM, and VM at once. Tenable markets integrated DSPM within Tenable One Cloud Exposure. Vendor-reported DSPM scope reviewed 2026-10-13.",
     primaryCategoryIds: ["it-vulnerability-management"],
-    adjacentCategoryIds: ["cspm", "dast", "cloud-vulnerability"],
+    adjacentCategoryIds: ["cspm", "dast", "cloud-vulnerability", "dspm"],
     identityScopes: ["not_an_identity_control"],
     verificationStatus: "research_candidate",
     openQuestions: ["Which Tenable product, and is the asset a server, a cloud account, or a web app?"],
@@ -1931,8 +2001,7 @@ export const ecosystemVendors: Vendor[] = [
     name: "Cyera",
     formerNames: [],
     website: "https://www.cyera.com/",
-    positioning:
-      "Data security posture vendor. Company pages say Cyera agreed to acquire Oasis on 28 Jul 2026 and completed that deal on 3 Sep 2026, with Oasis to operate as Cyera Identity. No classification or joint-enforcement claim is checked here.",
+    positioning: "Data security posture vendor. Company pages say Cyera agreed to acquire Oasis on 28 Jul 2026 and completed that deal on 3 Sep 2026, with Oasis to operate as Cyera Identity. No classification or joint-enforcement claim is checked here. Cyera markets DSPM for data discovery, classification and data-risk visibility. Vendor-reported DSPM scope reviewed 2026-10-13.",
     primaryCategoryIds: ["dspm"],
     adjacentCategoryIds: ["ciem", "privacy-governance", "nhi", "agentic-runtime", "ai-data-security", "data-access-governance"],
     identityScopes: ["not_an_identity_control"],
@@ -1948,7 +2017,7 @@ export const ecosystemVendors: Vendor[] = [
     name: "Varonis",
     formerNames: [],
     website: "https://www.varonis.com/",
-    positioning: "Data access and file-system security vendor. Often adjacent to identity. Not assumed to be IGA or DSPM for every cloud.",
+    positioning: "Varonis markets DSPM with data discovery, access intelligence and automated risk remediation. Vendor-reported positioning reviewed 2026-10-13; feature depth and effectiveness remain untested.",
     primaryCategoryIds: ["dspm"],
     adjacentCategoryIds: ["iga", "dlp", "data-access-governance"],
     identityScopes: ["human"],
@@ -2247,7 +2316,7 @@ export const ecosystemVendors: Vendor[] = [
     name: "BigID",
     formerNames: [],
     website: "https://bigid.com/",
-    positioning: "Data discovery and privacy vendor named beside Cyera and Varonis. Classification is not the same as blocking exfiltration.",
+    positioning: "BigID markets DSPM alongside data discovery, classification and AI data security. Vendor-reported positioning reviewed 2026-10-13; feature depth and effectiveness remain untested.",
     primaryCategoryIds: ["dspm"],
     adjacentCategoryIds: ["privacy-governance", "dlp", "data-access-governance"],
     identityScopes: ["not_an_identity_control"],
@@ -2260,9 +2329,9 @@ export const ecosystemVendors: Vendor[] = [
     name: "Rubrik",
     formerNames: [],
     website: "https://www.rubrik.com/",
-    positioning: "Backup and recovery vendor. Resilience budget, not a GRC suite and not an identity control.",
+    positioning: "Backup and recovery vendor. Resilience budget, not a GRC suite and not an identity control. Rubrik describes its DSPM offering as formerly Laminar in a vendor-published customer story. Vendor-reported DSPM scope reviewed 2026-10-13.",
     primaryCategoryIds: ["cyber-recovery"],
-    adjacentCategoryIds: ["siem", "grc-controls"],
+    adjacentCategoryIds: ["siem", "grc-controls", "dspm"],
     identityScopes: ["not_an_identity_control"],
     verificationStatus: "research_candidate",
     openQuestions: ["Is the buy backup, ransomware recovery, or data security posture?"],
@@ -3339,7 +3408,7 @@ export const ecosystemVendors: Vendor[] = [
     name: "Sentra",
     formerNames: [],
     website: "https://www.sentra.io/",
-    positioning: "DSPM candidate. No classification or access-path claim is checked.",
+    positioning: "Sentra markets a data security platform spanning DSPM and AI data readiness. Vendor-reported positioning reviewed 2026-10-13; feature depth and effectiveness remain untested.",
     primaryCategoryIds: ["dspm"],
     adjacentCategoryIds: ["data-access-governance", "ai-data-security"],
     identityScopes: ["not_an_identity_control"],
@@ -3352,7 +3421,7 @@ export const ecosystemVendors: Vendor[] = [
     name: "Securiti",
     formerNames: [],
     website: "https://securiti.ai/",
-    positioning: "Named on both privacy and data-security shortlists. A privacy workflow is not a DSPM scan.",
+    positioning: "Securiti markets a data security posture management solution. Vendor-reported positioning reviewed 2026-10-13; feature depth and effectiveness remain untested.",
     primaryCategoryIds: ["dspm", "privacy-governance"],
     adjacentCategoryIds: ["dlp", "data-access-governance"],
     identityScopes: ["not_an_identity_control"],
@@ -3365,7 +3434,7 @@ export const ecosystemVendors: Vendor[] = [
     name: "Symmetry Systems",
     formerNames: [],
     website: "https://www.symmetry-systems.com/",
-    positioning: "Data security candidate often discussed next to identity and data stores. No access graph is checked.",
+    positioning: "Symmetry Systems markets DataGuard with data security posture management. Vendor-reported positioning reviewed 2026-10-13; feature depth and effectiveness remain untested.",
     primaryCategoryIds: ["dspm"],
     adjacentCategoryIds: ["data-access-governance", "ciem"],
     identityScopes: ["not_an_identity_control"],
@@ -3554,6 +3623,98 @@ export const ecosystemVendors: Vendor[] = [
     verificationStatus: "research_candidate",
     openQuestions: ["Files, mainframe, or application data?"],
   }),
+  vendor({
+  "id": "avepoint",
+  "slug": "avepoint",
+  "name": "AvePoint",
+  "formerNames": [],
+  "website": "https://www.avepoint.com/",
+  "positioning": "AvePoint markets DSPM through its Confidence Platform, with sensitive-data discovery, access governance and remediation.",
+  "primaryCategoryIds": [
+    "dspm"
+  ],
+  "adjacentCategoryIds": [
+    "data-access-governance"
+  ],
+  "identityScopes": [
+    "not_an_identity_control"
+  ],
+  "verificationStatus": "research_candidate",
+  "openQuestions": [
+    "Which repositories and remediation actions are included in the proposed license?",
+    "Pricing and measured effectiveness remain Unknown; validate against buyer requirements.",
+    "Confirm which Confidence Platform components and licenses implement the required controls.",
+    "Which edition, deployment, connectors, costs and remediation approval controls fit the buyer's environment?"
+  ]
+}),
+  vendor({
+  "id": "arexdata",
+  "slug": "arexdata",
+  "name": "Arexdata",
+  "formerNames": [],
+  "website": "https://www.arexdata.com/",
+  "positioning": "Arexdata markets DSPM combining data discovery, classification, audit trails and data access governance.",
+  "primaryCategoryIds": [
+    "dspm"
+  ],
+  "adjacentCategoryIds": [
+    "data-access-governance"
+  ],
+  "identityScopes": [
+    "not_an_identity_control"
+  ],
+  "verificationStatus": "research_candidate",
+  "openQuestions": [
+    "Which cloud, on-premises and endpoint connectors support enforcement rather than visibility only?",
+    "Pricing and measured effectiveness remain Unknown; validate against buyer requirements.",
+    "Validate connectors, deployment and enforcement scope; the fetched English URL serves Spanish content.",
+    "Which edition, deployment, connectors, costs and remediation approval controls fit the buyer's environment?"
+  ]
+}),
+  vendor({
+  "id": "trustlogix",
+  "slug": "trustlogix",
+  "name": "TrustLogix",
+  "formerNames": [],
+  "website": "https://www.trustlogix.ai/",
+  "positioning": "TrustLogix markets TrustDSPM for data-access visibility, excessive-permission analysis and remediation recommendations.",
+  "primaryCategoryIds": [
+    "dspm"
+  ],
+  "adjacentCategoryIds": [
+    "data-access-governance"
+  ],
+  "identityScopes": [
+    "not_an_identity_control"
+  ],
+  "verificationStatus": "research_candidate",
+  "openQuestions": [
+    "Which classification inputs and access controls are native to TrustDSPM versus separate modules?",
+    "Pricing and measured effectiveness remain Unknown; validate against buyer requirements."
+  ]
+}),
+  vendor({
+  "id": "lightbeam",
+  "slug": "lightbeam",
+  "name": "Lightbeam",
+  "formerNames": [],
+  "website": "https://www.lightbeam.ai/",
+  "positioning": "Lightbeam markets DSPM using its Data Identity Graph for sensitive-data discovery, contextual risk assessment and remediation.",
+  "primaryCategoryIds": [
+    "dspm"
+  ],
+  "adjacentCategoryIds": [
+    "data-access-governance"
+  ],
+  "identityScopes": [
+    "not_an_identity_control"
+  ],
+  "verificationStatus": "research_candidate",
+  "openQuestions": [
+    "Which deployment models, connectors and automated remediation actions are available in the selected edition?",
+    "Pricing and measured effectiveness remain Unknown; validate against buyer requirements."
+  ]
+}),
 ];
 
 export const ecosystemProducts: Product[] = [
