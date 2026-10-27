@@ -26,7 +26,9 @@ Plain-language model: Google Cloud supplies the underlying computing infrastruct
 
 Commercial hypothesis: this could reduce engineering effort for security-service providers and internal security teams. Validate implementation effort, operating costs, maintenance, reliability and tenant rollout time with a scoped proof of value. No quantified ROI or universal replacement claim follows from these sources.
 
-Unknown: complete internal stack; proprietary versus third-party composition of every subsystem; contracted availability/region/retention; customer-specific deployment design. Google Cloud hosting alone does not establish a Chronicle dependency, Google ownership, or a formal commercial partnership.
+The same FAQ, rechecked 2026-10-26, says LimaCharlie is cloud-hosted on Google Cloud and is not available on premises. It lists current computing locations as the USA, Canada, Europe, India, and the United Kingdom, and says an organization's selected data-residency region cannot be changed later. That list is vendor-documented availability, not a contracted uptime or retention commitment.
+
+Unknown: complete internal stack; proprietary versus third-party composition of every subsystem; contracted availability and retention; customer-specific deployment design. Google Cloud hosting alone does not establish a Chronicle dependency, Google ownership, or a formal commercial partnership.
 
 ## Downstream impact disposition
 
