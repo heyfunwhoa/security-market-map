@@ -562,7 +562,7 @@ export const estateAreas: { name: string; problem: string; href: string; example
   },
   {
     name: "Exposure",
-    problem: "Which weaknesses should we fix first?",
+    problem: "Which weaknesses should we fix first? The patch scanner and a continuous exposure program are different fields.",
     href: "/categories/it-vulnerability-management",
     examples: [
       vendor("Tenable", "tenable"),
@@ -571,6 +571,12 @@ export const estateAreas: { name: string; problem: string; href: string; example
       vendor("Censys", "censys"),
       vendor("Pentera", "pentera"),
     ],
+  },
+  {
+    name: "Continuous exposure",
+    problem: "Which exposures matter beyond the patch list? The 26 Aug 2025 Gartner abstract names no vendor, so this hub has no products.",
+    href: "/categories/ctem",
+    examples: [],
   },
   {
     name: "Data",
