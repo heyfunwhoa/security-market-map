@@ -15,7 +15,7 @@ Security categories are difficult to navigate. A product may be described as ide
 - **Cloud security:** CSPM, CNAPP, cloud vulnerability assessment, containers, infrastructure as code, and cloud detection
 - **Data security:** DSPM, data access governance, database controls, DLP, encryption, and privacy
 - **Network and access:** firewalls, ZTNA, SSE, and SASE
-- **Security operations:** SIEM, XDR, MDR, and threat intelligence
+- **Security operations:** SIEM, security data pipelines, detection engineering, XDR, MDR, and threat intelligence
 - **Exposure management:** vulnerabilities, attack surface, and prioritization
 - **AI security:** agent identity, authorization, data access, and application controls
 

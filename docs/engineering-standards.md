@@ -28,3 +28,7 @@ The repository includes public research ingestion designs, evidence publication 
 **Important:** This is reference adoption, not certification or proof that controls are enforced. Record exceptions with owner, residual risk, mitigation and review date before marking any requirement as satisfied.
 
 [Adoption procedure](https://github.com/heyfunwhoa/technical-docs-platform/blob/main/engineering/adoption.md) · [Repository matrix](https://github.com/heyfunwhoa/technical-docs-platform/blob/main/engineering/adoption-matrix.md)
+
+## Dated implementation review
+
+See [security release readiness](security/release-readiness.md) for the 2026-10-13 review of implemented scans, local checks and remaining enforcement/production gaps. The initial adoption matrix above is historical and does not supersede that evidence.
