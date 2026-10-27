@@ -5,7 +5,7 @@ Status: proposed static link pilot, 2026-10-13. Merge and deployment require the
 ## Ownership
 - Academy owns public explanations, exercises and learner progress.
 - Market Map owns sourced vendor/product claims and category relationships.
-- [Technical Docs framework register](https://github.com/heyfunwhoa/technical-docs-platform/tree/9ef20979b0ae439e754d24be89a89985185c48d9/frameworks) is maintained in a private repository and owns shared framework IDs and review metadata; this maintainer reference is not a public destination.
+- [Technical Docs research evidence ADR](https://github.com/heyfunwhoa/technical-docs-platform/blob/main/architecture/ADR-001-research-evidence-boundary.md) governs public research evidence handoff and versioned contracts, **not** an asserted framework-ID registry. The previously cited private `frameworks/` folder was not found on current main (checked 2026-10-17); do not treat its historical commit link as a maintained canonical location. Cybersecurity framework source references for incident research are curated in the [Security Intelligence source registry](security-intelligence/source-registry.md), with proposed mappings in [incident classification](security-intelligence/incident-classification-framework.md). No organization-wide canonical framework-ID registry is verified.
 - Private Joy Index owns personal notes and adaptations. Public builds never read it.
 
 The preview metadata in `lib/academy-links.ts` points to existing Academy routes observed in source. Live deployment availability was not verified. It does not copy lesson content, sync progress, or imply vendor endorsement.
@@ -27,7 +27,7 @@ IDE, AI assistant, pre-commit hook and CI/CD are workflow locations or tooling, 
 Use the existing summary-card pattern, native anchors, existing border/type/spacing tokens and a responsive list. Cards are server rendered and omit irrelevant categories. No new dependencies, motion, data fetch or shared state.
 
 ## Maintenance and rollback
-Review links when Academy routes change. Change preview metadata through a PR. The framework-register CTA is omitted from the public UI because Technical Docs is private. A commit-pinned link does not grant public access. Add a separately reviewed public-safe projection only after its destination and visibility have been verified; do not expose the private repository or fetch it at runtime.
+Review links when Academy routes change. Change preview metadata through a PR. A private Technical Docs framework-register CTA must remain omitted from the public UI because no maintained `frameworks/` destination was verified and Technical Docs is private. A commit-pinned link does not grant public access. Add a separately reviewed public-safe projection only after its destination and visibility have been verified; do not expose the private repository or fetch it at runtime.
 Remove the AcademyLinks import and render call to roll back category cards; no data migration is needed.
 
 ## Verification and evidence handoff · 2026-10-13

@@ -1,5 +1,9 @@
 import type { Category, Product, UseCase } from "./schema";
 
+/** Category membership never establishes capability support. */
+export const SECRETS_MANAGEMENT_COMPARISON_URL =
+  "/compare?category=secrets-management&use=uc-vault&products=infisical,vault,akeyless";
+
 export const SECRETS_COMPARISON_URL =
   "/compare?category=secrets-detection&use=uc-detect&products=trufflehog,github-secret-scanning,gitguardian,gitleaks";
 
@@ -40,4 +44,11 @@ export function comparisonSelection(
     .filter((id) => candidates.some((product) => product.id === id))
     .slice(0, 4);
   return { categoryId, useCaseId, productIds };
+}
+
+/** Preset navigation must keep the comparison category aligned with its use case. */
+export function comparisonPresetCategory(presetId: string): string {
+  if (presetId === "secrets-three" || presetId === "vault") return "secrets-management";
+  if (presetId === "detect") return "secrets-detection";
+  return "";
 }

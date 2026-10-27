@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { productsInCategory } from "@/lib/comparison-selection";
+import { comparisonPresetCategory, productsInCategory } from "@/lib/comparison-selection";
 import { useMemo, useRef, useState, useTransition } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { StatusPill } from "@/components/chrome";
@@ -53,6 +53,12 @@ const PRESETS: {
     label: "Agent authorization",
     useCaseId: "uc-agent",
     productIds: ["c1-platform", "opal-zero", "entra-agent-id", "idira"],
+  },
+  {
+    id: "secrets-three",
+    label: "Infisical, Vault, Akeyless",
+    useCaseId: "uc-vault",
+    productIds: ["infisical", "vault", "akeyless"],
   },
   {
     id: "vault",
@@ -136,7 +142,7 @@ export function CompareWorkbench({
     commit(
       preset.useCaseId,
       preset.productIds,
-      preset.id === "detect" ? "secrets-detection" : "",
+      comparisonPresetCategory(preset.id),
     );
   }
 
