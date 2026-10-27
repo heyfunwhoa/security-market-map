@@ -64,6 +64,6 @@ Security ratings and endpoint detection were not given a category claim in the s
 
 Short paraphrase only. Full report text, graphics, scores, inclusion rosters, prices, and statistics are not reproduced. Search snippets were not used as citations. Every claim in both retrievals is `needs_review`, `sourceType: analyst`, and `capabilityId: null`. None is `verified`. No direct-competitor edge was added.
 
-UI: the category page reuses the existing muted paragraph. No new component. The label is text, so it does not depend on color alone. It adds no control, so keyboard, focus, and reduced motion are unchanged from the page that already existed. Empty and sourced states both need a browser check.
+UI: the category page reuses the existing muted paragraph. No new component. The label is text, so it does not depend on color alone. It adds no control, so keyboard, focus, and reduced motion are unchanged from the page that already existed. A browser check on 27 Oct 2026 confirmed the sourced label and the retrieved sentence on extended detection and response, runtime-validated application security, MCP, and insider risk, and the no-source label on endpoint security, security ratings, and AI application security. The connections hub click opened the runtime-validated category. Enter on its Static analysis chip opened that category. A 390px width did not overflow. The footer still says as of 13 Oct 2026.
 
 Consumer disposition: this map only. No other store is updated. The site footer still says as of 13 Oct 2026. That label was not moved.
