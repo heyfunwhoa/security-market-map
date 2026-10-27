@@ -68,8 +68,11 @@ export default function ControlMapPage() {
       <section className="mt-10">
         <h2 className="text-2xl tracking-tight">Agent runtime, from rules to a block</h2>
         <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
-          Drawn from SACR&apos;s March 2026 runtime note and the September 2026 ARISE note. Analyst
-          interpretation. Not a verified capability matrix.
+          These rows are this map&apos;s questions. SACR&apos;s 18 Mar 2026 report contrasts a gateway
+          that can enforce policy with direct access that sees behavior and does not itself enforce
+          it. SACR&apos;s 3 Sep 2026 report defines a runtime layer that evaluates a live agent action
+          before it completes. Neither sentence lists these six rows, and neither sentence is a
+          verified capability matrix.
         </p>
         <div className="mt-4 overflow-x-auto rounded-xl border border-border">
           <table className="w-full min-w-[40rem] text-left text-sm">

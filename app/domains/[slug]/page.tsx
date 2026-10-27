@@ -175,7 +175,7 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
       </section>
       {domain.id === "ai" ? (
         <section className="mt-6">
-          <p className="text-sm text-muted-foreground">Reviewed {REVIEWED}. SACR names on this page are frameworks, not Gartner categories.</p>
+          <p className="text-sm text-muted-foreground">Reviewed {REVIEWED}. That label is not a review of the 3 Sep 2026 and 22 Jul 2026 sentences in the charter. Those sentences are not Gartner categories, and they are not capability cells.</p>
           <div className="mt-4 overflow-x-auto rounded-xl border border-border">
             <table className="w-full min-w-[36rem] text-left text-sm">
               <thead className="bg-muted/60">

@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { buildBudget } from "./budget";
 import { catalog, catalogProblems } from "./catalog";
+import { gatewayTradeoff, runtimeLayers } from "./data/brief";
 import {
   capabilityBands,
   companyLenses,
@@ -565,12 +566,94 @@ describe("catalog integrity", () => {
     expect(evidenceCell(catalog.claims, "snyk", "cap-sca", "2026-10-27").status).toBe("unknown");
     expect(evidenceCell(catalog.claims, "tenable", "cap-vm", "2026-10-27").status).toBe("unknown");
     expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(35);
-    for (const subjectId of ["endpoint-security", "security-ratings", "workforce-identity", "dast"]) {
+    for (const subjectId of ["endpoint-security", "security-ratings", "dast"]) {
       expect(
         catalog.claims.some((claim) => claim.subjectType === "category" && claim.subjectId === subjectId),
         subjectId,
       ).toBe(false);
     }
+  });
+
+  it("keeps the next cloud, identity, and risk sentences off cells and rosters", () => {
+    const ids = [
+      "claim-gartner-ciam-20250507",
+      "claim-gartner-cnapp-cores-20260422",
+      "claim-gartner-cwpp-named-20260422",
+      "claim-gartner-containers-20260423",
+      "claim-gartner-iac-pac-20260810",
+      "claim-gartner-microseg-20260618",
+      "claim-gartner-tpcrm-20241108",
+      "claim-gartner-partner-iam-20260302",
+    ];
+    expect(catalog.claims.filter((claim) => claim.sourceId === "src-gartner-cnapp-cores-20260422")).toHaveLength(2);
+    for (const id of ["claim-gartner-cwpp-named-20260422", "claim-gartner-containers-20260423", "claim-gartner-iac-pac-20260810", "claim-gartner-partner-iam-20260302"]) {
+      expect(catalog.claims.find((claim) => claim.id === id)?.confidence).toBe("low");
+    }
+    for (const id of ids) {
+      const claim = catalog.claims.find((item) => item.id === id);
+      expect(claim, id).toBeDefined();
+      expect(claim?.subjectType).toBe("category");
+      expect(claim?.capabilityId).toBeNull();
+      expect(claim?.verificationStatus).toBe("needs_review");
+      expect(claim?.sourceType).toBe("analyst");
+      expect(claim?.lastCheckedAt).toBe("2026-10-27");
+      const source = catalog.sources.find((item) => item.id === claim?.sourceId);
+      expect(source?.url).toBe(claim?.sourceUrl);
+      expect(source?.retrievedAt).toBe("2026-10-27");
+      expect((source?.excerpt.length ?? 999)).toBeLessThanOrEqual(420);
+    }
+    const bounded = ids
+      .map((id) => {
+        const claim = catalog.claims.find((item) => item.id === id);
+        return `${claim?.statement ?? ""} ${claim?.notes ?? ""}`;
+      })
+      .join(" ")
+      .toLowerCase();
+    for (const banned of ["magic quadrant", "snyk", "checkmarx", "semgrep", "wiz", "orca", "illumio"]) {
+      expect(bounded, banned).not.toContain(banned);
+    }
+    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(35);
+  });
+
+  it("keeps the workforce, simulation, and posture sentences off cells, scores, and prices", () => {
+    const ids = [
+      "claim-gartner-workforce-am-20250424",
+      "claim-gartner-workforce-idv-20260225",
+      "claim-gartner-bas-20240130",
+      "claim-gartner-threat-model-20240530",
+      "claim-gartner-adr-20260803",
+      "claim-gartner-tokenization-20240813",
+      "claim-forrester-sspm-20220819",
+    ];
+    expect(catalog.claims.find((claim) => claim.id === "claim-gartner-workforce-am-20250424")?.confidence).toBe("low");
+    expect(catalog.claims.filter((claim) => claim.subjectType === "category" && claim.subjectId === "workforce-identity")).toHaveLength(2);
+    for (const id of ids) {
+      const claim = catalog.claims.find((item) => item.id === id);
+      expect(claim, id).toBeDefined();
+      expect(claim?.subjectType).toBe("category");
+      expect(claim?.capabilityId).toBeNull();
+      expect(claim?.verificationStatus).toBe("needs_review");
+      expect(claim?.sourceType).toBe("analyst");
+      expect(claim?.lastCheckedAt).toBe("2026-10-27");
+      const source = catalog.sources.find((item) => item.id === claim?.sourceId);
+      expect(source?.url).toBe(claim?.sourceUrl);
+      expect(source?.publisher === "Gartner" || source?.publisher === "Forrester").toBe(true);
+      expect(source?.retrievedAt).toBe("2026-10-27");
+      expect((source?.excerpt.length ?? 999)).toBeLessThanOrEqual(420);
+    }
+    const bounded = ids
+      .map((id) => {
+        const claim = catalog.claims.find((item) => item.id === id);
+        return `${claim?.statement ?? ""} ${claim?.notes ?? ""}`;
+      })
+      .join(" ")
+      .toLowerCase();
+    for (const banned of ["magic quadrant", "15.4", "wave", "roi", "peer insights"]) {
+      expect(bounded, banned).not.toContain(banned);
+    }
+    expect(catalog.claims.filter((claim) => claim.subjectType === "category" && claim.subjectId === "dast")).toHaveLength(0);
+    expect(catalog.claims.filter((claim) => claim.subjectType === "category" && claim.subjectId === "security-ratings")).toHaveLength(0);
+    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(35);
   });
 });
 
@@ -843,5 +926,34 @@ describe("Cyera Identity and the NHI shortlist", () => {
     const board = groups.find((group) => group.name === "NHI discovery, posture, and governance");
     expect(board?.body).not.toContain("Entro, Token Security, and Clutch do not");
     expect(board?.body).toContain("AppOmni");
+  });
+
+  it("does not attribute a lede or a shortlist to an analyst page that was not retrieved", () => {
+    for (const id of [
+      "xdr",
+      "ndr",
+      "threat-intelligence",
+      "waf-waap",
+      "microsegmentation",
+      "security-asset-management",
+      "ot-security",
+      "security-ratings",
+      "cyber-recovery",
+    ]) {
+      expect(catalog.categories.find((category) => category.id === id)?.definition, id).not.toContain("Analysts");
+    }
+    const machine = namedShortlists.find((row) => row.market === "Machine identity");
+    expect(machine?.frame).not.toMatch(/Gartner|Forrester|IDC/);
+    const agents = namedShortlists.find((row) => row.market === "Agents");
+    expect(agents?.frame).not.toMatch(/Gartner|Forrester|IDC/);
+    expect(agents?.frame).toContain("agentic-runtime");
+    const secrets = namedShortlists.find((row) => row.market === "Secrets");
+    expect(secrets?.frame).toContain("12 Aug 2024");
+    expect(gatewayTradeoff.gateway).toContain("18 Mar 2026");
+    expect(gatewayTradeoff.gateway.toLowerCase()).not.toContain("never hit");
+    expect(gatewayTradeoff.both.toLowerCase()).not.toContain("structural limit");
+    expect(runtimeLayers.find((layer) => layer.layer === "Intent-aware decision")?.depth).not.toContain("separate layer");
+    expect(runtimeLayers.find((layer) => layer.layer === "Pre-action enforcement")?.depth).not.toContain("production-relevant");
+    expect(runtimeLayers.find((layer) => layer.layer === "Pre-action enforcement")?.depth).toContain("3 Sep 2026");
   });
 });

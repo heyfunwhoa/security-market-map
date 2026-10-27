@@ -127,7 +127,7 @@ export const domainSeeds: DomainSeed[] = [
     slug: "ai",
     name: "AI security",
     charter:
-      "Controls for models, AI applications, agents, their tools, and the data those workflows touch. SACR frameworks such as ARISE and Endpoint Control and Prevention are labeled as SACR frameworks. They are not Gartner categories. A vendor can sit in several of these categories. Capability cells stay Unknown until a primary page is cited.",
+      "Controls for models, AI applications, agents, their tools, and the data those workflows touch. SACR's 3 Sep 2026 report defines a runtime check on a live agent action. SACR's 22 Jul 2026 report defines endpoint visibility beyond the file and the process. Neither sentence is a Gartner category. A vendor can sit in several of these categories. Capability cells stay Unknown until a primary page is cited.",
     typicalOwner: "AI security, product security, or identity, depending on whether the question is the model, the agent, or the data",
     budget: "Often a new line beside AppSec, identity, endpoint, and data security. Those budgets still own their own controls.",
     depth: "mapped",
@@ -994,7 +994,7 @@ export const ecosystemCategories: Category[] = [
     group: "secops",
     domainIds: ["secops", "corporate"],
     definition:
-      "Analysts use XDR for detection that spans endpoint, identity, and sometimes email or network, with response in the same product. It is not a SIEM replacement until the log question is answered, and it is not an identity provider.",
+      "Detection and response sold together across more than the endpoint. This map does not treat that name as a SIEM replacement, and it does not treat it as an identity provider.",
     buyerQuestion: "Which signals are correlated, and who is allowed to contain a host or an account?",
     buyerOwner: "SOC, often with the endpoint owner.",
     budgetSource: "SecOps or the endpoint renewal. Confirm which one is actually funding it.",
@@ -1040,7 +1040,7 @@ export const ecosystemCategories: Category[] = [
     group: "secops",
     domainIds: ["secops", "corporate"],
     definition:
-      "Detection from network traffic and metadata. Analysts treat it as its own market beside endpoint detection. A firewall log in a SIEM is not the same purchase.",
+      "Detection from network traffic and metadata. This map keeps it as its own category beside endpoint detection. A firewall log in a SIEM is not the same purchase.",
     buyerQuestion: "What can we see on the wire that the endpoint agent will miss?",
     buyerOwner: "SOC or network security.",
     budgetSource: "Detection, sometimes the network budget.",
@@ -1063,7 +1063,7 @@ export const ecosystemCategories: Category[] = [
     group: "secops",
     domainIds: ["secops"],
     definition:
-      "Finished reporting and indicator feeds that detection teams use. Analysts sell this as its own market. A feed is not a detection, and a report is not an incident response retainer unless the contract says so.",
+      "Finished reporting and indicator feeds that detection teams use. This map keeps the feed as its own category. A feed is not a detection, and a report is not an incident response retainer unless the contract says so.",
     buyerQuestion: "Which actors and indicators does this team need, and who turns them into detections?",
     buyerOwner: "Threat intelligence or detection engineering.",
     budgetSource: "SecOps. Sometimes bundled with an MDR or a consulting retainer.",
@@ -1109,7 +1109,7 @@ export const ecosystemCategories: Category[] = [
     group: "appsec",
     domainIds: ["appsec"],
     definition:
-      "Analysts group WAF, bot control, and API protection at the edge under WAAP. That is inline blocking. It is not SAST, and it is not an API inventory product unless that module is actually licensed.",
+      "Inline controls in front of a web application and its APIs, including blocking and bot checks. This map keeps that edge separate from static analysis, and separate from an API inventory unless that module is licensed.",
     buyerQuestion: "What sits in front of the application, and what does it block?",
     buyerOwner: "AppSec or the team that runs the edge.",
     budgetSource: "Application edge. Often a different renewal from the scanner.",
@@ -1132,7 +1132,7 @@ export const ecosystemCategories: Category[] = [
     group: "corporate",
     domainIds: ["corporate", "cloud"],
     definition:
-      "Workload-to-workload policy, usually sold apart from the perimeter firewall. Analysts treat it as its own market. It does not decide which human may sign in.",
+      "Workload-to-workload policy, usually sold apart from the perimeter firewall. This map keeps it as its own category. It does not decide which human may sign in.",
     buyerQuestion: "Which workloads may talk, and how is that policy enforced after the firewall?",
     buyerOwner: "Network security or cloud security.",
     budgetSource: "Network or cloud. Not the identity budget.",
@@ -1203,7 +1203,7 @@ export const ecosystemCategories: Category[] = [
     group: "corporate",
     domainIds: ["corporate"],
     definition:
-      "A consolidated inventory of devices, accounts, and cloud assets from the tools that already see them. Analysts call the category cyber asset attack surface management. It is the list. It is not the scanner and not the EDR.",
+      "A consolidated inventory of devices, accounts, and cloud assets from the tools that already see them. This map uses cyber asset attack surface management for that inventory. It is the list. It is not the scanner and not the EDR.",
     buyerQuestion: "Can we name every asset, and which tool is the source of truth?",
     buyerOwner: "Security operations or IT asset management.",
     budgetSource: "Security operations. Often justified as the layer under exposure management.",
@@ -1226,7 +1226,7 @@ export const ecosystemCategories: Category[] = [
     group: "corporate",
     domainIds: ["corporate"],
     definition:
-      "Visibility and detection for operational technology and unmanaged devices. Analysts keep this apart from corporate EDR because many of these assets cannot run an endpoint agent.",
+      "Visibility and detection for operational technology and unmanaged devices. This map keeps that work apart from corporate endpoint detection, because many of these assets cannot run an endpoint agent.",
     buyerQuestion: "What is on the plant or device network, and what is it talking to?",
     buyerOwner: "OT security, with operations. Not the laptop team by default.",
     budgetSource: "OT security or a plant budget. A corporate EDR renewal does not cover it.",
@@ -1272,7 +1272,7 @@ export const ecosystemCategories: Category[] = [
     group: "grc",
     domainIds: ["grc"],
     definition:
-      "Outside-in scores of a company's exposed posture, used in third-party risk and insurance conversations. Analysts treat ratings as their own market. A score is not an assessment the supplier filled out, and it is not a penetration test.",
+      "Outside-in scores of a company's exposed posture, used in third-party risk and insurance conversations. This map keeps a score separate from an assessment the supplier filled out, and separate from a penetration test.",
     buyerQuestion: "Whose outside-in score are we using, and what decision does it actually change?",
     buyerOwner: "Third-party risk.",
     budgetSource: "Third-party risk or cyber insurance.",
@@ -1366,7 +1366,7 @@ export const ecosystemCategories: Category[] = [
     group: "corporate",
     domainIds: ["corporate"],
     definition:
-      "Backup and recovery built for a ransomware event: immutable copies and a tested restore. Analysts discuss resilience separately from GRC. A backup product does not collect audit evidence, and a GRC platform does not restore a domain.",
+      "Backup and recovery built for a ransomware event: immutable copies and a tested restore. This map keeps that restore separate from a GRC evidence collection. A backup product does not collect audit evidence, and a GRC platform does not restore a domain.",
     buyerQuestion: "What can we restore, from when, and has anyone tested that restore?",
     buyerOwner: "Infrastructure, with security on the ransomware requirement.",
     budgetSource: "Infrastructure or resilience. Not the GRC suite.",

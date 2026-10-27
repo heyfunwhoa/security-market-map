@@ -419,7 +419,7 @@ export const namedShortlists: {
 }[] = [
   {
     market: "Machine identity",
-    frame: "Gartner's 2025 machine-IAM notes name the practice. These are the companies on the shortlist. The reports were not retrieved, and this is not their vendor list.",
+    frame: "These names are this map's shortlist. No machine-IAM report was retrieved for this list, so it is not an analyst vendor list.",
     examples: [
       vendor("Oasis Security", "oasis"),
       vendor("Token Security", "token-security"),
@@ -433,7 +433,7 @@ export const namedShortlists: {
   },
   {
     market: "Secrets",
-    frame: "Gartner's August 2024 secrets-management note separates storage from machine identity. Detection and the vault are still different names.",
+    frame: "Gartner's 12 Aug 2024 public abstract says secrets management is a fundamental part of machine identity management and is not the same thing. These names are not that abstract's vendor list.",
     examples: [
       vendor("Truffle Security", "truffle-security"),
       vendor("GitGuardian", "gitguardian"),
@@ -459,7 +459,7 @@ export const namedShortlists: {
   },
   {
     market: "Agents",
-    frame: "Forrester's 2026 agent remarks and Gartner's March 2026 identity-roadmap note describe delegation. These products have agent language or sit next to it. That is not a ranking.",
+    frame: "These products have agent language or sit next to it. A retrieved page is on the agent-identity and agentic-runtime categories. This shortlist is not that page's vendor list, and it is not a ranking.",
     examples: [
       vendor("C1", "c1"),
       vendor("Opal", "opal"),
@@ -949,7 +949,7 @@ export const cloudAppEcosystem: {
     name: "Cloud security",
     diagram: "Cloud security",
     acronyms: "CNAPP, infrastructure as code, containers, cloud detection",
-    note: "CNAPP is a suite label. Infrastructure-as-code review, container controls, and cloud detection are different modules. AWS is already seeded as a secrets product. No AWS cloud-security module is checked. Gem, Lacework, and Dazz are listed with ownership not re-checked. Orca's homepage describes cloud posture and misconfigurations. Identity permissions on that page are not a CIEM cell.",
+    note: "CNAPP is a suite label. A 22 Apr 2026 public abstract names posture, workload protection, Kubernetes posture, and cloud entitlements as capabilities to prioritize. It does not pair each name with a flaw, and it does not list these vendors. Infrastructure-as-code review, container controls, and cloud detection are different modules. AWS is already seeded as a secrets product. No AWS cloud-security module is checked. Gem, Lacework, and Dazz are listed with ownership not re-checked. Orca's homepage describes cloud posture and misconfigurations. Identity permissions on that page are not a CIEM cell.",
     href: "/categories/cnapp",
     domains: ["cloud"],
     categoryIds: ["cnapp", "iac-security", "container-security", "cloud-detection"],

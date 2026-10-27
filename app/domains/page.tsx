@@ -40,18 +40,24 @@ export default function DomainsPage() {
       <PageIntro
         kicker="Domains"
         title="The security market, mapped by what each solution protects"
-        lede="Select a market area to inspect its question, categories, and examples. Related categories can share buyer budgets. Gartner, Forrester, and IDC draw the lines differently, and a Magic Quadrant does not rank a vendor across the whole market."
+        lede="Select a market area to inspect its question, categories, and examples. Related categories can share buyer budgets. A category name on this map is not a ranking of vendors."
       />
       <MarketMapExplorer />
 
       <section className="mt-12" id="questions">
         <h2 className="text-3xl tracking-tight">The question each market area answers</h2>
         <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
-          Vendor names are examples, not analyst rankings. Many companies sell across several rows.
-          Gartner, for example, defines privileged access to include secrets management and cloud
-          entitlement management, and defines a cloud-native application protection platform as a
-          bundle of development and runtime controls. SSE, in that usage, is about securing access to
-          the web, cloud services, and private applications.
+          Vendor names in the table are examples this map chose. They are not a ranking. A{" "}
+          <Link href="/categories/cnapp" className="text-primary hover:underline">
+            5 Aug 2025 public abstract
+          </Link>{" "}
+          describes cloud-native application protection as life-cycle protection from development to
+          production. It does not list the modules in a named product. A{" "}
+          <Link href="/categories/network-edge" className="text-primary hover:underline">
+            28 Aug 2025 public abstract
+          </Link>{" "}
+          is a procurement guide for security service edge. It does not define web gateways or
+          private-application access.
         </p>
         <div className="mt-4 overflow-x-auto rounded-xl border border-border">
           <table className="w-full min-w-[52rem] text-left text-sm">
@@ -89,9 +95,13 @@ export default function DomainsPage() {
         <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
           Secrets security crosses markets with different buyers. A scanner, a vault, an identity
           governance platform, and a cloud platform may all say “secrets.” They enter the problem at
-          different points. A buyer may need more than one. Gartner includes secrets management inside
-          privileged access. Machine identity work also pulls in cloud, security, and the team that
-          runs the platform.
+          different points. A buyer may need more than one. A{" "}
+          <Link href="/categories/secrets-management" className="text-primary hover:underline">
+            12 Aug 2024 public abstract
+          </Link>{" "}
+          says secrets management is part of machine identity management and is not the same thing. It
+          does not place secrets management inside privileged access. The rows below are this map&apos;s
+          split.
         </p>
         <ul className="mt-4 grid gap-3 md:grid-cols-2">
           {SECRETS.map((row) => (
@@ -112,31 +122,42 @@ export default function DomainsPage() {
       </section>
 
       <section className="mt-12">
-        <h2 className="text-3xl tracking-tight">What the analysts are describing</h2>
+        <h2 className="text-3xl tracking-tight">Sentences already attached to a page</h2>
+        <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
+          Each card names a page that was retrieved. The category page has the full sentence and what
+          that page did not say. A spending forecast that was not retrieved is not on this page.
+        </p>
         <ul className="mt-4 grid gap-3 text-sm leading-6 md:grid-cols-2">
           <li className="rounded-xl border border-border bg-card p-4">
-            <span className="font-semibold">Spending stays broad, and software is the fastest piece.</span>{" "}
-            Gartner’s July 2025 forecast put worldwide information security spending at $213 billion in
-            2025 and about $240 billion in 2026, with the 2026 split near $121 billion in security
-            software, $93 billion in services, and $26 billion in network security. Those are forecast
-            segments, not the market areas on this map.
+            <span className="font-semibold">Extended detection and response.</span>{" "}
+            <Link href="/categories/xdr" className="text-primary hover:underline">
+              Gartner&apos;s 23 Oct 2024 public abstract
+            </Link>{" "}
+            says those products offer unified threat prevention, detection, and response. It does not
+            say the product replaces a SIEM, and it does not name vendors.
           </li>
           <li className="rounded-xl border border-border bg-card p-4">
-            <span className="font-semibold">Cloud, identity, and applications are converging.</span> IDC
-            has pointed to cloud-native platforms and identity among the drivers of security software
-            growth. Forrester has described pressure to secure applications and APIs as AI becomes part
-            of production software.
+            <span className="font-semibold">SaaS posture.</span>{" "}
+            <Link href="/categories/sspm" className="text-primary hover:underline">
+              Forrester&apos;s 19 Aug 2022 public summary
+            </Link>{" "}
+            says these solutions allow configuration management and access-anomaly detection and
+            prevention. Customer interviews were not retrieved. This is not an OAuth cell.
           </li>
           <li className="rounded-xl border border-border bg-card p-4">
-            <span className="font-semibold">Agents sharpen the identity question.</span> Gartner’s 2026
-            trends call out agent registration, governance, credential automation, and authorization.
-            Forrester’s agent-security writing connects identity with data, application security,
-            operations, and governance.
+            <span className="font-semibold">A live agent action.</span>{" "}
+            <Link href="/categories/agentic-runtime" className="text-primary hover:underline">
+              SACR&apos;s 3 Sep 2026 report
+            </Link>{" "}
+            says directory, governance, privileged access, and gateway controls remain necessary and
+            were not designed to decide whether a live agent action should continue. It does not score
+            a product.
           </li>
           <li className="rounded-xl border border-border bg-card p-4">
-            <span className="font-semibold">Consolidation changes the competitive set.</span> A specialist
+            <span className="font-semibold">This map&apos;s wording on consolidation.</span> A specialist
             may win a proof of concept and then lose the purchase to a platform the buyer already owns.
-            Evaluate the bundle against the actual requirement. One platform does not close every circle.
+            That sentence is not an analyst finding. Evaluate the bundle against the actual requirement.
+            One platform does not close every circle.
           </li>
         </ul>
       </section>
