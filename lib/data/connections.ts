@@ -446,7 +446,7 @@ export const namedShortlists: {
   },
   {
     market: "Identity governance",
-    frame: "Gartner's October 2025 IGA guide is about the market, not proof that any of these govern machines. SailPoint, Saviynt, and C1 are the names buyers bring.",
+    frame: "Gartner's 2 Oct 2025 public abstract says the identity governance market is dynamic and that the features on offer vary. The market definition was not in that abstract. SailPoint, Saviynt, and C1 are names buyers bring, not that abstract's vendor list.",
     examples: [
       vendor("SailPoint", "sailpoint"),
       vendor("Saviynt", "saviynt"),
@@ -472,7 +472,7 @@ export const namedShortlists: {
   {
     market: "Cloud permissions",
     frame:
-      "CIEM shows up inside CNAPP conversations and as a specialist graph. Wiz, Veza, Orca, and Sonrai are the names. None has a filled permission cell here. Orca's homepage describes misconfigurations inside cloud posture. That sentence is not a permission cell.",
+      "Gartner's 21 Jan 2025 public abstract says managing multicloud entitlements is difficult because machine identities proliferate and cloud providers configure access differently. Wiz, Veza, Orca, and Sonrai are names in this map. They are not that abstract's vendor list, and none has a filled permission cell. Orca's homepage describes misconfigurations inside cloud posture. That sentence is not a permission cell.",
     examples: [
       vendor("Wiz", "wiz"),
       vendor("Veza", "veza"),
@@ -510,7 +510,7 @@ export const namedShortlists: {
   },
   {
     market: "Detection, exposure, and the edge",
-    frame: "Public abstracts retrieved on 27 Oct 2026 describe XDR, NDR, threat intelligence, web and API protection, cyber-physical systems, and insider-risk selection. MDR is a SACR sentence about an operating model. Security ratings still have no retrieved page. These names are not a placement.",
+    frame: "Public abstracts retrieved on 27 Oct 2026 describe XDR, NDR, threat intelligence, web and API protection, cyber-physical systems, insider-risk selection, external attack surface, and identity threat detection. MDR is a SACR sentence about an operating model. Security ratings and endpoint detection still have no retrieved page. These names are not a placement.",
     examples: [
       vendor("CrowdStrike", "crowdstrike"),
       vendor("Arctic Wolf", "arctic-wolf"),

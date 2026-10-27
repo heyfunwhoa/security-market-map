@@ -54,16 +54,36 @@ These pages were fetched after the first batch. The same bounds apply: definitio
 | Agentic runtime | `agentic-runtime` | [SACR, 3 Sep 2026, updated 11 Sep 2026](https://softwareanalyst.io/reports/arise-agentic-runtime-identity-security-enforcement-for-agents) | Existing identity controls do not decide a live agent action. The category lede no longer quotes the report. |
 | MCP runtime | `mcp-security` | [SACR, 18 Mar 2026, updated 29 Jul 2026](https://softwareanalyst.io/reports/the-runtime-enforcement-challenge-and-the-emerging-vendor-landscape) | Gateway enforcement versus direct-access visibility. Statistics on the page are not adopted. The category lede no longer quotes the report. |
 
-The 2018 security-ratings document URL did not return the research page on 27 Oct 2026. It is not a source. Endpoint detection still has no definitional sentence of its own; the endpoint-control claim does not fill an endpoint-detection cell. AI application security, as prompt injection and model abuse, still has no retrieved page.
+The 2018 security-ratings document URL did not return the research page on 27 Oct 2026. It is not a source. Endpoint detection still has no definitional sentence of its own; the endpoint-control claim does not fill an endpoint-detection cell.
+
+## Third retrieval, later on 27 Oct 2026
+
+These pages were fetched after the second batch. The same bounds apply.
+
+| Field | Catalog subject | Page | Bound |
+| --- | --- | --- | --- |
+| External attack surface | `external-attack-surface` | [Gartner peer abstract, 31 Dec 2025](https://www.gartner.com/en/documents/7310331) and [Gartner innovation insight, 9 Apr 2024](https://www.gartner.com/en/documents/5341663) | Identify internet-facing assets and exposures. The older abstract says the tools have focused on external hygiene and are expanding toward brand, reputation, SaaS, and third parties. Ratings and the cut-off provider list are not adopted. Digital risk protection stays separate. |
+| Identity threat detection | `itdr` | [Gartner abstract, 24 Oct 2025](https://www.gartner.com/en/documents/7099530) and [SACR, 1 May 2024, updated 29 Jul 2026](https://softwareanalyst.io/reports/an-in-depth-overview-the-future-of-cloud-native-identity-security) | A discipline for the identity infrastructure, and a procedure for identity-based threats. The extension to every target system is a recommendation. Deal figures are not adopted. |
+| Cloud entitlement management | `ciem` | [Gartner abstract, 21 Jan 2025](https://www.gartner.com/en/documents/6094027) | The multicloud entitlement problem. Low confidence. The description section was not public. Not an effective-access cell. |
+| Enterprise browser | `enterprise-browser` | [SACR, 7 Dec 2023, updated 29 Jul 2026](https://softwareanalyst.io/reports/the-evolution-of-enterprise-browsers) | Business-tool integration, virtualized SaaS, and a comparison with virtual desktop, remote isolation, and a secure web gateway. Prices, forecasts, and vendor profiles are not adopted. |
+| Composition analysis and supply chain | `sca` and `software-supply-chain` | [SACR, 22 Apr 2024, updated 29 Jul 2026](https://softwareanalyst.io/reports/defining-a-software-supply-chain-security-platform-exploring-new-techniques-part-2) | Scan open-source and third-party dependencies for licenses and known vulnerabilities. One source, two subjects. The supply-chain sentence stops at that pillar. |
+| Cloud posture | `cspm` | [SACR, 12 Sep 2024, updated 29 Jul 2026](https://softwareanalyst.io/reports/redefining-cnapp-a-complete-guide-to-the-future-of-cloud-security) | SACR's account of a Gartner explanation: misconfiguration, policy gaps, and compliance risk. The Gartner document was not retrieved. |
+| AI application security | `ai-application-security` | [SACR, 10 Mar 2025, updated 29 Jul 2026](https://softwareanalyst.io/reports/securing-ai-llms-in-2025-a-practical-guide-to-securing-deploying-ai-2) | Direct and indirect prompt injection and jailbreaks at runtime. |
+| AI governance | `ai-governance` | Same 10 Mar 2025 page | A recommendation to catalog AI by location, purpose, and owner. Not an inventory cell. |
+| Agent identity | `agent-identity` | [SACR, 10 Feb 2026, updated 17 Aug 2026](https://softwareanalyst.io/reports/emerging-agentic-identity-access-platforms-aiap) | Human-login controls struggle with agents. A broker standardizes the request and keeps access scoped. The identity-provider comparison is the report's metaphor. |
+
+Ledes for external attack surface, insider risk, the enterprise browser, and AI application security no longer say "analysts" did something the retrieved page did not say.
+
+Pages fetched and not typed in this pass: the 2 Oct 2025 IGA abstract, because it says the market is dynamic and does not give the market definition already recorded from the December 2025 SACR page; endpoint-protection abstracts whose public text was a buyer-priority sentence plus an inclusion list; the June 2026 agentic-cloud page, which proposes a new control layer rather than a sentence this map can separate from cloud detection; and supply-chain, browser, and AI pages where the only extra lines were prices, forecasts, or survey statistics.
 
 ## Still without a category claim
 
-Security ratings and endpoint detection were not given a category claim in the second retrieval. AI application security, as distinct from runtime-validated checks, was not given one either. Vendor-homepage sentences for some of these fields remain on a separate open pull request and were not folded in.
+Security ratings and endpoint detection still have no category claim. Workforce identity, customer identity, dynamic testing, and the other categories that were not in these three retrievals still have none. Vendor-homepage sentences for some of those fields remain on a separate open pull request and were not folded in.
 
 ## Rights
 
-Short paraphrase only. Full report text, graphics, scores, inclusion rosters, prices, and statistics are not reproduced. Search snippets were not used as citations. Every claim in both retrievals is `needs_review`, `sourceType: analyst`, and `capabilityId: null`. None is `verified`. No direct-competitor edge was added.
+Short paraphrase only. Full report text, graphics, scores, inclusion rosters, prices, and statistics are not reproduced. Search snippets were not used as citations. Every claim in these retrievals is `needs_review`, `sourceType: analyst`, and `capabilityId: null`. None is `verified`. No direct-competitor edge was added.
 
-UI: the category page reuses the existing muted paragraph. No new component. The label is text, so it does not depend on color alone. It adds no control, so keyboard, focus, and reduced motion are unchanged from the page that already existed. A browser check on 27 Oct 2026 confirmed the sourced label and the retrieved sentence on extended detection and response, runtime-validated application security, MCP, and insider risk, and the no-source label on endpoint security, security ratings, and AI application security. The connections hub click opened the runtime-validated category. Enter on its Static analysis chip opened that category. A 390px width did not overflow. The footer still says as of 13 Oct 2026.
+UI: the category page reuses the existing muted paragraph. No new component. The label is text, so it does not depend on color alone. It adds no control, so keyboard, focus, and reduced motion are unchanged from the page that already existed. A browser check on 27 Oct 2026 confirmed the second retrieval, and a later check the same day confirmed the third. External attack surface, identity threat detection, and AI application security show the sourced sentence. Endpoint security and workforce identity still say no source is attached. Enter on the Digital risk protection chip opened that category. A 390px width did not overflow on external attack surface. The footer still says as of 13 Oct 2026.
 
 Consumer disposition: this map only. No other store is updated. The site footer still says as of 13 Oct 2026. That label was not moved.

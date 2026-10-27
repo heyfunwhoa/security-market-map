@@ -1155,7 +1155,7 @@ export const ecosystemCategories: Category[] = [
     group: "corporate",
     domainIds: ["corporate", "offensive"],
     definition:
-      "Discovery of internet-facing assets the organization did not know it owned. Analysts separate this from vulnerability scanning. Finding an unknown host is not the same as prioritizing a missing patch on a known server.",
+      "Discovery of internet-facing assets and the exposures on them. This map keeps that search separate from a missing-patch scan on a known server, and separate from a search for abuse of a brand the organization already knows.",
     buyerQuestion: "What is exposed that our asset list does not mention?",
     buyerOwner: "Exposure management or the vulnerability team.",
     budgetSource: "Exposure or VM. Confirm it is not being bought as a patch scanner.",
@@ -1249,7 +1249,7 @@ export const ecosystemCategories: Category[] = [
     group: "data",
     domainIds: ["data", "secops"],
     definition:
-      "Behavior that suggests data theft or misuse by someone who already has access. Analysts separate insider risk from DLP and from identity threat detection. A DLP block is a control. An insider case is an investigation.",
+      "Behavior that suggests data theft or misuse by someone who already has access. This map keeps that investigation separate from a data-loss block and from identity threat detection.",
     buyerQuestion: "Which departing or misusing user is moving data, and who is allowed to look?",
     buyerOwner: "Insider risk, often with legal and the SOC.",
     budgetSource: "Data security or SecOps.",
@@ -1295,7 +1295,7 @@ export const ecosystemCategories: Category[] = [
     group: "corporate",
     domainIds: ["corporate"],
     definition:
-      "A managed browser as the work surface, sold as an alternative or complement to virtual desktop and some secure-web-gateway controls. Analysts describe it as its own emerging market. It still depends on workforce identity.",
+      "A managed browser as the work surface, used alongside virtual desktop and secure web gateway controls. This map keeps the browser as its own category. It still depends on workforce identity.",
     buyerQuestion: "Is the control the browser, the network path, or the identity that opens the app?",
     buyerOwner: "IT security or the digital workplace team.",
     budgetSource: "Endpoint or secure access. Not the IdP renewal.",
@@ -1318,7 +1318,7 @@ export const ecosystemCategories: Category[] = [
     group: "appsec",
     domainIds: ["appsec", "product", "ai"],
     definition:
-      "Controls aimed at models and AI features: prompt injection, model abuse, and AI supply chain. Analysts are naming this market separately from agent identity. Securing the model is not the same problem as deciding which tools an agent may call.",
+      "Controls aimed at models and AI features, including prompt injection and model abuse. Securing the model remains a different job from deciding which tools an agent may call.",
     buyerQuestion: "Is the issue the model, the application around it, or the identity the agent uses?",
     buyerOwner: "Product security or AppSec.",
     budgetSource: "AppSec or a new AI-security line. Do not take it from the IGA budget by default.",
