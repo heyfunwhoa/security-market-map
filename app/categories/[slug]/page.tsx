@@ -30,10 +30,15 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
   const useCases = catalog.useCases.filter((useCase) => useCase.categoryIds.includes(category.id));
   const primaryVendors = [...new Set(products.map((product) => product.vendorId))]
     .flatMap((id) => { const vendor = vendorById(id); return vendor ? [vendor] : []; });
+  const categoryClaims = claimsForSubject("category", category.id);
+  const sourcingLabel = categoryClaims.length > 0
+    ? "The description, buyer question, owner, budget, triggers, outcomes, workflow, and illustrative flow are the map's wording. The sourced sentences are the claims below."
+    : "The description, buyer question, owner, budget, triggers, outcomes, workflow, and illustrative flow are the map's wording. No source is attached to them yet.";
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
       <PageIntro kicker={category.layer === "adjacent" ? "Adjacent" : "Category"} title={category.name} lede={category.definition} />
+      <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">{sourcingLabel}</p>
       <p className="mt-4 max-w-3xl text-sm leading-6">
         <span className="font-semibold">Buyer question. </span>
         {category.buyerQuestion}
@@ -159,7 +164,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
       <section className="mt-8">
         <h2 className="text-2xl">Claims about this category</h2>
         <div className="mt-3">
-          <ClaimList claims={claimsForSubject("category", category.id)} />
+          <ClaimList claims={categoryClaims} />
         </div>
       </section>
     </main>
