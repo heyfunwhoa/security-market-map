@@ -46,7 +46,7 @@ The Cyera–Oasis case study separates the companies' strategic rationale and th
 
 **Reusable method:** [Competitive Intelligence Playbook](docs/market-research/competitive-intelligence-playbook.md) covers buyer-led comparison, source quality, case studies, interview preparation, win/loss privacy and downstream GTM reuse.
 
-**Security org personas:** [Core five plus adjacent seats](docs/market-research/security-org-personas.md) with acronyms/aliases (AppSec/ProdSec/PlatformSec/DevOps/ITSec, then CISO, IdSec, CloudSec, DataSec, privacy/DPO, SOC/DetEng, OffSec, GRC, AISec, champions, and more). Overloaded labels like DevSecOps are disambiguated in the note. Research candidate; landscape buyer filters sample aliases from typed personas in `lib/data`.
+**Security org personas:** [Sourced persona atlas](docs/market-research/security-org-personas.md) covering AppSec/ProdSec/PlatformSec/DevOps/ITSec, identity/cloud/data/AI/GRC, SecOps depth (analyst/IR/hunt/CTI/DFIR), SaaS/OT/exposure/recovery/supply-chain, MSSP ops, developers/CTO—with acronyms/aliases and NICE/practitioner source anchors. Overloaded labels like DevSecOps are disambiguated. Research candidate; landscape buyer filters sample aliases from typed personas in `lib/data`.
 
 - Link material claims to a public source.
 - Record when a source was published and when it was reviewed.

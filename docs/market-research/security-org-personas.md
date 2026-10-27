@@ -48,6 +48,22 @@ Canonical catalog `name` is the display label. `aliases` hold acronyms and alter
 | `ai-owner` | AI platform | MLOps, LLM / agent platform, AI gateway owner |
 | `engineering-manager` | EM | Eng manager, team lead, head of engineering (influencer) |
 | `security-champion` | Champion | AppSec champion, embedded security partner, guild security lead |
+| `soc-analyst` | Tier 1 | Triage specialist, security analyst, blue team analyst |
+| `incident-response` | IR, CSIRT | Tier 2, incident responder, DFIR (response seat) |
+| `threat-hunter` | Hunt | Tier 3, proactive threat hunter |
+| `threat-intel` | CTI | Threat analysis, threat intel analyst/lead |
+| `digital-forensics` | DFIR (forensics) | Forensic analyst, computer forensics |
+| `insider-risk` | IRM | Insider threat, people risk |
+| `network-security` | NetSec | NDR / NGFW / microsegmentation / SSE network seat |
+| `saas-security` | SaaSSec, SSPM | SaaS posture, CASB buyer (access seat—qualify) |
+| `ot-security` | OT, ICS | Industrial / SCADA cybersecurity |
+| `exposure-management` | EASM, CTEM, ASM | Attack surface / exposure owner |
+| `cyber-recovery` | Cyber resilience | Backup/restore, ransomware recovery |
+| `supply-chain-security` | C-SCRM (software) | SBOM / dependency / artifact integrity |
+| `security-awareness` | SATE | People security, human risk, phishing sims |
+| `mssp-ops` | MSSP, MDR provider | Managed SOC / service delivery SecOps |
+| `developer` | SWE | Software engineer, application developer |
+| `cto` | CTO | VP Engineering, Head of Engineering |
 
 ### Overloaded labels (do **not** treat as one exclusive persona)
 
@@ -63,6 +79,9 @@ These titles are common and ambiguous. Qualify which seat is meant before mappin
 | Platform team | DevOps/platform eng **or** PlatformSec | Operator of the road vs setter of the security bar? |
 | VM | IT vulnerability management **or** virtual machine | Patch queue vs compute instance? |
 | Security architect | Enterprise architect vs cloud vs AppSec architect | Shared pattern owner or single-domain specialist? |
+| DFIR | Incident response **or** digital forensics (or both) | Containment now vs evidence for later? |
+| CASB vs SSPM | Access/data path control vs SaaS app posture | User-to-SaaS traffic/policy vs SaaS misconfig/grants? |
+| Analyst | SOC Tier 1, detection eng, CTI, or GRC | Which queue and which output artifact? |
 
 ## Why these five first
 
@@ -260,6 +279,112 @@ These seats show up in the same buying motions as the core five. They are **not*
 - **Potential buying roles:** influencer / user; rarely economic buyer.
 - **Aliases:** AppSec champion, embedded security partner.
 - **Discovery:** “Are you the fixer, the reviewer, or both—and what already runs in your pipeline?”
+- **Source anchors:** OWASP DevSecOps Guideline security champions as embedded developer contacts.[^OWASP-ROLES]
+
+## Wave 3 — SecOps depth, exposure, SaaS, OT, and adjacent buyers (sourced)
+
+NICE work roles are **not job titles**; a single job may cover multiple roles.[^NICE-ROLES] Use them as evidence that the work exists, then qualify the employer’s title and budget.
+
+| Persona ID | One-line job | Primary source anchors |
+| --- | --- | --- |
+| `soc-analyst` | Tier-1 triage and enrichment | SOC role literature (Tier 1 triage).[^PAN-SOC] |
+| `incident-response` | Investigate, contain, recover | NICE Incident Response.[^NICE-IR][^PAN-SOC] |
+| `threat-hunter` | Proactive hunt / Tier-3 escalation | SOC Tier-3 threat hunter framing.[^PAN-SOC] |
+| `threat-intel` | Collect/analyze/disseminate threat assessments | NICE Threat Analysis.[^NICE-TA] |
+| `digital-forensics` | Evidence analysis from incidents | NICE Digital Forensics.[^NICE-ROLES] |
+| `insider-risk` | Insider threat identification/assessment | NICE Insider Threat Analysis.[^NICE-ROLES] |
+| `network-security` | Edge, NDR, segmentation, related traffic controls | Atlas categories `network-edge`, `ndr`, `microsegmentation`, `waf-waap` |
+| `saas-security` | SaaS posture / grants (SSPM) vs access brokers (CASB) | SSPM vs CASB distinction in practitioner literature.[^SSPM-CASB] |
+| `ot-security` | Industrial / OT cybersecurity engineering | NICE OT Cybersecurity Engineering.[^NICE-ROLES] |
+| `exposure-management` | EASM / CTEM / continuous exposure prioritization | Atlas `external-attack-surface`, `ctem`, asset management |
+| `cyber-recovery` | Backup/restore/resilience after destructive attacks | Atlas `cyber-recovery` |
+| `supply-chain-security` | Software dependencies, provenance, C-SCRM | NICE Cybersecurity Supply Chain Risk Management.[^NICE-ROLES] |
+| `security-awareness` | Awareness / phishing simulation / human risk | Atlas `security-awareness` |
+| `mssp-ops` | Multi-tenant MDR/MSSP delivery economics | LimaCharlie audience/persona research (provider lane).[^LC-AUD] |
+| `developer` | Ships code; consumes shift-left tooling | NICE Secure Software Development; OWASP developer role.[^NICE-ROLES][^OWASP-ROLES] |
+| `cto` | Engineering strategy; co-sponsors platform/security buys | Buying-committee technical/economic sponsor (hypothesis; confirm per deal) |
+
+### SEC-PER-18 — SOC analyst (`soc-analyst`)
+
+- **Source:** Tier-1 triage specialist responsibilities in SOC literature.[^PAN-SOC]
+- **Discovery:** “What does a justified alert look like, and what forces escalation?”
+- **Boundary:** Not the SOC manager (`soc-lead`) and not detection engineering content owner (`detection-engineer`).
+
+### SEC-PER-19 — Incident responder (`incident-response`)
+
+- **Source:** NICE Incident Response—investigate, analyze, respond to network cybersecurity incidents.[^NICE-IR]
+- **Discovery:** “Who declares an incident, and who is allowed to contain?”
+- **Boundary:** Overlaps DFIR branding; separate forensics seat when evidence/legal is the primary job.
+
+### SEC-PER-20 — Threat hunter (`threat-hunter`)
+
+- **Source:** Tier-3 proactive hunting / major escalation seat in SOC literature.[^PAN-SOC]
+- **Discovery:** “Which hunt hypotheses fail because telemetry is missing?”
+
+### SEC-PER-21 — Threat intelligence analyst (`threat-intel`)
+
+- **Source:** NICE Threat Analysis—collect, process, analyze, disseminate threat assessments and indicators.[^NICE-TA]
+- **Discovery:** “Who consumes your intel, and how do indicators become detections or blocks?”
+
+### SEC-PER-22 — Digital forensics (`digital-forensics`)
+
+- **Source:** NICE Digital Forensics.[^NICE-ROLES]
+- **Discovery:** “In-house, retainer, or both—and what must survive for legal?”
+
+### SEC-PER-23 — Insider risk (`insider-risk`)
+
+- **Source:** NICE Insider Threat Analysis.[^NICE-ROLES]
+- **Discovery:** “People-risk program or DLP purchase—and who can see cases?”
+
+### SEC-PER-24 — Network security (`network-security`)
+
+- **Hypothesis buyer** for NDR/edge/microsegmentation/WAF motions in this atlas.
+- **Discovery:** “Edge access, lateral movement, or DNS/web filtering—and who remediates?”
+
+### SEC-PER-25 — SaaS security (`saas-security`)
+
+- **Source:** SSPM focuses on SaaS app posture/misconfig/grants; CASB more often user-to-SaaS access/data paths.[^SSPM-CASB]
+- **Discovery:** “Misconfig posture or access/data path control—and who owns the critical SaaS apps?”
+
+### SEC-PER-26 — OT / ICS security (`ot-security`)
+
+- **Source:** NICE Operational Technology (OT) Cybersecurity Engineering.[^NICE-ROLES]
+- **Discovery:** “Which plants/lines are in scope, and who can approve changes?”
+
+### SEC-PER-27 — Exposure / attack-surface owner (`exposure-management`)
+
+- **Hypothesis** spanning EASM/CTEM/asset inventory categories in this atlas.
+- **Discovery:** “Internet-facing discovery, cloud exposure, or full CTEM—and who remediates?”
+
+### SEC-PER-28 — Cyber recovery (`cyber-recovery`)
+
+- **Hypothesis** for ransomware recovery / immutable backup buyers mapped to `cyber-recovery`.
+- **Discovery:** “When did you last test a clean-room restore?”
+
+### SEC-PER-29 — Software supply-chain security (`supply-chain-security`)
+
+- **Source:** NICE Cybersecurity Supply Chain Risk Management (program lens); overlaps AppSec SCA without being only a CVE scanner.[^NICE-ROLES]
+- **Discovery:** “Vulnerable deps, malicious packages, or build provenance?”
+
+### SEC-PER-30 — Security awareness (`security-awareness`)
+
+- **Hypothesis** for SATE / human-risk platform buyers; distinct from email gateway owners.
+- **Discovery:** “Completion vanity metric or phishing-report / click reduction?”
+
+### SEC-PER-31 — MSSP / MDR operations (`mssp-ops`)
+
+- **Source:** Provider audience economics in LimaCharlie persona research (hypothesis to validate per provider).[^LC-AUD]
+- **Discovery:** “What limits profitable multi-tenant growth—and which queue costs the most?”
+
+### SEC-PER-32 — Software developer (`developer`)
+
+- **Source:** NICE Secure Software Development; OWASP developer as primary consumer of shift-left tooling.[^NICE-ROLES][^OWASP-ROLES]
+- **Buying role:** user / influencer; rarely budget owner.
+
+### SEC-PER-33 — CTO / VP Engineering (`cto`)
+
+- **Hypothesis** engineering economic/technical sponsor for platform and developer-security tooling.
+- **Discovery:** “Engineering-owned platform buy or security-owned control—and what adoption proof is required?”
 
 ## Buying-committee collisions to qualify
 
@@ -275,6 +400,13 @@ These seats show up in the same buying motions as the core five. They are **not*
 | AI platform vs AI security | Gateway shipped without control ownership | Who can approve agent actions and data paths? |
 | GRC evidence vs control operator | Questionnaire answered without an operator | Who runs the control the evidence claims exists? |
 | CISO sponsor vs operator | Signature without adoption | Who is on-call for exceptions after go-live? |
+| SOC analyst vs detection eng | Alert UI vs content ownership | Who writes/tests the detection vs who triages it? |
+| IR vs forensics | Contain now vs preserve evidence | Is the immediate job stop-the-bleeding or case-ready evidence? |
+| SSPM vs CASB/SSE | Posture vs access path | SaaS misconfig/grants or user-to-SaaS traffic/policy? |
+| EASM vs AppSec | Internet assets vs code findings | Reachability inventory or repository vulnerability? |
+| OT vs IT corporate | Plant safety vs laptop estate | Which change board can approve the control? |
+| Awareness vs email security | Training vs gateway | Behavior program or SEG/API mail control? |
+| MSSP ops vs enterprise SOC | Multi-tenant margin vs internal queue | Selling a service or operating one org’s SOC? |
 
 ## Fit worksheet (do not score leads from titles alone)
 
@@ -292,21 +424,30 @@ These seats show up in the same buying motions as the core five. They are **not*
 | SEC-ORG-C01 | Atlas domains already separate appsec, product, platform, corporate, and neighbors | Local catalog; domain seeds | Not proof of any customer’s org chart |
 | SEC-ORG-C02 | OWASP DevSecOps Guideline distinguishes AppSec vs platform paved-road roles | Practitioner guideline [^OWASP-ROLES] | Not budget authority; not universal titles |
 | SEC-ORG-C03 | Practitioner sources separate AppSec vs ProdSec and PlatformSec vs AppSec vs cloud | [^SNYK-PROD][^PLATSEC-OWN] | Vendor/practitioner framing; not independent interview validation |
-| SEC-ORG-H01 | Core-five and wave-two pains, triggers, measures in this note | Hypothesis | Validate in discovery |
+| SEC-ORG-C04 | NICE Framework defines work roles (IR, Threat Analysis, OT, Insider Threat, Forensics, C-SCRM, Secure Software Development, etc.) that are not job titles | [^NICE-ROLES][^NICE-IR][^NICE-TA] | Employer titles and budgets still require discovery |
+| SEC-ORG-C05 | SOC literature commonly separates Tier-1 triage, Tier-2 IR, Tier-3 hunt, and SOC manager | [^PAN-SOC] | Vendor encyclopedia; not a universal org chart |
+| SEC-ORG-C06 | SSPM and CASB are often complementary but different jobs (posture vs access/data path) | [^SSPM-CASB] | Vendor/practitioner framing; product editions vary |
+| SEC-ORG-H01 | Core-five, wave-two, and wave-three pains, triggers, measures in this note | Hypothesis | Validate in discovery |
 | SEC-ORG-U01 | Typical budget split, headcount ratios, and win rates across these seats | Unknown | Needs authorized deal/cohort evidence |
 
 ## Cross-repository disposition
 
-- **Security Market Map — update:** this research note; typed personas with `aliases` for core five plus adjacent seats (including `privacy`, `security-champion`); landscape filter labels sample aliases. No fabricated capability cells.
-- **Builder Academy Roles DB — update:** keep/enrich AppSec, ProdSec, PlatformSec, DevOps, IT corporate, CISO, architect, cloud, IAM, data, detection, offensive, AI security, GRC; add privacy and security-champion rows; store acronyms in role names/body where useful.
+- **Security Market Map — update:** this research note; typed personas with `aliases` across core five, adjacent, and wave-three seats; landscape filter labels sample aliases. No fabricated capability cells.
+- **Builder Academy Roles DB — update:** enrich/add matching role rows (SecOps depth, SaaS, OT, exposure, recovery, supply chain, awareness, MSSP, developer, CTO) with also-known-as text.
 - **Private career preparation — update only by explicit request:** may reference this version for interview questions; no private answers belong here.
 - **GTM Revenue OS / Account Signal Engine — no automatic change:** role hypotheses are not account intent or enrichment facts.
 
 ## Original sources
 
-Observed 2026-10-27. Living pages; publication dates not established unless noted. Paraphrase only.
+Observed 2026-10-27. Living pages; publication dates not established unless noted. Paraphrase only. NICE Framework Components version cited on NICCS as 2.2.0 when retrieved.
 
 [^OWASP-ROLES]: OWASP DevSecOps Guideline — Roles and Responsibilities: https://owasp.github.io/DevSecOpsGuideline/1-People/1-1-Shape-the-team/1-1-2-Roles-and-Responsibilities/
 [^SNYK-PROD]: Snyk — Product Security vs. Application Security: https://snyk.io/articles/enterprise-security/product-security-vs-application-security/
 [^PLATSEC-OWN]: PlatformSecurity — Platform Security vs AppSec vs Cloud Security: Who Owns What?: https://platformsecurity.com/blog/platform-security-vs-appsec-vs-cloud-security-ownership
 [^CIS]: CIS Critical Security Controls: https://www.cisecurity.org/controls
+[^NICE-ROLES]: NICCS / NIST — NICE Workforce Framework for Cybersecurity (work role categories and roles; work roles ≠ job titles): https://niccs.cisa.gov/workforce-development/nice-framework
+[^NICE-IR]: NICCS — Incident Response work role: https://niccs.cisa.gov/tools/nice-framework/work-role/incident-response
+[^NICE-TA]: NICCS — Threat Analysis work role: https://niccs.cisa.gov/tools/nice-framework/work-role/threat-analysis
+[^PAN-SOC]: Palo Alto Networks Cyberpedia — Security Operations Center (SOC) Roles and Responsibilities (Tier 1–3 and SOC manager): https://www.paloaltonetworks.com/cyberpedia/soc-roles-and-responsibilities
+[^SSPM-CASB]: Check Point — SSPM vs CASB (posture vs access-path framing): https://www.checkpoint.com/cyber-hub/threat-prevention/saas-security-posture-management-sspm/sspm-vs-casb/
+[^LC-AUD]: Security Market Map — LimaCharlie audience and buyer personas: [limacharlie-audience-personas.md](limacharlie-audience-personas.md)

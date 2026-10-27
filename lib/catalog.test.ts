@@ -96,6 +96,22 @@ describe("catalog integrity", () => {
       "ai-owner",
       "engineering-manager",
       "security-champion",
+      "soc-analyst",
+      "incident-response",
+      "threat-hunter",
+      "threat-intel",
+      "digital-forensics",
+      "insider-risk",
+      "network-security",
+      "saas-security",
+      "ot-security",
+      "exposure-management",
+      "cyber-recovery",
+      "supply-chain-security",
+      "security-awareness",
+      "mssp-ops",
+      "developer",
+      "cto",
     ] as const;
     for (const id of required) {
       expect(byId[id], id).toBeDefined();
@@ -118,10 +134,16 @@ describe("catalog integrity", () => {
       expect.arrayContaining(["Corporate security", "IT security", "VM owner"]),
     );
     expect(byId.privacy.aliases).toEqual(expect.arrayContaining(["DPO", "Privacy"]));
+    expect(byId["threat-intel"].aliases).toEqual(expect.arrayContaining(["CTI", "Threat analysis"]));
+    expect(byId["incident-response"].aliases).toEqual(expect.arrayContaining(["IR", "Incident response"]));
+    expect(byId["saas-security"].aliases).toEqual(expect.arrayContaining(["SSPM owner", "SaaSSec"]));
+    expect(byId["ot-security"].aliases).toEqual(expect.arrayContaining(["OT security", "ICS security"]));
     expect(byId.platform.id).not.toBe(byId["platform-security"].id);
     expect(byId["ai-security"].id).not.toBe(byId["ai-owner"].id);
     expect(byId["soc-lead"].id).not.toBe(byId["detection-engineer"].id);
+    expect(byId["soc-lead"].id).not.toBe(byId["soc-analyst"].id);
     expect(byId["data-security"].id).not.toBe(byId.privacy.id);
+    expect(byId["digital-forensics"].id).not.toBe(byId["incident-response"].id);
     expect(new Set(catalog.personas.map((persona) => persona.id)).size).toBe(catalog.personas.length);
   });
 
