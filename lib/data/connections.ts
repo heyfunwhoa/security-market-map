@@ -471,7 +471,8 @@ export const namedShortlists: {
   },
   {
     market: "Cloud permissions",
-    frame: "CIEM shows up inside CNAPP conversations and as a specialist graph. Wiz, Veza, Orca, and Sonrai are the names. None has a filled permission cell here.",
+    frame:
+      "CIEM shows up inside CNAPP conversations and as a specialist graph. Wiz, Veza, Orca, and Sonrai are the names. None has a filled permission cell here. Orca's homepage describes misconfigurations inside cloud posture. That sentence is not a permission cell.",
     examples: [
       vendor("Wiz", "wiz"),
       vendor("Veza", "veza"),
@@ -482,7 +483,8 @@ export const namedShortlists: {
   },
   {
     market: "The rest of the estate",
-    frame: "The same shortlist habit, outside identity. Network, email, exposure, data, and recovery. Still not an analyst placement.",
+    frame:
+      "The same shortlist habit, outside identity. Network, email, exposure, data, operations, and recovery are different budgets. A 26 Oct 2026 pass sourced a few homepages: code analysis, cloud posture, endpoint detection, and restore. Email, exposure, and the SIEM homepage did not fill a block, a patch, or a detection-content cell. This is not an analyst placement.",
     examples: [
       vendor("Palo Alto Networks", "palo-alto-networks"),
       vendor("Zscaler", "zscaler"),
@@ -913,7 +915,7 @@ export const cloudAppEcosystem: {
     name: "Application security testing",
     diagram: "App testing",
     acronyms: "SAST, IAST, DAST",
-    note: "Static analysis reads the change before it runs. Interactive testing watches a test from inside the app. Dynamic testing hits a running app from the outside. A name here may sell one of those, or only the queue that correlates them. ArmorCode is the correlation candidate, not a scanner.",
+    note: "Static analysis reads the change before it runs. Interactive testing watches a test from inside the app. Dynamic testing hits a running app from the outside. A name here may sell one of those, or only the queue that correlates them. ArmorCode is the correlation candidate, not a scanner. Semgrep and Checkmarx have a sourced static-analysis sentence. SCA is named on both homepages and is not a dependency-vulnerability cell.",
     href: "/categories/sast",
     domains: ["appsec"],
     categoryIds: ["sast", "iast", "dast", "aspm"],
@@ -933,7 +935,7 @@ export const cloudAppEcosystem: {
     name: "Cloud security",
     diagram: "Cloud security",
     acronyms: "CNAPP, infrastructure as code, containers, cloud detection",
-    note: "CNAPP is a suite label. Infrastructure-as-code review, container controls, and cloud detection are different modules. AWS is already seeded as a secrets product. No AWS cloud-security module is checked. Gem, Lacework, and Dazz are listed with ownership not re-checked.",
+    note: "CNAPP is a suite label. Infrastructure-as-code review, container controls, and cloud detection are different modules. AWS is already seeded as a secrets product. No AWS cloud-security module is checked. Gem, Lacework, and Dazz are listed with ownership not re-checked. Orca's homepage describes cloud posture and misconfigurations. Identity permissions on that page are not a CIEM cell.",
     href: "/categories/cnapp",
     domains: ["cloud"],
     categoryIds: ["cnapp", "iac-security", "container-security", "cloud-detection"],
@@ -957,7 +959,7 @@ export const cloudAppEcosystem: {
     name: "Cloud vulnerability management",
     diagram: "Cloud vulns",
     acronyms: "Scanning and assessment",
-    note: "This is assessment of cloud workloads and images. A missing package is not a public storage bucket, and a product that only ranks findings is not the scanner. Qualys, Tenable, Rapid7, and Wiz were already on the map for other jobs. Silk and Avalor are candidates whose ownership was not re-checked.",
+    note: "This is assessment of cloud workloads and images. A missing package is not a public storage bucket, and a product that only ranks findings is not the scanner. Qualys, Tenable, and Rapid7 were already on the map for exposure. Their 26 Oct 2026 homepages still do not say they find missing patches. Silk and Avalor are candidates whose ownership was not re-checked.",
     href: "/categories/cloud-vulnerability",
     domains: ["cloud"],
     categoryIds: ["cloud-vulnerability", "it-vulnerability-management", "cspm"],
