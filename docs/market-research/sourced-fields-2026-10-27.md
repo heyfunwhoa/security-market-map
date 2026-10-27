@@ -31,13 +31,38 @@ An earlier note left the identity-stack publication date unknown. The 27 Oct ret
 - [SACR, 19 Dec 2024, data security platforms](https://softwareanalyst.io/reports/data-security-platforms-the-new-frontier-in-cybersecurity-ai). The retrieved DSPM passage is tied to a survey statistic. The statistic and the slogan are not adopted.
 - [SACR, 28 Mar 2024, cloud application security ecosystem](https://softwareanalyst.io/reports/a-deep-dive-into-the-cloud-application-security-ecosystem). The body extract was a table of contents and a glossary line. No definitional paragraph was typed. The same URL is not two sources.
 
+## Second retrieval, later on 27 Oct 2026
+
+These pages were fetched after the first batch. The same bounds apply: definitional sentence only, `needs_review`, `capabilityId: null`, no roster, score, price, or statistic.
+
+| Field | Catalog subject | Page | Bound |
+| --- | --- | --- | --- |
+| XDR | `xdr` | [Gartner Market Guide abstract, 23 Oct 2024](https://www.gartner.com/en/documents/5859979) | Unified prevention, detection, and response. Representative vendors were not in the abstract. Not a SIEM replacement. |
+| NDR | `ndr` | [Gartner Critical Capabilities abstract, 18 May 2026](https://www.gartner.com/en/documents/7871277) | Continuous traffic monitoring. Product list and scores not imported. |
+| OT / CPS | `ot-security` | [Gartner Critical Capabilities abstract, 18 Feb 2025](https://www.gartner.com/en/documents/6186155) | Discover and protect assets in OT, ICS, and industrial IoT. Product list and scores not imported. Protect is not a block cell. |
+| Threat intelligence | `threat-intelligence` | [Gartner Market Guide abstract, 12 Aug 2024](https://www.gartner.com/en/documents/5666255) | Selection struggle only. Market definition and representative vendors were not retrieved. Low confidence. |
+| Insider risk | `insider-risk` | [Gartner buyers' guide abstract, 4 May 2026](https://www.gartner.com/en/documents/7802817) | Procurement is complex. Features were not retrieved. Low confidence. |
+| Web and API protection | `waf-waap` and `api-security` | [Gartner abstract, 6 Nov 2025](https://www.gartner.com/en/documents/7155030) | Minimum effective controls. The abstract does not define a firewall, bot control, or an API inventory. Low confidence. |
+| SOAR | `soar` | [Gartner abstract, 30 Jan 2025](https://www.gartner.com/en/documents/6135959) and [SACR, 2 May 2024, updated 29 Jul 2026](https://softwareanalyst.io/reports/the-future-of-soc-automation-platforms) | Automation of operations, response, and playbooks. Peer ratings and vendor profiles are not cells. |
+| MDR | `mdr` | [SACR, 22 Jan 2026, updated 29 Jul 2026](https://softwareanalyst.io/reports/aisoc-for-mdr-the-structural-evolution-of-managed-detection-and-response) | Human-led staffing, triage, and investigations. The limit judgment and vendor profiles are not cells. |
+| Endpoint control | `endpoint-control` | [SACR, 22 Jul 2026, updated 29 Jul 2026](https://softwareanalyst.io/reports/the-ciso-guide-to-endpoint-control-and-prevention-ecp-the-next-architecture-for-endpoint-security) | Visibility beyond the file and the process. Not a replacement for endpoint detection. The category lede no longer quotes the report. |
+| ASPM | `aspm` | [SACR, 25 Apr 2024, updated 29 Jul 2026](https://softwareanalyst.io/reports/the-rise-of-application-security-posture-management-aspm-platforms) | One system across the lifecycle. The forecast percentage and a quoted third-party definition are not adopted. |
+| Asset inventory | `security-asset-management` | [SACR, 19 Oct 2026, updated 23 Oct 2026](https://softwareanalyst.io/reports/from-caasm-to-asset-intelligence) | Aggregation, normalization, and entity resolution. A vendor profile is not a cell. |
+| Recovery | `cyber-recovery` | [SACR, 9 Jul 2026, updated 29 Jul 2026](https://softwareanalyst.io/reports/ransomwares-new-kill-switch-ephemeral-ransomware-resilience) | Attackers target the consoles and credentials behind backups. The named standard is not a restore cell. |
+| Static analysis | `sast` | [SACR, 26 Oct 2026](https://softwareanalyst.io/reports/introducing-runtime-validated-application-security-rvas) | First-generation detection without deployment context. Not a finding about a named scanner. |
+| Runtime-validated application security | new category `runtime-validated-application-security` | Same 26 Oct 2026 page | Anchored in runtime context rather than static findings. No product. Scoring and the vendor assessment are not cells. |
+| Agentic runtime | `agentic-runtime` | [SACR, 3 Sep 2026, updated 11 Sep 2026](https://softwareanalyst.io/reports/arise-agentic-runtime-identity-security-enforcement-for-agents) | Existing identity controls do not decide a live agent action. The category lede no longer quotes the report. |
+| MCP runtime | `mcp-security` | [SACR, 18 Mar 2026, updated 29 Jul 2026](https://softwareanalyst.io/reports/the-runtime-enforcement-challenge-and-the-emerging-vendor-landscape) | Gateway enforcement versus direct-access visibility. Statistics on the page are not adopted. The category lede no longer quotes the report. |
+
+The 2018 security-ratings document URL did not return the research page on 27 Oct 2026. It is not a source. Endpoint detection still has no definitional sentence of its own; the endpoint-control claim does not fill an endpoint-detection cell. AI application security, as prompt injection and model abuse, still has no retrieved page.
+
 ## Still without a category claim
 
-XDR, MDR, NDR, threat intelligence, WAAP, OT, insider risk, security ratings, AI application security, SAST, SOAR, endpoint security, and recovery were not given a new analyst claim in this pass. Their pages were not retrieved for this note. Vendor-homepage sentences for some of those fields remain on a separate open pull request and were not folded in.
+Security ratings and endpoint detection were not given a category claim in the second retrieval. AI application security, as distinct from runtime-validated checks, was not given one either. Vendor-homepage sentences for some of these fields remain on a separate open pull request and were not folded in.
 
 ## Rights
 
-Short paraphrase only. Full report text, graphics, scores, inclusion rosters, prices, and statistics are not reproduced. Search snippets were not used as citations. All eleven claims are `needs_review`, `sourceType: analyst`, and `capabilityId: null`. None is `verified`. No direct-competitor edge was added.
+Short paraphrase only. Full report text, graphics, scores, inclusion rosters, prices, and statistics are not reproduced. Search snippets were not used as citations. Every claim in both retrievals is `needs_review`, `sourceType: analyst`, and `capabilityId: null`. None is `verified`. No direct-competitor edge was added.
 
 UI: the category page reuses the existing muted paragraph. No new component. The label is text, so it does not depend on color alone. It adds no control, so keyboard, focus, and reduced motion are unchanged from the page that already existed. Empty and sourced states both need a browser check.
 

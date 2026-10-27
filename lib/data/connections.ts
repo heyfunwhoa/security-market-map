@@ -508,7 +508,7 @@ export const namedShortlists: {
   },
   {
     market: "Detection, exposure, and the edge",
-    frame: "Gartner and Forrester publish separate notes for XDR, MDR, NDR, threat intelligence, WAAP, exposure, OT, insider risk, ratings, and AI application security. These are the companies buyers name. The report pages were not retrieved, and this is not a placement.",
+    frame: "Public abstracts retrieved on 27 Oct 2026 describe XDR, NDR, threat intelligence, web and API protection, cyber-physical systems, and insider-risk selection. MDR is a SACR sentence about an operating model. Security ratings still have no retrieved page. These names are not a placement.",
     examples: [
       vendor("CrowdStrike", "crowdstrike"),
       vendor("Arctic Wolf", "arctic-wolf"),
@@ -684,6 +684,13 @@ export const estateAreas: { name: string; problem: string; href: string; example
     problem:
       "Which public abuse of a known brand, domain, or executive is in scope? The 29 Jul 2026 SACR page describes that search. This hub lists no product.",
     href: "/categories/digital-risk-protection",
+    examples: [],
+  },
+  {
+    name: "Runtime application checks",
+    problem:
+      "Was the finding checked against the running system? The 26 Oct 2026 SACR page describes that discipline. This hub lists no product.",
+    href: "/categories/runtime-validated-application-security",
     examples: [],
   },
   {

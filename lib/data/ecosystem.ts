@@ -355,7 +355,7 @@ export const ecosystemCategories: Category[] = [
     triggers: ["Pull-request scanning", "SAST replacement", "Language coverage gap"],
     budgetSource: "AppSec tooling.",
     outcomes: ["Findings that engineers actually fix", "Noise rate"],
-    adjacentCategoryIds: ["secrets-detection", "sca", "aspm", "dast", "iast"],
+    adjacentCategoryIds: ["secrets-detection", "sca", "aspm", "dast", "iast", "runtime-validated-application-security"],
     exampleWorkflow: "A pull request introduces an injection bug. SAST comments. The author fixes it. A leaked key in the same diff is a secrets-detection finding.",
     flow: {
       actor: "Developer",
@@ -1324,7 +1324,7 @@ export const ecosystemCategories: Category[] = [
     budgetSource: "AppSec or a new AI-security line. Do not take it from the IGA budget by default.",
     triggers: ["A customer-facing model", "An internal copilot with tools"],
     outcomes: ["A named control for the AI feature", "A separate decision for agent access"],
-    adjacentCategoryIds: ["agent-identity", "api-security", "product-security-program"],
+    adjacentCategoryIds: ["agent-identity", "api-security", "product-security-program", "runtime-validated-application-security"],
     exampleWorkflow: "A tester sends a prompt injection. The AI-security control flags it. Whether the agent may call production is still an identity decision.",
     flow: {
       actor: "User, model, or agent",
@@ -1333,6 +1333,31 @@ export const ecosystemCategories: Category[] = [
       decision: "Model policy or an application check",
       action: "Block, redact, or alert",
       evidence: "The prompt event and the decision",
+    },
+  }),
+  category({
+    id: "runtime-validated-application-security",
+    name: "Runtime-validated application security",
+    group: "appsec",
+    domainIds: ["appsec", "product"],
+    definition:
+      "Application security checks meant to be judged against the running system, not only against a static finding. A finding whose exploitability is unknown is still a finding.",
+    buyerQuestion: "Was this finding checked against the running system, or only against the source?",
+    buyerOwner: "AppSec, with the team that runs the application.",
+    triggers: ["Scanners that report findings before anyone knows if the code path runs", "Agents shipping changes faster than review"],
+    budgetSource: "AppSec. Confirm it is not being bought as a replacement for static analysis.",
+    outcomes: ["A finding whose runtime relevance is written down"],
+    adjacentCategoryIds: ["sast", "dast", "aspm", "ai-application-security"],
+    layer: "adjacent",
+    exampleWorkflow:
+      "A static finding names a vulnerable function. Someone still has to say whether that function runs in production. The scanner and that check are different jobs.",
+    flow: {
+      actor: "AppSec or the running application",
+      credential: "Not the finding",
+      permission: "What the running path can reach",
+      decision: "Whether the finding is true at runtime",
+      action: "Record the check or send the fix",
+      evidence: "The finding and whether it was seen on the running system",
     },
   }),
   category({
@@ -1364,7 +1389,7 @@ export const ecosystemCategories: Category[] = [
     group: "machines",
     domainIds: ["identity", "secops", "ai"],
     definition:
-      "SACR framework, not a Gartner category. Software Analyst Cyber Research calls this ARISE: a check on a live agent action before it completes. Their September 2026 note says IAM, IGA, PAM, and NHI inventory remain necessary and do not answer whether this tool call, with this credential and this data, should continue. This map does not score that control.",
+      "A check on a live agent action before it completes. Directory, governance, privileged access, and non-human inventory remain necessary and do not decide whether that action should continue. This map does not score the control.",
     buyerQuestion: "Can anything stop or narrow an agent action while it is still running?",
     buyerOwner: "Identity security, with the team that owns the agent.",
     budgetSource: "Identity or a new agent-security line. Not the EDR renewal by default.",
@@ -1387,7 +1412,7 @@ export const ecosystemCategories: Category[] = [
     group: "corporate",
     domainIds: ["corporate", "secops"],
     definition:
-      "Software Analyst Cyber Research's July 2026 note names Endpoint Control and Prevention as the layer above EDR: prompts, browser sessions, local agents, and data movement on the device. EDR remains the process and file record. This map does not treat ECP as a replacement, and it does not rank the vendors.",
+      "Controls aimed at what a device is doing above the file and the process: developer tools, SaaS, AI tools, and local agents. Endpoint detection remains the process and file record. This map does not treat the broader layer as a replacement for that record.",
     buyerQuestion: "What is happening above the operating system, and can the device stop it?",
     buyerOwner: "Endpoint security, often with the team adopting coding agents.",
     budgetSource: "Endpoint. A specialist here is not an XDR suite unless the quote says so.",
@@ -1410,7 +1435,7 @@ export const ecosystemCategories: Category[] = [
     group: "appsec",
     domainIds: ["ai", "appsec"],
     definition:
-      "Discovery and control of Model Context Protocol servers and the tools an agent can call. A gateway sees traffic that passes through it. Direct access can see more of the session and often acts after the call. SACR's March 2026 runtime note describes both patterns. Neither is a sourced product capability here.",
+      "Discovery and control of Model Context Protocol servers and the tools an agent can call. A gateway can enforce on traffic it sees and does not see why the agent acted. Direct access can see more of the behavior and does not by itself enforce the policy. Neither pattern is a sourced product capability here.",
     buyerQuestion: "Which tool servers exist, and can an unapproved tool answer the agent?",
     buyerOwner: "AI platform or AppSec, with identity if the tool uses a credential.",
     budgetSource: "AI security or the agent-identity budget.",
