@@ -438,4 +438,19 @@ describe("Cyera Identity and the NHI shortlist", () => {
       catalog.relationships.filter((item) => item.fromProductId === "entro" && item.type === "direct_competitor"),
     ).toEqual([]);
   });
+
+  it("does not turn SaaS discovery or a failed page load into an NHI cell", () => {
+    for (const id of ["appomni", "grip", "natoma"]) {
+      expect(evidenceCell(catalog.claims, id, "cap-nhi-inventory", asOf).status).toBe("unknown");
+      expect(evidenceCell(catalog.claims, id, "cap-nhi-ownership", asOf).status).toBe("unknown");
+      expect(evidenceCell(catalog.claims, id, "cap-nhi-lifecycle", asOf).status).toBe("unknown");
+    }
+    expect(catalog.claims.find((claim) => claim.id === "claim-appomni-discover")?.capabilityId).toBeNull();
+    expect(catalog.claims.find((claim) => claim.id === "claim-grip-inventory")?.capabilityId).toBeNull();
+    expect(catalog.claims.find((claim) => claim.id === "claim-natoma-site")?.verificationStatus).toBe("needs_review");
+    expect(catalog.claims.find((claim) => claim.id === "claim-snowflake-natoma-intent")?.capabilityId).toBeNull();
+    const board = groups.find((group) => group.name === "NHI discovery, posture, and governance");
+    expect(board?.body).not.toContain("Entro, Token Security, and Clutch do not");
+    expect(board?.body).toContain("AppOmni");
+  });
 });

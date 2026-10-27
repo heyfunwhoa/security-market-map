@@ -314,7 +314,7 @@ export const groups: Group[] = [
   {
     name: "NHI discovery, posture, and governance",
     problem: "Which non-human identities exist, who owns them, and which permissions are still justified?",
-    body: "The unit of analysis is the identity and its access, not only the credential string. Oasis has sourced inventory, owner, and lifecycle language. Entro, Token Security, and Clutch do not. Astrix's sourced fact is the Cisco transition, not a feature list.",
+    body: "The unit of analysis is the identity and its access, not only the credential string. Oasis, Entro, and Token have sourced inventory and owner language. Clutch and Astrix have sourced inventory language. Astrix owner and decommission cells stay empty, and new standalone licenses ended 30 Jun 2026. AppOmni's homepage describes SaaS and shadow-agent discovery. That page is not an NHI inventory cell.",
     examples: [
       vendor("Oasis Security", "oasis"),
       vendor("Entro Security", "entro"),
