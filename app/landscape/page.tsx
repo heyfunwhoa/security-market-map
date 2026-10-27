@@ -1,6 +1,7 @@
 import { PageIntro } from "@/components/chrome";
 import { LandscapeBrowser, type LandscapeEdge, type LandscapeRow } from "@/components/landscape-browser";
 import { catalog, vendorById } from "@/lib/catalog";
+import { personaFilterLabel } from "@/lib/format";
 
 export const metadata = { title: "Landscape" };
 
@@ -63,7 +64,7 @@ export default function LandscapePage() {
           useCases={catalog.useCases.map((useCase) => ({ id: useCase.id, label: useCase.name }))}
           personas={catalog.personas.map((persona) => ({
             id: persona.id,
-            label: persona.name,
+            label: personaFilterLabel(persona.name, persona.aliases),
             categoryIds: persona.categoryIds,
           }))}
         />

@@ -15,11 +15,54 @@ Next manual review: 2026-11-27, or sooner after a material domain/persona catalo
 
 Related local artifacts:
 
-- Typed catalog personas: `lib/data/personas.ts` and `ecosystemPersonas` in `lib/data/ecosystem.ts`
+- Typed catalog personas: `lib/data/personas.ts` and `ecosystemPersonas` in `lib/data/ecosystem.ts` (`aliases` field)
 - Domain charters: `domainSeeds` in `lib/data/ecosystem.ts`
 - Separation of role / persona / ICP: [research atlas vision](../product/research-atlas-vision.md)
 - Method: [Competitive Intelligence Playbook](competitive-intelligence-playbook.md)
 - Vendor-audience example (different slice): [LimaCharlie audience personas](limacharlie-audience-personas.md)
+
+## Acronyms and same-seat aliases
+
+Canonical catalog `name` is the display label. `aliases` hold acronyms and alternate titles for the **same seat**. Landscape buyer filters show a short sample (`Name · Alias / Alias`).
+
+| Catalog ID | Common short names | Also heard as (same seat) |
+| --- | --- | --- |
+| `appsec` | AppSec, ASE | Application security, software security, ASPM owner, Director of AppSec |
+| `product-security` | ProdSec | Product security, PSIRT lead, SSDLC / secure SDLC program owner |
+| `platform-security` | PlatformSec, PlatSec, InfraSec | Infrastructure security, CI/CD / pipeline security, K8s / container security owner |
+| `platform` | DevOps, SRE, Platform eng | Platform engineering, IDP / developer platform, CI/CD owner (ops) |
+| `it-security` | ITSec, CorpSec | Corporate security, EDR / SEG owner, VM / VulnOps / patch owner |
+| `ciso` | CISO, CSO | VP Security, Head of Security, security executive |
+| `security-architect` | SecArch | Enterprise / principal / solutions security architect |
+| `identity-security` | IdSec, IAM lead | Head of identity, workforce identity, NHI program owner |
+| `iga-owner` | IGA | Identity governance, JML / access certification / SoD owner |
+| `pam-owner` | PAM, PIM | Privileged access, JIT privilege, break-glass owner |
+| `cloud-sec` | CloudSec | CNAPP / CSPM / CWPP / CIEM owner, cloud posture |
+| `data-security` | DataSec | DSPM / DLP / DAG owner, information protection |
+| `privacy` | DPO, CPO | Privacy counsel / engineer / program owner |
+| `soc-lead` | SOC, SecOps lead | D&R lead, blue team lead, MDR buyer, XDR program owner |
+| `detection-engineer` | DetEng, DaC | Detection-as-code, SIEM / content / threat detection engineer |
+| `offensive-security` | OffSec, Red team | Purple team, pentester, BAS / AEV / security validation |
+| `grc-owner` | GRC | Compliance, trust, TPRM / vendor risk, audit liaison |
+| `ai-security` | AISec | LLM / GenAI / model / agent security, AI governance security |
+| `ai-owner` | AI platform | MLOps, LLM / agent platform, AI gateway owner |
+| `engineering-manager` | EM | Eng manager, team lead, head of engineering (influencer) |
+| `security-champion` | Champion | AppSec champion, embedded security partner, guild security lead |
+
+### Overloaded labels (do **not** treat as one exclusive persona)
+
+These titles are common and ambiguous. Qualify which seat is meant before mapping a deal or lesson.
+
+| Heard as | Could mean | Qualify with |
+| --- | --- | --- |
+| DevSecOps | AppSec tooling, PlatformSec rails, or platform eng paved road | Who owns the scanner vs the CI template vs the vault? |
+| Security engineering | AppSec, PlatformSec, detection, or cloud | What is the primary backlog: code, platform, detections, or accounts? |
+| Infosec / Information security | Often corporate IT + SOC; sometimes the whole CISO org | Estate: employee devices vs product vs cloud? |
+| Cybersecurity | Generic umbrella | Which domain and fixer queue? |
+| Trust & safety | GRC/trust, product abuse, or content safety | Customer questionnaire vs product abuse vs moderation? |
+| Platform team | DevOps/platform eng **or** PlatformSec | Operator of the road vs setter of the security bar? |
+| VM | IT vulnerability management **or** virtual machine | Patch queue vs compute instance? |
+| Security architect | Enterprise architect vs cloud vs AppSec architect | Shared pattern owner or single-domain specialist? |
 
 ## Why these five first
 
@@ -134,7 +177,9 @@ These seats show up in the same buying motions as the core five. They are **not*
 | `grc-owner` | `grc` | Evidence, third parties, customer trust questionnaires |
 | `ai-security` | `ai` | Controls for models, AI apps, agents, and AI data paths |
 | `ai-owner` | `ai` / platform | Ships the gateway; often not the security budget owner |
+| `privacy` | `data` / `grc` | Privacy obligations and evidence (DPO/CPO); not every DSPM control |
 | `engineering-manager` | engineering | Prioritizes remediation vs features; common AppSec influencer |
+| `security-champion` | engineering × AppSec | Embedded developer contact; influencer/fixer, rarely budget owner |
 
 ### SEC-PER-06 — CISO / VP of security (`ciso`)
 
@@ -202,6 +247,20 @@ These seats show up in the same buying motions as the core five. They are **not*
 - **Job:** schedule remediation beside features; reject controls without a paved path.
 - **Discovery:** “Is security work in the sprint, and what makes a finding actionable for your team?”
 
+### SEC-PER-16 — Privacy / DPO (`privacy`)
+
+- **Job:** privacy program, lawful processing, subject rights, DPIAs, customer DPA evidence.
+- **Boundary:** Data security often owns DSPM/DLP tooling; privacy owns obligations and evidence. Overlap is common—confirm primary.
+- **Aliases:** DPO, CPO, privacy counsel/engineer.
+- **Discovery:** “Is this a privacy program gap or a missing technical control?”
+
+### SEC-PER-17 — Security champion (`security-champion`)
+
+- **Job:** local security contact inside a product engineering team; translates AppSec asks into team work.
+- **Potential buying roles:** influencer / user; rarely economic buyer.
+- **Aliases:** AppSec champion, embedded security partner.
+- **Discovery:** “Are you the fixer, the reviewer, or both—and what already runs in your pipeline?”
+
 ## Buying-committee collisions to qualify
 
 | Collision | What goes wrong | Qualification question |
@@ -238,8 +297,8 @@ These seats show up in the same buying motions as the core five. They are **not*
 
 ## Cross-repository disposition
 
-- **Security Market Map — update:** this research note; enrich/add typed personas for core five plus adjacent seats (`ciso`, `security-architect`, `identity-security`, `data-security`, `detection-engineer`, `offensive-security`, `ai-security`, `engineering-manager`, and enriched cloud/SOC/GRC/AI-platform rows). No fabricated capability cells.
-- **Builder Academy Roles DB — update:** keep/enrich AppSec, ProdSec, PlatformSec, DevOps, IT corporate, CISO, architect, cloud, IAM; add missing data, detection, offensive, AI security, and GRC rows.
+- **Security Market Map — update:** this research note; typed personas with `aliases` for core five plus adjacent seats (including `privacy`, `security-champion`); landscape filter labels sample aliases. No fabricated capability cells.
+- **Builder Academy Roles DB — update:** keep/enrich AppSec, ProdSec, PlatformSec, DevOps, IT corporate, CISO, architect, cloud, IAM, data, detection, offensive, AI security, GRC; add privacy and security-champion rows; store acronyms in role names/body where useful.
 - **Private career preparation — update only by explicit request:** may reference this version for interview questions; no private answers belong here.
 - **GTM Revenue OS / Account Signal Engine — no automatic change:** role hypotheses are not account intent or enrichment facts.
 
