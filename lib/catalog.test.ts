@@ -572,6 +572,48 @@ describe("catalog integrity", () => {
       ).toBe(false);
     }
   });
+
+  it("keeps the next cloud, identity, and risk sentences off cells and rosters", () => {
+    const ids = [
+      "claim-gartner-ciam-20250507",
+      "claim-gartner-cnapp-cores-20260422",
+      "claim-gartner-cwpp-named-20260422",
+      "claim-gartner-containers-20260423",
+      "claim-gartner-iac-pac-20260810",
+      "claim-gartner-microseg-20260618",
+      "claim-gartner-tpcrm-20241108",
+      "claim-gartner-partner-iam-20260302",
+    ];
+    expect(catalog.claims.filter((claim) => claim.sourceId === "src-gartner-cnapp-cores-20260422")).toHaveLength(2);
+    for (const id of ["claim-gartner-cwpp-named-20260422", "claim-gartner-containers-20260423", "claim-gartner-iac-pac-20260810", "claim-gartner-partner-iam-20260302"]) {
+      expect(catalog.claims.find((claim) => claim.id === id)?.confidence).toBe("low");
+    }
+    for (const id of ids) {
+      const claim = catalog.claims.find((item) => item.id === id);
+      expect(claim, id).toBeDefined();
+      expect(claim?.subjectType).toBe("category");
+      expect(claim?.capabilityId).toBeNull();
+      expect(claim?.verificationStatus).toBe("needs_review");
+      expect(claim?.sourceType).toBe("analyst");
+      expect(claim?.lastCheckedAt).toBe("2026-10-27");
+      const source = catalog.sources.find((item) => item.id === claim?.sourceId);
+      expect(source?.url).toBe(claim?.sourceUrl);
+      expect(source?.retrievedAt).toBe("2026-10-27");
+      expect((source?.excerpt.length ?? 999)).toBeLessThanOrEqual(420);
+    }
+    const bounded = ids
+      .map((id) => {
+        const claim = catalog.claims.find((item) => item.id === id);
+        return `${claim?.statement ?? ""} ${claim?.notes ?? ""}`;
+      })
+      .join(" ")
+      .toLowerCase();
+    for (const banned of ["magic quadrant", "snyk", "checkmarx", "semgrep", "wiz", "orca", "illumio"]) {
+      expect(bounded, banned).not.toContain(banned);
+    }
+    expect(catalog.claims.filter((claim) => claim.subjectType === "category" && claim.subjectId === "sspm")).toHaveLength(0);
+    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(35);
+  });
 });
 
 describe("comparison", () => {

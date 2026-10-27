@@ -76,9 +76,24 @@ Ledes for external attack surface, insider risk, the enterprise browser, and AI 
 
 Pages fetched and not typed in this pass: the 2 Oct 2025 IGA abstract, because it says the market is dynamic and does not give the market definition already recorded from the December 2025 SACR page; endpoint-protection abstracts whose public text was a buyer-priority sentence plus an inclusion list; the June 2026 agentic-cloud page, which proposes a new control layer rather than a sentence this map can separate from cloud detection; and supply-chain, browser, and AI pages where the only extra lines were prices, forecasts, or survey statistics.
 
+## Fourth retrieval, later on 27 Oct 2026
+
+| Field | Catalog subject | Page retrieved 27 Oct 2026 | Bound |
+| --- | --- | --- | --- |
+| Customer identity | `ciam` | [Gartner buyers-guide abstract, 7 May 2025](https://www.gartner.com/en/documents/6432307) | Combined access management, light identity governance, identity verification, and consent requirements. The five steps were not public. Light identity governance is not full IGA. |
+| CNAPP core names | `cnapp` | [Gartner, 22 Apr 2026](https://www.gartner.com/en/documents/7753921) | Distinct tools for misconfigurations, workload flaws, and excessive identity permissions. Four names to prioritize. The page does not pair a name with a flaw. Example vendors were not retrieved. Does not replace the 5 Aug 2025 life-cycle sentence. |
+| Workload protection named | `cwpp` | Same 22 Apr 2026 page | CWPP is one of the four names. That is not a definition of runtime protection. Low confidence. |
+| Containers | `container-security` | [Gartner, 23 Apr 2026](https://www.gartner.com/en/documents/7760121) | The job spans the software supply chain. The ten vulnerabilities and the vendor note were not retrieved. Image scan and runtime are not separated. Low confidence. |
+| Infrastructure as code | `iac-security` | [Gartner, 10 Aug 2026](https://www.gartner.com/en/documents/8244657) | Implementing infrastructure as code and policy as code for landing zones and continuous compliance. Not a pull-request review, and not a measured outcome. Low confidence. |
+| Microsegmentation | `microsegmentation` | [Gartner market overview abstract, 18 Jun 2026](https://www.gartner.com/en/documents/8022769) | Finer-grained zoning across public, private, and hybrid cloud. Market definition and example vendors were not public. A 6 May 2025 guide repeats the zoning sentence and is not a second source. |
+| Third-party cyber risk | `third-party-risk` | [Gartner, 8 Nov 2024](https://www.gartner.com/en/documents/5904643) | Tools can automate processes, support governance, gather public posture and intelligence data, and streamline reporting. Public posture is not a security-ratings score. |
+| Partner identity on that life cycle | `third-party-risk` | [Gartner, 2 Mar 2026](https://www.gartner.com/en/documents/7530385) | A recommendation to add identity controls to the third-party risk life cycle. Not a questionnaire, a rating, or partner sign-in. Low confidence. |
+
+Pages fetched and not typed in this pass: [Critical Capabilities for Application Security Testing, 13 Oct 2025](https://www.gartner.com/en/documents/7052698), because the public text is a one-sentence market note plus an inclusion list of testing labels and vendors, which does not define dynamic testing, interactive testing, or secrets detection; [Invest Implications for SSPM, 31 Jul 2024](https://www.gartner.com/en/documents/5635091), because the public text is a demand forecast, not a definition of SaaS configuration or OAuth grants. The forecast was not adopted.
+
 ## Still without a category claim
 
-Security ratings and endpoint detection still have no category claim. Workforce identity, customer identity, dynamic testing, and the other categories that were not in these three retrievals still have none. Vendor-homepage sentences for some of those fields remain on a separate open pull request and were not folded in.
+Security ratings, endpoint detection, workforce identity, dynamic testing, interactive testing, secrets detection, and SaaS posture still have no category claim. So do the categories this pass did not open: adjacent security, AI data security, application runtime, breach simulation, cloud vulnerability, customer trust, data-access governance, data encryption, database security, GRC controls, identity orchestration, model security, pentest programs, privacy governance, product-security programs, threat modeling, and vulnerability disclosure. Vendor-homepage sentences from the estate-layers work stay on their own claims. They were not copied onto these category sentences.
 
 ## Rights
 

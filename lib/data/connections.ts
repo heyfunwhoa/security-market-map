@@ -949,7 +949,7 @@ export const cloudAppEcosystem: {
     name: "Cloud security",
     diagram: "Cloud security",
     acronyms: "CNAPP, infrastructure as code, containers, cloud detection",
-    note: "CNAPP is a suite label. Infrastructure-as-code review, container controls, and cloud detection are different modules. AWS is already seeded as a secrets product. No AWS cloud-security module is checked. Gem, Lacework, and Dazz are listed with ownership not re-checked. Orca's homepage describes cloud posture and misconfigurations. Identity permissions on that page are not a CIEM cell.",
+    note: "CNAPP is a suite label. A 22 Apr 2026 public abstract names posture, workload protection, Kubernetes posture, and cloud entitlements as capabilities to prioritize. It does not pair each name with a flaw, and it does not list these vendors. Infrastructure-as-code review, container controls, and cloud detection are different modules. AWS is already seeded as a secrets product. No AWS cloud-security module is checked. Gem, Lacework, and Dazz are listed with ownership not re-checked. Orca's homepage describes cloud posture and misconfigurations. Identity permissions on that page are not a CIEM cell.",
     href: "/categories/cnapp",
     domains: ["cloud"],
     categoryIds: ["cnapp", "iac-security", "container-security", "cloud-detection"],
