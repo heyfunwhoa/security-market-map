@@ -2,6 +2,8 @@
 
 Status: researched. Owner: unassigned. Reviewer: unassigned. Next editorial review: 2026-11-26. Stage is researched. This note is not catalog truth; the typed claims in `lib/data` are the map.
 
+Content-manager re-read: 27 Oct 2026 (Central). First retrieval was 26 Oct 2026. The re-read corrected paraphrases that said more than the public page. It is not a human approval.
+
 Private Technical Docs baseline and the Research Evidence Boundary ADR were not available in this workspace. This brief follows the local playbook and contributing checklist. It does not claim those private documents were applied.
 
 ## Buyer decision
@@ -28,9 +30,19 @@ A buyer comparing vulnerability management, email security, the network edge, SI
 
 Short paraphrase of retrieved public abstracts and definitional sentences only. Full Gartner and SACR report text, graphics, scores, inclusion rosters, and representative-vendor sections are not reproduced. Search snippets were not used as citations. Pages that were not fetched, including other Gartner Critical Capabilities and Magic Quadrant documents, are not sources.
 
-All nine claims are `needs_review`, `sourceType: analyst`, and `capabilityId: null`. None is `verified`. Publication dates are the report dates on the retrieved pages. Observation and last check are 26 Oct 2026. Product-page publication dates for this pass are not applicable.
+All nine claims are `needs_review`, `sourceType: analyst`, and `capabilityId: null`. None is `verified`. Publication dates are the report dates on the retrieved pages. First observation is 26 Oct 2026. Last check after the content-manager re-read is 27 Oct 2026. Product-page publication dates for this pass are not applicable.
 
-Unknown: which controls a licensed SSE report places inside SSE; the body of the Gartner note on nonpatchable exposures; scores and the products a licensed SIEM or email evaluation includes; whether any current product page would fill a capability cell in these fields. Those stay empty until a page that states them is retrieved and reviewed.
+## Content-manager corrections
+
+- The category lede no longer quotes Gartner. The sourced sentence stays on the claim, with a needs-review label. The lede is the map's description of a program, and the page kicker is Adjacent.
+- "Exposures a patch will not close" is not stated. That wording came from an unread note title.
+- CNAPP now says the platforms address full life-cycle protection requirements. It does not say a named product includes every module.
+- The SSE sentence keeps Gartner's phrase "security access service edge." It does not shorten that to SASE, and it does not redefine firewalls, secure web gateways, or ZTNA.
+- The pipeline sentence names endpoint detection, cloud logs, and firewalls, matching the report. A later section on detection inside the pipeline is not a cell.
+- A detection is also not a verdict. The email, SIEM, and cloud-and-SOC sentences matched the pages on re-read.
+- A category with no primary product now says the empty list is a gap in the map.
+
+Unknown: which controls a licensed SSE report places inside SSE; the body of the Gartner note on nonpatchable exposures; scores and the products a licensed SIEM or email evaluation includes; whether any current product page would fill a capability cell in these fields. Those stay empty until a page that states them is retrieved and reviewed. The site footer still says as of 13 Oct 2026. That label was not moved.
 
 No direct-competitor edge was added. No price, growth figure, customer quotation, or analyst rank was adopted.
 

@@ -301,13 +301,14 @@ export const ecosystemCategories: Category[] = [
     group: "corporate",
     domainIds: ["corporate", "cloud"],
     definition:
-      "A program for which exposures matter, including exposures a patch will not close. Gartner's public abstract describes a pivot away from traditional technology vulnerability management. It is not itself a scanner, a cloud-posture product, or a software-composition scan.",
-    buyerQuestion: "Which exposures matter beyond the patch list, and who owns the ones a patch will not close?",
+      "A program for deciding which exposures matter, broader than traditional technology vulnerability management. It is not itself a scanner, a cloud-posture product, or a software-composition scan.",
+    buyerQuestion: "Which exposures matter beyond the patch list, and who owns each one?",
     buyerOwner: "The exposure or vulnerability program, often beside cloud security.",
-    triggers: ["A patch SLA that misses configuration and external exposure", "A platform pitch that renames the scanner"],
+    triggers: ["A patch SLA that does not say what else is in scope", "A platform pitch that renames the scanner"],
     budgetSource: "Often the vulnerability-management budget, sometimes cloud security. Ask which program is actually in scope.",
     outcomes: ["Exposures with an owner that are not only missing patches"],
     adjacentCategoryIds: ["it-vulnerability-management", "external-attack-surface", "cspm", "breach-simulation", "cloud-vulnerability"],
+    layer: "adjacent",
     exampleWorkflow:
       "A missing patch, a public cloud bucket, and an internet-facing hostname arrive the same week. The program asks which one matters. The three fixes still belong to three teams until an owner is written down.",
     flow: {
@@ -1608,7 +1609,7 @@ export const ecosystemUseCases: UseCase[] = [
     problem:
       "The same week produces a leaked key, a vulnerable library, a missing OS patch, and a public cloud bucket. Four tools, three teams, and a meeting where everyone thinks it is someone else's queue.",
     architecture:
-      "Secrets detection, SCA, IT vulnerability management, and CSPM are different control planes. ASPM or a CNAPP may offer to correlate them. Correlation is not ownership. Gartner's public CTEM abstract is a program above traditional vulnerability management. It does not assign the patch, the library, or the bucket to one tool. Write down the team that fixes each class.",
+      "Secrets detection, SCA, IT vulnerability management, and CSPM are different control planes. ASPM or a CNAPP may offer to correlate them. Correlation is not ownership. A continuous exposure program sits above traditional vulnerability management. It does not assign the patch, the library, or the bucket to one tool. Write down the team that fixes each class.",
     stakeholders: ["AppSec", "IT vulnerability management", "Cloud security", "Platform"],
     triggers: ["Tool sprawl", "An incident that crossed queues", "A platform pitch"],
     budgetOwner: "Whichever team feels the pain. Do not assume one budget will replace the other three.",

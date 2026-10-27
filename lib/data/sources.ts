@@ -908,10 +908,10 @@ export const sources: Source[] = [
     author: "Dale Koeppen, Esraa ElTahawy, and Neil MacDonald",
     sourceType: "analyst",
     publishedAt: "2025-08-05",
-    retrievedAt: "2026-10-26",
+    retrievedAt: "2026-10-27",
     volatility: "fast",
     excerpt:
-      "Gartner's public abstract describes CNAPP as full life-cycle protection of cloud-native applications and infrastructure from development to production. Representative vendors were not in the abstract.",
+      "Gartner's public abstract says CNAPP offerings address full life-cycle protection requirements from development to production. Representative vendors were not in the abstract.",
   },
   {
     id: "src-gartner-ctem-20250826",
@@ -922,7 +922,7 @@ export const sources: Source[] = [
     author: "Pete Shoard",
     sourceType: "analyst",
     publishedAt: "2025-08-26",
-    retrievedAt: "2026-10-26",
+    retrievedAt: "2026-10-27",
     volatility: "fast",
     excerpt:
       "Gartner's public abstract describes a roadmap to pivot from traditional technology vulnerability management to a broader, more dynamic CTEM program. No vendor is named.",
@@ -936,10 +936,10 @@ export const sources: Source[] = [
     author: "Théo de Féligonde, Dale Koeppen, and Charanpal Bhogal",
     sourceType: "analyst",
     publishedAt: "2025-08-28",
-    retrievedAt: "2026-10-26",
+    retrievedAt: "2026-10-27",
     volatility: "fast",
     excerpt:
-      "Gartner's public abstract treats security service edge and SASE as a procurement decision with its own selection criteria. The criteria and any vendor comparison were not retrieved.",
+      "Gartner's public abstract says selecting a security service edge solution balances feature sets with financial and business imperatives. The criteria and any vendor comparison were not retrieved.",
   },
   {
     id: "src-gartner-siem-cc-20251013",
@@ -950,7 +950,7 @@ export const sources: Source[] = [
     author: "Eric Ahlm, Andrew Davies, Angel Berrios, and Darren Livingstone",
     sourceType: "analyst",
     publishedAt: "2025-10-13",
-    retrievedAt: "2026-10-26",
+    retrievedAt: "2026-10-27",
     volatility: "fast",
     excerpt:
       "Gartner's public abstract describes SIEM as a configurable capability for threat detection, investigation, and response, a system of record, and support for compliance mandates. Scores were not retrieved.",
@@ -964,10 +964,10 @@ export const sources: Source[] = [
     author: "Ashish Suraj Bhan and Nikul Patel",
     sourceType: "analyst",
     publishedAt: "2026-02-03",
-    retrievedAt: "2026-10-26",
+    retrievedAt: "2026-10-27",
     volatility: "fast",
     excerpt:
-      "Gartner's public abstract says AI-enhanced phishing, mergers, and changes in products and bundles raise questions about existing email-security investments. The full selection criteria were not retrieved.",
+      "Gartner's public abstract says AI-enhanced phishing, mergers among vendors, and a surge of product changes raise questions about the full value of existing email-security investments. The criteria were not retrieved.",
   },
   {
     id: "src-sacr-email-20260629",
@@ -978,7 +978,7 @@ export const sources: Source[] = [
     author: "Anna Perrone",
     sourceType: "analyst",
     publishedAt: "2026-06-29",
-    retrievedAt: "2026-10-26",
+    retrievedAt: "2026-10-27",
     volatility: "fast",
     excerpt:
       "SACR defines email security as protecting business communications from phishing, fraud, account compromise, unauthorized access, and data exposure. Gateways, cloud email security, investigation, and automation are described as different parts.",
@@ -992,10 +992,10 @@ export const sources: Source[] = [
     author: "Aqsa Taylor",
     sourceType: "analyst",
     publishedAt: "2025-11-20",
-    retrievedAt: "2026-10-26",
+    retrievedAt: "2026-10-27",
     volatility: "fast",
     excerpt:
-      "SACR describes security data pipeline platforms as systems that ingest, normalize, enrich, filter, and route telemetry to a SIEM, data lake, or XDR. A pipeline is not the detection system.",
+      "SACR describes security data pipeline platforms as systems that ingest, normalize, enrich, filter, and route telemetry from endpoint detection, cloud logs, and firewalls to a SIEM, data lake, or XDR.",
   },
   {
     id: "src-sacr-detection-20260317",
@@ -1006,10 +1006,10 @@ export const sources: Source[] = [
     author: "Sean Sosnowski",
     sourceType: "analyst",
     publishedAt: "2026-03-17",
-    retrievedAt: "2026-10-26",
+    retrievedAt: "2026-10-27",
     volatility: "fast",
     excerpt:
-      "SACR describes a detection as logic that turns telemetry into a hypothesis about adversary behavior. It says a detection is not a vulnerability finding, a posture issue, or the alert that delivers it.",
+      "SACR describes a detection as logic that turns telemetry into a hypothesis about adversary behavior. It says a detection is not a vulnerability finding, a posture issue, a verdict, or the alert that delivers it.",
   },
   {
     id: "src-sacr-cloud-soc-20251211",
@@ -1020,7 +1020,7 @@ export const sources: Source[] = [
     author: "Francis Odum and Aqsa Taylor",
     sourceType: "analyst",
     publishedAt: "2025-12-11",
-    retrievedAt: "2026-10-26",
+    retrievedAt: "2026-10-27",
     volatility: "fast",
     excerpt:
       "SACR describes cloud security teams as owning guardrails, vulnerability policy, and configuration, and SOC teams as owning real-time detection and response. It says the two remain different jobs.",

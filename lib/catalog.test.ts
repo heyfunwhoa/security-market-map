@@ -196,6 +196,8 @@ describe("catalog integrity", () => {
     ];
     const ctem = catalog.categories.find((category) => category.id === "ctem");
     expect(ctem?.slug).toBe("ctem");
+    expect(ctem?.layer).toBe("adjacent");
+    expect(ctem?.definition.toLowerCase()).not.toContain("gartner");
     expect(ctem?.domainIds).toEqual(["corporate", "cloud"]);
     expect(ctem?.adjacentCategoryIds).toEqual([
       "it-vulnerability-management",
@@ -207,7 +209,9 @@ describe("catalog integrity", () => {
     expect(catalog.categories.some((category) => category.id === "sse")).toBe(false);
     expect(catalog.products.some((product) => product.primaryCategoryIds.includes("ctem"))).toBe(false);
     expect(catalog.vendors.some((vendor) => vendor.primaryCategoryIds.includes("ctem"))).toBe(false);
-    expect(catalog.useCases.find((useCase) => useCase.id === "uc-finding-route")?.categoryIds).toContain("ctem");
+    const finding = catalog.useCases.find((useCase) => useCase.id === "uc-finding-route");
+    expect(finding?.categoryIds).toContain("ctem");
+    expect(finding?.architecture).not.toContain("abstract is a program");
     expect(estateAreas.find((area) => area.href === "/categories/ctem")?.examples).toEqual([]);
 
     for (const id of ids) {
@@ -218,17 +222,21 @@ describe("catalog integrity", () => {
       expect(claim?.verificationStatus).toBe("needs_review");
       expect(claim?.sourceType).toBe("analyst");
       expect(claim?.observedAt).toBe("2026-10-26");
-      expect(claim?.lastCheckedAt).toBe("2026-10-26");
+      expect(claim?.lastCheckedAt).toBe("2026-10-27");
       const source = catalog.sources.find((item) => item.id === claim?.sourceId);
       expect(source?.sourceType).toBe("analyst");
       expect(source?.url).toBe(claim?.sourceUrl);
-      expect(source?.retrievedAt).toBe("2026-10-26");
+      expect(source?.retrievedAt).toBe("2026-10-27");
       expect((source?.excerpt.length ?? 999)).toBeLessThanOrEqual(420);
     }
 
     const sse = catalog.claims.find((claim) => claim.id === "claim-gartner-sse-20250828");
     expect(sse?.subjectId).toBe("network-edge");
     expect(sse?.confidence).toBe("low");
+    expect(sse?.statement).not.toMatch(/\bSASE\b/);
+    expect(catalog.claims.find((claim) => claim.id === "claim-gartner-cnapp-20250805")?.statement).toContain(
+      "protection requirements",
+    );
 
     const bounded = ids
       .map((id) => {

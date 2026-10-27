@@ -1939,7 +1939,7 @@ export const claims: Claim[] = [
 {
   id: "claim-gartner-cnapp-20250805",
   statement:
-    "Gartner's 5 Aug 2025 public abstract describes a cloud-native application protection platform as full life-cycle protection of cloud-native applications and infrastructure from development to production.",
+    "Gartner's 5 Aug 2025 public abstract says cloud-native application protection platforms address full life-cycle protection requirements for cloud-native applications and infrastructure, from development to production.",
   subjectType: "category",
   subjectId: "cnapp",
   capabilityId: null,
@@ -1953,10 +1953,10 @@ export const claims: Claim[] = [
   effectiveTo: null,
   confidence: "medium",
   verificationStatus: "needs_review",
-  lastCheckedAt: "2026-10-26",
+  lastCheckedAt: "2026-10-27",
   conflictsWith: [],
   notes:
-    "The public contents list notes on overlap with security service edge, CASB, and SaaS posture, and on tools adjacent to CNAPP. Those notes were not retrieved, so no overlap and no vendor is adopted. The representative-vendor section was not in the abstract. This is not a capability cell for any product.",
+    "Addressing those requirements is Gartner's description of the category. It is not a list of modules a named product includes. The public contents list notes on overlap with security service edge, CASB, and SaaS posture, and on tools adjacent to CNAPP. Those notes were not retrieved, so no overlap and no vendor is adopted. The representative-vendor section was not in the abstract.",
 },
 {
   id: "claim-gartner-ctem-20250826",
@@ -1975,15 +1975,15 @@ export const claims: Claim[] = [
   effectiveTo: null,
   confidence: "medium",
   verificationStatus: "needs_review",
-  lastCheckedAt: "2026-10-26",
+  lastCheckedAt: "2026-10-27",
   conflictsWith: [],
   notes:
-    "The contents list a note on nonpatchable exposures. That note was not retrieved. No vendor is named in the abstract. This does not fill a missing-patch cell.",
+    "The contents list a note titled nonpatchable exposures. That note was not retrieved, so this map does not say which exposures a patch cannot close. No vendor is named in the abstract. This does not fill a missing-patch cell.",
 },
 {
   id: "claim-gartner-sse-20250828",
   statement:
-    "Gartner's 28 Aug 2025 public abstract treats security service edge and SASE as a procurement decision with its own selection criteria.",
+    "Gartner's 28 Aug 2025 public abstract says selecting a security service edge solution means balancing feature sets with financial and business imperatives, and that the guide is for designing SSE and security access service edge procurement.",
   subjectType: "category",
   subjectId: "network-edge",
   capabilityId: null,
@@ -1997,10 +1997,10 @@ export const claims: Claim[] = [
   effectiveTo: null,
   confidence: "low",
   verificationStatus: "needs_review",
-  lastCheckedAt: "2026-10-26",
+  lastCheckedAt: "2026-10-27",
   conflictsWith: [],
   notes:
-    "The criteria and any vendor comparison were not retrieved. The abstract does not define which controls sit inside SSE. This map keeps the field on the network-edge category. No product gains an edge cell from this page.",
+    "The criteria and any vendor comparison were not retrieved. The abstract says security access service edge. This map does not shorten that phrase to SASE, and it does not redefine firewalls, secure web gateways, or ZTNA. No product gains an edge cell from this page.",
 },
 {
   id: "claim-gartner-siem-20251013",
@@ -2019,15 +2019,15 @@ export const claims: Claim[] = [
   effectiveTo: null,
   confidence: "medium",
   verificationStatus: "needs_review",
-  lastCheckedAt: "2026-10-26",
+  lastCheckedAt: "2026-10-27",
   conflictsWith: [],
   notes:
-    "The public page lists products considered for that research. This map does not import that list as a ranking, a placement, or a capability cell. Scores and the full evaluation were not retrieved.",
+    "TDIR in the abstract is written out here as threat detection, investigation, and response. Configurable capability is Gartner's phrase. It is not a filled cell on this map. The public page lists products considered for that research. This map does not import that list as a ranking or a placement. Scores and the full evaluation were not retrieved.",
 },
 {
   id: "claim-gartner-email-20260203",
   statement:
-    "Gartner's 3 Feb 2026 public abstract says AI-enhanced phishing, recent mergers and acquisitions, and changes in products, bundles, and features have raised questions about the value of existing email-security investments.",
+    "Gartner's 3 Feb 2026 public abstract says AI-enhanced phishing, recent mergers and acquisitions among vendors, and a surge of change in products, bundles, and features have raised questions about the full value of existing email-security investments.",
   subjectType: "category",
   subjectId: "email-security",
   capabilityId: null,
@@ -2041,7 +2041,7 @@ export const claims: Claim[] = [
   effectiveTo: null,
   confidence: "medium",
   verificationStatus: "needs_review",
-  lastCheckedAt: "2026-10-26",
+  lastCheckedAt: "2026-10-27",
   conflictsWith: [],
   notes:
     "This is a selection abstract. The full criteria were not retrieved. No vendor and no block or quarantine behavior is adopted.",
@@ -2063,7 +2063,7 @@ export const claims: Claim[] = [
   effectiveTo: null,
   confidence: "medium",
   verificationStatus: "needs_review",
-  lastCheckedAt: "2026-10-26",
+  lastCheckedAt: "2026-10-27",
   conflictsWith: [],
   notes:
     "Vendor write-ups and detection rates in the report are not capability cells. The report's argument for identity context is not an identity cell for any email product.",
@@ -2071,7 +2071,7 @@ export const claims: Claim[] = [
 {
   id: "claim-sacr-sdpp-20251120",
   statement:
-    "SACR's 20 Nov 2025 report, updated 29 Jul 2026, describes security data pipeline platforms as systems that ingest, normalize, enrich, filter, and route security telemetry from sources such as endpoint, cloud, and firewall logs to destinations such as a SIEM, a data lake, or XDR.",
+    "SACR's 20 Nov 2025 report, updated 29 Jul 2026, describes security data pipeline platforms as systems that ingest, normalize, enrich, filter, and route security telemetry from sources such as endpoint detection, cloud logs, and firewalls to destinations such as a SIEM, a data lake, or XDR.",
   subjectType: "category",
   subjectId: "security-data-pipelines",
   capabilityId: null,
@@ -2085,15 +2085,15 @@ export const claims: Claim[] = [
   effectiveTo: null,
   confidence: "medium",
   verificationStatus: "needs_review",
-  lastCheckedAt: "2026-10-26",
+  lastCheckedAt: "2026-10-27",
   conflictsWith: [],
   notes:
-    "A pipeline is not a detection rule and not a SIEM. Acquisition prices and named deals in the report are not adopted. Vendor evaluations are not capability cells.",
+    "That sentence is about moving telemetry. A later section of the same report discusses detection inside the pipeline and treats it as a complement to SIEM analytics. That section is not a capability cell. Acquisition prices and named deals are not adopted. Vendor evaluations are not capability cells.",
 },
 {
   id: "claim-sacr-detection-20260317",
   statement:
-    "SACR's 17 Mar 2026 report, updated 29 Jul 2026, describes a detection as logic that turns telemetry into a hypothesis about adversary behavior, and says a detection is not a vulnerability finding, a compliance gap, a posture issue, or the alert that delivers it.",
+    "SACR's 17 Mar 2026 report, updated 29 Jul 2026, describes a detection as logic that turns telemetry into a hypothesis about adversary behavior, and says a detection is not a vulnerability finding, a compliance gap, a posture issue, a verdict, or the alert that delivers it.",
   subjectType: "category",
   subjectId: "detection-engineering",
   capabilityId: null,
@@ -2107,7 +2107,7 @@ export const claims: Claim[] = [
   effectiveTo: null,
   confidence: "medium",
   verificationStatus: "needs_review",
-  lastCheckedAt: "2026-10-26",
+  lastCheckedAt: "2026-10-27",
   conflictsWith: [],
   notes:
     "Vendor examples in the report are not capability cells. No product gains a detection-content cell from this page.",
@@ -2129,7 +2129,7 @@ export const claims: Claim[] = [
   effectiveTo: null,
   confidence: "medium",
   verificationStatus: "needs_review",
-  lastCheckedAt: "2026-10-26",
+  lastCheckedAt: "2026-10-27",
   conflictsWith: [],
   notes:
     "A later passage about one vendor's platform is that vendor's strategy as described by SACR, not a verified joint workflow. Alert-volume remarks are not adopted as measurements.",
