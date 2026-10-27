@@ -29,13 +29,13 @@ Buyer/champion hypotheses: developers and DevOps for developer workflows; platfo
 
 ## Commercial evidence and unknowns
 
-Infisical's pricing page defines identity as a human or machine authenticating to the platform. It lists rotation in Pro, dynamic secrets in Advanced, and approval workflows in Enterprise.[2] Doppler's pricing page emphasizes per-seat pricing without agent fees.[4] Compare actual workloads and contracts; do not translate seat counts into equivalent identity counts.
+Infisical's pricing page defines identity as a human or machine authenticating to the platform. It lists rotation for public databases only in Pro, with full secret rotation from Advanced; dynamic secrets in Advanced; and approval workflows in Enterprise (re-checked 2026-10-27).[2] Doppler's pricing page emphasizes per-seat pricing without agent fees.[4] Compare actual workloads and contracts; do not translate seat counts into equivalent identity counts.
 
 Unknown: negotiated pricing, implementation cost, region-specific availability, feature parity, independent reliability/accuracy, customer satisfaction, migration effort and total cost. No unsupported rankings or numerical scores.
 
 ## Management versus detection
 
-- Infisical lists secret-scanning capabilities and plan/add-on conditions.[2] Detection depth and live verification parity are unknown.
+- Infisical documents secret scanning (CLI, pre-commit hooks, and GitHub, GitLab and Bitbucket repositories) as a platform capability.[17] Its pricing page no longer mentions scanning (re-checked 2026-10-27), so plan/add-on packaging is Unknown. Detection depth and live verification parity are unknown.
 - HashiCorp identifies Vault Radar separately from Vault for secret-sprawl discovery.[7] Do not attribute all Radar functions to Vault.
 - TruffleHog documents finding, verifying and analyzing leaked credentials.[16] Storage/issuance and detection solve different tasks; potential coexistence is a workflow hypothesis, not a claim of a supported integration.
 - Missing detection evidence for another platform means Unknown, not No.
@@ -97,6 +97,7 @@ All URLs below were retrieved during the research conversation on 2026-10-13. Of
 [14] 1Password Secrets Automation: https://www.1password.dev/secrets-automation
 [15] Keeper Secrets Manager: https://www.keepersecurity.com/secrets-manager.html
 [16] TruffleHog primary repository: https://github.com/trufflesecurity/trufflehog
+[17] Infisical secret scanning documentation (retrieved 2026-10-27): https://infisical.com/docs/documentation/platform/secret-scanning/overview
 
 No employer, private interview, customer, credential or pipeline data included. No scanner executed or third-party repository modified.
 
@@ -115,11 +116,11 @@ Interpretation: **Documented** = specific vendor-published functionality; **Limi
 | Enforce access to specific secret paths | Documented; edition-specific RBAC details require proof [F1,F2] | Documented auth/policy association [V2] | Documented access policy concept; exact scope/edition requires review [A1] |
 | Retrieve secrets at runtime | Documented; specific CLI/SDK/agent integration must be checked [F1] | Documented KV read/auth flow [V1,V2] | Documented; deployment/gateway routing must be evaluated [A1,A2] |
 | Issue a credential on demand | Conflicting vendor packaging: the pricing matrix lists dynamic secrets on Advanced [F2], while other Infisical pages describe Enterprise. Target support stays Limited [F1]. Do not treat either page as the purchased plan. | Documented dynamic database credential engines; existing `claim-vault-dynamic` [V3,V4] | Documented dynamic secret types; target/Gateway dependency [A1,A2] |
-| Rotate an existing standing credential automatically | Limited: supported targets and Pro plan packaging; do not equate with issuance [F2] | Limited: static roles/engine-specific operations, not every KV secret [V3] | Limited: rotated secret types and rotator/target prerequisites [A1,A3] |
+| Rotate an existing standing credential automatically | Limited: Pro covers public databases only; full rotation from Advanced (pricing re-checked 2026-10-27); do not equate with issuance [F2] | Limited: static roles/engine-specific operations, not every KV secret [V3] | Limited: rotated secret types and rotator/target prerequisites [A1,A3] |
 | Explicitly expire/revoke an issued credential | Unknown per Infisical target; short-lived issuance does not prove all target revocations [F1] | Documented for leased dynamic credentials, not equivalent to deleting KV entries [V4] | Unknown for each dynamic target/lease; demonstration needed [A1,A2] |
 | Issue/manage X.509 certificates | Separate certificate functionality; secrets-manager SKU parity Unknown [F1,F2] | Documented PKI secrets engine (existing `claim-vault-pki`) [V5] | **Documented at platform level** for PKI/TLS and SSH certificates [A1]; certificate issuance methods, licensing and manager entitlement still Unknown |
 | Authenticate machine/workload callers | Documented at platform level; exact method and entitlement to verify [F1] | Documented auth methods for people and machines [V2] | Documented product access patterns; auth type/plan needs review [A1,A2] |
-| Detect exposed credentials in source repositories | Separate Infisical scanner; coverage/verification and purchased scope Unknown [F2] | Vault Radar is distinct from base Vault; base `vault` detection Unknown [V6] | Separate GitHub scanning claim requires exact official scanner documentation, edition and coverage [A1] |
+| Detect exposed credentials in source repositories | Documented scanner [S1]; packaging (not on the pricing page as of 2026-10-27), coverage/verification and purchased scope Unknown | Vault Radar is distinct from base Vault; base `vault` detection Unknown [V6] | Separate GitHub scanning claim requires exact official scanner documentation, edition and coverage [A1] |
 | Broker/record privileged remote sessions | Separate PAM product scope; no base secrets-manager equivalence established [F1] | Unknown for base Vault; category adjacency is not proof [V6] | Unknown complete PAM/session-control behavior; do not infer from remote access wording [A3] |
 
 ### Original evidence URLs and constraints
@@ -136,6 +137,7 @@ Interpretation: **Documented** = specific vendor-published functionality; **Limi
 | V6 | HashiCorp / official product documentation | https://developer.hashicorp.com/vault/docs | Product families including Vault Radar; separate product scopes |
 | A1 | Akeyless / official docs | https://docs.akeyless.io/docs/manage-your-secrets-overview | Static, dynamic, rotated taxonomy; not a complete coverage matrix |
 | A2 | Akeyless / official docs | https://docs.akeyless.io/docs/gateway-overview | Gateway architecture/prerequisites; deployment validation needed |
+| S1 | Infisical / official docs | https://infisical.com/docs/documentation/platform/secret-scanning/overview | Scanning methods and findings; no plan, licensing or live-verification statement (retrieved 2026-10-27) |
 | A3 | Akeyless / official docs | https://docs.akeyless.io/docs/cli-reference-rotated-secrets | Rotated-secret CLI parameters; target types do not establish universal coverage |
 
 **Observation and review fields (all rows):** `observedAt=2026-10-14`; `lastCheckedAt=2026-10-14` for this candidate research only; `publishedAt=null`; `effectiveFrom=null`; `effectiveTo=null`; `verificationStatus=needs_review` for any future typed promotion, with `vendor_published` retained to describe the evidence rather than being treated as independent verification; `confidence=medium` for direct documented behaviors and `low` for product/plan boundary hypotheses. Version/edition is **Unknown** unless explicitly stated above; deployment/target details must remain in claim notes. No negative, conflicting, or superseded claim is established by these sources.
@@ -146,5 +148,5 @@ Interpretation: **Documented** = specific vendor-published functionality; **Limi
 
 - **Infisical pricing contradiction requiring review:** current official [pricing feature matrix](https://infisical.com/pricing) lists dynamic secrets under **Advanced**, while the vendor's [Terraform secrets management article](https://infisical.com/blog/terraform-secrets-management) describes dynamic secrets as **Enterprise**, and the vendor's [2026 secrets-manager pricing blog](https://infisical.com/blog/secrets-manager-pricing) also describes different plan packaging, self-hosting, and scanning inclusions. Record as **conflicting vendor-published commercial evidence**, not a finalized purchased-entitlement claim; observed 2026-10-14, publication dates taken only where provided by source. The marketing pricing page may be more current, but procurement verification is necessary before promoting exact edition assertions.
 - **Akeyless certificate correction:** the original [Secret Types](https://docs.akeyless.io/docs/manage-your-secrets-overview) explicitly mentions Akeyless acting as a certificate authority for internal PKI/TLS and SSH certificates. Therefore **platform-level certificate capability is vendor-documented**; SKU, APIs and deployment parity remain Unknown. This does not imply independently tested issuance or a fully equivalent PKI lifecycle.
-- **Infisical product separation:** [pricing](https://infisical.com/pricing) explicitly treats Secret Scanning as a separate add-on and describes Privileged Access separately, including session recording. Do not attribute session recording or scanner coverage to base Secrets Management.
+- **Infisical product separation:** [pricing](https://infisical.com/pricing) describes Privileged Access as a separate product line, including session recording. Correction 2026-10-27: the pricing page no longer mentions Secret Scanning, so the earlier add-on reading is withdrawn; scanning is documented in the [secret scanning docs](https://infisical.com/docs/documentation/platform/secret-scanning/overview) and its packaging is Unknown. Do not attribute session recording or scanner coverage to base Secrets Management.
 - Source metadata for these findings: official/vendor-published; observation 2026-10-14, publication date unknown where not explicitly marked, confidence medium for source meaning and low for actual contractual applicability; review status `needs_review`, with the Infisical package conflict flagged `conflicting` in research only. Human reviewer must resolve before typed claim publication.
