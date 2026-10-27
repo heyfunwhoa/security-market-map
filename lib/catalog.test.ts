@@ -265,6 +265,93 @@ describe("catalog integrity", () => {
     expect(evidenceCell(catalog.claims, "qualys", "cap-vm", "2026-10-26").status).toBe("unknown");
     expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(35);
   });
+
+  it("keeps newly sourced field sentences off product cells, rosters, and statistics", () => {
+    const ids = [
+      "claim-gartner-dspm-overview-20260707",
+      "claim-gartner-dspm-buyers-20260529",
+      "claim-gartner-secrets-20240812",
+      "claim-sacr-sdpp-guide-20250421",
+      "claim-sacr-hrm-20260521",
+      "claim-sacr-dlp-20260423",
+      "claim-sacr-exposure-ctem-20251009",
+      "claim-sacr-exposure-vm-20251009",
+      "claim-sacr-iga-entitlements-20251202",
+      "claim-sacr-pam-20260127",
+      "claim-sacr-drp-20260729",
+    ];
+    const drp = catalog.categories.find((category) => category.id === "digital-risk-protection");
+    expect(drp?.layer).toBe("adjacent");
+    expect(drp?.definition.toLowerCase()).not.toContain("sacr");
+    expect(drp?.definition.toLowerCase()).not.toContain("gartner");
+    expect(catalog.products.some((product) => product.primaryCategoryIds.includes("digital-risk-protection"))).toBe(false);
+    expect(estateAreas.find((area) => area.href === "/categories/digital-risk-protection")?.examples).toEqual([]);
+    expect(catalog.categories.some((category) => category.id === "human-risk-management")).toBe(false);
+
+    for (const id of ids) {
+      const claim = catalog.claims.find((item) => item.id === id);
+      expect(claim, id).toBeDefined();
+      expect(claim?.subjectType).toBe("category");
+      expect(claim?.capabilityId).toBeNull();
+      expect(claim?.verificationStatus).toBe("needs_review");
+      expect(claim?.sourceType).toBe("analyst");
+      expect(claim?.observedAt).toBe("2026-10-27");
+      expect(claim?.lastCheckedAt).toBe("2026-10-27");
+      const source = catalog.sources.find((item) => item.id === claim?.sourceId);
+      expect(source?.sourceType).toBe("analyst");
+      expect(source?.url).toBe(claim?.sourceUrl);
+      expect(source?.retrievedAt).toBe("2026-10-27");
+      expect((source?.excerpt.length ?? 999)).toBeLessThanOrEqual(420);
+    }
+
+    const exposureSource = catalog.sources.find((source) => source.id === "src-sacr-exposure-20251009");
+    expect(catalog.claims.filter((claim) => claim.sourceId === exposureSource?.id)).toHaveLength(2);
+    expect(catalog.claims.find((claim) => claim.id === "claim-gartner-secrets-20240812")?.statement).not.toMatch(
+      /federation/i,
+    );
+    expect(catalog.claims.find((claim) => claim.id === "claim-sacr-hrm-20260521")?.subjectId).toBe("security-awareness");
+
+    const bounded = ids
+      .map((id) => {
+        const claim = catalog.claims.find((item) => item.id === id);
+        return `${claim?.statement ?? ""} ${claim?.notes ?? ""}`;
+      })
+      .join(" ")
+      .toLowerCase();
+    for (const banned of [
+      "magic quadrant",
+      "75%",
+      "31%",
+      "76%",
+      "4.44",
+      "$25",
+      "cribl",
+      "outtake",
+      "cimento",
+      "apono",
+      "britive",
+      "cyberark",
+      "astelia",
+      "axonius",
+      "nagomi",
+      "seemplicity",
+      "zafran",
+      "all logs",
+      "critical enablers",
+      "dspm is great",
+    ]) {
+      expect(bounded, banned).not.toContain(banned);
+    }
+
+    for (const subjectId of ["sast", "xdr", "mdr", "ndr", "soar", "endpoint-security", "waf-waap", "ot-security", "insider-risk", "security-ratings", "threat-intelligence"]) {
+      expect(
+        catalog.claims.some((claim) => claim.subjectType === "category" && claim.subjectId === subjectId),
+        subjectId,
+      ).toBe(false);
+    }
+    expect(evidenceCell(catalog.claims, "tenable", "cap-vm", "2026-10-27").status).toBe("unknown");
+    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(35);
+  });
 });
 
 describe("comparison", () => {

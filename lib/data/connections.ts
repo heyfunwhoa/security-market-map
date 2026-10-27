@@ -680,6 +680,13 @@ export const estateAreas: { name: string; problem: string; href: string; example
     examples: [vendor("Censys", "censys"), vendor("CyCognito", "cycognito")],
   },
   {
+    name: "Digital risk",
+    problem:
+      "Which public abuse of a known brand, domain, or executive is in scope? The 29 Jul 2026 SACR page describes that search. This hub lists no product.",
+    href: "/categories/digital-risk-protection",
+    examples: [],
+  },
+  {
     name: "Asset inventory",
     problem: "Which tool is the source of truth for what exists?",
     href: "/categories/security-asset-management",

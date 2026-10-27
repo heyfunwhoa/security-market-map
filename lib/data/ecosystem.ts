@@ -1069,7 +1069,7 @@ export const ecosystemCategories: Category[] = [
     budgetSource: "SecOps. Sometimes bundled with an MDR or a consulting retainer.",
     triggers: ["A sector-specific threat", "Indicators nobody operationalizes"],
     outcomes: ["Intelligence with an owner inside detection"],
-    adjacentCategoryIds: ["siem", "mdr", "xdr"],
+    adjacentCategoryIds: ["siem", "mdr", "xdr", "digital-risk-protection"],
     exampleWorkflow: "A report names an actor. Detection engineering writes a rule. The report itself did not page anyone.",
     flow: {
       actor: "Intelligence analyst",
@@ -1161,7 +1161,7 @@ export const ecosystemCategories: Category[] = [
     budgetSource: "Exposure or VM. Confirm it is not being bought as a patch scanner.",
     triggers: ["An acquisition", "An unknown exposed service"],
     outcomes: ["Newly found assets with an owner"],
-    adjacentCategoryIds: ["it-vulnerability-management", "cspm", "security-ratings"],
+    adjacentCategoryIds: ["it-vulnerability-management", "cspm", "security-ratings", "digital-risk-protection"],
     exampleWorkflow: "A scan finds a forgotten marketing site. The owner is assigned. Patching it is a different tool.",
     flow: {
       actor: "Internet-facing asset",
@@ -1170,6 +1170,31 @@ export const ecosystemCategories: Category[] = [
       decision: "Whether it is ours",
       action: "Inventory it",
       evidence: "The discovered asset and the owner",
+    },
+  }),
+  category({
+    id: "digital-risk-protection",
+    name: "Digital risk protection",
+    group: "corporate",
+    domainIds: ["corporate"],
+    definition:
+      "A search for public abuse of a brand, domain, executive, product, or customer-facing asset the organization already knows. That search is not an inventory of unknown internet-facing hosts, and it is not a missing-patch scan.",
+    buyerQuestion: "Which public abuse of a known brand is in scope, and who owns the asset being abused?",
+    buyerOwner: "Brand protection or the security team that handles external abuse. Often not the vulnerability-scanning owner.",
+    triggers: ["A cloned site or a fake executive profile", "An abuse queue with no owner"],
+    budgetSource: "Brand protection or corporate security. Confirm it is not being bought as an attack-surface scanner.",
+    outcomes: ["Known-brand abuse with an owner"],
+    adjacentCategoryIds: ["external-attack-surface", "threat-intelligence"],
+    layer: "adjacent",
+    exampleWorkflow:
+      "A cloned site uses the company name. The brand owner records it. An unknown host with no brand on it belongs on the attack-surface list.",
+    flow: {
+      actor: "Brand or external-abuse owner",
+      credential: "Not the point",
+      permission: "Which known assets are in scope",
+      decision: "Whether the public item abuses a known brand",
+      action: "Record the abuse and name an owner",
+      evidence: "The abused asset and the owner",
     },
   }),
   category({
