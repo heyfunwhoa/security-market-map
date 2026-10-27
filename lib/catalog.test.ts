@@ -102,6 +102,41 @@ describe("catalog integrity", () => {
     }
   });
 
+  it("links secrets products by job boundary and does not call the expansion vaults direct competitors", () => {
+    const expected = [
+      "rel-vault-radar",
+      "rel-infisical-scanning",
+      "rel-akeyless-github-scanner",
+      "rel-truffle-infisical",
+      "rel-truffle-doppler",
+      "rel-delinea-dsv-secret-server",
+      "rel-beyondtrust-secrets-pam",
+      "rel-vault-bitwarden-sm",
+      "rel-vault-1password-secrets",
+      "rel-vault-keeper-sm",
+      "rel-socket-trufflehog",
+      "rel-tenable-secrets-trufflehog",
+    ];
+    for (const id of expected) {
+      expect(catalog.relationships.some((relationship) => relationship.id === id), id).toBe(true);
+    }
+    const expansionVaults = new Set([
+      "bitwarden-secrets-manager",
+      "1password-secrets-automation",
+      "keeper-secrets-manager",
+      "delinea-devops-secrets-vault",
+      "beyondtrust-secrets-safe",
+    ]);
+    for (const relationship of catalog.relationships) {
+      const touchesExpansion =
+        expansionVaults.has(relationship.fromProductId) || expansionVaults.has(relationship.toProductId);
+      if (touchesExpansion) expect(relationship.type, relationship.id).not.toBe("direct_competitor");
+    }
+    const radar = catalog.relationships.find((relationship) => relationship.id === "rel-vault-radar");
+    expect(radar?.toProductId).toBe("vault-radar");
+    expect(radar?.type).toBe("complement");
+  });
+
   it("points landscape connections at real seed pages", () => {
     const hrefs = [
       ...capabilityBands.map((band) => band.href),
