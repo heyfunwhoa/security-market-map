@@ -364,8 +364,8 @@ export default function ConnectionsPage() {
         <h2 className="text-3xl tracking-tight">The names, not the report titles</h2>
         <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
           Gartner and Forrester describe the markets. This list is who shows up in a competitive
-          conversation. The analyst pages were not retrieved, so none of these names is an analyst
-          placement.
+          conversation. A retrieved public abstract is a category claim. None of these names is an
+          analyst placement.
         </p>
         <div className="mt-4 grid gap-4 lg:grid-cols-2">
           {estateAreas.map((area) => (

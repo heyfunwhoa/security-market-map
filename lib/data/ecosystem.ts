@@ -284,7 +284,7 @@ export const ecosystemCategories: Category[] = [
     triggers: ["Audit of patch SLAs", "Scanner renewal", "Exploit in the news"],
     budgetSource: "IT vulnerability management.",
     outcomes: ["Overdue criticals on owned assets", "Scan coverage"],
-    adjacentCategoryIds: ["sca", "cspm", "endpoint-security"],
+    adjacentCategoryIds: ["sca", "cspm", "endpoint-security", "ctem"],
     exampleWorkflow: "A scanner flags a missing OS patch on a server. The infrastructure owner patches it. An AppSec SCA ticket for a library is a different queue.",
     flow: {
       actor: "Host or network device",
@@ -293,6 +293,30 @@ export const ecosystemCategories: Category[] = [
       decision: "Severity and ownership",
       action: "Patch or accept the risk",
       evidence: "Finding, owner, and closure",
+    },
+  }),
+  category({
+    id: "ctem",
+    name: "Continuous threat exposure management",
+    group: "corporate",
+    domainIds: ["corporate", "cloud"],
+    definition:
+      "A program for which exposures matter, including exposures a patch will not close. Gartner's public abstract describes a pivot away from traditional technology vulnerability management. It is not itself a scanner, a cloud-posture product, or a software-composition scan.",
+    buyerQuestion: "Which exposures matter beyond the patch list, and who owns the ones a patch will not close?",
+    buyerOwner: "The exposure or vulnerability program, often beside cloud security.",
+    triggers: ["A patch SLA that misses configuration and external exposure", "A platform pitch that renames the scanner"],
+    budgetSource: "Often the vulnerability-management budget, sometimes cloud security. Ask which program is actually in scope.",
+    outcomes: ["Exposures with an owner that are not only missing patches"],
+    adjacentCategoryIds: ["it-vulnerability-management", "external-attack-surface", "cspm", "breach-simulation", "cloud-vulnerability"],
+    exampleWorkflow:
+      "A missing patch, a public cloud bucket, and an internet-facing hostname arrive the same week. The program asks which one matters. The three fixes still belong to three teams until an owner is written down.",
+    flow: {
+      actor: "Exposure program owner",
+      credential: "Not the point",
+      permission: "Which exposures are in the program",
+      decision: "What to fix, accept, or hand to another team",
+      action: "Route the exposure",
+      evidence: "The exposure, the owner, and whether a patch was even the fix",
     },
   }),
   category({
@@ -1584,12 +1608,12 @@ export const ecosystemUseCases: UseCase[] = [
     problem:
       "The same week produces a leaked key, a vulnerable library, a missing OS patch, and a public cloud bucket. Four tools, three teams, and a meeting where everyone thinks it is someone else's queue.",
     architecture:
-      "Secrets detection, SCA, IT vulnerability management, and CSPM are different control planes. ASPM or a CNAPP may offer to correlate them. Correlation is not ownership. Write down the team that fixes each class.",
+      "Secrets detection, SCA, IT vulnerability management, and CSPM are different control planes. ASPM or a CNAPP may offer to correlate them. Correlation is not ownership. Gartner's public CTEM abstract is a program above traditional vulnerability management. It does not assign the patch, the library, or the bucket to one tool. Write down the team that fixes each class.",
     stakeholders: ["AppSec", "IT vulnerability management", "Cloud security", "Platform"],
     triggers: ["Tool sprawl", "An incident that crossed queues", "A platform pitch"],
     budgetOwner: "Whichever team feels the pain. Do not assume one budget will replace the other three.",
     successMetrics: ["Each finding class has a named owner", "Duplicate tools retired only with evidence"],
-    categoryIds: ["secrets-detection", "sca", "it-vulnerability-management", "cspm"],
+    categoryIds: ["secrets-detection", "sca", "it-vulnerability-management", "cspm", "ctem"],
     capabilityIds: ["cap-secret-discovery", "cap-sca", "cap-vm", "cap-cspm"],
     discoveryQuestions: [
       "Is the painful finding in git, on a server, or in a cloud account?",

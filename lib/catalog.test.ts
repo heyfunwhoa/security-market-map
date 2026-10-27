@@ -181,6 +181,82 @@ describe("catalog integrity", () => {
     expect(text).not.toContain("magic quadrant");
     expect(text).toContain("records no placement");
   });
+
+  it("keeps adjacent analyst fields off product cells and placements", () => {
+    const ids = [
+      "claim-gartner-cnapp-20250805",
+      "claim-gartner-ctem-20250826",
+      "claim-gartner-sse-20250828",
+      "claim-gartner-siem-20251013",
+      "claim-gartner-email-20260203",
+      "claim-sacr-email-20260629",
+      "claim-sacr-sdpp-20251120",
+      "claim-sacr-detection-20260317",
+      "claim-sacr-cloud-soc-20251211",
+    ];
+    const ctem = catalog.categories.find((category) => category.id === "ctem");
+    expect(ctem?.slug).toBe("ctem");
+    expect(ctem?.domainIds).toEqual(["corporate", "cloud"]);
+    expect(ctem?.adjacentCategoryIds).toEqual([
+      "it-vulnerability-management",
+      "external-attack-surface",
+      "cspm",
+      "breach-simulation",
+      "cloud-vulnerability",
+    ]);
+    expect(catalog.categories.some((category) => category.id === "sse")).toBe(false);
+    expect(catalog.products.some((product) => product.primaryCategoryIds.includes("ctem"))).toBe(false);
+    expect(catalog.vendors.some((vendor) => vendor.primaryCategoryIds.includes("ctem"))).toBe(false);
+    expect(catalog.useCases.find((useCase) => useCase.id === "uc-finding-route")?.categoryIds).toContain("ctem");
+    expect(estateAreas.find((area) => area.href === "/categories/ctem")?.examples).toEqual([]);
+
+    for (const id of ids) {
+      const claim = catalog.claims.find((item) => item.id === id);
+      expect(claim, id).toBeDefined();
+      expect(claim?.subjectType).toBe("category");
+      expect(claim?.capabilityId).toBeNull();
+      expect(claim?.verificationStatus).toBe("needs_review");
+      expect(claim?.sourceType).toBe("analyst");
+      expect(claim?.observedAt).toBe("2026-10-26");
+      expect(claim?.lastCheckedAt).toBe("2026-10-26");
+      const source = catalog.sources.find((item) => item.id === claim?.sourceId);
+      expect(source?.sourceType).toBe("analyst");
+      expect(source?.url).toBe(claim?.sourceUrl);
+      expect(source?.retrievedAt).toBe("2026-10-26");
+      expect((source?.excerpt.length ?? 999)).toBeLessThanOrEqual(420);
+    }
+
+    const sse = catalog.claims.find((claim) => claim.id === "claim-gartner-sse-20250828");
+    expect(sse?.subjectId).toBe("network-edge");
+    expect(sse?.confidence).toBe("low");
+
+    const bounded = ids
+      .map((id) => {
+        const claim = catalog.claims.find((item) => item.id === id);
+        return `${claim?.statement ?? ""} ${claim?.notes ?? ""}`;
+      })
+      .join(" ")
+      .toLowerCase();
+    for (const banned of [
+      "magic quadrant",
+      "$290",
+      "$225",
+      "$3.3",
+      "cribl",
+      "panther",
+      "cortex cloud",
+      "observo",
+      "onum",
+      "chronosphere",
+    ]) {
+      expect(bounded, banned).not.toContain(banned);
+    }
+
+    expect(evidenceCell(catalog.claims, "tenable", "cap-vm", "2026-10-26").status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "snyk", "cap-sca", "2026-10-26").status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "qualys", "cap-vm", "2026-10-26").status).toBe("unknown");
+    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(35);
+  });
 });
 
 describe("comparison", () => {
