@@ -255,8 +255,18 @@ export const relationships: Relationship[] = [
     type: "direct_competitor",
     useCaseId: "uc-nhi",
     rationale:
-      "NHI shortlist. Oasis has inventory, owner, and lifecycle language. The SailPoint Entro page served at entro.security on 26 Oct 2026 describes discovery, a human owner, and lifecycle language. The acquisition close date is not on that page. The edge is a shortlist, not parity.",
-    sourceId: "src-sailpoint-entro",
+      "NHI shortlist. Oasis has inventory, owner, and lifecycle language. SailPoint Entro's product page describes discovery, a human owner, and lifecycle language. SailPoint's 29 Jun 2026 release says the acquisition is complete and that Entro stays available as a standalone offering while integration continues. The edge is a shortlist, not parity.",
+    sourceId: "src-sailpoint-entro-close",
+  },
+  {
+    id: "rel-entro-sailpoint",
+    fromProductId: "entro",
+    toProductId: "sailpoint-isc",
+    type: "complement",
+    useCaseId: "uc-nhi",
+    rationale:
+      "SailPoint's 29 Jun 2026 release says the Entro acquisition is complete and that Entro's solutions are available to SailPoint customers as standalone offerings while native integration continues. The product records stay separate. Identity Security Cloud does not gain an NHI cell from this release. A joint enforcement workflow is not verified.",
+    sourceId: "src-sailpoint-entro-close",
   },
   {
     id: "rel-oasis-astrix",
@@ -264,7 +274,8 @@ export const relationships: Relationship[] = [
     toProductId: "astrix",
     type: "direct_competitor",
     useCaseId: "uc-nhi",
-    rationale: "NHI shortlist. Astrix's sourced fact is the Cisco transition and the end of new standalone licenses, not a feature list.",
+    rationale:
+      "NHI shortlist. Oasis has inventory, owner, and lifecycle language. Astrix's homepage supports an inventory of agents, MCP servers, and non-human identities. Owner assignment and decommissioning are not on that page. New standalone licenses ended 30 Jun 2026. Cisco says the acquisition completed on 29 Jun 2026. The edge is a shortlist, not parity.",
     sourceId: "src-astrix-home",
   },
   {

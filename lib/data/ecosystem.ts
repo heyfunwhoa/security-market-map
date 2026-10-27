@@ -4008,7 +4008,7 @@ export const ecosystemRelationships: Relationship[] = [
     type: "direct_competitor",
     useCaseId: "uc-nhi",
     rationale:
-      "Both get named for SaaS-to-SaaS and OAuth access. Astrix's sourced fact is the Cisco transition. AppOmni has no capability cell.",
+      "Both get named for SaaS-to-SaaS and OAuth access. Astrix's homepage supports an NHI inventory. Its availability fact is the Cisco transition: new standalone licenses ended 30 Jun 2026, and Cisco says the acquisition completed on 29 Jun 2026. AppOmni has no capability cell.",
     sourceId: "src-astrix-home",
   },
   {

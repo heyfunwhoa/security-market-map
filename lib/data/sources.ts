@@ -527,10 +527,24 @@ export const sources: Source[] = [
     publisher: "Astrix Security",
     sourceType: "vendor_marketing",
     publishedAt: null,
-    retrievedAt: "2026-09-23",
+    retrievedAt: "2026-10-26",
     volatility: "fast",
     excerpt:
-      "Homepage saying Astrix is now part of Cisco and that standalone sales of new licenses ended 30 Jun 2026.",
+      "Homepage says Astrix is part of Cisco, that new standalone licenses ended 30 Jun 2026, and that the product inventories AI agents, MCP servers, and non-human identities.",
+  },
+  {
+    id: "src-cisco-astrix",
+    title: "Cisco blog, intent to acquire Astrix and 29 Jun 2026 completion update",
+    url: "https://blogs.cisco.com/news/cisco-announces-intent-to-acquire-astrix-security",
+    canonicalUrl: "https://blogs.cisco.com/news/cisco-announces-intent-to-acquire-astrix-security",
+    publisher: "Cisco",
+    author: "Peter Bailey",
+    sourceType: "press_release",
+    publishedAt: "2026-05-04",
+    retrievedAt: "2026-10-26",
+    volatility: "fast",
+    excerpt:
+      "On 4 May 2026 Cisco announced its intent to acquire Astrix. A 29 Jun 2026 update on the same post says the acquisition is complete. Planned integrations are named. They are not a product test.",
   },
   {
     id: "src-sailpoint-home",
@@ -747,7 +761,33 @@ export const sources: Source[] = [
     retrievedAt: "2026-10-26",
     volatility: "fast",
     excerpt:
-      "entro.security presented SailPoint Entro on 26 Oct 2026. The page describes discovery, a human owner, and lifecycle language for AI agents and non-human identities.",
+      "entro.security presented SailPoint Entro on 26 Oct 2026. The page describes discovery, a human owner, and lifecycle language for AI agents and non-human identities. It does not state the acquisition close date.",
+  },
+  {
+    id: "src-sailpoint-entro-intent",
+    title: "SailPoint press release, intent to acquire Entro",
+    url: "https://www.sailpoint.com/press-releases/sailpoint-announces-intent-to-acquire-entro-security",
+    canonicalUrl: "https://www.sailpoint.com/press-releases/sailpoint-announces-intent-to-acquire-entro-security",
+    publisher: "SailPoint",
+    sourceType: "press_release",
+    publishedAt: "2026-06-15",
+    retrievedAt: "2026-10-26",
+    volatility: "fast",
+    excerpt:
+      "On 15 Jun 2026 SailPoint announced its intent to acquire Entro and said the close was expected in the third quarter of fiscal 2027, subject to customary conditions.",
+  },
+  {
+    id: "src-sailpoint-entro-close",
+    title: "SailPoint press release, Entro acquisition completed",
+    url: "https://www.sailpoint.com/press-releases/sailpoint-closes-entro-security-acquisition",
+    canonicalUrl: "https://www.sailpoint.com/press-releases/sailpoint-closes-entro-security-acquisition",
+    publisher: "SailPoint",
+    sourceType: "press_release",
+    publishedAt: "2026-06-29",
+    retrievedAt: "2026-10-26",
+    volatility: "fast",
+    excerpt:
+      "On 29 Jun 2026 SailPoint said the Entro acquisition was complete, that Entro's solutions are available to SailPoint customers as standalone offerings, and that native integration continues. Terms were not disclosed.",
   },
   {
     id: "src-infisical-secrets",

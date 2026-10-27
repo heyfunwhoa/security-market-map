@@ -548,12 +548,15 @@ export const vendors: Vendor[] = [
     formerNames: [],
     website: "https://entro.security/",
     positioning:
-      "entro.security presented SailPoint Entro on 26 Oct 2026. The page describes discovery of AI agents and non-human identities, a human owner, and lifecycle language. The acquisition close date is not on the page. Customer quotations are not adopted.",
+      "SailPoint said on 29 Jun 2026 that it completed the Entro acquisition and that Entro's solutions are available to SailPoint customers as standalone offerings while native integration continues. entro.security presents SailPoint Entro: discovery, a human owner, lifecycle language, a Slack DLP description, and NHIDR. The product page does not restate the close date. Customer quotations and credential counts are not adopted.",
     primaryCategoryIds: ["nhi", "agentic-runtime"],
     adjacentCategoryIds: ["agent-identity", "secrets-detection", "itdr"],
     identityScopes: ["nhi", "agent"],
     verificationStatus: "research_candidate",
-    openQuestions: ["Is the buyer buying inventory, secrets finding, or runtime detection?"],
+    openQuestions: [
+      "The 29 Jun 2026 release says standalone offerings while native integration continues. Which SKU is on the quote?",
+      "The product page describes inventory, owners, lifecycle language, Slack DLP, and NHIDR. Which of those is in scope?",
+    ],
   }),
   vendor({
     id: "astrix",
@@ -562,14 +565,14 @@ export const vendors: Vendor[] = [
     formerNames: [],
     website: "https://astrix.security/",
     positioning:
-      "NHI and agent-security vendor. The homepage says Astrix is now part of Cisco and that standalone sales of new licenses ended 30 Jun 2026.",
+      "NHI and agent-security vendor. The homepage describes an inventory of AI agents, MCP servers, and non-human identities, and says Astrix is now part of Cisco. Cisco's 29 Jun 2026 update says the acquisition is complete. New standalone licenses ended 30 Jun 2026. Owner assignment and decommissioning are not on the homepage. Cisco's capability list is not a checked product cell.",
     primaryCategoryIds: ["nhi", "agent-identity", "agentic-runtime"],
     adjacentCategoryIds: ["secrets-detection"],
     identityScopes: ["nhi", "agent"],
     verificationStatus: "research_candidate",
     openQuestions: [
-      "Is the account an existing Astrix customer, or a new Cisco conversation?",
-      "Which Cisco SKU, if any, now holds the capability?",
+      "Cisco's 29 Jun 2026 update says the acquisition is complete, and new standalone licenses ended 30 Jun 2026. Is this account an existing Astrix customer?",
+      "The homepage describes an inventory. It does not say the product assigns an owner or decommissions an identity. Which Cisco SKU, if any, includes it?",
     ],
   }),
   vendor({
@@ -1371,14 +1374,14 @@ export const products: Product[] = [
     vendorId: "entro",
     name: "Entro",
     positioning:
-      "SailPoint Entro page. Discovery, a human owner, and lifecycle language are vendor-published. The acquisition close date is not on the page.",
+      "SailPoint Entro page. Discovery, a human owner, lifecycle language, Slack DLP, and NHIDR are vendor-published. The product page does not restate the 29 Jun 2026 close.",
     primaryCategoryIds: ["nhi", "agentic-runtime"],
     adjacentCategoryIds: ["agent-identity", "itdr"],
     deployment: ["unknown"],
     identityScopes: ["nhi", "agent"],
     availability: "unknown",
     availabilityNote:
-      "entro.security presented the SailPoint Entro page on 26 Oct 2026. The acquisition close date is not stated there.",
+      "SailPoint's 29 Jun 2026 release says Entro's solutions are available to SailPoint customers as standalone offerings while native integration continues. The product page does not restate the close date. Deployment for a new buyer was not confirmed.",
     officialUrl: "https://entro.security/",
     useCaseIds: ["uc-nhi", "uc-agent"],
   }),
@@ -1387,13 +1390,15 @@ export const products: Product[] = [
     slug: "astrix",
     vendorId: "astrix",
     name: "Astrix",
-    positioning: "NHI and agent security. New standalone licenses ended 30 Jun 2026 according to the homepage.",
+    positioning:
+      "NHI and agent security. The homepage describes an inventory of agents, MCP servers, and non-human identities. It does not say the product assigns an owner or decommissions an identity. New standalone licenses ended 30 Jun 2026.",
     primaryCategoryIds: ["nhi", "agent-identity", "agentic-runtime"],
     adjacentCategoryIds: [],
     deployment: ["unknown"],
     identityScopes: ["nhi", "agent"],
     availability: "limited",
-    availabilityNote: "Homepage: standalone sales of new licenses ended 30 Jun 2026. Existing agreements continue. Cisco packaging is not sourced.",
+    availabilityNote:
+      "Homepage: standalone sales of new licenses ended 30 Jun 2026. Existing agreements continue. Cisco's blog says the acquisition completed on 29 Jun 2026. The Cisco SKU, if any, is not named.",
     officialUrl: "https://astrix.security/",
     useCaseIds: ["uc-nhi", "uc-agent"],
   }),
@@ -1590,8 +1595,49 @@ export const events: CatalogEvent[] = [
     date: null,
     kind: "acquisition",
     title: "Astrix says it is part of Cisco",
-    summary: "The homepage does not give a close date. It does say standalone sales of new licenses ended 30 Jun 2026.",
+    summary:
+      "The homepage does not print a close date. Cisco's 29 Jun 2026 update says the acquisition is complete. The homepage says standalone sales of new licenses ended 30 Jun 2026.",
     sourceId: "src-astrix-home",
+  },
+  {
+    id: "evt-astrix-cisco-intent",
+    vendorId: "astrix",
+    date: "2026-05-04",
+    kind: "acquisition",
+    title: "Cisco announces intent to acquire Astrix",
+    summary:
+      "Cisco says it plans to integrate Astrix into Identity Intelligence and intends to extend the capabilities into Secure Access and Duo. That integration is not shown as shipping. Capability bullets in the post are not product cells.",
+    sourceId: "src-cisco-astrix",
+  },
+  {
+    id: "evt-astrix-cisco-close",
+    vendorId: "astrix",
+    date: "2026-06-29",
+    kind: "acquisition",
+    title: "Cisco says the Astrix acquisition is complete",
+    summary:
+      "The 29 Jun 2026 update says the acquisition is complete. No price is adopted. The homepage still ends new standalone licenses on 30 Jun 2026. This seed keeps a separate Astrix record.",
+    sourceId: "src-cisco-astrix",
+  },
+  {
+    id: "evt-entro-intent",
+    vendorId: "entro",
+    date: "2026-06-15",
+    kind: "acquisition",
+    title: "SailPoint announces intent to acquire Entro",
+    summary:
+      "The release expected a close in the third quarter of fiscal 2027, subject to customary conditions. Credential counts are not adopted.",
+    sourceId: "src-sailpoint-entro-intent",
+  },
+  {
+    id: "evt-entro-close",
+    vendorId: "entro",
+    date: "2026-06-29",
+    kind: "acquisition",
+    title: "SailPoint says the Entro acquisition is complete",
+    summary:
+      "The release says Entro's solutions are available to SailPoint customers as standalone offerings while native integration continues. Terms were not disclosed. The product record stays separate from Identity Security Cloud.",
+    sourceId: "src-sailpoint-entro-close",
   },
   {
     id: "evt-cyera-oasis",
