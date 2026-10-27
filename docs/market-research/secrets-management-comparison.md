@@ -61,7 +61,7 @@ Top differentiation hypotheses and falsification:
 
 ## Catalog and downstream disposition
 
-Existing market catalog already includes Infisical, Doppler, Akeyless, Vault and cloud-native products. Preserve their IDs. OpenBao, Bitwarden, 1Password and Keeper require a current full-catalog duplicate check before candidate promotion. This brief adds research, not application records or reviewed capability cells; no direct-substitute relationship is asserted.
+Existing market catalog already includes Infisical, Doppler, Akeyless, Vault and cloud-native products. Preserve their IDs. Duplicate check on 2026-10-26: Bitwarden Secrets Manager (`bitwarden-secrets-manager`), 1Password Secrets Automation (`1password-secrets-automation`), and Keeper Secrets Manager (`keeper-secrets-manager`) are already catalog products. OpenBao is not in the catalog; this note does not add it. Relationship edges added for those existing ids record store-versus-scanner and vault-versus-privileged-vault boundaries. They are not direct-substitute claims, not new capability cells, and not the candidate matrix below.
 
 Merged comparison preset `secrets-three` only opens `/compare` for `infisical`, `vault`, and `akeyless` inside `secrets-management`. That preset is navigation. It is not this capability matrix and it does not accept the candidate rows below.
 

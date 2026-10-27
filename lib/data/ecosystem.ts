@@ -284,7 +284,7 @@ export const ecosystemCategories: Category[] = [
     triggers: ["Audit of patch SLAs", "Scanner renewal", "Exploit in the news"],
     budgetSource: "IT vulnerability management.",
     outcomes: ["Overdue criticals on owned assets", "Scan coverage"],
-    adjacentCategoryIds: ["sca", "cspm", "endpoint-security"],
+    adjacentCategoryIds: ["sca", "cspm", "endpoint-security", "ctem"],
     exampleWorkflow: "A scanner flags a missing OS patch on a server. The infrastructure owner patches it. An AppSec SCA ticket for a library is a different queue.",
     flow: {
       actor: "Host or network device",
@@ -293,6 +293,31 @@ export const ecosystemCategories: Category[] = [
       decision: "Severity and ownership",
       action: "Patch or accept the risk",
       evidence: "Finding, owner, and closure",
+    },
+  }),
+  category({
+    id: "ctem",
+    name: "Continuous threat exposure management",
+    group: "corporate",
+    domainIds: ["corporate", "cloud"],
+    definition:
+      "A program for deciding which exposures matter, broader than traditional technology vulnerability management. It is not itself a scanner, a cloud-posture product, or a software-composition scan.",
+    buyerQuestion: "Which exposures matter beyond the patch list, and who owns each one?",
+    buyerOwner: "The exposure or vulnerability program, often beside cloud security.",
+    triggers: ["A patch SLA that does not say what else is in scope", "A platform pitch that renames the scanner"],
+    budgetSource: "Often the vulnerability-management budget, sometimes cloud security. Ask which program is actually in scope.",
+    outcomes: ["Exposures with an owner that are not only missing patches"],
+    adjacentCategoryIds: ["it-vulnerability-management", "external-attack-surface", "cspm", "breach-simulation", "cloud-vulnerability"],
+    layer: "adjacent",
+    exampleWorkflow:
+      "A missing patch, a public cloud bucket, and an internet-facing hostname arrive the same week. The program asks which one matters. The three fixes still belong to three teams until an owner is written down.",
+    flow: {
+      actor: "Exposure program owner",
+      credential: "Not the point",
+      permission: "Which exposures are in the program",
+      decision: "What to fix, accept, or hand to another team",
+      action: "Route the exposure",
+      evidence: "The exposure, the owner, and whether a patch was even the fix",
     },
   }),
   category({
@@ -1600,12 +1625,12 @@ export const ecosystemUseCases: UseCase[] = [
     problem:
       "The same week produces a leaked key, a vulnerable library, a missing OS patch, and a public cloud bucket. Four tools, three teams, and a meeting where everyone thinks it is someone else's queue.",
     architecture:
-      "Secrets detection, SCA, IT vulnerability management, and CSPM are different control planes. ASPM or a CNAPP may offer to correlate them. Correlation is not ownership. Write down the team that fixes each class.",
+      "Secrets detection, SCA, IT vulnerability management, and CSPM are different control planes. ASPM or a CNAPP may offer to correlate them. Correlation is not ownership. A continuous exposure program sits above traditional vulnerability management. It does not assign the patch, the library, or the bucket to one tool. Write down the team that fixes each class.",
     stakeholders: ["AppSec", "IT vulnerability management", "Cloud security", "Platform"],
     triggers: ["Tool sprawl", "An incident that crossed queues", "A platform pitch"],
     budgetOwner: "Whichever team feels the pain. Do not assume one budget will replace the other three.",
     successMetrics: ["Each finding class has a named owner", "Duplicate tools retired only with evidence"],
-    categoryIds: ["secrets-detection", "sca", "it-vulnerability-management", "cspm"],
+    categoryIds: ["secrets-detection", "sca", "it-vulnerability-management", "cspm", "ctem"],
     capabilityIds: ["cap-secret-discovery", "cap-sca", "cap-vm", "cap-cspm"],
     discoveryQuestions: [
       "Is the painful finding in git, on a server, or in a cloud account?",
@@ -2162,12 +2187,15 @@ export const ecosystemVendors: Vendor[] = [
     name: "AppOmni",
     formerNames: [],
     website: "https://appomni.com/",
-    positioning: "SaaS security vendor named when the question is third-party apps and OAuth grants. Not an NHI lifecycle suite by assumption.",
+    positioning:
+      "SaaS and AI security vendor. The homepage describes discovery of SaaS and AI in use, who has access, unsanctioned apps, and shadow agents, plus response actions such as revoking access. It does not describe an NHI owner or a decommission cell. Integration counts and customer quotations are not adopted.",
     primaryCategoryIds: ["sspm", "nhi"],
     adjacentCategoryIds: ["iga"],
     identityScopes: ["nhi"],
     verificationStatus: "research_candidate",
-    openQuestions: ["Which SaaS estates, and is the buyer security or the app owner?"],
+    openQuestions: [
+      "The homepage describes SaaS, shadow-agent, and access visibility. Which applications are in scope, and can it retire a non-human identity?",
+    ],
   }),
   vendor({
     id: "grip",
@@ -2175,12 +2203,15 @@ export const ecosystemVendors: Vendor[] = [
     name: "Grip Security",
     formerNames: [],
     website: "https://www.grip.security/",
-    positioning: "SaaS and identity-posture candidate on the same shortlist as AppOmni and Astrix. Capabilities unknown.",
+    positioning:
+      "SaaS and AI control vendor. The homepage says Grip builds an app inventory and links assets to identities. It does not describe an NHI owner or a decommission cell. Ratings, savings figures, and customer quotations are not adopted.",
     primaryCategoryIds: ["sspm", "nhi"],
     adjacentCategoryIds: ["iga"],
     identityScopes: ["nhi", "human"],
     verificationStatus: "research_candidate",
-    openQuestions: ["Shadow SaaS discovery, or governance of sanctioned apps?"],
+    openQuestions: [
+      "The homepage describes an app inventory. Which identity systems does it link, and can it retire a non-human identity?",
+    ],
   }),
   vendor({
     id: "venafi",
@@ -2817,12 +2848,13 @@ export const ecosystemVendors: Vendor[] = [
     name: "Natoma",
     formerNames: [],
     website: "https://www.natoma.ai/",
-    positioning: "NHI lifecycle vendor on SACR's 2024 governance shortlist beside Astrix, Clutch, Entro, and Oasis. Unverified here.",
+    positioning:
+      "Named on a 2024 SACR NHI shortlist beside Astrix, Clutch, Entro, and Oasis. On 27 May 2026 Snowflake announced a definitive agreement to acquire Natoma, which it describes as an enterprise MCP platform for AI agents, to be integrated into the Snowflake AI Data Cloud. The standalone site did not serve a page on 26 Oct 2026. Neither the shortlist nor the acquisition is a capability cell.",
     primaryCategoryIds: ["nhi"],
     adjacentCategoryIds: ["agentic-runtime"],
     identityScopes: ["nhi"],
     verificationStatus: "research_candidate",
-    openQuestions: ["Visibility only, or can it rotate and deprovision?"],
+    openQuestions: ["Has the Snowflake acquisition closed, and is Natoma still sold standalone or only inside Snowflake?"],
   }),
   vendor({
     id: "apono",
@@ -3951,7 +3983,7 @@ export const ecosystemRelationships: Relationship[] = [
     type: "adjacent_budget",
     useCaseId: "uc-finding-route",
     rationale:
-      "A cloud posture finding and a dependency finding can appear in one platform pitch. The budgets and the fixers are still often different. Wiz's code coverage is not evidenced here.",
+      "A cloud posture finding and a dependency finding can appear in one platform pitch. The budgets and the fixers are still often different. The CNAPP record has no code-capability cell. Wiz Code is a separate product.",
     sourceId: null,
   },
   {
@@ -4039,8 +4071,8 @@ export const ecosystemRelationships: Relationship[] = [
     type: "direct_competitor",
     useCaseId: "uc-nhi",
     rationale:
-      "Both get named for SaaS-to-SaaS and OAuth access. Astrix's homepage supports an NHI inventory. Its availability fact is the Cisco transition: new standalone licenses ended 30 Jun 2026, and Cisco says the acquisition completed on 29 Jun 2026. AppOmni has no capability cell.",
-    sourceId: "src-astrix-home",
+      "Both get named for SaaS-to-SaaS and OAuth access. Astrix's homepage supports an NHI inventory. Its availability fact is the Cisco transition: new standalone licenses ended 30 Jun 2026, and Cisco says the acquisition completed on 29 Jun 2026. AppOmni's homepage describes SaaS, unsanctioned-app, and shadow-agent discovery, plus response actions such as revoking access. Those sentences are not NHI inventory, owner, or decommission cells. The edge is a shortlist, not parity.",
+    sourceId: "src-appomni-home",
   },
   {
     id: "rel-rapid7-tenable",

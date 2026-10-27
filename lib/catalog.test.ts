@@ -170,6 +170,41 @@ describe("catalog integrity", () => {
     }
   });
 
+  it("links secrets products by job boundary and does not call the expansion vaults direct competitors", () => {
+    const expected = [
+      "rel-vault-radar",
+      "rel-infisical-scanning",
+      "rel-akeyless-github-scanner",
+      "rel-truffle-infisical",
+      "rel-truffle-doppler",
+      "rel-delinea-dsv-secret-server",
+      "rel-beyondtrust-secrets-pam",
+      "rel-vault-bitwarden-sm",
+      "rel-vault-1password-secrets",
+      "rel-vault-keeper-sm",
+      "rel-socket-trufflehog",
+      "rel-tenable-secrets-trufflehog",
+    ];
+    for (const id of expected) {
+      expect(catalog.relationships.some((relationship) => relationship.id === id), id).toBe(true);
+    }
+    const expansionVaults = new Set([
+      "bitwarden-secrets-manager",
+      "1password-secrets-automation",
+      "keeper-secrets-manager",
+      "delinea-devops-secrets-vault",
+      "beyondtrust-secrets-safe",
+    ]);
+    for (const relationship of catalog.relationships) {
+      const touchesExpansion =
+        expansionVaults.has(relationship.fromProductId) || expansionVaults.has(relationship.toProductId);
+      if (touchesExpansion) expect(relationship.type, relationship.id).not.toBe("direct_competitor");
+    }
+    const radar = catalog.relationships.find((relationship) => relationship.id === "rel-vault-radar");
+    expect(radar?.toProductId).toBe("vault-radar");
+    expect(radar?.type).toBe("complement");
+  });
+
   it("points landscape connections at real seed pages", () => {
     const hrefs = [
       ...capabilityBands.map((band) => band.href),
@@ -213,6 +248,90 @@ describe("catalog integrity", () => {
     const text = catalog.claims.map((claim) => claim.statement).join(" ").toLowerCase();
     expect(text).not.toContain("magic quadrant");
     expect(text).toContain("records no placement");
+  });
+
+  it("keeps adjacent analyst fields off product cells and placements", () => {
+    const ids = [
+      "claim-gartner-cnapp-20250805",
+      "claim-gartner-ctem-20250826",
+      "claim-gartner-sse-20250828",
+      "claim-gartner-siem-20251013",
+      "claim-gartner-email-20260203",
+      "claim-sacr-email-20260629",
+      "claim-sacr-sdpp-20251120",
+      "claim-sacr-detection-20260317",
+      "claim-sacr-cloud-soc-20251211",
+    ];
+    const ctem = catalog.categories.find((category) => category.id === "ctem");
+    expect(ctem?.slug).toBe("ctem");
+    expect(ctem?.layer).toBe("adjacent");
+    expect(ctem?.definition.toLowerCase()).not.toContain("gartner");
+    expect(ctem?.domainIds).toEqual(["corporate", "cloud"]);
+    expect(ctem?.adjacentCategoryIds).toEqual([
+      "it-vulnerability-management",
+      "external-attack-surface",
+      "cspm",
+      "breach-simulation",
+      "cloud-vulnerability",
+    ]);
+    expect(catalog.categories.some((category) => category.id === "sse")).toBe(false);
+    expect(catalog.products.some((product) => product.primaryCategoryIds.includes("ctem"))).toBe(false);
+    expect(catalog.vendors.some((vendor) => vendor.primaryCategoryIds.includes("ctem"))).toBe(false);
+    const finding = catalog.useCases.find((useCase) => useCase.id === "uc-finding-route");
+    expect(finding?.categoryIds).toContain("ctem");
+    expect(finding?.architecture).not.toContain("abstract is a program");
+    expect(estateAreas.find((area) => area.href === "/categories/ctem")?.examples).toEqual([]);
+
+    for (const id of ids) {
+      const claim = catalog.claims.find((item) => item.id === id);
+      expect(claim, id).toBeDefined();
+      expect(claim?.subjectType).toBe("category");
+      expect(claim?.capabilityId).toBeNull();
+      expect(claim?.verificationStatus).toBe("needs_review");
+      expect(claim?.sourceType).toBe("analyst");
+      expect(claim?.observedAt).toBe("2026-10-26");
+      expect(claim?.lastCheckedAt).toBe("2026-10-27");
+      const source = catalog.sources.find((item) => item.id === claim?.sourceId);
+      expect(source?.sourceType).toBe("analyst");
+      expect(source?.url).toBe(claim?.sourceUrl);
+      expect(source?.retrievedAt).toBe("2026-10-27");
+      expect((source?.excerpt.length ?? 999)).toBeLessThanOrEqual(420);
+    }
+
+    const sse = catalog.claims.find((claim) => claim.id === "claim-gartner-sse-20250828");
+    expect(sse?.subjectId).toBe("network-edge");
+    expect(sse?.confidence).toBe("low");
+    expect(sse?.statement).not.toMatch(/\bSASE\b/);
+    expect(catalog.claims.find((claim) => claim.id === "claim-gartner-cnapp-20250805")?.statement).toContain(
+      "protection requirements",
+    );
+
+    const bounded = ids
+      .map((id) => {
+        const claim = catalog.claims.find((item) => item.id === id);
+        return `${claim?.statement ?? ""} ${claim?.notes ?? ""}`;
+      })
+      .join(" ")
+      .toLowerCase();
+    for (const banned of [
+      "magic quadrant",
+      "$290",
+      "$225",
+      "$3.3",
+      "cribl",
+      "panther",
+      "cortex cloud",
+      "observo",
+      "onum",
+      "chronosphere",
+    ]) {
+      expect(bounded, banned).not.toContain(banned);
+    }
+
+    expect(evidenceCell(catalog.claims, "tenable", "cap-vm", "2026-10-26").status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "snyk", "cap-sca", "2026-10-26").status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "qualys", "cap-vm", "2026-10-26").status).toBe("unknown");
+    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(35);
   });
 });
 
@@ -470,5 +589,20 @@ describe("Cyera Identity and the NHI shortlist", () => {
     expect(
       catalog.relationships.filter((item) => item.fromProductId === "entro" && item.type === "direct_competitor"),
     ).toEqual([]);
+  });
+
+  it("does not turn SaaS discovery or a failed page load into an NHI cell", () => {
+    for (const id of ["appomni", "grip", "natoma"]) {
+      expect(evidenceCell(catalog.claims, id, "cap-nhi-inventory", asOf).status).toBe("unknown");
+      expect(evidenceCell(catalog.claims, id, "cap-nhi-ownership", asOf).status).toBe("unknown");
+      expect(evidenceCell(catalog.claims, id, "cap-nhi-lifecycle", asOf).status).toBe("unknown");
+    }
+    expect(catalog.claims.find((claim) => claim.id === "claim-appomni-discover")?.capabilityId).toBeNull();
+    expect(catalog.claims.find((claim) => claim.id === "claim-grip-inventory")?.capabilityId).toBeNull();
+    expect(catalog.claims.find((claim) => claim.id === "claim-natoma-site")?.verificationStatus).toBe("needs_review");
+    expect(catalog.claims.find((claim) => claim.id === "claim-snowflake-natoma-intent")?.capabilityId).toBeNull();
+    const board = groups.find((group) => group.name === "NHI discovery, posture, and governance");
+    expect(board?.body).not.toContain("Entro, Token Security, and Clutch do not");
+    expect(board?.body).toContain("AppOmni");
   });
 });

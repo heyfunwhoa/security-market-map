@@ -137,18 +137,24 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
       ) : null}
       <section className="mt-8">
         <h2 className="text-2xl">Primary products</h2>
-        <ul className="mt-3 grid gap-2 sm:grid-cols-2">
-          {products.map((product) => (
-            <li key={product.id}>
-              <Link
-                href={`/vendors/${vendorById(product.vendorId)?.slug ?? ""}`}
-                className="block rounded-lg border border-border px-3 py-2 text-sm hover:bg-muted"
-              >
-                {product.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        {products.length === 0 ? (
+          <p className="mt-3 text-sm leading-6 text-muted-foreground">
+            No primary product is assigned. An empty list is a gap in this map, not a finding that the field has no vendors.
+          </p>
+        ) : (
+          <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+            {products.map((product) => (
+              <li key={product.id}>
+                <Link
+                  href={`/vendors/${vendorById(product.vendorId)?.slug ?? ""}`}
+                  className="block rounded-lg border border-border px-3 py-2 text-sm hover:bg-muted"
+                >
+                  {product.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
       </section>
       <section className="mt-8">
         <h2 className="text-2xl">Claims about this category</h2>

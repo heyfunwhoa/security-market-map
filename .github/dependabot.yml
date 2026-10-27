@@ -10,6 +10,12 @@ updates:
       # Raise it together with node-version, not on its own.
       - dependency-name: "@types/node"
         update-types: ["version-update:semver-major"]
+    groups:
+      # These must move together; a PR that bumps only one of them fails CI.
+      react:
+        patterns: ["react", "react-dom", "@types/react", "@types/react-dom"]
+      nextjs:
+        patterns: ["next", "eslint-config-next", "@next/*"]
   - package-ecosystem: github-actions
     directory: /
     schedule:
