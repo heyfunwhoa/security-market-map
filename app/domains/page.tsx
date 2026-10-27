@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { DomainMap } from "@/components/domain-map";
-import { MarketConstellation } from "@/components/market-constellation";
-import { marketCircles } from "@/lib/market-circles";
+import { MarketMapExplorer } from "@/components/market-map-explorer";
+import { marketAreas } from "@/lib/market-areas";
 import { PageIntro } from "@/components/chrome";
 import { catalog } from "@/lib/catalog";
 
@@ -40,12 +40,12 @@ export default function DomainsPage() {
       <PageIntro
         kicker="Domains"
         title="The security market, mapped by what each solution protects"
-        lede="Overlapping circles are the picture. A control bought for one question often shows up in the budget next door. Gartner, Forrester, and IDC draw the lines differently, and a Magic Quadrant does not rank a vendor across the whole market."
+        lede="Select a market area to inspect its question, categories, and examples. Related categories can share buyer budgets. Gartner, Forrester, and IDC draw the lines differently, and a Magic Quadrant does not rank a vendor across the whole market."
       />
-      <MarketConstellation />
+      <MarketMapExplorer />
 
       <section className="mt-12" id="questions">
-        <h2 className="text-3xl tracking-tight">The question each circle answers</h2>
+        <h2 className="text-3xl tracking-tight">The question each market area answers</h2>
         <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
           Vendor names are examples, not analyst rankings. Many companies sell across several rows.
           Gartner, for example, defines privileged access to include secrets management and cloud
@@ -65,18 +65,18 @@ export default function DomainsPage() {
             </thead>
             <tbody>
               {["identity", "app", "cloud", "data", "network", "endpoint", "secops", "exposure", "email", "governance", "ai"]
-                .map((id) => marketCircles.find((circle) => circle.id === id))
-                .filter((circle) => circle != null)
-                .map((circle) => (
-                <tr key={circle.id} className="border-t border-border align-top">
+                .map((id) => marketAreas.find((area) => area.id === id))
+                .filter((area) => area != null)
+                .map((area) => (
+                <tr key={area.id} className="border-t border-border align-top">
                   <td className="p-3 font-medium">
-                    <Link href={circle.href} className="text-primary hover:underline">
-                      {circle.name}
+                    <Link href={area.href} className="text-primary hover:underline">
+                      {area.name}
                     </Link>
                   </td>
-                  <td className="p-3">{circle.question}</td>
-                  <td className="p-3 text-muted-foreground">{circle.categories}</td>
-                  <td className="p-3 text-muted-foreground">{circle.examples}</td>
+                  <td className="p-3">{area.question}</td>
+                  <td className="p-3 text-muted-foreground">{area.categories}</td>
+                  <td className="p-3 text-muted-foreground">{area.examples}</td>
                 </tr>
               ))}
             </tbody>
@@ -119,7 +119,7 @@ export default function DomainsPage() {
             Gartner’s July 2025 forecast put worldwide information security spending at $213 billion in
             2025 and about $240 billion in 2026, with the 2026 split near $121 billion in security
             software, $93 billion in services, and $26 billion in network security. Those are forecast
-            segments, not the circles on this map.
+            segments, not the market areas on this map.
           </li>
           <li className="rounded-xl border border-border bg-card p-4">
             <span className="font-semibold">Cloud, identity, and applications are converging.</span> IDC

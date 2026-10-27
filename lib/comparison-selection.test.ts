@@ -2,11 +2,43 @@ import { describe, expect, it } from "vitest";
 import { catalog } from "./catalog";
 import {
   comparisonSelection,
+  comparisonPresetCategory,
   productsInCategory,
   SECRETS_COMPARISON_URL,
+  SECRETS_MANAGEMENT_COMPARISON_URL,
 } from "./comparison-selection";
 
 describe("category comparison navigation", () => {
+  it("keeps management presets scoped and detection scoped separately", () => {
+    expect(comparisonPresetCategory("secrets-three")).toBe("secrets-management");
+    expect(comparisonPresetCategory("vault")).toBe("secrets-management");
+    expect(comparisonPresetCategory("detect")).toBe("secrets-detection");
+    expect(comparisonPresetCategory("iga")).toBe("");
+  });
+
+  it("round-trips the management preset through its category-scoped URL", () => {
+    const params = new URLSearchParams({
+      category: comparisonPresetCategory("secrets-three"),
+      use: "uc-vault",
+      products: ["infisical", "vault", "akeyless"].join(","),
+    });
+    expect(comparisonSelection(Object.fromEntries(params), catalog)).toEqual({
+      categoryId: "secrets-management",
+      useCaseId: "uc-vault",
+      productIds: ["infisical", "vault", "akeyless"],
+    });
+  });
+  it("opens the source-first secrets-management shortlist", () => {
+    const query = Object.fromEntries(
+      new URL(SECRETS_MANAGEMENT_COMPARISON_URL, "https://example.test").searchParams,
+    );
+    expect(comparisonSelection(query, catalog)).toEqual({
+      categoryId: "secrets-management",
+      useCaseId: "uc-vault",
+      productIds: ["infisical", "vault", "akeyless"],
+    });
+  });
+
   it("opens the existing secrets slice with two evidence-backed capabilities", () => {
     const query = Object.fromEntries(
       new URL(SECRETS_COMPARISON_URL, "https://example.test").searchParams,
