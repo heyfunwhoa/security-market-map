@@ -326,6 +326,92 @@ export const secretsSweepVendors: Vendor[] = [
     "openQuestions": [
       "Which maintained release, edition, deployment, and support terms apply?"
     ]
+  },
+  {
+    "id": "black-duck",
+    "slug": "black-duck",
+    "name": "Black Duck",
+    "formerNames": [],
+    "website": "https://www.blackduck.com/resources/datasheets/secrets-detection.html",
+    "positioning": "Publisher of a secrets-scanning datasheet for source code and infrastructure-as-code. The catalog still has a separate synopsys shortlist record. This pass does not merge those names.",
+    "primaryCategoryIds": [
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "sast",
+      "sca"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Which Black Duck or Polaris edition includes the secrets scan, and is the buyer still contracting under the Synopsys name?"
+    ]
+  },
+  {
+    "id": "opentext",
+    "slug": "opentext",
+    "name": "OpenText",
+    "formerNames": [],
+    "website": "https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/2540/sast-ugd-html-25.4.0/doc/2263_25.4/secretscanning.html",
+    "positioning": "Publisher of the OpenText SAST documentation that describes a secrets analyzer. The product name on that documentation set is Fortify. This record does not establish a rename history.",
+    "primaryCategoryIds": [
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "sast"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Which Fortify edition and deployment is in the renewal?"
+    ]
+  },
+  {
+    "id": "deepsource",
+    "slug": "deepsource",
+    "name": "DeepSource",
+    "formerNames": [],
+    "website": "https://deepsource.com/docs/product/secrets-detection",
+    "positioning": "Code-review platform that documents a secrets-detection feature. Plan and engine details stay on the product record.",
+    "primaryCategoryIds": [
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "sast"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Is the team on a plan that includes secrets detection, and is the hybrid engine enabled?"
+    ]
+  },
+  {
+    "id": "codacy",
+    "slug": "codacy",
+    "name": "Codacy",
+    "formerNames": [],
+    "website": "https://docs.codacy.com/getting-started/supported-languages-and-tools/",
+    "positioning": "Code-quality platform that documents secret detection by naming other scanners. Those named tools are not a Codacy-authored detector.",
+    "primaryCategoryIds": [
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "sast",
+      "sca"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Which languages are in scope, and which named scanner runs for each of them?"
+    ]
   }
 ];
 
@@ -1136,6 +1222,35 @@ export const secretsSweepProducts: Product[] = [
     ]
   },
   {
+    "id": "wiz-code",
+    "slug": "wiz-code",
+    "vendorId": "wiz",
+    "name": "Wiz Code",
+    "positioning": "Wiz's application-security product. The platform page lists secrets scanning beside SAST, SCA, infrastructure-as-code, and other code modules. The CNAPP record stays separate.",
+    "primaryCategoryIds": [
+      "aspm",
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "sast",
+      "sca",
+      "cnapp"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "A 2 Dec 2025 Wiz post said Wiz SAST was in public preview for Wiz Code customers. The platform page fetched 26 Oct 2026 lists SAST and does not repeat that preview label. Current SAST availability stays unknown. Secrets scanning on that page has no availability label.",
+    "officialUrl": "https://www.wiz.io/platform/wiz-code",
+    "useCaseIds": [
+      "uc-detect",
+      "uc-finding-route"
+    ]
+  },
+  {
     "id": "orca-secrets",
     "slug": "orca-secrets",
     "vendorId": "orca-security",
@@ -1591,6 +1706,134 @@ export const secretsSweepProducts: Product[] = [
     "availability": "unknown",
     "availabilityNote": "Feature existence is documented separately from current edition, release, support, and availability. Confirm public/private workspace coverage and plan.",
     "officialUrl": "https://learning.postman.com/docs/administration/managing-your-team/secret-scanner/overview/",
+    "useCaseIds": [
+      "uc-detect"
+    ]
+  },
+  {
+    "id": "veracode-container-secrets",
+    "slug": "veracode-container-secrets",
+    "vendorId": "veracode",
+    "name": "Veracode Container and IaC secret rules",
+    "positioning": "Documents secret rules for container, infrastructure-as-code, directory, and repository scans. Static-analysis hardcoded-password findings are a different engine.",
+    "primaryCategoryIds": [
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "container-security",
+      "sast"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "Feature existence is documented separately from current edition, release, support, and availability. SAST CWE-259 and CWE-798 findings are not this record. The docs page lists paths the CLI does not scan.",
+    "officialUrl": "https://docs.veracode.com/r/Run_Container_Security_scans",
+    "useCaseIds": [
+      "uc-detect"
+    ]
+  },
+  {
+    "id": "black-duck-secrets",
+    "slug": "black-duck-secrets",
+    "vendorId": "black-duck",
+    "name": "Black Duck Secrets Scanning",
+    "positioning": "Datasheet says the scan looks through source code, infrastructure-as-code templates, and other file types for hard-coded secrets.",
+    "primaryCategoryIds": [
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "sast",
+      "sca"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "Feature existence is documented separately from current edition, release, support, and availability. The datasheet does not name detectors, Git history, or validity checks. A Sigma hardcoded-secrets checker in Polaris release notes is not this record.",
+    "officialUrl": "https://www.blackduck.com/resources/datasheets/secrets-detection.html",
+    "useCaseIds": [
+      "uc-detect"
+    ]
+  },
+  {
+    "id": "opentext-sast-secrets",
+    "slug": "opentext-sast-secrets",
+    "vendorId": "opentext",
+    "name": "OpenText SAST secrets analyzer",
+    "positioning": "OpenText SAST 25.4.0 documentation says one analyzer can find secrets across file types. Configuration is described as regular-expression analysis.",
+    "primaryCategoryIds": [
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "sast"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "Feature existence is documented separately from current edition, release, support, and availability. This is an analyzer inside SAST, not a separate secrets product. Git history and validity checks are not described on this page.",
+    "officialUrl": "https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/2540/sast-ugd-html-25.4.0/doc/2263_25.4/secretscanning.html",
+    "useCaseIds": [
+      "uc-detect"
+    ]
+  },
+  {
+    "id": "deepsource-secrets",
+    "slug": "deepsource-secrets",
+    "vendorId": "deepsource",
+    "name": "DeepSource secrets detection",
+    "positioning": "Documents commit scanning for hardcoded credentials with pattern matching and a classification model. The page says Team or Enterprise is required.",
+    "primaryCategoryIds": [
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "sast"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "limited",
+    "availabilityNote": "The product page says secrets detection requires the Team or Enterprise plan. Vendor benchmark percentages on that page are not adopted. Validity checks are not described.",
+    "officialUrl": "https://deepsource.com/docs/product/secrets-detection",
+    "useCaseIds": [
+      "uc-detect"
+    ]
+  },
+  {
+    "id": "codacy-secrets",
+    "slug": "codacy-secrets",
+    "vendorId": "codacy",
+    "name": "Codacy secret detection",
+    "positioning": "Documents secret detection as a scan type and names Opengrep, Trivy, Checkov, PMD, Bandit, and Prospector as tools used for it, depending on the language.",
+    "primaryCategoryIds": [
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "sast",
+      "sca"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "Feature existence is documented separately from current edition, release, support, and availability. Named tools differ by language. This is not a Codacy-authored detector. The page says scans run on push, not continuously.",
+    "officialUrl": "https://docs.codacy.com/getting-started/supported-languages-and-tools/",
     "useCaseIds": [
       "uc-detect"
     ]
@@ -2067,6 +2310,30 @@ export const secretsSweepSources: Source[] = [
     "excerpt": "Research paraphrase: Scans Git history, pull requests, and images for exposed secrets."
   },
   {
+    "id": "src-secrets-sweep-wiz-code",
+    "title": "Wiz Code — code security modules",
+    "url": "https://www.wiz.io/platform/wiz-code",
+    "canonicalUrl": "https://www.wiz.io/platform/wiz-code",
+    "publisher": "Wiz",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-10-26",
+    "volatility": "fast",
+    "excerpt": "Research paraphrase: Lists secrets scanning and says it finds hardcoded secrets in code, IaC templates, and container images."
+  },
+  {
+    "id": "src-secrets-sweep-wiz-sast-preview",
+    "title": "Wiz SAST public-preview post",
+    "url": "https://www.wiz.io/blog/introducing-wiz-sast-where-code-risk-meets-cloud-context",
+    "canonicalUrl": "https://www.wiz.io/blog/introducing-wiz-sast-where-code-risk-meets-cloud-context",
+    "publisher": "Wiz",
+    "sourceType": "vendor_marketing",
+    "publishedAt": "2025-12-02",
+    "retrievedAt": "2026-10-26",
+    "volatility": "fast",
+    "excerpt": "Research paraphrase: On 2 Dec 2025 Wiz said SAST was in public preview for Wiz Code customers."
+  },
+  {
     "id": "src-secrets-sweep-orca-secrets",
     "title": "Orca secrets detection — secrets detection scope",
     "url": "https://orca.security/platform/application-security/",
@@ -2317,6 +2584,66 @@ export const secretsSweepSources: Source[] = [
     "retrievedAt": "2026-10-13",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Detects exposed secrets in Postman content."
+  },
+  {
+    "id": "src-secrets-sweep-veracode-container-secrets",
+    "title": "Veracode Container and IaC secret rules — secrets detection scope",
+    "url": "https://docs.veracode.com/r/Run_Container_Security_scans",
+    "canonicalUrl": "https://docs.veracode.com/r/Run_Container_Security_scans",
+    "publisher": "Veracode",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-10-26",
+    "volatility": "fast",
+    "excerpt": "Research paraphrase: Documents secret rules for container, IaC, directory, and repository scans."
+  },
+  {
+    "id": "src-secrets-sweep-black-duck-secrets",
+    "title": "Black Duck Secrets Scanning — secrets detection scope",
+    "url": "https://www.blackduck.com/resources/datasheets/secrets-detection.html",
+    "canonicalUrl": "https://www.blackduck.com/resources/datasheets/secrets-detection.html",
+    "publisher": "Black Duck",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-10-26",
+    "volatility": "fast",
+    "excerpt": "Research paraphrase: Datasheet says the scan looks through source, IaC, and other files for hard-coded secrets."
+  },
+  {
+    "id": "src-secrets-sweep-opentext-sast-secrets",
+    "title": "OpenText SAST secrets analyzer — secrets detection scope",
+    "url": "https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/2540/sast-ugd-html-25.4.0/doc/2263_25.4/secretscanning.html",
+    "canonicalUrl": "https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/2540/sast-ugd-html-25.4.0/doc/2263_25.4/secretscanning.html",
+    "publisher": "OpenText",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-10-26",
+    "volatility": "fast",
+    "excerpt": "Research paraphrase: One SAST analyzer can find secrets across file types. Configuration is regular-expression analysis."
+  },
+  {
+    "id": "src-secrets-sweep-deepsource-secrets",
+    "title": "DeepSource secrets detection — secrets detection scope",
+    "url": "https://deepsource.com/docs/product/secrets-detection",
+    "canonicalUrl": "https://deepsource.com/docs/product/secrets-detection",
+    "publisher": "DeepSource",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-10-26",
+    "volatility": "fast",
+    "excerpt": "Research paraphrase: Documents commit scanning for hardcoded credentials. Team or Enterprise is required."
+  },
+  {
+    "id": "src-secrets-sweep-codacy-secrets",
+    "title": "Codacy secret detection — secrets detection scope",
+    "url": "https://docs.codacy.com/getting-started/supported-languages-and-tools/",
+    "canonicalUrl": "https://docs.codacy.com/getting-started/supported-languages-and-tools/",
+    "publisher": "Codacy",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-10-26",
+    "volatility": "fast",
+    "excerpt": "Research paraphrase: Documents secret detection and names Opengrep, Trivy, Checkov, PMD, Bandit, and Prospector by language."
   }
 ];
 
@@ -3102,6 +3429,46 @@ export const secretsSweepClaims: Claim[] = [
     "notes": "CNAPP scope is not implied for every CSPM product. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
   {
+    "id": "claim-secrets-sweep-wiz-code-secrets",
+    "statement": "Wiz's Wiz Code page lists secrets scanning among its code-security modules and says it finds hardcoded secrets in code, infrastructure-as-code templates, and container images.",
+    "subjectType": "product",
+    "subjectId": "wiz-code",
+    "capabilityId": "cap-secret-discovery",
+    "polarity": "asserts",
+    "sourceId": "src-secrets-sweep-wiz-code",
+    "sourceUrl": "https://www.wiz.io/platform/wiz-code",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-10-26",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-10-26",
+    "conflictsWith": [],
+    "notes": "The page also names SAST, SCA, infrastructure-as-code, data classification in code, malware, CI/CD posture, and ASPM. Those names are not capability cells. Rule counts, exploitability, and AI-fix language are not adopted. Git history, pull requests, cloud resources, and provider validation stay on the separate wiz-secrets record. Publisher-reported, not independently tested."
+  },
+  {
+    "id": "claim-secrets-sweep-wiz-sast-preview",
+    "statement": "A Wiz post dated 2 Dec 2025 says Wiz SAST was in public preview for Wiz Code customers and included repository and pull request scanning.",
+    "subjectType": "product",
+    "subjectId": "wiz-code",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-secrets-sweep-wiz-sast-preview",
+    "sourceUrl": "https://www.wiz.io/blog/introducing-wiz-sast-where-code-risk-meets-cloud-context",
+    "sourceType": "vendor_marketing",
+    "publishedAt": "2025-12-02",
+    "observedAt": "2026-10-26",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-10-26",
+    "conflictsWith": [],
+    "notes": "The platform page fetched 26 Oct 2026 lists SAST and does not repeat the preview label. This claim does not settle current availability and does not fill a SAST capability cell. Customer quotations on either page are not adopted."
+  },
+  {
     "id": "claim-secrets-sweep-orca-secrets",
     "statement": "Orca secrets detection: Lists secrets detection among application security capabilities.",
     "subjectType": "product",
@@ -3520,6 +3887,106 @@ export const secretsSweepClaims: Claim[] = [
     "lastCheckedAt": "2026-10-13",
     "conflictsWith": [],
     "notes": "Confirm public/private workspace coverage and plan. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
+  },
+  {
+    "id": "claim-secrets-sweep-veracode-container-secrets",
+    "statement": "Veracode documents secret rules for Container and IaC Security scans of images, directories, and repositories, including listed provider keys and customer regular expressions.",
+    "subjectType": "product",
+    "subjectId": "veracode-container-secrets",
+    "capabilityId": "cap-secret-discovery",
+    "polarity": "asserts",
+    "sourceId": "src-secrets-sweep-veracode-container-secrets",
+    "sourceUrl": "https://docs.veracode.com/r/Run_Container_Security_scans",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-10-26",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-10-26",
+    "conflictsWith": [],
+    "notes": "SAST findings for CWE-259 and CWE-798 are a different engine and are not this record. The same page lists paths the CLI does not scan. Validity checks are not described. The docs footer said last updated 20 Oct 2026; that is not treated as the feature publication date. Public documentation review only; no scanner benchmark or tenant test."
+  },
+  {
+    "id": "claim-secrets-sweep-black-duck-secrets",
+    "statement": "Black Duck's secrets-scanning datasheet says the scan analyzes source code, infrastructure-as-code templates, and other file types for hard-coded secrets.",
+    "subjectType": "product",
+    "subjectId": "black-duck-secrets",
+    "capabilityId": "cap-secret-discovery",
+    "polarity": "asserts",
+    "sourceId": "src-secrets-sweep-black-duck-secrets",
+    "sourceUrl": "https://www.blackduck.com/resources/datasheets/secrets-detection.html",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-10-26",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-10-26",
+    "conflictsWith": [],
+    "notes": "Datasheet only. Edition, detector list, Git history, and validity checks are not stated. Polaris release notes describe a Sigma hardcoded_secrets static-analysis checker; that checker is not this claim. The catalog synopsys record stays a separate shortlist name. Publisher-reported, not independently tested."
+  },
+  {
+    "id": "claim-secrets-sweep-opentext-sast-secrets",
+    "statement": "OpenText SAST documentation says one of its analyzers can find secrets across file types, and points configuration to regular-expression analysis.",
+    "subjectType": "product",
+    "subjectId": "opentext-sast-secrets",
+    "capabilityId": "cap-secret-discovery",
+    "polarity": "asserts",
+    "sourceId": "src-secrets-sweep-opentext-sast-secrets",
+    "sourceUrl": "https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/2540/sast-ugd-html-25.4.0/doc/2263_25.4/secretscanning.html",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-10-26",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-10-26",
+    "conflictsWith": [],
+    "notes": "Documentation set labeled 25.4.0. This is an analyzer inside OpenText SAST, not a separate secrets product. The page does not describe Git-history scanning or validity checks. A marketing count of secret types is not part of this source. Public documentation review only; no scanner benchmark or tenant test."
+  },
+  {
+    "id": "claim-secrets-sweep-deepsource-secrets",
+    "statement": "DeepSource documents secrets detection that scans commits for hardcoded credentials, using pattern matching and a classification model named Narada. The page says the feature requires a Team or Enterprise plan.",
+    "subjectType": "product",
+    "subjectId": "deepsource-secrets",
+    "capabilityId": "cap-secret-discovery",
+    "polarity": "asserts",
+    "sourceId": "src-secrets-sweep-deepsource-secrets",
+    "sourceUrl": "https://deepsource.com/docs/product/secrets-detection",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-10-26",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-10-26",
+    "conflictsWith": [],
+    "notes": "The same page publishes precision, recall, and false-positive percentages. Those figures are vendor benchmarks and are not adopted. Validity checks are not described. Publisher-reported, not independently tested; no scanner benchmark or tenant test was run for this record."
+  },
+  {
+    "id": "claim-secrets-sweep-codacy-secrets",
+    "statement": "Codacy documents secret detection as a scan type and names Opengrep, Trivy, Checkov, PMD, Bandit, and Prospector as the tools used for that scan, depending on the language.",
+    "subjectType": "product",
+    "subjectId": "codacy-secrets",
+    "capabilityId": "cap-secret-discovery",
+    "polarity": "asserts",
+    "sourceId": "src-secrets-sweep-codacy-secrets",
+    "sourceUrl": "https://docs.codacy.com/getting-started/supported-languages-and-tools/",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-10-26",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-10-26",
+    "conflictsWith": [],
+    "notes": "Scans run when code is pushed, not continuously. Named tools differ by language. This is not evidence of a Codacy-authored detector, a validity check, or full Git-history scanning. Public documentation review only; no scanner benchmark or tenant test."
   }
 ];
 
@@ -3530,12 +3997,15 @@ const detectionVendorIds = new Set([
   "apiiro",
   "aqua",
   "arnica",
+  "black-duck",
   "checkmarx",
   "checkpoint",
+  "codacy",
   "codeant",
   "cycode",
   "datadog",
   "deepfence",
+  "deepsource",
   "endor-labs",
   "entro",
   "fortinet",
@@ -3553,6 +4023,7 @@ const detectionVendorIds = new Set([
   "microsoft",
   "mongodb",
   "nightfall",
+  "opentext",
   "orca-security",
   "ox-security",
   "palo-alto-networks",
@@ -3572,6 +4043,7 @@ const detectionVendorIds = new Set([
   "sysdig",
   "thoughtworks",
   "truffle-security",
+  "veracode",
   "wiz",
   "xygeni",
   "yelp"

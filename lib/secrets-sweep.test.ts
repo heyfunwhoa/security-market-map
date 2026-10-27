@@ -27,6 +27,47 @@ describe("secrets sweep evidence boundaries", () => {
     expect(secretsSweepClaims.every((claim) => claim.verificationStatus !== "verified")).toBe(true);
   });
 
+  it("records later AppSec secrets modules without treating SAST password rules or Sonatype as scanners", () => {
+    for (const id of [
+      "veracode-container-secrets",
+      "black-duck-secrets",
+      "opentext-sast-secrets",
+      "deepsource-secrets",
+      "codacy-secrets",
+    ]) {
+      expect(catalog.products.some((product) => product.id === id), id).toBe(true);
+      expect(evidenceCell(catalog.claims, id, "cap-secret-verification", "2026-10-26").status).toBe("unknown");
+      expect(evidenceCell(catalog.claims, id, "cap-secret-discovery", "2026-10-26").status).toBe("evidenced");
+    }
+    expect(catalog.products.some((product) => product.id.includes("sonatype"))).toBe(false);
+    expect(catalog.products.find((product) => product.id === "black-duck-secrets")?.vendorId).toBe("black-duck");
+    expect(catalog.vendors.some((vendor) => vendor.id === "synopsys")).toBe(true);
+    expect(catalog.vendors.find((vendor) => vendor.id === "veracode")?.adjacentCategoryIds).toContain(
+      "secrets-detection",
+    );
+    const codacyEdges = catalog.relationships.filter((relationship) => relationship.fromProductId === "codacy-secrets");
+    expect(codacyEdges.map((relationship) => relationship.type)).toEqual(["complement", "complement"]);
+  });
+
+  it("keeps Wiz Code adjacent to the CNAPP record and leaves SAST unsettled", () => {
+    const code = catalog.products.find((product) => product.id === "wiz-code");
+    expect(code?.vendorId).toBe("wiz");
+    expect(code?.primaryCategoryIds).toContain("secrets-detection");
+    expect(evidenceCell(catalog.claims, "wiz-code", "cap-secret-discovery", "2026-10-26").status).toBe("evidenced");
+    expect(evidenceCell(catalog.claims, "wiz-code", "cap-secret-verification", "2026-10-26").status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "wiz", "cap-secret-discovery", "2026-10-26").status).toBe("unknown");
+    const codeClaims = catalog.claims.filter((claim) => claim.subjectId === "wiz-code");
+    expect(new Set(codeClaims.map((claim) => claim.capabilityId))).toEqual(
+      new Set([null, "cap-secret-discovery"]),
+    );
+    expect(catalog.relationships.find((relationship) => relationship.id === "rel-wiz-code")?.type).toBe(
+      "adjacent_budget",
+    );
+    expect(catalog.relationships.find((relationship) => relationship.id === "rel-wiz-code-secrets")?.type).toBe(
+      "complement",
+    );
+  });
+
   it("does not transfer detection to a vault, identity product, or validation capability", () => {
     expect(evidenceCell(secretsSweepClaims, "vault", "cap-secret-discovery", "2026-10-13").status).toBe("unknown");
     expect(evidenceCell(secretsSweepClaims, "sentinelone-identity", "cap-secret-discovery", "2026-10-13").status).toBe("unknown");
