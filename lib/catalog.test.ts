@@ -74,7 +74,7 @@ describe("catalog integrity", () => {
     expect(catalog.claims.length).toBeGreaterThanOrEqual(12);
   });
 
-  it("keeps security-org personas distinct and category-linked", () => {
+  it("keeps security-org personas distinct, aliased, and category-linked", () => {
     const byId = Object.fromEntries(catalog.personas.map((persona) => [persona.id, persona]));
     const required = [
       "appsec",
@@ -87,6 +87,7 @@ describe("catalog integrity", () => {
       "identity-security",
       "cloud-sec",
       "data-security",
+      "privacy",
       "soc-lead",
       "detection-engineer",
       "offensive-security",
@@ -94,10 +95,28 @@ describe("catalog integrity", () => {
       "ai-security",
       "ai-owner",
       "engineering-manager",
+      "security-champion",
+      "soc-analyst",
+      "incident-response",
+      "threat-hunter",
+      "threat-intel",
+      "digital-forensics",
+      "insider-risk",
+      "network-security",
+      "saas-security",
+      "ot-security",
+      "exposure-management",
+      "cyber-recovery",
+      "supply-chain-security",
+      "security-awareness",
+      "mssp-ops",
+      "developer",
+      "cto",
     ] as const;
     for (const id of required) {
       expect(byId[id], id).toBeDefined();
       expect(byId[id].categoryIds.length).toBeGreaterThan(0);
+      expect(byId[id].aliases.length, `${id} aliases`).toBeGreaterThan(0);
       for (const categoryId of byId[id].categoryIds) {
         expect(
           catalog.categories.some((category) => category.id === categoryId),
@@ -105,15 +124,37 @@ describe("catalog integrity", () => {
         ).toBe(true);
       }
     }
-    expect(byId.appsec.name).toMatch(/AppSec/i);
-    expect(byId["product-security"].name).toMatch(/Product security/i);
-    expect(byId["platform-security"].name).toMatch(/Platform security/i);
-    expect(byId.platform.name).toMatch(/DevOps|platform engineering/i);
-    expect(byId["it-security"].name).toMatch(/corporate|IT/i);
+    expect(byId.appsec.aliases).toEqual(expect.arrayContaining(["AppSec", "Application security"]));
+    expect(byId["product-security"].aliases).toEqual(expect.arrayContaining(["ProdSec", "Product security"]));
+    expect(byId["platform-security"].aliases).toEqual(
+      expect.arrayContaining(["PlatformSec", "Infrastructure security"]),
+    );
+    expect(byId.platform.aliases).toEqual(expect.arrayContaining(["DevOps", "SRE", "Platform engineering"]));
+    expect(byId["it-security"].aliases).toEqual(
+      expect.arrayContaining(["Corporate security", "IT security", "VM owner"]),
+    );
+    expect(byId.privacy.aliases).toEqual(expect.arrayContaining(["DPO", "Privacy"]));
+    expect(byId["threat-intel"].aliases).toEqual(expect.arrayContaining(["CTI", "Threat analysis"]));
+    expect(byId["incident-response"].aliases).toEqual(expect.arrayContaining(["IR", "Incident response"]));
+    expect(byId["saas-security"].aliases).toEqual(expect.arrayContaining(["SSPM owner", "SaaSSec"]));
+    expect(byId["ot-security"].aliases).toEqual(expect.arrayContaining(["OT security", "ICS security"]));
     expect(byId.platform.id).not.toBe(byId["platform-security"].id);
     expect(byId["ai-security"].id).not.toBe(byId["ai-owner"].id);
     expect(byId["soc-lead"].id).not.toBe(byId["detection-engineer"].id);
+    expect(byId["soc-lead"].id).not.toBe(byId["soc-analyst"].id);
+    expect(byId["data-security"].id).not.toBe(byId.privacy.id);
+    expect(byId["digital-forensics"].id).not.toBe(byId["incident-response"].id);
     expect(new Set(catalog.personas.map((persona) => persona.id)).size).toBe(catalog.personas.length);
+  });
+
+  it("formats persona filter labels with acronym samples", async () => {
+    const { personaFilterLabel } = await import("./format");
+    expect(personaFilterLabel("AppSec lead", ["AppSec", "Application security", "ASE", "Software security"])).toBe(
+      "AppSec lead · AppSec / Application security / ASE",
+    );
+    expect(personaFilterLabel("CISO / VP of security", ["CISO / VP of security", "CISO"])).toBe(
+      "CISO / VP of security · CISO",
+    );
   });
 
   it("does not invent capability evidence outside the identity domain", () => {

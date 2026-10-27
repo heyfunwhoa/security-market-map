@@ -269,6 +269,28 @@ export function catalogProblems(catalog: Catalog): string[] {
       if (!capabilityIds.has(step.capabilityId)) problems.push(`Scenario step ${step.id} capability missing`);
     }
   }
+  const personaIds = new Set<string>();
+  for (const persona of catalog.personas) {
+    if (personaIds.has(persona.id)) problems.push(`Duplicate persona id ${persona.id}`);
+    personaIds.add(persona.id);
+    for (const categoryId of persona.categoryIds) {
+      if (!categoryIds.has(categoryId)) {
+        problems.push(`Persona ${persona.id} category ${categoryId} missing`);
+      }
+    }
+    const seenAliases = new Set<string>();
+    for (const alias of persona.aliases) {
+      const key = alias.trim().toLowerCase();
+      if (!key) {
+        problems.push(`Persona ${persona.id} has an empty alias`);
+        continue;
+      }
+      if (seenAliases.has(key)) {
+        problems.push(`Persona ${persona.id} duplicate alias ${alias}`);
+      }
+      seenAliases.add(key);
+    }
+  }
   return problems;
 }
 
