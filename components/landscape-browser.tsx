@@ -51,11 +51,18 @@ export function LandscapeBrowser({
   const [deployment, setDeployment] = useState("all");
   const [scope, setScope] = useState("all");
   const [relation, setRelation] = useState("all");
+  const [focusedProduct, setFocusedProduct] = useState("all");
+  const scopedCategories = categories.filter((item) => domain === "all" || rows.some((row) => row.domainIds.includes(domain) && row.categoryIds.includes(item.id)));
+  const scopedProducts = rows.filter((row) => (domain === "all" || row.domainIds.includes(domain)) && (category === "all" || row.categoryIds.includes(category))).sort((a, b) => a.productName.localeCompare(b.productName));
+  const focused = rows.find((row) => row.productId === focusedProduct);
+  const selectDomain = (value: string) => { setDomain(value); setCategory("all"); setFocusedProduct("all"); };
+  const selectCategory = (value: string) => { setCategory(value); setFocusedProduct("all"); };
 
   const visible = useMemo(() => {
     const personaCategories = personas.find((item) => item.id === persona)?.categoryIds ?? [];
     return rows
       .filter((row) => domain === "all" || row.domainIds.includes(domain))
+      .filter((row) => focusedProduct === "all" || row.productId === focusedProduct)
       .filter((row) => category === "all" || row.categoryIds.includes(category))
       .filter((row) => useCase === "all" || row.useCaseIds.includes(useCase))
       .filter(
@@ -74,13 +81,30 @@ export function LandscapeBrowser({
         );
       })
       .sort((a, b) => a.productName.localeCompare(b.productName));
-  }, [rows, edges, domain, category, useCase, persona, personas, deployment, scope, relation]);
+  }, [rows, edges, domain, category, useCase, persona, personas, deployment, scope, relation, focusedProduct]);
 
   return (
     <div>
+      <section aria-labelledby="drilldown-heading" className="mb-5 rounded-xl border border-border bg-card p-4">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <h2 id="drilldown-heading" className="font-heading text-lg">Explore from landscape to product</h2>
+          <button type="button" className="text-sm text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" onClick={() => { setDomain("all"); setCategory("all"); setFocusedProduct("all"); }}>Zoom out to all markets</button>
+        </div>
+        <p className="mt-1 text-sm text-muted-foreground">Start broad, narrow to a category, then inspect a product. Navigation is not a ranking or a feature-parity claim.</p>
+        <div className="mt-4 grid gap-3 sm:grid-cols-3">
+          <Filter label="1 · Market domain" value={domain} onChange={selectDomain} options={domains} />
+          <Filter label="2 · Category" value={category} onChange={selectCategory} options={scopedCategories} />
+          <Filter label="3 · Product" value={focusedProduct} onChange={setFocusedProduct} options={scopedProducts.map((row) => ({ id: row.productId, label: `${row.productName} · ${row.vendorName}` }))} />
+        </div>
+        {focused ? <div className="mt-4 rounded-lg border border-border bg-background p-3" aria-live="polite">
+          <p className="text-sm font-semibold">{focused.productName} <span className="font-normal text-muted-foreground">· {focused.vendorName}</span></p>
+          <p className="mt-1 text-sm">{focused.positioning}</p>
+          <Link href={`/vendors/${focused.vendorSlug}`} className="mt-2 inline-block text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:ring-ring">Open vendor detail and evidence</Link>
+        </div> : null}
+      </section>
       <form className="grid gap-3 rounded-xl border border-border bg-card p-4 sm:grid-cols-2 lg:grid-cols-3">
-        <Filter label="Domain" value={domain} onChange={setDomain} options={domains} />
-        <Filter label="Category" value={category} onChange={setCategory} options={categories} />
+        <Filter label="Domain" value={domain} onChange={selectDomain} options={domains} />
+        <Filter label="Category" value={category} onChange={selectCategory} options={scopedCategories} />
         <Filter label="Use case" value={useCase} onChange={setUseCase} options={useCases} />
         <Filter
           label="Buyer"

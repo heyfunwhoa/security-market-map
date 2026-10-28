@@ -21,10 +21,17 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
 
   const candidates = catalog.products.filter((product) => product.useCaseIds.includes(useCase.id));
   const edges = catalog.relationships.filter((relationship) => relationship.useCaseId === useCase.id);
+  const comparisonIds = candidates.slice(0, 4).map((product) => product.id);
+  const comparisonHref = `/compare?use=${encodeURIComponent(useCase.id)}&products=${encodeURIComponent(comparisonIds.join(","))}`;
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
       <PageIntro kicker="Use case" title={useCase.name} lede={useCase.buyerQuestion} />
+      <nav aria-label="Explore this buyer problem" className="mt-5 flex flex-wrap gap-3 text-sm">
+        <Link href="/use-cases" className="inline-flex min-h-11 items-center text-primary underline-offset-4 hover:underline">All buyer problems</Link>
+        <Link href="/landscape" className="inline-flex min-h-11 items-center text-primary underline-offset-4 hover:underline">Explore the full market</Link>
+        {comparisonIds.length >= 2 ? <Link href={comparisonHref} className="inline-flex min-h-11 items-center text-primary underline-offset-4 hover:underline">Compare mapped candidates</Link> : null}
+      </nav>
       <div className="mt-8 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
         <div className="space-y-6 text-sm leading-6">
           <section>
