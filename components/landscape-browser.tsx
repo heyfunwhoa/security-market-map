@@ -90,7 +90,7 @@ export function LandscapeBrowser({
       <section aria-labelledby="drilldown-heading" className="mb-5 rounded-xl border border-border bg-card p-4">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <h2 id="drilldown-heading" className="font-heading text-lg">Explore from landscape to product</h2>
-          <button type="button" className="text-sm text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" onClick={() => { setDomain("all"); setCategory("all"); setFocusedProduct("all"); resetLimit(); }}>Zoom out to all markets</button>
+          <button type="button" className="text-sm text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" onClick={() => { setDomain("all"); setCategory("all"); setFocusedProduct("all"); setUseCase("all"); setPersona("all"); setDeployment("all"); setScope("all"); setRelation("all"); resetLimit(); }}>Zoom out to all markets</button>
         </div>
         <p className="mt-1 text-sm text-muted-foreground">Start broad, narrow to a category, then inspect a product. Navigation is not a ranking or a feature-parity claim.</p>
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
@@ -104,9 +104,7 @@ export function LandscapeBrowser({
           <Link href={`/vendors/${focused.vendorSlug}`} className="mt-2 inline-block text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:ring-ring">Open vendor detail and evidence</Link>
         </div> : null}
       </section>
-      <form className="grid gap-3 rounded-xl border border-border bg-card p-4 sm:grid-cols-2 lg:grid-cols-3">
-        <Filter label="Domain" value={domain} onChange={selectDomain} options={domains} />
-        <Filter label="Category" value={category} onChange={selectCategory} options={scopedCategories} />
+      <div role="group" aria-label="Additional product filters" className="grid gap-3 rounded-xl border border-border bg-card p-4 sm:grid-cols-2 lg:grid-cols-3">
         <Filter label="Use case" value={useCase} onChange={(value) => { setUseCase(value); resetLimit(); }} options={useCases} />
         <Filter
           label="Buyer"
@@ -142,7 +140,7 @@ export function LandscapeBrowser({
             "adjacent_budget",
           ].map((id) => ({ id, label: relationshipLabel(id) }))}
         />
-      </form>
+      </div>
       <p className="mt-4 text-sm text-muted-foreground">
         {visible.length} products. Sorted A to Z. Being on this list is candidacy, not a rank and not a
         capability verdict.
