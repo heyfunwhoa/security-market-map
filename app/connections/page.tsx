@@ -168,8 +168,12 @@ export default function ConnectionsPage() {
         <h2 className="text-3xl tracking-tight">One leaked key, seven different jobs</h2>
         <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
           TruffleHog and Akeyless can be bought together. Detection does not replace issuance, and a
-          vault does not prove who owns the identity. Gartner&apos;s August 2024 secrets-management
-          note, which this atlas has not retrieved, is cited in the readings below for the same split.
+          vault does not prove who owns the identity.{" "}
+          <Link href="/categories/secrets-management" className="text-primary hover:underline">
+            Gartner&apos;s 12 Aug 2024 public abstract
+          </Link>{" "}
+          says secrets management is part of machine identity management and is not the same thing. It
+          does not say a vault proves who owns the identity. The jobs below are this map&apos;s split.
         </p>
         <div className="mt-4">
           <CredentialChainDiagram steps={credentialChain} />
@@ -363,9 +367,8 @@ export default function ConnectionsPage() {
       <section className="mt-12">
         <h2 className="text-3xl tracking-tight">The names, not the report titles</h2>
         <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
-          Gartner and Forrester describe the markets. This list is who shows up in a competitive
-          conversation. The analyst pages were not retrieved, so none of these names is an analyst
-          placement.
+          This list is who shows up in a competitive conversation on this map. A retrieved public
+          abstract is a category claim. None of these names is an analyst placement.
         </p>
         <div className="mt-4 grid gap-4 lg:grid-cols-2">
           {estateAreas.map((area) => (

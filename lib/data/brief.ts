@@ -262,17 +262,17 @@ export const runtimeLayers: { layer: string; question: string; depth: string }[]
   { layer: "Predefined access", question: "What may this agent reach under normal policy?", depth: "Inventory or enforce, depending on whether policy is in the request path." },
   { layer: "Continuous observability", question: "Can we reconstruct the prompt, the tool, the identity, and the data?", depth: "Alert. Seeing the chain is not stopping it." },
   { layer: "Behavioral analysis", question: "Does this sequence differ from the agent's usual task?", depth: "Recommend. A score is not a block." },
-  { layer: "Intent-aware decision", question: "Does this action still match the stated task?", depth: "Analyst assessed by SACR as a separate layer. Not verified for a named product." },
+  { layer: "Intent-aware decision", question: "Does this action still match the stated task?", depth: "This map's question. The 18 Mar 2026 report contrasts a gateway with direct access. It does not define this row as its own layer." },
   { layer: "Human approval", question: "Does a person have to allow the next step?", depth: "Initiate workflow. The action waits only if the product actually pauses." },
-  { layer: "Pre-action enforcement", question: "Can the product narrow or stop the call before it completes?", depth: "Enforce directly. This is the bar SACR treats as production-relevant." },
+  { layer: "Pre-action enforcement", question: "Can the product narrow or stop the call before it completes?", depth: "This map's question. SACR's 3 Sep 2026 report defines a runtime layer that evaluates a live agent action before it completes. That sentence is not a filled cell." },
 ];
 
 export const gatewayTradeoff = {
   gateway:
-    "A gateway can allow or block a tool call that passes through it. Shadow agents, local coding tools, and direct API calls never hit that point. SACR's March 2026 note treats this as a structural limit, not a product defect.",
+    "SACR's 18 Mar 2026 report, updated 29 Jul 2026, says a gateway can enforce policy on agent-to-tool traffic that passes through it, and does not see why the agent acted. The report does not name shadow agents or local coding tools.",
   direct:
-    "Direct-access monitoring can see agents that do not use the gateway, including local tools. It often learns what happened after the call. Observation is not the same as a block.",
-  both: "The note's own conclusion is that neither pattern is sufficient alone. This map does not award either pattern to a vendor.",
+    "The same report says another approach integrates with the underlying systems, sees the behavior, and does not by itself enforce the policy. Seeing the call is not a block.",
+  both: "The page says neither approach is sufficient alone. That is the report's description. Vendor profiles and statistics on the page are not adopted. This map does not award either pattern to a vendor.",
 };
 
 export const ecpZones: { zone: string; meaning: string }[] = [
@@ -295,13 +295,14 @@ export const aiIntersections: { domain: string; href: string; intersection: stri
 ];
 
 export const caseStudy = {
-  status: "Reviewed against primary pages on 2026-09-24. Integration in a customer environment is not verified.",
+  status:
+    "Close statement re-checked 26 Oct 2026. A 30 Sep 2026 post says existing customers stay on the Oasis platform. Integration in a customer environment is not verified.",
   rationale:
     "Cyera's 28 Jul 2026 post and Oasis's post the same day argue that data context and non-human identity context answer different halves of one question: what an agent can reach, and how sensitive that target is. That is the strategic rationale. It is the companies' argument.",
   shipped:
-    "On 3 Sep 2026 Cyera's press release said the acquisition was complete and that the Oasis platform will operate as Cyera Identity, connecting to Cyera's data intelligence layer. That is a vendor statement about naming and direction. This map has not reviewed a product document that shows a data-classification signal changing an identity decision in a shipping workflow.",
+    "On 3 Sep 2026 Cyera's press release said the acquisition was complete, stated a value of $1 billion, and said the Oasis platform will operate as Cyera Identity. On 30 Sep 2026 Cyera said existing customers stay on the Oasis platform while integration continues. Neither page shows a data-classification signal changing an identity decision.",
   open: [
-    "Which Oasis workflows are generally available inside Cyera, and which are still being integrated?",
+    "Existing customers stay on Oasis. Which name a new buyer sees, Cyera Identity or Oasis, is still open.",
     "Where is enforcement: the identity plane, a gateway, an API, or a ticket?",
     "Who owns the budget when data security and identity security are different teams?",
     "SACR's 31 Jul 2026 note, written before the close, called the combination operationally unproven and disclosed that Cyera is a SACR advisory client.",

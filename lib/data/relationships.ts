@@ -254,8 +254,19 @@ export const relationships: Relationship[] = [
     toProductId: "entro",
     type: "direct_competitor",
     useCaseId: "uc-nhi",
-    rationale: "Both are publicly positioned on non-human identity. Only Oasis has sourced inventory and owner claims here. Entro stays unknown.",
-    sourceId: "src-oasis-about",
+    rationale:
+      "NHI shortlist. Oasis has inventory, owner, and lifecycle language. SailPoint Entro's product page describes discovery, a human owner, and lifecycle language. SailPoint's 29 Jun 2026 release says the acquisition is complete and that Entro stays available as a standalone offering while integration continues. The edge is a shortlist, not parity.",
+    sourceId: "src-sailpoint-entro-close",
+  },
+  {
+    id: "rel-entro-sailpoint",
+    fromProductId: "entro",
+    toProductId: "sailpoint-isc",
+    type: "complement",
+    useCaseId: "uc-nhi",
+    rationale:
+      "SailPoint's 29 Jun 2026 release says the Entro acquisition is complete and that Entro's solutions are available to SailPoint customers as standalone offerings while native integration continues. The product records stay separate. Identity Security Cloud does not gain an NHI cell from this release. A joint enforcement workflow is not verified.",
+    sourceId: "src-sailpoint-entro-close",
   },
   {
     id: "rel-oasis-astrix",
@@ -263,7 +274,8 @@ export const relationships: Relationship[] = [
     toProductId: "astrix",
     type: "direct_competitor",
     useCaseId: "uc-nhi",
-    rationale: "NHI shortlist. Astrix's sourced fact is the Cisco transition and the end of new standalone licenses, not a feature list.",
+    rationale:
+      "NHI shortlist. Oasis has inventory, owner, and lifecycle language. Astrix's homepage supports an inventory of agents, MCP servers, and non-human identities. Owner assignment and decommissioning are not on that page. New standalone licenses ended 30 Jun 2026. Cisco says the acquisition completed on 29 Jun 2026. The edge is a shortlist, not parity.",
     sourceId: "src-astrix-home",
   },
   {
@@ -350,6 +362,376 @@ export const relationships: Relationship[] = [
     rationale:
       "WorkOS is seeded for enterprise identity inside a SaaS product. C1 is seeded for workforce and non-human governance. Agent authorization can sit near both budgets. That adjacency is not a WorkOS capability claim.",
     sourceId: null,
+  },
+  {
+    id: "rel-varonis-secrets",
+    fromProductId: "varonis",
+    toProductId: "varonis-secrets",
+    type: "adjacent_budget",
+    useCaseId: "uc-detect",
+    rationale:
+      "The Varonis record is the DSPM product. Dev Cycle Data Security is the page that describes secrets, API keys, commit history, and build artifacts. Those sentences stay on the secrets record. A data-security agreement and a secrets scan can be sold together and still be different scope.",
+    sourceId: "src-secrets-sweep-varonis-secrets",
+  },
+  {
+    id: "rel-varonis-secrets-truffle",
+    fromProductId: "varonis-secrets",
+    toProductId: "trufflehog",
+    type: "adjacent_budget",
+    useCaseId: "uc-detect",
+    rationale:
+      "Varonis documents GitHub and Bitbucket history, pull requests, and artifacts. TruffleHog is a dedicated secrets scanner with a sourced verification claim. The pages do not make these substitutes, and no integration between them is recorded.",
+    sourceId: "src-secrets-sweep-varonis-secrets",
+  },
+  {
+    id: "rel-bigid-secrets",
+    fromProductId: "bigid",
+    toProductId: "bigid-secrets",
+    type: "adjacent_budget",
+    useCaseId: "uc-detect",
+    rationale:
+      "The BigID record is the DSPM product. The secrets security page is a different scope: exposed credentials across data stores and code. Discovery sentences stay on the secrets record. Classification of sensitive data is not that scan.",
+    sourceId: "src-secrets-sweep-bigid-secrets",
+  },
+  {
+    id: "rel-bigid-secrets-truffle",
+    fromProductId: "bigid-secrets",
+    toProductId: "trufflehog",
+    type: "adjacent_budget",
+    useCaseId: "uc-detect",
+    rationale:
+      "BigID's secrets page describes discovery across cloud, SaaS, code, collaboration tools, databases, files, and AI environments. It does not describe Git history or a provider validity check. TruffleHog's sourced verification stays on TruffleHog. This is not a substitute edge.",
+    sourceId: "src-secrets-sweep-bigid-secrets",
+  },
+  {
+    id: "rel-sentra-secrets",
+    fromProductId: "sentra",
+    toProductId: "sentra-secrets",
+    type: "adjacent_budget",
+    useCaseId: "uc-detect",
+    rationale:
+      "The Sentra record is the DSPM product. The secrets article describes scanning cloud copies of code and configuration. Those sentences stay on the secrets record. Data classification is not that scan.",
+    sourceId: "src-secrets-sweep-sentra-secrets",
+  },
+  {
+    id: "rel-sentra-secrets-truffle",
+    fromProductId: "sentra-secrets",
+    toProductId: "trufflehog",
+    type: "adjacent_budget",
+    useCaseId: "uc-detect",
+    rationale:
+      "Sentra's article describes scanning code and configuration copied into the cloud estate, and argues a repository scanner misses those copies. That is a different surface from TruffleHog, not evidence the two products replace each other.",
+    sourceId: "src-secrets-sweep-sentra-secrets",
+  },
+  {
+    id: "rel-strac-secrets",
+    fromProductId: "strac",
+    toProductId: "strac-secrets",
+    type: "adjacent_budget",
+    useCaseId: "uc-detect",
+    rationale:
+      "The Strac record is the SaaS DLP product. The 10 Aug 2026 post places secret scanning inside that DLP. The secrets sentences stay on the secrets record. A DLP policy is not assumed to be a credential detector until that page.",
+    sourceId: "src-secrets-sweep-strac-secrets",
+  },
+  {
+    id: "rel-strac-secrets-truffle",
+    fromProductId: "strac-secrets",
+    toProductId: "trufflehog",
+    type: "adjacent_budget",
+    useCaseId: "uc-detect",
+    rationale:
+      "Strac's post places secret scanning inside its DLP product and names SaaS integrations. TruffleHog is a dedicated secrets scanner. The post does not establish a substitute, and no integration between them is recorded.",
+    sourceId: "src-secrets-sweep-strac-secrets",
+  },
+  {
+    id: "rel-teleskope-secrets",
+    fromProductId: "teleskope",
+    toProductId: "teleskope-secrets",
+    type: "adjacent_budget",
+    useCaseId: "uc-detect",
+    rationale:
+      "The Teleskope record is the DSPM product. The secrets record is the taxonomy family for passwords, API keys, private keys, seed phrases, and tokens. Classification of other sensitive data stays off that record.",
+    sourceId: "src-secrets-sweep-teleskope-secrets",
+  },
+  {
+    id: "rel-teleskope-secrets-truffle",
+    fromProductId: "teleskope-secrets",
+    toProductId: "trufflehog",
+    type: "adjacent_budget",
+    useCaseId: "uc-detect",
+    rationale:
+      "Teleskope's taxonomy classifies passwords, API keys, private keys, seed phrases, and tokens. That is a data-element family, not a Git-history scanner and not a validity check. TruffleHog's verification claim stays on TruffleHog.",
+    sourceId: "src-secrets-sweep-teleskope-secrets",
+  },
+  {
+    id: "rel-cyera-secrets-adjacent",
+    fromProductId: "cyera",
+    toProductId: "trufflehog",
+    type: "adjacent_budget",
+    useCaseId: "uc-detect",
+    rationale:
+      "Cyera's DSPM page describes classification of sensitive data. No Cyera page fetched on 26 Oct 2026 was adopted as a credential detector. TruffleHog's job is finding exposed secrets. This edge keeps the data-security budget next to secret scanning. It is not a discovery claim and not a substitute.",
+    sourceId: null,
+  },
+  {
+    id: "rel-concentric-secrets-adjacent",
+    fromProductId: "concentric-ai",
+    toProductId: "trufflehog",
+    type: "adjacent_budget",
+    useCaseId: "uc-detect",
+    rationale:
+      "A press release dated 18 May 2023 said Semantic Intelligence could find hardcoded secrets in data repositories and messaging apps. The product overview fetched 26 Oct 2026 does not repeat that sentence, so the discovery cell stays empty. TruffleHog remains the secrets-scanner record. This is an adjacent budget, not a direct competitor.",
+    sourceId: "src-secrets-sweep-concentric-secrets",
+  },
+  {
+    id: "rel-codacy-trivy",
+    fromProductId: "codacy-secrets",
+    toProductId: "trivy",
+    type: "complement",
+    useCaseId: "uc-detect",
+    rationale:
+      "Codacy's secret-detection table names Trivy for several languages. That is a bundled use of Trivy. It is not evidence that Codacy wrote a separate detector, and it does not mean every language on the page uses Trivy.",
+    sourceId: "src-secrets-sweep-codacy-secrets",
+  },
+  {
+    id: "rel-codacy-checkov",
+    fromProductId: "codacy-secrets",
+    toProductId: "checkov",
+    type: "complement",
+    useCaseId: "uc-detect",
+    rationale:
+      "Codacy's secret-detection table names Checkov for infrastructure-as-code languages. Checkov's own secrets scan remains a separate product. Codacy naming Checkov is not a Checkov capability claim and not a validity check.",
+    sourceId: "src-secrets-sweep-codacy-secrets",
+  },
+  {
+    id: "rel-wiz-code",
+    fromProductId: "wiz",
+    toProductId: "wiz-code",
+    type: "adjacent_budget",
+    useCaseId: "uc-finding-route",
+    rationale:
+      "The Wiz record is the CNAPP product. Wiz Code is the application-security product whose page lists secrets scanning, SAST, SCA, and infrastructure-as-code. A cloud-posture agreement and a code module can be sold together and still be different scope. Code findings stay off the CNAPP record.",
+    sourceId: "src-secrets-sweep-wiz-code",
+  },
+  {
+    id: "rel-wiz-code-secrets",
+    fromProductId: "wiz-code",
+    toProductId: "wiz-secrets",
+    type: "complement",
+    useCaseId: "uc-detect",
+    rationale:
+      "Wiz Code's page says the product finds hardcoded secrets in code, infrastructure-as-code templates, and container images. The secrets record cites a blog that also describes Git history, pull requests, cloud resources, and provider validation. Those broader sentences stay on the secrets record.",
+    sourceId: "src-secrets-sweep-wiz-code",
+  },
+  {
+    id: "rel-vault-radar",
+    fromProductId: "vault",
+    toProductId: "vault-radar",
+    type: "complement",
+    useCaseId: "uc-detect",
+    rationale:
+      "Vault Radar scans code, chat, and other sources for exposed secrets. Base Vault's sourced claims are dynamic secrets and PKI. Detection stays empty on the Vault record. Same company, two products. This is not a supported integration and not a Radar capability on Vault.",
+    sourceId: "src-secrets-sweep-vault-radar",
+  },
+  {
+    id: "rel-infisical-scanning",
+    fromProductId: "infisical",
+    toProductId: "infisical-scanning",
+    type: "complement",
+    useCaseId: "uc-detect",
+    rationale:
+      "Infisical's sourced store claim is a central place for application and infrastructure secrets. Infisical Secret Scanning is a separate record for CLI and repository detection. Pricing treats scanning as its own add-on. Do not attach scanner coverage, verification, or session recording to the store.",
+    sourceId: "src-secrets-sweep-infisical-scanning",
+  },
+  {
+    id: "rel-akeyless-github-scanner",
+    fromProductId: "akeyless",
+    toProductId: "akeyless-github-scanner",
+    type: "complement",
+    useCaseId: "uc-detect",
+    rationale:
+      "Akeyless GitHub Scanner documents discovery in GitHub source and history, and the page requires an Identity & Secrets Intelligence license plus a gateway. The secrets-management record has no capability cell. Code scanning and inventory metadata stay distinct. This edge is not a base-vault detection claim.",
+    sourceId: "src-secrets-sweep-akeyless-github-scanner",
+  },
+  {
+    id: "rel-truffle-infisical",
+    fromProductId: "trufflehog",
+    toProductId: "infisical",
+    type: "complement",
+    useCaseId: "uc-detect",
+    rationale:
+      "TruffleHog's sourced claim is finding and verifying leaked credentials. Infisical's sourced claim is storing and delivering secrets. Those are different jobs. Coexistence is a workflow hypothesis, not a documented integration, and Infisical's scanner is a different product.",
+    sourceId: "src-infisical-secrets",
+  },
+  {
+    id: "rel-truffle-doppler",
+    fromProductId: "trufflehog",
+    toProductId: "doppler",
+    type: "complement",
+    useCaseId: "uc-detect",
+    rationale:
+      "TruffleHog's sourced claim is discovery and verification. Doppler is a developer secrets-manager record with no capability cell and no scanner record. A store does not become a detector. This is not an integration claim.",
+    sourceId: "src-trufflehog",
+  },
+  {
+    id: "rel-truffle-bitwarden-sm",
+    fromProductId: "trufflehog",
+    toProductId: "bitwarden-secrets-manager",
+    type: "complement",
+    useCaseId: "uc-detect",
+    rationale:
+      "Bitwarden documents machine accounts, access tokens, and secret injection. That page is not a repository scanner, and rotation plus dynamic issuance stay unknown. TruffleHog remains the detection record. No competitor endorsement is implied.",
+    sourceId: "src-expanded-bitwarden-secrets-manager",
+  },
+  {
+    id: "rel-truffle-1password-secrets",
+    fromProductId: "trufflehog",
+    toProductId: "1password-secrets-automation",
+    type: "complement",
+    useCaseId: "uc-detect",
+    rationale:
+      "1Password documents secret delivery through service accounts or a Connect server. That is access to a stored secret, not a code scan. A self-hosted Connect server does not make the whole vault self-hosted. TruffleHog stays the detection record.",
+    sourceId: "src-expanded-1password-secrets-automation",
+  },
+  {
+    id: "rel-truffle-keeper-sm",
+    fromProductId: "trufflehog",
+    toProductId: "keeper-secrets-manager",
+    type: "complement",
+    useCaseId: "uc-detect",
+    rationale:
+      "Keeper documents Secrets Manager as a KeeperPAM component for infrastructure and CI/CD secrets. That page is not a scanner, and target-specific rotation stays unchecked. TruffleHog's sourced claim is discovery. Keeper's superiority language is not adopted.",
+    sourceId: "src-expanded-keeper-secrets-manager",
+  },
+  {
+    id: "rel-truffle-delinea-dsv",
+    fromProductId: "trufflehog",
+    toProductId: "delinea-devops-secrets-vault",
+    type: "complement",
+    useCaseId: "uc-detect",
+    rationale:
+      "Delinea documents a cloud DevOps vault and says that vaulting does not establish repository secret-scanning coverage. TruffleHog's sourced claim is discovery and verification. The jobs stay separate.",
+    sourceId: "src-expanded-delinea-devops-secrets-vault",
+  },
+  {
+    id: "rel-truffle-beyondtrust-secrets",
+    fromProductId: "trufflehog",
+    toProductId: "beyondtrust-secrets-safe",
+    type: "complement",
+    useCaseId: "uc-detect",
+    rationale:
+      "BeyondTrust describes Secrets Safe as DevOps credential storage inside Password Safe and does not claim code scanning. License and rotation stay unknown. TruffleHog's sourced claim is discovery.",
+    sourceId: "src-expanded-beyondtrust-secrets-safe",
+  },
+  {
+    id: "rel-delinea-dsv-secret-server",
+    fromProductId: "delinea-devops-secrets-vault",
+    toProductId: "delinea-secret-server",
+    type: "adjacent_budget",
+    useCaseId: "uc-vault",
+    rationale:
+      "DevOps Secrets Vault is documented as its own cloud vault. Secret Server is the privileged-vault record, and this seed has no capability cell for it. Same company, different products. A DevOps vault deal and a privileged-access deal stay separate budgets until the buyer names which one this is.",
+    sourceId: "src-expanded-delinea-devops-secrets-vault",
+  },
+  {
+    id: "rel-beyondtrust-secrets-pam",
+    fromProductId: "beyondtrust-secrets-safe",
+    toProductId: "beyondtrust-pam",
+    type: "complement",
+    useCaseId: "uc-vault",
+    rationale:
+      "BeyondTrust describes Secrets Safe as credential storage inside Password Safe. The privileged-access record is an unsourced SKU shortlist, not a second company. This edge keeps the documented capability beside that PAM record. It is not a capability matrix.",
+    sourceId: "src-expanded-beyondtrust-secrets-safe",
+  },
+  {
+    id: "rel-vault-bitwarden-sm",
+    fromProductId: "vault",
+    toProductId: "bitwarden-secrets-manager",
+    type: "adjacent_budget",
+    useCaseId: "uc-vault",
+    rationale:
+      "Vault's sourced claims are dynamic secrets and PKI. Bitwarden documents machine accounts and secret injection, and says to evaluate that product apart from its human password manager. The pages do not say a buyer should pick one instead of the other. Dynamic issuance on Bitwarden stays unknown.",
+    sourceId: "src-expanded-bitwarden-secrets-manager",
+  },
+  {
+    id: "rel-vault-1password-secrets",
+    fromProductId: "vault",
+    toProductId: "1password-secrets-automation",
+    type: "adjacent_budget",
+    useCaseId: "uc-vault",
+    rationale:
+      "Vault's sourced claims are issuance and PKI. 1Password documents service accounts and Connect servers that deliver stored secrets. Connect limits are packaging facts. They are not evidence that 1Password replaces Vault or that the whole service is self-hosted.",
+    sourceId: "src-expanded-1password-secrets-automation",
+  },
+  {
+    id: "rel-vault-keeper-sm",
+    fromProductId: "vault",
+    toProductId: "keeper-secrets-manager",
+    type: "adjacent_budget",
+    useCaseId: "uc-vault",
+    rationale:
+      "Vault's sourced claims are dynamic secrets and PKI. Keeper documents Secrets Manager as a KeeperPAM component for infrastructure and CI/CD access. A PAM component and a secrets manager can be one purchase or two. This seed does not decide, and it does not adopt superiority language.",
+    sourceId: "src-expanded-keeper-secrets-manager",
+  },
+  {
+    id: "rel-vault-delinea-dsv",
+    fromProductId: "vault",
+    toProductId: "delinea-devops-secrets-vault",
+    type: "adjacent_budget",
+    useCaseId: "uc-vault",
+    rationale:
+      "Vault's sourced claims are dynamic secrets and PKI. Delinea documents a separate cloud DevOps vault with access control, a CLI, and audit logging. That page does not establish dynamic credentials or a match to Vault. Secret Server remains a different Delinea record.",
+    sourceId: "src-expanded-delinea-devops-secrets-vault",
+  },
+  {
+    id: "rel-vault-beyondtrust-secrets",
+    fromProductId: "vault",
+    toProductId: "beyondtrust-secrets-safe",
+    type: "complement",
+    useCaseId: "uc-vault",
+    rationale:
+      "BeyondTrust describes Secrets Safe as DevOps credential storage inside Password Safe. Vault's sourced role is issuance. A privileged-access suite and a secrets manager can be bought together. The privileged-access SKU is still unconfirmed, so this is not a bake-off result.",
+    sourceId: "src-expanded-beyondtrust-secrets-safe",
+  },
+  {
+    id: "rel-vault-secret-server",
+    fromProductId: "vault",
+    toProductId: "delinea-secret-server",
+    type: "adjacent_budget",
+    useCaseId: "uc-vault",
+    rationale:
+      "Vault's sourced claims are dynamic secrets and PKI. Secret Server is the privileged-vault record, and static custody versus session control is still an open question. A buyer may be choosing a secrets manager, a PAM suite, or both. This edge records that split and does not score either product.",
+    sourceId: "src-vault-dynamic",
+  },
+  {
+    id: "rel-doppler-secret-server",
+    fromProductId: "doppler",
+    toProductId: "delinea-secret-server",
+    type: "adjacent_budget",
+    useCaseId: "uc-vault",
+    rationale:
+      "Doppler is seeded as a developer secrets manager, and the open question is whether the buy is developer experience or an enterprise vault standard. Secret Server is the privileged-vault record with no capability cell. The shared word secrets does not make them one budget.",
+    sourceId: null,
+  },
+  {
+    id: "rel-socket-trufflehog",
+    fromProductId: "socket-basics",
+    toProductId: "trufflehog",
+    type: "complement",
+    useCaseId: "uc-detect",
+    rationale:
+      "Socket Basics is documented as running TruffleHog for secret scanning. That is a bundled use of the scanner. It is not a second discovery method, and Socket's SCA product is not evidence of this scan.",
+    sourceId: "src-secrets-sweep-socket-basics",
+  },
+  {
+    id: "rel-tenable-secrets-trufflehog",
+    fromProductId: "tenable-secrets-connectors",
+    toProductId: "trufflehog",
+    type: "complement",
+    useCaseId: "uc-detect",
+    rationale:
+      "Tenable documents connectors that import secret-detection findings. That page does not establish a native scanner. TruffleHog remains a detection product. Importing a finding is not the same control as finding the secret.",
+    sourceId: "src-secrets-sweep-tenable-secrets-connectors",
   },
 ];
 

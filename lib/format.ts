@@ -169,3 +169,13 @@ export function scopeLabel(value: string): string {
       return value;
   }
 }
+
+/** Landscape / filter label: canonical name plus a short alias sample. */
+export function personaFilterLabel(name: string, aliases: string[] = [], maxAliases = 3): string {
+  const sample = aliases
+    .map((alias) => alias.trim())
+    .filter((alias) => alias.length > 0 && alias.toLowerCase() !== name.toLowerCase())
+    .slice(0, maxAliases);
+  if (sample.length === 0) return name;
+  return `${name} · ${sample.join(" / ")}`;
+}

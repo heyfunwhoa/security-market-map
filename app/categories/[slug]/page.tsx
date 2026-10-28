@@ -30,10 +30,15 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
   const useCases = catalog.useCases.filter((useCase) => useCase.categoryIds.includes(category.id));
   const primaryVendors = [...new Set(products.map((product) => product.vendorId))]
     .flatMap((id) => { const vendor = vendorById(id); return vendor ? [vendor] : []; });
+  const categoryClaims = claimsForSubject("category", category.id);
+  const sourcingLabel = categoryClaims.length > 0
+    ? "The description, buyer question, owner, budget, triggers, outcomes, workflow, and illustrative flow are the map's wording. The sourced sentences are the claims below."
+    : "The description, buyer question, owner, budget, triggers, outcomes, workflow, and illustrative flow are the map's wording. No source is attached to them yet.";
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
       <PageIntro kicker={category.layer === "adjacent" ? "Adjacent" : "Category"} title={category.name} lede={category.definition} />
+      <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">{sourcingLabel}</p>
       <p className="mt-4 max-w-3xl text-sm leading-6">
         <span className="font-semibold">Buyer question. </span>
         {category.buyerQuestion}
@@ -137,23 +142,29 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
       ) : null}
       <section className="mt-8">
         <h2 className="text-2xl">Primary products</h2>
-        <ul className="mt-3 grid gap-2 sm:grid-cols-2">
-          {products.map((product) => (
-            <li key={product.id}>
-              <Link
-                href={`/vendors/${vendorById(product.vendorId)?.slug ?? ""}`}
-                className="block rounded-lg border border-border px-3 py-2 text-sm hover:bg-muted"
-              >
-                {product.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        {products.length === 0 ? (
+          <p className="mt-3 text-sm leading-6 text-muted-foreground">
+            No primary product is assigned. An empty list is a gap in this map, not a finding that the field has no vendors.
+          </p>
+        ) : (
+          <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+            {products.map((product) => (
+              <li key={product.id}>
+                <Link
+                  href={`/vendors/${vendorById(product.vendorId)?.slug ?? ""}`}
+                  className="block rounded-lg border border-border px-3 py-2 text-sm hover:bg-muted"
+                >
+                  {product.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
       </section>
       <section className="mt-8">
         <h2 className="text-2xl">Claims about this category</h2>
         <div className="mt-3">
-          <ClaimList claims={claimsForSubject("category", category.id)} />
+          <ClaimList claims={categoryClaims} />
         </div>
       </section>
     </main>

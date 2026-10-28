@@ -90,6 +90,43 @@ Each numbered link is the original publisher source. Observed/reviewed date for 
 - **OSS lineage:** Betterleaks is separate from Gitleaks; Titus is separate from Nosey Parker; Kingfisher is separately maintained. Shared rules or ancestry do not establish equivalent detection. Credential Digger is in SAP's archived organization; maintenance/license checks remain necessary before adopting any OSS project.
 - **Packaging:** ggshield is an open-source client to a hosted engine. Socket Basics bundles TruffleHog. Harness orchestration and Qwiet analysis are separate records. ArmorCode, Tenable One connectors and Falcon/Legit integrations do not receive native-discovery checkmarks.
 
+## AppSec suite modules added 2026-10-26
+
+Cycode Secrets Detection and the other named modules from the table above were already catalog products. This pass adds AppSec suites whose current public pages describe a secrets module and that were still absent. Pages were fetched 2026-10-26. Publication dates are unknown. Statements are vendor-reported. No validity-check cell is filled. No direct-competitor edge is added.
+
+| Product | What the page supports | What it does not support | Source |
+| --- | --- | --- | --- |
+| Veracode Container and IaC secret rules | Secret rules for image, directory, and repository scans, including listed provider keys and customer regular expressions | SAST CWE-259 and CWE-798 findings. Those stay a different engine. Validity checks are not described. | https://docs.veracode.com/r/Run_Container_Security_scans |
+| Black Duck Secrets Scanning | Datasheet: source code, IaC templates, and other file types for hard-coded secrets | Detector list, Git history, and validity. The Sigma hardcoded-secrets checker in Polaris release notes is not this record. The `synopsys` shortlist record is not merged. | https://www.blackduck.com/resources/datasheets/secrets-detection.html |
+| OpenText SAST secrets analyzer | One analyzer in the 25.4.0 SAST docs can find secrets across file types. Configuration points to regular-expression analysis. | A separate secrets product, Git-history scanning, validity checks, and any marketing count of secret types. | https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/2540/sast-ugd-html-25.4.0/doc/2263_25.4/secretscanning.html |
+| DeepSource secrets detection | Commit scanning for hardcoded credentials with pattern matching and a model named Narada. Team or Enterprise is required. | The page's precision, recall, and false-positive percentages. Those vendor benchmarks are not adopted. | https://deepsource.com/docs/product/secrets-detection |
+| Codacy secret detection | Secret detection is a scan type. The table names Opengrep, Trivy, Checkov, PMD, Bandit, and Prospector by language. | A Codacy-authored detector. Scans run on push, not continuously. Complement edges point at the existing Trivy and Checkov products only. | https://docs.codacy.com/getting-started/supported-languages-and-tools/ |
+
+Sonatype Lifecycle documentation describes SCM scans that read manifests, lockfiles, and artifacts for component analysis. That is not a secrets module, so no Sonatype product was added.
+
+## Wiz Code, added 2026-10-26
+
+Wiz secrets scanning was already a catalog product from the blog that describes Git history, pull requests, images, cloud resources, and provider validation. Wiz Code is the adjacent application-security product. Pages fetched 2026-10-26.
+
+| Product | What the page supports | What it does not support | Source |
+| --- | --- | --- | --- |
+| Wiz Code | The platform page lists secrets scanning and says it finds hardcoded secrets in code, infrastructure-as-code templates, and container images. The same page names SAST, SCA, infrastructure-as-code, and other modules. | Those other module names are not capability cells. Rule counts, exploitability, and AI-fix language are not adopted. The CNAPP record stays a different product and an adjacent budget. | https://www.wiz.io/platform/wiz-code |
+| Wiz SAST availability | A post dated 2 Dec 2025 says SAST was in public preview for Wiz Code customers, with repository and pull request scanning. | The platform page fetched 26 Oct 2026 does not repeat the preview label. Current availability stays unknown. No SAST capability cell is filled. | https://www.wiz.io/blog/introducing-wiz-sast-where-code-risk-meets-cloud-context |
+
+## DSPM and DLP neighbors, checked 2026-10-26
+
+Pages were fetched 2026-10-26. Statements are vendor-reported. No validity-check cell is filled. No direct-competitor edge is added. The DSPM or DLP company record does not receive the discovery cell. Third-party guides were not adopted. The private Technical Docs baseline returned 404 on an earlier pass and was not available to re-fetch.
+
+| Product | What the page supports | What it does not support | Source |
+| --- | --- | --- | --- |
+| Varonis Dev Cycle secrets detection | Exposed secrets and API keys in GitHub and Bitbucket, including commit history and pull requests. Credentials and tokens in Docker images, npm packages, and JFrog artifacts. | A provider validity check. Rotation and token revocation are named and are not separate capability cells. | https://www.varonis.com/solutions/dev-cycle-data-security |
+| BigID Secrets Security | Exposed API keys, passwords, tokens, certificates, encryption keys, and credentials across cloud, SaaS, code, collaboration tools, databases, files, and AI environments. | Git history. The page says a detected secret does not by itself show whether it is active. That is not a verification cell. | https://bigid.com/secrets-security/ |
+| Sentra cloud secrets scanning | Scanning of code, configuration, and documentation copied into the cloud estate, including environment files, keys, certificates, and infrastructure-as-code. | The article's file-extension count. Git history and provider validity. The page has no publication date. | https://www.sentra.io/learn/source-code-secrets-scanning-the-missing-half-of-your-cloud-data-security-strategy |
+| Strac secret scanning | A 10 Aug 2026 post says secret scanning is part of Strac's DLP and names Slack, GitHub, Jira, Confluence, and Google Drive. | Regex, entropy, and machine-learning sentences, which are general methods. "Active secrets" is not a validity check. | https://www.strac.io/blog/secret-scanning |
+| Teleskope secrets elements | Entity Taxonomy v2 Secrets family: password, API key, private key, seed phrase, and token. | A Git-history scanner. An example credentials policy on the policy-maker page is not evidence that policy is enabled. | https://docs.teleskope.ai/specifications/entity-taxonomy-v2 |
+| Cyera | No secrets product. The DSPM page describes classification. An adjacent-budget edge points at TruffleHog and does not fill a discovery cell. | Third-party guides that name Cyera. ROI and precision figures on the DSPM page. | https://www.cyera.com/platform/dspm |
+| Concentric AI | A press release dated 18 May 2023 says Semantic Intelligence could detect hardcoded secrets in data repositories and messaging apps. The claim does not fill a discovery cell. | The product overview fetched the same day, which does not repeat secrets detection. Industry-first language and the customer quotation. | https://concentric.ai/press-release/concentric-ai-announces-industrys-first-deep-learning-driven-detection-of-secrets-and-keys-within-todays-most-popular-on-premise-and-cloud-data-repositories/ |
+
 ## Remaining discovery / verification queue
 
 These are deliberately not positive feature assertions. Missing evidence means Unknown, not unsupported.
@@ -100,9 +137,9 @@ These are deliberately not positive feature assertions. Missing evidence means U
 | CrowdStrike native cloud / ASPM | Partner listing is documented. Obtain a current Falcon-native secrets scanner page before adding native scope. |
 | Sysdig current engine | Resolve replacement-engine support; do not reuse retired-engine claims. |
 | Doppler, AWS Secrets Manager, Azure Key Vault, Google Secret Manager | Vaulting alone excluded. Require a separately documented exposure scanner; git-secrets is a separate AWS OSS project. |
-| Veracode, Black Duck/Polaris, Snyk legacy checks, Sonatype | Verify product/edition-specific dedicated secret detection instead of treating hardcoded-password SAST rules or scanner integrations as full secret scanning. Snyk's new dedicated product is already included above. |
+| Veracode, Black Duck/Polaris, Snyk legacy checks, Sonatype | Checked 2026-10-26. Veracode Container and IaC secret rules, the Black Duck secrets-scanning datasheet, OpenText SAST's secrets analyzer, DeepSource secrets detection, and Codacy's named-tool secret detection are now catalog products. Veracode SAST CWE-259 and CWE-798 findings stay off that product. Sonatype Lifecycle's SCM scan reads manifests and artifacts for component analysis; that is not a secrets module and no Sonatype secrets product was added. Snyk's dedicated product was already included above. |
 | Upwind, Uptycs, Qualys, Prowler, KICS, Terrascan | Check precise native secret/credential rules and surfaces. CSPM/IaC posture coverage alone is insufficient. |
-| Varonis, BigID, Cyera, Sentra, Teleskope, Concentric, Strac | DSPM/DLP classifications may overlap; require explicit credential/secret detectors and deployment scope before promoting from adjacent candidate. Nightfall is already evidenced separately. |
+| Varonis, BigID, Cyera, Sentra, Teleskope, Concentric, Strac | Checked 2026-10-26. Varonis, BigID, Sentra, Strac, and Teleskope now have secrets records beside the DSPM or DLP company record. Cyera's DSPM page was not adopted as a detector. Concentric's 18 May 2023 announcement is recorded and does not fill a discovery cell because the current product overview does not repeat it. Nightfall was already evidenced separately. |
 | Gitrob, detect-secrets forks, CredScan, Veles, LeakTK, newer small OSS scanners | Resolve canonical repo, maintained/archived status, license and whether wrapper, rule pack, or independent engine. Do not inflate company counts with forks. |
 | Mobile/binary/web scanners | Evaluate explicit embedded-credential extraction separately from source scanning and generic sensitive-data matches. |
 

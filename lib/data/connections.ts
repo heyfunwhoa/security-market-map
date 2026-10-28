@@ -314,7 +314,7 @@ export const groups: Group[] = [
   {
     name: "NHI discovery, posture, and governance",
     problem: "Which non-human identities exist, who owns them, and which permissions are still justified?",
-    body: "The unit of analysis is the identity and its access, not only the credential string. Oasis has sourced inventory, owner, and lifecycle language. Entro, Token Security, and Clutch do not. Astrix's sourced fact is the Cisco transition, not a feature list.",
+    body: "The unit of analysis is the identity and its access, not only the credential string. Oasis, Entro, and Token have sourced inventory and owner language. Clutch and Astrix have sourced inventory language. Astrix owner and decommission cells stay empty, and new standalone licenses ended 30 Jun 2026. AppOmni's homepage describes SaaS and shadow-agent discovery. That page is not an NHI inventory cell.",
     examples: [
       vendor("Oasis Security", "oasis"),
       vendor("Entro Security", "entro"),
@@ -419,7 +419,7 @@ export const namedShortlists: {
 }[] = [
   {
     market: "Machine identity",
-    frame: "Gartner's 2025 machine-IAM notes name the practice. These are the companies on the shortlist. The reports were not retrieved, and this is not their vendor list.",
+    frame: "These names are this map's shortlist. No machine-IAM report was retrieved for this list, so it is not an analyst vendor list.",
     examples: [
       vendor("Oasis Security", "oasis"),
       vendor("Token Security", "token-security"),
@@ -433,7 +433,7 @@ export const namedShortlists: {
   },
   {
     market: "Secrets",
-    frame: "Gartner's August 2024 secrets-management note separates storage from machine identity. Detection and the vault are still different names.",
+    frame: "Gartner's 12 Aug 2024 public abstract says secrets management is a fundamental part of machine identity management and is not the same thing. These names are not that abstract's vendor list.",
     examples: [
       vendor("Truffle Security", "truffle-security"),
       vendor("GitGuardian", "gitguardian"),
@@ -446,7 +446,7 @@ export const namedShortlists: {
   },
   {
     market: "Identity governance",
-    frame: "Gartner's October 2025 IGA guide is about the market, not proof that any of these govern machines. SailPoint, Saviynt, and C1 are the names buyers bring.",
+    frame: "Gartner's 2 Oct 2025 public abstract says the identity governance market is dynamic and that the features on offer vary. The market definition was not in that abstract. SailPoint, Saviynt, and C1 are names buyers bring, not that abstract's vendor list.",
     examples: [
       vendor("SailPoint", "sailpoint"),
       vendor("Saviynt", "saviynt"),
@@ -459,7 +459,7 @@ export const namedShortlists: {
   },
   {
     market: "Agents",
-    frame: "Forrester's 2026 agent remarks and Gartner's March 2026 identity-roadmap note describe delegation. These products have agent language or sit next to it. That is not a ranking.",
+    frame: "These products have agent language or sit next to it. A retrieved page is on the agent-identity and agentic-runtime categories. This shortlist is not that page's vendor list, and it is not a ranking.",
     examples: [
       vendor("C1", "c1"),
       vendor("Opal", "opal"),
@@ -471,7 +471,8 @@ export const namedShortlists: {
   },
   {
     market: "Cloud permissions",
-    frame: "CIEM shows up inside CNAPP conversations and as a specialist graph. Wiz, Veza, Orca, and Sonrai are the names. None has a filled permission cell here.",
+    frame:
+      "Gartner's 21 Jan 2025 public abstract says managing multicloud entitlements is difficult because machine identities proliferate and cloud providers configure access differently. Wiz, Veza, Orca, and Sonrai are names in this map. They are not that abstract's vendor list, and none has a filled permission cell. Orca's homepage describes misconfigurations inside cloud posture. That sentence is not a permission cell.",
     examples: [
       vendor("Wiz", "wiz"),
       vendor("Veza", "veza"),
@@ -482,7 +483,8 @@ export const namedShortlists: {
   },
   {
     market: "The rest of the estate",
-    frame: "The same shortlist habit, outside identity. Network, email, exposure, data, and recovery. Still not an analyst placement.",
+    frame:
+      "The same shortlist habit, outside identity. Network, email, exposure, data, operations, and recovery are different budgets. A 26 Oct 2026 pass sourced a few homepages: code analysis, cloud posture, endpoint detection, and restore. Email, exposure, and the SIEM homepage did not fill a block, a patch, or a detection-content cell. This is not an analyst placement.",
     examples: [
       vendor("Palo Alto Networks", "palo-alto-networks"),
       vendor("Zscaler", "zscaler"),
@@ -508,7 +510,7 @@ export const namedShortlists: {
   },
   {
     market: "Detection, exposure, and the edge",
-    frame: "Gartner and Forrester publish separate notes for XDR, MDR, NDR, threat intelligence, WAAP, exposure, OT, insider risk, ratings, and AI application security. These are the companies buyers name. The report pages were not retrieved, and this is not a placement.",
+    frame: "Public abstracts retrieved on 27 Oct 2026 describe XDR, NDR, threat intelligence, web and API protection, cyber-physical systems, insider-risk selection, external attack surface, and identity threat detection. MDR is a SACR sentence about an operating model. Security ratings and endpoint detection still have no retrieved page. These names are not a placement.",
     examples: [
       vendor("CrowdStrike", "crowdstrike"),
       vendor("Arctic Wolf", "arctic-wolf"),
@@ -562,7 +564,7 @@ export const estateAreas: { name: string; problem: string; href: string; example
   },
   {
     name: "Exposure",
-    problem: "Which weaknesses should we fix first?",
+    problem: "Which weaknesses should we fix first? The patch scanner and a continuous exposure program are different fields.",
     href: "/categories/it-vulnerability-management",
     examples: [
       vendor("Tenable", "tenable"),
@@ -571,6 +573,12 @@ export const estateAreas: { name: string; problem: string; href: string; example
       vendor("Censys", "censys"),
       vendor("Pentera", "pentera"),
     ],
+  },
+  {
+    name: "Continuous exposure",
+    problem: "Which exposures matter beyond the patch list? The 26 Aug 2025 Gartner abstract names no vendor, so this hub has no products.",
+    href: "/categories/ctem",
+    examples: [],
   },
   {
     name: "Data",
@@ -672,6 +680,20 @@ export const estateAreas: { name: string; problem: string; href: string; example
     problem: "What is exposed that the asset list missed?",
     href: "/categories/external-attack-surface",
     examples: [vendor("Censys", "censys"), vendor("CyCognito", "cycognito")],
+  },
+  {
+    name: "Digital risk",
+    problem:
+      "Which public abuse of a known brand, domain, or executive is in scope? The 29 Jul 2026 SACR page describes that search. This hub lists no product.",
+    href: "/categories/digital-risk-protection",
+    examples: [],
+  },
+  {
+    name: "Runtime application checks",
+    problem:
+      "Was the finding checked against the running system? The 26 Oct 2026 SACR page describes that discipline. This hub lists no product.",
+    href: "/categories/runtime-validated-application-security",
+    examples: [],
   },
   {
     name: "Asset inventory",
@@ -907,7 +929,7 @@ export const cloudAppEcosystem: {
     name: "Application security testing",
     diagram: "App testing",
     acronyms: "SAST, IAST, DAST",
-    note: "Static analysis reads the change before it runs. Interactive testing watches a test from inside the app. Dynamic testing hits a running app from the outside. A name here may sell one of those, or only the queue that correlates them. ArmorCode is the correlation candidate, not a scanner.",
+    note: "Static analysis reads the change before it runs. Interactive testing watches a test from inside the app. Dynamic testing hits a running app from the outside. A name here may sell one of those, or only the queue that correlates them. ArmorCode is the correlation candidate, not a scanner. Semgrep and Checkmarx have a sourced static-analysis sentence. SCA is named on both homepages and is not a dependency-vulnerability cell.",
     href: "/categories/sast",
     domains: ["appsec"],
     categoryIds: ["sast", "iast", "dast", "aspm"],
@@ -927,7 +949,7 @@ export const cloudAppEcosystem: {
     name: "Cloud security",
     diagram: "Cloud security",
     acronyms: "CNAPP, infrastructure as code, containers, cloud detection",
-    note: "CNAPP is a suite label. Infrastructure-as-code review, container controls, and cloud detection are different modules. AWS is already seeded as a secrets product. No AWS cloud-security module is checked. Gem, Lacework, and Dazz are listed with ownership not re-checked.",
+    note: "CNAPP is a suite label. A 22 Apr 2026 public abstract names posture, workload protection, Kubernetes posture, and cloud entitlements as capabilities to prioritize. It does not pair each name with a flaw, and it does not list these vendors. Infrastructure-as-code review, container controls, and cloud detection are different modules. AWS is already seeded as a secrets product. No AWS cloud-security module is checked. Gem, Lacework, and Dazz are listed with ownership not re-checked. Orca's homepage describes cloud posture and misconfigurations. Identity permissions on that page are not a CIEM cell.",
     href: "/categories/cnapp",
     domains: ["cloud"],
     categoryIds: ["cnapp", "iac-security", "container-security", "cloud-detection"],
@@ -951,7 +973,7 @@ export const cloudAppEcosystem: {
     name: "Cloud vulnerability management",
     diagram: "Cloud vulns",
     acronyms: "Scanning and assessment",
-    note: "This is assessment of cloud workloads and images. A missing package is not a public storage bucket, and a product that only ranks findings is not the scanner. Qualys, Tenable, Rapid7, and Wiz were already on the map for other jobs. Silk and Avalor are candidates whose ownership was not re-checked.",
+    note: "This is assessment of cloud workloads and images. A missing package is not a public storage bucket, and a product that only ranks findings is not the scanner. Qualys, Tenable, and Rapid7 were already on the map for exposure. Their 26 Oct 2026 homepages still do not say they find missing patches. Silk and Avalor are candidates whose ownership was not re-checked.",
     href: "/categories/cloud-vulnerability",
     domains: ["cloud"],
     categoryIds: ["cloud-vulnerability", "it-vulnerability-management", "cspm"],

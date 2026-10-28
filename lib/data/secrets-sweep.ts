@@ -326,6 +326,92 @@ export const secretsSweepVendors: Vendor[] = [
     "openQuestions": [
       "Which maintained release, edition, deployment, and support terms apply?"
     ]
+  },
+  {
+    "id": "black-duck",
+    "slug": "black-duck",
+    "name": "Black Duck",
+    "formerNames": [],
+    "website": "https://www.blackduck.com/resources/datasheets/secrets-detection.html",
+    "positioning": "Publisher of a secrets-scanning datasheet for source code and infrastructure-as-code. The catalog still has a separate synopsys shortlist record. This pass does not merge those names.",
+    "primaryCategoryIds": [
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "sast",
+      "sca"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Which Black Duck or Polaris edition includes the secrets scan, and is the buyer still contracting under the Synopsys name?"
+    ]
+  },
+  {
+    "id": "opentext",
+    "slug": "opentext",
+    "name": "OpenText",
+    "formerNames": [],
+    "website": "https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/2540/sast-ugd-html-25.4.0/doc/2263_25.4/secretscanning.html",
+    "positioning": "Publisher of the OpenText SAST documentation that describes a secrets analyzer. The product name on that documentation set is Fortify. This record does not establish a rename history.",
+    "primaryCategoryIds": [
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "sast"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Which Fortify edition and deployment is in the renewal?"
+    ]
+  },
+  {
+    "id": "deepsource",
+    "slug": "deepsource",
+    "name": "DeepSource",
+    "formerNames": [],
+    "website": "https://deepsource.com/docs/product/secrets-detection",
+    "positioning": "Code-review platform that documents a secrets-detection feature. Plan and engine details stay on the product record.",
+    "primaryCategoryIds": [
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "sast"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Is the team on a plan that includes secrets detection, and is the hybrid engine enabled?"
+    ]
+  },
+  {
+    "id": "codacy",
+    "slug": "codacy",
+    "name": "Codacy",
+    "formerNames": [],
+    "website": "https://docs.codacy.com/getting-started/supported-languages-and-tools/",
+    "positioning": "Code-quality platform that documents secret detection by naming other scanners. Those named tools are not a Codacy-authored detector.",
+    "primaryCategoryIds": [
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "sast",
+      "sca"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Which languages are in scope, and which named scanner runs for each of them?"
+    ]
   }
 ];
 
@@ -1136,6 +1222,35 @@ export const secretsSweepProducts: Product[] = [
     ]
   },
   {
+    "id": "wiz-code",
+    "slug": "wiz-code",
+    "vendorId": "wiz",
+    "name": "Wiz Code",
+    "positioning": "Wiz's application-security product. The platform page lists secrets scanning beside SAST, SCA, infrastructure-as-code, and other code modules. The CNAPP record stays separate.",
+    "primaryCategoryIds": [
+      "aspm",
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "sast",
+      "sca",
+      "cnapp"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "A 2 Dec 2025 Wiz post said Wiz SAST was in public preview for Wiz Code customers. The platform page fetched 26 Oct 2026 lists SAST and does not repeat that preview label. Current SAST availability stays unknown. Secrets scanning on that page has no availability label.",
+    "officialUrl": "https://www.wiz.io/platform/wiz-code",
+    "useCaseIds": [
+      "uc-detect",
+      "uc-finding-route"
+    ]
+  },
+  {
     "id": "orca-secrets",
     "slug": "orca-secrets",
     "vendorId": "orca-security",
@@ -1591,6 +1706,259 @@ export const secretsSweepProducts: Product[] = [
     "availability": "unknown",
     "availabilityNote": "Feature existence is documented separately from current edition, release, support, and availability. Confirm public/private workspace coverage and plan.",
     "officialUrl": "https://learning.postman.com/docs/administration/managing-your-team/secret-scanner/overview/",
+    "useCaseIds": [
+      "uc-detect"
+    ]
+  },
+  {
+    "id": "veracode-container-secrets",
+    "slug": "veracode-container-secrets",
+    "vendorId": "veracode",
+    "name": "Veracode Container and IaC secret rules",
+    "positioning": "Documents secret rules for container, infrastructure-as-code, directory, and repository scans. Static-analysis hardcoded-password findings are a different engine.",
+    "primaryCategoryIds": [
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "container-security",
+      "sast"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "Feature existence is documented separately from current edition, release, support, and availability. SAST CWE-259 and CWE-798 findings are not this record. The docs page lists paths the CLI does not scan.",
+    "officialUrl": "https://docs.veracode.com/r/Run_Container_Security_scans",
+    "useCaseIds": [
+      "uc-detect"
+    ]
+  },
+  {
+    "id": "black-duck-secrets",
+    "slug": "black-duck-secrets",
+    "vendorId": "black-duck",
+    "name": "Black Duck Secrets Scanning",
+    "positioning": "Datasheet says the scan looks through source code, infrastructure-as-code templates, and other file types for hard-coded secrets.",
+    "primaryCategoryIds": [
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "sast",
+      "sca"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "Feature existence is documented separately from current edition, release, support, and availability. The datasheet does not name detectors, Git history, or validity checks. A Sigma hardcoded-secrets checker in Polaris release notes is not this record.",
+    "officialUrl": "https://www.blackduck.com/resources/datasheets/secrets-detection.html",
+    "useCaseIds": [
+      "uc-detect"
+    ]
+  },
+  {
+    "id": "opentext-sast-secrets",
+    "slug": "opentext-sast-secrets",
+    "vendorId": "opentext",
+    "name": "OpenText SAST secrets analyzer",
+    "positioning": "OpenText SAST 25.4.0 documentation says one analyzer can find secrets across file types. Configuration is described as regular-expression analysis.",
+    "primaryCategoryIds": [
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "sast"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "Feature existence is documented separately from current edition, release, support, and availability. This is an analyzer inside SAST, not a separate secrets product. Git history and validity checks are not described on this page.",
+    "officialUrl": "https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/2540/sast-ugd-html-25.4.0/doc/2263_25.4/secretscanning.html",
+    "useCaseIds": [
+      "uc-detect"
+    ]
+  },
+  {
+    "id": "deepsource-secrets",
+    "slug": "deepsource-secrets",
+    "vendorId": "deepsource",
+    "name": "DeepSource secrets detection",
+    "positioning": "Documents commit scanning for hardcoded credentials with pattern matching and a classification model. The page says Team or Enterprise is required.",
+    "primaryCategoryIds": [
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "sast"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "limited",
+    "availabilityNote": "The product page says secrets detection requires the Team or Enterprise plan. Vendor benchmark percentages on that page are not adopted. Validity checks are not described.",
+    "officialUrl": "https://deepsource.com/docs/product/secrets-detection",
+    "useCaseIds": [
+      "uc-detect"
+    ]
+  },
+  {
+    "id": "codacy-secrets",
+    "slug": "codacy-secrets",
+    "vendorId": "codacy",
+    "name": "Codacy secret detection",
+    "positioning": "Documents secret detection as a scan type and names Opengrep, Trivy, Checkov, PMD, Bandit, and Prospector as tools used for it, depending on the language.",
+    "primaryCategoryIds": [
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "sast",
+      "sca"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "Feature existence is documented separately from current edition, release, support, and availability. Named tools differ by language. This is not a Codacy-authored detector. The page says scans run on push, not continuously.",
+    "officialUrl": "https://docs.codacy.com/getting-started/supported-languages-and-tools/",
+    "useCaseIds": [
+      "uc-detect"
+    ]
+  },
+  {
+    "id": "varonis-secrets",
+    "slug": "varonis-secrets",
+    "vendorId": "varonis",
+    "name": "Varonis Dev Cycle secrets detection",
+    "positioning": "Varonis page for secrets in developer tools. The DSPM company record stays a different product.",
+    "primaryCategoryIds": [
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "dspm"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "The Dev Cycle page fetched 26 Oct 2026 describes secrets detection and does not give an edition or availability label. Rotation and token revocation on that page are not a separate capability cell.",
+    "officialUrl": "https://www.varonis.com/solutions/dev-cycle-data-security",
+    "useCaseIds": [
+      "uc-detect"
+    ]
+  },
+  {
+    "id": "bigid-secrets",
+    "slug": "bigid-secrets",
+    "vendorId": "bigid",
+    "name": "BigID Secrets Security",
+    "positioning": "BigID page for exposed credentials across data stores. The DSPM company record stays a different product.",
+    "primaryCategoryIds": [
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "dspm"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "The secrets security page fetched 26 Oct 2026 has no edition or availability label. Validity is named as risk context and is not a verification cell.",
+    "officialUrl": "https://bigid.com/secrets-security/",
+    "useCaseIds": [
+      "uc-detect"
+    ]
+  },
+  {
+    "id": "sentra-secrets",
+    "slug": "sentra-secrets",
+    "vendorId": "sentra",
+    "name": "Sentra cloud secrets scanning",
+    "positioning": "Sentra article about secrets in cloud copies of code and configuration. The DSPM company record stays a different product.",
+    "primaryCategoryIds": [
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "dspm"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "The article fetched 26 Oct 2026 has no publication date and no edition label. A file-extension count on the page is not adopted.",
+    "officialUrl": "https://www.sentra.io/learn/source-code-secrets-scanning-the-missing-half-of-your-cloud-data-security-strategy",
+    "useCaseIds": [
+      "uc-detect"
+    ]
+  },
+  {
+    "id": "strac-secrets",
+    "slug": "strac-secrets",
+    "vendorId": "strac",
+    "name": "Strac secret scanning",
+    "positioning": "Strac post that places secret scanning inside its DLP product. The DLP company record stays a different product.",
+    "primaryCategoryIds": [
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "dlp"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "The post is dated 10 Aug 2026 and does not name an edition. Phrases about active secrets are not a validity check.",
+    "officialUrl": "https://www.strac.io/blog/secret-scanning",
+    "useCaseIds": [
+      "uc-detect"
+    ]
+  },
+  {
+    "id": "teleskope-secrets",
+    "slug": "teleskope-secrets",
+    "vendorId": "teleskope",
+    "name": "Teleskope secrets elements",
+    "positioning": "Teleskope taxonomy family for passwords, API keys, private keys, seed phrases, and tokens. The DSPM company record stays a different product.",
+    "primaryCategoryIds": [
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [
+      "dspm"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "The taxonomy page says environments may still return v1 labels during migration. An example policy on a different page is not evidence that policy is enabled.",
+    "officialUrl": "https://docs.teleskope.ai/specifications/entity-taxonomy-v2",
     "useCaseIds": [
       "uc-detect"
     ]
@@ -2067,6 +2435,30 @@ export const secretsSweepSources: Source[] = [
     "excerpt": "Research paraphrase: Scans Git history, pull requests, and images for exposed secrets."
   },
   {
+    "id": "src-secrets-sweep-wiz-code",
+    "title": "Wiz Code — code security modules",
+    "url": "https://www.wiz.io/platform/wiz-code",
+    "canonicalUrl": "https://www.wiz.io/platform/wiz-code",
+    "publisher": "Wiz",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-10-26",
+    "volatility": "fast",
+    "excerpt": "Research paraphrase: Lists secrets scanning and says it finds hardcoded secrets in code, IaC templates, and container images."
+  },
+  {
+    "id": "src-secrets-sweep-wiz-sast-preview",
+    "title": "Wiz SAST public-preview post",
+    "url": "https://www.wiz.io/blog/introducing-wiz-sast-where-code-risk-meets-cloud-context",
+    "canonicalUrl": "https://www.wiz.io/blog/introducing-wiz-sast-where-code-risk-meets-cloud-context",
+    "publisher": "Wiz",
+    "sourceType": "vendor_marketing",
+    "publishedAt": "2025-12-02",
+    "retrievedAt": "2026-10-26",
+    "volatility": "fast",
+    "excerpt": "Research paraphrase: On 2 Dec 2025 Wiz said SAST was in public preview for Wiz Code customers."
+  },
+  {
     "id": "src-secrets-sweep-orca-secrets",
     "title": "Orca secrets detection — secrets detection scope",
     "url": "https://orca.security/platform/application-security/",
@@ -2317,6 +2709,139 @@ export const secretsSweepSources: Source[] = [
     "retrievedAt": "2026-10-13",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Detects exposed secrets in Postman content."
+  },
+  {
+    "id": "src-secrets-sweep-veracode-container-secrets",
+    "title": "Veracode Container and IaC secret rules — secrets detection scope",
+    "url": "https://docs.veracode.com/r/Run_Container_Security_scans",
+    "canonicalUrl": "https://docs.veracode.com/r/Run_Container_Security_scans",
+    "publisher": "Veracode",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-10-26",
+    "volatility": "fast",
+    "excerpt": "Research paraphrase: Documents secret rules for container, IaC, directory, and repository scans."
+  },
+  {
+    "id": "src-secrets-sweep-black-duck-secrets",
+    "title": "Black Duck Secrets Scanning — secrets detection scope",
+    "url": "https://www.blackduck.com/resources/datasheets/secrets-detection.html",
+    "canonicalUrl": "https://www.blackduck.com/resources/datasheets/secrets-detection.html",
+    "publisher": "Black Duck",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-10-26",
+    "volatility": "fast",
+    "excerpt": "Research paraphrase: Datasheet says the scan looks through source, IaC, and other files for hard-coded secrets."
+  },
+  {
+    "id": "src-secrets-sweep-opentext-sast-secrets",
+    "title": "OpenText SAST secrets analyzer — secrets detection scope",
+    "url": "https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/2540/sast-ugd-html-25.4.0/doc/2263_25.4/secretscanning.html",
+    "canonicalUrl": "https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/2540/sast-ugd-html-25.4.0/doc/2263_25.4/secretscanning.html",
+    "publisher": "OpenText",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-10-26",
+    "volatility": "fast",
+    "excerpt": "Research paraphrase: One SAST analyzer can find secrets across file types. Configuration is regular-expression analysis."
+  },
+  {
+    "id": "src-secrets-sweep-deepsource-secrets",
+    "title": "DeepSource secrets detection — secrets detection scope",
+    "url": "https://deepsource.com/docs/product/secrets-detection",
+    "canonicalUrl": "https://deepsource.com/docs/product/secrets-detection",
+    "publisher": "DeepSource",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-10-26",
+    "volatility": "fast",
+    "excerpt": "Research paraphrase: Documents commit scanning for hardcoded credentials. Team or Enterprise is required."
+  },
+  {
+    "id": "src-secrets-sweep-codacy-secrets",
+    "title": "Codacy secret detection — secrets detection scope",
+    "url": "https://docs.codacy.com/getting-started/supported-languages-and-tools/",
+    "canonicalUrl": "https://docs.codacy.com/getting-started/supported-languages-and-tools/",
+    "publisher": "Codacy",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-10-26",
+    "volatility": "fast",
+    "excerpt": "Research paraphrase: Documents secret detection and names Opengrep, Trivy, Checkov, PMD, Bandit, and Prospector by language."
+  },
+  {
+    "id": "src-secrets-sweep-varonis-secrets",
+    "title": "Varonis Dev Cycle Data Security — secrets detection scope",
+    "url": "https://www.varonis.com/solutions/dev-cycle-data-security",
+    "canonicalUrl": "https://www.varonis.com/solutions/dev-cycle-data-security",
+    "publisher": "Varonis",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-10-26",
+    "volatility": "fast",
+    "excerpt": "Research paraphrase: Detects exposed secrets and API keys in GitHub and Bitbucket, including commit history and pull requests, and credentials in images, packages, and JFrog artifacts."
+  },
+  {
+    "id": "src-secrets-sweep-bigid-secrets",
+    "title": "BigID Secrets Security — secrets detection scope",
+    "url": "https://bigid.com/secrets-security/",
+    "canonicalUrl": "https://bigid.com/secrets-security/",
+    "publisher": "BigID",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-10-26",
+    "volatility": "fast",
+    "excerpt": "Research paraphrase: Discovers exposed API keys, passwords, tokens, certificates, encryption keys, and credentials across cloud, SaaS, code, collaboration tools, databases, files, and AI environments."
+  },
+  {
+    "id": "src-secrets-sweep-sentra-secrets",
+    "title": "Sentra source-code secrets scanning — secrets detection scope",
+    "url": "https://www.sentra.io/learn/source-code-secrets-scanning-the-missing-half-of-your-cloud-data-security-strategy",
+    "canonicalUrl": "https://www.sentra.io/learn/source-code-secrets-scanning-the-missing-half-of-your-cloud-data-security-strategy",
+    "publisher": "Sentra",
+    "author": "Ron Reiter",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-10-26",
+    "volatility": "fast",
+    "excerpt": "Research paraphrase: Says the DSPM platform scans cloud copies of code, configuration, and documentation, including environment files, keys, certificates, and infrastructure-as-code."
+  },
+  {
+    "id": "src-secrets-sweep-strac-secrets",
+    "title": "Strac secret scanning — secrets detection scope",
+    "url": "https://www.strac.io/blog/secret-scanning",
+    "canonicalUrl": "https://www.strac.io/blog/secret-scanning",
+    "publisher": "Strac",
+    "sourceType": "vendor_marketing",
+    "publishedAt": "2026-08-10",
+    "retrievedAt": "2026-10-26",
+    "volatility": "fast",
+    "excerpt": "Research paraphrase: Places secret scanning inside Strac's DLP product and names Slack, GitHub, Jira, Confluence, and Google Drive."
+  },
+  {
+    "id": "src-secrets-sweep-teleskope-secrets",
+    "title": "Teleskope Entity Taxonomy v2 — secrets elements",
+    "url": "https://docs.teleskope.ai/specifications/entity-taxonomy-v2",
+    "canonicalUrl": "https://docs.teleskope.ai/specifications/entity-taxonomy-v2",
+    "publisher": "Teleskope",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-10-26",
+    "volatility": "fast",
+    "excerpt": "Research paraphrase: The Secrets family covers passwords, API keys, private keys, seed phrases, and tokens. Some environments may still return v1 labels."
+  },
+  {
+    "id": "src-secrets-sweep-concentric-secrets",
+    "title": "Concentric AI secrets and keys announcement",
+    "url": "https://concentric.ai/press-release/concentric-ai-announces-industrys-first-deep-learning-driven-detection-of-secrets-and-keys-within-todays-most-popular-on-premise-and-cloud-data-repositories/",
+    "canonicalUrl": "https://concentric.ai/press-release/concentric-ai-announces-industrys-first-deep-learning-driven-detection-of-secrets-and-keys-within-todays-most-popular-on-premise-and-cloud-data-repositories/",
+    "publisher": "Concentric AI",
+    "sourceType": "press_release",
+    "publishedAt": "2023-05-18",
+    "retrievedAt": "2026-10-26",
+    "volatility": "fast",
+    "excerpt": "Research paraphrase: Says the 18 May 2023 Semantic Intelligence update could detect hardcoded secrets and keys in data repositories and in email and messaging."
   }
 ];
 
@@ -3102,6 +3627,46 @@ export const secretsSweepClaims: Claim[] = [
     "notes": "CNAPP scope is not implied for every CSPM product. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
   {
+    "id": "claim-secrets-sweep-wiz-code-secrets",
+    "statement": "Wiz's Wiz Code page lists secrets scanning among its code-security modules and says it finds hardcoded secrets in code, infrastructure-as-code templates, and container images.",
+    "subjectType": "product",
+    "subjectId": "wiz-code",
+    "capabilityId": "cap-secret-discovery",
+    "polarity": "asserts",
+    "sourceId": "src-secrets-sweep-wiz-code",
+    "sourceUrl": "https://www.wiz.io/platform/wiz-code",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-10-26",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-10-26",
+    "conflictsWith": [],
+    "notes": "The page also names SAST, SCA, infrastructure-as-code, data classification in code, malware, CI/CD posture, and ASPM. Those names are not capability cells. Rule counts, exploitability, and AI-fix language are not adopted. Git history, pull requests, cloud resources, and provider validation stay on the separate wiz-secrets record. Publisher-reported, not independently tested."
+  },
+  {
+    "id": "claim-secrets-sweep-wiz-sast-preview",
+    "statement": "A Wiz post dated 2 Dec 2025 says Wiz SAST was in public preview for Wiz Code customers and included repository and pull request scanning.",
+    "subjectType": "product",
+    "subjectId": "wiz-code",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-secrets-sweep-wiz-sast-preview",
+    "sourceUrl": "https://www.wiz.io/blog/introducing-wiz-sast-where-code-risk-meets-cloud-context",
+    "sourceType": "vendor_marketing",
+    "publishedAt": "2025-12-02",
+    "observedAt": "2026-10-26",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-10-26",
+    "conflictsWith": [],
+    "notes": "The platform page fetched 26 Oct 2026 lists SAST and does not repeat the preview label. This claim does not settle current availability and does not fill a SAST capability cell. Customer quotations on either page are not adopted."
+  },
+  {
     "id": "claim-secrets-sweep-orca-secrets",
     "statement": "Orca secrets detection: Lists secrets detection among application security capabilities.",
     "subjectType": "product",
@@ -3520,6 +4085,226 @@ export const secretsSweepClaims: Claim[] = [
     "lastCheckedAt": "2026-10-13",
     "conflictsWith": [],
     "notes": "Confirm public/private workspace coverage and plan. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
+  },
+  {
+    "id": "claim-secrets-sweep-veracode-container-secrets",
+    "statement": "Veracode documents secret rules for Container and IaC Security scans of images, directories, and repositories, including listed provider keys and customer regular expressions.",
+    "subjectType": "product",
+    "subjectId": "veracode-container-secrets",
+    "capabilityId": "cap-secret-discovery",
+    "polarity": "asserts",
+    "sourceId": "src-secrets-sweep-veracode-container-secrets",
+    "sourceUrl": "https://docs.veracode.com/r/Run_Container_Security_scans",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-10-26",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-10-26",
+    "conflictsWith": [],
+    "notes": "SAST findings for CWE-259 and CWE-798 are a different engine and are not this record. The same page lists paths the CLI does not scan. Validity checks are not described. The docs footer said last updated 20 Oct 2026; that is not treated as the feature publication date. Public documentation review only; no scanner benchmark or tenant test."
+  },
+  {
+    "id": "claim-secrets-sweep-black-duck-secrets",
+    "statement": "Black Duck's secrets-scanning datasheet says the scan analyzes source code, infrastructure-as-code templates, and other file types for hard-coded secrets.",
+    "subjectType": "product",
+    "subjectId": "black-duck-secrets",
+    "capabilityId": "cap-secret-discovery",
+    "polarity": "asserts",
+    "sourceId": "src-secrets-sweep-black-duck-secrets",
+    "sourceUrl": "https://www.blackduck.com/resources/datasheets/secrets-detection.html",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-10-26",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-10-26",
+    "conflictsWith": [],
+    "notes": "Datasheet only. Edition, detector list, Git history, and validity checks are not stated. Polaris release notes describe a Sigma hardcoded_secrets static-analysis checker; that checker is not this claim. The catalog synopsys record stays a separate shortlist name. Publisher-reported, not independently tested."
+  },
+  {
+    "id": "claim-secrets-sweep-opentext-sast-secrets",
+    "statement": "OpenText SAST documentation says one of its analyzers can find secrets across file types, and points configuration to regular-expression analysis.",
+    "subjectType": "product",
+    "subjectId": "opentext-sast-secrets",
+    "capabilityId": "cap-secret-discovery",
+    "polarity": "asserts",
+    "sourceId": "src-secrets-sweep-opentext-sast-secrets",
+    "sourceUrl": "https://www.microfocus.com/documentation/fortify-static-code-analyzer-and-tools/2540/sast-ugd-html-25.4.0/doc/2263_25.4/secretscanning.html",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-10-26",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-10-26",
+    "conflictsWith": [],
+    "notes": "Documentation set labeled 25.4.0. This is an analyzer inside OpenText SAST, not a separate secrets product. The page does not describe Git-history scanning or validity checks. A marketing count of secret types is not part of this source. Public documentation review only; no scanner benchmark or tenant test."
+  },
+  {
+    "id": "claim-secrets-sweep-deepsource-secrets",
+    "statement": "DeepSource documents secrets detection that scans commits for hardcoded credentials, using pattern matching and a classification model named Narada. The page says the feature requires a Team or Enterprise plan.",
+    "subjectType": "product",
+    "subjectId": "deepsource-secrets",
+    "capabilityId": "cap-secret-discovery",
+    "polarity": "asserts",
+    "sourceId": "src-secrets-sweep-deepsource-secrets",
+    "sourceUrl": "https://deepsource.com/docs/product/secrets-detection",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-10-26",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-10-26",
+    "conflictsWith": [],
+    "notes": "The same page publishes precision, recall, and false-positive percentages. Those figures are vendor benchmarks and are not adopted. Validity checks are not described. Publisher-reported, not independently tested; no scanner benchmark or tenant test was run for this record."
+  },
+  {
+    "id": "claim-secrets-sweep-codacy-secrets",
+    "statement": "Codacy documents secret detection as a scan type and names Opengrep, Trivy, Checkov, PMD, Bandit, and Prospector as the tools used for that scan, depending on the language.",
+    "subjectType": "product",
+    "subjectId": "codacy-secrets",
+    "capabilityId": "cap-secret-discovery",
+    "polarity": "asserts",
+    "sourceId": "src-secrets-sweep-codacy-secrets",
+    "sourceUrl": "https://docs.codacy.com/getting-started/supported-languages-and-tools/",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-10-26",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-10-26",
+    "conflictsWith": [],
+    "notes": "Scans run when code is pushed, not continuously. Named tools differ by language. This is not evidence of a Codacy-authored detector, a validity check, or full Git-history scanning. Public documentation review only; no scanner benchmark or tenant test."
+  },
+  {
+    "id": "claim-secrets-sweep-varonis-secrets",
+    "statement": "Varonis's Dev Cycle page says the product detects exposed secrets and API keys across GitHub and Bitbucket repositories, including full commit history and pull requests, and finds credentials and tokens in Docker images, npm packages, and JFrog artifacts.",
+    "subjectType": "product",
+    "subjectId": "varonis-secrets",
+    "capabilityId": "cap-secret-discovery",
+    "polarity": "asserts",
+    "sourceId": "src-secrets-sweep-varonis-secrets",
+    "sourceUrl": "https://www.varonis.com/solutions/dev-cycle-data-security",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-10-26",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-10-26",
+    "conflictsWith": [],
+    "notes": "The same page says scans cover commits, pull requests, wiki pages, and build artifacts, including secrets that remain in commit history after deletion from the branch. Rotation, token revocation, and real-time alerts are not separate capability cells. No provider-validity check is described. Customer quotations are not adopted. The page has no publication date. Publisher-reported; no scanner benchmark or tenant test."
+  },
+  {
+    "id": "claim-secrets-sweep-bigid-secrets",
+    "statement": "BigID's secrets security page says the product discovers exposed API keys, passwords, tokens, certificates, encryption keys, and credentials across cloud, SaaS, code repositories, collaboration platforms, databases, files, and AI environments.",
+    "subjectType": "product",
+    "subjectId": "bigid-secrets",
+    "capabilityId": "cap-secret-discovery",
+    "polarity": "asserts",
+    "sourceId": "src-secrets-sweep-bigid-secrets",
+    "sourceUrl": "https://bigid.com/secrets-security/",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-10-26",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-10-26",
+    "conflictsWith": [],
+    "notes": "The page also says a detected secret does not by itself reveal whether it is active, and it lists validity among risk context. That is not a verification cell. Git history is not described. Superiority lines are not adopted. The page has no publication date. Publisher-reported; no scanner benchmark or tenant test."
+  },
+  {
+    "id": "claim-secrets-sweep-sentra-secrets",
+    "statement": "A Sentra article says its DSPM platform scans code, configuration, and documentation copied into the cloud estate, including environment files, cryptographic keys and certificates, and infrastructure-as-code, rather than limiting that scan to a source-code manager.",
+    "subjectType": "product",
+    "subjectId": "sentra-secrets",
+    "capabilityId": "cap-secret-discovery",
+    "polarity": "asserts",
+    "sourceId": "src-secrets-sweep-sentra-secrets",
+    "sourceUrl": "https://www.sentra.io/learn/source-code-secrets-scanning-the-missing-half-of-your-cloud-data-security-strategy",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-10-26",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-10-26",
+    "conflictsWith": [],
+    "notes": "The article's file-extension count is not adopted. Git-history scanning and provider validity checks are not described. The byline is a Sentra co-founder and the page has no publication date. Publisher-reported; no scanner benchmark or tenant test."
+  },
+  {
+    "id": "claim-secrets-sweep-strac-secrets",
+    "statement": "A Strac post dated 10 Aug 2026 says secret scanning is part of its data-loss-prevention product and that Strac discovers and classifies secrets and credentials. The post names Slack, GitHub, Jira, Confluence, and Google Drive as integrations.",
+    "subjectType": "product",
+    "subjectId": "strac-secrets",
+    "capabilityId": "cap-secret-discovery",
+    "polarity": "asserts",
+    "sourceId": "src-secrets-sweep-strac-secrets",
+    "sourceUrl": "https://www.strac.io/blog/secret-scanning",
+    "sourceType": "vendor_marketing",
+    "publishedAt": "2026-08-10",
+    "observedAt": "2026-10-26",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-10-26",
+    "conflictsWith": [],
+    "notes": "Regex, entropy, and machine learning are described as general methods and are not adopted as Strac's engine. 'Active secrets' is not a validity-check claim. Historical and real-time scanning are described as implementation choices, not as Git-history coverage. This is a blog post. Publisher-reported; no scanner benchmark or tenant test."
+  },
+  {
+    "id": "claim-secrets-sweep-teleskope-secrets",
+    "statement": "Teleskope's Entity Taxonomy v2 includes a Secrets family for passwords, API keys, private keys, seed phrases, and tokens.",
+    "subjectType": "product",
+    "subjectId": "teleskope-secrets",
+    "capabilityId": "cap-secret-discovery",
+    "polarity": "asserts",
+    "sourceId": "src-secrets-sweep-teleskope-secrets",
+    "sourceUrl": "https://docs.teleskope.ai/specifications/entity-taxonomy-v2",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-10-26",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-10-26",
+    "conflictsWith": [],
+    "notes": "The page says some environments may still return v1 labels during migration. This is a classification family, not a Git-history scanner and not a validity check. A policy-maker page lists an example credentials policy for files or code. That example is not evidence the policy is enabled. Docs review only; no scanner benchmark or tenant test."
+  },
+  {
+    "id": "claim-secrets-sweep-concentric-secrets",
+    "statement": "A Concentric AI press release dated 18 May 2023 says Semantic Intelligence could detect hardcoded secrets and key credentials, including API keys, encryption keys, tokens, and passwords, in on-premises and cloud data repositories and in email and messaging applications.",
+    "subjectType": "product",
+    "subjectId": "concentric-ai",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-secrets-sweep-concentric-secrets",
+    "sourceUrl": "https://concentric.ai/press-release/concentric-ai-announces-industrys-first-deep-learning-driven-detection-of-secrets-and-keys-within-todays-most-popular-on-premise-and-cloud-data-repositories/",
+    "sourceType": "press_release",
+    "publishedAt": "2023-05-18",
+    "observedAt": "2026-10-26",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "low",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-10-26",
+    "conflictsWith": [],
+    "notes": "The product overview at https://concentric.ai/product-overview fetched 26 Oct 2026 does not repeat secrets detection, so current packaging stays unknown and this claim does not fill a discovery cell. Industry-first language, false-positive language, and the customer quotation are not adopted. No Git-history or validity check is in this source."
   }
 ];
 
@@ -3530,12 +4315,16 @@ const detectionVendorIds = new Set([
   "apiiro",
   "aqua",
   "arnica",
+  "bigid",
+  "black-duck",
   "checkmarx",
   "checkpoint",
+  "codacy",
   "codeant",
   "cycode",
   "datadog",
   "deepfence",
+  "deepsource",
   "endor-labs",
   "entro",
   "fortinet",
@@ -3553,6 +4342,7 @@ const detectionVendorIds = new Set([
   "microsoft",
   "mongodb",
   "nightfall",
+  "opentext",
   "orca-security",
   "ox-security",
   "palo-alto-networks",
@@ -3564,14 +4354,19 @@ const detectionVendorIds = new Set([
   "secretlint",
   "semgrep",
   "sentinelone",
+  "sentra",
   "shhgit",
   "skyscanner",
   "snyk",
   "socket",
   "sonarsource",
+  "strac",
   "sysdig",
+  "teleskope",
   "thoughtworks",
   "truffle-security",
+  "varonis",
+  "veracode",
   "wiz",
   "xygeni",
   "yelp"

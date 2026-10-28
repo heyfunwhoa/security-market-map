@@ -200,6 +200,8 @@ export const personaSchema = z.object({
   caresAbout: z.string().min(1),
   questions: z.array(z.string()).min(1),
   categoryIds: z.array(z.string()).min(1),
+  /** Acronyms and alternate titles for the same seat. Overloaded labels belong in research notes, not as exclusive aliases. */
+  aliases: z.array(z.string().min(1)).default([]),
 });
 
 export const sourceSchema = z.object({
