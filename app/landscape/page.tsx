@@ -1,3 +1,4 @@
+import { RelationshipExplorer } from "@/components/relationship-explorer";
 import { PageIntro } from "@/components/chrome";
 import { LandscapeBrowser, type LandscapeEdge, type LandscapeRow } from "@/components/landscape-browser";
 import { catalog, vendorById } from "@/lib/catalog";
@@ -55,6 +56,22 @@ export default function LandscapePage() {
         title="Who shows up for a use case, without a leaderboard"
         lede="Filter by domain, category, buyer, deployment, and scope. Use “Not an identity control” for AppSec, IT, and other tools that are on the map without being identity products. A relationship counts only inside a use case. There is no overall score."
       />
+      <RelationshipExplorer entries={catalog.relationships.flatMap((relationship) => {
+        const from = catalog.products.find((item) => item.id === relationship.fromProductId);
+        const to = catalog.products.find((item) => item.id === relationship.toProductId);
+        const useCase = catalog.useCases.find((item) => item.id === relationship.useCaseId);
+        if (!from || !to || !useCase) return [];
+        const source = catalog.sources.find((item) => item.id === relationship.sourceId);
+        return [{
+          id: relationship.id, fromId: from.id, toId: to.id,
+          fromName: from.name, toName: to.name,
+          fromSlug: vendorById(from.vendorId)?.slug ?? "",
+          toSlug: vendorById(to.vendorId)?.slug ?? "",
+          type: relationship.type, useCaseId: useCase.id, useCaseName: useCase.name,
+          rationale: relationship.rationale, sourceUrl: source?.url ?? null,
+          sourceTitle: source?.title ?? null,
+        }];
+      })} />
       <div className="mt-8">
         <LandscapeBrowser
           rows={rows}
