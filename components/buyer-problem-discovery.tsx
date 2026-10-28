@@ -29,7 +29,7 @@ export function BuyerProblemDiscovery({ problems }: { problems: BuyerProblem[] }
   return <section aria-labelledby="buyer-problems-title">
     <div className="rounded-xl border border-border bg-card p-4 sm:p-6">
       <h2 id="buyer-problems-title" className="font-heading text-xl">What problem are you trying to solve?</h2>
-      <p className="mt-2 text-sm text-muted-foreground">Start with a buyer's question, then explore architectures, categories and products. Results are catalog matches, not ranked recommendations.</p>
+      <p className="mt-2 text-sm text-muted-foreground">Start with a buyer&apos;s question, then explore architectures, categories and products. Results are catalog matches, not ranked recommendations.</p>
       <div className="mt-4 grid gap-3 sm:grid-cols-[minmax(0,1fr)_16rem]">
         <div><label htmlFor="problem-query" className="block text-sm font-medium">Search a problem or question</label>
         <input id="problem-query" type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="e.g. secure machine credentials" className="mt-1 min-h-11 w-full rounded-md border border-input bg-background px-3 text-sm" /></div>
