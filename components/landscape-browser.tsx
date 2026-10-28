@@ -52,6 +52,8 @@ export function LandscapeBrowser({
   const [scope, setScope] = useState("all");
   const [relation, setRelation] = useState("all");
   const [focusedProduct, setFocusedProduct] = useState("all");
+  const [limit, setLimit] = useState(24);
+  const resetLimit = () => setLimit(24);
   const scopedCategories = categories.filter((item) => domain === "all" || rows.some((row) => row.domainIds.includes(domain) && row.categoryIds.includes(item.id)));
   const scopedProducts = rows.filter((row) => (domain === "all" || row.domainIds.includes(domain)) && (category === "all" || row.categoryIds.includes(category))).sort((a, b) => a.productName.localeCompare(b.productName));
   const focused = rows.find((row) => row.productId === focusedProduct);
@@ -88,13 +90,13 @@ export function LandscapeBrowser({
       <section aria-labelledby="drilldown-heading" className="mb-5 rounded-xl border border-border bg-card p-4">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <h2 id="drilldown-heading" className="font-heading text-lg">Explore from landscape to product</h2>
-          <button type="button" className="text-sm text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" onClick={() => { setDomain("all"); setCategory("all"); setFocusedProduct("all"); }}>Zoom out to all markets</button>
+          <button type="button" className="text-sm text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" onClick={() => { setDomain("all"); setCategory("all"); setFocusedProduct("all"); resetLimit(); }}>Zoom out to all markets</button>
         </div>
         <p className="mt-1 text-sm text-muted-foreground">Start broad, narrow to a category, then inspect a product. Navigation is not a ranking or a feature-parity claim.</p>
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
           <Filter label="1 · Market domain" value={domain} onChange={selectDomain} options={domains} />
           <Filter label="2 · Category" value={category} onChange={selectCategory} options={scopedCategories} />
-          <Filter label="3 · Product" value={focusedProduct} onChange={setFocusedProduct} options={scopedProducts.map((row) => ({ id: row.productId, label: `${row.productName} · ${row.vendorName}` }))} />
+          <Filter label="3 · Product" value={focusedProduct} onChange={(value) => { setFocusedProduct(value); resetLimit(); }} options={scopedProducts.map((row) => ({ id: row.productId, label: `${row.productName} · ${row.vendorName}` }))} />
         </div>
         {focused ? <div className="mt-4 rounded-lg border border-border bg-background p-3" aria-live="polite">
           <p className="text-sm font-semibold">{focused.productName} <span className="font-normal text-muted-foreground">· {focused.vendorName}</span></p>
@@ -105,17 +107,17 @@ export function LandscapeBrowser({
       <form className="grid gap-3 rounded-xl border border-border bg-card p-4 sm:grid-cols-2 lg:grid-cols-3">
         <Filter label="Domain" value={domain} onChange={selectDomain} options={domains} />
         <Filter label="Category" value={category} onChange={selectCategory} options={scopedCategories} />
-        <Filter label="Use case" value={useCase} onChange={setUseCase} options={useCases} />
+        <Filter label="Use case" value={useCase} onChange={(value) => { setUseCase(value); resetLimit(); }} options={useCases} />
         <Filter
           label="Buyer"
           value={persona}
-          onChange={setPersona}
+          onChange={(value) => { setPersona(value); resetLimit(); }}
           options={personas.map((item) => ({ id: item.id, label: item.label }))}
         />
         <Filter
           label="Deployment"
           value={deployment}
-          onChange={setDeployment}
+          onChange={(value) => { setDeployment(value); resetLimit(); }}
           options={["saas", "self_hosted", "hybrid", "cloud_native", "open_source", "unknown"].map(
             (id) => ({ id, label: deploymentLabel(id) }),
           )}
@@ -123,7 +125,7 @@ export function LandscapeBrowser({
         <Filter
           label="Identity scope"
           value={scope}
-          onChange={setScope}
+          onChange={(value) => { setScope(value); resetLimit(); }}
           options={["human", "nhi", "agent", "not_an_identity_control"].map((id) => ({
             id,
             label: scopeLabel(id),
@@ -132,7 +134,7 @@ export function LandscapeBrowser({
         <Filter
           label="Relationship in this use case"
           value={relation}
-          onChange={setRelation}
+          onChange={(value) => { setRelation(value); resetLimit(); }}
           options={[
             "direct_competitor",
             "bundled_alternative",
@@ -152,7 +154,7 @@ export function LandscapeBrowser({
         </p>
       ) : (
         <ul className="mt-4 grid gap-3">
-          {visible.map((row) => {
+          {visible.slice(0, limit).map((row) => {
             const related = edges.filter(
               (edge) =>
                 edge.productId === row.productId &&
@@ -187,6 +189,7 @@ export function LandscapeBrowser({
           })}
         </ul>
       )}
+      {visible.length > limit ? <button type="button" onClick={() => setLimit((current) => current + 24)} className="mt-4 min-h-11 rounded-md border border-border px-4 py-2 text-sm font-medium hover:bg-muted focus-visible:outline-2 focus-visible:outline-ring">Show more products ({Math.min(limit, visible.length)} of {visible.length} shown)</button> : null}
     </div>
   );
 }
