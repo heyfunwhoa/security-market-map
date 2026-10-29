@@ -166,3 +166,40 @@ PR #77 delivered Phase 1: equal-weight selectable market-area tiles, a separate 
 **Risks:** current visual circle radius is hand-authored (`marketCircles.r`) and has no documented metric; readers can read it as importance. The current opening text also blends attack-sequence direction with overlapping domain circles. Several open taxonomy PRs may change nodes/relationships during implementation. The source ledger is large, so progressive disclosure must not conceal evidence state. The existing territory failure must be diagnosed before design work assumes the route is healthy. The plan does not claim mobile/accessibility verification or a confirmed root cause for that failure.
 
 **Review boundary:** recommendation only. No code, issue, PR, merge or deployment is included in this change.
+
+## Detail-page breadcrumbs (2026-10-29)
+
+Adapt the workbench case-study breadcrumb pattern (Home / collection / title) for
+`/domains/[slug]`, `/categories/[slug]`, and `/vendors/[slug]`. Reuse local color
+tokens and Next Link; add one small server-rendered breadcrumb component without
+a dependency or motion. Domain pages return to Domains; category and vendor pages
+return to Landscape. These are browsing destinations, not an assertion of a
+single domain/category parent, and do not restore previous filter state. Existing
+multi-domain links remain available.
+
+Use a labeled navigation landmark, an ordered list, a non-linked current page,
+hidden decorative separators, visible keyboard focus, 44px-high links, and
+wrapping text. PR verification records automated checks and any responsive or
+keyboard browser checks still requiring review.
+
+## Landscape drilldown review (2026-10-29)
+
+PR #106 adapts the bank's search/filter and state-feedback patterns in the existing
+LandscapeBrowser, using native selects, Label, StatusPill and local tokens. No
+third-party code, dependency, animation or new catalog record is introduced.
+Domain/category/product controls appear once; category choices use the catalog's
+actual domain membership. Product choices honor the same refinements as results.
+Changing a filter clears product focus; changing domain also clears category.
+Reset all filters clears every selection, including from the no-match state.
+A polite status announces result/total counts and the number of active filters.
+
+Controls wrap into one column on small screens and use 44px targets with visible
+focus. Browser responsive verification remains required before merge; source
+inspection is not device QA. Filter transitions and no-match recovery are covered
+by regression tests. No new network, permission, loading or motion state exists.
+Rollback is a revert of the UI/filter helper change; no data migration is needed.
+
+Follow-up slices, separate from filtering: bring existing buyer/owner/category
+context higher on detail pages; keep source-attribution and Unknown explanations
+visible beside that context. Reuse existing data and claim labels rather than
+inventing summaries or treating vendor reporting as independent verification.

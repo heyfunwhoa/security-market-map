@@ -1,3 +1,4 @@
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ClaimList } from "@/components/claims";
@@ -42,6 +43,7 @@ export default async function VendorPage({ params }: { params: Promise<{ slug: s
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
+      <Breadcrumbs parents={[{ href: "/", label: "Home" }, { href: "/landscape", label: "Landscape" }]} current={vendor.name} />
       <PageIntro kicker="Research candidate" title={vendor.name} lede={vendor.positioning} />
       <div className="mt-4 flex flex-wrap items-center gap-2">
         <StatusPill status={vendor.verificationStatus} />

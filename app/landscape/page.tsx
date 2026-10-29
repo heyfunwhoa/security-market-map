@@ -59,7 +59,7 @@ export default function LandscapePage() {
         <LandscapeBrowser
           rows={rows}
           edges={edges}
-          categories={catalog.categories.map((category) => ({ id: category.id, label: category.name }))}
+          categories={catalog.categories.map((category) => ({ id: category.id, label: category.name, domainIds: category.domainIds }))}
           domains={catalog.domains.map((domain) => ({ id: domain.id, label: domain.name }))}
           useCases={catalog.useCases.map((useCase) => ({ id: useCase.id, label: useCase.name }))}
           personas={catalog.personas.map((persona) => ({

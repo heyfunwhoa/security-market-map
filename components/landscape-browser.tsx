@@ -1,9 +1,10 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useReducer } from "react";
 import Link from "next/link";
 import { StatusPill } from "@/components/chrome";
 import { deploymentLabel, relationshipLabel, scopeLabel } from "@/lib/format";
+import { filterLandscapeRows, initialLandscapeFilters, landscapeFilterReducer } from "@/lib/landscape-filters";
 import { Label } from "@/components/ui/label";
 
 export type LandscapeRow = {
@@ -39,62 +40,37 @@ export function LandscapeBrowser({
 }: {
   rows: LandscapeRow[];
   edges: LandscapeEdge[];
-  categories: Option[];
+  categories: (Option & { domainIds: string[] })[];
   domains: Option[];
   useCases: Option[];
   personas: { id: string; label: string; categoryIds: string[] }[];
 }) {
-  const [domain, setDomain] = useState("all");
-  const [category, setCategory] = useState("all");
-  const [useCase, setUseCase] = useState("all");
-  const [persona, setPersona] = useState("all");
-  const [deployment, setDeployment] = useState("all");
-  const [scope, setScope] = useState("all");
-  const [relation, setRelation] = useState("all");
-  const [focusedProduct, setFocusedProduct] = useState("all");
-  const scopedCategories = categories.filter((item) => domain === "all" || rows.some((row) => row.domainIds.includes(domain) && row.categoryIds.includes(item.id)));
-  const scopedProducts = rows.filter((row) => (domain === "all" || row.domainIds.includes(domain)) && (category === "all" || row.categoryIds.includes(category))).sort((a, b) => a.productName.localeCompare(b.productName));
-  const focused = rows.find((row) => row.productId === focusedProduct);
-  const selectDomain = (value: string) => { setDomain(value); setCategory("all"); setFocusedProduct("all"); };
-  const selectCategory = (value: string) => { setCategory(value); setFocusedProduct("all"); };
-
-  const visible = useMemo(() => {
-    const personaCategories = personas.find((item) => item.id === persona)?.categoryIds ?? [];
-    return rows
-      .filter((row) => domain === "all" || row.domainIds.includes(domain))
-      .filter((row) => focusedProduct === "all" || row.productId === focusedProduct)
-      .filter((row) => category === "all" || row.categoryIds.includes(category))
-      .filter((row) => useCase === "all" || row.useCaseIds.includes(useCase))
-      .filter(
-        (row) =>
-          persona === "all" || row.categoryIds.some((id) => personaCategories.includes(id)),
-      )
-      .filter((row) => deployment === "all" || row.deployment.includes(deployment))
-      .filter((row) => scope === "all" || row.scopes.includes(scope))
-      .filter((row) => {
-        if (relation === "all") return true;
-        return edges.some(
-          (edge) =>
-            edge.productId === row.productId &&
-            edge.type === relation &&
-            (useCase === "all" || edge.useCaseId === useCase),
-        );
-      })
-      .sort((a, b) => a.productName.localeCompare(b.productName));
-  }, [rows, edges, domain, category, useCase, persona, personas, deployment, scope, relation, focusedProduct]);
+  const [filters, dispatch] = useReducer(landscapeFilterReducer, initialLandscapeFilters);
+  const { domain, category, useCase, persona, deployment, scope, relation, focusedProduct } = filters;
+  const change = (key: keyof typeof filters) => (value: string) => dispatch({ type: "select", key, value });
+  const reset = () => dispatch({ type: "reset" });
+  const scopedCategories = categories.filter((item) => domain === "all" || item.domainIds.includes(domain));
+  const scopedProducts = useMemo(
+    () => filterLandscapeRows(rows, edges, personas, { ...filters, focusedProduct: "all" }),
+    [rows, edges, personas, filters],
+  );
+  const visible = scopedProducts.filter((row) => focusedProduct === "all" || row.productId === focusedProduct);
+  const focused = visible.find((row) => row.productId === focusedProduct);
+  const activeCount = Object.values(filters).filter((value) => value !== "all").length;
 
   return (
     <div>
       <section aria-labelledby="drilldown-heading" className="mb-5 rounded-xl border border-border bg-card p-4">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <h2 id="drilldown-heading" className="font-heading text-lg">Explore from landscape to product</h2>
-          <button type="button" className="text-sm text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" onClick={() => { setDomain("all"); setCategory("all"); setFocusedProduct("all"); }}>Zoom out to all markets</button>
+          <button type="button" className="min-h-11 rounded-sm px-2 text-sm text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring" onClick={reset}>Reset all filters</button>
         </div>
         <p className="mt-1 text-sm text-muted-foreground">Start broad, narrow to a category, then inspect a product. Navigation is not a ranking or a feature-parity claim.</p>
+        <p className="mt-2 text-sm text-muted-foreground">Product choices reflect all filters below. Changing a filter clears the selected product.</p>
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
-          <Filter label="1 · Market domain" value={domain} onChange={selectDomain} options={domains} />
-          <Filter label="2 · Category" value={category} onChange={selectCategory} options={scopedCategories} />
-          <Filter label="3 · Product" value={focusedProduct} onChange={setFocusedProduct} options={scopedProducts.map((row) => ({ id: row.productId, label: `${row.productName} · ${row.vendorName}` }))} />
+          <Filter label="1 · Market domain" value={domain} onChange={change("domain")} options={domains} />
+          <Filter label="2 · Category" value={category} onChange={change("category")} options={scopedCategories} />
+          <Filter label="3 · Product" value={focusedProduct} onChange={change("focusedProduct")} options={scopedProducts.map((row) => ({ id: row.productId, label: `${row.productName} · ${row.vendorName}` }))} />
         </div>
         {focused ? <div className="mt-4 rounded-lg border border-border bg-background p-3" aria-live="polite">
           <p className="text-sm font-semibold">{focused.productName} <span className="font-normal text-muted-foreground">· {focused.vendorName}</span></p>
@@ -102,20 +78,19 @@ export function LandscapeBrowser({
           <Link href={`/vendors/${focused.vendorSlug}`} className="mt-2 inline-block text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:ring-ring">Open vendor detail and evidence</Link>
         </div> : null}
       </section>
-      <form className="grid gap-3 rounded-xl border border-border bg-card p-4 sm:grid-cols-2 lg:grid-cols-3">
-        <Filter label="Domain" value={domain} onChange={selectDomain} options={domains} />
-        <Filter label="Category" value={category} onChange={selectCategory} options={scopedCategories} />
-        <Filter label="Use case" value={useCase} onChange={setUseCase} options={useCases} />
+      <fieldset className="grid gap-3 rounded-xl border border-border bg-card p-4 sm:grid-cols-2 lg:grid-cols-3">
+        <legend className="px-1 text-sm font-semibold">Refine results</legend>
+        <Filter label="Use case" value={useCase} onChange={change("useCase")} options={useCases} />
         <Filter
           label="Buyer"
           value={persona}
-          onChange={setPersona}
+          onChange={change("persona")}
           options={personas.map((item) => ({ id: item.id, label: item.label }))}
         />
         <Filter
           label="Deployment"
           value={deployment}
-          onChange={setDeployment}
+          onChange={change("deployment")}
           options={["saas", "self_hosted", "hybrid", "cloud_native", "open_source", "unknown"].map(
             (id) => ({ id, label: deploymentLabel(id) }),
           )}
@@ -123,7 +98,7 @@ export function LandscapeBrowser({
         <Filter
           label="Identity scope"
           value={scope}
-          onChange={setScope}
+          onChange={change("scope")}
           options={["human", "nhi", "agent", "not_an_identity_control"].map((id) => ({
             id,
             label: scopeLabel(id),
@@ -132,7 +107,7 @@ export function LandscapeBrowser({
         <Filter
           label="Relationship in this use case"
           value={relation}
-          onChange={setRelation}
+          onChange={change("relation")}
           options={[
             "direct_competitor",
             "bundled_alternative",
@@ -140,16 +115,19 @@ export function LandscapeBrowser({
             "adjacent_budget",
           ].map((id) => ({ id, label: relationshipLabel(id) }))}
         />
-      </form>
-      <p className="mt-4 text-sm text-muted-foreground">
-        {visible.length} products. Sorted A to Z. Being on this list is candidacy, not a rank and not a
+      </fieldset>
+      <p role="status" aria-live="polite" aria-atomic="true" className="mt-4 text-sm text-muted-foreground">
+        {visible.length} of {rows.length} products. {activeCount} active {activeCount === 1 ? "filter" : "filters"}. Sorted A to Z. Being on this list is candidacy, not a rank and not a
         capability verdict.
       </p>
       {visible.length === 0 ? (
-        <p className="mt-4 rounded-lg border border-dashed border-border px-4 py-8 text-sm">
+        <div className="mt-4 rounded-lg border border-dashed border-border px-4 py-8 text-sm">
+          <p>
           No product in the seed matches these filters. Widen one filter rather than treating the gap as
           a market fact.
-        </p>
+          </p>
+          <button type="button" onClick={reset} className="mt-2 min-h-11 rounded-sm px-2 text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring">Reset all filters</button>
+        </div>
       ) : (
         <ul className="mt-4 grid gap-3">
           {visible.map((row) => {
@@ -210,7 +188,7 @@ function Filter({
         id={id}
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="mt-1 h-9 w-full rounded-md border border-input bg-background px-2 text-sm"
+        className="mt-1 min-h-11 w-full min-w-0 rounded-md border border-input bg-background px-2 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
       >
         <option value="all">Any</option>
         {options.map((option) => (
