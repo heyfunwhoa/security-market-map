@@ -57,8 +57,8 @@ export function LandscapeBrowser({
   const scopedCategories = categories.filter((item) => domain === "all" || rows.some((row) => row.domainIds.includes(domain) && row.categoryIds.includes(item.id)));
   const scopedProducts = rows.filter((row) => (domain === "all" || row.domainIds.includes(domain)) && (category === "all" || row.categoryIds.includes(category))).sort((a, b) => a.productName.localeCompare(b.productName));
   const focused = rows.find((row) => row.productId === focusedProduct);
-  const selectDomain = (value: string) => { setDomain(value); setCategory("all"); setFocusedProduct("all"); };
-  const selectCategory = (value: string) => { setCategory(value); setFocusedProduct("all"); };
+  const selectDomain = (value: string) => { setDomain(value); setCategory("all"); setFocusedProduct("all"); resetLimit(); };
+  const selectCategory = (value: string) => { setCategory(value); setFocusedProduct("all"); resetLimit(); };
 
   const visible = useMemo(() => {
     const personaCategories = personas.find((item) => item.id === persona)?.categoryIds ?? [];
