@@ -1,3 +1,4 @@
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { SECRETS_COMPARISON_URL } from "@/lib/comparison-selection";
 import { AcademyLinks } from "@/components/academy-links";
 import Link from "next/link";
@@ -37,6 +38,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
+      <Breadcrumbs parents={[{ href: "/", label: "Home" }, { href: "/landscape", label: "Landscape" }]} current={category.name} />
       <PageIntro kicker={category.layer === "adjacent" ? "Adjacent" : "Category"} title={category.name} lede={category.definition} />
       <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">{sourcingLabel}</p>
       <p className="mt-4 max-w-3xl text-sm leading-6">
