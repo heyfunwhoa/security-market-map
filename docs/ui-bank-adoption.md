@@ -166,3 +166,18 @@ PR #77 delivered Phase 1: equal-weight selectable market-area tiles, a separate 
 **Risks:** current visual circle radius is hand-authored (`marketCircles.r`) and has no documented metric; readers can read it as importance. The current opening text also blends attack-sequence direction with overlapping domain circles. Several open taxonomy PRs may change nodes/relationships during implementation. The source ledger is large, so progressive disclosure must not conceal evidence state. The existing territory failure must be diagnosed before design work assumes the route is healthy. The plan does not claim mobile/accessibility verification or a confirmed root cause for that failure.
 
 **Review boundary:** recommendation only. No code, issue, PR, merge or deployment is included in this change.
+
+## Detail-page breadcrumbs (2026-10-29)
+
+Adapt the workbench case-study breadcrumb pattern (Home / collection / title) for
+`/domains/[slug]`, `/categories/[slug]`, and `/vendors/[slug]`. Reuse local color
+tokens and Next Link; add one small server-rendered breadcrumb component without
+a dependency or motion. Domain pages return to Domains; category and vendor pages
+return to Landscape. These are browsing destinations, not an assertion of a
+single domain/category parent, and do not restore previous filter state. Existing
+multi-domain links remain available.
+
+Use a labeled navigation landmark, an ordered list, a non-linked current page,
+hidden decorative separators, visible keyboard focus, 44px-high links, and
+wrapping text. PR verification records automated checks and any responsive or
+keyboard browser checks still requiring review.

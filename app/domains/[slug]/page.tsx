@@ -1,3 +1,4 @@
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AreaDiagram } from "@/components/area-diagram";
@@ -35,6 +36,7 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
+      <Breadcrumbs parents={[{ href: "/", label: "Home" }, { href: "/domains", label: "Domains" }]} current={domain.name} />
       <PageIntro
         kicker={depthLabel(domain.depth)}
         title={domain.name}
