@@ -22,6 +22,7 @@ export const personas: BuyerPersona[] = [
       "Chief Security Officer",
       "CSO",
       "Security executive",
+      "LC-PER-06",
     ],
   },
   {
@@ -63,6 +64,7 @@ export const personas: BuyerPersona[] = [
       "Head of identity",
       "Workforce identity owner",
       "NHI program owner",
+      "LC committee: identity owner",
     ],
   },
   {
@@ -157,6 +159,7 @@ export const personas: BuyerPersona[] = [
       "IDP owner",
       "CI/CD owner",
       "Platform ops",
+      "LC committee: infrastructure owner",
     ],
   },
   {
@@ -228,6 +231,7 @@ export const personas: BuyerPersona[] = [
       "Privacy counsel",
       "Privacy engineer",
       "Privacy program owner",
+      "LC committee: privacy",
     ],
   },
   {

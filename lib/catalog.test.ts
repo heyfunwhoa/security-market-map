@@ -110,6 +110,16 @@ describe("catalog integrity", () => {
       "supply-chain-security",
       "security-awareness",
       "mssp-ops",
+      "provider-founder",
+      "secops-platform-architect",
+      "security-product-leader",
+      "ir-services-lead",
+      "service-delivery",
+      "procurement",
+      "vciso",
+      "malware-analyst",
+      "legal-counsel",
+      "email-security",
       "developer",
       "cto",
     ] as const;
@@ -144,6 +154,29 @@ describe("catalog integrity", () => {
     expect(byId["soc-lead"].id).not.toBe(byId["soc-analyst"].id);
     expect(byId["data-security"].id).not.toBe(byId.privacy.id);
     expect(byId["digital-forensics"].id).not.toBe(byId["incident-response"].id);
+    expect(byId["provider-founder"].aliases).toEqual(expect.arrayContaining(["LC-PER-01", "MSSP CEO"]));
+    expect(byId["secops-platform-architect"].aliases).toEqual(
+      expect.arrayContaining(["LC-PER-02", "Security platform architect"]),
+    );
+    expect(byId["security-product-leader"].aliases).toEqual(
+      expect.arrayContaining(["LC-PER-07", "AI SOC builder"]),
+    );
+    expect(byId["detection-engineer"].aliases).toEqual(
+      expect.arrayContaining(["Security automation engineer", "LC-PER-04"]),
+    );
+    expect(byId["provider-founder"].id).not.toBe(byId["mssp-ops"].id);
+    expect(byId["secops-platform-architect"].id).not.toBe(byId["security-architect"].id);
+    expect(byId["security-product-leader"].id).not.toBe(byId["ai-owner"].id);
+    expect(byId.vciso.id).not.toBe(byId.ciso.id);
+    expect(byId["legal-counsel"].aliases).toEqual(
+      expect.arrayContaining(["Legal counsel", "LC committee: legal"]),
+    );
+    expect(byId["email-security"].aliases).toEqual(
+      expect.arrayContaining(["EmailSec", "SEG owner", "LC use case: email security"]),
+    );
+    expect(byId["legal-counsel"].id).not.toBe(byId.privacy.id);
+    expect(byId["email-security"].id).not.toBe(byId["it-security"].id);
+    expect(byId["soc-lead"].aliases).toEqual(expect.arrayContaining(["LC-AUD-03 (ops seat)"]));
     expect(new Set(catalog.personas.map((persona) => persona.id)).size).toBe(catalog.personas.length);
   });
 

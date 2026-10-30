@@ -61,9 +61,19 @@ Canonical catalog `name` is the display label. `aliases` hold acronyms and alter
 | `cyber-recovery` | Cyber resilience | Backup/restore, ransomware recovery |
 | `supply-chain-security` | C-SCRM (software) | SBOM / dependency / artifact integrity |
 | `security-awareness` | SATE | People security, human risk, phishing sims |
-| `mssp-ops` | MSSP, MDR provider | Managed SOC / service delivery SecOps |
+| `mssp-ops` | MSSP, MDR provider | Managed SOC / service delivery SecOps; LC-AUD-01/02 |
+| `provider-founder` | MSSP/MDR CEO | Provider founder / business leader; LC-PER-01 |
+| `secops-platform-architect` | SecOps architect | Security platform architect; LC-PER-02 |
+| `security-product-leader` | AI SOC builder | Security startup / product founder; LC-PER-07 / LC-AUD-04 |
+| `ir-services-lead` | IR firm | DFIR services / breach response firm; LC-AUD-05 |
+| `service-delivery` | Security CS | Managed-service delivery / customer success |
+| `procurement` | Purchasing | Finance / vendor management on security buys |
+| `vciso` | Virtual CISO | Fractional / outsourced CISO |
+| `malware-analyst` | RE | Malware reverse engineer |
+| `legal-counsel` | Legal | Commercial / security contracts counsel; LC committee legal |
+| `email-security` | EmailSec, SEG | Mailbox / secure email gateway owner; LC email use case |
 | `developer` | SWE | Software engineer, application developer |
-| `cto` | CTO | VP Engineering, Head of Engineering |
+| `cto` | CTO | VP Engineering, Head of Engineering; LC-PER-02 eng seat |
 
 ### Overloaded labels (do **not** treat as one exclusive persona)
 
@@ -385,6 +395,84 @@ NICE work roles are **not job titles**; a single job may cover multiple roles.[^
 
 - **Hypothesis** engineering economic/technical sponsor for platform and developer-security tooling.
 - **Discovery:** “Engineering-owned platform buy or security-owned control—and what adoption proof is required?”
+- **Also maps:** LimaCharlie LC-PER-02 engineering seat (build-versus-buy for security infrastructure).[^LC-AUD]
+
+## Wave 4 — LimaCharlie audience personas mapped into the catalog
+
+Source research: [LimaCharlie audience and buyer personas](limacharlie-audience-personas.md) (2026-10-13). Those profiles remain hypotheses; this table only maps them to typed catalog IDs so landscape filters and discovery reuse one set of seats. Vendor homepage prominence is **not** ICP proof.
+
+| LimaCharlie ID | Catalog persona ID(s) | Notes |
+| --- | --- | --- |
+| LC-AUD-01 MSSP / LC-AUD-02 MDR | `mssp-ops`, `provider-founder` | Ops vs economic buyer |
+| LC-AUD-03 Enterprise SOC | `soc-lead`, `secops-platform-architect`, `ciso` | Ops champion, platform architect, executive |
+| LC-AUD-04 Security product / AI SOC builder | `security-product-leader`, `cto` | Product founder vs eng sponsor |
+| LC-AUD-05 IR firm | `ir-services-lead`, `incident-response` | Firm lead vs individual responder |
+| LC-PER-01 Provider founder/CEO | `provider-founder` | New typed seat |
+| LC-PER-02 CTO / security platform architect | `cto`, `secops-platform-architect` | Split eng sponsor vs SecOps platform architect |
+| LC-PER-03 Head of SOC | `soc-lead` | Existing; alias `LC-PER-03` |
+| LC-PER-04 Detection / security automation | `detection-engineer` | Alias includes Security automation engineer |
+| LC-PER-05 SOC analyst / IR | `soc-analyst`, `incident-response` | Split triage vs response |
+| LC-PER-06 Enterprise CISO | `ciso` | Existing; alias `LC-PER-06` |
+| LC-PER-07 Security startup / product eng leader | `security-product-leader` | New typed seat |
+| LC committee: finance/procurement | `procurement` | Buying-committee blocker seat |
+| LC committee: service delivery / CS | `service-delivery` | Provider onboarding/support seat |
+| LC committee: legal/privacy/compliance | `legal-counsel`, `privacy`, `grc-owner` | Split legal paper from privacy/GRC veto |
+| LC committee: IT / infrastructure / identity | `it-security`, `platform`, `identity-security` | Deployment permission seats (aliases noted) |
+| LC use case: email security | `email-security` | Split from broad `it-security` when SEG/API mail is the job |
+
+### SEC-PER-34 — Provider founder / CEO (`provider-founder`)
+
+- **Source:** LC-PER-01 hypothesis in LimaCharlie audience research.[^LC-AUD]
+- **Discovery:** “What limits profitable customer growth today, and who owns that constraint?”
+- **Boundary:** Not the day-to-day `mssp-ops` operator unless the founder still wears that hat.
+
+### SEC-PER-35 — SecOps platform architect (`secops-platform-architect`)
+
+- **Source:** LC-PER-02 security-platform architect seat.[^LC-AUD]
+- **Discovery:** “What must your team own, and what would you prefer to stop maintaining?”
+- **Boundary:** Distinct from enterprise `security-architect` (broad controls) and from `platform` DevOps paved roads.
+
+### SEC-PER-36 — Security product / AI SOC builder (`security-product-leader`)
+
+- **Source:** LC-PER-07 / LC-AUD-04.[^LC-AUD]
+- **Discovery:** “Which part of the product must be yours, and what dependency risk can you accept?”
+
+### SEC-PER-37 — IR firm / DFIR services lead (`ir-services-lead`)
+
+- **Source:** LC-AUD-05 incident response firm audience.[^LC-AUD]
+- **Discovery:** “Endpoint visibility, response actions, or both—and what permission boundary is unacceptable?”
+
+### SEC-PER-38 — Security service delivery / CS (`service-delivery`)
+
+- **Source:** LC additional buying-committee role (service delivery / customer success).[^LC-AUD]
+- **Discovery:** “Who is the named operating owner after go-live?”
+
+### SEC-PER-39 — Procurement / finance (`procurement`)
+
+- **Source:** LC additional buying-committee role (finance / procurement).[^LC-AUD]
+- **Discovery:** “How will usage variability be capped or forecast?”
+
+### SEC-PER-40 — vCISO (`vciso`)
+
+- **Hypothesis** common for SMB / mid-market and MSSP-attached leadership; confirm whether they recommend tools, MSSP, or process only.
+- **Discovery:** “Who operates the control after you leave the engagement?”
+
+### SEC-PER-41 — Malware / reverse engineer (`malware-analyst`)
+
+- **Source:** Specialty SOC role commonly listed beside Tier 1–3 analysts.[^PAN-SOC]
+- **Discovery:** “How do analysis findings reach detection engineering and IR?”
+
+### SEC-PER-42 — Legal counsel for security buys (`legal-counsel`)
+
+- **Source:** LC additional buying-committee role (legal / privacy / compliance)—legal paper distinct from privacy program or GRC evidence.[^LC-AUD]
+- **Discovery:** “Which clauses usually stall security vendors here?”
+- **Boundary:** Not the DPO/`privacy` program owner and not `grc-owner` questionnaire work unless one person wears all three hats.
+
+### SEC-PER-43 — Email security owner (`email-security`)
+
+- **Source:** Vendor use-case positioning for email security as a SecOps-adjacent control; corporate SEG/API mail often sits with ITSec—split when the seat is dedicated.[^LC-AUD]
+- **Discovery:** “Gateway policy, API mailbox detection, or user reporting—and who remediates a compromised mailbox?”
+- **Boundary:** Distinct from `security-awareness` (behavior/sims) and from broad `it-security` when email is only one of many estates.
 
 ## Buying-committee collisions to qualify
 
@@ -407,6 +495,14 @@ NICE work roles are **not job titles**; a single job may cover multiple roles.[^
 | OT vs IT corporate | Plant safety vs laptop estate | Which change board can approve the control? |
 | Awareness vs email security | Training vs gateway | Behavior program or SEG/API mail control? |
 | MSSP ops vs enterprise SOC | Multi-tenant margin vs internal queue | Selling a service or operating one org’s SOC? |
+| Provider founder vs MSSP ops | Signature vs delivery reality | Who owns margin math vs who owns the queue? |
+| SecOps platform architect vs detection eng | Infrastructure vs content | Building the rails or writing detections on them? |
+| Security product builder vs enterprise SOC | Embed dependency vs operate defense | Shipping a product or defending one company? |
+| IR firm vs enterprise IR | Engagement tooling vs standing SOC | Retainer/breach response or full-time SOC seat? |
+| vCISO vs CISO | Advisory vs employed authority | Can they approve spend and name an operator? |
+| Legal vs privacy vs GRC | Contract stall vs DPIA vs questionnaire | Which veto is active on this deal? |
+| EmailSec vs ITSec vs awareness | Gateway vs estate owner vs training | SEG/API mail control or people program? |
+| IT / infra / identity committee | Deployment blocked after security says yes | Who must grant integrate/change permission? |
 
 ## Fit worksheet (do not score leads from titles alone)
 
@@ -427,13 +523,14 @@ NICE work roles are **not job titles**; a single job may cover multiple roles.[^
 | SEC-ORG-C04 | NICE Framework defines work roles (IR, Threat Analysis, OT, Insider Threat, Forensics, C-SCRM, Secure Software Development, etc.) that are not job titles | [^NICE-ROLES][^NICE-IR][^NICE-TA] | Employer titles and budgets still require discovery |
 | SEC-ORG-C05 | SOC literature commonly separates Tier-1 triage, Tier-2 IR, Tier-3 hunt, and SOC manager | [^PAN-SOC] | Vendor encyclopedia; not a universal org chart |
 | SEC-ORG-C06 | SSPM and CASB are often complementary but different jobs (posture vs access/data path) | [^SSPM-CASB] | Vendor/practitioner framing; product editions vary |
-| SEC-ORG-H01 | Core-five, wave-two, and wave-three pains, triggers, measures in this note | Hypothesis | Validate in discovery |
+| SEC-ORG-C07 | LimaCharlie research defines LC-AUD-01–05 and LC-PER-01–07 as working hypotheses for SecOps/platform buyers | [^LC-AUD] | Not revenue mix, ICP thresholds, or proven champions |
+| SEC-ORG-H01 | Core-five through wave-four pains, triggers, measures in this note | Hypothesis | Validate in discovery |
 | SEC-ORG-U01 | Typical budget split, headcount ratios, and win rates across these seats | Unknown | Needs authorized deal/cohort evidence |
 
 ## Cross-repository disposition
 
-- **Security Market Map — update:** this research note; typed personas with `aliases` across core five, adjacent, and wave-three seats; landscape filter labels sample aliases. No fabricated capability cells.
-- **Builder Academy Roles DB — update:** enrich/add matching role rows (SecOps depth, SaaS, OT, exposure, recovery, supply chain, awareness, MSSP, developer, CTO) with also-known-as text.
+- **Security Market Map — update:** this research note; typed personas with `aliases` across core five, adjacent, wave-three, and LimaCharlie-mapped wave-four seats; landscape filter labels sample aliases. No fabricated capability cells.
+- **Builder Academy Roles DB — update:** enrich/add matching role rows (including provider founder, SecOps platform architect, security product builder, IR firm, procurement, legal counsel, email security, vCISO) with also-known-as text.
 - **Private career preparation — update only by explicit request:** may reference this version for interview questions; no private answers belong here.
 - **GTM Revenue OS / Account Signal Engine — no automatic change:** role hypotheses are not account intent or enrichment facts.
 

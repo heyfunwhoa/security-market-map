@@ -162,9 +162,32 @@ Do not invent company-size cutoffs or lead scores. “Interested in AI” alone 
 
 Review owner should compare current originals, preserve this date's interpretation in git history, mark changed/disputed claims, and identify affected persona IDs before changing consumers. Monthly review is a manual target. No immutable source capture, content hash, automated ingestion or independent validation was performed in this documentation pass.
 
+## Typed catalog mapping (2026-10-30)
+
+Public typed buyer personas now exist in `lib/data` and are summarized in [security-org-personas.md](security-org-personas.md) wave 4. Mapping is many-to-one where LC combined seats (for example LC-PER-05 → `soc-analyst` + `incident-response`). Catalog aliases may include `LC-PER-*` / `LC-AUD-*` IDs for traceability. This does **not** publish LimaCharlie revenue mix, ICP cutoffs, or deal champions.
+
+| LimaCharlie ID | Catalog ID(s) |
+| --- | --- |
+| LC-PER-01 | `provider-founder` |
+| LC-PER-02 | `cto`, `secops-platform-architect` |
+| LC-PER-03 | `soc-lead` |
+| LC-PER-04 | `detection-engineer` |
+| LC-PER-05 | `soc-analyst`, `incident-response` |
+| LC-PER-06 | `ciso` |
+| LC-PER-07 | `security-product-leader` |
+| LC-AUD-01/02 | `mssp-ops`, `provider-founder` |
+| LC-AUD-03 | `soc-lead`, `secops-platform-architect`, `ciso` |
+| LC-AUD-04 | `security-product-leader` |
+| LC-AUD-05 | `ir-services-lead` |
+| LC committee: finance/procurement | `procurement` |
+| LC committee: service delivery / CS | `service-delivery` |
+| LC committee: legal / privacy / compliance | `legal-counsel`, `privacy`, `grc-owner` |
+| LC committee: IT / infrastructure / identity | `it-security`, `platform`, `identity-security` |
+| LC use case: email security (adjacent) | `email-security` |
+
 ## Cross-repository disposition
 
-- **Security Market Map — update:** this public-safe research note plus navigation from the competitive landscape; no application catalog changes.
+- **Security Market Map — update:** this public-safe research note plus navigation from the competitive landscape; typed catalog mapping recorded above and in [security-org-personas.md](security-org-personas.md). Hypotheses remain unvalidated ICP claims.
 - **Private career preparation — update by explicit user request:** a separate consumer brief may reference this version and add questions; no private answers belong here.
 - **GTM Revenue OS — defer:** role and segment hypotheses do not justify changing economic assumptions or actuals.
 - **Account Signal Engine — no change:** persona fit is not an account-specific buying signal or enrichment record.
