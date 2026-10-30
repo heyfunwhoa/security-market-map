@@ -181,3 +181,19 @@ Use a labeled navigation landmark, an ordered list, a non-linked current page,
 hidden decorative separators, visible keyboard focus, 44px-high links, and
 wrapping text. PR verification records automated checks and any responsive or
 keyboard browser checks still requiring review.
+
+### Diagram label readability
+
+Replace the fixed SVG orbit/circle text in AreaDiagram, IdentityStructureDiagram,
+and CredentialChainDiagram with semantic HTML groups and numbered flow cards.
+Reuse local card tokens and the UI bank's progressive-disclosure/grouping pattern.
+Full labels and credential problems wrap inside content-sized nodes, including
+unbroken names. Auto-fit grids respect the containing card width; the credential
+sequence stacks on mobile. Do not shrink text, truncate names, or invent graph
+edges for area membership. Preserve every existing destination and show missing
+seed detail explicitly. No dependency or data changes and no added animation.
+
+This affects domain/category examples, Connections and the cloud/app shortlist.
+Responsive/zoom, long-label and keyboard browser verification remain pending;
+source-level layout changes do not establish visual acceptance. Revert this
+component change to roll back. Keep draft until review and browser verification.
