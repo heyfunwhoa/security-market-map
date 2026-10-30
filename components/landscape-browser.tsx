@@ -6,6 +6,7 @@ import { StatusPill } from "@/components/chrome";
 import { deploymentLabel, relationshipLabel, scopeLabel } from "@/lib/format";
 import { filterLandscapeRows, initialLandscapeFilters, landscapeFilterReducer, readLandscapeFilters, landscapeFilterUrl, productDetailUrl } from "@/lib/landscape-filters";
 import { Label } from "@/components/ui/label";
+import { ProductInspector } from "@/components/product-inspector";
 
 export type LandscapeRow = {
   productId: string;
@@ -171,6 +172,7 @@ export function LandscapeBrowser({
                     ))}
                   </ul>
                 ) : null}
+                <ProductInspector row={row} related={related} categories={categories} useCases={useCases} />
               </li>
             );
           })}

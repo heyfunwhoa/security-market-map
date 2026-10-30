@@ -221,3 +221,24 @@ Regression tests cover URL serialization/parsing, unknown values, reset and anch
 agreement. Browser history, direct-load, mobile/tablet/desktop, keyboard, target
 scroll and no-match recovery remain required preview checks, not inferred from
 unit tests. Preview authentication must remain enabled.
+
+### Product quick view (2026-10-30)
+
+Reuse the installed shadcn/Radix Sheet composition, documented at
+https://ui.shadcn.com/docs/components/radix/sheet. Adapt the bank's contextual
+progressive-disclosure pattern with existing app tokens and StatusPill. New
+ProductInspector composition shows existing product metadata, filtered recorded
+relationships with use-case labels, and an evidence-page link. No catalog claims,
+dependencies, lockfile changes, or copied dashboard template are introduced.
+
+The modal panel keeps the landscape mounted and leaves URL filters unchanged.
+Radix owns dialog semantics, focus containment, Escape, and trigger focus return.
+A full-width mobile sheet becomes a bounded desktop panel, scrolls internally,
+and provides a 44px Close target. Reduced-motion overrides cover content and
+backdrop. Missing metadata reads Unknown; missing relationships are explicitly
+research gaps. Detail navigation preserves the existing product anchor.
+
+Browser verification remains pending: 375/768/1280px, 200% zoom, keyboard open,
+Tab containment, Escape/Close focus return, unchanged URL/scroll, reduced motion,
+and empty relationships. Preview authentication is blocked after declined login;
+do not bypass it. Keep this follow-up draft until those checks are completed.
