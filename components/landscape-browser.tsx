@@ -6,6 +6,7 @@ import { StatusPill } from "@/components/chrome";
 import { deploymentLabel, relationshipLabel, scopeLabel } from "@/lib/format";
 import { filterLandscapeRows, initialLandscapeFilters, landscapeFilterReducer, readLandscapeFilters, landscapeFilterUrl, productDetailUrl } from "@/lib/landscape-filters";
 import { Label } from "@/components/ui/label";
+import { LandscapeResults } from "@/components/landscape-results";
 import { ProductInspector } from "@/components/product-inspector";
 
 export type LandscapeRow = {
@@ -132,6 +133,7 @@ export function LandscapeBrowser({
         {visible.length} of {rows.length} products. {activeCount} active {activeCount === 1 ? "filter" : "filters"}. Sorted A to Z. Being on this list is candidacy, not a rank and not a
         capability verdict.
       </p>
+      <LandscapeResults rows={visible} allRows={rows} edges={edges} categories={categories} useCases={useCases} useCase={useCase} relation={relation}>
       {visible.length === 0 ? (
         <div className="mt-4 rounded-lg border border-dashed border-border px-4 py-8 text-sm">
           <p>
@@ -178,6 +180,7 @@ export function LandscapeBrowser({
           })}
         </ul>
       )}
+      </LandscapeResults>
     </div>
   );
 }

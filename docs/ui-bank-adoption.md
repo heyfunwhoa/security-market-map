@@ -242,3 +242,28 @@ Browser verification remains pending: 375/768/1280px, 200% zoom, keyboard open,
 Tab containment, Escape/Close focus return, unchanged URL/scroll, reduced motion,
 and empty relationships. Preview authentication is blocked after declined login;
 do not bypass it. Keep this follow-up draft until those checks are completed.
+
+### Shortlist and buyer context (2026-10-30)
+
+Reuse local shadcn Table and Checkbox plus ProductInspector/Sheet for a selectable
+landscape table, with detailed cards as an alternate view. Adapt the bank's
+semantic comparison table and contextual disclosure patterns. Selection is local
+to the mounted landscape page, capped at four, retained across filters/view changes,
+and removable even when hidden by filters. The count explicitly reports hidden
+selections. Clear shortlist is separate from Reset filters. Navigation to Compare
+passes explicit product IDs and the selected use case to the existing parser;
+with Any use case, Compare applies its existing default, which readers must confirm.
+Selections are not saved across page reloads. No inferred parity or new claims.
+
+Vendor product sections reuse authoritative category buyerOwner/buyerQuestion
+fields, labeling primary/adjacent membership and category-level context. Existing
+ClaimList stays immediately below with provenance, dates and uncertainty labels.
+No new source registry, dependencies, lockfile changes or security-rule changes.
+
+Table overflow is contained on narrow screens; cards remain available. Controls
+have visible focus, selection labels and 44px hit areas. Empty results retain the
+shortlist; selection limits allow deselection. Browser checks remain pending for
+responsive layouts/zoom, keyboard selection and removal, panel focus, reduced
+motion, filter persistence and comparison navigation. Preview auth remains blocked;
+source inspection and unit tests are not browser verification. Rollback reverts
+this composition without data migration. These are draft changes, not shipped UI.

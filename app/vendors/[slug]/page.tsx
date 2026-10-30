@@ -1,4 +1,5 @@
 import { productSectionId } from "@/lib/landscape-filters";
+import { ProductBuyerContext } from "@/components/product-buyer-context";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -80,6 +81,8 @@ export default async function VendorPage({ params }: { params: Promise<{ slug: s
                 Product source
               </a>
               <div className="mt-3">
+                <ProductBuyerContext categories={catalog.categories} primaryIds={product.primaryCategoryIds} adjacentIds={product.adjacentCategoryIds} />
+                <h4 className="mb-3 mt-4 font-semibold">Product evidence and research gaps</h4>
                 <ClaimList claims={claimsForSubject("product", product.id)} />
               </div>
             </li>
