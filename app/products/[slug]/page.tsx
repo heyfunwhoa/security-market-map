@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageIntro, StatusPill } from "@/components/chrome";
-import { ClaimList } from "@/components/claims";
+import { ProductEvidenceExplorer } from "@/components/product-evidence-explorer";
 import { ProductFocus } from "@/components/product-focus";
 import { ProductSectionNav } from "@/components/product-section-nav";
 import { catalog, claimsForSubject, vendorById } from "@/lib/catalog";
@@ -126,7 +126,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       <section aria-labelledby="evidence" className="mt-9">
         <h2 id="evidence" className="text-2xl font-semibold">Source-backed product evidence</h2>
         <p className="mt-2 mb-4 text-sm text-muted-foreground">Every statement links to its publisher source and review date. Missing evidence remains Unknown, not unsupported.</p>
-        <ClaimList claims={claims} />
+        <ProductEvidenceExplorer claims={claims} />
       </section>
 
       <section aria-labelledby="investigate" className="mt-9">
