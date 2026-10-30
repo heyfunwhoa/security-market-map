@@ -267,3 +267,34 @@ responsive layouts/zoom, keyboard selection and removal, panel focus, reduced
 motion, filter persistence and comparison navigation. Preview auth remains blocked;
 source inspection and unit tests are not browser verification. Rollback reverts
 this composition without data migration. These are draft changes, not shipped UI.
+### Diagram label readability
+
+Replace the fixed SVG orbit/circle text in AreaDiagram, IdentityStructureDiagram,
+and CredentialChainDiagram with semantic HTML groups and numbered flow cards.
+Reuse local card tokens and the UI bank's progressive-disclosure/grouping pattern.
+Full labels and credential problems wrap inside content-sized nodes, including
+unbroken names. Auto-fit grids respect the containing card width; the credential
+sequence stacks on mobile. Do not shrink text, truncate names, or invent graph
+edges for area membership. Preserve every existing destination and show missing
+seed detail explicitly. No dependency or data changes and no added animation.
+
+This affects domain/category examples, Connections and the cloud/app shortlist.
+Responsive/zoom, long-label and keyboard browser verification remain pending;
+source-level layout changes do not establish visual acceptance. Revert this
+component change to roll back. Keep draft until review and browser verification.
+
+### Research-page interaction sequence
+
+Reuse the bank's progressive disclosure and navigation patterns with a small
+server-rendered PageJourney composition. Domain, category and Connections pages
+begin with three descriptive jump links: understand, explore, and inspect the
+appropriate evidence or next destination. Targets are keyboard-focusable and
+scroll-spaced; controls wrap and have visible focus and 44px minimum height.
+
+Connections presents the identity model and leaked-key walkthrough before research
+history. Domains present owner/budget early and products before reference terms;
+detailed category workflows use native details/summary so readers can choose depth.
+Evidence labels remain visible and no claims are hidden in accordions. Existing
+routes and catalog stay authoritative; no additional dependencies or client state.
+Browser checks for anchor focus, Back navigation, disclosure keyboard operation,
+mobile/zoom and full-label fit remain pending. No animation is introduced.
