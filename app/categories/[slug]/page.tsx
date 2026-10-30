@@ -172,7 +172,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
               <li key={product.id}>
                 <Link
                   href={["gitguardian-developer-endpoint", "aikido-device-protection", "kingfisher"].includes(product.slug) ? `/products/${product.slug}` : `/vendors/${vendorById(product.vendorId)?.slug ?? ""}`}
-                  className="block rounded-lg border border-border px-3 py-2 text-sm hover:bg-muted"
+                  className="block min-h-11 break-words rounded-lg border border-border px-3 py-2 text-sm hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
                 >
                   {product.name}
                 </Link>
