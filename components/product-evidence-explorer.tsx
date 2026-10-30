@@ -1,3 +1,5 @@
+"use client";
+
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { StatusPill } from "@/components/chrome";
 import type { Claim } from "@/lib/schema";
@@ -17,7 +19,8 @@ export function ProductEvidenceExplorer({ claims }: { claims: Claim[] }) {
   return (
     <div className="min-w-0 space-y-3">
       <p className="text-sm text-muted-foreground">
-        {claims.length} recorded source-linked {claims.length === 1 ? "claim" : "claims"}. Original publisher links remain available without expanding details.
+        {claims.length} recorded source-linked {claims.length === 1 ? "claim" : "claims"}. Original publisher links remain
+        available without expanding details.
       </p>
       <Accordion type="multiple" className="space-y-3">
         {claims.map((claim) => (
@@ -34,20 +37,30 @@ export function ProductEvidenceExplorer({ claims }: { claims: Claim[] }) {
                 ? "Publisher-reported, not independently tested."
                 : "Inspect source and verification status before drawing a conclusion."}
             </p>
-            <div className="mt-2 flex flex-col gap-1 pb-2 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
-              <a
-                href={claim.sourceUrl}
-                aria-label={`Open original source: ${claim.statement}`}
-                className="inline-flex min-h-11 items-center text-sm font-medium text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-              >
-                Open original source
-              </a>
-              <AccordionTrigger aria-label={`Evidence details: ${claim.statement}`} className="min-h-11 w-full px-2 sm:w-auto">
-                Evidence details
-              </AccordionTrigger>
-            </div>
+            <a
+              href={claim.sourceUrl}
+              aria-label={`Open original source: ${claim.statement}`}
+              className="mt-2 inline-flex min-h-11 items-center text-sm font-medium text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+            >
+              Open original source
+            </a>
+            {/* Trigger must remain a direct AccordionItem sibling — nesting it beside the source link broke expand. */}
+            <AccordionTrigger
+              aria-label={`Evidence details: ${claim.statement}`}
+              className="min-h-11 justify-start gap-2 px-0 py-2 text-sm"
+            >
+              Evidence details
+            </AccordionTrigger>
             <AccordionContent>
               <dl className="grid gap-3 border-t border-border pt-3 text-sm sm:grid-cols-2">
+                <div>
+                  <dt className="font-semibold">Evidence basis</dt>
+                  <dd className="mt-1 text-muted-foreground">
+                    {claim.verificationStatus === "vendor_published"
+                      ? "Publisher-reported, not independently tested."
+                      : "Inspect source and verification status before drawing a conclusion."}
+                  </dd>
+                </div>
                 <div>
                   <dt className="font-semibold">Publication date</dt>
                   <dd className="mt-1 text-muted-foreground">{claim.publishedAt ?? "Unknown"}</dd>

@@ -163,6 +163,7 @@ describe("catalog integrity", () => {
       "cap-cspm",
       "cap-endpoint-detect",
       "cap-backup-restore",
+      // Developer endpoint research slice (PR #111): vendor-published claims only.
       "cap-dev-local-secret-scan",
       "cap-dev-package-install-policy",
       "cap-dev-ai-tool-hook",
