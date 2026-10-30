@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageIntro, StatusPill } from "@/components/chrome";
 import { ClaimList } from "@/components/claims";
+import { ProductFocus } from "@/components/product-focus";
 import { catalog, claimsForSubject, vendorById } from "@/lib/catalog";
 import { availabilityLabel } from "@/lib/format";
 import { DEVELOPER_ENDPOINT_COMPARISON_URL } from "@/lib/comparison-selection";
@@ -54,7 +55,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
       <nav aria-label="Breadcrumb" className="mb-5 text-sm text-muted-foreground">
-        <Link href="/categories/endpoint-control" className="text-primary underline underline-offset-4">Endpoint control</Link>
+        <Link href={slug === "kingfisher" ? "/categories/secrets-detection" : "/categories/endpoint-control"} className="text-primary underline underline-offset-4">{slug === "kingfisher" ? "Secrets detection" : "Endpoint control"}</Link>
         <span aria-hidden="true" className="mx-2">/</span>
         <span aria-current="page">{product.name}</span>
       </nav>
@@ -79,6 +80,13 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         </ol>
       </section>
 
+      {slug === "kingfisher" ? <ProductFocus stages={[
+        { title: "Detect", summary: "Match candidate secrets in authorized targets.", check: "Inspect source, pinned rule ID, location and redacted finding.", boundary: "A match is a candidate, not proof that the credential is active." },
+        { title: "Validate", summary: "Optionally ask a supported issuer whether a credential works.", check: "Confirm provider support, test authorization, outcomes and network side effects.", boundary: "Timeouts and unsupported credential types are inconclusive, not invalid." },
+        { title: "Map", summary: "Investigate available identity and permission context.", check: "Confirm mapped provider, read-only scope and least-privilege permissions.", boundary: "Provider-specific mapping is not universal blast-radius coverage." },
+        { title: "Triage", summary: "Prioritize evidence and assign an owner.", check: "Confirm output format, fingerprint, redaction and reviewer handoff.", boundary: "Importing other scanner results is not native detector support." },
+        { title: "Revoke", summary: "Contain an exposed credential with explicit approval.", check: "Confirm supported provider, authority, impact assessment and rollback.", boundary: "No live revocation in this research workflow; it can disrupt applications." },
+      ]} /> : null}
       {slug === "kingfisher" ? (
         <section aria-labelledby="kingfisher-stages" className="mt-9">
           <h2 id="kingfisher-stages" className="text-2xl font-semibold">From detection to response</h2>
