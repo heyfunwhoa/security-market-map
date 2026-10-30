@@ -36,3 +36,8 @@ When preparing a PR, state the zoom-level placement, reused IDs/components, evid
 ## Focused agent sessions
 
 For scoped agent work, use the proposed [focused-session procedure](https://github.com/heyfunwhoa/technical-docs-platform/blob/c749cc5c859472e2d8bdb982f0d6f346a5ad4c25/ai/agent-harness/focused-sessions.md) (upstream PR #38 is merged, while the procedure itself remains marked `in-review` with external release approval pending). Start from the issue and latest checkpoint, verify current revisions, inspect relevant changes, and expand discovery for concrete dependencies. Record evidence and next action at handoff; preserve required checks and local privacy/release rules. This is a pinned proposed reference, not automatic synchronization or token/spend enforcement.
+
+
+## Release handoff
+
+For preview, merge and deployment work, read [RELEASE.md](RELEASE.md). Batch related changes into review checkpoints, preserve required tests and private/local-only boundaries, and hand off the exact PR head and evidence to the designated release operator. Do not introduce a second deploy pipeline or treat a successful preflight as merge authorization.
