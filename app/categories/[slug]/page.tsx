@@ -1,4 +1,4 @@
-import { SECRETS_COMPARISON_URL } from "@/lib/comparison-selection";
+import { SECRETS_COMPARISON_URL, DEVELOPER_ENDPOINT_COMPARISON_URL } from "@/lib/comparison-selection";
 import { AcademyLinks } from "@/components/academy-links";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -54,6 +54,18 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
           </p>
           <Link href={SECRETS_COMPARISON_URL} className="mt-3 inline-flex min-h-11 items-center rounded-md border border-border px-3 text-sm font-medium text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring">
             Compare secrets detection products
+          </Link>
+        </section>
+      ) : null}
+      {category.id === "endpoint-control" ? (
+        <section className="mt-6 rounded-xl border border-border bg-card p-4" aria-labelledby="compare-developer-endpoint">
+          <h2 id="compare-developer-endpoint" className="text-2xl">Compare developer endpoint controls</h2>
+          <p className="mt-2 text-sm leading-6">
+            Compare GitGuardian and Aikido by control boundary, not vendor logo.
+            An unsourced cell stays Unknown. Vendor-published documentation is not an independent effectiveness test.
+          </p>
+          <Link href={DEVELOPER_ENDPOINT_COMPARISON_URL} className="mt-3 inline-flex min-h-11 items-center rounded-md border border-border px-3 text-sm font-medium text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring">
+            Compare developer endpoint protection
           </Link>
         </section>
       ) : null}
