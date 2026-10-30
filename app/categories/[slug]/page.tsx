@@ -1,3 +1,4 @@
+import { PageJourney } from "@/components/page-journey";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { SECRETS_COMPARISON_URL } from "@/lib/comparison-selection";
 import { AcademyLinks } from "@/components/academy-links";
@@ -40,8 +41,13 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
     <main className="mx-auto max-w-6xl px-4 py-10">
       <Breadcrumbs parents={[{ href: "/", label: "Home" }, { href: "/landscape", label: "Landscape" }]} current={category.name} />
       <PageIntro kicker={category.layer === "adjacent" ? "Adjacent" : "Category"} title={category.name} lede={category.definition} />
+      <PageJourney steps={[
+        { href: "#category-buyer", title: "Understand the decision", description: "See the buyer question, owner, workflow and outcomes." },
+        { href: "#category-products", title: "Explore products", description: "Browse primary products, then open their vendor evidence." },
+        { href: "#category-evidence", title: "Check category claims", description: "Separate teaching notes from sourced category statements." },
+      ]} back={{ href: "/domains", label: "Broaden to all domains" }} />
       <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">{sourcingLabel}</p>
-      <p className="mt-4 max-w-3xl text-sm leading-6">
+      <p id="category-buyer" tabIndex={-1} className="mt-4 max-w-3xl scroll-mt-24 text-sm leading-6 focus-visible:outline-2 focus-visible:outline-ring">
         <span className="font-semibold">Buyer question. </span>
         {category.buyerQuestion}
       </p>
@@ -143,7 +149,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
         </div>
       ) : null}
       <section className="mt-8">
-        <h2 className="text-2xl">Primary products</h2>
+        <h2 id="category-products" tabIndex={-1} className="scroll-mt-24 text-2xl focus-visible:outline-2 focus-visible:outline-ring">Primary products</h2>
         {products.length === 0 ? (
           <p className="mt-3 text-sm leading-6 text-muted-foreground">
             No primary product is assigned. An empty list is a gap in this map, not a finding that the field has no vendors.
@@ -164,7 +170,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
         )}
       </section>
       <section className="mt-8">
-        <h2 className="text-2xl">Claims about this category</h2>
+        <h2 id="category-evidence" tabIndex={-1} className="scroll-mt-24 text-2xl focus-visible:outline-2 focus-visible:outline-ring">Claims about this category</h2>
         <div className="mt-3">
           <ClaimList claims={categoryClaims} />
         </div>

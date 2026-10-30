@@ -197,3 +197,19 @@ This affects domain/category examples, Connections and the cloud/app shortlist.
 Responsive/zoom, long-label and keyboard browser verification remain pending;
 source-level layout changes do not establish visual acceptance. Revert this
 component change to roll back. Keep draft until review and browser verification.
+
+### Research-page interaction sequence
+
+Reuse the bank's progressive disclosure and navigation patterns with a small
+server-rendered PageJourney composition. Domain, category and Connections pages
+begin with three descriptive jump links: understand, explore, and inspect the
+appropriate evidence or next destination. Targets are keyboard-focusable and
+scroll-spaced; controls wrap and have visible focus and 44px minimum height.
+
+Connections presents the identity model and leaked-key walkthrough before research
+history. Domains present owner/budget early and products before reference terms;
+detailed category workflows use native details/summary so readers can choose depth.
+Evidence labels remain visible and no claims are hidden in accordions. Existing
+routes and catalog stay authoritative; no additional dependencies or client state.
+Browser checks for anchor focus, Back navigation, disclosure keyboard operation,
+mobile/zoom and full-label fit remain pending. No animation is introduced.

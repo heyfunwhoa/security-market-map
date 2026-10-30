@@ -1,3 +1,4 @@
+import { PageJourney } from "@/components/page-journey";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -42,11 +43,26 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
         title={domain.name}
         lede="Read the question, the charter, then each category. Words link to the learn page when a definition already exists."
       />
+      <PageJourney steps={[
+        { href: "#study-question", title: "Understand the problem", description: "Start with the buyer question and domain charter." },
+        { href: "#study-categories", title: "Explore categories", description: "Choose a category to narrow the map and find relevant tools." },
+        { href: "#study-evidence", title: "Check the evidence", description: "Inspect attributed claims and what is still Unknown." },
+      ]} back={{ href: "/domains", label: "Broaden to all domains" }} />
       <p className="mt-6 max-w-3xl text-sm leading-6 text-muted-foreground">
         Question, charter, categories, and words are teaching notes. They are not sourced claims.
       </p>
+      <dl className="mt-8 grid gap-4 text-sm leading-6 md:grid-cols-2">
+        <div className="rounded-xl border border-border bg-card p-4">
+          <dt className="font-semibold">Typical owner</dt>
+          <dd className="mt-1">{domain.typicalOwner}</dd>
+        </div>
+        <div className="rounded-xl border border-border bg-card p-4">
+          <dt className="font-semibold">Budget</dt>
+          <dd className="mt-1">{domain.budget}</dd>
+        </div>
+      </dl>
       <section className="mt-8" aria-labelledby="study-question">
-        <h2 id="study-question" className="text-2xl">
+        <h2 id="study-question" tabIndex={-1} className="scroll-mt-24 text-2xl focus-visible:outline-2 focus-visible:outline-ring">
           Question
         </h2>
         {questions.length > 0 ? (
@@ -69,13 +85,13 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
         )}
       </section>
       <section className="mt-8" aria-labelledby="study-charter">
-        <h2 id="study-charter" className="text-2xl">
+        <h2 id="study-charter" tabIndex={-1} className="scroll-mt-24 text-2xl focus-visible:outline-2 focus-visible:outline-ring">
           Charter
         </h2>
         <p className="mt-3 max-w-3xl text-sm leading-6">{domain.charter}</p>
       </section>
       <section className="mt-8" aria-labelledby="study-categories">
-        <h2 id="study-categories" className="text-2xl">
+        <h2 id="study-categories" tabIndex={-1} className="scroll-mt-24 text-2xl focus-visible:outline-2 focus-visible:outline-ring">
           Categories
         </h2>
         <div className="mt-4">
@@ -102,15 +118,40 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
                 <span className="font-semibold">Buyer question. </span>
                 {category.buyerQuestion}
               </p>
-              <div className="mt-4">
+              <details className="mt-4 rounded-lg border border-border p-3">
+                <summary className="min-h-11 cursor-pointer rounded-sm py-2 text-sm font-medium focus-visible:ring-2 focus-visible:ring-ring">Show illustrative workflow</summary>
                 <FlowStrip flow={category.flow} />
-              </div>
+              </details>
             </article>
           ))}
         </div>
       </section>
+      <section className="mt-8">
+        <h2 className="text-2xl">Primary products in this seed</h2>
+        <p className="mt-2 text-sm text-muted-foreground">
+          {products.length} products list a category in this domain as primary. That is placement on the
+          map, not a capability verdict.
+        </p>
+        {products.length === 0 ? (
+          <p className="mt-3 text-sm">No product in the seed uses a category here as its primary placement.</p>
+        ) : (
+          <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+            {products.map((product) => (
+              <li key={product.id}>
+                <Link
+                  href={`/vendors/${vendorById(product.vendorId)?.slug ?? ""}`}
+                  className="block rounded-lg border border-border px-3 py-2 text-sm hover:bg-muted"
+                >
+                  <span className="font-medium">{product.name}</span>
+                  <span className="mt-0.5 block text-muted-foreground">{product.positioning}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
       <section className="mt-8" aria-labelledby="study-words">
-        <h2 id="study-words" className="text-2xl">
+        <h2 id="study-words" tabIndex={-1} className="scroll-mt-24 text-2xl focus-visible:outline-2 focus-visible:outline-ring">
           Words
         </h2>
         {terms.length > 0 ? (
@@ -140,7 +181,7 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
         )}
       </section>
       <section className="mt-8" aria-labelledby="study-evidence">
-        <h2 id="study-evidence" className="text-2xl">
+        <h2 id="study-evidence" tabIndex={-1} className="scroll-mt-24 text-2xl focus-visible:outline-2 focus-visible:outline-ring">
           Evidence
         </h2>
         {domain.depth === "mapped" ? (
@@ -202,16 +243,7 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
           </div>
         </section>
       ) : null}
-      <dl className="mt-8 grid gap-4 text-sm leading-6 md:grid-cols-2">
-        <div className="rounded-xl border border-border bg-card p-4">
-          <dt className="font-semibold">Typical owner</dt>
-          <dd className="mt-1">{domain.typicalOwner}</dd>
-        </div>
-        <div className="rounded-xl border border-border bg-card p-4">
-          <dt className="font-semibold">Budget</dt>
-          <dd className="mt-1">{domain.budget}</dd>
-        </div>
-      </dl>
+
       <section className="mt-8">
         <h2 className="text-2xl">Neighboring domains</h2>
         <ul className="mt-3 flex flex-wrap gap-2">
@@ -229,30 +261,7 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
       </section>
       <CloudAppShortlist domainId={domain.id} />
       <DataSecurityShortlist domainId={domain.id} />
-      <section className="mt-8">
-        <h2 className="text-2xl">Primary products in this seed</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          {products.length} products list a category in this domain as primary. That is placement on the
-          map, not a capability verdict.
-        </p>
-        {products.length === 0 ? (
-          <p className="mt-3 text-sm">No product in the seed uses a category here as its primary placement.</p>
-        ) : (
-          <ul className="mt-3 grid gap-2 sm:grid-cols-2">
-            {products.map((product) => (
-              <li key={product.id}>
-                <Link
-                  href={`/vendors/${vendorById(product.vendorId)?.slug ?? ""}`}
-                  className="block rounded-lg border border-border px-3 py-2 text-sm hover:bg-muted"
-                >
-                  <span className="font-medium">{product.name}</span>
-                  <span className="mt-0.5 block text-muted-foreground">{product.positioning}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
-      </section>
+
     </main>
   );
 }
