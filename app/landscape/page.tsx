@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { PageIntro } from "@/components/chrome";
 import { LandscapeBrowser, type LandscapeEdge, type LandscapeRow } from "@/components/landscape-browser";
 import { catalog, vendorById } from "@/lib/catalog";
@@ -56,6 +57,7 @@ export default function LandscapePage() {
         lede="Filter by domain, category, buyer, deployment, and scope. Use “Not an identity control” for AppSec, IT, and other tools that are on the map without being identity products. A relationship counts only inside a use case. There is no overall score."
       />
       <div className="mt-8">
+        <Suspense fallback={<p role="status">Loading landscape filters…</p>}>
         <LandscapeBrowser
           rows={rows}
           edges={edges}
@@ -68,6 +70,7 @@ export default function LandscapePage() {
             categoryIds: persona.categoryIds,
           }))}
         />
+        </Suspense>
       </div>
     </main>
   );

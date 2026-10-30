@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { filterLandscapeRows, initialLandscapeFilters, landscapeFilterReducer } from "./landscape-filters";
+import { filterLandscapeRows, initialLandscapeFilters, landscapeFilterReducer, readLandscapeFilters, landscapeFilterUrl, productDetailUrl, productSectionId } from "./landscape-filters";
 import type { LandscapeRow } from "@/components/landscape-browser";
 
 const row = (productId: string, overrides: Partial<LandscapeRow> = {}): LandscapeRow => ({
@@ -37,5 +37,35 @@ describe("landscape filter journeys", () => {
     expect(filterLandscapeRows(rows, edges, personas, filters).map((r) => r.productId)).toEqual(["Zulu"]);
     expect(filterLandscapeRows(rows, edges, personas, { ...filters, relation: "complement", useCase: "delivery" })).toEqual([]);
     expect(filterLandscapeRows(rows, edges, personas, { ...filters, relation: "complement" })).toHaveLength(1);
+  });
+});
+
+describe("shareable landscape views", () => {
+  const options = {
+    domain: ["identity"], category: ["vault"], useCase: ["delivery"], persona: ["platform"],
+    deployment: ["saas"], scope: ["nhi"], relation: ["complement"], focusedProduct: ["Zulu"],
+  };
+  it("round trips every filter, including product, through a copied URL", () => {
+    const state = { domain: "identity", category: "vault", useCase: "delivery", persona: "platform",
+      deployment: "saas", scope: "nhi", relation: "complement", focusedProduct: "Zulu" };
+    const params = new URL(landscapeFilterUrl(state), "https://example.test").searchParams;
+    expect(readLandscapeFilters(params, options)).toEqual(state);
+  });
+  it("ignores unknown values and unrelated URL parameters", () => {
+    const params = new URLSearchParams("domain=removed&category=vault&product=missing&scope=invalid&returnTo=https://example.test");
+    expect(readLandscapeFilters(params, options)).toEqual({ ...initialLandscapeFilters, category: "vault" });
+  });
+  it("returns to the bare landscape URL on reset and can restore the previous URL state", () => {
+    const before = { ...initialLandscapeFilters, domain: "identity", deployment: "saas" };
+    const beforeUrl = landscapeFilterUrl(before);
+    expect(landscapeFilterUrl(landscapeFilterReducer(before, { type: "reset" }))).toBe("/landscape");
+    expect(readLandscapeFilters(new URL(beforeUrl, "https://example.test").searchParams, options)).toEqual(before);
+  });
+  it("links to the same unique product anchor rendered on its vendor page", () => {
+    const first = new URL(productDetailUrl("example", "vault-one"), "https://example.test");
+    const second = new URL(productDetailUrl("example", "vault-two"), "https://example.test");
+    expect(first.pathname).toBe("/vendors/example");
+    expect(decodeURIComponent(first.hash.slice(1))).toBe(productSectionId("vault-one"));
+    expect(first.hash).not.toBe(second.hash);
   });
 });

@@ -1,10 +1,10 @@
 "use client";
 
-import { useMemo, useReducer } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { StatusPill } from "@/components/chrome";
 import { deploymentLabel, relationshipLabel, scopeLabel } from "@/lib/format";
-import { filterLandscapeRows, initialLandscapeFilters, landscapeFilterReducer } from "@/lib/landscape-filters";
+import { filterLandscapeRows, initialLandscapeFilters, landscapeFilterReducer, readLandscapeFilters, landscapeFilterUrl, productDetailUrl } from "@/lib/landscape-filters";
 import { Label } from "@/components/ui/label";
 
 export type LandscapeRow = {
@@ -45,15 +45,26 @@ export function LandscapeBrowser({
   useCases: Option[];
   personas: { id: string; label: string; categoryIds: string[] }[];
 }) {
-  const [filters, dispatch] = useReducer(landscapeFilterReducer, initialLandscapeFilters);
+  const searchParams = useSearchParams();
+  const filters = readLandscapeFilters(searchParams, {
+    domain: domains.map((item) => item.id), category: categories.map((item) => item.id),
+    useCase: useCases.map((item) => item.id), persona: personas.map((item) => item.id),
+    deployment: ["saas", "self_hosted", "hybrid", "cloud_native", "open_source", "unknown"],
+    scope: ["human", "nhi", "agent", "not_an_identity_control"],
+    relation: ["direct_competitor", "bundled_alternative", "complement", "adjacent_budget"],
+    focusedProduct: rows.map((row) => row.productId),
+  });
+  const scopedCategories = categories.filter((item) => filters.domain === "all" || item.domainIds.includes(filters.domain));
+  if (!scopedCategories.some((item) => item.id === filters.category)) filters.category = "all";
+  const scopedProducts = filterLandscapeRows(rows, edges, personas, { ...filters, focusedProduct: "all" });
+  if (!scopedProducts.some((row) => row.productId === filters.focusedProduct)) filters.focusedProduct = "all";
   const { domain, category, useCase, persona, deployment, scope, relation, focusedProduct } = filters;
-  const change = (key: keyof typeof filters) => (value: string) => dispatch({ type: "select", key, value });
-  const reset = () => dispatch({ type: "reset" });
-  const scopedCategories = categories.filter((item) => domain === "all" || item.domainIds.includes(domain));
-  const scopedProducts = useMemo(
-    () => filterLandscapeRows(rows, edges, personas, { ...filters, focusedProduct: "all" }),
-    [rows, edges, personas, filters],
-  );
+  const navigate = (next: typeof filters) => {
+    const url = landscapeFilterUrl(next);
+    if (url !== window.location.pathname + window.location.search) window.history.pushState(null, "", url);
+  };
+  const change = (key: keyof typeof filters) => (value: string) => navigate(landscapeFilterReducer(filters, { type: "select", key, value }));
+  const reset = () => navigate(initialLandscapeFilters);
   const visible = scopedProducts.filter((row) => focusedProduct === "all" || row.productId === focusedProduct);
   const focused = visible.find((row) => row.productId === focusedProduct);
   const activeCount = Object.values(filters).filter((value) => value !== "all").length;
@@ -66,7 +77,7 @@ export function LandscapeBrowser({
           <button type="button" className="min-h-11 rounded-sm px-2 text-sm text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring" onClick={reset}>Reset all filters</button>
         </div>
         <p className="mt-1 text-sm text-muted-foreground">Start broad, narrow to a category, then inspect a product. Navigation is not a ranking or a feature-parity claim.</p>
-        <p className="mt-2 text-sm text-muted-foreground">Product choices reflect all filters below. Changing a filter clears the selected product.</p>
+        <p className="mt-2 text-sm text-muted-foreground">Product choices reflect all filters below. Changing a filter clears the selected product. Copy the page URL to share this view; use your browser’s Back button to return to it.</p>
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
           <Filter label="1 · Market domain" value={domain} onChange={change("domain")} options={domains} />
           <Filter label="2 · Category" value={category} onChange={change("category")} options={scopedCategories} />
@@ -75,7 +86,7 @@ export function LandscapeBrowser({
         {focused ? <div className="mt-4 rounded-lg border border-border bg-background p-3" aria-live="polite">
           <p className="text-sm font-semibold">{focused.productName} <span className="font-normal text-muted-foreground">· {focused.vendorName}</span></p>
           <p className="mt-1 text-sm">{focused.positioning}</p>
-          <Link href={`/vendors/${focused.vendorSlug}`} className="mt-2 inline-block text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:ring-ring">Open vendor detail and evidence</Link>
+          <Link href={productDetailUrl(focused.vendorSlug, focused.productId)} className="mt-2 inline-block text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:ring-ring">Open product detail and evidence</Link>
         </div> : null}
       </section>
       <fieldset className="grid gap-3 rounded-xl border border-border bg-card p-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -140,7 +151,7 @@ export function LandscapeBrowser({
             return (
               <li key={row.productId} className="rounded-xl border border-border bg-card p-4">
                 <div className="flex flex-wrap items-center gap-2">
-                  <Link href={`/vendors/${row.vendorSlug}`} className="text-lg font-semibold hover:underline">
+                  <Link href={productDetailUrl(row.vendorSlug, row.productId)} className="text-lg font-semibold hover:underline">
                     {row.productName}
                   </Link>
                   <span className="text-sm text-muted-foreground">{row.vendorName}</span>

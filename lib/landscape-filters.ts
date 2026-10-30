@@ -36,3 +36,34 @@ export function filterLandscapeRows(
       (useCase === "all" || edge.useCaseId === useCase)))
     .sort((a, b) => a.productName.localeCompare(b.productName));
 }
+
+const filterParams: Record<keyof LandscapeFilters, string> = {
+  domain: "domain", category: "category", useCase: "useCase", persona: "buyer",
+  deployment: "deployment", scope: "scope", relation: "relation", focusedProduct: "product",
+};
+export type LandscapeFilterOptions = Record<keyof LandscapeFilters, readonly string[]>;
+
+export function readLandscapeFilters(params: Pick<URLSearchParams, "get">, options: LandscapeFilterOptions): LandscapeFilters {
+  const filters = { ...initialLandscapeFilters };
+  for (const key of Object.keys(filterParams) as (keyof LandscapeFilters)[]) {
+    const value = params.get(filterParams[key]);
+    if (value && options[key].includes(value)) filters[key] = value;
+  }
+  return filters;
+}
+
+export function landscapeFilterUrl(filters: LandscapeFilters): string {
+  const params = new URLSearchParams();
+  for (const key of Object.keys(filterParams) as (keyof LandscapeFilters)[]) {
+    if (filters[key] !== "all") params.set(filterParams[key], filters[key]);
+  }
+  return `/landscape${params.size ? `?${params.toString()}` : ""}`;
+}
+
+export function productSectionId(productId: string): string {
+  return `product-${productId}`;
+}
+
+export function productDetailUrl(vendorSlug: string, productId: string): string {
+  return `/vendors/${encodeURIComponent(vendorSlug)}#${encodeURIComponent(productSectionId(productId))}`;
+}

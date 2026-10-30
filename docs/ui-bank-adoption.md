@@ -203,3 +203,21 @@ Follow-up slices, separate from filtering: bring existing buyer/owner/category
 context higher on detail pages; keep source-attribution and Unknown explanations
 visible beside that context. Reuse existing data and claim labels rather than
 inventing summaries or treating vendor reporting as independent verification.
+
+### Shareable filters and product destinations (2026-10-30)
+
+Use the URL as the landscape selection source, via Next useSearchParams and its
+documented native History API integration. Each changed selection adds a history
+entry without scrolling or a full reload; browser Back/Forward and copied URLs
+restore the selection. Reset writes `/landscape`. Only known filter values are
+accepted; stale IDs and incompatible category/product focus fall back to Any.
+Product links point to stable product-ID anchors on the existing vendor page,
+with scroll spacing and a visible target ring. Breadcrumbs still return to the
+unfiltered collection; browser Back restores the shortlist.
+
+Reuses the existing filter/state-feedback pattern and tokens; no new dependency,
+research claim or animation. A Suspense loading status covers URL-state hydration.
+Regression tests cover URL serialization/parsing, unknown values, reset and anchor
+agreement. Browser history, direct-load, mobile/tablet/desktop, keyboard, target
+scroll and no-match recovery remain required preview checks, not inferred from
+unit tests. Preview authentication must remain enabled.
