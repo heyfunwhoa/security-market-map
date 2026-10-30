@@ -1,3 +1,5 @@
+import { productSectionId } from "@/lib/landscape-filters";
+import { ProductBuyerContext } from "@/components/product-buyer-context";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -66,7 +68,7 @@ export default async function VendorPage({ params }: { params: Promise<{ slug: s
         <h2 className="text-2xl">Products</h2>
         <ul className="mt-3 grid gap-3">
           {products.map((product) => (
-            <li key={product.id} className="rounded-xl border border-border bg-card p-4">
+            <li key={product.id} id={productSectionId(product.id)} className="scroll-mt-24 rounded-xl border border-border bg-card p-4 target:ring-2 target:ring-ring">
               <div className="flex flex-wrap items-center gap-2">
                 <h3 className="text-lg font-semibold">{product.name}</h3>
                 <StatusPill status={product.availability} />
@@ -79,6 +81,8 @@ export default async function VendorPage({ params }: { params: Promise<{ slug: s
                 Product source
               </a>
               <div className="mt-3">
+                <ProductBuyerContext categories={catalog.categories} primaryIds={product.primaryCategoryIds} adjacentIds={product.adjacentCategoryIds} />
+                <h4 className="mb-3 mt-4 font-semibold">Product evidence and research gaps</h4>
                 <ClaimList claims={claimsForSubject("product", product.id)} />
               </div>
             </li>

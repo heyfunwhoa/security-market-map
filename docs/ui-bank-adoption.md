@@ -181,3 +181,213 @@ Use a labeled navigation landmark, an ordered list, a non-linked current page,
 hidden decorative separators, visible keyboard focus, 44px-high links, and
 wrapping text. PR verification records automated checks and any responsive or
 keyboard browser checks still requiring review.
+
+## Landscape drilldown review (2026-10-29)
+
+PR #106 adapts the bank's search/filter and state-feedback patterns in the existing
+LandscapeBrowser, using native selects, Label, StatusPill and local tokens. No
+third-party code, dependency, animation or new catalog record is introduced.
+Domain/category/product controls appear once; category choices use the catalog's
+actual domain membership. Product choices honor the same refinements as results.
+Changing a filter clears product focus; changing domain also clears category.
+Reset all filters clears every selection, including from the no-match state.
+A polite status announces result/total counts and the number of active filters.
+
+Controls wrap into one column on small screens and use 44px targets with visible
+focus. Browser responsive verification remains required before merge; source
+inspection is not device QA. Filter transitions and no-match recovery are covered
+by regression tests. No new network, permission, loading or motion state exists.
+Rollback is a revert of the UI/filter helper change; no data migration is needed.
+
+Follow-up slices, separate from filtering: bring existing buyer/owner/category
+context higher on detail pages; keep source-attribution and Unknown explanations
+visible beside that context. Reuse existing data and claim labels rather than
+inventing summaries or treating vendor reporting as independent verification.
+
+### Shareable filters and product destinations (2026-10-30)
+
+Use the URL as the landscape selection source, via Next useSearchParams and its
+documented native History API integration. Each changed selection adds a history
+entry without scrolling or a full reload; browser Back/Forward and copied URLs
+restore the selection. Reset writes `/landscape`. Only known filter values are
+accepted; stale IDs and incompatible category/product focus fall back to Any.
+Product links point to stable product-ID anchors on the existing vendor page,
+with scroll spacing and a visible target ring. Breadcrumbs still return to the
+unfiltered collection; browser Back restores the shortlist.
+
+Reuses the existing filter/state-feedback pattern and tokens; no new dependency,
+research claim or animation. A Suspense loading status covers URL-state hydration.
+Regression tests cover URL serialization/parsing, unknown values, reset and anchor
+agreement. Browser history, direct-load, mobile/tablet/desktop, keyboard, target
+scroll and no-match recovery remain required preview checks, not inferred from
+unit tests. Preview authentication must remain enabled.
+
+### Product quick view (2026-10-30)
+
+Reuse the installed shadcn/Radix Sheet composition, documented at
+https://ui.shadcn.com/docs/components/radix/sheet. Adapt the bank's contextual
+progressive-disclosure pattern with existing app tokens and StatusPill. New
+ProductInspector composition shows existing product metadata, filtered recorded
+relationships with use-case labels, and an evidence-page link. No catalog claims,
+dependencies, lockfile changes, or copied dashboard template are introduced.
+
+The modal panel keeps the landscape mounted and leaves URL filters unchanged.
+Radix owns dialog semantics, focus containment, Escape, and trigger focus return.
+A full-width mobile sheet becomes a bounded desktop panel, scrolls internally,
+and provides a 44px Close target. Reduced-motion overrides cover content and
+backdrop. Missing metadata reads Unknown; missing relationships are explicitly
+research gaps. Detail navigation preserves the existing product anchor.
+
+Browser verification remains pending: 375/768/1280px, 200% zoom, keyboard open,
+Tab containment, Escape/Close focus return, unchanged URL/scroll, reduced motion,
+and empty relationships. Preview authentication is blocked after declined login;
+do not bypass it. Keep this follow-up draft until those checks are completed.
+
+### Shortlist and buyer context (2026-10-30)
+
+Reuse local shadcn Table and Checkbox plus ProductInspector/Sheet for a selectable
+landscape table, with detailed cards as an alternate view. Adapt the bank's
+semantic comparison table and contextual disclosure patterns. Selection is local
+to the mounted landscape page, capped at four, retained across filters/view changes,
+and removable even when hidden by filters. The count explicitly reports hidden
+selections. Clear shortlist is separate from Reset filters. Navigation to Compare
+passes explicit product IDs and the selected use case to the existing parser;
+with Any use case, Compare applies its existing default, which readers must confirm.
+Selections are not saved across page reloads. No inferred parity or new claims.
+
+Vendor product sections reuse authoritative category buyerOwner/buyerQuestion
+fields, labeling primary/adjacent membership and category-level context. Existing
+ClaimList stays immediately below with provenance, dates and uncertainty labels.
+No new source registry, dependencies, lockfile changes or security-rule changes.
+
+Table overflow is contained on narrow screens; cards remain available. Controls
+have visible focus, selection labels and 44px hit areas. Empty results retain the
+shortlist; selection limits allow deselection. Browser checks remain pending for
+responsive layouts/zoom, keyboard selection and removal, panel focus, reduced
+motion, filter persistence and comparison navigation. Preview auth remains blocked;
+source inspection and unit tests are not browser verification. Rollback reverts
+this composition without data migration. These are draft changes, not shipped UI.
+### Diagram label readability
+
+Replace the fixed SVG orbit/circle text in AreaDiagram, IdentityStructureDiagram,
+and CredentialChainDiagram with semantic HTML groups and numbered flow cards.
+Reuse local card tokens and the UI bank's progressive-disclosure/grouping pattern.
+Full labels and credential problems wrap inside content-sized nodes, including
+unbroken names. Auto-fit grids respect the containing card width; the credential
+sequence stacks on mobile. Do not shrink text, truncate names, or invent graph
+edges for area membership. Preserve every existing destination and show missing
+seed detail explicitly. No dependency or data changes and no added animation.
+
+This affects domain/category examples, Connections and the cloud/app shortlist.
+Responsive/zoom, long-label and keyboard browser verification remain pending;
+source-level layout changes do not establish visual acceptance. Revert this
+component change to roll back. Keep draft until review and browser verification.
+
+### Research-page interaction sequence
+
+Reuse the bank's progressive disclosure and navigation patterns with a small
+server-rendered PageJourney composition. Domain, category and Connections pages
+begin with three descriptive jump links: understand, explore, and inspect the
+appropriate evidence or next destination. Targets are keyboard-focusable and
+scroll-spaced; controls wrap and have visible focus and 44px minimum height.
+
+Connections presents the identity model and leaked-key walkthrough before research
+history. Domains present owner/budget early and products before reference terms;
+detailed category workflows use native details/summary so readers can choose depth.
+Evidence labels remain visible and no claims are hidden in accordions. Existing
+routes and catalog stay authoritative; no additional dependencies or client state.
+Browser checks for anchor focus, Back navigation, disclosure keyboard operation,
+mobile/zoom and full-label fit remain pending. No animation is introduced.
+
+### Task-based site menu
+
+Replace the crowded 12-link desktop row and separate mobile details menu with
+three primary destinations (Explore domains, Browse products, Compare) and a
+consistent grouped Menu using the existing shadcn/Radix Sheet. Preserve all 12
+routes under Explore, Learn, Plan, and Research, with descriptive labels and helper
+text. Home and Search remain explicit. Only exact routes receive aria-current;
+parent sections may be highlighted without claiming to be the current page.
+
+Reuse Sheet dialog/focus/Escape behavior and close-on-link navigation via
+SheetClose. Remove the obsolete inline Escape listener and menu icon CSS. Header
+wraps at constrained widths; the sheet scrolls and uses full width on mobile.
+Menu, Close and Search have 44px minimum targets; search text is visible from sm.
+No routing, catalog, dependency or security changes. Browser QA still pending:
+375/768/1280px, zoom, menu focus/close/Escape, navigation, current-page indication,
+search and reduced motion. Protected-preview sign-in remains declined.
+
+### Accessibility follow-up (2026-10-30)
+
+Reuse/adapt the existing Table, Dialog, search and shortlist compositions, following
+the workbench's data, feedback and keyboard-focus patterns. No new dependency,
+research data, lockfile or scanning changes. Remove the second identical seven-step
+Connections list; retain all destinations in the semantic numbered diagram and
+update obsolete circle descriptions. Add named shortlist announcements, stable
+focus after removal/clear, row headers and an opt-in labeled keyboard-scroll region
+for the landscape table. Existing filter announcements and product-specific quick
+view names were already present. Comparison already has caption/row/column headers.
+
+Make the skip target focusable; add a base visible-focus outline; strengthen input
+border tokens; enlarge dialog Close to 44px and respect reduced motion in dialog
+and table transitions. Dismissing search returns focus to its trigger; selecting a
+result preserves route navigation focus behavior. Result-view controls wrap.
+
+Calculated token contrast (linear sRGB from OKLCH): muted text/background 6.61:1,
+muted text/muted surface 6.10:1, focus/background 6.77:1. Input/background improves
+from 1.32:1 to 3.95:1; dark input/muted surface 3.83:1. These calculations cover
+these opaque token pairs, not every rendered element or full WCAG conformance.
+
+Prior-head desktop browser QA at 1363px passed menu focus wrapping, Escape and
+trigger focus return, menu navigation and closure, GitGuardian keyboard search,
+page jumps, and unclipped credential diagram labels. Protected-preview sign-in
+succeeded; older declined-login notes above describe earlier attempts. Current
+follow-up requires exact-head CI and preview validation. Phone/tablet viewports,
+200–400% zoom, OS reduced-motion and actual screen-reader speech remain manual
+acceptance checks where the cloud browser cannot emulate them. Do not infer them
+from source or unit tests. Rollback: revert this follow-up; no migration needed.
+
+### Search on short viewports
+
+Bound the search dialog and command flex container to the dynamic viewport height
+minus two rem. Keep the input/Close row from shrinking and let results shrink and
+scroll inside that boundary. Long search titles can wrap without widening the
+row. This addresses the source-level risk of the former 20rem results list
+plus input extending beyond a short or heavily zoomed viewport. Reuses installed
+Command/Dialog; no packages, catalog or security changes. Actual mobile keyboard
+and 200–400% zoom verification remains pending; this is not device-test evidence.
+
+### Dashboard-style filter workspace
+
+Adapt the UI bank's filterable collection, disclosure and feedback patterns using
+installed shadcn Button, lucide X, native select and details/summary. No external
+template code or new dependency is imported. Keep domain/category/product as the
+primary path; use case and buyer form a visible buying-context group. Deployment,
+identity scope and relationship controls move into Advanced filters, whose summary
+always reports active refinements. Every active filter remains visible as a named
+removable chip, including when Advanced filters is collapsed.
+
+Removal uses the existing URL reducer, including its documented downstream resets,
+and moves focus to the persistent result status before the chip disappears. Chips
+wrap, retain 44px targets, and disable button motion under reduced-motion settings.
+No research claims, rankings, shortlist persistence or evidence labels change.
+Browser acceptance: keyboard disclosure; copied advanced-filter URLs retain visible
+chips; chip removal updates results and URL; focus survives removal; shortlist stays
+intact; mobile wrapping/zoom still requires manual device testing. Rollback reverts
+this filter composition without data or package changes.
+
+### Mischief UI: return to the page introduction
+
+Adapt the Scroll to Top Button from Tinkerers Labs' Mischief UI on the long
+Connections page only. Source: https://github.com/Tinkerers-Labs/mischief-ui/blob/92c335bf6910007b95e282a6e0a1168555b86cf1/registry/default/scroll-to-top-button/scroll-to-top-button.tsx.
+MIT notice retained in licenses/mischief-ui-MIT.txt. Reuse existing lucide-react
+and app tokens; no package installation or lockfile change. PageIntro accepts an
+optional heading ID for the focus destination.
+
+The control appears after 320px of scrolling, has a 48px target and a descriptive
+accessible name, moves focus to the introduction before hiding, respects reduced
+motion, and stays below modal overlays. Safe-area spacing and end-of-page padding
+provide clearance. Hidden state is removed from keyboard and accessibility trees.
+The scope omits upstream container/custom-icon options that this page does not need.
+Status: draft preview adoption, not production. Verify visibility, activation and
+heading focus in the preview; mobile/zoom and actual screen-reader speech remain
+manual checks. Rollback removes this call site/component and optional heading prop.
