@@ -1,5 +1,8 @@
 "use client";
 
+import { useRef } from "react";
+import { X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { StatusPill } from "@/components/chrome";
@@ -48,6 +51,7 @@ export function LandscapeBrowser({
   personas: { id: string; label: string; categoryIds: string[] }[];
 }) {
   const searchParams = useSearchParams();
+  const resultSummaryRef = useRef<HTMLParagraphElement>(null);
   const filters = readLandscapeFilters(searchParams, {
     domain: domains.map((item) => item.id), category: categories.map((item) => item.id),
     useCase: useCases.map((item) => item.id), persona: personas.map((item) => item.id),
@@ -70,6 +74,19 @@ export function LandscapeBrowser({
   const visible = scopedProducts.filter((row) => focusedProduct === "all" || row.productId === focusedProduct);
   const focused = visible.find((row) => row.productId === focusedProduct);
   const activeCount = Object.values(filters).filter((value) => value !== "all").length;
+  const advancedCount = [deployment, scope, relation].filter((value) => value !== "all").length;
+  const labelFor = (options: Option[], id: string) => options.find((item) => item.id === id)?.label ?? id;
+  const activeFilters = [
+    { key: "domain", label: "Domain", value: labelFor(domains, domain) },
+    { key: "category", label: "Category", value: labelFor(categories, category) },
+    { key: "useCase", label: "Use case", value: labelFor(useCases, useCase) },
+    { key: "persona", label: "Buyer", value: labelFor(personas, persona) },
+    { key: "deployment", label: "Deployment", value: deploymentLabel(deployment) },
+    { key: "scope", label: "Scope", value: scopeLabel(scope) },
+    { key: "relation", label: "Relationship", value: relationshipLabel(relation) },
+    { key: "focusedProduct", label: "Product", value: rows.find((row) => row.productId === focusedProduct)?.productName ?? focusedProduct },
+  ] satisfies { key: keyof typeof filters; label: string; value: string }[];
+
 
   return (
     <div>
@@ -91,8 +108,8 @@ export function LandscapeBrowser({
           <Link href={productDetailUrl(focused.vendorSlug, focused.productId)} className="mt-2 inline-block text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:ring-ring">Open product detail and evidence</Link>
         </div> : null}
       </section>
-      <fieldset className="grid gap-3 rounded-xl border border-border bg-card p-4 sm:grid-cols-2 lg:grid-cols-3">
-        <legend className="px-1 text-sm font-semibold">Refine results</legend>
+      <fieldset className="grid gap-3 rounded-xl border border-border bg-card p-4 sm:grid-cols-2">
+        <legend className="px-1 text-sm font-semibold">Choose your buying context</legend>
         <Filter label="Use case" value={useCase} onChange={change("useCase")} options={useCases} />
         <Filter
           label="Buyer"
@@ -100,6 +117,13 @@ export function LandscapeBrowser({
           onChange={change("persona")}
           options={personas.map((item) => ({ id: item.id, label: item.label }))}
         />
+      </fieldset>
+      <details className="group mt-4 rounded-xl border border-border bg-card">
+        <summary className="min-h-11 cursor-pointer rounded-xl p-4 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring">
+          Advanced filters <span className="font-normal text-muted-foreground">· {advancedCount ? `${advancedCount} active` : "Deployment, identity scope, relationships"}</span>
+        </summary>
+        <fieldset className="grid gap-3 border-t border-border p-4 sm:grid-cols-2 lg:grid-cols-3">
+          <legend className="sr-only">Advanced product filters</legend>
         <Filter
           label="Deployment"
           value={deployment}
@@ -128,8 +152,22 @@ export function LandscapeBrowser({
             "adjacent_budget",
           ].map((id) => ({ id, label: relationshipLabel(id) }))}
         />
-      </fieldset>
-      <p role="status" aria-live="polite" aria-atomic="true" className="mt-4 text-sm text-muted-foreground">
+        </fieldset>
+      </details>
+      {activeCount > 0 && <section aria-label="Active filters" className="mt-4 rounded-xl border border-border bg-muted/40 p-4">
+        <p className="text-sm font-semibold">Your current view</p>
+        <p className="mt-1 text-sm text-muted-foreground">Remove a filter to broaden the results. Changing domain also clears category; changing any filter clears product focus.</p>
+        <ul className="mt-3 flex flex-wrap gap-2">
+          {activeFilters.filter((item) => filters[item.key] !== "all").map((item) => <li key={item.key} className="max-w-full">
+            <Button type="button" variant="secondary" className="h-auto min-h-11 max-w-full gap-2 whitespace-normal py-2 text-left motion-reduce:transition-none motion-reduce:active:translate-y-0"
+              aria-label={`Remove ${item.label.toLowerCase()} filter: ${item.value}`}
+              onClick={() => { resultSummaryRef.current?.focus(); change(item.key)("all"); }}>
+              <span className="min-w-0 [overflow-wrap:anywhere]"><span className="font-normal">{item.label}: </span>{item.value}</span><X className="size-4 shrink-0" aria-hidden="true" />
+            </Button>
+          </li>)}
+        </ul>
+      </section>}
+      <p ref={resultSummaryRef} tabIndex={-1} role="status" aria-live="polite" aria-atomic="true" className="mt-4 text-sm text-muted-foreground">
         {visible.length} of {rows.length} products. {activeCount} active {activeCount === 1 ? "filter" : "filters"}. Sorted A to Z. Being on this list is candidacy, not a rank and not a
         capability verdict.
       </p>

@@ -355,3 +355,22 @@ row. This addresses the source-level risk of the former 20rem results list
 plus input extending beyond a short or heavily zoomed viewport. Reuses installed
 Command/Dialog; no packages, catalog or security changes. Actual mobile keyboard
 and 200–400% zoom verification remains pending; this is not device-test evidence.
+
+### Dashboard-style filter workspace
+
+Adapt the UI bank's filterable collection, disclosure and feedback patterns using
+installed shadcn Button, lucide X, native select and details/summary. No external
+template code or new dependency is imported. Keep domain/category/product as the
+primary path; use case and buyer form a visible buying-context group. Deployment,
+identity scope and relationship controls move into Advanced filters, whose summary
+always reports active refinements. Every active filter remains visible as a named
+removable chip, including when Advanced filters is collapsed.
+
+Removal uses the existing URL reducer, including its documented downstream resets,
+and moves focus to the persistent result status before the chip disappears. Chips
+wrap, retain 44px targets, and disable button motion under reduced-motion settings.
+No research claims, rankings, shortlist persistence or evidence labels change.
+Browser acceptance: keyboard disclosure; copied advanced-filter URLs retain visible
+chips; chip removal updates results and URL; focus survives removal; shortlist stays
+intact; mobile wrapping/zoom still requires manual device testing. Rollback reverts
+this filter composition without data or package changes.
