@@ -374,3 +374,20 @@ Browser acceptance: keyboard disclosure; copied advanced-filter URLs retain visi
 chips; chip removal updates results and URL; focus survives removal; shortlist stays
 intact; mobile wrapping/zoom still requires manual device testing. Rollback reverts
 this filter composition without data or package changes.
+
+### Mischief UI: return to the page introduction
+
+Adapt the Scroll to Top Button from Tinkerers Labs' Mischief UI on the long
+Connections page only. Source: https://github.com/Tinkerers-Labs/mischief-ui/blob/92c335bf6910007b95e282a6e0a1168555b86cf1/registry/default/scroll-to-top-button/scroll-to-top-button.tsx.
+MIT notice retained in licenses/mischief-ui-MIT.txt. Reuse existing lucide-react
+and app tokens; no package installation or lockfile change. PageIntro accepts an
+optional heading ID for the focus destination.
+
+The control appears after 320px of scrolling, has a 48px target and a descriptive
+accessible name, moves focus to the introduction before hiding, respects reduced
+motion, and stays below modal overlays. Safe-area spacing and end-of-page padding
+provide clearance. Hidden state is removed from keyboard and accessibility trees.
+The scope omits upstream container/custom-icon options that this page does not need.
+Status: draft preview adoption, not production. Verify visibility, activation and
+heading focus in the preview; mobile/zoom and actual screen-reader speech remain
+manual checks. Rollback removes this call site/component and optional heading prop.

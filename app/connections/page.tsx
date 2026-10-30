@@ -1,3 +1,4 @@
+import { ScrollToTopButton } from "@/components/ui/scroll-to-top-button";
 import { PageJourney } from "@/components/page-journey";
 import Link from "next/link";
 import { AreaDiagram, CredentialChainDiagram, IdentityStructureDiagram } from "@/components/area-diagram";
@@ -44,8 +45,9 @@ function SeedLinks({ items }: { items: SeedLink[] }) {
 
 export default function ConnectionsPage() {
   return (
-    <main className="mx-auto max-w-6xl px-4 py-10">
+    <main className="mx-auto max-w-6xl px-4 pt-10 pb-24">
       <PageIntro
+        id="connections-introduction"
         kicker="Connections"
         title="Non-human identity is a discipline, not one product category"
         lede="It overlaps identity governance, secrets management, privileged access, cloud permissions, and agent authorization. An API key is a credential. The identity is the application, workload, service account, or agent that credential represents. This page is a synthesis of that landscape. It is not a Magic Quadrant, a Wave, or a feature comparison."
@@ -390,6 +392,7 @@ export default function ConnectionsPage() {
           ))}
         </div>
       </section>
+      <ScrollToTopButton targetId="connections-introduction" />
     </main>
   );
 }

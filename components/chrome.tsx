@@ -150,10 +150,12 @@ export function StatusPill({ status }: { status: string }) {
 }
 
 export function PageIntro({
+  id,
   kicker,
   title,
   lede,
 }: {
+  id?: string;
   kicker: string;
   title: string;
   lede: string;
@@ -161,7 +163,7 @@ export function PageIntro({
   return (
     <header className="max-w-3xl">
       <p className="text-xs font-semibold tracking-[0.16em] text-primary uppercase">{kicker}</p>
-      <h1 className="mt-2 text-3xl tracking-tight text-balance sm:text-4xl">{title}</h1>
+      <h1 id={id} tabIndex={id ? -1 : undefined} className="mt-2 text-3xl tracking-tight text-balance sm:text-4xl">{title}</h1>
       <p className="mt-3 text-base leading-7 text-muted-foreground">{lede}</p>
     </header>
   );
