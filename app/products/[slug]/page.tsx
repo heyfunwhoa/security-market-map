@@ -100,20 +100,6 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <section aria-labelledby="kingfisher-stages" className="mt-9">
           <h2 id="kingfisher-stages" className="text-2xl font-semibold">From detection to response</h2>
           <p className="mt-2 text-sm leading-6 text-muted-foreground">Five distinct stages, not one universal control. Provider-specific support and the active release must be checked in upstream documentation.</p>
-          <ol className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-            {[
-              ["Detect", "Extract candidate secrets from supported sources using rule and context matching."],
-              ["Validate", "Optionally check supported credentials with the issuer when authorized; preserve inconclusive states."],
-              ["Map", "Use supported read-only provider queries to investigate identity, permissions and reachability."],
-              ["Triage", "Prioritize and deduplicate findings in structured reports or a viewer."],
-              ["Revoke", "Explicit, operator-led containment only for supported credentials and authorized accounts."],
-            ].map(([step, description], index) => (
-              <li key={step} className="rounded-xl border border-border bg-card p-4">
-                <h3 className="font-semibold">{index + 1}. {step}</h3>
-                <p className="mt-2 text-sm leading-6">{description}</p>
-              </li>
-            ))}
-          </ol>
           <p className="mt-4 text-sm leading-6"><strong>Open source:</strong> Rust-based, Apache-2.0 according to the upstream project. Its stated benchmarks and feature coverage are publisher reports, not independently tested results.</p>
           <a href="https://github.com/mongodb/kingfisher" className="mt-3 inline-flex min-h-11 items-center text-sm text-primary underline underline-offset-4">Read Kingfisher source and documentation</a>
         </section>
