@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
 import { searchHits, type SearchHit } from "@/lib/search";
@@ -21,6 +21,8 @@ export function openSearch() {
 
 export function SearchCommand({ hits }: { hits: SearchHit[] }) {
   const router = useRouter();
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const navigating = useRef(false);
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const results = useMemo(() => searchHits(query, hits), [query, hits]);
@@ -44,6 +46,7 @@ export function SearchCommand({ hits }: { hits: SearchHit[] }) {
   }, []);
 
   function choose(href: string) {
+    navigating.current = true;
     setOpen(false);
     setQuery("");
     router.push(href);
@@ -52,6 +55,7 @@ export function SearchCommand({ hits }: { hits: SearchHit[] }) {
   return (
     <>
       <Button
+        ref={triggerRef}
         type="button"
         variant="outline"
         size="sm"
@@ -65,6 +69,11 @@ export function SearchCommand({ hits }: { hits: SearchHit[] }) {
       </Button>
       <CommandDialog
         open={open}
+        onCloseAutoFocus={(event) => {
+          event.preventDefault();
+          if (!navigating.current) triggerRef.current?.focus();
+          navigating.current = false;
+        }}
         onOpenChange={(next) => {
           setOpen(next);
           if (!next) setQuery("");

@@ -39,7 +39,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             Skip to content
           </a>
           <SiteHeader hits={searchIndex()} />
-          <div id="content">{children}</div>
+          <div id="content" tabIndex={-1}>{children}</div>
           <SiteFooter />
         </TooltipProvider>
       </body>

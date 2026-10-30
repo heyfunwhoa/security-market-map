@@ -315,3 +315,33 @@ Menu, Close and Search have 44px minimum targets; search text is visible from sm
 No routing, catalog, dependency or security changes. Browser QA still pending:
 375/768/1280px, zoom, menu focus/close/Escape, navigation, current-page indication,
 search and reduced motion. Protected-preview sign-in remains declined.
+
+### Accessibility follow-up (2026-10-30)
+
+Reuse/adapt the existing Table, Dialog, search and shortlist compositions, following
+the workbench's data, feedback and keyboard-focus patterns. No new dependency,
+research data, lockfile or scanning changes. Remove the second identical seven-step
+Connections list; retain all destinations in the semantic numbered diagram and
+update obsolete circle descriptions. Add named shortlist announcements, stable
+focus after removal/clear, row headers and an opt-in labeled keyboard-scroll region
+for the landscape table. Existing filter announcements and product-specific quick
+view names were already present. Comparison already has caption/row/column headers.
+
+Make the skip target focusable; add a base visible-focus outline; strengthen input
+border tokens; enlarge dialog Close to 44px and respect reduced motion in dialog
+and table transitions. Dismissing search returns focus to its trigger; selecting a
+result preserves route navigation focus behavior. Result-view controls wrap.
+
+Calculated token contrast (linear sRGB from OKLCH): muted text/background 6.61:1,
+muted text/muted surface 6.10:1, focus/background 6.77:1. Input/background improves
+from 1.32:1 to 3.95:1; dark input/muted surface 3.83:1. These calculations cover
+these opaque token pairs, not every rendered element or full WCAG conformance.
+
+Prior-head desktop browser QA at 1363px passed menu focus wrapping, Escape and
+trigger focus return, menu navigation and closure, GitGuardian keyboard search,
+page jumps, and unclipped credential diagram labels. Protected-preview sign-in
+succeeded; older declined-login notes above describe earlier attempts. Current
+follow-up requires exact-head CI and preview validation. Phone/tablet viewports,
+200–400% zoom, OS reduced-motion and actual screen-reader speech remain manual
+acceptance checks where the cloud browser cannot emulate them. Do not infer them
+from source or unit tests. Rollback: revert this follow-up; no migration needed.

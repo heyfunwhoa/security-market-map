@@ -82,18 +82,6 @@ export default function ConnectionsPage() {
         <div className="mt-4">
           <CredentialChainDiagram steps={credentialChain} />
         </div>
-        <ol className="mt-4 grid gap-3 md:grid-cols-2">
-          {credentialChain.map((step, index) => (
-            <li key={step.problem}>
-              <Link href={step.href} className="block h-full rounded-xl border border-border bg-card p-4 hover:bg-muted">
-                <span className="text-xs font-semibold tracking-wide text-primary uppercase">
-                  {index + 1}. {step.capability}
-                </span>
-                <span className="mt-2 block text-sm leading-6">{step.problem}</span>
-              </Link>
-            </li>
-          ))}
-        </ol>
       </section>
 
       <section className="mt-10">
@@ -229,8 +217,7 @@ export default function ConnectionsPage() {
       <section className="mt-12">
         <h2 className="text-3xl tracking-tight">Segments, and where they overlap</h2>
         <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
-          Each diagram is one problem in the middle and the companies named around it. Circles are the
-          same idea, not a rank. A name in two diagrams is not a claim that both capabilities are licensed.
+          Each group names a problem and lists example companies. Card layout does not indicate rank. A name in two diagrams is not a claim that both capabilities are licensed.
         </p>
         <div className="mt-4 grid gap-4 lg:grid-cols-2">
           {segments.map((segment, index) => (
