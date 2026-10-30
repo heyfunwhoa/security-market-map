@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { PageIntro, StatusPill } from "@/components/chrome";
 import { ClaimList } from "@/components/claims";
 import { ProductFocus } from "@/components/product-focus";
+import { ProductSectionNav } from "@/components/product-section-nav";
 import { catalog, claimsForSubject, vendorById } from "@/lib/catalog";
 import { availabilityLabel } from "@/lib/format";
 import { DEVELOPER_ENDPOINT_COMPARISON_URL } from "@/lib/comparison-selection";
@@ -67,7 +68,15 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       </div>
       <p className="mt-2 text-sm leading-6 text-muted-foreground">{availabilityLabel(product.availability)}. {product.availabilityNote}</p>
 
-      <section aria-labelledby="how-it-works" className="mt-9">
+      <ProductSectionNav sections={[
+        { id: "how-it-works", label: "Overview" },
+        ...(slug === "kingfisher" ? [{ id: "product-focus-title", label: "Zoom in" }, { id: "kingfisher-stages", label: "Workflow" }] : []),
+        { id: "limitations", label: "Limitations" },
+        { id: "evidence", label: "Evidence" },
+        { id: "investigate", label: "Pilot questions" },
+        { id: "adjacency", label: "Categories" },
+      ]} />
+      <section aria-labelledby="how-it-works" className="mt-9 scroll-mt-36">
         <h2 id="how-it-works" className="text-2xl font-semibold">How protection happens</h2>
         <p className="mt-2 text-sm text-muted-foreground">Illustrative control sequence. Vendor documentation is not an independently verified blocking test.</p>
         <ol className="mt-4 grid gap-3 md:grid-cols-3">
@@ -109,7 +118,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <a href="https://github.com/mongodb/kingfisher" className="mt-3 inline-flex min-h-11 items-center text-sm text-primary underline underline-offset-4">Read Kingfisher source and documentation</a>
         </section>
       ) : null}
-      <section aria-labelledby="limitations" className="mt-8 rounded-xl border border-border p-4">
+      <section aria-labelledby="limitations" className="mt-8 scroll-mt-36 rounded-xl border border-border p-4">
         <h2 id="limitations" className="text-xl font-semibold">What this does not establish</h2>
         <p className="mt-2 text-sm leading-6">{details.limitation}</p>
       </section>
