@@ -55,12 +55,13 @@ export function SearchCommand({ hits }: { hits: SearchHit[] }) {
         type="button"
         variant="outline"
         size="sm"
+        className="min-h-11 min-w-11 px-3"
         onClick={() => setOpen(true)}
         aria-label="Search the map"
         aria-keyshortcuts="Control+K Meta+K"
       >
         <Search />
-        <span className="sr-only">Search</span>
+        <span className="hidden sm:inline">Search</span>
       </Button>
       <CommandDialog
         open={open}

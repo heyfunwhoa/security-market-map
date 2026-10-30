@@ -39,12 +39,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             Skip to content
           </a>
           <SiteHeader hits={searchIndex()} />
-          <script
-            dangerouslySetInnerHTML={{
-              __html:
-                "document.addEventListener('keydown',function(e){if(e.key!=='Escape')return;var d=document.getElementById('site-menu');if(d&&d.open){d.open=false}})",
-            }}
-          />
           <div id="content">{children}</div>
           <SiteFooter />
         </TooltipProvider>

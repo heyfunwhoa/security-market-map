@@ -298,3 +298,20 @@ Evidence labels remain visible and no claims are hidden in accordions. Existing
 routes and catalog stay authoritative; no additional dependencies or client state.
 Browser checks for anchor focus, Back navigation, disclosure keyboard operation,
 mobile/zoom and full-label fit remain pending. No animation is introduced.
+
+### Task-based site menu
+
+Replace the crowded 12-link desktop row and separate mobile details menu with
+three primary destinations (Explore domains, Browse products, Compare) and a
+consistent grouped Menu using the existing shadcn/Radix Sheet. Preserve all 12
+routes under Explore, Learn, Plan, and Research, with descriptive labels and helper
+text. Home and Search remain explicit. Only exact routes receive aria-current;
+parent sections may be highlighted without claiming to be the current page.
+
+Reuse Sheet dialog/focus/Escape behavior and close-on-link navigation via
+SheetClose. Remove the obsolete inline Escape listener and menu icon CSS. Header
+wraps at constrained widths; the sheet scrolls and uses full width on mobile.
+Menu, Close and Search have 44px minimum targets; search text is visible from sm.
+No routing, catalog, dependency or security changes. Browser QA still pending:
+375/768/1280px, zoom, menu focus/close/Escape, navigation, current-page indication,
+search and reduced motion. Protected-preview sign-in remains declined.
