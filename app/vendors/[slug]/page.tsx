@@ -66,7 +66,7 @@ export default async function VendorPage({ params }: { params: Promise<{ slug: s
           {products.map((product) => (
             <li key={product.id} className="rounded-xl border border-border bg-card p-4">
               <div className="flex flex-wrap items-center gap-2">
-                <h3 className="text-lg font-semibold">{product.name}</h3>
+                <h3 className="text-lg font-semibold">{["gitguardian-developer-endpoint", "aikido-device-protection"].includes(product.slug) ? <Link href={`/products/${product.slug}`} className="text-primary underline underline-offset-4 hover:underline">{product.name}</Link> : product.name}</h3>
                 <StatusPill status={product.availability} />
               </div>
               <p className="mt-2 text-sm leading-6">{product.positioning}</p>
