@@ -345,3 +345,13 @@ follow-up requires exact-head CI and preview validation. Phone/tablet viewports,
 200–400% zoom, OS reduced-motion and actual screen-reader speech remain manual
 acceptance checks where the cloud browser cannot emulate them. Do not infer them
 from source or unit tests. Rollback: revert this follow-up; no migration needed.
+
+### Search on short viewports
+
+Bound the search dialog and command flex container to the dynamic viewport height
+minus two rem. Keep the input/Close row from shrinking and let results shrink and
+scroll inside that boundary. Long search titles can wrap without widening the
+row. This addresses the source-level risk of the former 20rem results list
+plus input extending beyond a short or heavily zoomed viewport. Reuses installed
+Command/Dialog; no packages, catalog or security changes. Actual mobile keyboard
+and 200–400% zoom verification remains pending; this is not device-test evidence.

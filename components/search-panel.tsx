@@ -100,7 +100,7 @@ export function SearchCommand({ hits }: { hits: SearchHit[] }) {
               <span className="mt-0.5 shrink-0 text-xs tracking-wide text-muted-foreground uppercase">
                 {hit.kind}
               </span>
-              <span className="font-medium">{hit.title}</span>
+              <span className="min-w-0 font-medium">{hit.title}</span>
             </CommandItem>
           ))}
         </CommandList>
