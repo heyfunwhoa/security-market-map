@@ -72,6 +72,7 @@ Canonical catalog `name` is the display label. `aliases` hold acronyms and alter
 | `malware-analyst` | RE | Malware reverse engineer |
 | `legal-counsel` | Legal | Commercial / security contracts counsel; LC committee legal |
 | `email-security` | EmailSec, SEG | Mailbox / secure email gateway owner; LC email use case |
+| `ai-operator-owner` | Agentic SecOps | AI operator / agent charter governance; LC Claude Code / Grid governance seat |
 | `developer` | SWE | Software engineer, application developer |
 | `cto` | CTO | VP Engineering, Head of Engineering; LC-PER-02 eng seat |
 
@@ -419,6 +420,12 @@ Source research: [LimaCharlie audience and buyer personas](limacharlie-audience-
 | LC committee: legal/privacy/compliance | `legal-counsel`, `privacy`, `grc-owner` | Split legal paper from privacy/GRC veto |
 | LC committee: IT / infrastructure / identity | `it-security`, `platform`, `identity-security` | Deployment permission seats (aliases noted) |
 | LC use case: email security | `email-security` | Split from broad `it-security` when SEG/API mail is the job |
+| LC use case: code security | `appsec` | Alias only; not a second AppSec catalog |
+| LC use case: cloud security | `cloud-sec` | Alias only |
+| LC use case: SecOps engineering / Claude Code | `detection-engineer`, `ai-operator-owner` | Build content vs govern agent operators |
+| LC use case: SecOps development (builders) | `security-product-leader` | Product/platform builders on API infrastructure |
+| LC use case: vulnerability reporting | `it-security` | Fleet/CVE exposure reporting; not AppSec PSIRT by default |
+| LC customer: threat hunter / DFIR / OT | `threat-hunter`, `digital-forensics`, `ot-security` | Testimony titles noted as aliases; not ICP |
 
 ### SEC-PER-34 — Provider founder / CEO (`provider-founder`)
 
@@ -474,6 +481,12 @@ Source research: [LimaCharlie audience and buyer personas](limacharlie-audience-
 - **Discovery:** “Gateway policy, API mailbox detection, or user reporting—and who remediates a compromised mailbox?”
 - **Boundary:** Distinct from `security-awareness` (behavior/sims) and from broad `it-security` when email is only one of many estates.
 
+### SEC-PER-44 — AI operator / agent governance (`ai-operator-owner`)
+
+- **Source:** LimaCharlie agentic SecOps / Claude Code / Grid positioning emphasizes charters, permissions, and audit of AI operators; enterprise and provider pages treat governance as a buying concern separate from shipping an AI SOC product.[^LC-AUD]
+- **Discovery:** “Who approves an agent charter that can isolate a host—and what audit evidence would you show?”
+- **Boundary:** Not `security-product-leader` (embedding/selling an AI SOC), not `ai-security` (model/app risk), and not day-to-day `soc-analyst` triage unless one person wears those hats.
+
 ## Buying-committee collisions to qualify
 
 | Collision | What goes wrong | Qualification question |
@@ -503,6 +516,9 @@ Source research: [LimaCharlie audience and buyer personas](limacharlie-audience-
 | Legal vs privacy vs GRC | Contract stall vs DPIA vs questionnaire | Which veto is active on this deal? |
 | EmailSec vs ITSec vs awareness | Gateway vs estate owner vs training | SEG/API mail control or people program? |
 | IT / infra / identity committee | Deployment blocked after security says yes | Who must grant integrate/change permission? |
+| AI operator governance vs AI SOC builder | Run agents vs ship a product | Governing operators you run, or embedding agents you sell? |
+| AI operator vs detection eng | Charter/audit vs content authorship | Who sets agent limits vs who writes the detection? |
+| Vuln reporting vs AppSec / ProdSec | Fleet CVE inventory vs code/disclosure program | Endpoint package exposure or repository/PSIRT workflow? |
 
 ## Fit worksheet (do not score leads from titles alone)
 

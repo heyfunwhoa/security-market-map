@@ -132,6 +132,7 @@ export const personas: BuyerPersona[] = [
       "Secure coding lead",
       "ASPM owner",
       "Application security posture owner",
+      "LC use case: code security",
     ],
   },
   {
@@ -184,6 +185,7 @@ export const personas: BuyerPersona[] = [
       "CIEM owner",
       "Cloud posture owner",
       "Public cloud security",
+      "LC use case: cloud security",
     ],
   },
   {

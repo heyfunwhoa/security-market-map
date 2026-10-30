@@ -184,6 +184,11 @@ Public typed buyer personas now exist in `lib/data` and are summarized in [secur
 | LC committee: legal / privacy / compliance | `legal-counsel`, `privacy`, `grc-owner` |
 | LC committee: IT / infrastructure / identity | `it-security`, `platform`, `identity-security` |
 | LC use case: email security (adjacent) | `email-security` |
+| LC use case: code / cloud security | `appsec`, `cloud-sec` |
+| LC use case: SecOps engineering / Claude Code | `detection-engineer`, `ai-operator-owner` |
+| LC use case: SecOps development (builders) | `security-product-leader` |
+| LC use case: vulnerability reporting | `it-security` |
+| LC customer testimony titles (hunter/DFIR/OT) | `threat-hunter`, `digital-forensics`, `ot-security` |
 
 ## Cross-repository disposition
 

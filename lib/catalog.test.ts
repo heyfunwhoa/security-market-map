@@ -120,6 +120,7 @@ describe("catalog integrity", () => {
       "malware-analyst",
       "legal-counsel",
       "email-security",
+      "ai-operator-owner",
       "developer",
       "cto",
     ] as const;
@@ -177,6 +178,16 @@ describe("catalog integrity", () => {
     expect(byId["legal-counsel"].id).not.toBe(byId.privacy.id);
     expect(byId["email-security"].id).not.toBe(byId["it-security"].id);
     expect(byId["soc-lead"].aliases).toEqual(expect.arrayContaining(["LC-AUD-03 (ops seat)"]));
+    expect(byId["ai-operator-owner"].aliases).toEqual(
+      expect.arrayContaining(["AI operator owner", "LC agentic operator governance"]),
+    );
+    expect(byId["ai-operator-owner"].id).not.toBe(byId["security-product-leader"].id);
+    expect(byId["ai-operator-owner"].id).not.toBe(byId["ai-security"].id);
+    expect(byId["detection-engineer"].aliases).toEqual(
+      expect.arrayContaining(["Lead SecOps", "LC use case: SecOps engineering"]),
+    );
+    expect(byId.appsec.aliases).toEqual(expect.arrayContaining(["LC use case: code security"]));
+    expect(byId["cloud-sec"].aliases).toEqual(expect.arrayContaining(["LC use case: cloud security"]));
     expect(new Set(catalog.personas.map((persona) => persona.id)).size).toBe(catalog.personas.length);
   });
 

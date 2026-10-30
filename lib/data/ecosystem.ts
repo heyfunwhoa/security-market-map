@@ -1790,6 +1790,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "Patch management owner",
       "Awareness owner",
       "LC committee: IT / infrastructure owner",
+      "LC use case: vulnerability reporting",
     ],
   },
   {
@@ -1892,7 +1893,12 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "Security content engineer",
       "Security automation engineer",
       "SOAR engineer",
+      "Lead SecOps",
+      "SecOps engineer",
+      "SecOps development",
       "LC-PER-04",
+      "LC use case: SecOps engineering",
+      "LC use case: Claude Code SecOps",
     ],
   },
   {
@@ -2011,6 +2017,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "Proactive threat hunter",
       "Hunt lead",
       "Cyber threat hunter",
+      "LC customer: threat hunter seat",
     ],
   },
   {
@@ -2050,6 +2057,8 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "Forensic analyst",
       "Computer forensics",
       "Forensics engineer",
+      "Senior DFIR analyst",
+      "LC customer: DFIR analyst seat",
     ],
   },
   {
@@ -2131,6 +2140,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "SCADA security",
       "OT cybersecurity engineer",
       "Industrial control system security",
+      "LC customer: OT / critical infrastructure",
     ],
   },
   {
@@ -2239,6 +2249,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "Service delivery (security)",
       "SOC-as-a-service lead",
       "Provider SecOps lead",
+      "Lead Security Operations",
       "LC-AUD-01",
       "LC-AUD-02",
     ],
@@ -2300,8 +2311,10 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "Security product founder",
       "Security product engineering lead",
       "SecOps product leader",
+      "Director of Engineering (security product)",
       "LC-PER-07",
       "LC-AUD-04",
+      "LC use case: SecOps development",
     ],
   },
   {
@@ -2400,6 +2413,27 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "RE analyst",
       "Malware reverse engineer",
       "Binary analyst",
+    ],
+  },
+  {
+    id: "ai-operator-owner",
+    name: "AI operator / agent governance",
+    title: "Defines what AI SecOps operators may do, and who reviews their actions",
+    caresAbout: "Charters, permission scope, auditability, and cost of agent actions—not building the AI SOC product itself.",
+    questions: [
+      "Who approves an agent charter that can isolate a host?",
+      "What audit evidence would you show a customer, auditor, or board?",
+      "Is this governing operators you run, or embedding agents in a product you sell?",
+    ],
+    categoryIds: ["agentic-runtime", "soar", "siem", "mdr", "detection-engineering", "xdr"],
+    aliases: [
+      "AI operator owner",
+      "Agentic SecOps owner",
+      "AI agent governance",
+      "SOC AI operator lead",
+      "Grid / AI field engineer sponsor",
+      "LC use case: Claude Code SecOps (governance seat)",
+      "LC agentic operator governance",
     ],
   },
   {
