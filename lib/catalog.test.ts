@@ -158,7 +158,18 @@ describe("catalog integrity", () => {
   });
 
   it("does not invent capability evidence outside the identity domain", () => {
-    const sourcedOutside = new Set(["cap-sast", "cap-cspm", "cap-endpoint-detect", "cap-backup-restore"]);
+    const sourcedOutside = new Set([
+      "cap-sast",
+      "cap-cspm",
+      "cap-endpoint-detect",
+      "cap-backup-restore",
+      // Developer endpoint research slice (PR #111): vendor-published claims only.
+      "cap-dev-local-secret-scan",
+      "cap-dev-package-install-policy",
+      "cap-dev-ai-tool-hook",
+      "cap-dev-ai-usage-inventory",
+      "cap-dev-honeytoken",
+    ]);
     const outside = catalog.capabilities.filter((capability) => {
       const category = catalog.categories.find((item) => item.id === capability.categoryId);
       return category && !category.domainIds.includes("identity");
@@ -181,6 +192,9 @@ describe("catalog integrity", () => {
     );
     expect(evidenceCell(catalog.claims, "crowdstrike-identity", "cap-itdr", "2026-10-26").status).toBe("unknown");
     expect(evidenceCell(catalog.claims, "proofpoint", "cap-dlp", "2026-10-26").status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "gitguardian-developer-endpoint", "cap-dev-local-secret-scan", "2026-10-30").status).toBe("evidenced");
+    expect(evidenceCell(catalog.claims, "gitguardian-developer-endpoint", "cap-dev-package-install-policy", "2026-10-30").status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "kingfisher", "cap-dev-local-secret-scan", "2026-10-30").status).toBe("unknown");
   });
 
   it("records sourced sentences for other security layers", () => {
