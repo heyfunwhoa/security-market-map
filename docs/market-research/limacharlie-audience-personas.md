@@ -189,6 +189,12 @@ Public typed buyer personas now exist in `lib/data` and are summarized in [secur
 | LC use case: SecOps development (builders) | `security-product-leader` |
 | LC use case: vulnerability reporting | `it-security` |
 | LC customer testimony titles (hunter/DFIR/OT) | `threat-hunter`, `digital-forensics`, `ot-security` |
+| LC use case: EDR / XDR | `it-security`, `soc-lead` |
+| LC use case: SIEM / log analytics | `siem-owner`, `secops-platform-architect` |
+| LC use case: IR | `incident-response`, `ir-services-lead` |
+| LC use case: SOAR / AI detection eng | `detection-engineer` |
+| LC use case: AI-assisted investigation | `soc-analyst`, `ai-operator-owner` |
+| LC use case: threat hunting / CTI | `threat-hunter`, `threat-intel` |
 
 ## Cross-repository disposition
 

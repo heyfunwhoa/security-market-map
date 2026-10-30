@@ -72,6 +72,7 @@ Canonical catalog `name` is the display label. `aliases` hold acronyms and alter
 | `malware-analyst` | RE | Malware reverse engineer |
 | `legal-counsel` | Legal | Commercial / security contracts counsel; LC committee legal |
 | `email-security` | EmailSec, SEG | Mailbox / secure email gateway owner; LC email use case |
+| `siem-owner` | SIEM | Log analytics / security data lake / observability owner; LC SIEM use case |
 | `ai-operator-owner` | Agentic SecOps | AI operator / agent charter governance; LC Claude Code / Grid governance seat |
 | `developer` | SWE | Software engineer, application developer |
 | `cto` | CTO | VP Engineering, Head of Engineering; LC-PER-02 eng seat |
@@ -425,6 +426,12 @@ Source research: [LimaCharlie audience and buyer personas](limacharlie-audience-
 | LC use case: SecOps engineering / Claude Code | `detection-engineer`, `ai-operator-owner` | Build content vs govern agent operators |
 | LC use case: SecOps development (builders) | `security-product-leader` | Product/platform builders on API infrastructure |
 | LC use case: vulnerability reporting | `it-security` | Fleet/CVE exposure reporting; not AppSec PSIRT by default |
+| LC use case: EDR / XDR | `it-security`, `soc-lead` | Endpoint owner vs D&R program owner |
+| LC use case: SIEM / log analytics | `siem-owner`, `secops-platform-architect` | Telemetry platform vs architect rails |
+| LC use case: IR | `incident-response`, `ir-services-lead` | Standing responder vs IR firm |
+| LC use case: SOAR / AI detection eng | `detection-engineer` | Content + automation authorship |
+| LC use case: AI-assisted investigation | `soc-analyst`, `ai-operator-owner` | Analyst consumer vs agent charter owner |
+| LC use case: threat hunting / CTI | `threat-hunter`, `threat-intel` | Hunt vs intel production |
 | LC customer: threat hunter / DFIR / OT | `threat-hunter`, `digital-forensics`, `ot-security` | Testimony titles noted as aliases; not ICP |
 
 ### SEC-PER-34 — Provider founder / CEO (`provider-founder`)
@@ -487,6 +494,12 @@ Source research: [LimaCharlie audience and buyer personas](limacharlie-audience-
 - **Discovery:** “Who approves an agent charter that can isolate a host—and what audit evidence would you show?”
 - **Boundary:** Not `security-product-leader` (embedding/selling an AI SOC), not `ai-security` (model/app risk), and not day-to-day `soc-analyst` triage unless one person wears those hats.
 
+### SEC-PER-45 — SIEM / security telemetry owner (`siem-owner`)
+
+- **Source:** LimaCharlie SIEM / log-analytics / security observability pipeline use-case positioning (data-lake alternative); retention and search economics are often a different seat from detection content authorship.[^LC-AUD]
+- **Discovery:** “Retention cost, search latency, or missing telemetry—and who owns the pipeline versus detections?”
+- **Boundary:** Not `detection-engineer` (rules/content) and not `soc-lead` (queue outcomes) unless one person owns all three.
+
 ## Buying-committee collisions to qualify
 
 | Collision | What goes wrong | Qualification question |
@@ -519,6 +532,8 @@ Source research: [LimaCharlie audience and buyer personas](limacharlie-audience-
 | AI operator governance vs AI SOC builder | Run agents vs ship a product | Governing operators you run, or embedding agents you sell? |
 | AI operator vs detection eng | Charter/audit vs content authorship | Who sets agent limits vs who writes the detection? |
 | Vuln reporting vs AppSec / ProdSec | Fleet CVE inventory vs code/disclosure program | Endpoint package exposure or repository/PSIRT workflow? |
+| SIEM owner vs detection eng vs SOC lead | Platform cost vs content vs queue | Who pays for retention, who writes rules, who owns SLAs? |
+| EDR endpoint owner vs SOC XDR program | IT estate vs D&R stack | Laptop/server sensor buy or SOC detection program? |
 
 ## Fit worksheet (do not score leads from titles alone)
 

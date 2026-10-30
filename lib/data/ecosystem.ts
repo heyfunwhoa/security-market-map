@@ -1784,6 +1784,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "Enterprise security operations",
       "Endpoint security owner",
       "EDR owner",
+      "LC use case: EDR / XDR (endpoint seat)",
       "Vulnerability management",
       "VM owner",
       "VulnOps",
@@ -1869,6 +1870,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "XDR program owner",
       "LC-PER-03",
       "LC-AUD-03 (ops seat)",
+      "LC use case: EDR / XDR (program seat)",
     ],
   },
   {
@@ -1899,6 +1901,8 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "LC-PER-04",
       "LC use case: SecOps engineering",
       "LC use case: Claude Code SecOps",
+      "LC use case: SOAR / automation",
+      "LC use case: AI detection engineering",
     ],
   },
   {
@@ -1976,6 +1980,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "Blue team analyst",
       "Monitoring analyst",
       "LC-PER-05 (analyst seat)",
+      "LC use case: AI-assisted investigation",
     ],
   },
   {
@@ -1998,6 +2003,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "Cyber incident responder",
       "CSIRT responder",
       "LC-PER-05 (responder seat)",
+      "LC use case: incident response",
     ],
   },
   {
@@ -2018,6 +2024,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "Hunt lead",
       "Cyber threat hunter",
       "LC customer: threat hunter seat",
+      "LC use case: threat hunting",
     ],
   },
   {
@@ -2038,6 +2045,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "Threat analysis",
       "Threat intelligence lead",
       "Intel analyst",
+      "LC use case: cyber threat intelligence",
     ],
   },
   {
@@ -2292,6 +2300,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "Security engineering architect (SecOps)",
       "Head of security platform",
       "LC-PER-02",
+      "LC use case: SIEM / log analytics (architect)",
     ],
   },
   {
@@ -2335,6 +2344,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "Breach response lead",
       "Consulting IR lead",
       "LC-AUD-05",
+      "LC use case: incident response (firm)",
     ],
   },
   {
@@ -2413,6 +2423,26 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "RE analyst",
       "Malware reverse engineer",
       "Binary analyst",
+    ],
+  },
+  {
+    id: "siem-owner",
+    name: "SIEM / security telemetry owner",
+    title: "Owns log retention, search cost, and the security data platform analysts query",
+    caresAbout: "Ingest coverage, retention economics, query performance, and not paying twice for the same telemetry.",
+    questions: [
+      "Is the pain retention cost, search latency, or missing telemetry for detections?",
+      "Who owns the pipeline versus who writes detections on top of it?",
+      "What export or dual-write path do you require before cutting over?",
+    ],
+    categoryIds: ["siem", "security-data-pipelines", "xdr", "cloud-detection", "mdr"],
+    aliases: [
+      "SIEM owner",
+      "Log analytics owner",
+      "Security data lake owner",
+      "Security observability owner",
+      "Telemetry platform owner",
+      "LC use case: SIEM / log analytics",
     ],
   },
   {
