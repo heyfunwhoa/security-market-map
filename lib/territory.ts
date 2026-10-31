@@ -54,7 +54,8 @@ function whitespace(
 }
 
 export function scoreAccount(account: Account, weights: FitWeights): AccountScore {
-  const parsedAccount = accountSchema.parse(account);
+  // A draft can be unnamed while the user is typing. Names do not affect fit.
+  const parsedAccount = accountSchema.parse({ ...account, name: account.name.trim() || "Untitled account" });
   const parsedWeights = fitWeightsSchema.parse(weights);
   const iga = whitespace(parsedAccount.iga.state, "IGA");
   const pam = whitespace(parsedAccount.pam.state, "PAM");
@@ -170,7 +171,7 @@ export function accountBrief(input: {
   };
 
   const lines = [
-    `# Account brief: ${account.name}`,
+    `# Account brief: ${account.name.trim() || "Untitled account"}`,
     "",
     "Working note for a cybersecurity analyst. Installed technology below is only what was typed into the atlas. Blank fields are unknown.",
     "",
