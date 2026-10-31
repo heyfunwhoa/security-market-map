@@ -97,6 +97,12 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         </ol>
       </section>
 
+      {slug === "aikido-device-protection" ? <ProductFocus stages={[
+        { title: "Request", summary: "A developer or coding agent requests a package from a supported registry.", check: "Confirm the actual package manager, network route, mirror, operating system and device enrollment.", boundary: "An unsupported registry, offline cache, container or WSL path must not be assumed covered." },
+        { title: "Inspect", summary: "A local device component evaluates traffic on supported domains.", check: "Review selective interception, TLS trust configuration, privacy, and proxy compatibility.", boundary: "Network inspection does not mean universal device or malware visibility." },
+        { title: "Decide", summary: "The agent applies available package policy and threat-intelligence decisions.", check: "Use a benign synthetic policy block to test decision timing and exception behavior.", boundary: "A detection or post-install alert is not necessarily a pre-install block." },
+        { title: "Report", summary: "Device events and package inventory provide investigation context.", check: "Confirm event timestamp, allowed/blocked decision, metadata minimization, and response owner.", boundary: "Package or AI-provider usage inventory does not establish AI prompt or MCP tool-call prevention." },
+      ]} /> : null}
       {slug === "kingfisher" ? <ProductFocus stages={[
         { title: "Detect", summary: "Match candidate secrets in authorized targets.", check: "Inspect source, pinned rule ID, location and redacted finding.", boundary: "A match is a candidate, not proof that the credential is active." },
         { title: "Validate", summary: "Optionally ask a supported issuer whether a credential works.", check: "Confirm provider support, test authorization, outcomes and network side effects.", boundary: "Timeouts and unsupported credential types are inconclusive, not invalid." },
