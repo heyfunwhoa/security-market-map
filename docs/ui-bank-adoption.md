@@ -1,5 +1,7 @@
 # Local UI bank adoption
 
+Territory account-saving implementation and verification: [local acceptance record](verification/territory-account-persistence.md). Reuses existing controls and adapts inline feedback; no new dependency or copied upstream source.
+
 Status: proposed in this PR; documentation adoption only when merged.
 Owner: repository maintainer. Review date: 2026-10-12.
 
