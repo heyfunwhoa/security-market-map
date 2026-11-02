@@ -1418,8 +1418,8 @@ export const ecosystemCategories: Category[] = [
     budgetSource: "Endpoint. A specialist here is not an XDR suite unless the quote says so.",
     triggers: ["Coding agents on laptops", "Browser and SaaS actions EDR does not see"],
     outcomes: ["Context for a local agent action", "A control that is not only a process kill"],
-    adjacentCategoryIds: ["endpoint-security", "xdr", "agentic-runtime", "dlp"],
-    exampleWorkflow: "A coding agent on a laptop reads a repository and calls a tool. EDR sees a process. The endpoint-control product is sold to explain the prompt and the data that moved.",
+    adjacentCategoryIds: ["endpoint-security", "xdr", "agentic-runtime", "dlp", "secrets-detection", "software-supply-chain", "mcp-security"],
+    exampleWorkflow: "A developer or coding agent reads a local credential, requests an npm dependency, and calls a tool. Secrets scanning identifies credential exposure, package controls can stop supported malicious installs, agent hooks may govern supported tool interactions, and EDR observes processes. None alone supplies all four outcomes.",
     flow: {
       actor: "Person or local agent",
       credential: "Session, token, or developer permission",
