@@ -30,12 +30,8 @@ export type SectionLink = { id: string; label: string };
 export function productResearchSections(slug: ProductResearchSlug): SectionLink[] {
   return [
     { id: "how-it-works", label: "How it works" },
-    ...(slug === "kingfisher"
-      ? [
-          { id: "product-focus-title", label: "Zoom in" },
-          { id: "kingfisher-upstream", label: "Upstream" },
-        ]
-      : []),
+    ...(slug === "kingfisher" || slug === "aikido-device-protection" ? [{ id: "product-focus-title", label: "Zoom in" }] : []),
+    ...(slug === "kingfisher" ? [{ id: "kingfisher-upstream", label: "Upstream" }] : []),
     { id: "limitations", label: "Limitations" },
     { id: "evidence", label: "Evidence" },
     { id: "investigate", label: "Pilot questions" },
