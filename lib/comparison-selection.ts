@@ -7,6 +7,9 @@ export const SECRETS_MANAGEMENT_COMPARISON_URL =
 export const SECRETS_COMPARISON_URL =
   "/compare?category=secrets-detection&use=uc-detect&products=trufflehog,github-secret-scanning,gitguardian,gitleaks";
 
+export const DEVELOPER_ENDPOINT_COMPARISON_URL =
+  "/compare?category=endpoint-control&use=uc-developer-endpoint&products=gitguardian-developer-endpoint,aikido-device-protection";
+
 export function productsInCategory(products: Product[], categoryId: string) {
   return products.filter(
     (product) =>
@@ -50,5 +53,6 @@ export function comparisonSelection(
 export function comparisonPresetCategory(presetId: string): string {
   if (presetId === "secrets-three" || presetId === "vault") return "secrets-management";
   if (presetId === "detect") return "secrets-detection";
+  if (presetId === "developer-endpoint") return "endpoint-control";
   return "";
 }
