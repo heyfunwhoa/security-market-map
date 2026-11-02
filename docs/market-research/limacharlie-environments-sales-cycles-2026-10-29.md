@@ -17,7 +17,7 @@ As of 2026-10-29. Status: source-backed vendor capabilities and **unvalidated GT
 
 **Cloud-native:** Relative attractiveness increases when customer uses substantial identity and cloud logs but few traditional endpoints. External telemetry charged by GB; endpoint sensor telemetry has different billing. Validate filters and actual GB/day. Measure signal-to-noise and cost per investigated cloud finding.
 
-**DFIR:** Sleeper mode documented at $0.10 per 30 days *plus* event processing and retained-event charges. Prepositioning lowers readiness latency, but contract/process for activation is essential. Measure drill success and time to useful evidence.
+**DFIR:** A sensor in sleeper mode is billed only for connected time, documented at $0.10 per 30 days. Once activated, event processing ($0.67 per 100,000 events) and retention ($0.17 per 100,000 events) apply (sleeper-mode docs, checked 2026-11-01). Prepositioning lowers readiness latency, but contract/process for activation is essential. Measure drill success and time to useful evidence.
 
 **Enterprise:** Coexist with SIEM/EDR first. Use D&R, outputs and native integrations to prove one scope. No general SIEM replacement claim without parity tests. Measure cost and latency of that exact scope plus governance.
 
