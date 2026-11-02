@@ -1,111 +1,78 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import { AS_OF } from "@/lib/schema";
 import { formatDate } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import type { SearchHit } from "@/lib/search";
 import { SearchCommand } from "@/components/search-panel";
+import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetClose } from "@/components/ui/sheet";
 
-const LINKS = [
-  { href: "/domains", label: "Domains" },
-  { href: "/attack-path", label: "Attack path" },
-  { href: "/control-map", label: "Controls" },
-  { href: "/frameworks", label: "Frameworks" },
-  { href: "/connections", label: "Connections" },
-  { href: "/learn", label: "Learn" },
-  { href: "/landscape", label: "Landscape" },
-  { href: "/compare", label: "Compare" },
-  { href: "/use-cases", label: "Use cases" },
-  { href: "/budget", label: "Budget" },
-  { href: "/territory", label: "Territory" },
-  { href: "/sources", label: "Sources" },
+const NAV_GROUPS = [
+  { title: "Explore", links: [
+    { href: "/domains", label: "Explore domains", description: "Start with broad security areas and their categories." },
+    { href: "/landscape", label: "Browse products", description: "Filter vendors and products, inspect details, and build a shortlist." },
+    { href: "/compare", label: "Compare", description: "Compare product evidence for a specific use case." },
+    { href: "/use-cases", label: "Buyer use cases", description: "Start with the problem you need to solve." },
+  ] },
+  { title: "Learn", links: [
+    { href: "/learn", label: "Concepts & glossary", description: "Understand terminology and practical scenarios." },
+    { href: "/connections", label: "How tools connect", description: "Explore identity, secrets, and adjacent security jobs." },
+    { href: "/attack-path", label: "Attack paths", description: "Follow how an exposure can lead to an attack." },
+    { href: "/control-map", label: "Security controls", description: "Explore the controls that address security problems." },
+    { href: "/frameworks", label: "Frameworks", description: "Connect security concepts to framework guidance." },
+  ] },
+  { title: "Plan", links: [
+    { href: "/budget", label: "Budget worksheet", description: "Work through price signals and budget assumptions." },
+    { href: "/territory", label: "Territory planning", description: "Organize account and territory research." },
+  ] },
+  { title: "Research", links: [
+    { href: "/sources", label: "Sources & references", description: "Inspect the references behind the research." },
+  ] },
 ];
 
-function NavLinks({ className }: { className?: string }) {
-  const pathname = usePathname();
-  return (
-    <nav className={className} aria-label="Primary">
-      {LINKS.map((link) => {
-        const active = pathname === link.href || pathname.startsWith(`${link.href}/`);
-        return (
-          <Link
-            key={link.href}
-            href={link.href}
-            aria-current={active ? "page" : undefined}
-            className={cn(
-              "rounded-md px-1.5 py-1.5 text-sm whitespace-nowrap hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-              active ? "bg-muted font-semibold text-foreground" : "text-muted-foreground",
-            )}
-          >
-            {link.label}
-          </Link>
-        );
-      })}
-    </nav>
-  );
-}
+const navLinkClass = "inline-flex min-h-11 items-center rounded-md px-3 text-sm hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring";
 
 export function SiteHeader({ hits }: { hits: SearchHit[] }) {
   const pathname = usePathname();
-  const seenPath = useRef(pathname);
-
-  useEffect(() => {
-    if (seenPath.current === pathname) return;
-    seenPath.current = pathname;
-    const menu = document.getElementById("site-menu");
-    if (menu instanceof HTMLDetailsElement) menu.open = false;
-  }, [pathname]);
-
+  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
   return (
-    <header className="relative z-50 border-b border-border bg-background">
-      <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3">
-        <Link href="/" className="shrink-0">
-          <span className="block font-heading text-lg leading-none tracking-tight">
-            Security Market Map
-          </span>
-          <span className="text-xs text-muted-foreground">
-            Analyst coverage · as of {formatDate(AS_OF)}
-          </span>
+    <header className="relative z-40 border-b border-border bg-background">
+      <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-4 gap-y-2 px-4 py-3">
+        <Link href="/" aria-label="Security Market Map home" className="min-w-0 flex-1 rounded-sm py-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring">
+          <span className="block font-heading text-lg leading-snug tracking-tight">Security Market Map</span>
+          <span className="block text-xs text-muted-foreground">Research notes · as of {formatDate(AS_OF)}</span>
         </Link>
-        <div className="ml-auto flex items-center gap-2">
-          <NavLinks className="hidden items-center gap-0.5 lg:flex" />
+        <nav aria-label="Primary" className="hidden items-center gap-1 xl:flex">
+          {NAV_GROUPS[0].links.slice(0, 3).map((link) => <Link key={link.href} href={link.href} aria-current={pathname === link.href ? "page" : undefined} className={cn(navLinkClass, isActive(link.href) ? "bg-muted font-semibold" : "text-muted-foreground")}>{link.label}</Link>)}
+        </nav>
+        <div className="flex shrink-0 items-center gap-2">
           <SearchCommand hits={hits} />
-        <details id="site-menu" className="lg:hidden">
-          <summary
-            aria-label="Open menu"
-            aria-controls="mobile-nav"
-            className="flex size-8 cursor-pointer list-none items-center justify-center rounded-lg border border-border bg-background [&::-webkit-details-marker]:hidden"
-          >
-            <Menu className="menu-open size-4" />
-            <X className="menu-close size-4" />
-          </summary>
-          <nav
-            id="mobile-nav"
-            aria-label="Primary"
-            className="absolute top-full right-0 left-0 z-50 border-t border-border bg-background px-4 py-2 shadow-lg"
-          >
-            {LINKS.map((link) => {
-              const active = pathname === link.href || pathname.startsWith(`${link.href}/`);
-              return (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  aria-current={active ? "page" : undefined}
-                  className={cn(
-                    "block border-b border-border px-1 py-3 text-base last:border-b-0",
-                    active ? "font-semibold text-foreground" : "text-foreground",
-                  )}
-                >
-                  {link.label}
-                </a>
-              );
-            })}
-          </nav>
-        </details>
+          <Sheet>
+            <SheetTrigger className={`${navLinkClass} gap-2 border border-border`}>
+              <Menu className="size-4" aria-hidden="true" />Menu
+            </SheetTrigger>
+            <SheetContent showCloseButton={false} className="data-[side=right]:w-full data-[side=right]:sm:max-w-lg overflow-y-auto overscroll-contain motion-reduce:animate-none motion-reduce:transition-none">
+              <SheetHeader className="border-b border-border p-5">
+                <div className="flex items-center justify-between gap-3"><SheetTitle className="text-xl">Explore the map</SheetTitle><SheetClose className={`${navLinkClass} border border-border`}>Close</SheetClose></div>
+                <SheetDescription>Browse tools, understand the concepts, or inspect the research.</SheetDescription>
+              </SheetHeader>
+              <nav aria-label="All pages" className="space-y-6 px-5 pb-6">
+                <SheetClose asChild><Link href="/" aria-current={pathname === "/" ? "page" : undefined} className={`${navLinkClass} border border-border`}>Home overview</Link></SheetClose>
+                {NAV_GROUPS.map((group) => <section key={group.title} aria-label={group.title}>
+                  <h2 className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">{group.title}</h2>
+                  <ul className="space-y-1">{group.links.map((link) => <li key={link.href}>
+                    <SheetClose asChild><Link href={link.href} aria-current={pathname === link.href ? "page" : undefined} className={cn("block min-h-11 rounded-lg p-3 hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring", isActive(link.href) && "bg-muted")}>
+                      <span className="block font-medium">{link.label}{pathname === link.href && <span className="ml-2 text-xs text-muted-foreground">Current page</span>}</span>
+                      <span className="mt-1 block text-sm leading-5 text-muted-foreground">{link.description}</span>
+                    </Link></SheetClose>
+                  </li>)}</ul>
+                </section>)}
+              </nav>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </header>
@@ -183,10 +150,12 @@ export function StatusPill({ status }: { status: string }) {
 }
 
 export function PageIntro({
+  id,
   kicker,
   title,
   lede,
 }: {
+  id?: string;
   kicker: string;
   title: string;
   lede: string;
@@ -194,7 +163,7 @@ export function PageIntro({
   return (
     <header className="max-w-3xl">
       <p className="text-xs font-semibold tracking-[0.16em] text-primary uppercase">{kicker}</p>
-      <h1 className="mt-2 text-3xl tracking-tight text-balance sm:text-4xl">{title}</h1>
+      <h1 id={id} tabIndex={id ? -1 : undefined} className="mt-2 text-3xl tracking-tight text-balance sm:text-4xl">{title}</h1>
       <p className="mt-3 text-base leading-7 text-muted-foreground">{lede}</p>
     </header>
   );

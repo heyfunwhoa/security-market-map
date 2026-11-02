@@ -35,15 +35,18 @@ test("checks the current merged vendor, product, source and claim records", asyn
   const { sources } = await import("../lib/data/sources.ts");
   const { claims } = await import("../lib/data/claims.ts");
   const { capabilities } = await import("../lib/data/capabilities.ts");
+  const endpoint = await import("../lib/data/developer-endpoint.ts");
+  const endpointComparison = await import("../lib/data/developer-endpoint-comparison.ts");
   const collections = {
     vendors: [...market.vendors, ...ecosystem.ecosystemVendors, ...sweep.secretsSweepVendors, ...expanded.expandedVendors],
-    products: [...market.products, ...ecosystem.ecosystemProducts, ...sweep.secretsSweepProducts, ...expanded.expandedProducts],
-    sources: [...sources, ...sweep.secretsSweepSources, ...expanded.expandedSources],
-    claims: [...claims, ...sweep.secretsSweepClaims, ...expanded.expandedClaims],
+    products: [...market.products, ...ecosystem.ecosystemProducts, ...sweep.secretsSweepProducts, ...expanded.expandedProducts, ...endpoint.developerEndpointProducts],
+    sources: [...sources, ...sweep.secretsSweepSources, ...expanded.expandedSources, ...endpoint.developerEndpointSources],
+    claims: [...claims, ...sweep.secretsSweepClaims, ...expanded.expandedClaims, ...endpoint.developerEndpointClaims],
   };
   assert.deepEqual(identityProblems(collections), []);
+  assert.equal(collections.products.filter((product) => product.id === "kingfisher").length, 1);
   assert.deepEqual(provenanceProblems(collections.sources, collections.claims,
-    [...capabilities, ...ecosystem.ecosystemCapabilities].map((item) => item.id)), []);
+    [...capabilities, ...ecosystem.ecosystemCapabilities, ...endpointComparison.developerEndpointCapabilities].map((item) => item.id)), []);
 });
 
 test("contribution documents link to existing local files", async () => {
