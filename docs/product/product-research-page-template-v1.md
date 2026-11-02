@@ -40,3 +40,16 @@ Use already installed shadcn/Radix components; do not introduce a second primiti
 
 ## Definition of Done
 The product's own page communicates its job, boundaries, source evidence and next evaluation action without the comparison table. All supported claims have source provenance; missing evidence stays Unknown. A reviewer can follow the page and its links by keyboard and at mobile widths. PR CI and deploy status must be verified independently.
+
+## Research-to-Atlas evidence handoff
+
+Use the [Atlas handoff checklist proposed in M2](https://github.com/heyfunwhoa/detector-coverage-atlas/blob/fa2e31b49839bafc5424254bea9d9f9a04f31a06/docs/market-research/research-to-atlas-template.md) for technical intake. It is a manual review contract; it does not automate scraping, publication or scanner evaluation.
+
+- Begin with the latest merged implementation and open continuation PR. Kingfisher M1 is merged in [Atlas #69](https://github.com/heyfunwhoa/detector-coverage-atlas/pull/69); [M2 #70](https://github.com/heyfunwhoa/detector-coverage-atlas/pull/70) is a draft continuation, not released support.
+- Record an immutable commit, exact source path, SHA-256, source lines, parser version and verified-versus-synthetic provenance. A checked-out HEAD alone does not authenticate edited working-tree bytes.
+- Separate first-party exceptions from imported and generated rules. Record each material's original revision, license and transformation lineage; a product/package license cannot establish rights for every bundled source.
+- Require deterministic fixtures and negative tests for malformed/partial input, duplicate IDs, source tampering and imported-origin confusion. No pattern or credential execution is implied.
+- Add analyzer or validator relationships only from explicit source registration/dispatch evidence. Keep unsupported coverage and comparisons `unknown` or `not_evaluated`.
+- Kingfisher's verified source audit concerns five first-party exception identities only. M2 proposes YAML-aware parsing and immutable-blob verification. Betterleaks/Veles import parsing, validator registration and measured scanning remain outside that implementation. Do not turn the five identities into a complete coverage count or vendor comparison claim.
+
+Placement remains category → vendor → product → source evidence → optional Atlas. Reuse existing product IDs and navigation; no catalog, component, public capability or deployment change accompanies this handoff guidance. Keep rule-level records in Atlas.
