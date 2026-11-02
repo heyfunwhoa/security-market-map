@@ -1,3 +1,5 @@
+import { ScrollToTopButton } from "@/components/ui/scroll-to-top-button";
+import { PageJourney } from "@/components/page-journey";
 import Link from "next/link";
 import { AreaDiagram, CredentialChainDiagram, IdentityStructureDiagram } from "@/components/area-diagram";
 import { CloudAppShortlist, DataSecurityShortlist } from "@/components/cloud-app-shortlist";
@@ -43,12 +45,46 @@ function SeedLinks({ items }: { items: SeedLink[] }) {
 
 export default function ConnectionsPage() {
   return (
-    <main className="mx-auto max-w-6xl px-4 py-10">
+    <main className="mx-auto max-w-6xl px-4 pt-10 pb-24">
       <PageIntro
+        id="connections-introduction"
         kicker="Connections"
         title="Non-human identity is a discipline, not one product category"
         lede="It overlaps identity governance, secrets management, privileged access, cloud permissions, and agent authorization. An API key is a credential. The identity is the application, workload, service account, or agent that credential represents. This page is a synthesis of that landscape. It is not a Magic Quadrant, a Wave, or a feature comparison."
       />
+
+      <PageJourney steps={[
+        { href: "#identity-jobs", title: "Understand the model", description: "See identity types and the jobs they share." },
+        { href: "#credential-jobs", title: "Follow a real problem", description: "Walk through the different jobs created by a leaked key." },
+        { href: "#where-to-start", title: "Choose where to explore", description: "Find a starting point, then inspect product evidence before comparing." },
+      ]} back={{ href: "/domains", label: "Broaden to the full security landscape" }} />
+      <section className="mt-10">
+        <h2 id="identity-jobs" tabIndex={-1} className="scroll-mt-24 text-3xl tracking-tight focus-visible:outline-2 focus-visible:outline-ring">Three kinds of identity, four jobs</h2>
+        <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
+          Workforce identity, machine identity, and agent identity share discovery, authentication,
+          governance, and lifecycle. They do not share a buyer. A cell on a vendor page stays Unknown
+          until a source is attached.
+        </p>
+        <div className="mt-4">
+          <IdentityStructureDiagram />
+        </div>
+      </section>
+
+      <section className="mt-12">
+        <h2 id="credential-jobs" tabIndex={-1} className="scroll-mt-24 text-3xl tracking-tight focus-visible:outline-2 focus-visible:outline-ring">One leaked key, seven different jobs</h2>
+        <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
+          TruffleHog and Akeyless can be bought together. Detection does not replace issuance, and a
+          vault does not prove who owns the identity.{" "}
+          <Link href="/categories/secrets-management" className="text-primary hover:underline">
+            Gartner&apos;s 12 Aug 2024 public abstract
+          </Link>{" "}
+          says secrets management is part of machine identity management and is not the same thing. It
+          does not say a vault proves who owns the identity. The jobs below are this map&apos;s split.
+        </p>
+        <div className="mt-4">
+          <CredentialChainDiagram steps={credentialChain} />
+        </div>
+      </section>
 
       <section className="mt-10">
         <h2 className="text-3xl tracking-tight">Four eras of enterprise identity</h2>
@@ -152,45 +188,9 @@ export default function ConnectionsPage() {
       <CloudAppShortlist />
       <DataSecurityShortlist />
 
-      <section className="mt-10">
-        <h2 className="text-3xl tracking-tight">Three kinds of identity, four jobs</h2>
-        <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
-          Workforce identity, machine identity, and agent identity share discovery, authentication,
-          governance, and lifecycle. They do not share a buyer. A cell on a vendor page stays Unknown
-          until a source is attached.
-        </p>
-        <div className="mt-4">
-          <IdentityStructureDiagram />
-        </div>
-      </section>
 
-      <section className="mt-12">
-        <h2 className="text-3xl tracking-tight">One leaked key, seven different jobs</h2>
-        <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
-          TruffleHog and Akeyless can be bought together. Detection does not replace issuance, and a
-          vault does not prove who owns the identity.{" "}
-          <Link href="/categories/secrets-management" className="text-primary hover:underline">
-            Gartner&apos;s 12 Aug 2024 public abstract
-          </Link>{" "}
-          says secrets management is part of machine identity management and is not the same thing. It
-          does not say a vault proves who owns the identity. The jobs below are this map&apos;s split.
-        </p>
-        <div className="mt-4">
-          <CredentialChainDiagram steps={credentialChain} />
-        </div>
-        <ol className="mt-4 grid gap-3 md:grid-cols-2">
-          {credentialChain.map((step, index) => (
-            <li key={step.problem}>
-              <Link href={step.href} className="block h-full rounded-xl border border-border bg-card p-4 hover:bg-muted">
-                <span className="text-xs font-semibold tracking-wide text-primary uppercase">
-                  {index + 1}. {step.capability}
-                </span>
-                <span className="mt-2 block text-sm leading-6">{step.problem}</span>
-              </Link>
-            </li>
-          ))}
-        </ol>
-      </section>
+
+
 
       <section className="mt-12">
         <h2 className="text-3xl tracking-tight">What counts as a non-human identity</h2>
@@ -219,8 +219,7 @@ export default function ConnectionsPage() {
       <section className="mt-12">
         <h2 className="text-3xl tracking-tight">Segments, and where they overlap</h2>
         <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
-          Each diagram is one problem in the middle and the companies named around it. Circles are the
-          same idea, not a rank. A name in two diagrams is not a claim that both capabilities are licensed.
+          Each group names a problem and lists example companies. Card layout does not indicate rank. A name in two diagrams is not a claim that both capabilities are licensed.
         </p>
         <div className="mt-4 grid gap-4 lg:grid-cols-2">
           {segments.map((segment, index) => (
@@ -296,7 +295,7 @@ export default function ConnectionsPage() {
       </section>
 
       <section className="mt-12">
-        <h2 className="text-3xl tracking-tight">Where to look first</h2>
+        <h2 id="where-to-start" tabIndex={-1} className="scroll-mt-24 text-3xl tracking-tight focus-visible:outline-2 focus-visible:outline-ring">Where to look first</h2>
         <div className="mt-4 overflow-x-auto rounded-xl border border-border">
           <table className="w-full min-w-[48rem] text-left text-sm">
             <thead className="bg-muted/60">
@@ -393,6 +392,7 @@ export default function ConnectionsPage() {
           ))}
         </div>
       </section>
+      <ScrollToTopButton targetId="connections-introduction" />
     </main>
   );
 }

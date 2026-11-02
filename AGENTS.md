@@ -25,6 +25,14 @@ For vendor, category, competitor or cybersecurity market changes, read the [Comp
 
 Search the current `lib/data` catalog and existing PRs first. Separate candidate research notes from **reviewed, published typed claims**. Never infer a direct competitor from similar category labels, or fill feature parity from marketing impressions. Preserve vendor-reported status, original source URLs, observed/published/reviewed dates, rights constraints, disagreement and Unknown. Routing to Job Interview Command Center, sales accounts or revenue scenarios is **proposed consumer work** requiring each owner's review; never auto-write their stores. No private interview facts in this public repo.
 
+## Progressive market exploration — standing rule for new research
+
+Treat every future Security Market Map addition (vendor, product, category, relationship, capability, source or educational comparison) as part of one consistent **zoom out → zoom in** user journey. Read [progressive exploration guidance](docs/product/progressive-exploration.md) and inspect the current landscape, comparison and vendor-detail components before changing UI or catalog data.
+
+Start with the broad market/domain and buyer problem; then narrow to category and use case, relevant vendors/products, and finally attributed capability evidence and Unknowns. Preserve a clear way to broaden scope again. Place new material in existing taxonomy and product records first; do not create a new navigation, duplicate vendor, parallel source registry or capability merely to support the drill-down. A research-only addition should document its proposed placement and link to relevant existing screens; **it does not automatically warrant a UI change or promotion into published typed claims**. Show complementary versus overlapping tools in their actual buyer scenario, never infer direct competition or feature parity from a shared label.
+
+When preparing a PR, state the zoom-level placement, reused IDs/components, evidence and uncertainty, whether navigation changes are needed, and how the user can move out and back in. Verify responsive/keyboard/reduced-motion behavior when UI changes. Maintain human editorial gates, source provenance and no-merge/no-deploy policy above.
+
 ## Focused agent sessions
 
 For scoped agent work, use the proposed [focused-session procedure](https://github.com/heyfunwhoa/technical-docs-platform/blob/c749cc5c859472e2d8bdb982f0d6f346a5ad4c25/ai/agent-harness/focused-sessions.md) (upstream PR #38 is merged, while the procedure itself remains marked `in-review` with external release approval pending). Start from the issue and latest checkpoint, verify current revisions, inspect relevant changes, and expand discovery for concrete dependencies. Record evidence and next action at handoff; preserve required checks and local privacy/release rules. This is a pinned proposed reference, not automatic synchronization or token/spend enforcement.
