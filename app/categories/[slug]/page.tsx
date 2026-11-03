@@ -1,5 +1,6 @@
+import { PageJourney } from "@/components/page-journey";
 import { Breadcrumbs } from "@/components/breadcrumbs";
-import { SECRETS_COMPARISON_URL } from "@/lib/comparison-selection";
+import { SECRETS_COMPARISON_URL, DEVELOPER_ENDPOINT_COMPARISON_URL } from "@/lib/comparison-selection";
 import { AcademyLinks } from "@/components/academy-links";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -40,8 +41,13 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
     <main className="mx-auto max-w-6xl px-4 py-10">
       <Breadcrumbs parents={[{ href: "/", label: "Home" }, { href: "/landscape", label: "Landscape" }]} current={category.name} />
       <PageIntro kicker={category.layer === "adjacent" ? "Adjacent" : "Category"} title={category.name} lede={category.definition} />
+      <PageJourney steps={[
+        { href: "#category-buyer", title: "Understand the decision", description: "See the buyer question, owner, workflow and outcomes." },
+        { href: "#category-products", title: "Explore products", description: "Browse primary products, then open their vendor evidence." },
+        { href: "#category-evidence", title: "Check category claims", description: "Separate teaching notes from sourced category statements." },
+      ]} back={{ href: "/domains", label: "Broaden to all domains" }} />
       <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">{sourcingLabel}</p>
-      <p className="mt-4 max-w-3xl text-sm leading-6">
+      <p id="category-buyer" tabIndex={-1} className="mt-4 max-w-3xl scroll-mt-24 text-sm leading-6 focus-visible:outline-2 focus-visible:outline-ring">
         <span className="font-semibold">Buyer question. </span>
         {category.buyerQuestion}
       </p>
@@ -56,6 +62,18 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
           </p>
           <Link href={SECRETS_COMPARISON_URL} className="mt-3 inline-flex min-h-11 items-center rounded-md border border-border px-3 text-sm font-medium text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring">
             Compare secrets detection products
+          </Link>
+        </section>
+      ) : null}
+      {category.id === "endpoint-control" ? (
+        <section className="mt-6 rounded-xl border border-border bg-card p-4" aria-labelledby="compare-developer-endpoint">
+          <h2 id="compare-developer-endpoint" className="text-2xl">Compare developer endpoint controls</h2>
+          <p className="mt-2 text-sm leading-6">
+            Compare GitGuardian and Aikido by control boundary, not vendor logo.
+            An unsourced cell stays Unknown. Vendor-published documentation is not an independent effectiveness test.
+          </p>
+          <Link href={DEVELOPER_ENDPOINT_COMPARISON_URL} className="mt-3 inline-flex min-h-11 items-center rounded-md border border-border px-3 text-sm font-medium text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring">
+            Compare developer endpoint protection
           </Link>
         </section>
       ) : null}
@@ -143,7 +161,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
         </div>
       ) : null}
       <section className="mt-8">
-        <h2 className="text-2xl">Primary products</h2>
+        <h2 id="category-products" tabIndex={-1} className="scroll-mt-24 text-2xl focus-visible:outline-2 focus-visible:outline-ring">Primary products</h2>
         {products.length === 0 ? (
           <p className="mt-3 text-sm leading-6 text-muted-foreground">
             No primary product is assigned. An empty list is a gap in this map, not a finding that the field has no vendors.
@@ -153,8 +171,8 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
             {products.map((product) => (
               <li key={product.id}>
                 <Link
-                  href={`/vendors/${vendorById(product.vendorId)?.slug ?? ""}`}
-                  className="block rounded-lg border border-border px-3 py-2 text-sm hover:bg-muted"
+                  href={["gitguardian-developer-endpoint", "aikido-device-protection", "kingfisher"].includes(product.slug) ? `/products/${product.slug}` : `/vendors/${vendorById(product.vendorId)?.slug ?? ""}`}
+                  className="block min-h-11 break-words rounded-lg border border-border px-3 py-2 text-sm hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
                 >
                   {product.name}
                 </Link>
@@ -164,7 +182,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
         )}
       </section>
       <section className="mt-8">
-        <h2 className="text-2xl">Claims about this category</h2>
+        <h2 id="category-evidence" tabIndex={-1} className="scroll-mt-24 text-2xl focus-visible:outline-2 focus-visible:outline-ring">Claims about this category</h2>
         <div className="mt-3">
           <ClaimList claims={categoryClaims} />
         </div>

@@ -35,24 +35,27 @@ function CommandDialog({
   children,
   className,
   showCloseButton = true,
+  onCloseAutoFocus,
   ...props
 }: React.ComponentProps<typeof Dialog> & {
   title?: string
   description?: string
   className?: string
   showCloseButton?: boolean
+  onCloseAutoFocus?: React.ComponentProps<typeof DialogContent>["onCloseAutoFocus"]
 }) {
   return (
     <Dialog {...props}>
       <DialogContent
-        className={cn("overflow-hidden p-0 sm:max-w-lg", className)}
+        className={cn("max-h-[calc(100dvh-2rem)] overflow-hidden p-0 sm:max-w-lg", className)}
         showCloseButton={showCloseButton}
+        onCloseAutoFocus={onCloseAutoFocus}
       >
         <DialogHeader className="sr-only">
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription>{description}</DialogDescription>
         </DialogHeader>
-        <Command shouldFilter={false} vimBindings={false} label={title}>
+        <Command className="max-h-[calc(100dvh-2rem)] min-h-0" shouldFilter={false} vimBindings={false} label={title}>
           {children}
         </Command>
       </DialogContent>
@@ -65,12 +68,12 @@ function CommandInput({
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.Input>) {
   return (
-    <div data-slot="command-input-wrapper" className="flex h-11 items-center gap-2 border-b pr-12 pl-3">
+    <div data-slot="command-input-wrapper" className="flex h-11 shrink-0 items-center gap-2 border-b pr-12 pl-3">
       <SearchIcon className="size-4 shrink-0 opacity-50" />
       <CommandPrimitive.Input
         data-slot="command-input"
         className={cn(
-          "flex h-10 w-full rounded-md bg-transparent text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
+          "flex h-10 min-w-0 w-full rounded-md bg-transparent text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
           className
         )}
         {...props}
@@ -86,7 +89,7 @@ function CommandList({
   return (
     <CommandPrimitive.List
       data-slot="command-list"
-      className={cn("max-h-80 scroll-py-1 overflow-x-hidden overflow-y-auto p-1", className)}
+      className={cn("min-h-0 max-h-80 scroll-py-1 overflow-x-hidden overflow-y-auto p-1", className)}
       {...props}
     />
   )
@@ -125,7 +128,7 @@ function CommandItem({
     <CommandPrimitive.Item
       data-slot="command-item"
       className={cn(
-        "relative flex cursor-pointer items-start gap-2 rounded-md px-2 py-2 text-sm outline-none select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[selected=true]:bg-muted",
+        "relative flex min-w-0 cursor-pointer items-start gap-2 rounded-md px-2 py-2 text-sm [overflow-wrap:anywhere] outline-none select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[selected=true]:bg-muted",
         className
       )}
       {...props}
