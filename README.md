@@ -4,6 +4,17 @@ An evidence-linked guide to the cybersecurity market: what each solution categor
 
 Built by Kristen Aing as a portfolio project combining enterprise security sales, competitive research, and product thinking.
 
+## Purpose
+
+Help people navigate complex security markets and make informed choices with confidence.
+
+- **Who it helps:** security buyers, builders, sellers and learners comparing categories and tools.
+- **What gets in their way:** overlapping categories, fragmented sources and unclear capability claims.
+- **How it helps:** organize the landscape and connect published claims to their evidence, keeping Unknown and research limits visible.
+- **What works today:** the existing feature, status and data-limit sections below define current scope; this purpose does not expand the implemented catalog or enable live research.
+
+The aspiration is to empower better security decisions with less research friction. This is an intended benefit, not a claim of measured savings or verified product suitability. It applies the [joy. brand purpose](https://github.com/heyfunwhoa/byjoyaing-portfolio/blob/main/docs/brand/brand-guidelines.md) through this project's own evidence standards.
+
 ## Why this exists
 
 Security categories are difficult to navigate. A product may be described as identity security, secrets management, cloud security, or application security depending on its capabilities and buyer. This project makes those relationships easier to explore without treating every vendor as a direct competitor.
