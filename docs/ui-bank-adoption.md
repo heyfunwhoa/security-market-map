@@ -391,3 +391,24 @@ The scope omits upstream container/custom-icon options that this page does not n
 Status: draft preview adoption, not production. Verify visibility, activation and
 heading focus in the preview; mobile/zoom and actual screen-reader speech remain
 manual checks. Rollback removes this call site/component and optional heading prop.
+
+### Product research pages (2026-10-30)
+
+Reuse the local breadcrumb, PageIntro, StatusPill, and the installed Radix accordion.
+`ProductSectionNav` and `ProductFocus` are small local compositions, not a new
+component library. Kingfisher uses Secrets detection; GitGuardian Developer Endpoint
+Protection and Aikido Device Protection use Endpoint control. The five-stage control
+is an explanation. Detector coverage stays not evaluated for the separate Atlas parser.
+
+In-page links are native anchors. Targets are focusable and use scroll-margin so the
+large-screen sticky section nav does not cover them. Previous, Next, and Show all
+stages stay focusable when they cannot move. Vendor-published wording stays outside
+the disclosure. Closed accordion content stays hidden. Reduced motion disables the
+accordion animation.
+
+Automated Chrome checks on the local production preview covered 320, 375, 768, and
+1280 CSS pixels, a 640px layout stand-in for 200% zoom on a 1280px window, CSS zoom
+at 200%, keyboard stage controls, accordion Enter and ArrowDown, and hash focus.
+VoiceOver or another screen reader, a physical phone, and the operating-system zoom
+control were not run. Rollback reverts these page compositions; catalog claims stay
+vendor-published.

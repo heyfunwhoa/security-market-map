@@ -67,6 +67,12 @@ const PRESETS: {
     productIds: ["vault", "akeyless", "aws-secrets-manager", "idira-secrets"],
   },
   {
+    id: "developer-endpoint",
+    label: "Developer endpoint: GitGuardian vs Aikido",
+    useCaseId: "uc-developer-endpoint",
+    productIds: ["gitguardian-developer-endpoint", "aikido-device-protection"],
+  },
+  {
     id: "detect",
     label: "Secrets detection",
     useCaseId: "uc-detect",

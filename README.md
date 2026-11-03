@@ -64,6 +64,9 @@ npm run dev
 
 The dev server listens on [http://127.0.0.1:43123](http://127.0.0.1:43123).
 
+UI components are maintained locally. The app uses a licensed, versioned copy of
+shadcn's CSS without installing its CLI; see [stylesheet and component maintenance](app/styles/vendor/README.md).
+
 ```bash
 npm test
 npm run typecheck

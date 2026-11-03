@@ -1,0 +1,14 @@
+{
+  "files": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "README.md",
+    "RELEASE.md",
+    ".github/RELEASE_CHECKLIST.md",
+    ".github/pull_request_template.md",
+    "docs/engineering-standards.md"
+  ],
+  "markdownPrefixes": [
+    ".release/notes/"
+  ]
+}

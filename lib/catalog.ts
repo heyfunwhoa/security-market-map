@@ -50,6 +50,8 @@ import {
   ecosystemVendors,
 } from "./data/ecosystem";
 import { distinctions, glossary, scenarios } from "./data/learn";
+import { developerEndpointProducts, developerEndpointSources, developerEndpointClaims } from "./data/developer-endpoint";
+import { developerEndpointCapabilities, developerEndpointUseCases } from "./data/developer-endpoint-comparison";
 import { events, products, vendors } from "./data/market";
 import { personas } from "./data/personas";
 import { customerStories, pricingSignals, relationships } from "./data/relationships";
@@ -95,12 +97,12 @@ function parseCatalog(): Catalog {
     domains: z.array(domainSchema).parse(domains),
     categories: z.array(categorySchema).parse(allCategories),
     vendors: z.array(vendorSchema).parse([...vendors, ...ecosystemVendors, ...secretsSweepVendors, ...expandedVendors].map(includeSecretsDetection).map(includeExpandedDspm)),
-    products: z.array(productSchema).parse([...products, ...ecosystemProducts, ...secretsSweepProducts, ...expandedProducts]),
-    capabilities: z.array(capabilitySchema).parse([...capabilities, ...ecosystemCapabilities]),
-    useCases: z.array(useCaseSchema).parse([...useCases, ...ecosystemUseCases]),
+    products: z.array(productSchema).parse([...products, ...ecosystemProducts, ...secretsSweepProducts, ...expandedProducts, ...developerEndpointProducts]),
+    capabilities: z.array(capabilitySchema).parse([...capabilities, ...ecosystemCapabilities, ...developerEndpointCapabilities]),
+    useCases: z.array(useCaseSchema).parse([...useCases, ...ecosystemUseCases, ...developerEndpointUseCases]),
     personas: z.array(personaSchema).parse([...personas, ...ecosystemPersonas]),
-    sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources]),
-    claims: z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims]),
+    sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources, ...developerEndpointSources]),
+    claims: z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims, ...developerEndpointClaims]),
     relationships: z.array(relationshipSchema).parse([...relationships, ...ecosystemRelationships]),
     stories: z.array(customerStorySchema).parse(customerStories),
     pricing: z.array(pricingSignalSchema).parse(pricingSignals),
