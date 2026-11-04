@@ -27,6 +27,12 @@ Application code, published lessons/content, runtime data, dependencies, securit
 
 For the new ignore scripts, RELEASE_FORCE_BUILD=1 forces a build when deliberately set in the build environment. Otherwise revert the ignoreCommand addition through a reviewed PR to disable filtering. Preserve existing cron/install/build settings. A production rollback must identify the previous known-good deployment and account for incompatible database changes; do not assume a code rollback reverses data migrations.
 
+### Draft PR previews
+
+Preview builds are skipped while a pull request is a draft (`.release/preview-draft.mjs`). Production builds are never affected. The check reads the PR through the GitHub API using `GITHUB_PR_READ_TOKEN`, a fine-grained token with read-only Pull requests access, set in Vercel for the Preview environment only. Without the token, or on any API error or timeout, the build runs.
+
+Marking a PR ready does not push a commit, so Vercel does not rebuild by itself. Push a commit, click Redeploy in Vercel, or put `[preview]` in a commit message to build a draft preview. A branch pushed before its PR exists also builds. To turn the check off, remove the token from Vercel.
+
 ## Enforcement status
 
 Repository configuration and tests are prepared in this PR. This document and the manual preflight are not branch protection. Required-check settings, Git production branch, environment approvals and successful hosted filtering must be verified by the release operator. No production activation or hosting permission is granted here.
