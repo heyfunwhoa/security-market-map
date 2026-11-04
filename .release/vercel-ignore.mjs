@@ -34,7 +34,8 @@ export function decide(env = process.env, cwd = process.cwd()) {
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-  const result = decide();
+  const { draftPreviewSkip } = await import('./preview-draft.mjs');
+  const result = (await draftPreviewSkip()) ?? decide();
   console.log(result.reason);
   process.exitCode = result.code;
 }
