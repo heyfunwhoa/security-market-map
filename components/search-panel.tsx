@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
 import { searchHits, type SearchHit } from "@/lib/search";
@@ -21,6 +21,8 @@ export function openSearch() {
 
 export function SearchCommand({ hits }: { hits: SearchHit[] }) {
   const router = useRouter();
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const navigating = useRef(false);
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const results = useMemo(() => searchHits(query, hits), [query, hits]);
@@ -44,6 +46,7 @@ export function SearchCommand({ hits }: { hits: SearchHit[] }) {
   }, []);
 
   function choose(href: string) {
+    navigating.current = true;
     setOpen(false);
     setQuery("");
     router.push(href);
@@ -52,18 +55,25 @@ export function SearchCommand({ hits }: { hits: SearchHit[] }) {
   return (
     <>
       <Button
+        ref={triggerRef}
         type="button"
         variant="outline"
         size="sm"
+        className="min-h-11 min-w-11 px-3"
         onClick={() => setOpen(true)}
         aria-label="Search the map"
         aria-keyshortcuts="Control+K Meta+K"
       >
         <Search />
-        <span className="sr-only">Search</span>
+        <span className="hidden sm:inline">Search</span>
       </Button>
       <CommandDialog
         open={open}
+        onCloseAutoFocus={(event) => {
+          event.preventDefault();
+          if (!navigating.current) triggerRef.current?.focus();
+          navigating.current = false;
+        }}
         onOpenChange={(next) => {
           setOpen(next);
           if (!next) setQuery("");
@@ -90,7 +100,7 @@ export function SearchCommand({ hits }: { hits: SearchHit[] }) {
               <span className="mt-0.5 shrink-0 text-xs tracking-wide text-muted-foreground uppercase">
                 {hit.kind}
               </span>
-              <span className="font-medium">{hit.title}</span>
+              <span className="min-w-0 font-medium">{hit.title}</span>
             </CommandItem>
           ))}
         </CommandList>

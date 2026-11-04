@@ -1,4 +1,5 @@
 import { RelationshipExplorer } from "@/components/relationship-explorer";
+import { Suspense } from "react";
 import { PageIntro } from "@/components/chrome";
 import { LandscapeBrowser, type LandscapeEdge, type LandscapeRow } from "@/components/landscape-browser";
 import { catalog, vendorById } from "@/lib/catalog";
@@ -73,10 +74,11 @@ export default function LandscapePage() {
         }];
       })} />
       <div className="mt-8">
+        <Suspense fallback={<p role="status">Loading landscape filters…</p>}>
         <LandscapeBrowser
           rows={rows}
           edges={edges}
-          categories={catalog.categories.map((category) => ({ id: category.id, label: category.name }))}
+          categories={catalog.categories.map((category) => ({ id: category.id, label: category.name, domainIds: category.domainIds }))}
           domains={catalog.domains.map((domain) => ({ id: domain.id, label: domain.name }))}
           useCases={catalog.useCases.map((useCase) => ({ id: useCase.id, label: useCase.name }))}
           personas={catalog.personas.map((persona) => ({
@@ -85,6 +87,7 @@ export default function LandscapePage() {
             categoryIds: persona.categoryIds,
           }))}
         />
+        </Suspense>
       </div>
     </main>
   );
