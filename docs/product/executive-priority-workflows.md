@@ -4,6 +4,8 @@ Status: **proposed design, not implemented integration**. Owner: Security Market
 
 ## Decision
 
+**Worked pilot:** [Decision map, common template and three briefs](decision-briefs/README.md) applies this design to resilience, secure AI adoption and technology consolidation. Includes separate evidence-quality, applicability and outcome assessments. The briefs are editorial candidates, not live consumer records.
+
 Connect projects through explicit, versioned references and local review decisions. Keep source collection, public interpretation, account context and revenue assumptions under separate ownership.
 
 Two approvals answer different questions:
