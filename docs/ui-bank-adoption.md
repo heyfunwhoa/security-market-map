@@ -412,3 +412,15 @@ at 200%, keyboard stage controls, accordion Enter and ArrowDown, and hash focus.
 VoiceOver or another screen reader, a physical phone, and the operating-system zoom
 control were not run. Rollback reverts these page compositions; catalog claims stay
 vendor-published.
+
+
+## Component reuse checkpoint: 2026-11-06
+Status: implemented on the existing review branch; not merged or browser accepted.
+Task: make review status and empty-state guidance clear.
+Decision: reuse local Badge and add a minimal source-adapted Empty in relationship-explorer; keep provenance and existing filter behavior.
+No npm package or lockfile changes: installed Radix/React remains authoritative.
+No extra framework, provider, automatic synchronization, catalog claim or schema change.
+Long labels wrap; controls retain labels and keyboard focus; no animation introduced.
+Upstream MIT notice retained in licenses/shadcn-ui.txt. Source snapshots from shadcn-ui/ui apps/v4/registry/new-york-v4/ui: empty.tsx blob bfd524fb206070222851692210a62144f44c0611. Snapshot hashes are not package versions.
+Validation: required current-head CI/security and responsive/keyboard checks recorded in the owning PR. Source inspection alone is not browser acceptance.
+Rollback: revert this component-adoption commit; no data cleanup.
