@@ -53,3 +53,5 @@ Standing owner direction (2026-11-06): repository knowledge must start with a re
 5. Reuse and link the foundational material across research. Do not duplicate it for each competitor or let company-specific conclusions silently alter neutral definitions.
 
 For each research addition, verify that the foundational section remains useful if all vendor names are removed. Keep public market knowledge separate from private account, employer and interview information. Apply this direction to future repository work; this local rule does not claim other repositories have already been edited.
+
+Clarification (2026-11-06): prioritize industry/category depth and standalone vendor profiles. Do not automatically turn vendor enrichment into competitor comparisons, battlecards or a LimaCharlie-relative matrix. Brief differences or overlap notes may be added when useful; deeper comparisons require a specific buyer decision or user request. Use [the industry/category foundation](docs/market-research/industry-category-foundation.md) as the reusable starting point.
