@@ -224,6 +224,9 @@ For sales use, translate a market trend into a discovery hypothesis, never autom
 
 ## 7. Keep the intelligence current
 
+**Connected workflows:** [Executive priorities: workflows and independent maintenance](../product/executive-priority-workflows.md) maps learning, category exploration, account discovery and budget planning to separate publisher/consumer reviews, pinned revisions, freshness checks and correction handling. This is a proposed integration design, not live synchronization.
+
+
 Use [the seeded trend tracker](cio-ciso-budget-tracker.csv) and [source notes](cio-ciso-budget-sources.md). The CSV is an editorial worksheet, not a parallel application source registry or published catalog. Keep additions source-linked and human-reviewed before promotion.
 
 Separate maturity from budget status: emerging topic → scoped project → requested funding → approved funding → committed purchase → deployed capability → measured outcome. The current tracker contains public market signals and planning hypotheses, not account-specific approved budgets.
