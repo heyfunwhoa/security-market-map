@@ -4,6 +4,8 @@
 
 This extends the [existing SecOps landscape](agentic-secops-competitive-landscape.md) and the [SACR crosswalk](sacr-category-crosswalk-2026-11-06.md). It asks: **what should a service provider buy, build or outsource to deliver secure, profitable services across many customers?**
 
+**Reading order:** Sections 1–3 establish a vendor-agnostic foundation: concepts, delivery economics and evaluation. Sections 4–5 layer vendor evidence and explicitly company-specific hypotheses onto it. LimaCharlie is one application, not the definition of the market.
+
 ## 1. Understand the layers before comparing companies
 
 | Term | Plain-language role | What the buyer still needs to establish |
@@ -24,11 +26,47 @@ An MSSP can sell MDR. It can run its own SOC, use a co-managed model, or buy a v
 
 These are editorial explanations. SACR's glossary [S2] supplies category reference points; actual product capabilities remain source-specific.
 
-## 2. Competitors grouped by the purchase decision
+## 2. Model the provider's business, not just the license
+
+Use one common workload: tenant count, endpoints, users, telemetry/day, retention, alerts, investigations and promised service hours. Compare the same service coverage and contractual responsibilities.
+
+`Monthly delivery contribution = service revenue - vendor licenses - data/retention/query costs - AI usage - delivery labor - support/escalation - allocated onboarding cost`
+
+`Contribution margin = monthly delivery contribution / service revenue`
+
+This is a decision worksheet, not an accounting standard or an observed vendor margin. Finance must decide which delivery costs belong in cost of revenue. Keep sales/marketing and general overhead separate when calculating operating profit.
+
+**Illustrative only:** $20,000 monthly service revenue minus $4,000 licenses, $6,000 labor, $1,000 data/AI and $1,000 onboarding/support leaves $8,000, or 40%. Saving $1,000 in licenses while adding $2,000 in labor reduces contribution to $7,000, or 35%. A cheaper license can produce a worse business.
+
+| Economic mechanism | Customer benefit to test | Vendor expansion hypothesis, not verified contract terms |
+| --- | --- | --- |
+| Consolidation | Fewer contracts, integrations and consoles to maintain | More customers/modules standardized on the platform |
+| Automation | Less repeated work at a fixed quality threshold | More workflow adoption or contracted usage |
+| Managed service | Access to coverage and expertise without equivalent internal staffing | More protected units/services |
+| Programmable infrastructure | Reuse service logic and onboard customers consistently | More protected workloads and platform consumption |
+| Predictable pricing | Less variance between client fees and delivery costs | Aggregate customer volume and broader adoption |
+
+Provider profit and vendor revenue can grow together if cost per delivered service falls while customer volume or paid service scope grows. That is a hypothesis to measure, not an automatic consequence of usage billing.
+
+## 3. Evaluation that could actually change a decision
+
+Run three representative tenant profiles: a small Microsoft-centric client, a heterogeneous mid-market client and a noisy cloud-heavy client. Use synthetic or authorized test data. Agree on required coverage before measuring speed.
+
+1. Onboard each tenant and record elapsed time, engineering hours, permission setup and first useful detection.
+2. Execute ten documented detection/investigation scenarios, including benign events and missing telemetry. Measure false positives, missed threats and evidence quality.
+3. Exercise one approved containment action, denied permissions, a failed integration and escalation. Record auditability and safe recovery; not every response action is reversible.
+4. Change a shared rule across tenants, preserve a client exception and test rollback of configuration.
+5. Model base and high-volume months, including AI usage, query/storage and overage policies.
+6. Record ongoing rule maintenance, analyst review, support and customer reporting hours.
+7. Test service ownership: exports, configuration portability, offboarding, resale/branding rights and vendor access to customer data.
+
+No vendor scores or observed competitive win rates exist in this brief.
+
+## 4. Competitors grouped by the purchase decision
 
 Relationships below are analytical candidates, not evidence of actual head-to-head deals.
 
-| Buyer decision | Research set | Potential relationship to LimaCharlie | What decides fit |
+| Buyer decision | Research set | Type of buying alternative | What decides fit |
 | --- | --- | --- | --- |
 | Consolidate a provider's security stack | Todyl, Stellar Cyber, Sekoia | Partial platform overlap | Existing tool retention, bundled detection coverage, migration and operating effort |
 | Automate investigations and service delivery | Torq, Conifers AI; existing research on Tines, D3 and Swimlane | Partial workflow overlap; possible coexistence | Tenant context, supported actions, exception workload and automation ownership |
@@ -39,7 +77,7 @@ Relationships below are analytical candidates, not evidence of actual head-to-he
 
 Do not compare a raw infrastructure rate with a fully managed MDR rate without pricing the missing detection maintenance, analyst coverage, response, support and implementation work.
 
-## 3. Refreshed vendor research
+## 5. Refreshed vendor research
 
 ### Todyl: stack consolidation
 
@@ -98,42 +136,6 @@ Do not compare a raw infrastructure rate with a fully managed MDR rate without p
 **Identity boundary:** entity lookup/correlation and identity-log ingestion do not demonstrate a complete native ITDR product. Verify detections, posture analysis, identity response actions, permissions and supported providers before making that claim.
 
 **Hypothesis:** LimaCharlie is attractive when service owners need adaptable infrastructure and can maintain differentiated services economically. **Disconfirm:** its extra implementation/support burden exceeds the licensing savings or the provider has no need to own the customization.
-
-## 4. Model the provider's business, not just the license
-
-Use one common workload: tenant count, endpoints, users, telemetry/day, retention, alerts, investigations and promised service hours. Compare the same service coverage and contractual responsibilities.
-
-`Monthly delivery contribution = service revenue - vendor licenses - data/retention/query costs - AI usage - delivery labor - support/escalation - allocated onboarding cost`
-
-`Contribution margin = monthly delivery contribution / service revenue`
-
-This is a decision worksheet, not an accounting standard or an observed vendor margin. Finance must decide which delivery costs belong in cost of revenue. Keep sales/marketing and general overhead separate when calculating operating profit.
-
-**Illustrative only:** $20,000 monthly service revenue minus $4,000 licenses, $6,000 labor, $1,000 data/AI and $1,000 onboarding/support leaves $8,000, or 40%. Saving $1,000 in licenses while adding $2,000 in labor reduces contribution to $7,000, or 35%. A cheaper license can produce a worse business.
-
-| Economic mechanism | Customer benefit to test | Vendor expansion hypothesis, not verified contract terms |
-| --- | --- | --- |
-| Consolidation | Fewer contracts, integrations and consoles to maintain | More customers/modules standardized on the platform |
-| Automation | Less repeated work at a fixed quality threshold | More workflow adoption or contracted usage |
-| Managed service | Access to coverage and expertise without equivalent internal staffing | More protected units/services |
-| Programmable infrastructure | Reuse service logic and onboard customers consistently | More protected workloads and platform consumption |
-| Predictable pricing | Less variance between client fees and delivery costs | Aggregate customer volume and broader adoption |
-
-Provider profit and vendor revenue can grow together if cost per delivered service falls while customer volume or paid service scope grows. That is a hypothesis to measure, not an automatic consequence of usage billing.
-
-## 5. Evaluation that could actually change a decision
-
-Run three representative tenant profiles: a small Microsoft-centric client, a heterogeneous mid-market client and a noisy cloud-heavy client. Use synthetic or authorized test data. Agree on required coverage before measuring speed.
-
-1. Onboard each tenant and record elapsed time, engineering hours, permission setup and first useful detection.
-2. Execute ten documented detection/investigation scenarios, including benign events and missing telemetry. Measure false positives, missed threats and evidence quality.
-3. Exercise one approved containment action, denied permissions, a failed integration and escalation. Record auditability and safe recovery; not every response action is reversible.
-4. Change a shared rule across tenants, preserve a client exception and test rollback of configuration.
-5. Model base and high-volume months, including AI usage, query/storage and overage policies.
-6. Record ongoing rule maintenance, analyst review, support and customer reporting hours.
-7. Test service ownership: exports, configuration portability, offboarding, resale/branding rights and vendor access to customer data.
-
-No vendor scores or observed competitive win rates exist in this brief.
 
 ## 6. Prioritized next research
 
