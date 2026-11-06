@@ -2,6 +2,8 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
+import { Empty } from "@/components/ui/empty";
 import { relationshipLabel } from "@/lib/format";
 
 export type RelationshipEntry = {
@@ -51,10 +53,10 @@ export function RelationshipExplorer({ entries }: { entries: RelationshipEntry[]
     </div>
     {name ? <p className="mt-4 text-sm font-medium">Focused on {name}. Select another connected product to explore sideways.</p> : null}
     <p role="status" className="mt-4 text-sm text-muted-foreground">{shown.length} mapped relationships. No ranking or capability equivalence implied.</p>
-    {shown.length === 0 ? <p className="mt-3 rounded-lg border border-dashed p-4 text-sm">No recorded relationship matches. This means unknown, not that products cannot work together.</p> :
+    {shown.length === 0 ? <Empty><p>No recorded relationship matches. This means unknown, not that products cannot work together.</p><p className="mt-2 text-muted-foreground">Broaden a filter or choose Show all relationships above.</p></Empty> :
       <ul className="mt-4 grid gap-3 md:grid-cols-2">
         {shown.map((edge) => <li key={edge.id} className="rounded-xl border border-border bg-background p-4">
-          <p className="text-xs text-muted-foreground">{edge.useCaseName} · {relationshipLabel(edge.type)}</p>
+          <p className="text-xs text-muted-foreground">{edge.useCaseName} · <Badge variant="outline" className="h-auto max-w-full whitespace-normal transition-none">{relationshipLabel(edge.type)}</Badge></p>
           <div className="mt-2 flex flex-wrap items-center gap-2 text-sm font-semibold">
             <button type="button" onClick={() => setProduct(edge.fromId)} className="min-h-11 text-primary underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-ring">{edge.fromName}</button>
             <span aria-hidden="true">↔</span>
