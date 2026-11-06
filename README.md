@@ -19,6 +19,10 @@ The aspiration is to empower better security decisions with less research fricti
 
 Security categories are difficult to navigate. A product may be described as identity security, secrets management, cloud security, or application security depending on its capabilities and buyer. This project makes those relationships easier to explore without treating every vendor as a direct competitor.
 
+## Industry learning foundation
+
+Start with the [vendor-agnostic industry and category guide](docs/market-research/industry-category-foundation.md): industry participants, domain atlas, category boundaries, SecOps workflows and a reusable category research template. Learn each market first, then explore individual vendor profiles. Company-specific context is optional; formal comparisons require a specific buyer question.
+
 ## What the map covers
 
 - **Identity:** access management, IGA, PAM, CIEM, and nonhuman identities
