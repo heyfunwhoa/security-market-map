@@ -53,6 +53,10 @@ The Cyera–Oasis case study separates the companies' strategic rationale and th
 
 ## Research standards
 
+**Executive decision pilot:** [Connection map and three worked decision briefs](docs/product/decision-briefs/README.md) covers resilience, secure AI adoption and technology consolidation, with a reusable template, alternatives, dependencies, measurement plans and independent review gates. Editorial pilot; no live integration.
+
+**CIO/CISO budgets and executive priorities:** [Historical and current learning guide](docs/market-research/cio-ciso-budget-agenda.md), [seeded trend tracker](docs/market-research/cio-ciso-budget-tracker.csv), and [source notes](docs/market-research/cio-ciso-budget-sources.md). Research candidate connecting business outcomes to projects and funding; distinguishes forecasts, survey results and hypotheses.
+
 **Agentic SecOps / MSSP industry research:** [October 2026 competitive landscape](docs/market-research/agentic-secops-competitive-landscape.md) groups vendors by buyer job, original source and unverified comparison hypotheses. This is editorial research, not yet published as typed catalog claims.
 
 **Reusable method:** [Competitive Intelligence Playbook](docs/market-research/competitive-intelligence-playbook.md) covers buyer-led comparison, source quality, case studies, interview preparation, win/loss privacy and downstream GTM reuse.
