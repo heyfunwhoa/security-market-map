@@ -176,3 +176,63 @@ Record publication date separately from report edition and retrieval date. Searc
 - Scope: global leader perspectives; methodology/sample not captured from landing page.
 - Evidence: collaborative industry research; risk outlook.
 - Limit: risk salience is not a measured budget allocation; no category-spending ranking inferred.
+
+## S20: Top 3 Priorities for CIOs in 2026
+
+- Publisher: Gartner C-level Communities / Evanta.
+- Original: [Top 3 Priorities for CIOs in 2026](https://www.evanta.com/resources/cio/survey-report/top-3-priorities-for-cios-in-2026).
+- Published: Unknown; survey vintage May 2026.
+- Scope: 1,400 CIO responses in the community survey.
+- Evidence: publisher survey commentary.
+- Limit: Community sample; AI answer options changed, limiting historical rank comparisons.
+- Observed / last checked: 2026-11-06. Human review pending; next review 2026-12-04.
+
+## S21: 10 top priorities for CIOs in 2026
+
+- Publisher: CIO.
+- Original: [10 top priorities for CIOs in 2026](https://www.cio.com/article/4117023/10-top-priorities-for-cios-in-2026.html).
+- Published: 2026-01-19.
+- Scope: Selected practitioner and expert perspectives.
+- Evidence: editorial interviews and commentary.
+- Limit: Not a representative survey or measured ranking.
+- Observed / last checked: 2026-11-06. Human review pending; next review 2026-12-04.
+
+## S22: Strategic focus areas for CISOs
+
+- Publisher: Gartner.
+- Original: [Strategic focus areas for CISOs](https://www.gartner.com/en/newsroom/press-releases/2026-06-01-gartner-identifies-strategic-focus-areas-for-cisos-to-seize-moments-of-opportunity-among-ai-chaos).
+- Published: 2026-06-01.
+- Scope: Analyst conference guidance.
+- Evidence: analyst recommendations.
+- Limit: Recommendations do not establish adoption or funding.
+- Observed / last checked: 2026-11-06. Human review pending; next review 2026-12-04.
+
+## S23: Human-centered breaches and CISO priorities
+
+- Publisher: Forrester.
+- Original: [Human-centered breaches and CISO priorities](https://www.forrester.com/report/preventing-and-protecting-against-human-centered-breaches-is-a-top-ciso-priority-in-2026/RES201781).
+- Published: 2026-09-14.
+- Scope: Enterprise CISO respondents to Security Survey 2026; sample size and geography Unknown from abstract.
+- Evidence: public survey abstract only.
+- Limit: Full report not accessed; percentages are priority selections, not spending shares.
+- Observed / last checked: 2026-11-06. Human review pending; next review 2026-12-04.
+
+## S24: Five actions for CISOs by end of 2026
+
+- Publisher: Gartner.
+- Original: [Five actions for CISOs by end of 2026](https://www.gartner.com/en/newsroom/press-releases/2026-09-30-gartner-identifies-top-five-actions-for-cisos-to-take-by-end-of-2026).
+- Published: 2026-09-30.
+- Scope: Q4 2026 recommendations with distinct supporting surveys.
+- Evidence: analyst guidance and survey references.
+- Limit: Predictions and prescriptions are not realized outcomes; do not combine underlying samples.
+- Observed / last checked: 2026-11-06. Human review pending; next review 2026-12-04.
+
+## S25: The State CIO in Motion: 2026 survey
+
+- Publisher: NASCIO.
+- Original: [The State CIO in Motion: 2026 survey](https://www.nascio.org/resource/the-2026-nascio-state-cio-survey-the-state-cio-in-motion-priorities-pressures-and-progress/).
+- Published: Unknown; 2026 edition.
+- Scope: 51 state and territory CIOs; summer 2026.
+- Evidence: public-sector association survey.
+- Limit: Public-sector population; not a private-enterprise budget benchmark.
+- Observed / last checked: 2026-11-06. Human review pending; next review 2026-12-04.
