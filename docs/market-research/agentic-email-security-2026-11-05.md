@@ -28,9 +28,44 @@ The highest-value distinctions are **when a verdict becomes an effective block**
 | **StrongestLayer** | TRACE reasons about message intent, sender history and organizational context; exports trace/logs [L1] | Vendor describes API integration without MX change and ~30-second verdict; details on outcome distribution remain untested [L1] | Vendor says custom **mailbox-based quote**, 14-day POC, no rigid feature tiers [L2] | Data residency (vendor describes AWS US inference), evidence export, action timing, measured false positives |
 | **Abnormal AI** (existing map candidate) | Per-employee/vendor behavioral baselines for targeted BEC, phishing; AI Security Mailbox automates user-report triage [B1, B2] | Vendor describes API deployment and campaign remediation; behavioral baselines are central, but its Control Center also offers custom rules and AI models [B1] | Pricing **Unknown** | Which modules/editions are in scope; integration and account/identity scope; independent comparative testing |
 
-**Separate adjacent comparator:** Material Security explicitly sells broader cloud-workspace protection across **email, accounts and files**, plus sensitive-message controls. It may be preferred when post-compromise blast radius and OAuth/account security outweigh pure inbound detection [M1, M2]. Do not infer that Material is feature-equivalent to the five products above.
+**Additional mapped candidate:** Material Security explicitly sells broader cloud-workspace protection across **email, accounts and files**, plus sensitive-message controls. It may be preferred when post-compromise blast radius and OAuth/account security outweigh pure inbound detection [M1, M2, M3]. Do not infer feature parity with narrower email products.
 
-**Existing map overlap audit:** `abnormal`, `proofpoint`, `mimecast` already exist as research-candidate vendors in `lib/data/ecosystem.ts`. `adaptive-security` already has a distinct `research/vendors/adaptive-security.md` note and must not be confused with `adaptive-shield`. The four net-new candidates proposed in this change are `aegisai`, `sublime-security`, `ocean-security`, `strongestlayer`. Do not create a second Abnormal or a new email-security category.
+**Existing map overlap audit:** `abnormal`, `proofpoint`, `mimecast` already exist as research-candidate vendors in `lib/data/ecosystem.ts`. `adaptive-security` already has a distinct `research/vendors/adaptive-security.md` note and must not be confused with `adaptive-shield`. The five net-new candidates proposed in this change are `aegisai`, `sublime-security`, `ocean-security`, `strongestlayer` and `material-security`. Abnormal remains the existing reference. Do not create a second Abnormal or a new email-security category.
+
+## Email-security functions and buyer boundaries
+
+These **12 evaluation functions** are a buyer-oriented **research checklist**, not twelve verified checkmarks for each vendor. The linked examples are publisher descriptions, not observed production behavior. **Unmentioned** means **Unknown**, not that a vendor lacks the function. The typed map exposes **eight stable conceptual control questions** in the new `uc-email-fraud-response` use case, reuses existing `cap-dlp` and category IDs, and leaves every new vendor-feature comparison cell **Unknown** until human review publishes a source-bound `Claim`.
+
+| Buyer job / function | Vendor-documented example (not exhaustive) | Boundary to validate in an authorized evaluation |
+| --- | --- | --- |
+| 1. **Phishing, BEC, impersonation and vendor fraud** | AegisAI message investigation [A1]; Abnormal identity baselines and configurable models [B1]; Material inbound BEC [M1] | Specific subtype and denominator; measured incremental detections versus native Microsoft/Google and current SEG |
+| 2. **Suspicious links, attachments and QR codes** | AegisAI describes redirect, QR and attachment detonation [A2] | Which content is opened in a sandbox; gates/redirects and verdict-to-removal timing |
+| 3. **Pre-delivery prevention** | Sublime documents Enterprise Inline Protection with provider routing rules [S10] | Was the message ever copied to a mailbox? Fallback, bypass, failure behavior, latency and supported mailboxes |
+| 4. **Post-delivery remediation** | AegisAI says API inspection and removal **after delivery** [A2]; Sublime default is post-delivery [S10] | Median/p95 first delivery → removal; how the admin undoes a false block |
+| 5. **Employee-reported-phish triage** | Abnormal AI Security Mailbox [B2]; Sublime ASA [S2]; Material Essentials includes reported-phish agent [M3] | Real report sources, verdict confidence, escalation, employee feedback and measured analyst minutes |
+| 6. **Historical threat hunting and investigation** | Sublime ADÉ backtests via historical Hunts [S3]; Abnormal Search & Respond [B1]; StrongestLayer reasoning exports [L1] | Historical search scope, retention, legal hold, incident evidence, campaign-wide action versus mere lookup |
+| 7. **Organization-specific detection rules/models** | Sublime ADÉ generates MQL rules and presents results for review [S3]; Abnormal lists custom rules and AI models [B1] | Editability, backtest denominators, approvals, auto-activation thresholds and rollback |
+| 8. **Outbound email DLP** | Sublime documents monitor, alert, block, encryption and release [S11]; Material Advanced describes content protection [M3] | Outbound versus inbound, licensed data classifiers, encryption prerequisites and false-positive burden |
+| 9. **Account takeover, OAuth and message-level controls** | Material accounts [M2] and ATO add-on [M3]; AegisAI account takeover is early-access in product positioning [A1] | Separate identity budget and required API/audit permissions; ability to prevent exfiltration after compromise |
+| 10. **Employee awareness, simulations and guidance** | Sublime tailored simulations/training are an **Enterprise add-on** [S7, S12]; Ocean markets employee guidance [O1]; Abnormal reporter response [B2] | A simulation is not a comprehensive security-awareness program; which SKU and reporting are licensed? |
+| 11. **Graymail and inbox workflow** | AegisAI graymail sorting [A1]; Sublime ADÉ can create graymail detections [S3] | Spam/graymail classification vs malicious quarantine; recipient preferences and recovery |
+| 12. **Email-borne prompt injection** | Sublime documents Enterprise/ASA detection of AI-directed instructions in emails [S8] | Requires configured automation; if the AI agent acts before remediation, tagging alone does not prevent the action |
+
+**Detection technique is separate from outcome:** contextual and behavioral modeling, organization-authored rules, agent investigations, and message detonation may support several jobs above. Their names do not prove higher recall or a superior false-positive tradeoff. Likewise **API-based/no MX change is an integration method, not proof of pre-inbox protection**. Treat the email-security deployment boundary and the identity/DLP control plane as separate decisions.
+
+### Map navigation (no parallel taxonomy or UI change)
+
+- **Zoom out:** `/landscape` → `/domains/corporate` → `/categories/email-security` with existing `security-awareness`, `itdr` and `dlp` as adjacent questions.
+- **Zoom in by buyer job:** `/use-cases/email-fraud-response` → select products in `/compare` → `/vendors/aegisai`, `/vendors/sublime-security`, `/vendors/ocean-security`, `/vendors/strongestlayer`, `/vendors/material-security`, and existing `/vendors/abnormal`. Published comparison cells remain Unknown until separately reviewed claims exist.
+- **Placement rule:** the eight new capability IDs describe distinct evaluable control boundaries; the other functions belong in research guidance or existing adjacent categories (especially DLP) until a justified new capability/claim is reviewed. Do **not** create another vendor list, navigation model or source registry.
+- **Who may use it:** enterprise CISO/IT messaging team, SOC operator, and MSSP/MDR are distinct buyer motions. Multi-tenant hosting is not proof of MSSP reseller/workspace management rights.
+
+### Commercial signals worth capturing, not assumed contract value
+
+- **Material [M3]:** publisher lists Essentials **$4/user/month**, Advanced **$6/user/month**, each billed annually **plus Shared Drive fee**; ATO Resilience **+$3/user/month** add-on or **$5/user/month** standalone. Treat per-user/low-volume/shared-account rules, storage, support and discounts as quote-dependent. Do not turn public list pricing into a customer's actual annual contract.
+- **Sublime [S4,S5,S12]:** first 100 Cloud mailboxes free; Enterprise requires a quote; tailored simulations are an **additional Enterprise product**. The free offer is not evidence that ASA, ADÉ, DLP or inline enforcement is included at no cost.
+- **AegisAI, Ocean, StrongestLayer, Abnormal:** no reliable comparable public per-mailbox price in this research as of 2026-11-05; StrongestLayer promotes custom mailbox-based quoting [L2].
+- **Provider economics:** annual contract value, reseller rights, subtenant minimums, SOC service-margin and inference charges stay **Unknown** until an authorized commercial review. Do not derive MSSP gross margins from vendor marketing.
 
 ## Dossier and evidence nuances
 
@@ -91,7 +126,7 @@ The highest-value distinctions are **when a verdict becomes an effective block**
 
 - **Tier 1 source review:** AegisAI and Sublime (named focus). Establish pre/post delivery semantics and agent change control, edition and pricing.
 - **Tier 2 candidate review:** Ocean and StrongestLayer. Resolve live-mail behavior, security architecture and pricing beyond product copy.
-- **Reference:** Abnormal already in the typed map; Material as adjacent cloud-workspace security; Proofpoint, Mimecast, Microsoft/Google native controls as budget/architecture alternatives.
+- **Reference:** Abnormal already in the typed map; Material newly mapped for email with adjacent workspace/identity/data security scope; Proofpoint, Mimecast and Microsoft/Google native controls as budget/architecture alternatives.
 - **Do not infer:** feature checkmarks, performance winner, direct competitor edge, multi-tenant MSSP readiness, partner margin, customer churn, revenue/ARR or pricing not actually sourced.
 
 ## Source inventory / evidence state
@@ -113,6 +148,9 @@ Every entry is an original public URL. **Observed 2026-11-05**. Undated product 
 | S7 | [Tailored simulation GA](https://sublime.security/blog/tailored-phishing-simulations-and-training-generally-available/) | 2026-10-06 | vendor announcement; product release |
 | S8 | [Email prompt injection docs](https://docs.sublime.security/docs/prompt-injection-detection) | Unknown | vendor official docs; scope and Enterprise ASA requirement |
 | S9 | [Partner-program news index](https://sublime.security/news/) | 2026-04-28 | vendor announcement; existence of program only |
+| S10 | [Sublime pre-delivery Inline Protection](https://docs.sublime.security/docs/inline-protection-for-inbound-messages) | Unknown | official docs; Enterprise, delivery boundary and failover exceptions |
+| S11 | [Sublime Email DLP](https://docs.sublime.security/docs/email-data-loss-prevention-dlp) | Unknown | official docs; action modes and policy controls |
+| S12 | [Sublime tailored training add-on](https://sublime.security/product/phishing-simulations-training/) | Unknown | vendor product page; requires Enterprise and is an add-on |
 | O1 | [Ocean platform](https://ocean.security/) | Unknown | vendor marketing; agentic investigation, SOC, user guidance |
 | O2 | [Ocean launch](https://ocean.security/resources/blog/ocean-launch-out-of-stealth) | 2026-05-19 | vendor announcement; funding and launch |
 | L1 | [StrongestLayer TRACE workflow](https://www.strongestlayer.com/platform/how-it-works) | Unknown | vendor marketing; reasoning, connectors, timing and logs |
@@ -121,11 +159,12 @@ Every entry is an original public URL. **Observed 2026-11-05**. Undated product 
 | B2 | [Abnormal AI Security Mailbox](https://abnormal.ai/platform/ai-security-mailbox) | Unknown | vendor marketing; reported-mail triage |
 | M1 | [Material email](https://material.security/product/email) | Unknown | vendor marketing; inbound and post-compromise |
 | M2 | [Material accounts](https://material.security/product/accounts) | Unknown | vendor marketing; ATO, OAuth and sensitive data |
+| M3 | [Material pricing and feature matrix](https://material.security/pricing) | Unknown | vendor marketing; $4/$6 per user/month plus Shared Drive fees, ATO add-on, editions |
 
 ## Review, ownership and downstream disposition
 
-- **Changed catalog IDs proposed:** `aegisai`, `sublime-security`, `ocean-security`, `strongestlayer` (vendor and corresponding product candidates); new primary source entries; **no** feature claims or direct-competition relationships.
-- **Existing category:** `email-security`. Adjacent categories considered only where clear in official evidence; broader buyer scenarios remain in this document.
+- **Changed catalog IDs proposed:** `aegisai`, `sublime-security`, `ocean-security`, `strongestlayer`, `material-security` (vendor and corresponding product candidates); `uc-email-fraud-response` with eight conceptual capabilities; new original-source entries; **no** product-feature claims or direct-competition relationships.
+- **Existing category:** `email-security`. Reused `itdr`, `dlp`, `security-awareness` and existing `cap-dlp` for adjacent buyer questions. The added use case is educational, not product parity.
 - **Parent/product/historical brands:** no documented acquisitions or rename events asserted; company and product names kept distinct. Similar names such as unrelated Aegis AI services must not be merged.
 - **Publication gate:** named human reviewer, approval and CI on exact PR head required before merge; deployed pages and citations must be checked separately. Research candidates never imply verified product parity.
 - **Unknowns:** independent efficacy, pilot cohort, feature tier, true inline enforcement, pricing for most vendors, model-processing/data residency, full MSSP multi-tenancy/partnership terms.
@@ -138,6 +177,6 @@ Every entry is an original public URL. **Observed 2026-11-05**. Undated product 
 - [x] Existing category, Abnormal and overlapping PRs checked.
 - [x] Distinctions and explicit Unknowns; no private interview/customer data.
 - [ ] Human reviewer and editorial decision.
-- [ ] `npm run test:research-integrity` and `npm test` on exact commit.
-- [ ] `npx next typegen`, `npm run typecheck`, `npm run lint`, `npm run build`.
+- [ ] `npm run test:research-integrity` and `npm test` on the **new** PR head after this expansion.
+- [ ] `npx next typegen`, `npm run typecheck`, `npm run lint`, `npm run build` on the **new** PR head after this expansion.
 - [ ] Merge approval; publication/deployment URL and page-level verification.
