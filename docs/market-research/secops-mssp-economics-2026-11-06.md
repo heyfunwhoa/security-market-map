@@ -4,7 +4,7 @@
 
 This extends the [existing SecOps landscape](agentic-secops-competitive-landscape.md) and the [SACR crosswalk](sacr-category-crosswalk-2026-11-06.md). It asks: **what should a service provider buy, build or outsource to deliver secure, profitable services across many customers?**
 
-**Reading order:** Sections 1–3 establish a vendor-agnostic foundation: concepts, delivery economics and evaluation. Sections 4–5 layer vendor evidence and explicitly company-specific hypotheses onto it. LimaCharlie is one application, not the definition of the market.
+**Reading order:** Sections 1–3 establish a vendor-agnostic foundation: concepts, delivery economics and evaluation. Sections 4–5 introduce buying approaches and individual vendor profiles. These are not formal competitor comparisons. Start with the [industry and category foundation](industry-category-foundation.md) for the wider market.
 
 ## 1. Understand the layers before comparing companies
 
@@ -62,11 +62,11 @@ Run three representative tenant profiles: a small Microsoft-centric client, a he
 
 No vendor scores or observed competitive win rates exist in this brief.
 
-## 4. Competitors grouped by the purchase decision
+## 4. Buying approaches and vendors to learn about
 
-Relationships below are analytical candidates, not evidence of actual head-to-head deals.
+This is a discovery index of approaches and researched offerings. It does not establish substitution, superiority or an actual buyer shortlist.
 
-| Buyer decision | Research set | Type of buying alternative | What decides fit |
+| Buyer decision | Research set | Approach represented | What decides fit |
 | --- | --- | --- | --- |
 | Consolidate a provider's security stack | Todyl, Stellar Cyber, Sekoia | Partial platform overlap | Existing tool retention, bundled detection coverage, migration and operating effort |
 | Automate investigations and service delivery | Torq, Conifers AI; existing research on Tines, D3 and Swimlane | Partial workflow overlap; possible coexistence | Tenant context, supported actions, exception workload and automation ownership |
@@ -77,13 +77,13 @@ Relationships below are analytical candidates, not evidence of actual head-to-he
 
 Do not compare a raw infrastructure rate with a fully managed MDR rate without pricing the missing detection maintenance, analyst coverage, response, support and implementation work.
 
-## 5. Refreshed vendor research
+## 5. Individual vendor profiles
 
 ### Todyl: stack consolidation
 
 **Evidence [V1]:** Todyl's Exceed case study reports 53% lower costs and 50% fewer security products. The retrieved page displays the onboarding metric as `41$`, apparently a rendering/content error. Do not republish the previously circulated 41% figure as verified until the downloadable case study confirms it. These are one customer's vendor-published results, not expected savings for every MSP.
 
-**Buyer scenario:** a provider wants to simplify a fragmented stack. **Comparison hypothesis:** consolidation may win against a more configurable approach when implementation staff are scarce. **Unknown:** partner rates, commitments, module scope and comparable cost baseline. **Disconfirm LimaCharlie advantage:** Todyl delivers the required service with less total labor and acceptable customization.
+**Buyer scenario:** a provider wants to simplify a fragmented stack. **Comparison hypothesis:** consolidation may win against a more configurable approach when implementation staff are scarce. **Unknown:** partner rates, commitments, module scope and comparable cost baseline. **Evaluation question:** Does consolidation reduce total delivery effort while preserving required customization?
 
 ### Stellar Cyber: unified operations across customer environments
 
@@ -95,13 +95,13 @@ Do not compare a raw infrastructure rate with a fully managed MDR rate without p
 
 **Evidence [V3]:** Torq's RSM case study describes more than 75 monthly onboarding hours before adoption, a migration of over 200 customers in three weeks and 82% of managed SOC cases automated. It also describes workflows connecting SentinelOne, Stellar Cyber and Intezer.
 
-**Implication:** multiple vendors in this map already coexist in a named deployment. Torq may overlap with LimaCharlie's workflow ambition while filling a different layer from telemetry infrastructure. This source does not establish a supported Torq–LimaCharlie integration. **Unknown:** negotiated pricing, residual human work, maintenance cost and metric definitions. Do not turn case automation into an equivalent reduction in staffing or cost.
+**Implication:** multiple vendors in this map already coexist in a named deployment. Workflow automation and telemetry infrastructure can serve distinct roles. This source does not establish integrations beyond those it describes. **Unknown:** negotiated pricing, residual human work, maintenance cost and metric definitions. Do not turn case automation into an equivalent reduction in staffing or cost.
 
 ### Conifers AI: tenant-aware investigations on an existing stack
 
 **Evidence [V4]:** CognitiveSOC's MSSP page describes nested tenancy, tenant-specific context and existing-tool/portal support; it advertises 3× throughput and 2–4-hour tenant onboarding.
 
-**Buyer scenario:** an established provider wants more investigative capacity without replacing its stack. **Comparison hypothesis:** relevant to AI investigation purchases, but not established as the closest substitute for every LimaCharlie workload. **Unknown:** pricing meter, production accuracy by alert type, response controls, supported integrations and cost of exceptions. Marketing accuracy figures require a defined denominator and independent testing.
+**Buyer scenario:** an established provider wants more investigative capacity without replacing its stack. **Comparison hypothesis:** relevant to teams purchasing AI investigation capacity; broader infrastructure scope needs separate evidence. **Unknown:** pricing meter, production accuracy by alert type, response controls, supported integrations and cost of exceptions. Marketing accuracy figures require a defined denominator and independent testing.
 
 ### Blumira: predictable packaged economics
 
@@ -115,7 +115,7 @@ Do not compare a raw infrastructure rate with a fully managed MDR rate without p
 
 **Buyer scenario:** attach managed security without staffing every SOC function internally. **Comparison hypothesis:** a different ownership model can be the strongest commercial alternative even where technical architecture differs. **Unknown:** the provider's actual discount, minimum commitments, response handoffs and contract-specific scope.
 
-### Sekoia: a refreshed platform comparison
+### Sekoia: multi-tenant SOC operations
 
 **Evidence [V7]:** its MSSP page describes shared rules/playbooks across isolated client environments, multi-tenant operation, prebuilt detection content and partner resources. This refresh resolves the older landscape's missing original-source review of its basic MSSP positioning; deeper capability parity is still unreviewed.
 
@@ -125,7 +125,7 @@ Do not compare a raw infrastructure rate with a fully managed MDR rate without p
 
 **Evidence [V8]:** Microsoft describes partners building managed SOC and XDR offerings using Sentinel and Defender. **Evidence [V9]:** CrowdStrike documents a Flight Control API collection for multi-tenant environments.
 
-**Implication:** APIs, partner programs and multi-tenancy cannot by themselves establish LimaCharlie uniqueness. Evaluate whether existing investment is sufficient, which changes require extra licenses, and whether customer environments are heterogeneous. Exact commercial comparison remains Unknown. SentinelOne remains a named follow-up candidate; this pass does not create new feature claims for it.
+**Implication:** APIs, partner programs and multi-tenancy should be studied across established ecosystems as well as newer offerings. Evaluate whether existing investment is sufficient, which changes require extra licenses, and whether customer environments are heterogeneous. Exact commercial comparison remains Unknown. SentinelOne remains a named follow-up candidate; this pass does not create new feature claims for it.
 
 ### LimaCharlie: infrastructure and service ownership
 
