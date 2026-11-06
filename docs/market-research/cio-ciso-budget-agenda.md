@@ -17,6 +17,78 @@ The following is an educational decision model, not a claim that every company h
 
 A CIO can own the IT budget without owning every technology purchase. A CISO can set security requirements without controlling the funds used to meet them. Titles alone do not establish signature authority. See the existing [security persona atlas](security-org-personas.md).
 
+### What CIOs care about in practice
+
+An executive agenda is a set of competing commitments. The tables below are educational synthesis, not verbatim executive quotations or a universal ranking. Projects and measures are examples to validate locally.
+
+| Concern | Question behind it | Likely project / budget home | Evidence of success |
+| --- | --- | --- | --- |
+| Business value | Are we making an important process faster, better or more profitable? | Process redesign and digital services / IT plus business unit | Adoption and business results against an agreed baseline |
+| Reliable operations | Can employees and customers complete essential work? | Service management, observability and recovery / IT operations | Service availability and tested recovery of critical workflows |
+| Legacy systems and technical debt | What is consuming maintenance effort or preventing change? | Application retirement, integration or ERP modernization / transformation | Reduced support burden; migration milestones; retired costs |
+| Trusted data | Can teams find, access and rely on the same information? | Data ownership, quality and integration / data organization | Fewer reconciliation tasks; usable data; accountable owners |
+| AI value and control | Which use cases can move beyond pilots sustainably? | Workflow rollout and evaluations / business program | Task quality, adoption and full operating cost |
+| Talent and change capacity | Can the team deliver the plan while running existing services? | Role redesign, training and delivery-model changes / workforce | Critical skill coverage; delivery reliability; reduced key-person dependency |
+| Cost predictability and choice | Can we fund change without being trapped by contracts or architecture? | Portfolio and renewal review / IT and procurement | Forecast accuracy; demonstrated savings; feasible exit plans |
+| Stakeholder confidence | Do other leaders trust IT to deliver and explain trade-offs? | Joint roadmap and investment governance / CIO office | Named benefit owners; fewer surprise changes; explicit decisions |
+
+Evidence anchors: the 1,400-response Gartner community survey highlights AI execution, cybersecurity and data, with application modernization also prominent [S20]. CIO's practitioner reporting adds ERP, architecture, workforce and communication perspectives [S21]. Those are reported perspectives, not audited outcome evidence. The detailed budget homes and measures above are our planning examples.
+
+**Plain-language distinction:** delivering a system is a technology milestone. Getting people to use it successfully is an operating outcome. A CIO needs evidence of both.
+
+### What CISOs care about in practice
+
+| Concern | Question behind it | Likely project / budget home | Evidence of success |
+| --- | --- | --- | --- |
+| Material business exposure | Which plausible events could hurt our most important services? | Risk scenarios and remediation priorities / security and enterprise risk | Named risk owners; funded treatments; explicit residual risk |
+| Resilience | If controls fail, can the business continue and recover? | Recovery exercises and incident readiness / IT, security and continuity | Observed restoration results; closed exercise findings |
+| Identity and access | Who or what can take consequential actions? | Human/workload access lifecycle / IAM and platform | Owned accounts; controlled privileges; tested revocation |
+| Human-driven breaches and fraud | Can someone manipulate an employee or an approval process? | Payment and identity verification workflow / security, finance and HR | Tested safeguards at high-impact decisions; reporting and response |
+| Threat and exposure prioritization | Which weaknesses matter in our environment? | Asset context, validation and remediation / security plus asset owners | Critical exposure duration and confirmed closure |
+| Effective detection and response | Can we find and contain relevant activity with available staff? | Detection tuning, response workflow and service evaluation / SecOps | Scenario coverage; backlog age; response quality |
+| Data and AI control | What information and actions are exposed through new workflows? | Data-access controls and bounded AI evaluations / data, AI and security | Tested boundaries; traceable actions; owned exceptions |
+| Third parties and concentration | What happens when an essential supplier fails or is compromised? | Dependency assessment and contingency testing / procurement and risk | Critical dependencies understood; viable recovery alternatives |
+| Assurance and accountability | Can we substantiate our claims to leadership and customers? | Control evidence and exception governance / GRC and trust | Evidence freshness; decisions recorded; gaps owned |
+| Team effectiveness | Are tools and processes reducing work or adding to it? | Tool rationalization and staff development / security operations | Retired duplication; operational coverage; usable staff capacity |
+
+Gartner's June 2026 guidance emphasizes identity foundations, resilience and room for controlled innovation [S22]. Forrester's September 2026 public survey abstract provides a useful counterweight to AI-heavy headlines: human-centered breaches (40%), threat/vulnerability understanding (37%), AI-system security (33%), detection/response (32%) and stack consolidation (30%) were cited priorities [S23]. These are respondent percentages, not budget shares. Sample size and geography are not available in that public abstract.
+
+**Plain-language distinction:** the CISO helps the business make and implement informed risk decisions. A CISO cannot personally eliminate every risk or compensate for unowned remediation in other functions.
+
+### Where their priorities meet, and where decisions get difficult
+
+| Decision | CIO consideration | CISO consideration | Joint decision needed |
+| --- | --- | --- | --- |
+| Launch an AI workflow | Delivery speed, adoption and economics | Data access, permissions and failure handling | Bounded rollout with a named business owner and stop criteria |
+| Consolidate vendors | Cost, integration and support burden | Coverage gaps and supplier concentration | Prove control coverage before retiring the incumbent |
+| Modernize a core application | Migration risk and staff capacity | Legacy exposure and secure transition | Sequence changes around essential service requirements |
+| Outsource operations | Available expertise and service levels | Access, visibility and accountability | Define retained responsibilities and validate escalation |
+| Address an audit finding | Competing delivery priorities | Evidence and unresolved exposure | Assign remediation owner, resources and completion evidence |
+
+These are illustrative trade-offs, not claims that the two executives are inherently opposed. Their shared objective is a dependable business that can change at an acceptable cost and risk.
+
+### What earns attention versus what earns money
+
+Use this learning ladder when interpreting research or an executive conversation:
+
+1. **Attention:** an executive mentions a topic. Ask which business process it affects.
+2. **Priority:** an outcome has an owner and a deadline. Ask what currently prevents it.
+3. **Program:** work has been scoped and alternatives assessed. Ask who can deliver it.
+4. **Funding:** a cost center and approval path are identified. Ask what is approved versus requested.
+5. **Execution:** resources and operating responsibilities are committed. Ask how success will be measured.
+
+A conference speech or survey priority establishes attention at most. It does not establish a specific company's budget. A published job description, project announcement or procurement notice can strengthen a hypothesis, but account-level confirmation is still needed.
+
+For a practice executive review, write five sentences: **Our business objective is… The obstacle is… We recommend… The cost and trade-off are… We will know it works when…** Explain the decision before discussing product categories.
+
+### Emerging topics to watch without assuming a new budget exists
+
+Gartner's September 2026 recommendations include AI-agent permissions, stronger authorization against impersonation, earlier defensive intervention and postquantum migration pilots [S24]. Treat these as analyst recommendations. Their prominence does not establish broad purchasing adoption.
+
+Our tracking questions: Is there a named owner? Is an assessment underway? Is a pilot funded? Is there a production dependency or deadline? Postquantum work may begin with inventory and supplier planning rather than a large platform purchase. Fraud prevention may need finance-process changes as much as security tooling.
+
+For public-sector CIOs, NASCIO's 2026 survey of 51 state and territory CIOs adds digital services, accessibility, acquisition and cross-agency coordination [S25]. Keep that population distinct from commercial enterprises. This helps explain why a universal list of executive priorities can mislead.
+
 ## 2. How the agenda evolved
 
 These are overlapping eras, not dates when old priorities disappeared. The project examples are our interpretation of the cited historical evidence, not survey rankings.
