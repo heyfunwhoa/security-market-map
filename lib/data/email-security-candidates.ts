@@ -24,7 +24,7 @@ export const emailSecurityVendors: Vendor[] = [
       "Which email, account and sensitive-message safeguards are in Essentials versus Advanced or the ATO add-on?",
       "What is the actual delivery-to-remediation exposure window, and how are access/forwarding changes reversed?",
       "How do per-user pricing, Shared Drive fees, service account rules and support charges affect three-year TCO?",
-      "Does a shared or dedicated deployment support an MSSP's delegated administration and resale rights?",
+      "How does the advertised MSP/MSSP console enforce delegated isolation, and which partner billing and resale terms apply?",
     ],
   },
   {
@@ -52,7 +52,7 @@ export const emailSecurityVendors: Vendor[] = [
     formerNames: [],
     website: "https://sublime.security/",
     positioning:
-      "Vendor documents an API-based, programmable email-detection platform with MQL rules, autonomous analyst and detection-engineer agents, plus managed and authorized AWS self-hosted deployments. Researched 2026-11-05; outcomes untested.",
+      "Vendor documents programmable MQL email detection, ASA/ADE agents, default post-delivery API processing and optional Enterprise inline protection, plus managed and authorized AWS self-hosting. Research candidate; source recheck 2026-11-06, outcomes untested.",
     primaryCategoryIds: ["email-security"],
     adjacentCategoryIds: ["dlp", "security-awareness"],
     identityScopes: ["not_an_identity_control"],
@@ -60,7 +60,7 @@ export const emailSecurityVendors: Vendor[] = [
     openQuestions: [
       "Which ASA, ADE, DLP and simulation features are licensed and available by edition and region?",
       "How do human approvals, auto-activation, rollback and model processing work in production?",
-      "Do partner terms permit distinct MSSP-managed customer tenants, resale and predictable margins?",
+      "How do documented Enterprise parent/child tenants and delegated roles behave in practice, and what rates, minimums and resale rights apply to advertised monthly usage billing?",
     ],
   },
   {

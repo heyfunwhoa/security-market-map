@@ -17,7 +17,7 @@
 - **Account and identity:** watches account activity, forwarding, risky OAuth grants and sensitive-content behavior. Vendor says message-level controls can protect sensitive content after an account has been compromised [M2, M3].
 - **Workspace data:** shared-drive security and sensitive email/file content controls are broader than inbound mail filtering; content analysis and OAuth remediation differ between Essentials and Advanced. Need tenant-specific configuration review [M3].
 - **Commercial:** source lists Essentials **$4/user/month** and Advanced **$6/user/month** (annual billing), **plus Shared Drive size fee**; ATO Resilience **+$3/user/month** add-on or **$5/user/month** standalone. Service/shared/low-volume account treatment and enterprise discounts depend on quote. These are **vendor-published list indications**, not an actual quote [M3].
-- **Deployment:** vendor describes shared (multi-tenant) and dedicated (single-tenant) options. **Do not infer provider-operated MSSP tenancy, resale rights or margin** from those cloud-hosting terms [M3].
+- **Deployment:** vendor describes shared (multi-tenant) and dedicated (single-tenant) options. **Do not infer provider-operated MSSP tenancy, resale rights or margin** from those cloud-hosting terms [M3]. Separately, its MSP/MSSP page advertises a multi-tenant console, per-tenant policies/reporting, usage-based billing with no upfront commitment or minimum customer size [M4]. These are marketing claims, not tested isolation or agreed commercial terms. Reconcile partner billing with the annual list plans and Shared Drive minimum fee before estimating costs.
 
 ## Distinct from the API-native phishing competitors
 
@@ -42,7 +42,10 @@
 
 - **[M1]** [Email Security](https://material.security/product/email), Material Security, vendor marketing, publication date Unknown, observed 2026-11-05.
 - **[M2]** [Account Security](https://material.security/product/accounts), Material Security, vendor marketing, publication date Unknown, observed 2026-11-05.
+- **[M4]** [MSP & MSSP program](https://material.security/partners/msp), Material Security, vendor marketing, publication date Unknown, observed 2026-11-06.
 - **[M3]** [Public Pricing / Feature Matrix](https://material.security/pricing), Material Security, vendor marketing, publication date Unknown, observed 2026-11-05.
+
+**Editorial recheck:** email, account, pricing and partner pages inspected 2026-11-06. Account-page forwarding/OAuth remediation examples explicitly name Google Workspace; do not extrapolate every action to M365. Sensitive-content protection is not proof of outbound pre-delivery DLP blocking.
 
 **Owner:** Security Market Map maintainer. **Reviewer / decision:** unassigned / pending. **Next editorial check:** 2026-12-05 or on a material licensing/release change. **Rights:** short factual paraphrase and original links only; no proprietary reports or private account details.
 

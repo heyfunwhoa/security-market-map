@@ -13,5 +13,7 @@
 
 **Pilot questions:** Show delivery-to-verdict-to-removal timestamps on representative BEC and phishing; evidence for each decision; analyst time on user reports; proof of safe release/rollback; contracted cost per mailbox; and explicit reseller support for a provider-operated SOC.
 
+**Partner evidence (2026-11-06):** the [partner-program page](https://ocean.security/partner-program) advertises deal registration, co-selling and enablement (vendor marketing; publication date Unknown). This establishes a marketed channel motion, not documented MSSP tenancy, billing or resale contract terms. Product and launch sources also rechecked; no independent performance test.
+
 **Source state:** official vendor site (publication date Unknown) and dated company launch, observed 2026-11-05; vendor-marketing and vendor-announcement only. **Review target:** 2026-12-05. **Owner/reviewer:** repository maintainer / unassigned. **Rights:** paraphrase and link.  
 **More:** [Email security landscape](../../docs/market-research/agentic-email-security-2026-11-05.md).
