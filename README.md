@@ -53,6 +53,8 @@ The Cyera–Oasis case study separates the companies' strategic rationale and th
 
 ## Research standards
 
+**EDR / SecOps / MSSP expansion (6 Nov 2026):** [Buyer-led competitor and economics research](docs/market-research/secops-mssp-economics-2026-11-06.md) and [SACR category crosswalk](docs/market-research/sacr-category-crosswalk-2026-11-06.md). Includes current source checks, detection-content distinctions and a review queue; candidate research, not deployed capability claims.
+
 **Agentic SecOps / MSSP industry research:** [October 2026 competitive landscape](docs/market-research/agentic-secops-competitive-landscape.md) groups vendors by buyer job, original source and unverified comparison hypotheses. This is editorial research, not yet published as typed catalog claims.
 
 **Reusable method:** [Competitive Intelligence Playbook](docs/market-research/competitive-intelligence-playbook.md) covers buyer-led comparison, source quality, case studies, interview preparation, win/loss privacy and downstream GTM reuse.
