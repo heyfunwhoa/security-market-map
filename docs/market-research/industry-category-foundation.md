@@ -2,6 +2,12 @@
 
 **Owner:** Security Market Map maintainer. **Prepared:** 2026-11-06. **Status:** editorial research foundation, human review pending. **Next review:** 2027-02-06 or a material taxonomy change. This document organizes existing repository knowledge; it does not publish new typed capabilities or claim a comprehensive industry census.
 
+## Expanded research and explanation system
+
+- [Current-state audit](category-audit-2026-11-06.md): all 74 categories, evidence counts, source gaps and implementation priorities.
+- [Adjacent category guide](adjacent-category-guide.md): 12 worked explanations spanning identity, AppSec, cloud, data, network, exposure, governance, supply chain, AI, recovery, OT and validation.
+- [Category explanation system](../product/category-explanation-system.md): a consistent orientation, workflow and evaluation structure with scoped source references.
+
 ## Start here: five different things a market map must distinguish
 
 | Layer | What it tells you | Example |
