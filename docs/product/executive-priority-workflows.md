@@ -151,3 +151,36 @@ No application must release simultaneously with another. A breaking contract req
 - Consumer adoption: not started by this PR; owning-repo review required.
 - Operational integration: not enabled; no new secrets, paid retrieval or cross-repo writes.
 - Correction path: reviewed document changes now; implementation must include invalidation and rollback evidence before activation.
+
+## Delivery reconciliation: existing work first
+
+Checkpoint: 2026-11-06. This section is a proposed handoff within the existing design, not a new operating model or audited portfolio-wide implementation. Review existing issue and repository state again before execution.
+
+| Work | Existing owner / tracking | Disposition and next gate |
+| --- | --- | --- |
+| Budget research and evidence | Market Map; [KRU-211](https://linear.app/krusty/issue/KRU-211), PR #138 | Review the [dated budget enrichment](../market-research/cio-ciso-budget-review-2026-11-06.md). Keep source conflicts and prior vintages; no automatic CSV or typed-claim promotion. |
+| Intake templates | Market Map; [KRU-218](https://linear.app/krusty/issue/KRU-218) | Review [three intake records](research-intake-pilot.md); distinguish source review from authoring completeness. |
+| Schema alignment | [KRU-212](https://linear.app/krusty/issue/KRU-212) | Reconcile PRs #137/#138 before adding production entities or consumer contracts. |
+| Shared acceptance practice | Technical Docs; [KRU-195](https://linear.app/krusty/issue/KRU-195) | Extend existing standards only for demonstrated gaps. Keep existing adoption matrix authoritative. |
+| Portfolio lifecycle and views | Ops Board; [KRU-122](https://linear.app/krusty/issue/KRU-122), [KRU-123](https://linear.app/krusty/issue/KRU-123) | Reuse the existing lifecycle; proposed enhancements remain backlog and need scope/estimate reconciliation. |
+| Ops Board live acceptance | [KRU-125](https://linear.app/krusty/issue/KRU-125) | Preserve the current owner walkthrough gate and one active board implementation stream before adding portfolio features. |
+
+### Candidate consumers, not new delivery commitments
+
+- GTM Revenue OS financial planning: use reviewed public evidence to formulate funding questions. Actual costs, assumptions and forecasts stay local; no budget percentage is prefilled from a market survey.
+- GTM Revenue OS commercial operations: reference the decision briefs in discovery. Public priority does not establish account intent or qualification.
+- Account Signal Engine: retain Research Hub collection ownership. A public interpretation used in an account workflow requires its own corroboration and relevance review.
+- Learning and field enablement: use reviewed generic explanations and exercises; validate product-specific claims separately. Do not copy private company operating details into this public repository.
+
+### Smallest next slice
+
+1. Review proposed enrichment for B03/B04/B12/B13 in the dated budget review. Resolve or explicitly exclude disputed FinOps/Flexera figures.
+2. Record one publisher decision and one consumer disposition using existing review templates. No new connector or live data store is needed.
+3. Under KRU-212, reconcile the existing source/category/use-case model before implementing any additional fields.
+4. Keep broader Ops Board UI work queued until its existing acceptance gate and scope review are satisfied.
+
+### Bidirectional completion check
+
+Before calling a delivery checkpoint complete, the owning Linear issue must link the artifact or PR, and the artifact or PR must link the issue. Record exact revision, acceptance evidence, unresolved work, next action and review owner. A missing counterpart is an explicit gap, not an implied sync. Reference-only notes and uncommitted ideas may legitimately have no implementation ticket.
+
+Documented, reviewed, tested, merged, deployed and beneficial are separate claims. This checkpoint establishes documentation and links only. Human review and consumer adoption remain pending. No status changes, new project, new issue, integration activation or release are authorized by this map.
