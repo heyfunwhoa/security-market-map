@@ -26,7 +26,7 @@ The highest-value distinctions are **when a verdict becomes an effective block**
 | **Sublime Security** | Programmable detection with MQL and two agents: ASA triage; ADÉ writes/backtests org-specific rules [S1–S3] | M365 / Google APIs; managed SaaS and authorized self-hosted AWS, including GovCloud [S4]; human-approval and configurable agent modes [S2, S3] | Core: first **100 mailboxes free**; Enterprise: contact vendor [S5] | Data-handling by region/model, tuning burden, DLP and simulation editions, partner economics |
 | **Ocean** | Agents investigate every email for targeted phishing/BEC, plus SOC triage and employee guidance [O1] | Product site describes agentic email protection; exact inline-vs-after-delivery SLA and API permissions need review | Pricing/minimums **Unknown** | Prove deployment, latency, explainability, workflow controls and measurable holdout outcomes |
 | **StrongestLayer** | TRACE reasons about message intent, sender history and organizational context; exports trace/logs [L1] | Vendor describes API integration without MX change and ~30-second verdict; details on outcome distribution remain untested [L1] | Vendor says custom **mailbox-based quote**, 14-day POC, no rigid feature tiers [L2] | Data residency (vendor describes AWS US inference), evidence export, action timing, measured false positives |
-| **Abnormal AI** (existing map candidate) | Per-employee/vendor behavioral baselines for targeted BEC, phishing; AI Security Mailbox automates user-report triage [B1, B2] | Vendor describes API deployment and campaign remediation; baseline rather than customer-authored MQL [B1] | Pricing **Unknown** | Which modules/editions are in scope; integration and account/identity scope; independent comparative testing |
+| **Abnormal AI** (existing map candidate) | Per-employee/vendor behavioral baselines for targeted BEC, phishing; AI Security Mailbox automates user-report triage [B1, B2] | Vendor describes API deployment and campaign remediation; behavioral baselines are central, but its Control Center also offers custom rules and AI models [B1] | Pricing **Unknown** | Which modules/editions are in scope; integration and account/identity scope; independent comparative testing |
 
 **Separate adjacent comparator:** Material Security explicitly sells broader cloud-workspace protection across **email, accounts and files**, plus sensitive-message controls. It may be preferred when post-compromise blast radius and OAuth/account security outweigh pure inbound detection [M1, M2]. Do not infer that Material is feature-equivalent to the five products above.
 
@@ -66,7 +66,7 @@ The highest-value distinctions are **when a verdict becomes an effective block**
 
 ### Abnormal / Material as comparison anchors
 
-- Abnormal's documented behavior baselines and AI Security Mailbox make it the **existing reference candidate**, not evidence that AegisAI/Ocean/Sublime outperform or underperform it [B1, B2].
+- Abnormal's documented behavior baselines, configurable rules/models and AI Security Mailbox make it the **existing reference candidate**, not evidence that AegisAI/Ocean/Sublime outperform or underperform it [B1, B2].
 - Material addresses the broader email **plus** account-and-files compromise lifecycle [M1, M2]; segment as partial overlap/adjacent, not a binary winner.
 - Traditional SEGs, native Microsoft/Google, phishing training and SIEM/SOAR may be complements, bundled alternatives or status quo depending on the funded buyer job.
 
