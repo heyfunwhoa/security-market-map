@@ -208,7 +208,7 @@ Fix source-page text that calls a frozen catalog as-of date Today; distinguish s
 
 Planning estimate: 35–55 focused AI-assisted research/implementation hours plus 10–16 human review/session hours; about 3–5 elapsed weeks with part-time capacity. These are judgment estimates, not measured productivity or delivery commitments. Re-estimate after K1.
 AI can draft structures, propose mappings, extract permitted metadata and run checks. Humans validate meaning, rights, applicability, metric relevance and publishing decisions.
-Limit active implementation to two slices and one writer for catalog migration. K1 first; K2 and K4 can follow; K3 depends on K2; K5/K6 depend on pilots and gates.
+Follow the existing one-active-delivery-issue-per-project rule; only one implementation slice and one catalog migration writer may be active in this Market Map project. Independent research/review may be queued separately without starting a second implementation stream. K1 first; K2 and K4 can follow; K3 depends on K2; K5/K6 depend on pilots and gates.
 No due dates or individual assignments imposed. Linear records the actual blocker relationships; all new implementation tasks start in Backlog.
 
 ## Acceptance evidence for this planning change
@@ -218,3 +218,7 @@ No due dates or individual assignments imposed. Linear records the actual blocke
 - This file records proposed schemas and delivery gates, not implemented runtime behavior.
 - Documentation/research checks recorded in the delivery handoff; full application checks are required before future code release.
 - No schema/catalog/UI mutation, collector, consumer integration, merge or deployment in this planning change.
+
+## November 6 compatibility audit clarification
+
+The five existing review-and-finish prompts (KRU-195/149/193/147/138) remain independent review work, not prerequisites for this schema design. SDLC reference PR #61 is educational, not a blocking dependency. KRU-218 in PR #138 now owns the product/category/market intake examples; reuse those records in K1 and K3 rather than repeat them. KRU-123 owns portfolio synthesis; this plan remains Market Map-specific. KRU-143 owns promotion of shared Linear practices. The earlier two-implementation-slice allowance is superseded by the existing one-active-delivery-issue-per-project rule. No runtime behavior or issue status changes accompany this clarification.
