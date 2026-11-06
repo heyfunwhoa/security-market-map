@@ -77,3 +77,7 @@ Reuse `Category`, `/categories/[slug]`, current breadcrumbs, domain/adjacency li
 Render orientation → workflow/boundaries → ownership/evaluation → source guidepoints → vendor discovery. Existing product and comparison components remain secondary. Do not create a new navigation system, diagram library, database or scraper.
 
 Before implementation, follow UI-bank guidance and inspect existing components; verify narrow/mobile layouts, keyboard/focus, reduced motion, empty evidence, Unknown states and return-to-domain navigation. Before publication, ensure all cited records exist and source type/qualifiers remain visible. Current delivery is documents and worked examples only.
+
+## Delivery and outcome tracking
+
+The [knowledge-model delivery plan](knowledge-model-delivery-plan.md) connects this explanation contract to versioned sources, requirements, business outcomes and independently reviewed consumer adoption. Track delivery in [KRU-211](https://linear.app/krusty/issue/KRU-211); the three end-to-end schema pilots complement the five teaching exercises above. This is planned work, not implemented schema or integration.
