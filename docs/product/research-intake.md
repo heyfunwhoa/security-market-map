@@ -77,3 +77,7 @@ Collection ownership remains governed by the [Research Evidence Boundary ADR](ht
 - No document status is described as automated validation.
 
 Before implementing a form or schema, manually exercise one product enrichment, one category proposal and one market lens. Record ambiguous fields and review outcomes. Reconcile PR #137 and the decision pilot before introducing typed fields or consumer adapters.
+
+## Pilot and delivery tracking
+
+See the [three completed editorial intake records](research-intake-pilot.md), tracked in [KRU-218](https://linear.app/krusty/issue/KRU-218) under [KRU-211](https://linear.app/krusty/issue/KRU-211). They reuse existing research and document gaps; current external-source review and independent reader validation remain pending. Linear owns status and dependencies; this repository owns templates and evidence.
