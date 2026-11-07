@@ -12,6 +12,7 @@ import {
   eventSchema,
   glossaryTermSchema,
   personaSchema,
+  personaProfileSchema,
   pricingSignalSchema,
   productSchema,
   relationshipSchema,
@@ -28,6 +29,7 @@ import {
   type Domain,
   type GlossaryTerm,
   type BuyerPersona,
+  type PersonaProfile,
   type PricingSignal,
   type Product,
   type Relationship,
@@ -54,6 +56,8 @@ import { developerEndpointProducts, developerEndpointSources, developerEndpointC
 import { developerEndpointCapabilities, developerEndpointUseCases } from "./data/developer-endpoint-comparison";
 import { events, products, vendors } from "./data/market";
 import { personas } from "./data/personas";
+import { personaProfiles } from "./data/persona-profiles";
+import { personaSources } from "./data/persona-sources";
 import { customerStories, pricingSignals, relationships } from "./data/relationships";
 import { sources } from "./data/sources";
 import { useCases } from "./data/use-cases";
@@ -80,6 +84,7 @@ export type Catalog = {
   capabilities: Capability[];
   useCases: UseCase[];
   personas: BuyerPersona[];
+  personaProfiles: PersonaProfile[];
   sources: Source[];
   claims: Claim[];
   relationships: Relationship[];
@@ -101,7 +106,8 @@ function parseCatalog(): Catalog {
     capabilities: z.array(capabilitySchema).parse([...capabilities, ...ecosystemCapabilities, ...developerEndpointCapabilities]),
     useCases: z.array(useCaseSchema).parse([...useCases, ...ecosystemUseCases, ...developerEndpointUseCases]),
     personas: z.array(personaSchema).parse([...personas, ...ecosystemPersonas]),
-    sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources, ...developerEndpointSources]),
+    personaProfiles: z.array(personaProfileSchema).parse(personaProfiles),
+    sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources, ...developerEndpointSources, ...personaSources]),
     claims: z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims, ...developerEndpointClaims]),
     relationships: z.array(relationshipSchema).parse([...relationships, ...ecosystemRelationships]),
     stories: z.array(customerStorySchema).parse(customerStories),
@@ -114,8 +120,10 @@ function parseCatalog(): Catalog {
 }
 
 export function catalogProblems(catalog: Catalog): string[] {
-  const { asOf: _asOf, ...collections } = catalog;
+  // Persona profiles are keyed by personaId and checked below.
+  const { asOf: _asOf, personaProfiles: _personaProfiles, ...collections } = catalog;
   void _asOf;
+  void _personaProfiles;
   const problems = [
     ...identityProblems(collections),
     ...provenanceProblems(catalog.sources, catalog.claims, catalog.capabilities.map((item) => item.id)),
@@ -293,6 +301,39 @@ export function catalogProblems(catalog: Catalog): string[] {
       seenAliases.add(key);
     }
   }
+  const profiledIds = new Set<string>();
+  for (const profile of catalog.personaProfiles) {
+    const label = `Persona profile ${profile.personaId}`;
+    if (!personaIds.has(profile.personaId)) problems.push(`${label} has no persona`);
+    if (profiledIds.has(profile.personaId)) problems.push(`Duplicate ${label.toLowerCase()}`);
+    profiledIds.add(profile.personaId);
+    if (profile.primaryDomainId && !domainIds.has(profile.primaryDomainId)) {
+      problems.push(`${label} domain ${profile.primaryDomainId} missing`);
+    }
+    if (profile.evidence === "sourced" && profile.sourceIds.length === 0) {
+      problems.push(`${label} is marked sourced without sourceIds`);
+    }
+    for (const id of profile.sourceIds) {
+      if (!sourceIds.has(id)) problems.push(`${label} source ${id} missing`);
+    }
+    const seenEdges = new Set<string>();
+    for (const edge of profile.edges) {
+      const key = `${edge.type}:${edge.toPersonaId}`;
+      if (edge.toPersonaId === profile.personaId) problems.push(`${label} has a self edge`);
+      if (!personaIds.has(edge.toPersonaId)) problems.push(`${label} edge target ${edge.toPersonaId} missing`);
+      if (seenEdges.has(key)) problems.push(`${label} duplicate edge ${key}`);
+      seenEdges.add(key);
+      if (edge.evidence === "sourced" && edge.sourceIds.length === 0) {
+        problems.push(`${label} edge ${key} is marked sourced without sourceIds`);
+      }
+      for (const id of edge.sourceIds) {
+        if (!sourceIds.has(id)) problems.push(`${label} edge ${key} source ${id} missing`);
+      }
+    }
+  }
+  for (const id of personaIds) {
+    if (!profiledIds.has(id)) problems.push(`Persona ${id} has no profile`);
+  }
   return problems;
 }
 
@@ -327,6 +368,10 @@ export function claimsForSubject(subjectType: Claim["subjectType"], subjectId: s
   return catalog.claims.filter(
     (claim) => claim.subjectType === subjectType && claim.subjectId === subjectId,
   );
+}
+
+export function profileForPersona(personaId: string): PersonaProfile | undefined {
+  return catalog.personaProfiles.find((profile) => profile.personaId === personaId);
 }
 
 export function relationshipsForProduct(productId: string): Relationship[] {

@@ -147,6 +147,27 @@ describe("catalog integrity", () => {
     expect(new Set(catalog.personas.map((persona) => persona.id)).size).toBe(catalog.personas.length);
   });
 
+  it("gives every persona a profile with valid links and honest evidence labels", () => {
+    const personaIds = new Set(catalog.personas.map((persona) => persona.id));
+    const profiles = catalog.personaProfiles;
+    expect(new Set(profiles.map((profile) => profile.personaId))).toEqual(personaIds);
+    const sourceIds = new Set(catalog.sources.map((source) => source.id));
+    for (const profile of profiles) {
+      if (profile.evidence === "sourced") expect(profile.sourceIds.length).toBeGreaterThan(0);
+      for (const id of profile.sourceIds) expect(sourceIds.has(id)).toBe(true);
+      for (const edge of profile.edges) {
+        expect(personaIds.has(edge.toPersonaId)).toBe(true);
+        expect(edge.toPersonaId).not.toBe(profile.personaId);
+        if (edge.evidence === "sourced") expect(edge.sourceIds.length).toBeGreaterThan(0);
+      }
+    }
+    const appsec = profiles.find((profile) => profile.personaId === "appsec");
+    expect(appsec?.cluster).toBe("build");
+    expect(appsec?.edges.some((edge) => edge.toPersonaId === "developer" && edge.type === "hands-off-to")).toBe(true);
+    expect(profiles.find((profile) => profile.personaId === "ciso")?.primaryDomainId).toBeNull();
+    expect(profiles.find((profile) => profile.personaId === "mssp-ops")?.orgPlacement).toBe("external");
+  });
+
   it("formats persona filter labels with acronym samples", async () => {
     const { personaFilterLabel } = await import("./format");
     expect(personaFilterLabel("AppSec lead", ["AppSec", "Application security", "ASE", "Software security"])).toBe(

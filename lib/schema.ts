@@ -204,6 +204,89 @@ export const personaSchema = z.object({
   aliases: z.array(z.string().min(1)).default([]),
 });
 
+/** Which shared job a seat belongs to. A person can wear more than one hat; this is the primary cluster. */
+export const personaClusterSchema = z.enum([
+  "lead-govern",
+  "build",
+  "protect",
+  "detect-respond",
+  "validate",
+  "recover",
+  "engineering-ai",
+  "service-provider",
+]);
+
+/** Where the seat usually sits. "varies" when reporting lines differ too much to generalize. */
+export const personaOrgPlacementSchema = z.enum(["security", "engineering", "it", "legal-privacy", "external", "varies"]);
+
+/** Roles a seat may play in a purchase. Titles do not prove any of these; confirm per deal. */
+export const buyingRoleSchema = z.enum([
+  "economic-buyer",
+  "budget-owner-possible",
+  "executive-sponsor",
+  "evaluator",
+  "operator",
+  "influencer",
+  "user",
+  "approver",
+  "blocker",
+]);
+
+/** sourced = cited source; practitioner_published = publisher's own framing; hypothesis = validate in discovery. */
+export const personaEvidenceSchema = z.enum(["sourced", "practitioner_published", "hypothesis", "unknown"]);
+
+export const personaEdgeTypeSchema = z.enum([
+  "sponsors",
+  "sets-standards-for",
+  "hands-off-to",
+  "escalates-to",
+  "feeds",
+  "co-owns",
+  "depends-on",
+  "bridges",
+  "collides",
+  "operates-for",
+]);
+
+export const personaEdgeSchema = z.object({
+  toPersonaId: z.string().min(1),
+  type: personaEdgeTypeSchema,
+  /** What moves across the edge: findings, budget, evidence, alerts. */
+  carries: z.string().min(1),
+  qualify: z.string().min(1).optional(),
+  evidence: personaEvidenceSchema,
+  sourceIds: z.array(z.string().min(1)).default([]),
+});
+
+export const personaCommunitySchema = z.object({
+  name: z.string().min(1),
+  url: z.string().url(),
+});
+
+/** Research profile for a typed persona. Keyed by personaId; the base persona stays small for filters. */
+export const personaProfileSchema = z.object({
+  personaId: z.string().min(1),
+  /** null = cross-domain seat (e.g. CISO, architect, CTO). */
+  primaryDomainId: z.string().min(1).nullable(),
+  cluster: personaClusterSchema,
+  orgPlacement: personaOrgPlacementSchema,
+  buyingRoles: z.array(buyingRoleSchema).min(1),
+  job: z.string().min(1),
+  triggers: z.array(z.string().min(1)).default([]),
+  messageToTest: z.string().min(1).optional(),
+  successMeasures: z.array(z.string().min(1)).default([]),
+  objections: z.array(z.string().min(1)).default([]),
+  disconfirmation: z.array(z.string().min(1)).default([]),
+  doNotAssume: z.array(z.string().min(1)).default([]),
+  boundary: z.string().min(1).optional(),
+  edges: z.array(personaEdgeSchema).default([]),
+  communities: z.array(personaCommunitySchema).default([]),
+  frameworks: z.array(z.string().min(1)).default([]),
+  evidence: personaEvidenceSchema,
+  sourceIds: z.array(z.string().min(1)).default([]),
+  lastReviewedAt: isoDate,
+});
+
 export const sourceSchema = z.object({
   id: z.string().min(1),
   title: z.string().min(1),
@@ -373,6 +456,9 @@ export type Product = z.infer<typeof productSchema>;
 export type Capability = z.infer<typeof capabilitySchema>;
 export type UseCase = z.infer<typeof useCaseSchema>;
 export type BuyerPersona = z.infer<typeof personaSchema>;
+export type PersonaProfile = z.infer<typeof personaProfileSchema>;
+export type PersonaProfileInput = z.input<typeof personaProfileSchema>;
+export type PersonaEdge = z.infer<typeof personaEdgeSchema>;
 export type Source = z.infer<typeof sourceSchema>;
 export type Claim = z.infer<typeof claimSchema>;
 export type Relationship = z.infer<typeof relationshipSchema>;
