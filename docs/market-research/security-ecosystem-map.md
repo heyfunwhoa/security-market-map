@@ -120,7 +120,7 @@ Computed from the catalog on 2026-11-07 (`catalog.personas`, `catalog.categories
 | `developer` | appsec, product | `sast`, `sca`, `secrets-detection`, `dast` | 39 |
 | `cto` | platform, cloud | `aspm`, `secrets-management`, `container-security`, `iac-security`, `cnapp` | 28 |
 
-**Reading the coverage:** the atlas is deep where builders and identity buy (AppSec 64, identity 46) and thin for GRC (4), offensive (5), and much of SecOps (6–11). That reflects research focus to date, not market size. Thin rows are the next vendor-research targets if SecOps buyers matter for the job search or a deal.
+**Reading the coverage:** the atlas is deep where builders and identity buy (AppSec 64, identity 46) and thin for GRC (4), offensive (5), and much of SecOps (6–11). That reflects research focus to date, not market size. Thin rows are candidates for the next vendor research pass.
 
 ## 5. Influence — how buyers find and trust vendors
 
@@ -329,7 +329,6 @@ Still open: "App owners", "Service owners", "Data platform", "Developer experien
 
 - **Security Market Map — update:** this note. Follow-ups (separate PRs, owner approval): link the 13 orphan categories in `personas.ts`; optionally type the communities table.
 - **Account Signal Engine / GTM Revenue OS — no automatic change:** community membership and reporting-line hypotheses are not account intent.
-- **Content Engine — optional:** "who actually buys security" and "peers beat analysts" are usable post ideas; no private deal data.
 
 ## Original sources
 
