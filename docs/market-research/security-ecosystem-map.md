@@ -14,7 +14,12 @@ The persona note answers *who the seats are*. This note answers *how they connec
 4. **Coverage** — persona → domain → category → vendor counts, computed from the catalog.
 5. **Influence** — how buyers discover vendors, and the communities and standards each cluster uses.
 6. **Delivery channel** — MSSP/MDR, integrators, resellers, consultants.
-7. **Gaps** — categories with no persona owner, plus open questions.
+7. **Non-security stakeholders** — CEO, CIO, IT ops, CFO, procurement, legal, board, HR.
+8. **Company size** — which seats exist at small, mid-market, and enterprise companies, and who covers the rest.
+9. **Company type** — business model, regulated industries, region, ownership, and providers.
+10. **Gaps** — categories with no persona owner, plus open questions.
+
+Typed data: `lib/data/persona-profiles.ts`, `lib/data/stakeholders.ts`, `lib/data/company-segments.ts`.
 
 **Evidence labels** (same as the persona note): *sourced* = cited primary or survey source; *vendor/practitioner-published* = publisher's own framing; *hypothesis* = working separation to validate in discovery; *unknown* = no evidence yet.
 
@@ -147,7 +152,60 @@ Where each cluster learns, gathers, and borrows its vocabulary. *Use for event, 
 - **Resellers and consultants**: named in buyer influence research as part of the evaluation path.[^CIOI-PONEMON] Their role per category is **unknown** in this atlas.
 - **Cloud marketplaces**: not yet researched here — **unknown**.
 
-## 7. Gaps to close
+## 7. Non-security stakeholders (hypothesis unless noted)
+
+They own no product category, so they are typed as `stakeholders` and kept out of the landscape buyer filter. They do appear in profiles, edges, and size coverage.
+
+| Stakeholder (`id`) | Role in security deals | Key edge |
+| --- | --- | --- |
+| `ceo-founder` | Sponsor and often the buyer at small companies | sponsors `ciso` — smaller firms more often give the CISO CEO access (sourced)[^HITCH-2025] |
+| `cio` | Budget holder when security sits under IT | `ciso` reports-to `cio` in most organizations (sourced)[^IANS-2026] |
+| `it-operations` | Operator, frequent blocker; de facto security team at small firms | co-owns directory and backups |
+| `cfo` | Spend approval, term length, timing | approves-purchase for `ciso` |
+| `procurement` | Vendor onboarding and paper; routes the vendor security review | depends-on `grc-owner` |
+| `legal` | MSA/DPA terms; incident materiality and notification | co-owns with `incident-response`, `ciso` |
+| `board-audit-committee` | Oversight; creates triggers and reporting | oversees `ciso` — SEC Item 106 and NYDFS require board-facing reporting (sourced)[^SEC-RULE][^NYDFS] |
+| `hr-people` | Joiner/mover/leaver source; people-risk partner | feeds `iga-owner`; co-owns `insider-risk` |
+
+## 8. Company size (hypothesis; bands are working estimates)
+
+| Band | Employees | Shape |
+| --- | --- | --- |
+| Small / startup | under ~500 | Zero to a few security people. Practitioner guidance puts the first full-time security hire around 30–100 employees.[^FIRST-HIRE][^FIRSTMARK] CTO, founder, or IT generalist covers most seats. |
+| Mid-market | ~500–5,000 | Small generalist team under a hands-on leader; MDR and IR retainers common. |
+| Enterprise | ~5,000+ | Specialized seats exist; procurement, legal, and vendor review in every deal. |
+
+Every profile now records presence at each size — `dedicated`, `shared`, `usually-absent`, or `external` — plus who covers the work when the seat is missing. Across all 45 seats:
+
+| Size | Dedicated | Shared | Usually absent | External |
+| --- | --- | --- | --- | --- |
+| Small | 4 | 12 | 27 | 2 |
+| Mid-market | 15 | 24 | 5 | 1 |
+| Enterprise | 42 | 2 | 0 | 1 |
+
+**So what:** at a small company most of this map collapses into the CTO, a founder, IT ops, and an MDR provider. Selling there is a different motion, not a smaller version of the enterprise one.
+
+## 9. Company type overlays
+
+Overlays change which seats a rule requires, which seats gain weight, and which triggers appear.
+
+| Overlay | Kind | Seat a rule requires | Seats with more weight | Evidence |
+| --- | --- | --- | --- | --- |
+| Software / SaaS | business model | — | ProdSec, AppSec, PlatformSec, CTO, GRC | hypothesis |
+| Non-tech enterprise | business model | — | CIO, IT security, identity, GRC, IT ops | hypothesis |
+| Financial services (NYDFS) | industry | Named CISO under 23 NYCRR 500[^NYDFS] | CISO, GRC, board, identity | sourced |
+| Financial services (EU, DORA) | industry | Management body holds ultimate ICT risk responsibility (Art. 5)[^DORA] | Board, GRC, procurement, recovery | sourced |
+| Healthcare (HIPAA) | industry | Designated security official, 45 CFR 164.308(a)(2)[^HIPAA] | Privacy, GRC, IT security, identity, legal | sourced |
+| Defense industrial base (CMMC) | industry | Affirming official for continuous compliance[^CMMC-DFARS][^CMMC-RULE] | GRC, IT security, IT ops, CEO | sourced |
+| Energy and utilities (NERC CIP) | industry | CIP Senior Manager named under CIP-003[^NERC] | OT security, GRC, network security | sourced |
+| EU essential/important entities (NIS2) | region | Management bodies approve, oversee, can be liable, must train (Art. 20)[^NIS2] | Board, CISO, GRC, supply chain | sourced |
+| U.S. public company | ownership | Board oversight disclosed under Reg S-K Item 106; material incidents on 8-K within four business days of materiality[^SEC-RULE] | CISO, legal, board, IR | sourced |
+| Private / investor-backed | ownership | — | CEO, CFO, CTO | hypothesis |
+| MSSP / MDR / MSP | provider | — | MSSP ops, SOC lead, detection eng | hypothesis |
+
+Some secondary sources here are law-firm or vendor summaries of the rule text; check the primary text before quoting a rule externally.
+
+## 10. Gaps to close
 
 ### Categories with no persona owner (13)
 
@@ -190,7 +248,9 @@ Catalog `buyerOwner` text shown; proposed persona link is a **hypothesis** to ad
 | SEC-ECO-C06 | SLSA addresses producers, consumers, and infrastructure providers | [^SLSA] | Framework scope, not adoption data |
 | SEC-ECO-C07 | FIRST has 820+ member teams; includes CSIRTs and PSIRTs | [^FIRST-2025][^FIRST-IMP] | Count from news coverage |
 | SEC-ECO-C08 | Coverage counts in §4 | Local catalog, 2026-11-07 | Atlas coverage, not market size |
+| SEC-ECO-C09 | Named seats required by NYDFS 500, DORA Art. 5, HIPAA 164.308(a)(2), CMMC, NERC CIP-003, NIS2 Art. 20, SEC Item 106 | [^NYDFS][^DORA][^HIPAA][^CMMC-RULE][^CMMC-DFARS][^NERC][^NIS2][^SEC-RULE] | Some via secondary summaries |
 | SEC-ECO-H01 | Clusters, work edges, channel roles, proposed category owners | Hypothesis | Validate in discovery |
+| SEC-ECO-H02 | Size bands, seat presence by size, and unsourced overlays | Hypothesis | Validate in discovery; first-hire guidance is practitioner opinion |
 | SEC-ECO-U01 | Reseller, consultant, and marketplace roles per category | Unknown | Needs deal or partner evidence |
 
 ## Cross-repository disposition
@@ -226,3 +286,13 @@ Observed 2026-11-07. Paraphrase only. Living pages; dates as published where sta
 [^62443-ISAGCA]: PR Newswire — Update to ISA/IEC 62443 standards; About ISAGCA: https://prnewswire.com/news-releases/update-to-isaiec-62443-standards-addresses-organization-wide-cybersecurity-in-industrial-and-critical-infrastructure-operations-302362183.html
 [^62443-CISA]: ISAGCA — ISA/IEC 62443 Cited in CISA OT Cybersecurity Guidance: https://gca.isa.org/blog/isa-iec-62443-cited-in-cisa-ot-cybersecurity-guidance
 [^NCI]: National Council of ISACs — About NCI: https://www.nationalisacs.org/about-nci
+[^FIRST-HIRE]: Rami McCarthy — The First Security Hire Rule of Thumb (Nov 2024): https://ramimac.me/start-security
+[^FIRSTMARK]: FirstMark Guilds — Security startups insights: https://guilds.firstmark.com/content/security-startups-insights
+[^NYDFS]: Mondaq — NYDFS finalizes amendments to cybersecurity regulations: https://www.mondaq.com/unitedstates/security/1396442/ydfs-finalizes-amendments-to-cybersecurity-regulations
+[^DORA]: Hannes Snellman — DORA Articles 5–16 annotated text: https://digitalhorizon.hannessnellman.com/?p=5896
+[^HIPAA]: Compliancy Group — What is 45 CFR 164.308?: https://compliancy-group.com/45-cfr-164-308/
+[^CMMC-RULE]: Federal Register — CMMC Program final rule (Oct 15, 2024): https://www.govinfo.gov/content/pkg/FR-2024-10-15/html/2024-22905.htm
+[^CMMC-DFARS]: Federal Register — DFARS CMMC acquisition final rule (Sep 10, 2025): https://www.govinfo.gov/content/pkg/FR-2025-09-10/html/2025-17359.htm
+[^NERC]: NERC — CIP Standards Efficiency Review recommendations (Aug 2021): https://www.nerc.com/pa/Stand/Standards%20Efficiency%20Review%20DL/CIP_SER_Working_Recommendations_Justifications_08062021.pdf
+[^NIS2]: Springlex — NIS2 Directive Article 20: https://www.springlex.eu/en/packages/nis2/nis2-directive/article-20/
+[^SEC-RULE]: K&L Gates — SEC adopts final rules for cybersecurity disclosures (Aug 7, 2023): https://www.klgates.com/SEC-Adopts-Final-Rules-for-Cybersecurity-Disclosures-8-7-2023

@@ -13,6 +13,8 @@ import {
   glossaryTermSchema,
   personaSchema,
   personaProfileSchema,
+  stakeholderSchema,
+  segmentOverlaySchema,
   pricingSignalSchema,
   productSchema,
   relationshipSchema,
@@ -30,6 +32,8 @@ import {
   type GlossaryTerm,
   type BuyerPersona,
   type PersonaProfile,
+  type Stakeholder,
+  type SegmentOverlay,
   type PricingSignal,
   type Product,
   type Relationship,
@@ -58,6 +62,8 @@ import { events, products, vendors } from "./data/market";
 import { personas } from "./data/personas";
 import { personaProfiles } from "./data/persona-profiles";
 import { personaSources } from "./data/persona-sources";
+import { stakeholderProfiles, stakeholders } from "./data/stakeholders";
+import { segmentOverlays } from "./data/company-segments";
 import { customerStories, pricingSignals, relationships } from "./data/relationships";
 import { sources } from "./data/sources";
 import { useCases } from "./data/use-cases";
@@ -85,6 +91,8 @@ export type Catalog = {
   useCases: UseCase[];
   personas: BuyerPersona[];
   personaProfiles: PersonaProfile[];
+  stakeholders: Stakeholder[];
+  segmentOverlays: SegmentOverlay[];
   sources: Source[];
   claims: Claim[];
   relationships: Relationship[];
@@ -106,7 +114,9 @@ function parseCatalog(): Catalog {
     capabilities: z.array(capabilitySchema).parse([...capabilities, ...ecosystemCapabilities, ...developerEndpointCapabilities]),
     useCases: z.array(useCaseSchema).parse([...useCases, ...ecosystemUseCases, ...developerEndpointUseCases]),
     personas: z.array(personaSchema).parse([...personas, ...ecosystemPersonas]),
-    personaProfiles: z.array(personaProfileSchema).parse(personaProfiles),
+    personaProfiles: z.array(personaProfileSchema).parse([...personaProfiles, ...stakeholderProfiles]),
+    stakeholders: z.array(stakeholderSchema).parse(stakeholders),
+    segmentOverlays: z.array(segmentOverlaySchema).parse(segmentOverlays),
     sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources, ...developerEndpointSources, ...personaSources]),
     claims: z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims, ...developerEndpointClaims]),
     relationships: z.array(relationshipSchema).parse([...relationships, ...ecosystemRelationships]),
@@ -301,10 +311,22 @@ export function catalogProblems(catalog: Catalog): string[] {
       seenAliases.add(key);
     }
   }
+  // Seats = security personas plus non-security stakeholders. Profiles, edges, and coverage use both.
+  const seatIds = new Set<string>(personaIds);
+  for (const stakeholder of catalog.stakeholders) {
+    if (personaIds.has(stakeholder.id)) problems.push(`Stakeholder ${stakeholder.id} collides with a persona id`);
+    seatIds.add(stakeholder.id);
+  }
   const profiledIds = new Set<string>();
   for (const profile of catalog.personaProfiles) {
     const label = `Persona profile ${profile.personaId}`;
-    if (!personaIds.has(profile.personaId)) problems.push(`${label} has no persona`);
+    if (!seatIds.has(profile.personaId)) problems.push(`${label} has no persona or stakeholder`);
+    for (const [size, presence] of Object.entries(profile.bySize)) {
+      for (const id of presence.coveredBy) {
+        if (!seatIds.has(id)) problems.push(`${label} ${size} coveredBy ${id} missing`);
+        if (id === profile.personaId) problems.push(`${label} ${size} is covered by itself`);
+      }
+    }
     if (profiledIds.has(profile.personaId)) problems.push(`Duplicate ${label.toLowerCase()}`);
     profiledIds.add(profile.personaId);
     if (profile.primaryDomainId && !domainIds.has(profile.primaryDomainId)) {
@@ -320,7 +342,7 @@ export function catalogProblems(catalog: Catalog): string[] {
     for (const edge of profile.edges) {
       const key = `${edge.type}:${edge.toPersonaId}`;
       if (edge.toPersonaId === profile.personaId) problems.push(`${label} has a self edge`);
-      if (!personaIds.has(edge.toPersonaId)) problems.push(`${label} edge target ${edge.toPersonaId} missing`);
+      if (!seatIds.has(edge.toPersonaId)) problems.push(`${label} edge target ${edge.toPersonaId} missing`);
       if (seenEdges.has(key)) problems.push(`${label} duplicate edge ${key}`);
       seenEdges.add(key);
       if (edge.evidence === "sourced" && edge.sourceIds.length === 0) {
@@ -331,8 +353,18 @@ export function catalogProblems(catalog: Catalog): string[] {
       }
     }
   }
-  for (const id of personaIds) {
-    if (!profiledIds.has(id)) problems.push(`Persona ${id} has no profile`);
+  for (const id of seatIds) {
+    if (!profiledIds.has(id)) problems.push(`Seat ${id} has no profile`);
+  }
+  for (const overlay of catalog.segmentOverlays) {
+    const label = `Segment ${overlay.id}`;
+    if (overlay.evidence === "sourced" && overlay.sourceIds.length === 0) problems.push(`${label} is marked sourced without sourceIds`);
+    for (const id of overlay.sourceIds) if (!sourceIds.has(id)) problems.push(`${label} source ${id} missing`);
+    for (const id of overlay.elevatedPersonaIds) if (!seatIds.has(id)) problems.push(`${label} elevated seat ${id} missing`);
+    for (const seat of overlay.mandatedSeats) {
+      if (seat.personaId && !seatIds.has(seat.personaId)) problems.push(`${label} mandated seat ${seat.personaId} missing`);
+      for (const id of seat.sourceIds) if (!sourceIds.has(id)) problems.push(`${label} mandated seat source ${id} missing`);
+    }
   }
   return problems;
 }

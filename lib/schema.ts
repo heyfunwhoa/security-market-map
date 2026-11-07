@@ -214,10 +214,21 @@ export const personaClusterSchema = z.enum([
   "recover",
   "engineering-ai",
   "service-provider",
+  "business",
 ]);
 
 /** Where the seat usually sits. "varies" when reporting lines differ too much to generalize. */
-export const personaOrgPlacementSchema = z.enum(["security", "engineering", "it", "legal-privacy", "external", "varies"]);
+export const personaOrgPlacementSchema = z.enum([
+  "security",
+  "engineering",
+  "it",
+  "legal-privacy",
+  "executive",
+  "finance-procurement",
+  "people",
+  "external",
+  "varies",
+]);
 
 /** Roles a seat may play in a purchase. Titles do not prove any of these; confirm per deal. */
 export const buyingRoleSchema = z.enum([
@@ -246,6 +257,9 @@ export const personaEdgeTypeSchema = z.enum([
   "bridges",
   "collides",
   "operates-for",
+  "reports-to",
+  "oversees",
+  "approves-purchase",
 ]);
 
 export const personaEdgeSchema = z.object({
@@ -261,6 +275,29 @@ export const personaEdgeSchema = z.object({
 export const personaCommunitySchema = z.object({
   name: z.string().min(1),
   url: z.string().url(),
+});
+
+/** Company size bands. Employee cutoffs are working estimates; see companySizeBands in lib/data/company-segments.ts. */
+export const companySizeSchema = z.enum(["small", "mid-market", "enterprise"]);
+
+/** Whether the seat exists as its own job at a given size. "external" = provided by an outside firm. */
+export const seatPresenceSchema = z.enum(["dedicated", "shared", "usually-absent", "external"]);
+
+export const sizePresenceSchema = z.object({
+  presence: seatPresenceSchema,
+  /** Persona or stakeholder ids that usually cover the work when the seat is shared or absent. */
+  coveredBy: z.array(z.string().min(1)).default([]),
+  note: z.string().min(1).optional(),
+});
+
+/** Non-security seats that shape security purchases (CIO, procurement, legal, board). No category ownership. */
+export const stakeholderSchema = z.object({
+  id: z.string().min(1),
+  name: z.string().min(1),
+  title: z.string().min(1),
+  roleInSecurityDeals: z.string().min(1),
+  questions: z.array(z.string().min(1)).min(1),
+  aliases: z.array(z.string().min(1)).default([]),
 });
 
 /** Research profile for a typed persona. Keyed by personaId; the base persona stays small for filters. */
@@ -282,6 +319,37 @@ export const personaProfileSchema = z.object({
   edges: z.array(personaEdgeSchema).default([]),
   communities: z.array(personaCommunitySchema).default([]),
   frameworks: z.array(z.string().min(1)).default([]),
+  bySize: z.object({
+    small: sizePresenceSchema,
+    "mid-market": sizePresenceSchema,
+    enterprise: sizePresenceSchema,
+  }),
+  evidence: personaEvidenceSchema,
+  sourceIds: z.array(z.string().min(1)).default([]),
+  lastReviewedAt: isoDate,
+});
+
+export const segmentKindSchema = z.enum(["business-model", "industry", "ownership", "region", "provider"]);
+
+/** A seat a law or standard requires by name. personaId links it when the seat is already modeled. */
+export const mandatedSeatSchema = z.object({
+  title: z.string().min(1),
+  personaId: z.string().min(1).optional(),
+  rule: z.string().min(1),
+  sourceIds: z.array(z.string().min(1)).min(1),
+});
+
+/** How a company type changes the map: which seats a rule requires, which seats gain weight, what triggers appear. */
+export const segmentOverlaySchema = z.object({
+  id: z.string().min(1),
+  name: z.string().min(1),
+  kind: segmentKindSchema,
+  appliesTo: z.string().min(1),
+  mandatedSeats: z.array(mandatedSeatSchema).default([]),
+  elevatedPersonaIds: z.array(z.string().min(1)).default([]),
+  addedTriggers: z.array(z.string().min(1)).default([]),
+  frameworks: z.array(z.string().min(1)).default([]),
+  notes: z.string().min(1).optional(),
   evidence: personaEvidenceSchema,
   sourceIds: z.array(z.string().min(1)).default([]),
   lastReviewedAt: isoDate,
@@ -459,6 +527,11 @@ export type BuyerPersona = z.infer<typeof personaSchema>;
 export type PersonaProfile = z.infer<typeof personaProfileSchema>;
 export type PersonaProfileInput = z.input<typeof personaProfileSchema>;
 export type PersonaEdge = z.infer<typeof personaEdgeSchema>;
+export type Stakeholder = z.infer<typeof stakeholderSchema>;
+export type StakeholderInput = z.input<typeof stakeholderSchema>;
+export type SegmentOverlay = z.infer<typeof segmentOverlaySchema>;
+export type SegmentOverlayInput = z.input<typeof segmentOverlaySchema>;
+export type SizePresenceInput = z.input<typeof sizePresenceSchema>;
 export type Source = z.infer<typeof sourceSchema>;
 export type Claim = z.infer<typeof claimSchema>;
 export type Relationship = z.infer<typeof relationshipSchema>;

@@ -1,4 +1,5 @@
 import type { PersonaProfileInput } from "../schema";
+import { absent, dedicated, external, shared, sizes } from "./size-helpers";
 
 /**
  * Research profiles for typed personas.
@@ -59,9 +60,12 @@ export const personaProfiles: PersonaProfileInput[] = [
     edges: [
       { toPersonaId: "security-architect", type: "sponsors", carries: "Budget, risk appetite, exceptions", qualify: "Who is on call for exceptions after go-live?", evidence: "hypothesis" },
       { toPersonaId: "cto", type: "collides", carries: "Platform and delivery spend", qualify: "Whose budget line pays, and who adopts?", evidence: "hypothesis" },
+      { toPersonaId: "cio", type: "reports-to", carries: "Budget negotiation and priorities", qualify: "Who do you report to, and who signs above your approval limit?", evidence: "sourced", sourceIds: [S.ians] },
+      { toPersonaId: "legal", type: "co-owns", carries: "Incident materiality and disclosure", evidence: "hypothesis" },
     ],
     communities: [C.isc2, C.nci],
     frameworks: ["NIST CSF", "CIS Controls"],
+    bySize: sizes(absent(["ceo-founder", "cto"], "Founder, CTO, or a fractional vCISO; CEO access is common at smaller firms"), dedicated("Often hands-on"), dedicated()),
     evidence: "sourced",
     sourceIds: [S.ians],
   },
@@ -81,6 +85,7 @@ export const personaProfiles: PersonaProfileInput[] = [
       { toPersonaId: "cloud-sec", type: "sets-standards-for", carries: "Cloud landing-zone patterns", evidence: "hypothesis" },
     ],
     frameworks: ["NIST CSF"],
+    bySize: sizes(absent(["cto"]), shared(["ciso", "appsec"]), dedicated()),
     evidence: "hypothesis",
   },
   {
@@ -98,6 +103,7 @@ export const personaProfiles: PersonaProfileInput[] = [
       { toPersonaId: "it-security", type: "depends-on", carries: "Evidence that corporate controls run", evidence: "hypothesis" },
     ],
     frameworks: ["CIS Controls", "NIST CSF"],
+    bySize: sizes(shared(["cto", "ceo-founder"], "Driven by the first SOC 2 or customer questionnaire"), dedicated(), dedicated()),
     evidence: "hypothesis",
   },
   {
@@ -113,6 +119,7 @@ export const personaProfiles: PersonaProfileInput[] = [
       { toPersonaId: "data-security", type: "co-owns", carries: "Data inventory → policy → evidence", qualify: "Store discovery, egress, or evidence?", evidence: "hypothesis" },
     ],
     communities: [C.iapp],
+    bySize: sizes(shared(["legal"]), shared(["legal", "grc-owner"]), dedicated()),
     evidence: "sourced",
     sourceIds: [S.iapp],
   },
@@ -130,6 +137,7 @@ export const personaProfiles: PersonaProfileInput[] = [
     edges: [
       { toPersonaId: "it-security", type: "collides", carries: "Phishing outcomes", qualify: "Behavior program or SEG/API mail control?", evidence: "hypothesis" },
     ],
+    bySize: sizes(shared(["it-operations"]), shared(["it-security"]), dedicated()),
     evidence: "hypothesis",
   },
 
@@ -155,6 +163,7 @@ export const personaProfiles: PersonaProfileInput[] = [
     ],
     communities: [C.owasp],
     frameworks: ["OWASP DevSecOps Guideline", "OWASP Top 10"],
+    bySize: sizes(shared(["developer", "cto"], "First security hire is usually a generalist"), dedicated(), dedicated()),
     evidence: "sourced",
     sourceIds: [S.owaspRoles, S.snykProd, S.platsec],
   },
@@ -176,6 +185,7 @@ export const personaProfiles: PersonaProfileInput[] = [
       { toPersonaId: "grc-owner", type: "feeds", carries: "Evidence for customer trust answers", evidence: "hypothesis" },
     ],
     communities: [C.first, C.owasp],
+    bySize: sizes(absent(["cto"]), shared(["appsec"]), dedicated()),
     evidence: "sourced",
     sourceIds: [S.snykProd, S.first],
   },
@@ -198,6 +208,7 @@ export const personaProfiles: PersonaProfileInput[] = [
     ],
     communities: [C.openssf],
     frameworks: ["SLSA", "OWASP DevSecOps Guideline"],
+    bySize: sizes(absent(["platform"]), shared(["platform", "cloud-sec"]), dedicated()),
     evidence: "sourced",
     sourceIds: [S.platsec, S.owaspRoles],
   },
@@ -216,6 +227,7 @@ export const personaProfiles: PersonaProfileInput[] = [
     ],
     communities: [C.openssf],
     frameworks: ["SLSA", "NICE C-SCRM work role"],
+    bySize: sizes(absent(["developer"]), shared(["appsec"]), dedicated("Often a sub-team of AppSec or platform security")),
     evidence: "sourced",
     sourceIds: [S.nice, S.slsa],
   },
@@ -233,6 +245,7 @@ export const personaProfiles: PersonaProfileInput[] = [
     ],
     communities: [C.owasp],
     frameworks: ["OWASP DevSecOps Guideline"],
+    bySize: sizes(shared(["developer"], "Part-time role by design; often the only security coverage before a first hire"), shared(["developer"]), shared(["developer"])),
     evidence: "sourced",
     sourceIds: [S.owaspRoles],
   },
@@ -254,6 +267,7 @@ export const personaProfiles: PersonaProfileInput[] = [
     ],
     communities: [C.idpro],
     frameworks: ["IDPro Body of Knowledge", "OWASP Non-Human Identities Top 10"],
+    bySize: sizes(absent(["it-operations"]), shared(["it-security"]), dedicated()),
     evidence: "sourced",
     sourceIds: [S.idpro],
   },
@@ -266,6 +280,7 @@ export const personaProfiles: PersonaProfileInput[] = [
     buyingRoles: ["operator", "evaluator"],
     job: "Run joiner/mover/leaver, access requests, and certifications.",
     communities: [C.idpro],
+    bySize: sizes(absent(["it-operations"]), shared(["it-operations"]), dedicated()),
     evidence: "hypothesis",
   },
   {
@@ -277,6 +292,7 @@ export const personaProfiles: PersonaProfileInput[] = [
     buyingRoles: ["operator", "evaluator"],
     job: "Control standing and just-in-time privileged access, vaulted credentials, and session oversight.",
     communities: [C.idpro],
+    bySize: sizes(absent(["it-operations"]), shared(["it-security"]), dedicated()),
     evidence: "hypothesis",
   },
   {
@@ -291,6 +307,7 @@ export const personaProfiles: PersonaProfileInput[] = [
     edges: [
       { toPersonaId: "detection-engineer", type: "feeds", carries: "Cloud telemetry and detections", evidence: "hypothesis" },
     ],
+    bySize: sizes(shared(["platform"]), shared(["platform"]), dedicated()),
     evidence: "sourced",
     sourceIds: [S.platsec],
   },
@@ -306,6 +323,7 @@ export const personaProfiles: PersonaProfileInput[] = [
     edges: [
       { toPersonaId: "grc-owner", type: "feeds", carries: "Data control evidence", evidence: "hypothesis" },
     ],
+    bySize: sizes(absent(["cto"]), shared(["grc-owner", "privacy"]), dedicated()),
     evidence: "hypothesis",
   },
   {
@@ -319,6 +337,7 @@ export const personaProfiles: PersonaProfileInput[] = [
     edges: [
       { toPersonaId: "soc-analyst", type: "feeds", carries: "Network telemetry", evidence: "hypothesis" },
     ],
+    bySize: sizes(absent(["it-operations"]), shared(["it-security"]), dedicated()),
     evidence: "hypothesis",
   },
   {
@@ -333,6 +352,7 @@ export const personaProfiles: PersonaProfileInput[] = [
     edges: [
       { toPersonaId: "identity-security", type: "depends-on", carries: "SaaS identities and OAuth grants", evidence: "hypothesis" },
     ],
+    bySize: sizes(absent(["it-operations"]), shared(["it-security"]), dedicated("Often inside corporate security")),
     evidence: "practitioner_published",
     sourceIds: [S.sspmCasb],
   },
@@ -350,6 +370,7 @@ export const personaProfiles: PersonaProfileInput[] = [
     ],
     communities: [C.isagca],
     frameworks: ["ISA/IEC 62443", "NICE OT Cybersecurity Engineering work role"],
+    bySize: sizes(absent(["it-operations"], "Only where plants or control systems exist"), shared(["it-security"]), dedicated("Industrial and utility enterprises")),
     evidence: "sourced",
     sourceIds: [S.nice, S.isa62443],
   },
@@ -368,8 +389,10 @@ export const personaProfiles: PersonaProfileInput[] = [
     disconfirmation: ["Pain is only in application code or cloud workload posture"],
     edges: [
       { toPersonaId: "appsec", type: "collides", carries: "The word 'vulnerability'", qualify: "Employee laptop/server image or a library in a repo?", evidence: "hypothesis" },
+      { toPersonaId: "it-operations", type: "hands-off-to", carries: "Patches and endpoint fixes", qualify: "Who patches?", evidence: "hypothesis" },
     ],
     frameworks: ["CIS Controls"],
+    bySize: sizes(shared(["it-operations"]), dedicated(), dedicated()),
     evidence: "sourced",
     sourceIds: [S.cis],
   },
@@ -387,6 +410,7 @@ export const personaProfiles: PersonaProfileInput[] = [
     edges: [
       { toPersonaId: "detection-engineer", type: "sponsors", carries: "Content priorities, tuning time", evidence: "hypothesis" },
     ],
+    bySize: sizes(absent(["mssp-ops"], "MDR or MSSP runs monitoring"), shared(["ciso", "mssp-ops"]), dedicated()),
     evidence: "practitioner_published",
     sourceIds: [S.panSoc],
   },
@@ -403,6 +427,7 @@ export const personaProfiles: PersonaProfileInput[] = [
       { toPersonaId: "soc-analyst", type: "hands-off-to", carries: "Tested detections → alerts", qualify: "Who writes/tests the detection vs who triages it?", evidence: "hypothesis" },
     ],
     frameworks: ["MITRE ATT&CK"],
+    bySize: sizes(absent(["mssp-ops"]), absent(["mssp-ops"]), dedicated()),
     evidence: "hypothesis",
   },
   {
@@ -417,6 +442,7 @@ export const personaProfiles: PersonaProfileInput[] = [
     edges: [
       { toPersonaId: "incident-response", type: "escalates-to", carries: "Justified alerts → cases", qualify: "Who declares an incident?", evidence: "practitioner_published", sourceIds: [S.panSoc] },
     ],
+    bySize: sizes(absent(["mssp-ops"]), shared(["it-security", "mssp-ops"]), dedicated()),
     evidence: "practitioner_published",
     sourceIds: [S.panSoc],
   },
@@ -434,6 +460,7 @@ export const personaProfiles: PersonaProfileInput[] = [
     ],
     communities: [C.first],
     frameworks: ["NICE Incident Response work role"],
+    bySize: sizes(absent(["cto"], "Retainer with an outside IR firm"), shared(["it-security"]), dedicated()),
     evidence: "sourced",
     sourceIds: [S.niceIr, S.first],
   },
@@ -449,6 +476,7 @@ export const personaProfiles: PersonaProfileInput[] = [
       { toPersonaId: "detection-engineer", type: "feeds", carries: "Hunt findings → new detections", evidence: "hypothesis" },
     ],
     frameworks: ["MITRE ATT&CK"],
+    bySize: sizes(absent(["mssp-ops"]), absent(["mssp-ops"]), dedicated()),
     evidence: "practitioner_published",
     sourceIds: [S.panSoc],
   },
@@ -466,6 +494,7 @@ export const personaProfiles: PersonaProfileInput[] = [
     ],
     communities: [C.first, C.nci],
     frameworks: ["NICE Threat Analysis work role"],
+    bySize: sizes(absent([]), absent(["soc-lead"]), dedicated()),
     evidence: "sourced",
     sourceIds: [S.niceTa],
   },
@@ -478,6 +507,7 @@ export const personaProfiles: PersonaProfileInput[] = [
     buyingRoles: ["evaluator", "operator"],
     job: "Preserve and analyze evidence so it survives legal and regulatory scrutiny.",
     frameworks: ["NICE Digital Forensics work role"],
+    bySize: sizes(absent([], "Outside firm on retainer"), absent(["incident-response"]), shared(["incident-response"], "In-house, retainer, or both")),
     evidence: "sourced",
     sourceIds: [S.nice],
   },
@@ -493,6 +523,7 @@ export const personaProfiles: PersonaProfileInput[] = [
       { toPersonaId: "data-security", type: "collides", carries: "DLP purchase vs people-risk program", qualify: "Who can see cases?", evidence: "hypothesis" },
     ],
     frameworks: ["NICE Insider Threat Analysis work role"],
+    bySize: sizes(absent([]), absent(["it-security", "hr-people"]), dedicated()),
     evidence: "sourced",
     sourceIds: [S.nice],
   },
@@ -510,6 +541,7 @@ export const personaProfiles: PersonaProfileInput[] = [
     edges: [
       { toPersonaId: "appsec", type: "hands-off-to", carries: "Validated findings", evidence: "hypothesis" },
     ],
+    bySize: sizes(absent([], "Third-party pentest, often for SOC 2"), shared(["appsec"]), dedicated()),
     evidence: "hypothesis",
   },
   {
@@ -525,6 +557,7 @@ export const personaProfiles: PersonaProfileInput[] = [
       { toPersonaId: "cloud-sec", type: "hands-off-to", carries: "Prioritized cloud exposures", evidence: "hypothesis" },
       { toPersonaId: "appsec", type: "collides", carries: "Internet assets vs code findings", qualify: "Reachability inventory or repository vulnerability?", evidence: "hypothesis" },
     ],
+    bySize: sizes(absent(["it-operations"]), shared(["it-security"]), dedicated()),
     evidence: "hypothesis",
   },
 
@@ -541,6 +574,7 @@ export const personaProfiles: PersonaProfileInput[] = [
     edges: [
       { toPersonaId: "incident-response", type: "depends-on", carries: "Declared incident → restore decision", evidence: "hypothesis" },
     ],
+    bySize: sizes(absent(["it-operations"]), shared(["it-operations"]), dedicated()),
     evidence: "hypothesis",
   },
 
@@ -558,6 +592,7 @@ export const personaProfiles: PersonaProfileInput[] = [
     successMeasures: ["Time to provision credentials for a new service", "Failed deploys from secret mishandling", "Adoption of approved modules"],
     objections: ["Vault becomes another dependency", "Migration cost", "Security policy blocks self-service", "Unclear who pays"],
     disconfirmation: ["Security will not let platform operate the control", "Every team must keep local secret stores by policy"],
+    bySize: sizes(shared(["developer"], "DevOps-minded engineers"), dedicated(), dedicated()),
     evidence: "sourced",
     sourceIds: [S.owaspRoles],
   },
@@ -572,6 +607,7 @@ export const personaProfiles: PersonaProfileInput[] = [
     doNotAssume: ["Budget authority"],
     communities: [C.owasp],
     frameworks: ["NICE Secure Software Development work role"],
+    bySize: sizes(dedicated(), dedicated(), dedicated()),
     evidence: "sourced",
     sourceIds: [S.nice, S.owaspRoles],
   },
@@ -586,6 +622,7 @@ export const personaProfiles: PersonaProfileInput[] = [
     edges: [
       { toPersonaId: "developer", type: "sponsors", carries: "Sprint time for security work", qualify: "Is security work in the sprint?", evidence: "hypothesis" },
     ],
+    bySize: sizes(absent(["cto"]), dedicated(), dedicated()),
     evidence: "hypothesis",
   },
   {
@@ -599,6 +636,7 @@ export const personaProfiles: PersonaProfileInput[] = [
     edges: [
       { toPersonaId: "platform", type: "sponsors", carries: "Platform investment", qualify: "Engineering-owned platform buy or security-owned control?", evidence: "hypothesis" },
     ],
+    bySize: sizes(dedicated("Often the security owner"), dedicated(), dedicated("At non-tech enterprises the CIO may carry more weight")),
     evidence: "hypothesis",
   },
   {
@@ -613,6 +651,7 @@ export const personaProfiles: PersonaProfileInput[] = [
       { toPersonaId: "ai-security", type: "collides", carries: "Gateway shipped without control ownership", qualify: "Who can approve agent actions and data paths?", evidence: "hypothesis" },
     ],
     communities: [C.owaspGenai],
+    bySize: sizes(shared(["cto"]), shared(["platform"]), dedicated()),
     evidence: "hypothesis",
   },
   {
@@ -628,6 +667,7 @@ export const personaProfiles: PersonaProfileInput[] = [
     ],
     communities: [C.owaspGenai],
     frameworks: ["OWASP Top 10 for LLM Applications (2026)", "OWASP Top 10 for Agentic Applications"],
+    bySize: sizes(absent(["cto"]), shared(["appsec"]), dedicated("Emerging seat")),
     evidence: "sourced",
     sourceIds: [S.genai],
   },
@@ -644,6 +684,7 @@ export const personaProfiles: PersonaProfileInput[] = [
     edges: [
       { toPersonaId: "soc-lead", type: "operates-for", carries: "Monitoring and response under contract", qualify: "Selling a service or operating one org's SOC?", evidence: "hypothesis" },
     ],
+    bySize: sizes(external("Most often engaged by small and mid-market buyers"), external(), external("Enterprises may co-manage with an MSSP")),
     evidence: "hypothesis",
   },
 ];

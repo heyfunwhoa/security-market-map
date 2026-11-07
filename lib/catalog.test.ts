@@ -148,7 +148,10 @@ describe("catalog integrity", () => {
   });
 
   it("gives every persona a profile with valid links and honest evidence labels", () => {
-    const personaIds = new Set(catalog.personas.map((persona) => persona.id));
+    const personaIds = new Set([
+      ...catalog.personas.map((persona) => persona.id),
+      ...catalog.stakeholders.map((stakeholder) => stakeholder.id),
+    ]);
     const profiles = catalog.personaProfiles;
     expect(new Set(profiles.map((profile) => profile.personaId))).toEqual(personaIds);
     const sourceIds = new Set(catalog.sources.map((source) => source.id));
@@ -166,6 +169,41 @@ describe("catalog integrity", () => {
     expect(appsec?.edges.some((edge) => edge.toPersonaId === "developer" && edge.type === "hands-off-to")).toBe(true);
     expect(profiles.find((profile) => profile.personaId === "ciso")?.primaryDomainId).toBeNull();
     expect(profiles.find((profile) => profile.personaId === "mssp-ops")?.orgPlacement).toBe("external");
+  });
+
+  it("models non-security stakeholders without adding them to the buyer filter", () => {
+    const ids = catalog.stakeholders.map((stakeholder) => stakeholder.id);
+    expect(ids).toEqual(expect.arrayContaining(["cio", "procurement", "legal", "cfo", "board-audit-committee"]));
+    const personaIds = new Set(catalog.personas.map((persona) => persona.id));
+    for (const id of ids) expect(personaIds.has(id)).toBe(false);
+    const ciso = catalog.personaProfiles.find((profile) => profile.personaId === "ciso");
+    expect(ciso?.edges.some((edge) => edge.toPersonaId === "cio" && edge.type === "reports-to")).toBe(true);
+  });
+
+  it("covers every seat at every company size and names who covers absent seats", () => {
+    for (const profile of catalog.personaProfiles) {
+      for (const size of ["small", "mid-market", "enterprise"] as const) {
+        expect(profile.bySize[size].presence).toBeTruthy();
+      }
+    }
+    const ciso = catalog.personaProfiles.find((profile) => profile.personaId === "ciso");
+    expect(ciso?.bySize.small.presence).toBe("usually-absent");
+    expect(ciso?.bySize.small.coveredBy).toEqual(expect.arrayContaining(["ceo-founder", "cto"]));
+    expect(ciso?.bySize.enterprise.presence).toBe("dedicated");
+  });
+
+  it("links company-type overlays to real seats and sources regulated ones", async () => {
+    const { companySizeBands } = await import("./data/company-segments");
+    const sourceIds = new Set(catalog.sources.map((source) => source.id));
+    for (const band of Object.values(companySizeBands)) {
+      for (const id of band.sourceIds) expect(sourceIds.has(id)).toBe(true);
+    }
+    const kinds = new Set(catalog.segmentOverlays.map((overlay) => overlay.kind));
+    expect(kinds).toEqual(new Set(["business-model", "industry", "ownership", "region", "provider"]));
+    for (const overlay of catalog.segmentOverlays) {
+      for (const seat of overlay.mandatedSeats) expect(seat.sourceIds.length).toBeGreaterThan(0);
+      if (overlay.mandatedSeats.length > 0) expect(overlay.evidence).toBe("sourced");
+    }
   });
 
   it("formats persona filter labels with acronym samples", async () => {
