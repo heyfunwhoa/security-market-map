@@ -17,7 +17,8 @@ The persona note answers *who the seats are*. This note answers *how they connec
 7. **Non-security stakeholders** — CEO, CIO, IT ops, CFO, procurement, legal, board, HR.
 8. **Company size** — which seats exist at small, mid-market, and enterprise companies, and who covers the rest.
 9. **Company type** — business model, regulated industries, region, ownership, and providers.
-10. **Gaps** — categories with no persona owner, plus open questions.
+10. **How it connects** — seat graph, deal-stage committees by size, use case → seat links, public signals.
+11. **Gaps** — what is still missing, plus open questions.
 
 Typed data: `lib/data/persona-profiles.ts`, `lib/data/stakeholders.ts`, `lib/data/company-segments.ts`.
 
@@ -77,7 +78,7 @@ Edge types: **sponsors** (funds/approves), **hands off to** (output becomes thei
 
 ## 4. Coverage — persona → domain → categories → vendors
 
-Computed from the catalog on 2026-11-07 (`catalog.personas`, `catalog.categories`, `catalog.vendors` primary categories). Domain = the two domains most often attached to the persona's categories. Vendor count = unique vendors with a primary category in the persona's set. **Counts describe this atlas's coverage, not the market.**
+Computed from the catalog on 2026-11-07 (`catalog.personas`, `catalog.categories`, `catalog.vendors` primary categories). Domain = the two domains most often attached to the persona's categories. Vendor count = unique vendors with a primary category in the persona's set. **Counts describe this atlas's coverage, not the market.** Computed before the orphan-category links in §11; a few rows (AppSec, IT security, AI seats) now own one to three more categories.
 
 | Persona | Top domains | Categories | Vendors in atlas |
 | --- | --- | --- | --- |
@@ -205,11 +206,82 @@ Overlays change which seats a rule requires, which seats gain weight, and which 
 
 Some secondary sources here are law-firm or vendor summaries of the rule text; check the primary text before quoting a rule externally.
 
-## 10. Gaps to close
+## 10. How it all connects
 
-### Categories with no persona owner (13)
+### Seat graph (key edges)
 
-Catalog `buyerOwner` text shown; proposed persona link is a **hypothesis** to add to `personas.ts` `categoryIds` after review.
+```mermaid
+flowchart LR
+  board[Board / audit committee] -- oversees --> ciso[CISO]
+  ceo[CEO / founder] -- sponsors --> ciso
+  ciso -- reports to --> cio[CIO]
+  cfo[CFO] -- approves purchase --> ciso
+  ciso -- sponsors --> arch[Security architect]
+  arch -- standards --> appsec[AppSec]
+  arch -- standards --> idsec[Identity security]
+  appsec -- findings --> dev[Developer]
+  appsec -- revoke and rotate --> platform[Platform eng]
+  platsec[Platform security] -- guardrails --> platform
+  idsec -- co-owns agent access --> aiowner[AI platform owner]
+  de[Detection engineer] -- detections --> analyst[SOC analyst]
+  analyst -- escalates --> ir[Incident response]
+  ir -- evidence --> dfir[Forensics]
+  legal[Legal] -- materiality --> ir
+  procurement[Procurement] -- vendor review --> grc[GRC / trust]
+  hr[HR] -- joiner/leaver --> iga[IGA owner]
+  mssp[MSSP / MDR] -- operates for --> soc[SOC lead]
+```
+
+Full edge list: `personaProfiles[].edges` (64 edges). Query helpers in `lib/persona-graph.ts`: `seatLinks`, `seatsForCategory`, `seatsForUseCase`, `vendorsForSeat`, `committeeForStage`, `whoCovers`, `overlaysForSeat`, `seatContext`.
+
+### Who shows up at each deal stage (hypothesis)
+
+Stages follow the portfolio Academy lifecycle placeholders. Small-company column drops seats that are usually absent at that size; shared seats stay because someone still does the job.
+
+| Stage | Enterprise | Small company (absent seats dropped) |
+| --- | --- | --- |
+| Prospecting / trigger | `ciso`, `identity-security`, `appsec`, `cloud-sec`, `soc-lead`, `mssp-ops`, `board-audit-committee` | `appsec`, `cloud-sec`, `mssp-ops`, `board-audit-committee` |
+| Discovery | `identity-security`, `appsec`, `cloud-sec`, `data-security`, `ai-security`, `ai-owner`, `it-security`, `product-security`, `platform-security`, `soc-lead`, `insider-risk`, `ot-security`, `exposure-management`, `supply-chain-security`, `security-awareness` | `appsec`, `cloud-sec`, `ai-owner`, `it-security`, `security-awareness` |
+| Technical evaluation / POC | `security-architect`, `identity-security`, `iga-owner`, `pam-owner`, `appsec`, `platform`, `cloud-sec`, `data-security`, `ai-security`, `ai-owner`, `engineering-manager`, `security-champion`, `it-security`, `product-security`, `platform-security`, `detection-engineer`, `offensive-security`, `soc-analyst`, `incident-response`, `threat-hunter`, `threat-intel`, `digital-forensics`, `insider-risk`, `network-security`, `saas-security`, `ot-security`, `exposure-management`, `cyber-recovery`, `supply-chain-security`, `security-awareness`, `mssp-ops`, `developer`, `it-operations` | `appsec`, `platform`, `cloud-sec`, `ai-owner`, `security-champion`, `it-security`, `security-awareness`, `mssp-ops`, `developer`, `it-operations` |
+| Business case | `ciso`, `identity-security`, `product-security`, `soc-lead`, `cyber-recovery`, `cto`, `ceo-founder`, `cio`, `cfo` | `cto`, `ceo-founder`, `cfo` |
+| Security review | `security-architect`, `privacy`, `ai-security`, `grc-owner` | `privacy`, `grc-owner` |
+| Procurement & legal | `privacy`, `grc-owner`, `procurement`, `legal` | `privacy`, `grc-owner`, `legal` |
+| Close | `ciso`, `cto`, `ceo-founder`, `cio`, `cfo`, `procurement` | `cto`, `ceo-founder`, `cfo` |
+| Implementation | `iga-owner`, `pam-owner`, `appsec`, `platform`, `cloud-sec`, `engineering-manager`, `security-champion`, `it-security`, `platform-security`, `detection-engineer`, `network-security`, `saas-security`, `ot-security`, `security-awareness`, `developer`, `it-operations`, `hr-people` | `appsec`, `platform`, `cloud-sec`, `security-champion`, `it-security`, `security-awareness`, `developer`, `it-operations`, `hr-people` |
+| Renewal / expansion | `ciso`, `appsec`, `soc-lead`, `grc-owner`, `mssp-ops`, `procurement` | `appsec`, `grc-owner`, `mssp-ops` |
+
+**So what:** at a small company the business case and close collapse to CTO, CEO, and CFO, and procurement disappears. At enterprise, close adds the CIO and procurement — two seats a security champion rarely reaches without help.
+
+### Use cases → seats
+
+Mapped from each use case's free-text stakeholders and budget owner. "Not yet modeled" are seats named in use cases that have no typed persona.
+
+| Use case | Seats | Likely budget | Not yet modeled |
+| --- | --- | --- | --- |
+| Joiner, mover, leaver and access reviews | `iga-owner`, `security-architect`, `grc-owner`, `hr-people` | `iga-owner`, `grc-owner` | App owners |
+| Just-in-time privileged access | `pam-owner`, `it-operations`, `soc-lead`, `iga-owner` | `pam-owner`, `identity-security` | — |
+| Secrets detection and remediation | `appsec`, `developer`, `platform`, `cloud-sec` | `appsec` | — |
+| Vaulting and short-lived credentials | `platform`, `platform-security`, `developer` | `platform`, `platform-security` | App owner |
+| NHI ownership and decommissioning | `identity-security`, `cloud-sec`, `appsec` | `identity-security`, `cloud-sec` | Service owners |
+| Agent tool-call authorization | `ai-owner`, `identity-security`, `ai-security` | `ai-owner`, `identity-security` | App owner of the tool |
+| Cloud entitlement posture | `cloud-sec`, `identity-security`, `platform` | `cloud-sec` | — |
+| Identity threat detection and response | `soc-lead`, `identity-security`, `it-operations` | `soc-lead` | — |
+| Customer and developer authentication | `developer`, `engineering-manager`, `security-architect`, `cto` | `cto` | Developer experience |
+| Who owns this finding? | `appsec`, `it-security`, `cloud-sec`, `platform`, `exposure-management` | Unsettled | — |
+| Product security before launch | `product-security`, `engineering-manager`, `grc-owner` | `product-security` | — |
+| A customer's security review | `grc-owner`, `product-security` | `grc-owner` | Sales engineering |
+| Where sensitive data is, and whether it can leave | `data-security`, `privacy`, `identity-security` | `data-security` | Data platform |
+| Protect developer workstations and AI coding workflows | `appsec`, `it-security`, `platform-security`, `soc-lead` | `appsec`, `it-security`, `platform-security` | — |
+
+### Public signals
+
+Every seat now lists one or two things a seller can see from outside — job postings, filings, announcements (`publicSignals`). They are prompts for research, not evidence of intent. These are the natural hook into Account Signal Engine.
+
+## 11. Gaps to close
+
+### Categories that had no persona owner (13) — now linked
+
+Catalog `buyerOwner` text shown. The proposed links below are **hypotheses**, applied through `orphanCategoryOwners` in `lib/data/persona-connections.ts`, so these categories now appear in the landscape buyer filter. Every category now has at least one owning persona (tested).
 
 | Category | Catalog owner text | Vendors in atlas | Proposed persona link |
 | --- | --- | --- | --- |
@@ -227,7 +299,7 @@ Catalog `buyerOwner` text shown; proposed persona link is a **hypothesis** to ad
 | `model-security` | Platform or AI infrastructure | 0 | `ai-owner`, `platform` |
 | `iast` | AppSec | 0 | `appsec` |
 
-`detection-engineering` → `detection-engineer` is the clearest miss: the seat exists and the category exists, but they are not linked.
+Still open: "App owners", "Service owners", "Data platform", "Developer experience" and "Sales engineering" appear in use cases with no typed seat.
 
 ### Open questions
 

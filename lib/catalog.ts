@@ -15,6 +15,7 @@ import {
   personaProfileSchema,
   stakeholderSchema,
   segmentOverlaySchema,
+  useCaseSeatsSchema,
   pricingSignalSchema,
   productSchema,
   relationshipSchema,
@@ -34,6 +35,7 @@ import {
   type PersonaProfile,
   type Stakeholder,
   type SegmentOverlay,
+  type UseCaseSeats,
   type PricingSignal,
   type Product,
   type Relationship,
@@ -64,6 +66,14 @@ import { personaProfiles } from "./data/persona-profiles";
 import { personaSources } from "./data/persona-sources";
 import { stakeholderProfiles, stakeholders } from "./data/stakeholders";
 import { segmentOverlays } from "./data/company-segments";
+import { orphanCategoryOwners, useCaseSeats } from "./data/persona-connections";
+
+const withOrphanCategories = (persona: BuyerPersona): BuyerPersona => {
+  const added = Object.entries(orphanCategoryOwners)
+    .filter(([categoryId, owners]) => owners.includes(persona.id) && !persona.categoryIds.includes(categoryId))
+    .map(([categoryId]) => categoryId);
+  return added.length ? { ...persona, categoryIds: [...persona.categoryIds, ...added] } : persona;
+};
 import { customerStories, pricingSignals, relationships } from "./data/relationships";
 import { sources } from "./data/sources";
 import { useCases } from "./data/use-cases";
@@ -93,6 +103,7 @@ export type Catalog = {
   personaProfiles: PersonaProfile[];
   stakeholders: Stakeholder[];
   segmentOverlays: SegmentOverlay[];
+  useCaseSeats: UseCaseSeats[];
   sources: Source[];
   claims: Claim[];
   relationships: Relationship[];
@@ -113,10 +124,11 @@ function parseCatalog(): Catalog {
     products: z.array(productSchema).parse([...products, ...ecosystemProducts, ...secretsSweepProducts, ...expandedProducts, ...developerEndpointProducts]),
     capabilities: z.array(capabilitySchema).parse([...capabilities, ...ecosystemCapabilities, ...developerEndpointCapabilities]),
     useCases: z.array(useCaseSchema).parse([...useCases, ...ecosystemUseCases, ...developerEndpointUseCases]),
-    personas: z.array(personaSchema).parse([...personas, ...ecosystemPersonas]),
+    personas: z.array(personaSchema).parse([...personas, ...ecosystemPersonas]).map(withOrphanCategories),
     personaProfiles: z.array(personaProfileSchema).parse([...personaProfiles, ...stakeholderProfiles]),
     stakeholders: z.array(stakeholderSchema).parse(stakeholders),
     segmentOverlays: z.array(segmentOverlaySchema).parse(segmentOverlays),
+    useCaseSeats: z.array(useCaseSeatsSchema).parse(useCaseSeats),
     sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources, ...developerEndpointSources, ...personaSources]),
     claims: z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims, ...developerEndpointClaims]),
     relationships: z.array(relationshipSchema).parse([...relationships, ...ecosystemRelationships]),
@@ -131,9 +143,10 @@ function parseCatalog(): Catalog {
 
 export function catalogProblems(catalog: Catalog): string[] {
   // Persona profiles are keyed by personaId and checked below.
-  const { asOf: _asOf, personaProfiles: _personaProfiles, ...collections } = catalog;
+  const { asOf: _asOf, personaProfiles: _personaProfiles, useCaseSeats: _useCaseSeats, ...collections } = catalog;
   void _asOf;
   void _personaProfiles;
+  void _useCaseSeats;
   const problems = [
     ...identityProblems(collections),
     ...provenanceProblems(catalog.sources, catalog.claims, catalog.capabilities.map((item) => item.id)),
@@ -355,6 +368,21 @@ export function catalogProblems(catalog: Catalog): string[] {
   }
   for (const id of seatIds) {
     if (!profiledIds.has(id)) problems.push(`Seat ${id} has no profile`);
+  }
+  const linkedUseCases = new Set<string>();
+  for (const link of catalog.useCaseSeats) {
+    const label = `Use case seats ${link.useCaseId}`;
+    if (!useCaseIds.has(link.useCaseId)) problems.push(`${label} use case missing`);
+    if (linkedUseCases.has(link.useCaseId)) problems.push(`Duplicate ${label.toLowerCase()}`);
+    linkedUseCases.add(link.useCaseId);
+    for (const id of [...link.seatIds, ...link.likelyBudgetSeatIds]) {
+      if (!seatIds.has(id)) problems.push(`${label} seat ${id} missing`);
+    }
+  }
+  for (const id of useCaseIds) if (!linkedUseCases.has(id)) problems.push(`Use case ${id} has no seat links`);
+  for (const [categoryId, owners] of Object.entries(orphanCategoryOwners)) {
+    if (!categoryIds.has(categoryId)) problems.push(`Orphan owner category ${categoryId} missing`);
+    for (const id of owners) if (!personaIds.has(id)) problems.push(`Orphan owner ${id} for ${categoryId} missing`);
   }
   for (const overlay of catalog.segmentOverlays) {
     const label = `Segment ${overlay.id}`;

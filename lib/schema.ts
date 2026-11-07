@@ -300,6 +300,27 @@ export const stakeholderSchema = z.object({
   aliases: z.array(z.string().min(1)).default([]),
 });
 
+/** Deal lifecycle stages, following docs/academy lifecycle placeholders in the portfolio. */
+export const dealStageSchema = z.enum([
+  "prospecting",
+  "discovery",
+  "technical-evaluation",
+  "business-case",
+  "security-review",
+  "procurement-legal",
+  "close",
+  "implementation",
+  "renewal-expansion",
+]);
+
+/** Links a use case to typed seats. Free-text stakeholders that are not modeled yet stay listed. */
+export const useCaseSeatsSchema = z.object({
+  useCaseId: z.string().min(1),
+  seatIds: z.array(z.string().min(1)).min(1),
+  likelyBudgetSeatIds: z.array(z.string().min(1)).default([]),
+  unmodeledStakeholders: z.array(z.string().min(1)).default([]),
+});
+
 /** Research profile for a typed persona. Keyed by personaId; the base persona stays small for filters. */
 export const personaProfileSchema = z.object({
   personaId: z.string().min(1),
@@ -319,6 +340,10 @@ export const personaProfileSchema = z.object({
   edges: z.array(personaEdgeSchema).default([]),
   communities: z.array(personaCommunitySchema).default([]),
   frameworks: z.array(z.string().min(1)).default([]),
+  /** Stages where this seat usually shows up. Hypothesis unless the profile cites sources. */
+  dealStages: z.array(dealStageSchema).min(1),
+  /** Things a seller can observe from outside (postings, filings, announcements). Not proof of intent. */
+  publicSignals: z.array(z.string().min(1)).default([]),
   bySize: z.object({
     small: sizePresenceSchema,
     "mid-market": sizePresenceSchema,
@@ -532,6 +557,10 @@ export type StakeholderInput = z.input<typeof stakeholderSchema>;
 export type SegmentOverlay = z.infer<typeof segmentOverlaySchema>;
 export type SegmentOverlayInput = z.input<typeof segmentOverlaySchema>;
 export type SizePresenceInput = z.input<typeof sizePresenceSchema>;
+export type DealStage = z.infer<typeof dealStageSchema>;
+export type CompanySize = z.infer<typeof companySizeSchema>;
+export type UseCaseSeats = z.infer<typeof useCaseSeatsSchema>;
+export type UseCaseSeatsInput = z.input<typeof useCaseSeatsSchema>;
 export type Source = z.infer<typeof sourceSchema>;
 export type Claim = z.infer<typeof claimSchema>;
 export type Relationship = z.infer<typeof relationshipSchema>;
