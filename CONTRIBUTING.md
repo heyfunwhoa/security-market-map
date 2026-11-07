@@ -35,3 +35,8 @@ Human: source meaning, classification quality, ownership/acquisition history, ri
 ## Shared policy reference
 
 The previously proposed `governance/research-intelligence-lifecycle.md` path is absent from the shared repo as checked 2026-10-13. Use the accepted [Research Evidence Boundary ADR](https://github.com/heyfunwhoa/technical-docs-platform/blob/main/architecture/ADR-001-research-evidence-boundary.md) and [Engineering Baseline](https://github.com/heyfunwhoa/technical-docs-platform/blob/main/engineering/baseline-v1.md), alongside the local playbook. This does not claim that the missing lifecycle document was adopted.
+
+
+## Portfolio claim-level verification contract
+
+For each material new or edited claim, apply the [canonical claim/source verification standard](https://github.com/heyfunwhoa/technical-docs-platform/blob/standards/claim-source-verification-v1/standards/source-verification-v1.md) (draft [Technical Docs PR #75](https://github.com/heyfunwhoa/technical-docs-platform/pull/75)) in addition to the existing research review template. A URL alone is insufficient: capture the exact source-supported assertion and section, primary/secondary classification, true date checked or null, confidence, caveats/counterevidence, license/rights restrictions and review trigger. Keep vendor claims distinct from independently reproduced evidence. Do not treat a contributor's last check date as verification of every claim; existing uninspected sources remain unverified. Original licenses/terms determine allowed reuse; source accessibility is not permission to redistribute or reproduce. This is documented adoption, not automated schema enforcement.
