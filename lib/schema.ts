@@ -321,6 +321,27 @@ export const useCaseSeatsSchema = z.object({
   unmodeledStakeholders: z.array(z.string().min(1)).default([]),
 });
 
+/** Functional home of a seat, independent of where it reports at a given company. */
+export const seatFunctionSchema = z.enum([
+  "security",
+  "engineering",
+  "it",
+  "legal-privacy",
+  "finance-procurement",
+  "executive",
+  "people",
+  "external",
+]);
+
+/** Seniority levels used to read titles. Head-of maps to director by default; at small companies it can be the top seat. */
+export const seniorityLevelSchema = z.enum(["ic", "senior-ic", "manager", "director", "vp", "c-level"]);
+
+export const painSchema = z.object({
+  pain: z.string().min(1),
+  evidence: personaEvidenceSchema,
+  sourceIds: z.array(z.string().min(1)).default([]),
+});
+
 /** Research profile for a typed persona. Keyed by personaId; the base persona stays small for filters. */
 export const personaProfileSchema = z.object({
   personaId: z.string().min(1),
@@ -329,7 +350,10 @@ export const personaProfileSchema = z.object({
   cluster: personaClusterSchema,
   orgPlacement: personaOrgPlacementSchema,
   buyingRoles: z.array(buyingRoleSchema).min(1),
+  function: seatFunctionSchema,
   job: z.string().min(1),
+  /** What hurts in this seat's own terms. Sourced pains cite surveys or reports; the rest are hypotheses. */
+  pains: z.array(painSchema).min(1),
   triggers: z.array(z.string().min(1)).default([]),
   messageToTest: z.string().min(1).optional(),
   successMeasures: z.array(z.string().min(1)).default([]),
@@ -559,6 +583,9 @@ export type SegmentOverlayInput = z.input<typeof segmentOverlaySchema>;
 export type SizePresenceInput = z.input<typeof sizePresenceSchema>;
 export type DealStage = z.infer<typeof dealStageSchema>;
 export type CompanySize = z.infer<typeof companySizeSchema>;
+export type SeatFunction = z.infer<typeof seatFunctionSchema>;
+export type SeniorityLevel = z.infer<typeof seniorityLevelSchema>;
+export type BuyingRole = z.infer<typeof buyingRoleSchema>;
 export type UseCaseSeats = z.infer<typeof useCaseSeatsSchema>;
 export type UseCaseSeatsInput = z.input<typeof useCaseSeatsSchema>;
 export type Source = z.infer<typeof sourceSchema>;

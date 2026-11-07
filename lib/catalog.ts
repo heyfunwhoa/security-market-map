@@ -348,6 +348,10 @@ export function catalogProblems(catalog: Catalog): string[] {
     if (profile.evidence === "sourced" && profile.sourceIds.length === 0) {
       problems.push(`${label} is marked sourced without sourceIds`);
     }
+    for (const pain of profile.pains) {
+      if (pain.evidence === "sourced" && pain.sourceIds.length === 0) problems.push(`${label} pain "${pain.pain}" is marked sourced without sourceIds`);
+      for (const id of pain.sourceIds) if (!sourceIds.has(id)) problems.push(`${label} pain source ${id} missing`);
+    }
     for (const id of profile.sourceIds) {
       if (!sourceIds.has(id)) problems.push(`${label} source ${id} missing`);
     }
