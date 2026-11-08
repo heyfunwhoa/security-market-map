@@ -1,6 +1,6 @@
 # Security organization personas — core five plus adjacent seats
 
-As of: 2026-10-27 (America/Chicago). Owner: Security Market Map editorial maintainer.
+As of: 2026-10-27 (America/Chicago). Operational-role clarification added 2026-11-08; other profiles and sources were not reverified. Owner: Security Market Map editorial maintainer.
 Status: source-linked research candidate; human review pending. Builds on domain seeds and typed buyer personas; does **not** invent ICP cutoffs, budget authority, or deal champions from titles alone.
 Next manual review: 2026-11-27, or sooner after a material domain/persona catalog change.
 
@@ -16,6 +16,7 @@ Next manual review: 2026-11-27, or sooner after a material domain/persona catalo
 Related local artifacts:
 
 - Typed catalog personas: `lib/data/personas.ts` and `ecosystemPersonas` in `lib/data/ecosystem.ts` (`aliases` field)
+- [Persona data model and reuse](../persona-data-model.md): canonical typed fields, generated views, revision references and correction workflow; implementation proposed in PR #148
 - Domain charters: `domainSeeds` in `lib/data/ecosystem.ts`
 - Separation of role / persona / ICP: [research atlas vision](../product/research-atlas-vision.md)
 - Method: [Competitive Intelligence Playbook](competitive-intelligence-playbook.md)
@@ -23,9 +24,9 @@ Related local artifacts:
 
 ## Acronyms and same-seat aliases
 
-Canonical catalog `name` is the display label. `aliases` hold acronyms and alternate titles for the **same seat**. Landscape buyer filters show a short sample (`Name · Alias / Alias`).
+Canonical catalog `name` is the display label. `aliases` supply lookup terms and alternate titles for a modeled seat; a broad alias match does not prove identical responsibilities. In particular, DevOps, SRE and platform engineering can map to the current broad `platform` record while requiring different follow-up questions. Landscape buyer filters show a short sample (`Name · Alias / Alias`).
 
-| Catalog ID | Common short names | Also heard as (same seat) |
+| Catalog ID | Common short names | Also heard as (qualify responsibilities) |
 | --- | --- | --- |
 | `appsec` | AppSec, ASE | Application security, software security, ASPM owner, Director of AppSec |
 | `product-security` | ProdSec | Product security, PSIRT lead, SSDLC / secure SDLC program owner |
@@ -82,6 +83,42 @@ These titles are common and ambiguous. Qualify which seat is meant before mappin
 | DFIR | Incident response **or** digital forensics (or both) | Containment now vs evidence for later? |
 | CASB vs SSPM | Access/data path control vs SaaS app posture | User-to-SaaS traffic/policy vs SaaS misconfig/grants? |
 | Analyst | SOC Tier 1, detection eng, CTI, or GRC | Which queue and which output artifact? |
+
+
+## Platform, reliability and recovery responsibilities
+
+Use the current IDs before proposing a new persona. This section explains how to interpret the broad `platform` record; it does not create an SRE ID, modify title-matcher behavior, or add runtime profile fields. The [typed model](../persona-data-model.md) remains the authority for application profiles and questions.
+
+CNCF's platform white paper emphasizes reusable interfaces, self-service and user experience, and explains that a platform team may consume services operated by other teams. Google's SRE introduction describes responsibility for service availability, monitoring, change management and incident response in Google's operating model. These scopes can overlap without making the functions interchangeable.[^OPS-PLATFORM][^OPS-SRE]
+
+The following is editorial guidance to test in discovery, not a universal org chart or confirmed buying committee:
+
+| Function to distinguish | Existing seat reference | Responsibility to investigate | Handoff or evidence to ask about |
+| --- | --- | --- | --- |
+| Platform engineering | `platform` | Reusable paths for teams to provision, deploy and observe services | Who maintains the interface, and who operates the backing service? |
+| Reliability / SRE | `platform`, with actual function recorded in the consumer's context | Reliability expectations, failure detection, operational load and incident response for a named service | Who responds to a failed job, and what proves the business operation completed? |
+| Platform security | `platform-security` | Security requirements for shared delivery/runtime infrastructure | Who operates the control, who approves an exception, and how is the access decision checked? |
+| IT operations | Proposed stakeholder `it-operations` in PR #148 | Host/service administration and routine operational recovery | Who owns startup, maintenance and the backup job? Preserve its stakeholder kind; do not map it to `it-security` solely because it administers access |
+| Cyber recovery | `cyber-recovery` | Recovery after a destructive or security event, including dependencies and restoration evidence | Who authorizes restoration, who executes it, and what demonstrates the agreed recovery outcome? |
+
+A routine backup task alone does not establish a cyber-recovery buying project. General integration/automation engineering remains broader technical learning unless a specific security use case establishes a relevant seat. Record the actual service owner separately from a title match.
+
+Split the broad `platform` seat only when distinct responsibilities, evaluation needs and consumer use cases justify it. Such a change needs typed profiles, category/use-case review, title-match tests and an explicit migration for existing references; this editorial clarification does not perform that migration.
+
+### Evidence for this clarification
+
+Owner: Security Market Map maintainer. Source inspection: Codex, direct primary-page section review, 2026-11-08 UTC. Next review: before publication or a material source/persona-model change, otherwise 2026-12-08. Publication dates are not established here. Human editorial review is pending.
+
+| Claim ID / kind | Precise support and inspected section | Status / confidence | Limit |
+| --- | --- | --- | --- |
+| SEC-OPS-C01 / fact about publisher guidance | CNCF, “What is a platform” and “Attributes of platform teams”: platforms offer consistent capability interfaces; underlying services may be operated elsewhere | Claim support verified 2026-11-08 / high | Primary project guidance, not a universal team structure or outcome measurement |
+| SEC-OPS-C02 / fact about publisher guidance | Google, “Tenets of SRE”: its service responsibilities include availability, monitoring, change management and emergency response | Claim support verified 2026-11-08 / high | Google's model, not evidence of another organization's responsibilities or buying authority |
+| SEC-OPS-H01 / derived recommendation | Role distinctions, handoff questions and split criteria in this section, informed by C01/C02 and existing persona records | Proposed hypothesis / moderate | No customer interviews, title-matcher tests or implementation validation performed for this guidance |
+
+Shared evidence fields: `source_type: primary` for C01/C02; `verified_by: Codex direct section inspection`; `adoption_status: reference` for publisher guidance and `proposed` for H01; `evidence_artifact: this section and its owning PR`. `license_rights: unknown_review_required`; `rights_url: null`. Rights handling checked 2026-11-08: links and brief original paraphrases only; no source text, screenshots or code reproduced. Source support does not establish redistribution permission, human acceptance or a tested runtime.
+
+[^OPS-PLATFORM]: CNCF TAG App Delivery, Platforms white paper: https://tag-app-delivery.cncf.io/whitepapers/platforms/
+[^OPS-SRE]: Google, Site Reliability Engineering, Introduction: https://sre.google/sre-book/introduction/
 
 ## Why these five first
 
