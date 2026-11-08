@@ -120,3 +120,19 @@ export function seatContext(id: string, source: Catalog = catalog) {
     },
   };
 }
+
+/** Seats whose pains a category addresses: "who feels the problem this category solves". */
+export function painsForCategory(categoryId: string, source: Catalog = catalog) {
+  return seats(source).flatMap((seat) =>
+    seat.profile.pains
+      .filter((pain) => pain.relatedCategoryIds.includes(categoryId))
+      .map((pain) => ({ seat, pain })),
+  );
+}
+
+/** Seats whose pains a use case addresses. */
+export function painsForUseCase(useCaseId: string, source: Catalog = catalog) {
+  return seats(source).flatMap((seat) =>
+    seat.profile.pains.filter((pain) => pain.relatedUseCaseIds.includes(useCaseId)).map((pain) => ({ seat, pain })),
+  );
+}

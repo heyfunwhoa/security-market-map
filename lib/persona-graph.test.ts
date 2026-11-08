@@ -9,6 +9,8 @@ import {
   seats,
   seatsForCategory,
   seatsForUseCase,
+  painsForCategory,
+  painsForUseCase,
   vendorsForSeat,
   whoCovers,
 } from "./persona-graph";
@@ -46,7 +48,7 @@ describe("persona graph", () => {
   it("builds a stage committee that shrinks at small companies", () => {
     const enterprise = committeeForStage("procurement-legal", "enterprise").map((seat) => seat.id);
     const small = committeeForStage("procurement-legal", "small").map((seat) => seat.id);
-    expect(enterprise).toEqual(expect.arrayContaining(["procurement", "legal", "grc-owner"]));
+    expect(enterprise).toEqual(expect.arrayContaining(["procurement", "legal-counsel", "grc-owner"]));
     expect(small).not.toContain("procurement");
   });
 
@@ -67,5 +69,13 @@ describe("persona graph", () => {
     const context = seatContext("identity-security");
     expect(context?.useCases.length).toBeGreaterThan(2);
     expect(context?.whoCoversBySize.small).toEqual(["it-operations"]);
+  });
+
+  it("links pains to the categories and use cases that address them", () => {
+    const secrets = painsForCategory("secrets-detection").map((item) => item.seat.id);
+    expect(secrets).toEqual(expect.arrayContaining(["platform-security", "platform"]));
+    expect(painsForUseCase("uc-jml").map((item) => item.seat.id)).toEqual(expect.arrayContaining(["iga-owner", "hr-people"]));
+    const linked = catalog.personaProfiles.flatMap((profile) => profile.pains).filter((pain) => pain.relatedCategoryIds.length);
+    expect(linked.length).toBeGreaterThanOrEqual(65);
   });
 });

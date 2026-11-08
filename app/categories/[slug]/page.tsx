@@ -10,6 +10,7 @@ import { ClaimList } from "@/components/claims";
 import { FlowStrip } from "@/components/category-map";
 import { PageIntro } from "@/components/chrome";
 import { catalog, categoryBySlug, claimsForSubject, vendorById } from "@/lib/catalog";
+import { painsForCategory, seatsForCategory } from "@/lib/persona-graph";
 
 export function generateStaticParams() {
   return catalog.categories.map((category) => ({ slug: category.slug }));
@@ -33,6 +34,8 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
   const primaryVendors = [...new Set(products.map((product) => product.vendorId))]
     .flatMap((id) => { const vendor = vendorById(id); return vendor ? [vendor] : []; });
   const categoryClaims = claimsForSubject("category", category.id);
+  const owningSeats = seatsForCategory(category.id);
+  const seatPains = painsForCategory(category.id);
   const sourcingLabel = categoryClaims.length > 0
     ? "The description, buyer question, owner, budget, triggers, outcomes, workflow, and illustrative flow are the map's wording. The sourced sentences are the claims below."
     : "The description, buyer question, owner, budget, triggers, outcomes, workflow, and illustrative flow are the map's wording. No source is attached to them yet.";
@@ -181,6 +184,34 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
           </ul>
         )}
       </section>
+      {owningSeats.length > 0 || seatPains.length > 0 ? (
+        <section className="mt-8" aria-labelledby="category-seats">
+          <h2 id="category-seats" className="text-2xl">Who owns it and who feels the problem</h2>
+          {owningSeats.length > 0 ? (
+            <p className="mt-2 text-sm">
+              Usually owned by{" "}
+              {owningSeats.map((seat, index) => (
+                <span key={seat.id}>
+                  {index > 0 ? ", " : ""}
+                  <Link href={`/personas/${seat.id}`} className="underline underline-offset-4 hover:text-foreground">{seat.name}</Link>
+                </span>
+              ))}
+              .
+            </p>
+          ) : null}
+          {seatPains.length > 0 ? (
+            <ul className="mt-3 space-y-2 text-sm">
+              {seatPains.map(({ seat, pain }) => (
+                <li key={`${seat.id}-${pain.pain}`}>
+                  <Link href={`/personas/${seat.id}`} className="font-medium underline underline-offset-4 hover:text-foreground">{seat.name}</Link>
+                  : {pain.pain}
+                  {pain.evidence === "hypothesis" ? <span className="text-muted-foreground"> (hypothesis)</span> : null}
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </section>
+      ) : null}
       <section className="mt-8">
         <h2 id="category-evidence" tabIndex={-1} className="scroll-mt-24 text-2xl focus-visible:outline-2 focus-visible:outline-ring">Claims about this category</h2>
         <div className="mt-3">

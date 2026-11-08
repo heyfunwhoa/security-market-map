@@ -2,8 +2,10 @@ import type { SegmentOverlayInput } from "../schema";
 
 /**
  * Company size bands and company-type overlays.
- * Employee cutoffs are working estimates for discovery, not ICP rules. Sources on when a first security
- * hire happens are practitioner guidance, not survey data.
+ * Employee cutoffs (~500 / ~5,000) are working estimates for discovery, not ICP rules; no reviewed
+ * source gives exact cutoffs (IANS segments Fortune 500 / large / midsize, but the breakdown is gated).
+ * Sources support the shape: first security hire around 30–100 employees (practitioner guidance), most
+ * teams under 10 people (IDC/Tines), and specialization rather than headcount growing with size (Osterman).
  */
 
 export const companySizeBands = {
@@ -17,13 +19,13 @@ export const companySizeBands = {
     label: "Mid-market",
     employees: "~500 to ~5,000",
     shape: "Small team of generalists under a hands-on security leader; MDR and retainers common.",
-    sourceIds: ["src-seg-hitch-2025-summary"],
+    sourceIds: ["src-seg-hitch-2025-summary", "src-seg-idc-tines-team-size", "src-seg-osterman-team-scaling"],
   },
   enterprise: {
     label: "Enterprise",
     employees: "~5,000+",
     shape: "Specialized seats exist; procurement, legal, and vendor review in every deal.",
-    sourceIds: ["src-persona-ians-ciso-2026"],
+    sourceIds: ["src-persona-ians-ciso-2026", "src-seg-osterman-team-scaling"],
   },
 } as const;
 
@@ -95,7 +97,7 @@ export const segmentOverlays: SegmentOverlayInput[] = [
     mandatedSeats: [
       { title: "HIPAA security official", rule: "45 CFR 164.308(a)(2) requires designating a security official for Security Rule policies and procedures.", sourceIds: ["src-seg-hipaa-164308"] },
     ],
-    elevatedPersonaIds: ["privacy", "grc-owner", "it-security", "identity-security", "legal"],
+    elevatedPersonaIds: ["privacy", "grc-owner", "it-security", "identity-security", "legal-counsel"],
     addedTriggers: ["Business associate agreement", "OCR investigation", "Ransomware affecting care"],
     frameworks: ["HIPAA Security Rule"],
     notes: "At smaller providers the security official is often an IT or compliance leader, not a CISO.",
@@ -159,7 +161,7 @@ export const segmentOverlays: SegmentOverlayInput[] = [
     mandatedSeats: [
       { title: "Board oversight of cyber risk (disclosed)", personaId: "board-audit-committee", rule: "Regulation S-K Item 106 requires annual disclosure of cyber risk management and board oversight.", sourceIds: ["src-seg-sec-cyber-rule"] },
     ],
-    elevatedPersonaIds: ["ciso", "legal", "board-audit-committee", "incident-response"],
+    elevatedPersonaIds: ["ciso", "legal-counsel", "board-audit-committee", "incident-response"],
     addedTriggers: ["Material incident (8-K Item 1.05 within four business days of materiality)", "Annual 10-K cyber disclosure"],
     frameworks: ["SEC cybersecurity disclosure rules"],
     evidence: "sourced",

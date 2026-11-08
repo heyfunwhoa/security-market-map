@@ -15,6 +15,7 @@ import {
   personaProfileSchema,
   stakeholderSchema,
   segmentOverlaySchema,
+  fieldNoteSchema,
   useCaseSeatsSchema,
   pricingSignalSchema,
   productSchema,
@@ -35,6 +36,7 @@ import {
   type PersonaProfile,
   type Stakeholder,
   type SegmentOverlay,
+  type FieldNote,
   type UseCaseSeats,
   type PricingSignal,
   type Product,
@@ -66,6 +68,7 @@ import { personaProfiles } from "./data/persona-profiles";
 import { personaSources } from "./data/persona-sources";
 import { stakeholderProfiles, stakeholders } from "./data/stakeholders";
 import { segmentOverlays } from "./data/company-segments";
+import { fieldNotes } from "./data/field-notes";
 import { orphanCategoryOwners, useCaseSeats } from "./data/persona-connections";
 
 const withOrphanCategories = (persona: BuyerPersona): BuyerPersona => {
@@ -104,6 +107,7 @@ export type Catalog = {
   stakeholders: Stakeholder[];
   segmentOverlays: SegmentOverlay[];
   useCaseSeats: UseCaseSeats[];
+  fieldNotes: FieldNote[];
   sources: Source[];
   claims: Claim[];
   relationships: Relationship[];
@@ -126,9 +130,15 @@ function parseCatalog(): Catalog {
     useCases: z.array(useCaseSchema).parse([...useCases, ...ecosystemUseCases, ...developerEndpointUseCases]),
     personas: z.array(personaSchema).parse([...personas, ...ecosystemPersonas]).map(withOrphanCategories),
     personaProfiles: z.array(personaProfileSchema).parse([...personaProfiles, ...stakeholderProfiles]),
-    stakeholders: z.array(stakeholderSchema).parse(stakeholders),
+    // A typed persona with the same id replaces the stakeholder entry (e.g. legal-counsel from the
+    // LimaCharlie persona work); the seat keeps its profile, which is keyed by id.
+    stakeholders: z
+      .array(stakeholderSchema)
+      .parse(stakeholders)
+      .filter((stakeholder) => ![...personas, ...ecosystemPersonas].some((persona) => persona.id === stakeholder.id)),
     segmentOverlays: z.array(segmentOverlaySchema).parse(segmentOverlays),
     useCaseSeats: z.array(useCaseSeatsSchema).parse(useCaseSeats),
+    fieldNotes: z.array(fieldNoteSchema).parse(fieldNotes),
     sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources, ...developerEndpointSources, ...personaSources]),
     claims: z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims, ...developerEndpointClaims]),
     relationships: z.array(relationshipSchema).parse([...relationships, ...ecosystemRelationships]),
@@ -143,10 +153,11 @@ function parseCatalog(): Catalog {
 
 export function catalogProblems(catalog: Catalog): string[] {
   // Persona profiles are keyed by personaId and checked below.
-  const { asOf: _asOf, personaProfiles: _personaProfiles, useCaseSeats: _useCaseSeats, ...collections } = catalog;
+  const { asOf: _asOf, personaProfiles: _personaProfiles, useCaseSeats: _useCaseSeats, fieldNotes: _fieldNotes, ...collections } = catalog;
   void _asOf;
   void _personaProfiles;
   void _useCaseSeats;
+  void _fieldNotes;
   const problems = [
     ...identityProblems(collections),
     ...provenanceProblems(catalog.sources, catalog.claims, catalog.capabilities.map((item) => item.id)),
@@ -351,6 +362,8 @@ export function catalogProblems(catalog: Catalog): string[] {
     for (const pain of profile.pains) {
       if (pain.evidence === "sourced" && pain.sourceIds.length === 0) problems.push(`${label} pain "${pain.pain}" is marked sourced without sourceIds`);
       for (const id of pain.sourceIds) if (!sourceIds.has(id)) problems.push(`${label} pain source ${id} missing`);
+      for (const id of pain.relatedCategoryIds) if (!categoryIds.has(id)) problems.push(`${label} pain category ${id} missing`);
+      for (const id of pain.relatedUseCaseIds) if (!useCaseIds.has(id)) problems.push(`${label} pain use case ${id} missing`);
     }
     for (const id of profile.sourceIds) {
       if (!sourceIds.has(id)) problems.push(`${label} source ${id} missing`);
@@ -387,6 +400,22 @@ export function catalogProblems(catalog: Catalog): string[] {
   for (const [categoryId, owners] of Object.entries(orphanCategoryOwners)) {
     if (!categoryIds.has(categoryId)) problems.push(`Orphan owner category ${categoryId} missing`);
     for (const id of owners) if (!personaIds.has(id)) problems.push(`Orphan owner ${id} for ${categoryId} missing`);
+  }
+  const fieldIds = new Set<string>();
+  for (const note of catalog.fieldNotes) {
+    if (fieldIds.has(note.id)) problems.push(`Duplicate field note ${note.id}`);
+    fieldIds.add(note.id);
+    if (!personaIds.has(note.personaId) && !catalog.stakeholders.some((item) => item.id === note.personaId)) problems.push(`Field note ${note.id} references missing seat ${note.personaId}`);
+  }
+  for (const profile of catalog.personaProfiles) {
+    const usesFieldLabel =
+      profile.evidence === "field_validated" ||
+      profile.pains.some((pain) => pain.evidence === "field_validated") ||
+      profile.edges.some((edge) => edge.evidence === "field_validated");
+    const confirmed = catalog.fieldNotes
+      .filter((note) => note.personaId === profile.personaId && note.stance !== "challenges" && note.reviewedAt)
+      .reduce((total, note) => total + note.conversations, 0);
+    if (usesFieldLabel && confirmed < 3) problems.push(`Seat ${profile.personaId} uses field_validated without 3+ reviewed field conversations`);
   }
   for (const overlay of catalog.segmentOverlays) {
     const label = `Segment ${overlay.id}`;

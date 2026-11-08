@@ -85,7 +85,7 @@ export const stakeholders: StakeholderInput[] = [
     ],
   },
   {
-    id: "legal",
+    id: "legal-counsel",
     name: "Legal / general counsel",
     title:
       "Owns contract terms, data processing terms, and incident disclosure judgment",
@@ -158,6 +158,8 @@ export const stakeholderProfiles: PersonaProfileInput[] = [
       {
         pain: "Deals stall on customer security reviews",
         evidence: "hypothesis",
+        relatedCategoryIds: ["customer-trust"],
+        relatedUseCaseIds: ["uc-customer-trust"],
       },
       {
         pain: "Hard to judge how much security is enough",
@@ -242,6 +244,8 @@ export const stakeholderProfiles: PersonaProfileInput[] = [
       {
         pain: "Too few people for patching and access requests",
         evidence: "hypothesis",
+        relatedCategoryIds: ["iga", "it-vulnerability-management"],
+        relatedUseCaseIds: ["uc-jml"],
       },
     ],
     edges: [
@@ -330,8 +334,22 @@ export const stakeholderProfiles: PersonaProfileInput[] = [
         pain: "Vendor security reviews delay purchases",
         evidence: "practitioner_published",
         sourceIds: ["src-pain-whistic-vendor-2025"],
+        relatedCategoryIds: ["third-party-risk"],
+        relatedUseCaseIds: ["uc-customer-trust"],
       },
       { pain: "Overlapping vendors and renewals", evidence: "hypothesis" },
+    ],
+    messageToTest:
+      "Make the vendor review easy to pass: security pack, DPA, and a clear consolidation story up front.",
+    successMeasures: [
+      "Cycle time from request to signature",
+      "Spend consolidated across overlapping vendors",
+      "Renewals negotiated before auto-renew",
+    ],
+    objections: [
+      "Overlaps with a tool we already pay for",
+      "Security review isn't complete",
+      "Multi-year terms required for discount",
     ],
     edges: [
       {
@@ -342,7 +360,7 @@ export const stakeholderProfiles: PersonaProfileInput[] = [
         evidence: "hypothesis",
       },
       {
-        toPersonaId: "legal",
+        toPersonaId: "legal-counsel",
         type: "co-owns",
         carries: "MSA, DPA, order form",
         evidence: "hypothesis",
@@ -356,7 +374,7 @@ export const stakeholderProfiles: PersonaProfileInput[] = [
   },
   {
     ...base,
-    personaId: "legal",
+    personaId: "legal-counsel",
     primaryDomainId: null,
     cluster: "business",
     orgPlacement: "legal-privacy",
@@ -372,6 +390,7 @@ export const stakeholderProfiles: PersonaProfileInput[] = [
       {
         pain: "Data processing terms vary by vendor and region",
         evidence: "hypothesis",
+        relatedCategoryIds: ["privacy-governance", "third-party-risk"],
       },
     ],
     edges: [
@@ -412,6 +431,7 @@ export const stakeholderProfiles: PersonaProfileInput[] = [
       {
         pain: "Hard to judge security posture from management reports",
         evidence: "hypothesis",
+        relatedCategoryIds: ["grc-controls", "security-ratings"],
       },
     ],
     triggers: [
@@ -452,7 +472,7 @@ export const stakeholderProfiles: PersonaProfileInput[] = [
     function: "people",
     job: "Own the employee lifecycle and people-risk cases.",
     pains: [
-      { pain: "Access changes lag HR events", evidence: "hypothesis" },
+      { pain: "Access changes lag HR events", evidence: "hypothesis", relatedCategoryIds: ["iga"], relatedUseCaseIds: ["uc-jml"] },
       {
         pain: "People-risk cases need fairness and privacy",
         evidence: "hypothesis",

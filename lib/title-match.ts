@@ -36,9 +36,9 @@ const LEVEL_ORDER: SeniorityLevel[] = ["c-level", "vp", "director", "manager", "
 const RULE_SCORE: Record<TitleRule["confidence"], number> = { high: 3, medium: 2, low: 1 };
 
 /** Aliases too generic to identify a seat on their own; they score like an acronym hint. */
-const WEAK_ALIASES = new Set(["team lead", "security analyst", "soc", "em", "ir", "security", "privacy", "platform", "board", "legal", "hr", "people"]);
+const WEAK_ALIASES = new Set(["team lead", "security analyst", "soc", "em", "ir", "security", "privacy", "platform", "board", "legal", "hr", "people", "founder", "co founder"]);
 /** One-word stems that name a broad area; they lose to more specific stems. */
-const GENERIC_STEMS = new Set(["security", "platform", "engineering", "it", "software", "identity", "detection", "trust", "people", "systems", "application", "infrastructure", "development", "technology", "finance", "legal", "board"]);
+const GENERIC_STEMS = new Set(["security", "platform", "engineering", "it", "software", "identity", "detection", "trust", "people", "systems", "application", "infrastructure", "development", "technology", "finance", "legal", "board", "ai"]);
 
 export function normalizeTitle(title: string): string {
   return title
@@ -84,7 +84,7 @@ export function matchTitle(title: string, source: Catalog = catalog): TitleMatch
   const socAudit = firedRules.some((rule) => rule.id === "soc-audit");
   for (const rule of firedRules) {
     notes.add(rule.note);
-    for (const seatId of rule.seatIds) bump(seatId, RULE_SCORE[rule.confidence], `rule:${rule.id}`);
+    for (const seatId of rule.seatIds) bump(seatId, rule.specific ? 4 : RULE_SCORE[rule.confidence], `rule:${rule.id}`);
   }
   const blockedBySocAudit = (needle: string) => socAudit && /(^| )soc( |$)/.test(needle);
 
@@ -147,7 +147,8 @@ export function matchTitle(title: string, source: Catalog = catalog): TitleMatch
   const onlyRules = top ? top.via.every((via) => via.startsWith("rule:")) && top.confidence !== "high" : false;
   const lowRuleSeats = new Set(firedRules.filter((rule) => rule.confidence === "low").flatMap((rule) => rule.seatIds));
   const weakTop = top !== undefined && top.confidence !== "high" && lowRuleSeats.has(top.seatId);
-  const ambiguous = !top || (second !== undefined && top.score - second.score < 0.3) || onlyRules || weakTop;
+  const seatlessRule = firedRules.some((rule) => rule.seatIds.length === 0);
+  const ambiguous = seatlessRule || !top || (second !== undefined && top.score - second.score < 0.3) || onlyRules || weakTop;
   if (seniority === "director" && /\bhead\b/.test(normalized)) notes.add("Head of can be the top security seat at smaller companies.");
 
   return {

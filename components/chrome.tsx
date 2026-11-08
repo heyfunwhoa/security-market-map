@@ -16,6 +16,7 @@ const NAV_GROUPS = [
     { href: "/landscape", label: "Browse products", description: "Filter vendors and products, inspect details, and build a shortlist." },
     { href: "/compare", label: "Compare", description: "Compare product evidence for a specific use case." },
     { href: "/use-cases", label: "Buyer use cases", description: "Start with the problem you need to solve." },
+    { href: "/personas", label: "Buyer seats", description: "Who buys, uses, approves, and blocks, with pains and titles." },
   ] },
   { title: "Learn", links: [
     { href: "/learn", label: "Concepts & glossary", description: "Understand terminology and practical scenarios." },
@@ -116,6 +117,9 @@ const PILL_LABELS: Record<string, string> = {
   review: "Review",
   standard: "Standard",
   internal_note: "Internal note",
+  news: "News coverage",
+  legal_summary: "Legal summary",
+  academic: "Academic research",
   direct_competitor: "Direct competitor",
   bundled_alternative: "Bundled alternative",
   complement: "Complement",

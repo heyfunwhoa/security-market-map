@@ -10,7 +10,7 @@ import { seatsByFunction, typicalTitles } from "./title-match";
  * ICP scoring) to consume without importing the whole catalog. Served at /api/persona-model.
  * Bump PERSONA_MODEL_VERSION when a field is renamed or removed.
  */
-export const PERSONA_MODEL_VERSION = "1.0.0";
+export const PERSONA_MODEL_VERSION = "1.1.0";
 
 const LEVELS: SeniorityLevel[] = ["ic", "senior-ic", "manager", "director", "vp", "c-level"];
 
@@ -110,7 +110,9 @@ export function renderTitlesAndPains(source: Catalog = catalog): string {
       const painCell = profile.pains
         .map((pain) => {
           const publishers = pain.sourceIds.map((id) => sourceById.get(id)?.publisher ?? id).join(", ");
-          return pain.evidence === "hypothesis" ? pain.pain : `${pain.pain} (${publishers})`;
+          if (pain.evidence === "hypothesis") return pain.pain;
+          if (pain.evidence === "field_validated") return `${pain.pain} (field notes)`;
+          return `${pain.pain} (${publishers})`;
         })
         .join("<br>");
       lines.push(`| \`${seat.id}\` ${seat.name} | ${seat.acronyms.join(", ") || "—"} | ${titleCell || "—"} | ${painCell} |`);
