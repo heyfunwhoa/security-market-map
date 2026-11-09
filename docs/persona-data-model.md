@@ -2,7 +2,7 @@
 
 As of: 2026-11-08. How the persona, stakeholder, title, and segment data fit together, and how to use them from other projects.
 
-Implementation status: the typed model and export are proposed in [PR #148](https://github.com/heyfunwhoa/security-market-map/pull/148). This document describes that branch; it does not establish a merged or deployed API. Consumer connections below are documented, manual-first guidance.
+Implementation status: the typed model and export were merged in [PR #148](https://github.com/heyfunwhoa/security-market-map/pull/148) (merge `96b6c6b`, deployed to production on 2026-11-09). Consumers should still pin an exact commit, because the export carries no content revision of its own.
 
 ## Personas vs ICP
 
@@ -133,7 +133,7 @@ This is a manual review workflow. There is no change webhook, consumer-impact re
 
 ### Current sequencing
 
-- PR #148 owns the typed model, generated view and proposed API. Keep related implementation there.
+- The typed model, generated view and API merged in PR #148. Propose changes through new PRs against `main`.
 - [PR #123](https://github.com/heyfunwhoa/security-market-map/pull/123) adds seats that overlap this work. Before the second PR merges, reconcile `legal-counsel` with `legal`, preserve aliases, and ensure every resulting seat has exactly one profile. Do not publish an assumed migration.
 - A document consumer can use an exact branch reference for review today, clearly marked proposed. A runtime consumer must wait for a reviewed compatible revision and verified access.
 - Account research and sales tools may consume generic role guidance; this does not supply account-specific ownership, buying intent or permission to write company systems.

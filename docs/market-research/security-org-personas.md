@@ -16,7 +16,7 @@ Next manual review: 2026-11-27, or sooner after a material domain/persona catalo
 Related local artifacts:
 
 - Typed catalog personas: `lib/data/personas.ts` and `ecosystemPersonas` in `lib/data/ecosystem.ts` (`aliases` field)
-- [Persona data model and reuse](../persona-data-model.md): canonical typed fields, generated views, revision references and correction workflow; implementation proposed in PR #148
+- [Persona data model and reuse](../persona-data-model.md): canonical typed fields, generated views, revision references and correction workflow; implementation merged in PR #148
 - Domain charters: `domainSeeds` in `lib/data/ecosystem.ts`
 - Separation of role / persona / ICP: [research atlas vision](../product/research-atlas-vision.md)
 - Method: [Competitive Intelligence Playbook](competitive-intelligence-playbook.md)
@@ -98,7 +98,7 @@ The following is editorial guidance to test in discovery, not a universal org ch
 | Platform engineering | `platform` | Reusable paths for teams to provision, deploy and observe services | Who maintains the interface, and who operates the backing service? |
 | Reliability / SRE | `platform`, with actual function recorded in the consumer's context | Reliability expectations, failure detection, operational load and incident response for a named service | Who responds to a failed job, and what proves the business operation completed? |
 | Platform security | `platform-security` | Security requirements for shared delivery/runtime infrastructure | Who operates the control, who approves an exception, and how is the access decision checked? |
-| IT operations | Proposed stakeholder `it-operations` in PR #148 | Host/service administration and routine operational recovery | Who owns startup, maintenance and the backup job? Preserve its stakeholder kind; do not map it to `it-security` solely because it administers access |
+| IT operations | Stakeholder `it-operations` (merged in PR #148) | Host/service administration and routine operational recovery | Who owns startup, maintenance and the backup job? Preserve its stakeholder kind; do not map it to `it-security` solely because it administers access |
 | Cyber recovery | `cyber-recovery` | Recovery after a destructive or security event, including dependencies and restoration evidence | Who authorizes restoration, who executes it, and what demonstrates the agreed recovery outcome? |
 
 A routine backup task alone does not establish a cyber-recovery buying project. General integration/automation engineering remains broader technical learning unless a specific security use case establishes a relevant seat. Record the actual service owner separately from a title match.
