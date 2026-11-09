@@ -14,7 +14,7 @@ The persona note answers *who the seats are*. This note answers *how they connec
 4. **Coverage** — persona → domain → category → vendor counts, computed from the catalog.
 5. **Influence** — how buyers discover vendors, and the communities and standards each cluster uses.
 6. **Delivery channel** — MSSP/MDR, integrators, resellers, consultants.
-7. **Non-security stakeholders** — CEO, CIO, IT ops, CFO, procurement, legal, board, HR.
+7. **Non-security stakeholders** — CEO, CIO, IT ops, CFO, procurement, legal counsel, board, HR.
 8. **Company size** — which seats exist at small, mid-market, and enterprise companies, and who covers the rest.
 9. **Company type** — business model, regulated industries, region, ownership, and providers.
 10. **How it connects** — seat graph, deal-stage committees by size, use case → seat links, public signals.
@@ -22,7 +22,11 @@ The persona note answers *who the seats are*. This note answers *how they connec
 
 Typed data: `lib/data/persona-profiles.ts`, `lib/data/stakeholders.ts`, `lib/data/company-segments.ts`.
 
-**Evidence labels** (same as the persona note): *sourced* = cited primary or survey source; *vendor/practitioner-published* = publisher's own framing; *hypothesis* = working separation to validate in discovery; *unknown* = no evidence yet.
+**Evidence labels** (same as the persona note): *sourced* = cited primary or survey source; *vendor/practitioner-published* = publisher's own framing; *field-validated* = repeated in 3+ reviewed, anonymized field conversations (`lib/data/field-notes.ts`; none recorded yet); *hypothesis* = working separation to validate in discovery; *unknown* = no evidence yet.
+
+Source types now separate **news coverage** (a reporter summarizing a survey or study), **legal summaries** (a law firm or advisor paraphrasing a rule) and **academic research** from the original publisher. Where only coverage was reachable, the record says so.
+
+Browse the seats on the site at `/personas`; each seat page links its pains to categories and use cases, and each category page lists the seats that own it and the pains it addresses.
 
 ## 1. Where security sits (sourced)
 
@@ -164,7 +168,7 @@ They own no product category, so they are typed as `stakeholders` and kept out o
 | `it-operations` | Operator, frequent blocker; de facto security team at small firms | co-owns directory and backups |
 | `cfo` | Spend approval, term length, timing | approves-purchase for `ciso` |
 | `procurement` | Vendor onboarding and paper; routes the vendor security review | depends-on `grc-owner` |
-| `legal` | MSA/DPA terms; incident materiality and notification | co-owns with `incident-response`, `ciso` |
+| `legal-counsel` | MSA/DPA terms; incident materiality and notification | co-owns with `incident-response`, `ciso` |
 | `board-audit-committee` | Oversight; creates triggers and reporting | oversees `ciso` — SEC Item 106 and NYDFS require board-facing reporting (sourced)[^SEC-RULE][^NYDFS] |
 | `hr-people` | Joiner/mover/leaver source; people-risk partner | feeds `iga-owner`; co-owns `insider-risk` |
 
@@ -175,6 +179,8 @@ They own no product category, so they are typed as `stakeholders` and kept out o
 | Small / startup | under ~500 | Zero to a few security people. Practitioner guidance puts the first full-time security hire around 30–100 employees.[^FIRST-HIRE][^FIRSTMARK] CTO, founder, or IT generalist covers most seats. |
 | Mid-market | ~500–5,000 | Small generalist team under a hands-on leader; MDR and IR retainers common. |
 | Enterprise | ~5,000+ | Specialized seats exist; procurement, legal, and vendor review in every deal. |
+
+The employee cutoffs are estimates, not sourced thresholds. Two sources support the general shape: security team size scales with company size, and many mid-size teams stay small.[^OSTERMAN][^IDC-TINES]
 
 Every profile now records presence at each size — `dedicated`, `shared`, `usually-absent`, or `external` — plus who covers the work when the seat is missing. Across all 45 seats:
 
@@ -367,3 +373,6 @@ Observed 2026-11-07. Paraphrase only. Living pages; dates as published where sta
 [^NERC]: NERC — CIP Standards Efficiency Review recommendations (Aug 2021): https://www.nerc.com/pa/Stand/Standards%20Efficiency%20Review%20DL/CIP_SER_Working_Recommendations_Justifications_08062021.pdf
 [^NIS2]: Springlex — NIS2 Directive Article 20: https://www.springlex.eu/en/packages/nis2/nis2-directive/article-20/
 [^SEC-RULE]: K&L Gates — SEC adopts final rules for cybersecurity disclosures (Aug 7, 2023): https://www.klgates.com/SEC-Adopts-Final-Rules-for-Cybersecurity-Disclosures-8-7-2023
+
+[^OSTERMAN]: Help Net Security coverage of Osterman Research on security team size by company size (news coverage, 2018). `src-seg-osterman-team-scaling`.
+[^IDC-TINES]: BetaNews coverage of IDC research for Tines on security team size (news coverage). `src-seg-idc-tines-team-size`.

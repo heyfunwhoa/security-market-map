@@ -11,6 +11,9 @@ export const sourceTypeSchema = z.enum([
   "review",
   "standard",
   "internal_note",
+  "news",
+  "legal_summary",
+  "academic",
 ]);
 
 export const verificationStatusSchema = z.enum([
@@ -243,8 +246,12 @@ export const buyingRoleSchema = z.enum([
   "blocker",
 ]);
 
-/** sourced = cited source; practitioner_published = publisher's own framing; hypothesis = validate in discovery. */
-export const personaEvidenceSchema = z.enum(["sourced", "practitioner_published", "hypothesis", "unknown"]);
+/**
+ * sourced = cited source; practitioner_published = publisher's own framing;
+ * field_validated = repeated in anonymized field notes (see fieldNoteSchema); hypothesis = validate in discovery.
+ */
+export const personaEvidenceSchema = z.enum(["sourced", "practitioner_published", "field_validated", "hypothesis", "unknown"]);
+
 
 export const personaEdgeTypeSchema = z.enum([
   "sponsors",
@@ -340,6 +347,9 @@ export const painSchema = z.object({
   pain: z.string().min(1),
   evidence: personaEvidenceSchema,
   sourceIds: z.array(z.string().min(1)).default([]),
+  /** Categories that address this pain. Empty when it is a people, budget or process problem, not a product one. */
+  relatedCategoryIds: z.array(z.string().min(1)).default([]),
+  relatedUseCaseIds: z.array(z.string().min(1)).default([]),
 });
 
 /** Research profile for a typed persona. Keyed by personaId; the base persona stays small for filters. */
@@ -602,3 +612,22 @@ export type Evaluation = z.infer<typeof evaluationSchema>;
 export type BudgetInput = z.infer<typeof budgetInputSchema>;
 export type CatalogEvent = z.infer<typeof eventSchema>;
 
+/**
+ * An anonymized pattern seen in real conversations. Patterns only: no company, person,
+ * customer, deal value, or employer-confidential detail. See docs/research-publication-boundary.md.
+ */
+export const fieldNoteSchema = z.object({
+  id: z.string().regex(/^fn-[a-z0-9-]+$/),
+  personaId: z.string().min(1),
+  /** The pain, objection, trigger, or edge being confirmed or challenged, in plain words. */
+  pattern: z.string().min(1).max(280),
+  kind: z.enum(["pain", "objection", "trigger", "edge", "title", "other"]),
+  stance: z.enum(["confirms", "challenges", "new"]),
+  /** How many separate conversations showed it. A label needs 3+ to count as field_validated. */
+  conversations: z.number().int().min(1),
+  companySize: companySizeSchema.optional(),
+  /** Month granularity only, e.g. "2026-10". */
+  observedMonth: z.string().regex(/^\d{4}-\d{2}$/),
+  reviewedAt: isoDate.nullable(),
+});
+export type FieldNote = z.infer<typeof fieldNoteSchema>;

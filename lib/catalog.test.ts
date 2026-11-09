@@ -45,6 +45,28 @@ describe("catalog integrity", () => {
     );
   });
 
+  it("requires reviewed field notes before a field_validated label", () => {
+    const relabeled = catalog.personaProfiles.map((profile) =>
+      profile.personaId === "ciso"
+        ? { ...profile, pains: profile.pains.map((pain, index) => (index === 0 ? { ...pain, evidence: "field_validated" as const } : pain)) }
+        : profile,
+    );
+    const without = catalogProblems({ ...catalog, personaProfiles: relabeled });
+    expect(without.some((problem) => problem.includes("ciso") && problem.includes("field_validated"))).toBe(true);
+    const note = {
+      id: "fn-test-budget",
+      personaId: "ciso",
+      pattern: "Budget pressure",
+      kind: "pain" as const,
+      stance: "confirms" as const,
+      conversations: 3,
+      observedMonth: "2026-10",
+      reviewedAt: "2026-11-01",
+    };
+    const withNotes = catalogProblems({ ...catalog, personaProfiles: relabeled, fieldNotes: [note] });
+    expect(withNotes.some((problem) => problem.includes("field_validated"))).toBe(false);
+  });
+
   it("meets the seed minimums", () => {
     const identityCategories = catalog.categories.filter((category) =>
       category.domainIds.includes("identity"),
@@ -173,7 +195,7 @@ describe("catalog integrity", () => {
 
   it("models non-security stakeholders without adding them to the buyer filter", () => {
     const ids = catalog.stakeholders.map((stakeholder) => stakeholder.id);
-    expect(ids).toEqual(expect.arrayContaining(["cio", "procurement", "legal", "cfo", "board-audit-committee"]));
+    expect(ids).toEqual(expect.arrayContaining(["cio", "procurement", "legal-counsel", "cfo", "board-audit-committee"]));
     const personaIds = new Set(catalog.personas.map((persona) => persona.id));
     for (const id of ids) expect(personaIds.has(id)).toBe(false);
     const ciso = catalog.personaProfiles.find((profile) => profile.personaId === "ciso");

@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { titleCorpus } from "./fixtures/title-corpus";
 import { catalog } from "./catalog";
 import { acronymGlossary, titleForms, titleRules } from "./data/titles";
 import { seats } from "./persona-graph";
@@ -69,7 +70,7 @@ describe("matchTitle", () => {
     ["AppSec Engineer", "appsec"],
     ["Systems Administrator", "it-operations"],
     ["Procurement Manager", "procurement"],
-    ["General Counsel", "legal"],
+    ["General Counsel", "legal-counsel"],
     ["CFO", "cfo"],
     ["Chief Privacy Officer", "privacy"],
     ["Founder & CEO", "ceo-founder"],
@@ -119,5 +120,21 @@ describe("typicalTitles", () => {
         }
       }
     }
+  });
+});
+
+describe("title corpus regression", () => {
+  it.each(titleCorpus)("%s", (title, expected) => {
+    const match = matchTitle(title);
+    if (expected === null) {
+      expect(match.ambiguous, `${title} should be flagged ambiguous`).toBe(true);
+      return;
+    }
+    const accepted = Array.isArray(expected) ? expected : [expected];
+    expect(accepted).toContain(match.candidates[0]?.seatId);
+  });
+
+  it("covers a broad sample", () => {
+    expect(titleCorpus.length).toBeGreaterThanOrEqual(150);
   });
 });

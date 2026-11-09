@@ -16,10 +16,12 @@ const NAV_GROUPS = [
     { href: "/landscape", label: "Browse products", description: "Filter vendors and products, inspect details, and build a shortlist." },
     { href: "/compare", label: "Compare", description: "Compare product evidence for a specific use case." },
     { href: "/use-cases", label: "Buyer use cases", description: "Start with the problem you need to solve." },
+    { href: "/personas", label: "Buyer seats", description: "Who buys, uses, approves, and blocks, with pains and titles." },
   ] },
   { title: "Learn", links: [
     { href: "/learn", label: "Concepts & glossary", description: "Understand terminology and practical scenarios." },
     { href: "/connections", label: "How tools connect", description: "Explore identity, secrets, and adjacent security jobs." },
+    { href: "/evidence-graph", label: "Evidence graph", description: "Inspect sourced identity, secrets, and non-human identity relationships." },
     { href: "/attack-path", label: "Attack paths", description: "Follow how an exposure can lead to an attack." },
     { href: "/control-map", label: "Security controls", description: "Explore the controls that address security problems." },
     { href: "/frameworks", label: "Frameworks", description: "Connect security concepts to framework guidance." },
@@ -105,6 +107,13 @@ const PILL_LABELS: Record<string, string> = {
   unverified: "Unverified",
   unknown: "Unknown",
   not_supported: "Not supported",
+  taxonomy_mapping: "Taxonomy mapping",
+  catalog_structure: "Catalog structure",
+  hypothesis: "Hypothesis",
+  source_referenced: "Source referenced",
+  vendor_reported: "Vendor reported",
+  independently_verified: "Independently verified",
+  disputed: "Disputed",
   announced: "Announced",
   generally_available: "Documented",
   legacy_name: "Name in transition",
@@ -116,6 +125,9 @@ const PILL_LABELS: Record<string, string> = {
   review: "Review",
   standard: "Standard",
   internal_note: "Internal note",
+  news: "News coverage",
+  legal_summary: "Legal summary",
+  academic: "Academic research",
   direct_competitor: "Direct competitor",
   bundled_alternative: "Bundled alternative",
   complement: "Complement",
@@ -124,16 +136,17 @@ const PILL_LABELS: Record<string, string> = {
 
 export function StatusPill({ status }: { status: string }) {
   const tone =
-    status === "verified" || status === "evidenced" || status === "generally_available"
+    status === "verified" || status === "evidenced" || status === "generally_available" || status === "independently_verified"
       ? "border-emerald-700/20 bg-emerald-50 text-emerald-950"
-      : status === "vendor_published" || status === "limited" || status === "official_docs"
+      : status === "vendor_published" || status === "limited" || status === "official_docs" || status === "source_referenced" || status === "vendor_reported"
         ? "border-sky-800/15 bg-sky-50 text-sky-950"
         : status === "needs_review" ||
             status === "unverified" ||
             status === "announced" ||
-            status === "internal_note"
+            status === "internal_note" ||
+            status === "hypothesis"
           ? "border-amber-800/20 bg-amber-50 text-amber-950"
-          : status === "conflicting" || status === "not_supported"
+          : status === "conflicting" || status === "not_supported" || status === "disputed"
             ? "border-rose-800/20 bg-rose-50 text-rose-950"
             : "border-stone-300 bg-stone-100 text-stone-700";
 

@@ -65,6 +65,24 @@ export const personaProfiles: PersonaProfileInput[] = [
     job: "Improve defensible security outcomes within budget and governance; set risk appetite and fund programs.",
     pains: [
       {
+        pain: "Budget growth has slowed while scope keeps growing",
+        evidence: "sourced",
+        sourceIds: ["src-pain-ians-budget-2025"],
+      },
+      {
+        pain: "Credential abuse and edge-device exploitation keep leading breach entry points",
+        evidence: "sourced",
+        sourceIds: ["src-pain-dbir-2025"],
+        relatedCategoryIds: ["itdr", "external-attack-surface", "it-vulnerability-management"],
+        relatedUseCaseIds: ["uc-itdr"],
+      },
+      {
+        pain: "Personal liability and disclosure exposure after a material incident",
+        evidence: "sourced",
+        sourceIds: ["src-pain-proofpoint-ciso-2025"],
+        relatedCategoryIds: ["grc-controls"],
+      },
+      {
         pain: "Scope keeps growing faster than team and budget",
         evidence: "practitioner_published",
         sourceIds: ["src-seg-hitch-2025-summary"],
@@ -75,6 +93,13 @@ export const personaProfiles: PersonaProfileInput[] = [
         sourceIds: ["src-seg-hitch-2025-summary"],
       },
     ],
+    messageToTest:
+      "Tie the spend to a named exposure the board already worries about, and show who operates it after purchase.",
+    objections: [
+      "We already own a platform that says it does this",
+      "No headcount to run another tool",
+      "Not in this year's budget cycle",
+    ],
     triggers: [
       "Board or regulator scrutiny",
       "Material incident",
@@ -82,6 +107,8 @@ export const personaProfiles: PersonaProfileInput[] = [
       "New business line or acquisition",
     ],
     successMeasures: [
+      "Budget defended with measured exposure reduction",
+      "Time to brief the board after a material event",
       "Risk reduction the board accepts",
       "Program coverage against a chosen framework",
     ],
@@ -117,7 +144,7 @@ export const personaProfiles: PersonaProfileInput[] = [
         sourceIds: [S.ians],
       },
       {
-        toPersonaId: "legal",
+        toPersonaId: "legal-counsel",
         type: "co-owns",
         carries: "Incident materiality and disclosure",
         evidence: "hypothesis",
@@ -154,10 +181,13 @@ export const personaProfiles: PersonaProfileInput[] = [
       {
         pain: "Teams buy overlapping tools that bypass shared standards",
         evidence: "hypothesis",
+        relatedCategoryIds: ["aspm", "security-asset-management"],
       },
       {
         pain: "Design reviews happen too late to change anything",
         evidence: "hypothesis",
+        relatedCategoryIds: ["threat-modeling", "product-security-program"],
+        relatedUseCaseIds: ["uc-product-release"],
       },
     ],
     disconfirmation: [
@@ -208,14 +238,43 @@ export const personaProfiles: PersonaProfileInput[] = [
     job: "Own evidence and outside questions — audits, third parties, customer trust questionnaires. Consumes operated controls; does not replace them.",
     pains: [
       {
+        pain: "Most audit evidence is still gathered by hand",
+        evidence: "sourced",
+        sourceIds: ["src-pain-swimlane-grc-2025"],
+        relatedCategoryIds: ["grc-controls"],
+        relatedUseCaseIds: ["uc-customer-trust"],
+      },
+      {
+        pain: "Weak handoffs between GRC and security teams undermine audit prep",
+        evidence: "sourced",
+        sourceIds: ["src-pain-swimlane-grc-2025"],
+        relatedCategoryIds: ["grc-controls"],
+      },
+      {
         pain: "Vendor and customer questionnaires eat hours every week",
         evidence: "practitioner_published",
         sourceIds: ["src-pain-whistic-vendor-2025"],
+        relatedCategoryIds: ["customer-trust", "third-party-risk"],
+        relatedUseCaseIds: ["uc-customer-trust"],
       },
       {
         pain: "Evidence depends on control owners who don't report to GRC",
         evidence: "hypothesis",
+        relatedCategoryIds: ["grc-controls"],
+        relatedUseCaseIds: ["uc-customer-trust"],
       },
+    ],
+    messageToTest:
+      "Show which controls produce evidence automatically and which still depend on a person who doesn't report to GRC.",
+    successMeasures: [
+      "Share of control evidence collected automatically",
+      "Audit findings closed before fieldwork",
+      "Questionnaire turnaround time",
+    ],
+    objections: [
+      "Our GRC platform already automates evidence",
+      "Auditors won't accept tool output",
+      "Control owners won't adopt another workflow",
     ],
     triggers: [
       "Customer security questionnaire volume",
@@ -269,10 +328,13 @@ export const personaProfiles: PersonaProfileInput[] = [
       {
         pain: "Can't say where personal data lives or who touches it",
         evidence: "hypothesis",
+        relatedCategoryIds: ["dspm", "privacy-governance", "data-access-governance"],
+        relatedUseCaseIds: ["uc-sensitive-data"],
       },
       {
         pain: "New privacy rules land faster than the program can adapt",
         evidence: "hypothesis",
+        relatedCategoryIds: ["privacy-governance"],
       },
     ],
     boundary:
@@ -293,8 +355,8 @@ export const personaProfiles: PersonaProfileInput[] = [
       "DPO or privacy counsel postings",
     ],
     bySize: sizes(
-      shared(["legal"]),
-      shared(["legal", "grc-owner"]),
+      shared(["legal-counsel"]),
+      shared(["legal-counsel", "grc-owner"]),
       dedicated(),
     ),
     evidence: "sourced",
@@ -313,8 +375,9 @@ export const personaProfiles: PersonaProfileInput[] = [
       {
         pain: "Completion rates don't show behavior change",
         evidence: "hypothesis",
+        relatedCategoryIds: ["security-awareness"],
       },
-      { pain: "Phishing still works despite training", evidence: "hypothesis" },
+      { pain: "Phishing still works despite training", evidence: "hypothesis", relatedCategoryIds: ["security-awareness", "email-security"] },
     ],
     successMeasures: ["Phishing report rate", "Click-rate reduction over time"],
     objections: ["Completion rates are a vanity metric"],
@@ -353,10 +416,14 @@ export const personaProfiles: PersonaProfileInput[] = [
         pain: "False positives and duplicate findings drown real issues",
         evidence: "sourced",
         sourceIds: ["src-pain-blackduck-2025"],
+        relatedCategoryIds: ["aspm", "sast", "sca"],
+        relatedUseCaseIds: ["uc-finding-route"],
       },
       {
         pain: "Findings without a named owner never get fixed",
         evidence: "hypothesis",
+        relatedCategoryIds: ["aspm"],
+        relatedUseCaseIds: ["uc-finding-route"],
       },
     ],
     triggers: [
@@ -451,10 +518,14 @@ export const personaProfiles: PersonaProfileInput[] = [
       {
         pain: "Launch deadlines arrive before the security review",
         evidence: "hypothesis",
+        relatedCategoryIds: ["product-security-program", "threat-modeling"],
+        relatedUseCaseIds: ["uc-product-release"],
       },
       {
         pain: "Customer questionnaires and researcher reports pile up",
         evidence: "hypothesis",
+        relatedCategoryIds: ["vulnerability-disclosure", "customer-trust"],
+        relatedUseCaseIds: ["uc-customer-trust", "uc-product-release"],
       },
     ],
     triggers: [
@@ -520,11 +591,14 @@ export const personaProfiles: PersonaProfileInput[] = [
       {
         pain: "One bad template or base image repeats the same flaw across every team",
         evidence: "hypothesis",
+        relatedCategoryIds: ["iac-security", "container-security"],
       },
       {
-        pain: "Secrets and credentials sprawl across CI and images",
-        evidence: "practitioner_published",
-        sourceIds: ["src-pain-gitguardian-2025"],
+        pain: "Leaked credentials take months to revoke and rotate",
+        evidence: "sourced",
+        sourceIds: ["src-pain-dbir-2025"],
+        relatedCategoryIds: ["secrets-detection", "secrets-management"],
+        relatedUseCaseIds: ["uc-detect", "uc-vault"],
       },
     ],
     triggers: [
@@ -596,10 +670,13 @@ export const personaProfiles: PersonaProfileInput[] = [
       {
         pain: "Can't tell which dependency issues are reachable or malicious",
         evidence: "hypothesis",
+        relatedCategoryIds: ["sca", "software-supply-chain"],
       },
       {
         pain: "Customers and regulators ask for SBOMs and provenance",
         evidence: "hypothesis",
+        relatedCategoryIds: ["software-supply-chain"],
+        relatedUseCaseIds: ["uc-customer-trust"],
       },
     ],
     triggers: [
@@ -649,6 +726,8 @@ export const personaProfiles: PersonaProfileInput[] = [
       {
         pain: "No time or training to triage findings",
         evidence: "hypothesis",
+        relatedCategoryIds: ["aspm"],
+        relatedUseCaseIds: ["uc-finding-route"],
       },
     ],
     doNotAssume: ["Budget authority"],
@@ -690,14 +769,37 @@ export const personaProfiles: PersonaProfileInput[] = [
     job: "One coherent identity story across workforce, privilege, cloud entitlements, and non-humans.",
     pains: [
       {
+        pain: "Stolen and abused credentials remain a leading way in",
+        evidence: "sourced",
+        sourceIds: ["src-pain-dbir-2025"],
+        relatedCategoryIds: ["itdr", "workforce-identity", "nhi"],
+        relatedUseCaseIds: ["uc-itdr", "uc-nhi"],
+      },
+      {
         pain: "Third-party access widens exposure beyond the identity team's view",
         evidence: "sourced",
         sourceIds: ["src-pain-dbir-2025"],
+        relatedCategoryIds: ["iga", "pam", "itdr"],
+        relatedUseCaseIds: ["uc-itdr"],
       },
       {
         pain: "Machine identities and credentials outnumber and outlive their owners",
         evidence: "hypothesis",
+        relatedCategoryIds: ["nhi", "secrets-management"],
+        relatedUseCaseIds: ["uc-nhi"],
       },
+    ],
+    messageToTest:
+      "Start from which human and machine identities can reach crown-jewel systems today, and who owns revoking them.",
+    successMeasures: [
+      "Percent of privileged identities with a named owner",
+      "Time to revoke access for a leaver or a leaked credential",
+      "Machine credentials rotated on schedule",
+    ],
+    objections: [
+      "Our identity provider already covers this",
+      "IGA project is already underway",
+      "Machine identities belong to platform, not us",
     ],
     disconfirmation: [
       "Only a single app certification project with no identity program owner",
@@ -756,10 +858,12 @@ export const personaProfiles: PersonaProfileInput[] = [
     function: "security",
     job: "Run joiner/mover/leaver, access requests, and certifications.",
     pains: [
-      { pain: "Access reviews get rubber-stamped", evidence: "hypothesis" },
+      { pain: "Access reviews get rubber-stamped", evidence: "hypothesis", relatedCategoryIds: ["iga"], relatedUseCaseIds: ["uc-jml"] },
       {
         pain: "Leavers keep access because HR and IT records disagree",
         evidence: "hypothesis",
+        relatedCategoryIds: ["iga", "workforce-identity"],
+        relatedUseCaseIds: ["uc-jml"],
       },
     ],
     communities: [C.idpro],
@@ -785,10 +889,14 @@ export const personaProfiles: PersonaProfileInput[] = [
       {
         pain: "Standing admin privilege is hard to remove",
         evidence: "hypothesis",
+        relatedCategoryIds: ["pam", "ciem"],
+        relatedUseCaseIds: ["uc-jit"],
       },
       {
         pain: "App teams resist moving credentials into the vault",
         evidence: "hypothesis",
+        relatedCategoryIds: ["secrets-management", "pam"],
+        relatedUseCaseIds: ["uc-vault"],
       },
     ],
     communities: [C.idpro],
@@ -812,16 +920,38 @@ export const personaProfiles: PersonaProfileInput[] = [
     job: "Cloud control-plane posture, workload protection, entitlements, and cloud detection foundations.",
     pains: [
       {
+        pain: "Findings get routed to teams that don't own the resource",
+        evidence: "hypothesis",
+        relatedCategoryIds: ["cspm", "cnapp"],
+        relatedUseCaseIds: ["uc-finding-route"],
+      },
+      {
         pain: "Posture findings outnumber the people who can fix them",
         evidence: "hypothesis",
+        relatedCategoryIds: ["cspm", "cnapp"],
+        relatedUseCaseIds: ["uc-finding-route"],
       },
       {
         pain: "Multi-cloud and fast-changing accounts break visibility",
         evidence: "hypothesis",
+        relatedCategoryIds: ["cnapp", "cspm", "ciem"],
+        relatedUseCaseIds: ["uc-ciem"],
       },
     ],
     boundary:
       "AppSec secures product behavior; platform security secures shared delivery rails; cloud security secures provider accounts.",
+    messageToTest:
+      "Cut posture noise to the findings with a reachable path and a named owning team.",
+    successMeasures: [
+      "Critical cloud findings with a named owner",
+      "Mean time to fix internet-exposed misconfigurations",
+      "Accounts covered by guardrails at creation",
+    ],
+    objections: [
+      "Our CNAPP already does this",
+      "Cloud provider native tools are good enough",
+      "Platform team owns the accounts",
+    ],
     edges: [
       {
         toPersonaId: "detection-engineer",
@@ -857,10 +987,14 @@ export const personaProfiles: PersonaProfileInput[] = [
       {
         pain: "Don't know where sensitive data sits across SaaS and cloud",
         evidence: "hypothesis",
+        relatedCategoryIds: ["dspm", "data-access-governance"],
+        relatedUseCaseIds: ["uc-sensitive-data"],
       },
       {
         pain: "DLP either blocks the business or misses real leaks",
         evidence: "hypothesis",
+        relatedCategoryIds: ["dlp"],
+        relatedUseCaseIds: ["uc-sensitive-data"],
       },
     ],
     disconfirmation: [
@@ -897,8 +1031,9 @@ export const personaProfiles: PersonaProfileInput[] = [
       {
         pain: "Edge devices and VPNs are prime exploitation targets",
         evidence: "hypothesis",
+        relatedCategoryIds: ["network-edge", "external-attack-surface"],
       },
-      { pain: "Lateral movement is hard to see", evidence: "hypothesis" },
+      { pain: "Lateral movement is hard to see", evidence: "hypothesis", relatedCategoryIds: ["ndr", "microsegmentation"] },
     ],
     edges: [
       {
@@ -933,10 +1068,13 @@ export const personaProfiles: PersonaProfileInput[] = [
       {
         pain: "Hundreds of SaaS apps configured by business owners",
         evidence: "hypothesis",
+        relatedCategoryIds: ["sspm"],
       },
       {
         pain: "OAuth grants and integrations nobody reviews",
         evidence: "hypothesis",
+        relatedCategoryIds: ["sspm", "nhi"],
+        relatedUseCaseIds: ["uc-nhi"],
       },
     ],
     boundary:
@@ -972,11 +1110,13 @@ export const personaProfiles: PersonaProfileInput[] = [
       {
         pain: "Can't patch or scan without risking downtime",
         evidence: "hypothesis",
+        relatedCategoryIds: ["ot-security"],
       },
       {
         pain: "No complete asset inventory for plants and control systems",
         evidence: "practitioner_published",
         sourceIds: ["src-persona-isagca-62443-cisa"],
+        relatedCategoryIds: ["ot-security", "security-asset-management"],
       },
     ],
     boundary: "Plant change boards, not the corporate laptop estate.",
@@ -1021,10 +1161,13 @@ export const personaProfiles: PersonaProfileInput[] = [
       {
         pain: "Patch backlog on endpoints and servers",
         evidence: "hypothesis",
+        relatedCategoryIds: ["it-vulnerability-management", "ctem"],
+        relatedUseCaseIds: ["uc-finding-route"],
       },
       {
         pain: "Too many overlapping endpoint and email tools",
         evidence: "hypothesis",
+        relatedCategoryIds: ["endpoint-security", "email-security", "xdr"],
       },
     ],
     triggers: [
@@ -1140,10 +1283,12 @@ export const personaProfiles: PersonaProfileInput[] = [
         pain: "False positives are the top detection challenge",
         evidence: "practitioner_published",
         sourceIds: ["src-pain-sans-dr-2025"],
+        relatedCategoryIds: ["detection-engineering", "siem", "soar"],
       },
       {
         pain: "Missing telemetry for new environments",
         evidence: "hypothesis",
+        relatedCategoryIds: ["security-data-pipelines", "cloud-detection"],
       },
     ],
     disconfirmation: ["No content owner"],
@@ -1179,6 +1324,7 @@ export const personaProfiles: PersonaProfileInput[] = [
         pain: "Alert fatigue from noisy, low-context alerts",
         evidence: "practitioner_published",
         sourceIds: ["src-pain-sans-dr-2025"],
+        relatedCategoryIds: ["soar", "xdr", "mdr"],
       },
       {
         pain: "Burnout and limited career path",
@@ -1217,11 +1363,12 @@ export const personaProfiles: PersonaProfileInput[] = [
     function: "security",
     job: "Investigate, analyze, and respond to incidents; contain.",
     pains: [
-      { pain: "Unclear authority to contain", evidence: "hypothesis" },
+      { pain: "Unclear authority to contain", evidence: "hypothesis", relatedCategoryIds: ["soar"] },
       {
         pain: "Third-party incidents with little visibility",
         evidence: "sourced",
         sourceIds: ["src-pain-dbir-2025"],
+        relatedCategoryIds: ["third-party-risk", "itdr"],
       },
     ],
     boundary:
@@ -1257,8 +1404,8 @@ export const personaProfiles: PersonaProfileInput[] = [
     function: "security",
     job: "Tier-3 proactive hunting and major escalations.",
     pains: [
-      { pain: "Hunts fail on missing telemetry", evidence: "hypothesis" },
-      { pain: "Hunting time gets eaten by triage", evidence: "hypothesis" },
+      { pain: "Hunts fail on missing telemetry", evidence: "hypothesis", relatedCategoryIds: ["security-data-pipelines", "siem"] },
+      { pain: "Hunting time gets eaten by triage", evidence: "hypothesis", relatedCategoryIds: ["soar", "mdr"] },
     ],
     edges: [
       {
@@ -1288,6 +1435,7 @@ export const personaProfiles: PersonaProfileInput[] = [
       {
         pain: "Intel doesn't turn into detections or blocks",
         evidence: "hypothesis",
+        relatedCategoryIds: ["threat-intelligence", "detection-engineering"],
       },
       {
         pain: "Hard to show value to the teams who consume it",
@@ -1327,7 +1475,7 @@ export const personaProfiles: PersonaProfileInput[] = [
     function: "security",
     job: "Preserve and analyze evidence so it survives legal and regulatory scrutiny.",
     pains: [
-      { pain: "Evidence lost during fast containment", evidence: "hypothesis" },
+      { pain: "Evidence lost during fast containment", evidence: "hypothesis", relatedCategoryIds: ["endpoint-security", "xdr"] },
       {
         pain: "Retainer scope doesn't match the incident",
         evidence: "hypothesis",
@@ -1354,10 +1502,11 @@ export const personaProfiles: PersonaProfileInput[] = [
     function: "security",
     job: "Run a people-risk program and its cases, often with HR and legal.",
     pains: [
-      { pain: "Privacy and HR limits on monitoring", evidence: "hypothesis" },
+      { pain: "Privacy and HR limits on monitoring", evidence: "hypothesis", relatedCategoryIds: ["insider-risk"] },
       {
         pain: "Cases cut across HR, legal, and security",
         evidence: "hypothesis",
+        relatedCategoryIds: ["insider-risk"],
       },
     ],
     edges: [
@@ -1395,8 +1544,10 @@ export const personaProfiles: PersonaProfileInput[] = [
       {
         pain: "Validated findings don't get remediated",
         evidence: "hypothesis",
+        relatedCategoryIds: ["pentest-program", "ctem"],
+        relatedUseCaseIds: ["uc-finding-route"],
       },
-      { pain: "Point-in-time tests go stale fast", evidence: "hypothesis" },
+      { pain: "Point-in-time tests go stale fast", evidence: "hypothesis", relatedCategoryIds: ["breach-simulation", "ctem"] },
     ],
     disconfirmation: [
       "No appetite to remediate validated findings",
@@ -1429,10 +1580,12 @@ export const personaProfiles: PersonaProfileInput[] = [
     function: "security",
     job: "Find and prioritize exposures across internet-facing, cloud, and IT assets, then route them to fixers.",
     pains: [
-      { pain: "Asset inventory is incomplete", evidence: "hypothesis" },
+      { pain: "Asset inventory is incomplete", evidence: "hypothesis", relatedCategoryIds: ["security-asset-management", "external-attack-surface"] },
       {
         pain: "Exposures get routed to the wrong owner",
         evidence: "hypothesis",
+        relatedCategoryIds: ["ctem"],
+        relatedUseCaseIds: ["uc-finding-route"],
       },
     ],
     edges: [
@@ -1481,10 +1634,12 @@ export const personaProfiles: PersonaProfileInput[] = [
       {
         pain: "Restores never tested against a ransomware scenario",
         evidence: "hypothesis",
+        relatedCategoryIds: ["cyber-recovery"],
       },
       {
         pain: "Backups reachable by the same attacker",
         evidence: "hypothesis",
+        relatedCategoryIds: ["cyber-recovery"],
       },
     ],
     successMeasures: ["Date and result of the last clean-room restore test"],
@@ -1523,11 +1678,15 @@ export const personaProfiles: PersonaProfileInput[] = [
       {
         pain: "Security tickets and credential requests create toil",
         evidence: "hypothesis",
+        relatedCategoryIds: ["secrets-management", "pam"],
+        relatedUseCaseIds: ["uc-vault", "uc-jit"],
       },
       {
-        pain: "Static secrets break deploys and leak",
-        evidence: "practitioner_published",
-        sourceIds: ["src-pain-gitguardian-2025"],
+        pain: "Hardcoded secrets keep leaking into code and stay in Git history",
+        evidence: "sourced",
+        sourceIds: ["src-pain-ndss-secret-leakage"],
+        relatedCategoryIds: ["secrets-detection"],
+        relatedUseCaseIds: ["uc-detect"],
       },
     ],
     triggers: [
@@ -1580,8 +1739,10 @@ export const personaProfiles: PersonaProfileInput[] = [
         pain: "Hours lost each week to false positives and duplicate findings",
         evidence: "sourced",
         sourceIds: ["src-pain-idc-dev-time"],
+        relatedCategoryIds: ["aspm", "sast", "sca"],
+        relatedUseCaseIds: ["uc-finding-route"],
       },
-      { pain: "Security gates slow shipping", evidence: "hypothesis" },
+      { pain: "Security gates slow shipping", evidence: "hypothesis", relatedCategoryIds: ["aspm", "secrets-detection"] },
     ],
     doNotAssume: ["Budget authority"],
     communities: [C.owasp],
@@ -1610,6 +1771,8 @@ export const personaProfiles: PersonaProfileInput[] = [
         pain: "Findings arrive without fix guidance",
         evidence: "sourced",
         sourceIds: ["src-pain-latio-appsec-2026"],
+        relatedCategoryIds: ["aspm"],
+        relatedUseCaseIds: ["uc-finding-route"],
       },
     ],
     edges: [
@@ -1637,14 +1800,35 @@ export const personaProfiles: PersonaProfileInput[] = [
     job: "Engineering strategy; co-sponsors platform and developer-security buys.",
     pains: [
       {
+        pain: "Security work competes with the product roadmap for the same engineers",
+        evidence: "hypothesis",
+        relatedCategoryIds: ["aspm"],
+        relatedUseCaseIds: ["uc-finding-route"],
+      },
+      {
         pain: "Security tools that aren't developer-friendly slow delivery",
         evidence: "sourced",
         sourceIds: ["src-pain-latio-appsec-2026"],
+        relatedCategoryIds: ["aspm", "secrets-management"],
       },
       {
         pain: "Enterprise deals need security proof the team can't produce fast",
         evidence: "hypothesis",
+        relatedCategoryIds: ["customer-trust", "grc-controls"],
+        relatedUseCaseIds: ["uc-customer-trust"],
       },
+    ],
+    messageToTest:
+      "Show how this removes security toil from engineers rather than adding a new queue.",
+    successMeasures: [
+      "Engineering hours spent on security fixes",
+      "Enterprise deals unblocked by security evidence",
+      "Deploy frequency held steady after rollout",
+    ],
+    objections: [
+      "Our developers will ignore another tool",
+      "We'll build it ourselves",
+      "Not a priority until a customer asks",
     ],
     edges: [
       {
@@ -1680,10 +1864,14 @@ export const personaProfiles: PersonaProfileInput[] = [
       {
         pain: "Shipping agents faster than controls exist",
         evidence: "hypothesis",
+        relatedCategoryIds: ["ai-application-security", "agentic-runtime", "ai-governance"],
+        relatedUseCaseIds: ["uc-agent"],
       },
       {
         pain: "Unclear who approves agent data and tool access",
         evidence: "hypothesis",
+        relatedCategoryIds: ["agent-identity", "mcp-security"],
+        relatedUseCaseIds: ["uc-agent"],
       },
     ],
     edges: [
@@ -1715,10 +1903,13 @@ export const personaProfiles: PersonaProfileInput[] = [
         pain: "The AI risk taxonomy changes every year",
         evidence: "sourced",
         sourceIds: ["src-persona-owasp-genai"],
+        relatedCategoryIds: ["ai-governance"],
       },
       {
         pain: "Agents use credentials nobody inventoried",
         evidence: "hypothesis",
+        relatedCategoryIds: ["agent-identity", "nhi"],
+        relatedUseCaseIds: ["uc-agent", "uc-nhi"],
       },
     ],
     edges: [

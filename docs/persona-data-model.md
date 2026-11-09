@@ -38,8 +38,10 @@ Do not score accounts from titles alone (see the fit worksheet in `market-resear
 | Segment overlay | `lib/data/company-segments.ts` | `id` | Business model, industry, region, ownership, provider overlays; rule-required seats are sourced. |
 | Use case seats | `lib/data/persona-connections.ts` | `useCaseId` | Seats and likely budget seats per use case; unmodeled stakeholders listed. |
 | Source | `lib/data/persona-sources.ts` | `id` | Paraphrased source records behind sourced profiles, pains, edges, and overlays. |
+| Field note | `lib/data/field-notes.ts` | `id` | Anonymized patterns from real conversations (patterns only, month only). Needed before any `field_validated` label. Intake: `docs/market-research/field-notes-template.md`. |
+| Title corpus | `lib/fixtures/title-corpus.ts` | title | Representative job titles with the expected seat; regression test for `matchTitle`. |
 
-Schemas live in `lib/schema.ts` (`personaProfileSchema`, `stakeholderSchema`, `segmentOverlaySchema`, `useCaseSeatsSchema`, `painSchema`, `seatFunctionSchema`, `seniorityLevelSchema`, `dealStageSchema`, `companySizeSchema`). `lib/catalog.ts` fails the build on broken links, missing profiles, and unsourced "sourced" claims.
+Schemas live in `lib/schema.ts` (`personaProfileSchema`, `stakeholderSchema`, `segmentOverlaySchema`, `useCaseSeatsSchema`, `painSchema`, `seatFunctionSchema`, `seniorityLevelSchema`, `dealStageSchema`, `companySizeSchema`, `fieldNoteSchema`). `lib/catalog.ts` fails the build on broken links, missing profiles, and unsourced "sourced" claims.
 
 ## Functions → clusters → seats
 
@@ -52,7 +54,7 @@ Schemas live in `lib/schema.ts` (`personaProfileSchema`, `stakeholderSchema`, `s
 
 ```ts
 import { matchTitle, typicalTitles, seatsByFunction } from "@/lib/title-match";
-import { seatContext, committeeForStage, whoCovers } from "@/lib/persona-graph";
+import { seatContext, committeeForStage, whoCovers, painsForCategory, painsForUseCase } from "@/lib/persona-graph";
 
 matchTitle("Sr. Manager, Product Security");
 // → seniority "manager", top seat product-security (function security, confidence high), likely buying roles
@@ -60,6 +62,8 @@ matchTitle("Sr. Manager, Product Security");
 typicalTitles("appsec");          // titles per level, IC → VP
 seatsByFunction().security;       // seats with acronyms
 seatContext("identity-security"); // edges, use cases, vendors, overlays, who covers it by size
+painsForCategory("itdr");          // seats whose pains this category addresses
+painsForUseCase("uc-finding-route");
 committeeForStage("close", "small");   // who is in the room at close at a small company
 whoCovers("ciso", "small");       // → ceo-founder, cto
 ```
@@ -70,11 +74,11 @@ Once the owning PR is reviewed, merged, and its deployment is verified, a consum
 GET /api/persona-model
 ```
 
-The payload carries `version` (`PERSONA_MODEL_VERSION` in `lib/persona-model.ts`). Bump it when a field is renamed or removed.
+The payload carries `version` (`PERSONA_MODEL_VERSION` in `lib/persona-model.ts`). Bump it when a field is renamed or removed. 1.1.0 renamed the `legal` stakeholder to `legal-counsel` and added `field_validated`, pain category/use-case links, and new source types; 1.0.0 was never released.
 
 ## Keeping it honest
 
-- Every profile, pain, edge, and overlay carries `evidence`: `sourced`, `practitioner_published`, `hypothesis`, or `unknown`. Most edges, pains, size presence, stages, and signals are hypotheses.
+- Every profile, pain, edge, and overlay carries `evidence`: `sourced`, `practitioner_published`, `field_validated`, `hypothesis`, or `unknown`. `field_validated` fails the build unless the seat has 3+ reviewed, non-challenging field-note conversations. Most edges, pains, size presence, stages, and signals are hypotheses.
 - `docs/market-research/security-titles-and-pains.md` is generated. After changing titles, acronyms, or pains, run `npm run docs:personas`; tests fail if the doc drifts.
 - Title matching is a routing hint. Ambiguous titles return several seats and a note; confirm in discovery.
 
