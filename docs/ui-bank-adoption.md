@@ -1,7 +1,5 @@
 # Local UI bank adoption
 
-Territory account-saving implementation and verification: [local acceptance record](verification/territory-account-persistence.md). Reuses existing controls and adapts inline feedback; no new dependency or copied upstream source.
-
 Status: proposed in this PR; documentation adoption only when merged.
 Owner: repository maintainer. Review date: 2026-10-12.
 
@@ -427,13 +425,11 @@ Status: implemented on `research/security-ecosystem-map` (PR #148); not merged o
 - Responsive and keyboard: single column below `lg`, grid cards at `sm`/`lg`; native links with `focus-visible` outlines and 44px minimum card height. No animation, so reduced motion is unaffected.
 - Checks run: typecheck, lint, vitest, and `next dev` HTTP 200 for `/personas`, `/personas/ciso`, `/personas/procurement`, `/personas/legal-counsel`, and 404 for an unknown id. **Not yet checked in a real browser** at mobile/tablet/desktop widths or with a screen reader; do that on the Vercel preview before merge.
 
-## Evidence graph slice · 2026-11-08
+## Context graph surfaces · 2026-11-08
 
-Status: implemented on this branch; not merged or deployed. Owner: repository maintainer.
+Status: on `research/context-graph`; not merged or deployed.
 
-- User task: inspect a small identity, secrets, and non-human identity neighborhood and tell a taxonomy mapping or hypothesis from a sourced statement. Destination: `/evidence-graph`.
-- Local components inspected: `PageIntro`, `StatusPill`, `Breadcrumbs`, `PageJourney`, `AreaDiagram`, and the connections page. Bank patterns consulted from this file: search/filter, evidence detail, unknown state, and the market-map recommendation for an accessible list beside a diagram.
-- Reuse/adapt/new: reused the page shell, status pill, and links. New `EvidenceGraphExplorer` and `EvidenceGraphCanvas`. Cytoscape.js 3.33.1 (MIT, npm package, not copied source) draws the diagram because the existing SVG diagrams are fixed illustrations. The layout is a deterministic preset grid. Position and color do not encode rank or evidence. Dash pattern, text labels, and the relationship list do.
-- Interaction: category buttons expose `aria-pressed`. The first view is Workforce identity, the first category in the slice. All in this slice stays available. The node list is a listbox with roving tabindex and Arrow, Home, and End keys. The relationship list is buttons. The evidence panel is a polite live region. Below the `md` breakpoint the canvas is `display: none` and the lists remain. Zoom controls are buttons. The diagram does not animate, including when reduced motion is requested. Labels sit under the nodes. A category diagram is capped at 8 nodes so the fit zoom does not shrink the type.
-- Verification: recorded in the pull request after the test, typecheck, lint, build, and browser pass. A passing render test is not a screen-reader or production claim.
-- Rollback: remove the route, API route, explorer, canvas, graph library, navigation links, and this section. Catalog records stay unchanged.
+- Destinations: `/gaps` (new; now reads the `market-map` evidence-graph slice), plus new sections on `/categories/[slug]` (what buyers do instead, what starts the conversation, common objections) and on `/personas/[id]` (objections and reframes, buying triggers).
+- Reuse: `Breadcrumbs`, `PageIntro`, existing card and link classes, native `<details>` for gap groups (keyboard-operable, no script). Decision: reuse; no bank pattern adopted.
+- States: each new category column shows "Not recorded yet." when empty; seat sections hide when empty; high-severity gap groups open by default.
+- Checks run: typecheck, lint, vitest, and `next dev` returning 200 for `/gaps`, `/personas/appsec`, `/categories/secrets-detection` and the three APIs. A real-browser responsive check is still pending on the Vercel preview.

@@ -341,7 +341,7 @@ export function projectEvidenceGraph(catalog: ProjectableCatalog, slice: SliceSp
       catalogId: persona.id,
       label: persona.name,
       summary: `${persona.title}. ${persona.caresAbout}`,
-      detail: "Buyer interest uses the persona record on main. Open persona PRs are not imported, and this schema has no source id, so the link stays a hypothesis.",
+      detail: "Buyer interest uses the persona record. The persona record has no source id, so the link stays a hypothesis. Seat profiles carry their own evidence per pain.",
       href: null,
       externalUrl: null,
       recordStatus: null,
@@ -684,7 +684,7 @@ export function projectEvidenceGraph(catalog: ProjectableCatalog, slice: SliceSp
         sourceType: null,
         subjectKind: null,
         capabilityId: null,
-        rationale: "The merged persona schema records interest without a source id. This stays a hypothesis and does not import unmerged persona profiles.",
+        rationale: "The persona record lists interest in this category without a source id, so this stays a hypothesis.",
         ...blankDates(),
       });
     }
@@ -865,7 +865,7 @@ export function projectEvidenceGraph(catalog: ProjectableCatalog, slice: SliceSp
       "Nodes and edges reuse catalog ids. This projection does not create a second fact store.",
       "Taxonomy mappings and buyer-interest hypotheses are not product capabilities.",
       "A comparison without a source stays Unknown. A source on a comparison does not make it independently verified.",
-      "Vendor records stay research candidates. Open persona PRs #123 and #148 are not imported.",
+      "Vendor records stay research candidates. Open persona PR #123 is not imported.",
       "Products that only carry a category tag are counted as omissions. Omission is not a finding that the product lacks a capability.",
     ],
     nodes: [...nodes.values()].sort((left, right) => left.id.localeCompare(right.id)),

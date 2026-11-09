@@ -39,6 +39,9 @@ Do not score accounts from titles alone (see the fit worksheet in `market-resear
 | Use case seats | `lib/data/persona-connections.ts` | `useCaseId` | Seats and likely budget seats per use case; unmodeled stakeholders listed. |
 | Source | `lib/data/persona-sources.ts` | `id` | Paraphrased source records behind sourced profiles, pains, edges, and overlays. |
 | Field note | `lib/data/field-notes.ts` | `id` | Anonymized patterns from real conversations (patterns only, month only). Needed before any `field_validated` label. Intake: `docs/market-research/field-notes-template.md`. |
+| Objection | `lib/data/objections.ts` | `id` (`obj-`) | Pushback, underlying concern, neutral reframe, qualifying questions; linked to seats, categories, alternatives. |
+| Alternative | `lib/data/alternatives.ts` | `id` (`alt-`) | What buyers do instead of the category, when it wins and when it breaks. |
+| Buying trigger | `lib/data/buying-triggers.ts` | `id` (`trg-`) | Events that start a buying conversation, with an optional public signal (a lead, not intent). |
 | Title corpus | `lib/fixtures/title-corpus.ts` | title | Representative job titles with the expected seat; regression test for `matchTitle`. |
 
 Schemas live in `lib/schema.ts` (`personaProfileSchema`, `stakeholderSchema`, `segmentOverlaySchema`, `useCaseSeatsSchema`, `painSchema`, `seatFunctionSchema`, `seniorityLevelSchema`, `dealStageSchema`, `companySizeSchema`, `fieldNoteSchema`). `lib/catalog.ts` fails the build on broken links, missing profiles, and unsourced "sourced" claims.
@@ -74,7 +77,7 @@ Once the owning PR is reviewed, merged, and its deployment is verified, a consum
 GET /api/persona-model
 ```
 
-The payload carries `version` (`PERSONA_MODEL_VERSION` in `lib/persona-model.ts`). Bump it when a field is renamed or removed. 1.1.0 renamed the `legal` stakeholder to `legal-counsel` and added `field_validated`, pain category/use-case links, and new source types; 1.0.0 was never released.
+The payload carries `version` (`PERSONA_MODEL_VERSION` in `lib/persona-model.ts`). Bump it when a field is renamed or removed. 1.1.0 renamed the `legal` stakeholder to `legal-counsel` and added `field_validated`, pain category/use-case links, and new source types; 1.0.0 was never released. 1.2.0 added `relatedCapabilityIds` on pains (additive).
 
 ## Keeping it honest
 
@@ -148,3 +151,5 @@ This is a manual review workflow. There is no change webhook, consumer-impact re
 | A source ID or seat is missing | Mark unresolved and pause the affected claim instead of guessing |
 | A new source invalidates a current recommendation | Flag the recommendation for review; retain its original source revision |
 | A private conversation suggests a general pattern | Keep the conversation in its authorized system; independently research any public claim |
+
+See `docs/roadmap/gtm-context-engine.md` for the roadmap and `docs/buyer-context-graph.md` for buyer context in the evidence graph (`/api/evidence-graph?slice=market-map`), context search and the gap report.

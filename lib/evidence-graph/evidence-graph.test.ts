@@ -362,7 +362,7 @@ describe("evidence graph contract", () => {
 
 describe("identity, secrets, and NHI projection", () => {
   it("validates the catalog slice without promoting candidates, personas, or category tags", () => {
-    expect(identitySecretsNhiGraph.contractVersion).toBe("1.1.0");
+    expect(identitySecretsNhiGraph.contractVersion).toBe("1.2.0");
     expect(evidenceGraphProblems(identitySecretsNhiGraph)).toEqual([]);
     expect(identitySecretsNhiGraph.nodes.some((node) => node.id === "product:vault")).toBe(true);
     expect(identitySecretsNhiGraph.nodes.some((node) => node.catalogId === "legal-counsel" || node.catalogId === "legal")).toBe(false);

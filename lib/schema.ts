@@ -350,6 +350,8 @@ export const painSchema = z.object({
   /** Categories that address this pain. Empty when it is a people, budget or process problem, not a product one. */
   relatedCategoryIds: z.array(z.string().min(1)).default([]),
   relatedUseCaseIds: z.array(z.string().min(1)).default([]),
+  /** Catalog capabilities that address this pain (Octave-style pain → capability → outcome). */
+  relatedCapabilityIds: z.array(z.string().min(1)).default([]),
 });
 
 /** Research profile for a typed persona. Keyed by personaId; the base persona stays small for filters. */
@@ -631,3 +633,81 @@ export const fieldNoteSchema = z.object({
   reviewedAt: isoDate.nullable(),
 });
 export type FieldNote = z.infer<typeof fieldNoteSchema>;
+
+// ---------------------------------------------------------------------------
+// Context graph concepts: objections, alternatives, buying triggers.
+// Vendor-neutral and public. Seller-specific offerings, motions and proof live in ASE.
+// ---------------------------------------------------------------------------
+
+export const objectionSchema = z.object({
+  id: z.string().regex(/^obj-[a-z0-9-]+$/),
+  /** The pushback in the buyer's words, paraphrased. */
+  objection: z.string().min(1).max(200),
+  /** What the objection is usually really about. */
+  underlyingConcern: z.string().min(1).max(240),
+  /** A neutral reframe to test; never a claim about a specific vendor. */
+  reframe: z.string().min(1).max(280),
+  /** Questions that tell you whether the objection is real or a brush-off. */
+  qualifyingQuestions: z.array(z.string().min(1)).min(1),
+  seatIds: z.array(z.string().min(1)).min(1),
+  categoryIds: z.array(z.string().min(1)).default([]),
+  /** The alternative the objection usually points to, if any. */
+  alternativeIds: z.array(z.string().min(1)).default([]),
+  evidence: personaEvidenceSchema,
+  sourceIds: z.array(z.string().min(1)).default([]),
+  lastReviewedAt: isoDate,
+});
+export type Objection = z.infer<typeof objectionSchema>;
+export type ObjectionInput = z.input<typeof objectionSchema>;
+
+export const alternativeKindSchema = z.enum([
+  "do-nothing",
+  "manual-process",
+  "build-in-house",
+  "open-source",
+  "platform-bundle",
+  "adjacent-category",
+  "service",
+]);
+
+export const alternativeSchema = z.object({
+  id: z.string().regex(/^alt-[a-z0-9-]+$/),
+  categoryId: z.string().min(1),
+  kind: alternativeKindSchema,
+  name: z.string().min(1).max(120),
+  /** When this alternative is genuinely good enough. */
+  whenItWins: z.string().min(1).max(280),
+  /** When it stops working, which is usually the buying trigger. */
+  whenItBreaks: z.string().min(1).max(280),
+  adjacentCategoryId: z.string().min(1).optional(),
+  evidence: personaEvidenceSchema,
+  sourceIds: z.array(z.string().min(1)).default([]),
+});
+export type Alternative = z.infer<typeof alternativeSchema>;
+export type AlternativeInput = z.input<typeof alternativeSchema>;
+
+export const triggerKindSchema = z.enum([
+  "incident",
+  "regulation",
+  "audit",
+  "customer-demand",
+  "org-change",
+  "tech-change",
+  "business-event",
+  "tool-renewal",
+]);
+
+export const buyingTriggerSchema = z.object({
+  id: z.string().regex(/^trg-[a-z0-9-]+$/),
+  trigger: z.string().min(1).max(200),
+  kind: triggerKindSchema,
+  /** How a seller could observe it from outside. A public signal is a lead, not buyer intent. */
+  publicSignal: z.string().min(1).max(240).nullable(),
+  useCaseIds: z.array(z.string().min(1)).default([]),
+  categoryIds: z.array(z.string().min(1)).default([]),
+  seatIds: z.array(z.string().min(1)).min(1),
+  evidence: personaEvidenceSchema,
+  sourceIds: z.array(z.string().min(1)).default([]),
+});
+export type BuyingTrigger = z.infer<typeof buyingTriggerSchema>;
+export type BuyingTriggerInput = z.input<typeof buyingTriggerSchema>;

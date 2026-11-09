@@ -595,6 +595,7 @@ export const personaProfiles: PersonaProfileInput[] = [
       },
       {
         pain: "Leaked credentials take months to revoke and rotate",
+        relatedCapabilityIds: ["cap-secret-verification", "cap-dynamic-secrets"],
         evidence: "sourced",
         sourceIds: ["src-pain-dbir-2025"],
         relatedCategoryIds: ["secrets-detection", "secrets-management"],
@@ -770,6 +771,7 @@ export const personaProfiles: PersonaProfileInput[] = [
     pains: [
       {
         pain: "Stolen and abused credentials remain a leading way in",
+        relatedCapabilityIds: ["cap-itdr", "cap-secret-discovery"],
         evidence: "sourced",
         sourceIds: ["src-pain-dbir-2025"],
         relatedCategoryIds: ["itdr", "workforce-identity", "nhi"],
@@ -784,6 +786,7 @@ export const personaProfiles: PersonaProfileInput[] = [
       },
       {
         pain: "Machine identities and credentials outnumber and outlive their owners",
+        relatedCapabilityIds: ["cap-nhi-inventory", "cap-nhi-ownership", "cap-nhi-lifecycle"],
         evidence: "hypothesis",
         relatedCategoryIds: ["nhi", "secrets-management"],
         relatedUseCaseIds: ["uc-nhi"],
@@ -858,9 +861,10 @@ export const personaProfiles: PersonaProfileInput[] = [
     function: "security",
     job: "Run joiner/mover/leaver, access requests, and certifications.",
     pains: [
-      { pain: "Access reviews get rubber-stamped", evidence: "hypothesis", relatedCategoryIds: ["iga"], relatedUseCaseIds: ["uc-jml"] },
+      { pain: "Access reviews get rubber-stamped", relatedCapabilityIds: ["cap-certification"], evidence: "hypothesis", relatedCategoryIds: ["iga"], relatedUseCaseIds: ["uc-jml"] },
       {
         pain: "Leavers keep access because HR and IT records disagree",
+        relatedCapabilityIds: ["cap-jml"],
         evidence: "hypothesis",
         relatedCategoryIds: ["iga", "workforce-identity"],
         relatedUseCaseIds: ["uc-jml"],
@@ -888,12 +892,14 @@ export const personaProfiles: PersonaProfileInput[] = [
     pains: [
       {
         pain: "Standing admin privilege is hard to remove",
+        relatedCapabilityIds: ["cap-jit-human", "cap-session-control"],
         evidence: "hypothesis",
         relatedCategoryIds: ["pam", "ciem"],
         relatedUseCaseIds: ["uc-jit"],
       },
       {
         pain: "App teams resist moving credentials into the vault",
+        relatedCapabilityIds: ["cap-dynamic-secrets", "cap-workload-federation"],
         evidence: "hypothesis",
         relatedCategoryIds: ["secrets-management", "pam"],
         relatedUseCaseIds: ["uc-vault"],
@@ -927,6 +933,7 @@ export const personaProfiles: PersonaProfileInput[] = [
       },
       {
         pain: "Posture findings outnumber the people who can fix them",
+        relatedCapabilityIds: ["cap-cspm"],
         evidence: "hypothesis",
         relatedCategoryIds: ["cspm", "cnapp"],
         relatedUseCaseIds: ["uc-finding-route"],
@@ -986,6 +993,7 @@ export const personaProfiles: PersonaProfileInput[] = [
     pains: [
       {
         pain: "Don't know where sensitive data sits across SaaS and cloud",
+        relatedCapabilityIds: ["cap-dspm"],
         evidence: "hypothesis",
         relatedCategoryIds: ["dspm", "data-access-governance"],
         relatedUseCaseIds: ["uc-sensitive-data"],
@@ -1683,6 +1691,7 @@ export const personaProfiles: PersonaProfileInput[] = [
       },
       {
         pain: "Hardcoded secrets keep leaking into code and stay in Git history",
+        relatedCapabilityIds: ["cap-secret-discovery", "cap-secret-verification"],
         evidence: "sourced",
         sourceIds: ["src-pain-ndss-secret-leakage"],
         relatedCategoryIds: ["secrets-detection"],
@@ -1869,6 +1878,7 @@ export const personaProfiles: PersonaProfileInput[] = [
       },
       {
         pain: "Unclear who approves agent data and tool access",
+        relatedCapabilityIds: ["cap-agent-decision", "cap-mcp-enforce"],
         evidence: "hypothesis",
         relatedCategoryIds: ["agent-identity", "mcp-security"],
         relatedUseCaseIds: ["uc-agent"],
@@ -1907,6 +1917,7 @@ export const personaProfiles: PersonaProfileInput[] = [
       },
       {
         pain: "Agents use credentials nobody inventoried",
+        relatedCapabilityIds: ["cap-agent-inventory", "cap-nhi-inventory"],
         evidence: "hypothesis",
         relatedCategoryIds: ["agent-identity", "nhi"],
         relatedUseCaseIds: ["uc-agent", "uc-nhi"],

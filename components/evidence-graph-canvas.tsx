@@ -15,6 +15,11 @@ const SHAPE: Record<GraphNode["kind"], string> = {
   persona: "tag",
   claim: "ellipse",
   source: "rectangle",
+  pain: "triangle",
+  objection: "vee",
+  alternative: "barrel",
+  trigger: "star",
+  segment: "octagon",
 };
 
 export function EvidenceGraphCanvas({

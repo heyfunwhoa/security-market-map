@@ -16,6 +16,9 @@ import {
   stakeholderSchema,
   segmentOverlaySchema,
   fieldNoteSchema,
+  objectionSchema,
+  alternativeSchema,
+  buyingTriggerSchema,
   useCaseSeatsSchema,
   pricingSignalSchema,
   productSchema,
@@ -37,6 +40,9 @@ import {
   type Stakeholder,
   type SegmentOverlay,
   type FieldNote,
+  type Objection,
+  type Alternative,
+  type BuyingTrigger,
   type UseCaseSeats,
   type PricingSignal,
   type Product,
@@ -69,6 +75,9 @@ import { personaSources } from "./data/persona-sources";
 import { stakeholderProfiles, stakeholders } from "./data/stakeholders";
 import { segmentOverlays } from "./data/company-segments";
 import { fieldNotes } from "./data/field-notes";
+import { objections } from "./data/objections";
+import { alternatives } from "./data/alternatives";
+import { buyingTriggers } from "./data/buying-triggers";
 import { orphanCategoryOwners, useCaseSeats } from "./data/persona-connections";
 
 const withOrphanCategories = (persona: BuyerPersona): BuyerPersona => {
@@ -108,6 +117,9 @@ export type Catalog = {
   segmentOverlays: SegmentOverlay[];
   useCaseSeats: UseCaseSeats[];
   fieldNotes: FieldNote[];
+  objections: Objection[];
+  alternatives: Alternative[];
+  buyingTriggers: BuyingTrigger[];
   sources: Source[];
   claims: Claim[];
   relationships: Relationship[];
@@ -139,6 +151,9 @@ function parseCatalog(): Catalog {
     segmentOverlays: z.array(segmentOverlaySchema).parse(segmentOverlays),
     useCaseSeats: z.array(useCaseSeatsSchema).parse(useCaseSeats),
     fieldNotes: z.array(fieldNoteSchema).parse(fieldNotes),
+    objections: z.array(objectionSchema).parse(objections),
+    alternatives: z.array(alternativeSchema).parse(alternatives),
+    buyingTriggers: z.array(buyingTriggerSchema).parse(buyingTriggers),
     sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources, ...developerEndpointSources, ...personaSources]),
     claims: z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims, ...developerEndpointClaims]),
     relationships: z.array(relationshipSchema).parse([...relationships, ...ecosystemRelationships]),
@@ -153,11 +168,14 @@ function parseCatalog(): Catalog {
 
 export function catalogProblems(catalog: Catalog): string[] {
   // Persona profiles are keyed by personaId and checked below.
-  const { asOf: _asOf, personaProfiles: _personaProfiles, useCaseSeats: _useCaseSeats, fieldNotes: _fieldNotes, ...collections } = catalog;
+  const { asOf: _asOf, personaProfiles: _personaProfiles, useCaseSeats: _useCaseSeats, fieldNotes: _fieldNotes, objections: _objections, alternatives: _alternatives, buyingTriggers: _buyingTriggers, ...collections } = catalog;
   void _asOf;
   void _personaProfiles;
   void _useCaseSeats;
   void _fieldNotes;
+  void _objections;
+  void _alternatives;
+  void _buyingTriggers;
   const problems = [
     ...identityProblems(collections),
     ...provenanceProblems(catalog.sources, catalog.claims, catalog.capabilities.map((item) => item.id)),
@@ -364,6 +382,7 @@ export function catalogProblems(catalog: Catalog): string[] {
       for (const id of pain.sourceIds) if (!sourceIds.has(id)) problems.push(`${label} pain source ${id} missing`);
       for (const id of pain.relatedCategoryIds) if (!categoryIds.has(id)) problems.push(`${label} pain category ${id} missing`);
       for (const id of pain.relatedUseCaseIds) if (!useCaseIds.has(id)) problems.push(`${label} pain use case ${id} missing`);
+      for (const id of pain.relatedCapabilityIds) if (!catalog.capabilities.some((cap) => cap.id === id)) problems.push(`${label} pain capability ${id} missing`);
     }
     for (const id of profile.sourceIds) {
       if (!sourceIds.has(id)) problems.push(`${label} source ${id} missing`);
@@ -400,6 +419,34 @@ export function catalogProblems(catalog: Catalog): string[] {
   for (const [categoryId, owners] of Object.entries(orphanCategoryOwners)) {
     if (!categoryIds.has(categoryId)) problems.push(`Orphan owner category ${categoryId} missing`);
     for (const id of owners) if (!personaIds.has(id)) problems.push(`Orphan owner ${id} for ${categoryId} missing`);
+  }
+  const seatIdSet = new Set([...catalog.personas.map((item) => item.id), ...catalog.stakeholders.map((item) => item.id)]);
+  const alternativeIds = new Set<string>();
+  for (const alt of catalog.alternatives) {
+    if (alternativeIds.has(alt.id)) problems.push(`Duplicate alternative ${alt.id}`);
+    alternativeIds.add(alt.id);
+    if (!categoryIds.has(alt.categoryId)) problems.push(`Alternative ${alt.id} references missing category ${alt.categoryId}`);
+    if (alt.adjacentCategoryId && !categoryIds.has(alt.adjacentCategoryId)) problems.push(`Alternative ${alt.id} references missing adjacent category ${alt.adjacentCategoryId}`);
+    if (alt.kind === "adjacent-category" && !alt.adjacentCategoryId) problems.push(`Alternative ${alt.id} is adjacent-category without adjacentCategoryId`);
+    if (alt.evidence === "sourced" && alt.sourceIds.length === 0) problems.push(`Alternative ${alt.id} is sourced without sourceIds`);
+    for (const id of alt.sourceIds) if (!sourceIds.has(id)) problems.push(`Alternative ${alt.id} source ${id} missing`);
+  }
+  const conceptIds = new Set<string>();
+  const checkConcept = (kind: string, item: { id: string; seatIds: string[]; categoryIds: string[]; evidence: string; sourceIds: string[] }) => {
+    if (conceptIds.has(item.id)) problems.push(`Duplicate ${kind} ${item.id}`);
+    conceptIds.add(item.id);
+    for (const id of item.seatIds) if (!seatIdSet.has(id)) problems.push(`${kind} ${item.id} references missing seat ${id}`);
+    for (const id of item.categoryIds) if (!categoryIds.has(id)) problems.push(`${kind} ${item.id} references missing category ${id}`);
+    if (item.evidence === "sourced" && item.sourceIds.length === 0) problems.push(`${kind} ${item.id} is sourced without sourceIds`);
+    for (const id of item.sourceIds) if (!sourceIds.has(id)) problems.push(`${kind} ${item.id} source ${id} missing`);
+  };
+  for (const objection of catalog.objections) {
+    checkConcept("Objection", objection);
+    for (const id of objection.alternativeIds) if (!alternativeIds.has(id)) problems.push(`Objection ${objection.id} references missing alternative ${id}`);
+  }
+  for (const trigger of catalog.buyingTriggers) {
+    checkConcept("Trigger", trigger);
+    for (const id of trigger.useCaseIds) if (!useCaseIds.has(id)) problems.push(`Trigger ${trigger.id} references missing use case ${id}`);
   }
   const fieldIds = new Set<string>();
   for (const note of catalog.fieldNotes) {

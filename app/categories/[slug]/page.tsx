@@ -36,6 +36,9 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
   const categoryClaims = claimsForSubject("category", category.id);
   const owningSeats = seatsForCategory(category.id);
   const seatPains = painsForCategory(category.id);
+  const categoryAlternatives = catalog.alternatives.filter((alt) => alt.categoryId === category.id);
+  const categoryTriggers = catalog.buyingTriggers.filter((trigger) => trigger.categoryIds.includes(category.id));
+  const categoryObjections = catalog.objections.filter((objection) => objection.categoryIds.includes(category.id));
   const sourcingLabel = categoryClaims.length > 0
     ? "The description, buyer question, owner, budget, triggers, outcomes, workflow, and illustrative flow are the map's wording. The sourced sentences are the claims below."
     : "The description, buyer question, owner, budget, triggers, outcomes, workflow, and illustrative flow are the map's wording. No source is attached to them yet.";
@@ -184,6 +187,57 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
           </ul>
         )}
       </section>
+      {categoryAlternatives.length > 0 || categoryTriggers.length > 0 || categoryObjections.length > 0 ? (
+        <section className="mt-8 grid gap-6 text-sm leading-6 lg:grid-cols-3" aria-label="Buying context">
+          <div>
+            <h2 className="text-2xl">What buyers do instead</h2>
+            {categoryAlternatives.length === 0 ? (
+              <p className="mt-2 text-muted-foreground">Not recorded yet.</p>
+            ) : (
+              <ul className="mt-2 space-y-3">
+                {categoryAlternatives.map((alt) => (
+                  <li key={alt.id}>
+                    <p className="font-medium">{alt.name}</p>
+                    <p>Good enough when: {alt.whenItWins}</p>
+                    <p className="text-muted-foreground">Breaks when: {alt.whenItBreaks}</p>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+          <div>
+            <h2 className="text-2xl">What starts the conversation</h2>
+            {categoryTriggers.length === 0 ? (
+              <p className="mt-2 text-muted-foreground">Not recorded yet.</p>
+            ) : (
+              <ul className="mt-2 space-y-3">
+                {categoryTriggers.map((trigger) => (
+                  <li key={trigger.id}>
+                    <p>{trigger.trigger}</p>
+                    {trigger.publicSignal ? <p className="text-muted-foreground">Public signal (a lead, not intent): {trigger.publicSignal}</p> : null}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+          <div>
+            <h2 className="text-2xl">Common objections</h2>
+            {categoryObjections.length === 0 ? (
+              <p className="mt-2 text-muted-foreground">Not recorded yet.</p>
+            ) : (
+              <ul className="mt-2 space-y-3">
+                {categoryObjections.map((objection) => (
+                  <li key={objection.id}>
+                    <p className="font-medium">&ldquo;{objection.objection}&rdquo;</p>
+                    <p>Reframe to test: {objection.reframe}</p>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+          <p className="text-muted-foreground lg:col-span-3">Hypotheses unless a source is listed. Vendor-neutral: none of these name a product.</p>
+        </section>
+      ) : null}
       {owningSeats.length > 0 || seatPains.length > 0 ? (
         <section className="mt-8" aria-labelledby="category-seats">
           <h2 id="category-seats" className="text-2xl">Who owns it and who feels the problem</h2>

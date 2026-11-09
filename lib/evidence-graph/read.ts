@@ -6,8 +6,15 @@ import {
 } from "./contract";
 import { EvidenceGraphQueryError, expandEvidenceGraph } from "./project";
 import { identitySecretsNhiGraph } from "./identity-slice";
+import { marketMapGraph } from "./market-map-slice";
 
-const ALLOWED_PARAMS = new Set(["root", "depth", "nodeLimit", "edgeLimit"]);
+/** Named slices. The identity slice stays the default so existing readers see no change. */
+export const EVIDENCE_GRAPH_SLICES: Record<string, () => EvidenceGraph> = {
+  "identity-secrets-nhi": () => identitySecretsNhiGraph,
+  "market-map": () => marketMapGraph,
+};
+
+const ALLOWED_PARAMS = new Set(["root", "depth", "nodeLimit", "edgeLimit", "slice"]);
 
 function integerParam(value: string | null, fallback: number, min: number, max: number, name: string): number {
   if (value === null || value === "") return fallback;
@@ -19,11 +26,15 @@ function integerParam(value: string | null, fallback: number, min: number, max: 
   return parsed;
 }
 
-export function readEvidenceGraph(requestUrl: string, graph: EvidenceGraph = identitySecretsNhiGraph): EvidenceGraph | EvidenceGraphExpansion {
+export function readEvidenceGraph(requestUrl: string, fixedGraph?: EvidenceGraph): EvidenceGraph | EvidenceGraphExpansion {
   const url = new URL(requestUrl);
   for (const key of url.searchParams.keys()) {
     if (!ALLOWED_PARAMS.has(key)) throw new EvidenceGraphQueryError(`Unsupported query parameter: ${key}`);
   }
+  const sliceName = url.searchParams.get("slice") ?? "identity-secrets-nhi";
+  const pick = EVIDENCE_GRAPH_SLICES[sliceName];
+  if (!fixedGraph && !pick) throw new EvidenceGraphQueryError(`Unknown slice: ${sliceName}`);
+  const graph = fixedGraph ?? pick();
   const root = url.searchParams.get("root");
   const depthValue = url.searchParams.get("depth");
   const nodeLimitValue = url.searchParams.get("nodeLimit");

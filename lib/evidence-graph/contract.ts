@@ -5,7 +5,7 @@ import { sourceTypeSchema } from "../schema";
  * Read-only evidence graph contract v1.
  * A projection of the validated catalog. It does not store a second set of facts.
  */
-export const EVIDENCE_GRAPH_VERSION = "1.1.0" as const;
+export const EVIDENCE_GRAPH_VERSION = "1.2.0" as const;
 
 export const EXPANSION_LIMITS = {
   defaultDepth: 1,
@@ -28,6 +28,12 @@ export const nodeKindSchema = z.enum([
   "persona",
   "claim",
   "source",
+  // 1.2.0 buyer context: vendor-neutral seat concepts (see docs/buyer-context-graph.md)
+  "pain",
+  "objection",
+  "alternative",
+  "trigger",
+  "segment",
 ]);
 
 export const edgePredicateSchema = z.enum([
@@ -46,6 +52,17 @@ export const edgePredicateSchema = z.enum([
   "concerns_capability",
   "cites",
   "conflicts_with",
+  // 1.2.0 buyer context
+  "experiences",
+  "addressed_by",
+  "raised_in",
+  "raised_by",
+  "points_to",
+  "substitutes_for",
+  "activates",
+  "involves",
+  "requires",
+  "elevates",
 ]);
 
 export const evidenceBasisSchema = z.enum([
@@ -56,6 +73,8 @@ export const evidenceBasisSchema = z.enum([
   "source_referenced",
   /** Repeated in 3+ reviewed, anonymized field conversations; see fieldNoteSchema and docs/market-research/field-notes-template.md. */
   "field_validated",
+  /** A third party's published framing (practitioner, community, association). Not vendor self-description, not verified. */
+  "practitioner_published",
   "vendor_reported",
   "needs_review",
   "disputed",
@@ -73,6 +92,11 @@ export const nodeKindLabels: Record<z.infer<typeof nodeKindSchema>, string> = {
   persona: "Persona",
   claim: "Claim",
   source: "Source",
+  pain: "Pain",
+  objection: "Objection",
+  alternative: "Alternative",
+  trigger: "Buying trigger",
+  segment: "Segment",
 };
 
 export const predicateLabels: Record<z.infer<typeof edgePredicateSchema>, string> = {
@@ -91,6 +115,16 @@ export const predicateLabels: Record<z.infer<typeof edgePredicateSchema>, string
   concerns_capability: "Statement concerns capability",
   cites: "Cites source",
   conflicts_with: "Conflicts with",
+  experiences: "Experiences",
+  addressed_by: "Addressed by",
+  raised_in: "Raised in",
+  raised_by: "Raised by",
+  points_to: "Points to",
+  substitutes_for: "Substitutes for",
+  activates: "Activates",
+  involves: "Involves",
+  requires: "Requires",
+  elevates: "Elevates",
 };
 
 export const evidenceBasisLabels: Record<z.infer<typeof evidenceBasisSchema>, string> = {
@@ -100,6 +134,7 @@ export const evidenceBasisLabels: Record<z.infer<typeof evidenceBasisSchema>, st
   unknown: "Unknown",
   source_referenced: "Source referenced",
   field_validated: "Field validated",
+  practitioner_published: "Practitioner published",
   vendor_reported: "Vendor reported",
   needs_review: "Needs review",
   disputed: "Disputed",
@@ -220,6 +255,8 @@ const NON_CAPABILITY_BASIS = new Set<EvidenceBasis>([
   "hypothesis",
   "unknown",
   "source_referenced",
+  "field_validated",
+  "practitioner_published",
   "vendor_reported",
   "needs_review",
   "disputed",
