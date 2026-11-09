@@ -424,3 +424,12 @@ Status: implemented on `research/security-ecosystem-map` (PR #148); not merged o
 - States: unknown seat id → 404; no connected seats → "No connections recorded yet."; optional sections hidden when empty. Hypothesis pains are labeled.
 - Responsive and keyboard: single column below `lg`, grid cards at `sm`/`lg`; native links with `focus-visible` outlines and 44px minimum card height. No animation, so reduced motion is unaffected.
 - Checks run: typecheck, lint, vitest, and `next dev` HTTP 200 for `/personas`, `/personas/ciso`, `/personas/procurement`, `/personas/legal-counsel`, and 404 for an unknown id. **Not yet checked in a real browser** at mobile/tablet/desktop widths or with a screen reader; do that on the Vercel preview before merge.
+
+## Context graph surfaces · 2026-11-08
+
+Status: on `research/context-graph`; not merged or deployed.
+
+- Destinations: `/gaps` (new), plus new sections on `/categories/[slug]` (what buyers do instead, what starts the conversation, common objections) and on `/personas/[id]` (objections and reframes, buying triggers).
+- Reuse: `Breadcrumbs`, `PageIntro`, existing card and link classes, native `<details>` for gap groups (keyboard-operable, no script). Decision: reuse; no bank pattern adopted.
+- States: each new category column shows "Not recorded yet." when empty; seat sections hide when empty; high-severity gap groups open by default.
+- Checks run: typecheck, lint, vitest, and `next dev` returning 200 for `/gaps`, `/personas/appsec`, `/categories/secrets-detection` and the three APIs. A real-browser responsive check is still pending on the Vercel preview.
