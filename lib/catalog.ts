@@ -352,6 +352,12 @@ export type { SearchHit };
 
 export function searchIndex(): SearchHit[] {
   return [
+    {
+      href: "/evidence-graph",
+      kind: "Graph",
+      title: "Identity, secrets, and NHI evidence graph",
+      text: "Taxonomy mappings, unknown comparisons, sourced claims, and research-candidate vendors",
+    },
     ...catalog.domains.map((item) => ({
       href: `/domains/${item.slug}`,
       kind: "Domain",
