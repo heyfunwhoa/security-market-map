@@ -23,7 +23,7 @@ Security Market Map (public library)
 | Automation (plays, schedules) | n8n on the maintainer's home server, calling ASE | Private |
 | Training and drills | ASE or `heyfunwhoa/truffle-camp` | Synthetic data only |
 
-Consumers read `/api/graph` and `/api/persona-model`, pin the commit, and join on `attrs.key`. Nothing writes back into the market map except through a reviewed PR.
+Consumers read `/api/evidence-graph?slice=market-map` and `/api/persona-model`, pin the commit, and join on `catalogId`. Nothing writes back into the market map except through a reviewed PR.
 
 ## Rules for every phase
 
@@ -38,10 +38,11 @@ Consumers read `/api/graph` and `/api/persona-model`, pin the commit, and join o
 | Item | Where |
 | --- | --- |
 | Seats (45), profiles, titles by level, size coverage, regulation overlays, evidence labels, field-note gate, persona pages | PR #148 |
-| Context graph: objections, alternatives, triggers, pain → capability, `/api/graph`, `/api/gaps`, `/gaps`, `/api/context-search` | PR #153 (stacked on #148) |
+| Evidence graph on main (identity slice, contract `evidence-graph-v1`) | PR #152, merged |
+| Buyer context in the evidence graph: objections, alternatives, triggers, pain → capability, market-map slice, `/api/gaps`, `/gaps`, `/api/context-search` | PR #153 (stacked on #148) |
 | Account Workshop shows seat cards from a pinned snapshot, with a stale reminder | ASE PR #200 |
 
-Merge order: #148 → #153 → refresh the ASE snapshot with `--reviewed` → ASE #200.
+Merge order: #148 → #149 and #151 (docs) → refresh the ASE snapshot with `--reviewed` → ASE #200 → #153. See the KRU-294 reconciliation.
 
 ---
 
@@ -90,7 +91,7 @@ Pattern: Octave's MCP server and skills; Cargo's CLI.
 
 | Task | Acceptance criteria |
 | --- | --- |
-| 4.1 MCP server | Read-only tools first: `search_context`, `get_seat`, `get_category`, `get_cell`, `list_gaps`. Then `run_call_prep` and `run_qualification`, which return drafts. No write tools without an approval step. |
+| 4.1 MCP server | Read-only tools first over `evidence-graph-v1`: `search_context`, `get_seat`, `get_category`, `get_cell`, `list_gaps`. Then `run_call_prep` and `run_qualification`, which return drafts. No write tools without an approval step. |
 | 4.2 Claude skills | `/gtm:call-prep`, `/gtm:qualify`, `/gtm:account-brief`, `/gtm:audit` (the gap report) and `/gtm:library` (look up a seat or category). |
 | 4.3 CLI | `npx gtm context get <type:key>` prints a node and its neighbors as markdown for coding agents. |
 

@@ -83,4 +83,4 @@ The payload carries `version` (`PERSONA_MODEL_VERSION` in `lib/persona-model.ts`
 - `docs/market-research/security-titles-and-pains.md` is generated. After changing titles, acronyms, or pains, run `npm run docs:personas`; tests fail if the doc drifts.
 - Title matching is a routing hint. Ambiguous titles return several seats and a note; confirm in discovery.
 
-See `docs/roadmap/gtm-context-engine.md` for the roadmap and `docs/context-graph.md` for the full node and edge graph (`/api/graph`), context search and the gap report.
+See `docs/roadmap/gtm-context-engine.md` for the roadmap and `docs/buyer-context-graph.md` for buyer context in the evidence graph (`/api/evidence-graph?slice=market-map`), context search and the gap report.

@@ -14,12 +14,16 @@ export function shouldSkip(paths, policy) {
 export function decide(env = process.env, cwd = process.cwd()) {
   const build = (reason) => ({ code: 1, reason: `build: ${reason}` });
   if (env.RELEASE_FORCE_BUILD === '1') return build('explicit force-build override');
+  // Only a verified previous successful deployment is a safe diff baseline.
+  // Git HEAD supplies the current SHA when Vercel metadata is unavailable.
   const previous = env.VERCEL_GIT_PREVIOUS_SHA || '';
-  const current = env.VERCEL_GIT_COMMIT_SHA || '';
-  if (![previous, current].every(s => /^[a-f0-9]{40}$/i.test(s))) return build('missing commit history; fail open');
+  const providedCurrent = env.VERCEL_GIT_COMMIT_SHA || '';
+  if (!/^[a-f0-9]{40}$/i.test(previous)) return build('missing previous deployment SHA; fail open');
+
   try {
     const git = args => execFileSync('git', args, { cwd, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 5000 });
-    if (git(['rev-parse', 'HEAD']).trim().toLowerCase() !== current.toLowerCase()) return build('checkout mismatch; fail open');
+    const current = git(['rev-parse', 'HEAD']).trim();
+    if (!/^[a-f0-9]{40}$/i.test(current) || (providedCurrent && current.toLowerCase() !== providedCurrent.toLowerCase())) return build('checkout mismatch; fail open');
     git(['merge-base', '--is-ancestor', previous, current]);
     // No rename detection: both deletion and addition must be classified.
     // NUL delimiters preserve unusual filenames; never trim or split on newline.

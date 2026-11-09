@@ -1,10 +1,12 @@
-import { buildContextGraph, neighbors, type ContextGraph, type GraphNode, type GraphNodeType } from "./context-graph";
+import type { EdgePredicate, EvidenceBasis, EvidenceGraph, GraphNode, NodeKind } from "./evidence-graph/contract";
+import { marketMapGraph } from "./evidence-graph/market-map-slice";
 
 /**
- * Octave-style context search: return grounding nodes and their one-hop neighborhood for a query,
- * without running an agent. Plain keyword scoring over labels and keys, so results are explainable.
+ * Context search over the market-map evidence graph: return grounding nodes and their one-hop
+ * neighborhood, with each edge's evidence basis, without running an agent. Plain keyword scoring over labels and keys, so results are explainable.
  */
-export type ContextHit = { node: GraphNode; score: number; related: { type: string; node: GraphNode }[] };
+export type ContextHit = { node: GraphNode; score: number; related: Related[] };
+type Related = { predicate: EdgePredicate; evidenceBasis: EvidenceBasis; node: GraphNode };
 
 const STOP = new Set(["the", "a", "an", "and", "or", "of", "for", "to", "in", "on", "with", "our", "my", "is", "are"]);
 
@@ -22,42 +24,44 @@ function terms(text: string) {
 }
 
 /** Concepts ground answers better than catalog entries, so they rank first on ties. */
-const TYPE_WEIGHT: Partial<Record<GraphNodeType, number>> = {
+const TYPE_WEIGHT: Partial<Record<NodeKind, number>> = {
   pain: 0.3,
   objection: 0.3,
   trigger: 0.3,
   alternative: 0.25,
   category: 0.25,
-  "use-case": 0.25,
-  seat: 0.2,
+  use_case: 0.25,
+  persona: 0.2,
   capability: 0.15,
   segment: 0.15,
 };
 
-let cached: ContextGraph | undefined;
-
-export function contextSearch(query: string, options: { types?: GraphNodeType[]; limit?: number; graph?: ContextGraph } = {}): ContextHit[] {
-  const graph = options.graph ?? (cached ??= buildContextGraph());
+export function contextSearch(query: string, options: { types?: NodeKind[]; limit?: number; graph?: EvidenceGraph } = {}): ContextHit[] {
+  const graph = options.graph ?? marketMapGraph;
+  const byId = new Map(graph.nodes.map((node) => [node.id, node]));
   const wanted = terms(query);
   if (wanted.length === 0) return [];
   const hits: ContextHit[] = [];
   for (const node of graph.nodes) {
-    if (node.type === "source" || node.type === "company-size") continue;
-    if (options.types && !options.types.includes(node.type)) continue;
-    const haystack = terms(`${node.label} ${String(node.attrs?.key ?? "")}`);
+    if (node.kind === "source" || node.kind === "claim") continue;
+    if (options.types && !options.types.includes(node.kind)) continue;
+    const haystack = terms(`${node.label} ${node.catalogId}`);
     const set = new Set(haystack);
     const matched = wanted.filter((term) => set.has(term) || haystack.some((word) => word.startsWith(term) && term.length >= 4)).length;
     if (matched === 0) continue;
     const score =
-      matched / wanted.length + (node.label.toLowerCase().includes(query.toLowerCase()) ? 1 : 0) + (TYPE_WEIGHT[node.type] ?? 0);
+      matched / wanted.length + (node.label.toLowerCase().includes(query.toLowerCase()) ? 1 : 0) + (TYPE_WEIGHT[node.kind] ?? 0);
     hits.push({ node, score, related: [] });
   }
   hits.sort((a, b) => b.score - a.score || a.node.label.localeCompare(b.node.label));
   return hits.slice(0, options.limit ?? 10).map((hit) => ({
     ...hit,
-    related: neighbors(graph, hit.node.id)
-      .filter((item) => item.node.type !== "source")
-      .slice(0, 25)
-      .map((item) => ({ type: item.edge.type, node: item.node })),
+    related: graph.edges
+      .filter((edge) => edge.fromId === hit.node.id || edge.toId === hit.node.id)
+      .flatMap((edge): Related[] => {
+        const node = byId.get(edge.fromId === hit.node.id ? edge.toId : edge.fromId);
+        return node && node.kind !== "source" ? [{ predicate: edge.predicate, evidenceBasis: edge.evidenceBasis, node }] : [];
+      })
+      .slice(0, 25),
   }));
 }

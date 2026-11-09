@@ -1,10 +1,11 @@
 import { catalog, type Catalog } from "./catalog";
-import { buildContextGraph } from "./context-graph";
+import { evidenceGraphProblems, type EvidenceGraph } from "./evidence-graph/contract";
+import { marketMapGraph } from "./evidence-graph/market-map-slice";
 import { seats } from "./persona-graph";
 
 /**
- * What the map doesn't know yet. Octave-style self-maintenance, but deterministic: every gap is
- * computed from the typed data, so it can't invent problems or quietly fix them.
+ * What the map doesn't know yet. Every gap is computed from the typed catalog and the
+ * market-map evidence graph, so it can't invent problems or quietly fix them.
  */
 export type GapKind =
   | "category-no-alternatives"
@@ -15,7 +16,7 @@ export type GapKind =
   | "pain-unlinked"
   | "contested-ownership"
   | "stale-review"
-  | "dangling-edge";
+  | "graph-problem";
 
 export type Gap = { kind: GapKind; severity: "high" | "medium" | "low"; subjectId: string; message: string };
 
@@ -28,12 +29,12 @@ export const GAP_LABEL: Record<GapKind, string> = {
   "pain-unlinked": "Pains not linked to a category, capability, or use case",
   "contested-ownership": "Categories owned by many seats (check who really buys)",
   "stale-review": "Profiles not reviewed in 180+ days",
-  "dangling-edge": "Graph edges pointing at missing nodes",
+  "graph-problem": "Evidence graph contract problems",
 };
 
 const STALE_DAYS = 180;
 
-export function gapReport(source: Catalog = catalog, now: Date = new Date()): Gap[] {
+export function gapReport(source: Catalog = catalog, now: Date = new Date(), graph: EvidenceGraph = marketMapGraph): Gap[] {
   const gaps: Gap[] = [];
   const allSeats = seats(source);
   const owners = new Map<string, string[]>();
@@ -70,12 +71,8 @@ export function gapReport(source: Catalog = catalog, now: Date = new Date()): Ga
     }
   }
 
-  const graph = buildContextGraph(source);
-  const nodeIds = new Set(graph.nodes.map((n) => n.id));
-  for (const e of graph.edges) {
-    if (!nodeIds.has(e.from) || !nodeIds.has(e.to)) {
-      gaps.push({ kind: "dangling-edge", severity: "high", subjectId: `${e.from}->${e.to}`, message: `${e.type} edge from ${e.from} to ${e.to} has a missing end.` });
-    }
+  for (const problem of evidenceGraphProblems(graph)) {
+    gaps.push({ kind: "graph-problem", severity: "high", subjectId: graph.sliceId, message: problem });
   }
   return gaps;
 }

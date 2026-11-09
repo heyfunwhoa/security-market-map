@@ -22,7 +22,7 @@ export default function GapsPage() {
         lede={`Computed from the typed data as of ${catalog.asOf}. Nothing here is fixed automatically; each gap is a research or review task.`}
       />
       <p className="mt-4 text-sm">
-        {gaps.length} gaps. Machine-readable at <code>/api/gaps</code>; the full graph is at <code>/api/graph</code>.
+        {gaps.length} gaps. Machine-readable at <code>/api/gaps</code>; the full graph is at <code>/api/evidence-graph?slice=market-map</code>.
       </p>
       <div className="mt-8 space-y-6 text-sm leading-6">
         {groups.map((group) => (
