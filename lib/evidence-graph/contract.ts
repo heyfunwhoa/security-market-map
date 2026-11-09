@@ -1,10 +1,11 @@
 import { z } from "zod";
+import { sourceTypeSchema } from "../schema";
 
 /**
  * Read-only evidence graph contract v1.
  * A projection of the validated catalog. It does not store a second set of facts.
  */
-export const EVIDENCE_GRAPH_VERSION = "1.0.0" as const;
+export const EVIDENCE_GRAPH_VERSION = "1.1.0" as const;
 
 export const EXPANSION_LIMITS = {
   defaultDepth: 1,
@@ -53,6 +54,8 @@ export const evidenceBasisSchema = z.enum([
   "hypothesis",
   "unknown",
   "source_referenced",
+  /** Repeated in 3+ reviewed, anonymized field conversations; see fieldNoteSchema and docs/market-research/field-notes-template.md. */
+  "field_validated",
   "vendor_reported",
   "needs_review",
   "disputed",
@@ -96,6 +99,7 @@ export const evidenceBasisLabels: Record<z.infer<typeof evidenceBasisSchema>, st
   hypothesis: "Hypothesis",
   unknown: "Unknown",
   source_referenced: "Source referenced",
+  field_validated: "Field validated",
   vendor_reported: "Vendor reported",
   needs_review: "Needs review",
   disputed: "Disputed",
@@ -135,16 +139,8 @@ export const evidenceEdgeSchema = z.object({
   relationshipType: z.enum(["direct_competitor", "bundled_alternative", "complement", "adjacent_budget"]).nullable(),
   polarity: z.enum(["asserts", "denies", "limits"]).nullable(),
   claimVerificationStatus: z.enum(["verified", "vendor_published", "needs_review", "conflicting", "superseded"]).nullable(),
-  sourceType: z.enum([
-    "official_docs",
-    "vendor_marketing",
-    "press_release",
-    "customer_story",
-    "analyst",
-    "review",
-    "standard",
-    "internal_note",
-  ]).nullable(),
+  // Derived from the catalog so new source types (news, legal_summary, academic) stay in sync.
+  sourceType: sourceTypeSchema.nullable(),
   subjectKind: z.enum(["vendor", "product", "category", "capability"]).nullable(),
   capabilityId: z.string().nullable(),
   rationale: z.string().min(1),

@@ -362,7 +362,7 @@ describe("evidence graph contract", () => {
 
 describe("identity, secrets, and NHI projection", () => {
   it("validates the catalog slice without promoting candidates, personas, or category tags", () => {
-    expect(identitySecretsNhiGraph.contractVersion).toBe("1.0.0");
+    expect(identitySecretsNhiGraph.contractVersion).toBe("1.1.0");
     expect(evidenceGraphProblems(identitySecretsNhiGraph)).toEqual([]);
     expect(identitySecretsNhiGraph.nodes.some((node) => node.id === "product:vault")).toBe(true);
     expect(identitySecretsNhiGraph.nodes.some((node) => node.catalogId === "legal-counsel" || node.catalogId === "legal")).toBe(false);
@@ -491,5 +491,16 @@ describe("identity, secrets, and NHI projection", () => {
     expect(html).toContain("Taxonomy mapping");
     expect(html).toContain("research candidate");
     expect(html).not.toContain("legal-counsel");
+  });
+});
+
+describe("contract 1.1.0 additions", () => {
+  it("accepts every catalog source type and the field_validated basis", async () => {
+    const { evidenceBasisSchema, evidenceBasisLabels, evidenceEdgeSchema } = await import("./contract");
+    const { sourceTypeSchema } = await import("../schema");
+    expect(evidenceBasisSchema.options).toContain("field_validated");
+    expect(evidenceBasisLabels.field_validated).toBe("Field validated");
+    const sourceTypeField = evidenceEdgeSchema.shape.sourceType;
+    for (const type of sourceTypeSchema.options) expect(sourceTypeField.safeParse(type).success, type).toBe(true);
   });
 });

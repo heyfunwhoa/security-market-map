@@ -415,6 +415,18 @@ VoiceOver or another screen reader, a physical phone, and the operating-system z
 control were not run. Rollback reverts these page compositions; catalog claims stay
 vendor-published.
 
+## Buyer seat pages · 2026-11-08
+
+Status: implemented on `research/security-ecosystem-map` (PR #148); not merged or deployed. Owner: repository maintainer.
+
+- User task: find who buys, uses, approves or blocks for a category, then read that seat's pains, titles by level, and coverage by company size.
+- Destinations: new `/personas` index and `/personas/[id]` detail; a "Who owns it and who feels the problem" section on `/categories/[slug]`; a "Buyer seats" link in the Explore nav group.
+- Reuse: `Breadcrumbs`, `PageIntro`, the use-case detail page's two-column layout, existing link and card classes. No new component library, dependency or motion. Decision: reuse; no bank pattern adopted.
+- Zoom path: Home → Buyer seats → seat → category / use case / landscape filtered by `?persona=`; category → seat. Each seat page ends with links back to all seats, use cases and domains.
+- States: unknown seat id → 404; no connected seats → "No connections recorded yet."; optional sections hidden when empty. Hypothesis pains are labeled.
+- Responsive and keyboard: single column below `lg`, grid cards at `sm`/`lg`; native links with `focus-visible` outlines and 44px minimum card height. No animation, so reduced motion is unaffected.
+- Checks run: typecheck, lint, vitest, and `next dev` HTTP 200 for `/personas`, `/personas/ciso`, `/personas/procurement`, `/personas/legal-counsel`, and 404 for an unknown id. **Not yet checked in a real browser** at mobile/tablet/desktop widths or with a screen reader; do that on the Vercel preview before merge.
+
 ## Evidence graph slice · 2026-11-08
 
 Status: implemented on this branch; not merged or deployed. Owner: repository maintainer.
