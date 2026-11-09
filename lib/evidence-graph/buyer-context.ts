@@ -120,6 +120,8 @@ export function withBuyerContext(graph: EvidenceGraph, catalog: Catalog, options
       categoryIds: seat.categoryIds.filter((id) => sliceCategories.has(id)),
     });
     const personaId = graphNodeId("persona", seat.id);
+    const existing = nodes.get(personaId);
+    if (existing && existing.href === null) nodes.set(personaId, { ...existing, href: `/personas/${seat.id}` });
     seat.profile.pains.forEach((pain, index) => {
       if (!options.allSeats && !touches(pain.relatedCategoryIds) && !has("persona", seat.id)) return;
       const catalogId = `${seat.id}:${index}`;
@@ -170,8 +172,7 @@ export function withBuyerContext(graph: EvidenceGraph, catalog: Catalog, options
   const draft: EvidenceGraph = {
     ...graph,
     projectionNotes: [
-      ...graph.projectionNotes.filter((note) => !note.includes("Open persona PRs")),
-      "Vendor records stay research candidates.",
+      ...graph.projectionNotes,
       "Buyer context (seats, pains, objections, alternatives, triggers, segments) is vendor-neutral. Editorial mappings between concepts are hypotheses; each record keeps its own evidence label.",
     ],
     nodes: [...nodes.values()].sort((a, b) => a.id.localeCompare(b.id)),
