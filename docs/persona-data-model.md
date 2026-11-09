@@ -2,7 +2,7 @@
 
 As of: 2026-11-08. How the persona, stakeholder, title, and segment data fit together, and how to use them from other projects.
 
-Implementation status: the typed model and export were merged in [PR #148](https://github.com/heyfunwhoa/security-market-map/pull/148) (merge `96b6c6b`, deployed to production on 2026-11-09). Consumers should still pin an exact commit, because the export carries no content revision of its own.
+Implementation status: the typed model and export were merged in [PR #148](https://github.com/heyfunwhoa/security-market-map/pull/148) (merge `96b6c6b`, deployed to production on 2026-11-09). Consumers should still pin an exact commit, because the export carries no content revision of its own. Consumer connections below are documented, manual-first guidance.
 
 ## Personas vs ICP
 
