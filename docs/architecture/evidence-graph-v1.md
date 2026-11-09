@@ -39,7 +39,7 @@ Adjacent categories outside the eight anchor categories are not expanded. ITDR a
 
 The page reuses the local page introduction, status pill, breadcrumbs, and link styling. Cytoscape.js 3.33.1 (MIT) draws one diagram. The layout is a stable preset grid, not a force simulation, and it does not animate. Shape distinguishes record kind. Dash pattern distinguishes Unknown or hypothesis, dotted lines distinguish sourced or vendor-reported edges, and solid lines distinguish taxonomy or catalog structure. Color is not the evidence label.
 
-The node list is searchable and keyboard operable. Category filters use pressed buttons. The evidence panel shows dates, sources, research-candidate status, and the capability limitation. The relationship list is the keyboard path. Below the medium breakpoint the diagram is hidden and the lists remain.
+The node list is searchable and keyboard operable. Category filters use pressed buttons. The page opens on the first category in the slice, Workforce identity, so the diagram can show that category, its use cases, and member products at a readable size. All in this slice remains available and stays inside the existing node and edge caps. The evidence panel shows dates, sources, research-candidate status, and the capability limitation. The relationship list is the keyboard path. Below the medium breakpoint the diagram is hidden and the lists remain.
 
 ## Not in this version
 

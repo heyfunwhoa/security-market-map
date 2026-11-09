@@ -12,7 +12,7 @@ import {
   type EvidenceGraph,
   type GraphNode,
 } from "@/lib/evidence-graph/contract";
-import { canvasNodes, edgesAmong, filterGraphNodes, incidentEdges } from "@/lib/evidence-graph/view";
+import { diagramNodes, edgesAmong, filterGraphNodes, incidentEdges } from "@/lib/evidence-graph/view";
 import { formatDate, relationshipLabel } from "@/lib/format";
 
 function otherId(edge: EvidenceEdge, nodeId: string): string {
@@ -21,25 +21,27 @@ function otherId(edge: EvidenceEdge, nodeId: string): string {
 
 export function EvidenceGraphExplorer({
   graph,
-  initialCategoryId = "nhi",
-  initialNodeId = "category:nhi",
+  initialCategoryId,
+  initialNodeId,
 }: {
   graph: EvidenceGraph;
   initialCategoryId?: string;
   initialNodeId?: string;
 }) {
   const categories = graph.nodes.filter((node) => node.kind === "category").sort((left, right) => left.label.localeCompare(right.label));
-  const [categoryId, setCategoryId] = useState(initialCategoryId);
+  const firstCategory = graph.nodes.find((node) => node.kind === "category");
+  const [categoryId, setCategoryId] = useState(initialCategoryId ?? firstCategory?.catalogId ?? "all");
   const [search, setSearch] = useState("");
   const [includeEvidenceNodes, setIncludeEvidenceNodes] = useState(false);
-  const [selectedId, setSelectedId] = useState(initialNodeId);
+  const [selectedId, setSelectedId] = useState(initialNodeId ?? firstCategory?.id ?? "");
   const nodes = useMemo(
     () => filterGraphNodes(graph, { categoryId, search, includeEvidenceNodes, selectedId }),
     [graph, categoryId, search, includeEvidenceNodes, selectedId],
   );
   const selected = graph.nodes.find((node) => node.id === selectedId) ?? nodes[0];
   const activeId = selected?.id ?? "";
-  const drawn = canvasNodes(nodes, activeId);
+  const drawn = diagramNodes(nodes, categoryId, activeId);
+  const activeCategory = categories.find((category) => category.catalogId === categoryId);
   const drawnEdges = edgesAmong(graph, drawn.nodes);
   const relationships = selected ? incidentEdges(graph, selected.id) : [];
   const verifiedCapabilityCount = graph.edges.filter((edge) => edge.assertsProductCapability).length;
@@ -102,6 +104,11 @@ export function EvidenceGraphExplorer({
             ))}
           </div>
         </fieldset>
+        <p className="text-sm leading-6 text-muted-foreground">
+          {categoryId === "all"
+            ? "Showing every record in this slice. The diagram keeps a bounded sample, and the lists carry the rest."
+            : `Showing ${activeCategory?.label ?? "this category"}. Choose All in this slice for the wider neighborhood.`}
+        </p>
         <label className="flex min-h-11 items-center gap-2 text-sm">
           <input
             type="checkbox"
@@ -145,7 +152,7 @@ export function EvidenceGraphExplorer({
         <div>
           <h2 className="hidden text-lg md:block">Diagram</h2>
           <EvidenceGraphCanvas nodes={drawn.nodes} edges={drawnEdges} selectedId={activeId} onSelect={setSelectedId} />
-          {drawn.truncated ? <p className="mt-2 hidden text-sm leading-6 text-muted-foreground md:block">The diagram shows {drawn.nodes.length} domains, categories, use cases, and products in stable order. Capabilities, vendors, personas, claims, and the rest of the filter stay in the lists.</p> : null}
+          {drawn.truncated ? <p className="mt-2 hidden text-sm leading-6 text-muted-foreground md:block">The diagram shows {drawn.nodes.length} categories, use cases, and products in stable order. Domains, vendors, personas, claims, and any records past this sample stay in the lists.</p> : null}
         </div>
 
         <EvidencePanel graph={graph} node={selected} relationships={relationships} nodeById={nodeById} />

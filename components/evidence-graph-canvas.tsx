@@ -69,7 +69,7 @@ export function EvidenceGraphCanvas({
             },
           })),
         ],
-        layout: { name: "preset", fit: true, padding: 16, animate: false },
+        layout: { name: "preset", fit: false, animate: false },
         style: [
           {
             selector: "node",
@@ -78,10 +78,10 @@ export function EvidenceGraphCanvas({
               shape: "data(shape)",
               "font-size": 11,
               "text-wrap": "wrap",
-              "text-max-width": "120px",
-              "text-valign": "center",
-              "text-halign": "right",
-              "text-margin-x": 8,
+              "text-max-width": "140px",
+              "text-valign": "bottom",
+              "text-halign": "center",
+              "text-margin-y": 8,
               color: "#3f342c",
               "background-color": "#f4efe4",
               "border-width": 2,
@@ -122,6 +122,11 @@ export function EvidenceGraphCanvas({
       cy.on("tap", "node", (event) => {
         onSelectRef.current(event.target.id());
       });
+      cy.fit(undefined, 24);
+      if (cy.zoom() > 1) {
+        cy.zoom(1);
+        cy.center();
+      }
       cyRef.current = cy;
       setReady(true);
     });

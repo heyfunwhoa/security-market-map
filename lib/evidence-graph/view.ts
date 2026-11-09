@@ -15,6 +15,7 @@ const KIND_ORDER: NodeKind[] = [
 const CANVAS_KINDS = new Set<NodeKind>(["domain", "category", "use_case", "product"]);
 
 export const CANVAS_NODE_CAP = 16;
+export const READABLE_CATEGORY_CANVAS_CAP = 8;
 
 export type GraphViewQuery = {
   categoryId: string | "all";
@@ -82,6 +83,37 @@ export function incidentEdges(graph: EvidenceGraph, nodeId: string): EvidenceEdg
     .sort((left, right) => left.id.localeCompare(right.id));
 }
 
+export function diagramNodes(
+  nodes: readonly GraphNode[],
+  categoryId: string,
+  selectedId: string | null,
+): { nodes: GraphNode[]; truncated: boolean } {
+  if (categoryId === "all") return canvasNodes(nodes, selectedId, CANVAS_NODE_CAP);
+  const category = nodes.find((node) => node.kind === "category" && node.catalogId === categoryId);
+  const useCases = nodes
+    .filter((node) => node.kind === "use_case" && node.categoryIds.includes(categoryId))
+    .sort(compareNodes);
+  const products = nodes
+    .filter((node) => node.kind === "product" && node.categoryIds.includes(categoryId))
+    .sort(compareNodes);
+  const selected = selectedId ? nodes.find((node) => node.id === selectedId) : undefined;
+  const kept: GraphNode[] = [];
+  const push = (node: GraphNode | undefined) => {
+    if (!node || !CANVAS_KINDS.has(node.kind) || kept.some((item) => item.id === node.id)) return;
+    if (kept.length >= READABLE_CATEGORY_CANVAS_CAP) return;
+    kept.push(node);
+  };
+  push(category);
+  for (const useCase of useCases) push(useCase);
+  if (selected && selected.kind !== "domain") push(selected);
+  for (const product of products) push(product);
+  const membershipCount = (category ? 1 : 0) + useCases.length + products.length;
+  return {
+    nodes: kept.sort(compareNodes),
+    truncated: nodes.length > kept.length || membershipCount > kept.length,
+  };
+}
+
 export function canvasNodes(nodes: readonly GraphNode[], selectedId: string | null, cap = CANVAS_NODE_CAP): {
   nodes: GraphNode[];
   truncated: boolean;
@@ -103,12 +135,14 @@ export function canvasNodes(nodes: readonly GraphNode[], selectedId: string | nu
 
 export function layoutPosition(nodes: readonly GraphNode[]): Map<string, { x: number; y: number }> {
   const positions = new Map<string, { x: number; y: number }>();
-  const columns = 4;
+  const columns = nodes.length <= READABLE_CATEGORY_CANVAS_CAP ? 2 : 4;
+  const columnGap = columns === 2 ? 200 : 210;
+  const rowGap = columns === 2 ? 104 : 88;
   const ordered = [...nodes].sort(compareNodes);
   ordered.forEach((node, index) => {
     positions.set(node.id, {
-      x: (index % columns) * 210,
-      y: Math.floor(index / columns) * 88,
+      x: (index % columns) * columnGap,
+      y: Math.floor(index / columns) * rowGap,
     });
   });
   return positions;

@@ -11,7 +11,7 @@ import {
   type EvidenceEdge,
   type EvidenceGraph,
 } from "./contract";
-import { identitySecretsNhiGraph } from "./identity-slice";
+import { IDENTITY_SECRETS_NHI_SLICE, identitySecretsNhiGraph } from "./identity-slice";
 import {
   EvidenceGraphQueryError,
   claimAssertsVerifiedProductCapability,
@@ -20,7 +20,7 @@ import {
   type ProjectableCatalog,
 } from "./project";
 import { readEvidenceGraph } from "./read";
-import { canvasNodes, filterGraphNodes } from "./view";
+import { canvasNodes, diagramNodes, filterGraphNodes } from "./view";
 
 function baseCatalog(overrides: Partial<ProjectableCatalog> = {}): ProjectableCatalog {
   return {
@@ -442,6 +442,35 @@ describe("identity, secrets, and NHI projection", () => {
     expect(canvas.truncated).toBe(true);
     expect(canvas.nodes).toHaveLength(2);
     expect(canvas.nodes.some((node) => node.id === "product:vault")).toBe(true);
+  });
+
+  it("opens on one category neighborhood and keeps the full slice available", () => {
+    expect(IDENTITY_SECRETS_NHI_SLICE.categoryIds[0]).toBe("workforce-identity");
+    const visible = filterGraphNodes(identitySecretsNhiGraph, {
+      categoryId: "workforce-identity",
+      search: "",
+      includeEvidenceNodes: false,
+      selectedId: "category:workforce-identity",
+    });
+    const diagram = diagramNodes(visible, "workforce-identity", "category:workforce-identity");
+    expect(diagram.nodes.length).toBeLessThanOrEqual(8);
+    expect(diagram.nodes.some((node) => node.id === "category:workforce-identity")).toBe(true);
+    expect(diagram.nodes.some((node) => node.kind === "use_case")).toBe(true);
+    expect(diagram.nodes.some((node) => node.kind === "product")).toBe(true);
+    expect(diagram.nodes.some((node) => node.kind === "domain")).toBe(false);
+    const wide = diagramNodes(identitySecretsNhiGraph.nodes, "all", null);
+    expect(wide.nodes.length).toBeLessThanOrEqual(16);
+    expect(wide.nodes.length).toBeGreaterThan(diagram.nodes.length);
+
+    const html = renderToStaticMarkup(createElement(EvidenceGraphExplorer, {
+      graph: identitySecretsNhiGraph,
+      initialCategoryId: IDENTITY_SECRETS_NHI_SLICE.categoryIds[0],
+      initialNodeId: `category:${IDENTITY_SECRETS_NHI_SLICE.categoryIds[0]}`,
+    }));
+    expect(html).toMatch(/aria-pressed="true"[^>]*>Workforce identity</);
+    expect(html).toMatch(/aria-pressed="false"[^>]*>All in this slice</);
+    expect(html).toContain("Showing Workforce identity");
+    expect(html).toContain("narrow screen");
   });
 
   it("renders the searchable list, filters, evidence panel, relationship list, and mobile fallback", () => {

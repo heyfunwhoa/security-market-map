@@ -2,7 +2,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { PageIntro } from "@/components/chrome";
 import { EvidenceGraphExplorer } from "@/components/evidence-graph-explorer";
 import { PageJourney } from "@/components/page-journey";
-import { identitySecretsNhiGraph } from "@/lib/evidence-graph/identity-slice";
+import { IDENTITY_SECRETS_NHI_SLICE, identitySecretsNhiGraph } from "@/lib/evidence-graph/identity-slice";
 
 export const metadata = { title: "Evidence graph" };
 
@@ -28,9 +28,13 @@ export default function EvidenceGraphPage() {
         back={{ href: "/connections", label: "Broaden to how these tools connect" }}
       />
       <p className="mt-4 max-w-3xl text-sm leading-6 text-muted-foreground">
-        Zoom out through Connections or the identity domain. Zoom in from a category, use case, or vendor detail link. Products that only have a category tag stay in the landscape and are counted here as omissions.
+        The diagram opens on the first category in this slice. Choose another category, or All in this slice, to widen it. Zoom out through Connections or the identity domain. Zoom in from a category, use case, or vendor detail link. Products that only have a category tag stay in the landscape and are counted here as omissions.
       </p>
-      <EvidenceGraphExplorer graph={identitySecretsNhiGraph} />
+      <EvidenceGraphExplorer
+        graph={identitySecretsNhiGraph}
+        initialCategoryId={IDENTITY_SECRETS_NHI_SLICE.categoryIds[0]}
+        initialNodeId={`category:${IDENTITY_SECRETS_NHI_SLICE.categoryIds[0]}`}
+      />
     </main>
   );
 }
