@@ -12,7 +12,8 @@ Enable a reader to traverse **category → buyer problem → capability → vend
 - `lib/catalog.ts`: validated canonical catalog and reference integrity. Reuse IDs and publication boundaries. Category membership does **not** prove capability.
 - `docs/security-intelligence/relationship-vocabulary.md` and `docs/security-intelligence/information-architecture.md`: proposed typed, temporal edge and evidence contract, public graph/accessibility requirements. This is not an implemented shared graph database.
 - KRU-211 and KRU-212: source-to-outcome knowledge model and schema/ownership reconciliation; existing PRs #137/#138. KRU-218: reviewed intake templates. Do not create a competing migration writer.
-- Open PRs #148 and #123 both modify persona representation (including legal stakeholder alias overlap). Reconcile these before consuming their proposed persona graph APIs.
+- PR #148 (typed personas and stakeholders) merged on 2026-11-09 and renamed the legal stakeholder to `legal-counsel`; a typed persona with the same ID wins over a stakeholder. Open PR #123 still modifies persona representation; reconcile it against `main` before consuming its personas.
+- The identity, secrets and NHI evidence graph (`evidence-graph-v1`, PR #152) is merged. It is the one graph contract; buyer-context additions extend it (open PR #153) rather than adding a second graph.
 - KRU-247 and KRU-237: existing Design Lab evidence-review reuse decision and acceptance. A graph inspector should reuse proven local evidence components; the Design Lab does not own market facts.
 - Existing research-evidence producer/consumer boundaries (KRU-54, KRU-57) and KRU-101 approved participation relationships are separate workflows.
 
