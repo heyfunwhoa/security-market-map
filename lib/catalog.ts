@@ -12,6 +12,11 @@ import {
   eventSchema,
   glossaryTermSchema,
   personaSchema,
+  personaProfileSchema,
+  stakeholderSchema,
+  segmentOverlaySchema,
+  fieldNoteSchema,
+  useCaseSeatsSchema,
   pricingSignalSchema,
   productSchema,
   relationshipSchema,
@@ -28,6 +33,11 @@ import {
   type Domain,
   type GlossaryTerm,
   type BuyerPersona,
+  type PersonaProfile,
+  type Stakeholder,
+  type SegmentOverlay,
+  type FieldNote,
+  type UseCaseSeats,
   type PricingSignal,
   type Product,
   type Relationship,
@@ -54,6 +64,19 @@ import { developerEndpointProducts, developerEndpointSources, developerEndpointC
 import { developerEndpointCapabilities, developerEndpointUseCases } from "./data/developer-endpoint-comparison";
 import { events, products, vendors } from "./data/market";
 import { personas } from "./data/personas";
+import { personaProfiles } from "./data/persona-profiles";
+import { personaSources } from "./data/persona-sources";
+import { stakeholderProfiles, stakeholders } from "./data/stakeholders";
+import { segmentOverlays } from "./data/company-segments";
+import { fieldNotes } from "./data/field-notes";
+import { orphanCategoryOwners, useCaseSeats } from "./data/persona-connections";
+
+const withOrphanCategories = (persona: BuyerPersona): BuyerPersona => {
+  const added = Object.entries(orphanCategoryOwners)
+    .filter(([categoryId, owners]) => owners.includes(persona.id) && !persona.categoryIds.includes(categoryId))
+    .map(([categoryId]) => categoryId);
+  return added.length ? { ...persona, categoryIds: [...persona.categoryIds, ...added] } : persona;
+};
 import { customerStories, pricingSignals, relationships } from "./data/relationships";
 import { sources } from "./data/sources";
 import { useCases } from "./data/use-cases";
@@ -80,6 +103,11 @@ export type Catalog = {
   capabilities: Capability[];
   useCases: UseCase[];
   personas: BuyerPersona[];
+  personaProfiles: PersonaProfile[];
+  stakeholders: Stakeholder[];
+  segmentOverlays: SegmentOverlay[];
+  useCaseSeats: UseCaseSeats[];
+  fieldNotes: FieldNote[];
   sources: Source[];
   claims: Claim[];
   relationships: Relationship[];
@@ -100,8 +128,18 @@ function parseCatalog(): Catalog {
     products: z.array(productSchema).parse([...products, ...ecosystemProducts, ...secretsSweepProducts, ...expandedProducts, ...developerEndpointProducts]),
     capabilities: z.array(capabilitySchema).parse([...capabilities, ...ecosystemCapabilities, ...developerEndpointCapabilities]),
     useCases: z.array(useCaseSchema).parse([...useCases, ...ecosystemUseCases, ...developerEndpointUseCases]),
-    personas: z.array(personaSchema).parse([...personas, ...ecosystemPersonas]),
-    sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources, ...developerEndpointSources]),
+    personas: z.array(personaSchema).parse([...personas, ...ecosystemPersonas]).map(withOrphanCategories),
+    personaProfiles: z.array(personaProfileSchema).parse([...personaProfiles, ...stakeholderProfiles]),
+    // A typed persona with the same id replaces the stakeholder entry (e.g. legal-counsel from the
+    // LimaCharlie persona work); the seat keeps its profile, which is keyed by id.
+    stakeholders: z
+      .array(stakeholderSchema)
+      .parse(stakeholders)
+      .filter((stakeholder) => ![...personas, ...ecosystemPersonas].some((persona) => persona.id === stakeholder.id)),
+    segmentOverlays: z.array(segmentOverlaySchema).parse(segmentOverlays),
+    useCaseSeats: z.array(useCaseSeatsSchema).parse(useCaseSeats),
+    fieldNotes: z.array(fieldNoteSchema).parse(fieldNotes),
+    sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources, ...developerEndpointSources, ...personaSources]),
     claims: z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims, ...developerEndpointClaims]),
     relationships: z.array(relationshipSchema).parse([...relationships, ...ecosystemRelationships]),
     stories: z.array(customerStorySchema).parse(customerStories),
@@ -114,8 +152,12 @@ function parseCatalog(): Catalog {
 }
 
 export function catalogProblems(catalog: Catalog): string[] {
-  const { asOf: _asOf, ...collections } = catalog;
+  // Persona profiles are keyed by personaId and checked below.
+  const { asOf: _asOf, personaProfiles: _personaProfiles, useCaseSeats: _useCaseSeats, fieldNotes: _fieldNotes, ...collections } = catalog;
   void _asOf;
+  void _personaProfiles;
+  void _useCaseSeats;
+  void _fieldNotes;
   const problems = [
     ...identityProblems(collections),
     ...provenanceProblems(catalog.sources, catalog.claims, catalog.capabilities.map((item) => item.id)),
@@ -293,6 +335,98 @@ export function catalogProblems(catalog: Catalog): string[] {
       seenAliases.add(key);
     }
   }
+  // Seats = security personas plus non-security stakeholders. Profiles, edges, and coverage use both.
+  const seatIds = new Set<string>(personaIds);
+  for (const stakeholder of catalog.stakeholders) {
+    if (personaIds.has(stakeholder.id)) problems.push(`Stakeholder ${stakeholder.id} collides with a persona id`);
+    seatIds.add(stakeholder.id);
+  }
+  const profiledIds = new Set<string>();
+  for (const profile of catalog.personaProfiles) {
+    const label = `Persona profile ${profile.personaId}`;
+    if (!seatIds.has(profile.personaId)) problems.push(`${label} has no persona or stakeholder`);
+    for (const [size, presence] of Object.entries(profile.bySize)) {
+      for (const id of presence.coveredBy) {
+        if (!seatIds.has(id)) problems.push(`${label} ${size} coveredBy ${id} missing`);
+        if (id === profile.personaId) problems.push(`${label} ${size} is covered by itself`);
+      }
+    }
+    if (profiledIds.has(profile.personaId)) problems.push(`Duplicate ${label.toLowerCase()}`);
+    profiledIds.add(profile.personaId);
+    if (profile.primaryDomainId && !domainIds.has(profile.primaryDomainId)) {
+      problems.push(`${label} domain ${profile.primaryDomainId} missing`);
+    }
+    if (profile.evidence === "sourced" && profile.sourceIds.length === 0) {
+      problems.push(`${label} is marked sourced without sourceIds`);
+    }
+    for (const pain of profile.pains) {
+      if (pain.evidence === "sourced" && pain.sourceIds.length === 0) problems.push(`${label} pain "${pain.pain}" is marked sourced without sourceIds`);
+      for (const id of pain.sourceIds) if (!sourceIds.has(id)) problems.push(`${label} pain source ${id} missing`);
+      for (const id of pain.relatedCategoryIds) if (!categoryIds.has(id)) problems.push(`${label} pain category ${id} missing`);
+      for (const id of pain.relatedUseCaseIds) if (!useCaseIds.has(id)) problems.push(`${label} pain use case ${id} missing`);
+    }
+    for (const id of profile.sourceIds) {
+      if (!sourceIds.has(id)) problems.push(`${label} source ${id} missing`);
+    }
+    const seenEdges = new Set<string>();
+    for (const edge of profile.edges) {
+      const key = `${edge.type}:${edge.toPersonaId}`;
+      if (edge.toPersonaId === profile.personaId) problems.push(`${label} has a self edge`);
+      if (!seatIds.has(edge.toPersonaId)) problems.push(`${label} edge target ${edge.toPersonaId} missing`);
+      if (seenEdges.has(key)) problems.push(`${label} duplicate edge ${key}`);
+      seenEdges.add(key);
+      if (edge.evidence === "sourced" && edge.sourceIds.length === 0) {
+        problems.push(`${label} edge ${key} is marked sourced without sourceIds`);
+      }
+      for (const id of edge.sourceIds) {
+        if (!sourceIds.has(id)) problems.push(`${label} edge ${key} source ${id} missing`);
+      }
+    }
+  }
+  for (const id of seatIds) {
+    if (!profiledIds.has(id)) problems.push(`Seat ${id} has no profile`);
+  }
+  const linkedUseCases = new Set<string>();
+  for (const link of catalog.useCaseSeats) {
+    const label = `Use case seats ${link.useCaseId}`;
+    if (!useCaseIds.has(link.useCaseId)) problems.push(`${label} use case missing`);
+    if (linkedUseCases.has(link.useCaseId)) problems.push(`Duplicate ${label.toLowerCase()}`);
+    linkedUseCases.add(link.useCaseId);
+    for (const id of [...link.seatIds, ...link.likelyBudgetSeatIds]) {
+      if (!seatIds.has(id)) problems.push(`${label} seat ${id} missing`);
+    }
+  }
+  for (const id of useCaseIds) if (!linkedUseCases.has(id)) problems.push(`Use case ${id} has no seat links`);
+  for (const [categoryId, owners] of Object.entries(orphanCategoryOwners)) {
+    if (!categoryIds.has(categoryId)) problems.push(`Orphan owner category ${categoryId} missing`);
+    for (const id of owners) if (!personaIds.has(id)) problems.push(`Orphan owner ${id} for ${categoryId} missing`);
+  }
+  const fieldIds = new Set<string>();
+  for (const note of catalog.fieldNotes) {
+    if (fieldIds.has(note.id)) problems.push(`Duplicate field note ${note.id}`);
+    fieldIds.add(note.id);
+    if (!personaIds.has(note.personaId) && !catalog.stakeholders.some((item) => item.id === note.personaId)) problems.push(`Field note ${note.id} references missing seat ${note.personaId}`);
+  }
+  for (const profile of catalog.personaProfiles) {
+    const usesFieldLabel =
+      profile.evidence === "field_validated" ||
+      profile.pains.some((pain) => pain.evidence === "field_validated") ||
+      profile.edges.some((edge) => edge.evidence === "field_validated");
+    const confirmed = catalog.fieldNotes
+      .filter((note) => note.personaId === profile.personaId && note.stance !== "challenges" && note.reviewedAt)
+      .reduce((total, note) => total + note.conversations, 0);
+    if (usesFieldLabel && confirmed < 3) problems.push(`Seat ${profile.personaId} uses field_validated without 3+ reviewed field conversations`);
+  }
+  for (const overlay of catalog.segmentOverlays) {
+    const label = `Segment ${overlay.id}`;
+    if (overlay.evidence === "sourced" && overlay.sourceIds.length === 0) problems.push(`${label} is marked sourced without sourceIds`);
+    for (const id of overlay.sourceIds) if (!sourceIds.has(id)) problems.push(`${label} source ${id} missing`);
+    for (const id of overlay.elevatedPersonaIds) if (!seatIds.has(id)) problems.push(`${label} elevated seat ${id} missing`);
+    for (const seat of overlay.mandatedSeats) {
+      if (seat.personaId && !seatIds.has(seat.personaId)) problems.push(`${label} mandated seat ${seat.personaId} missing`);
+      for (const id of seat.sourceIds) if (!sourceIds.has(id)) problems.push(`${label} mandated seat source ${id} missing`);
+    }
+  }
   return problems;
 }
 
@@ -329,6 +463,10 @@ export function claimsForSubject(subjectType: Claim["subjectType"], subjectId: s
   );
 }
 
+export function profileForPersona(personaId: string): PersonaProfile | undefined {
+  return catalog.personaProfiles.find((profile) => profile.personaId === personaId);
+}
+
 export function relationshipsForProduct(productId: string): Relationship[] {
   return catalog.relationships.filter(
     (relationship) =>
@@ -352,6 +490,12 @@ export type { SearchHit };
 
 export function searchIndex(): SearchHit[] {
   return [
+    {
+      href: "/evidence-graph",
+      kind: "Graph",
+      title: "Identity, secrets, and NHI evidence graph",
+      text: "Taxonomy mappings, unknown comparisons, sourced claims, and research-candidate vendors",
+    },
     ...catalog.domains.map((item) => ({
       href: `/domains/${item.slug}`,
       kind: "Domain",

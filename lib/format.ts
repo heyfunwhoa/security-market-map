@@ -59,6 +59,12 @@ export function sourceTypeLabel(type: string): string {
       return "Standard";
     case "internal_note":
       return "Internal note";
+    case "news":
+      return "News coverage";
+    case "legal_summary":
+      return "Legal summary";
+    case "academic":
+      return "Academic research";
     default:
       return type;
   }

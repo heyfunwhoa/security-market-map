@@ -43,6 +43,14 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
         title={domain.name}
         lede="Read the question, the charter, then each category. Words link to the learn page when a definition already exists."
       />
+      {domain.id === "identity" ? (
+        <p className="mt-4 max-w-3xl text-sm leading-6">
+          <Link href="/evidence-graph" className="text-primary underline underline-offset-4">
+            Open the identity, secrets, and non-human identity evidence graph
+          </Link>
+          . It is a bounded slice of this domain, not a new set of capability claims.
+        </p>
+      ) : null}
       <PageJourney steps={[
         { href: "#study-question", title: "Understand the problem", description: "Start with the buyer question and domain charter." },
         { href: "#study-categories", title: "Explore categories", description: "Choose a category to narrow the map and find relevant tools." },

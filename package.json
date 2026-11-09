@@ -9,15 +9,17 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "test:research-integrity": "node --experimental-strip-types --test scripts/catalog-integrity.test.mjs"
+    "test:research-integrity": "node --experimental-strip-types --test scripts/catalog-integrity.test.mjs",
+    "docs:personas": "UPDATE_PERSONA_DOCS=1 vitest run lib/persona-model.test.ts"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
     "cmdk": "^1.1.1",
-    "cn": "^0.5.0",
+    "cn": "^0.5.2",
+    "cytoscape": "^3.33.1",
     "inngest": "^4.26.2",
-    "lucide-react": "^1.64.0",
-    "next": "16.4.3",
+    "lucide-react": "^1.68.0",
+    "next": "16.4.5",
     "radix-ui": "^1.8.1",
     "react": "19.3.1",
     "react-dom": "19.3.1",
@@ -30,12 +32,12 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@typescript/native": "npm:typescript@^7.0.2",
-    "eslint": "^10",
-    "eslint-config-next": "16.4.3",
+    "eslint": "^10.14.0",
+    "eslint-config-next": "16.4.5",
     "tailwindcss": "^4",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
     "vite": "^8.3.5",
-    "vitest": "5.0.5"
+    "vitest": "^5.1.0"
   },
   "overrides": {
     "zod": "$zod",
