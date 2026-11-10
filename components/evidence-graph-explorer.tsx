@@ -239,7 +239,7 @@ function EvidencePanel({
         </ul>
       ) : <p className="mt-3 text-sm">No source is attached to the relationships on this record.</p>}
       {sources.length > 6 ? <p className="mt-2 text-sm text-muted-foreground">{sources.length - 6} more sources are named on the relationship list.</p> : null}
-      <p className="mt-3 text-sm">Basis labels in the relationship list use the words {evidenceBasisLabels.unknown}, {evidenceBasisLabels.hypothesis}, and {evidenceBasisLabels.taxonomy_mapping}.</p>
+      <p className="mt-3 text-sm">Basis labels in the relationship list use the words Unknown, Lead, and {evidenceBasisLabels.taxonomy_mapping}.</p>
       {node.href ? <Link href={node.href} className="mt-3 inline-flex min-h-11 items-center text-sm text-primary underline underline-offset-4">Open detail</Link> : <p className="mt-3 text-sm text-muted-foreground">No separate detail page is published for this record.</p>}
     </section>
   );

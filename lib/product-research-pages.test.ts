@@ -77,7 +77,7 @@ describe("product research pages", () => {
     expect(html).toContain("not evaluated");
     expect(html).not.toContain("detector coverage is evaluated");
     expect(html).toContain("Publisher-reported, not independently tested.");
-    expect(html).toContain("Vendor said this");
+    expect(html).toContain("Vendor claim");
     expect(html).toContain("https://github.com/mongodb/kingfisher");
     expect(html).toContain("https://github.com/heyfunwhoa/detector-coverage-atlas");
     for (const section of productResearchSections("kingfisher")) {
