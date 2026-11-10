@@ -20,6 +20,7 @@ const SHAPE: Record<GraphNode["kind"], string> = {
   alternative: "barrel",
   trigger: "star",
   segment: "octagon",
+  question: "round-diamond",
 };
 
 export function EvidenceGraphCanvas({

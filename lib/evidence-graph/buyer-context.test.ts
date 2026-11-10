@@ -100,10 +100,26 @@ describe("gap report and context search on the evidence graph", () => {
     expect(contextSearch("platform", { types: ["objection"] }).every((hit) => hit.node.kind === "objection")).toBe(true);
     expect(contextSearch("   ")).toEqual([]);
   });
+
   it("has at least one vendor for every category, without product cells in gated categories", () => {
     expect(gapReport().filter((gap) => gap.kind === "category-no-vendors")).toEqual([]);
     for (const id of ["digital-risk-protection", "runtime-validated-application-security", "ctem"]) {
       expect(catalog.products.some((product) => product.primaryCategoryIds.includes(id)), id).toBe(false);
     }
+  });
+
+  it("puts qualification questions in the market-map slice and context search", () => {
+    const questions = marketMapGraph.nodes.filter((node) => node.kind === "question");
+    expect(questions.length).toBeGreaterThan(100);
+    const qualifies = marketMapGraph.edges.filter((edge) => edge.predicate === "qualifies");
+    expect(qualifies.some((edge) => edge.toId === graphNodeId("persona", "cloud-sec"))).toBe(true);
+    expect(qualifies.some((edge) => edge.toId.startsWith("segment:"))).toBe(true);
+    expect(qualifies.every((edge) => edge.assertsProductCapability === false)).toBe(true);
+    expect(qualifies.every((edge) => edge.evidenceBasis === "hypothesis" ? edge.sourceIds.length === 0 : true)).toBe(true);
+
+    const hits = contextSearch("cloud security", { types: ["question"], limit: 5 });
+    expect(hits.length).toBeGreaterThan(0);
+    expect(hits.every((hit) => hit.node.kind === "question")).toBe(true);
+    expect(hits[0].related.some((rel) => rel.predicate === "qualifies")).toBe(true);
   });
 });

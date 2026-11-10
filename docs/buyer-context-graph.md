@@ -33,6 +33,14 @@ Pages: `/personas`, `/personas/[id]`, `/categories/[slug]`, `/gaps`, `/evidence-
   - `requires` and `elevates` (segment → persona)
 - **Evidence bases:** `field_validated` (1.1.0, gated by reviewed field notes) and `practitioner_published`, a third party's published framing. That's separate from `vendor_reported`, which is a vendor describing itself.
 
+## Contract 1.3.0 additions (additive)
+
+- **Node kind:** `question`, a qualification question for a seat or segment. The summary says what a good- or poor-fit answer sounds like. The detail gives its weight.
+- **Predicates:**
+  - `qualifies` (question → persona or segment). It carries the question's own evidence label.
+  - `probes` (question → category). This is an editorial hypothesis.
+- **Search:** `/api/context-search?q=<text>&types=question` returns questions with their seat or segment one hop away.
+
 ## Evidence mapping
 
 `lib/evidence-graph/buyer-context.ts`'s `basisFor` never upgrades a label:
