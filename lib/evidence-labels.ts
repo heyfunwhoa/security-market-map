@@ -64,6 +64,6 @@ export function trustLabel(status: string): TrustLabel | undefined {
  * "Not supported" must never look like Unknown: the vendor saying no is not "we don't know".
  */
 export const ANSWER_LABELS: Record<string, { label: string; tone: string }> = {
-  limited: { label: "Scoped", tone: "border-violet-800/25 bg-violet-50 text-violet-950" },
+  limited: { label: "Scoped", tone: "border-stone-600 bg-white text-stone-900" },
   not_supported: { label: "Not supported", tone: "border-stone-700 bg-stone-700 text-white" },
 };
