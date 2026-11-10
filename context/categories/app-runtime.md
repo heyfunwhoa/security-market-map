@@ -20,6 +20,10 @@ WAF, bot controls, and RASP in front of or inside a running application. This is
 
 - AppSec lead (`appsec`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Cloudflare: Application edge and WAF conversations often start here. Not an AppSec scanner and not an identity governance suite.

@@ -26,6 +26,10 @@ Prevention and detection on laptops, servers, and other devices. EDR is the usua
 - Insider risk (`insider-risk`)
 - Cyber recovery / resilience (`cyber-recovery`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - CrowdStrike: Endpoint and XDR vendor. The Falcon homepage retrieved 26 Oct 2026 describes endpoint detection and response as detecting and prioritizing malicious activity. Identity Protection is a module name on that page, so no ITDR cell is filled.

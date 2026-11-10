@@ -24,6 +24,15 @@ A layer that tries to correlate SAST, SCA, secrets, and runtime findings into on
 - Platform security (`platform-security`)
 - CTO / VP of engineering (`cto`)
 
+## Who vendors sell to
+
+From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.
+
+- AppSec lead (`appsec`): 4 of 4 vendors
+- Software developer (`developer`): 3 of 4 vendors
+- Exposure / attack-surface owner (`exposure-management`): 1 of 4 vendors
+- Product security lead (`product-security`): 1 of 4 vendors
+
 ## Vendors (primary)
 
 - Cycode: Application security platform often shortlisted for secrets detection and ASPM. Scanner behavior is unverified in this seed.

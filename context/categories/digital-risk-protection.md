@@ -20,6 +20,10 @@ A search for public abuse of a brand, domain, executive, product, or customer-fa
 
 - Threat intelligence analyst (`threat-intel`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - ZeroFox: ZeroFox markets digital risk protection across brand, domain, executive, social and dark web exposure, with takedowns. It says Gartner and Forrester recognize it in DRP (vendor-reported). No product cell is assigned.

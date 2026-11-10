@@ -20,6 +20,10 @@ Controls aimed at models and AI features, including prompt injection and model a
 
 - AI security (`ai-security`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Lakera: AI application security specialist. Corporate ownership was not re-checked. No model-protection claim is filled.

@@ -20,6 +20,10 @@ Posture of sanctioned SaaS: configuration, third-party apps, and OAuth grants. S
 
 - SaaS security (`saas-security`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - AppOmni: SaaS and AI security vendor. The homepage describes discovery of SaaS and AI in use, who has access, unsanctioned apps, and shadow agents, plus response actions such as revoking access. It does not describe an NHI owner or a decommission cell. Integration counts and customer quotations are not adopted.

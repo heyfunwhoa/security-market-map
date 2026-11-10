@@ -22,6 +22,10 @@ Joiner-mover-leaver, access requests, certifications, role mining, separation of
 - Identity security lead (`identity-security`)
 - IGA program owner (`iga-owner`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - C1: Formerly ConductorOne. Public pages describe an identity governance platform for human, non-human, and agent identities, including requests, reviews, and just-in-time grants. Treat detailed breadth as vendor-published until a design review.

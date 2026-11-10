@@ -24,6 +24,10 @@ Detections on cloud control-plane and workload telemetry. The SOC may own the qu
 - SOC analyst (`soc-analyst`)
 - Threat hunter (`threat-hunter`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Gem Security: Named in the cloud-security box beside CNAPP and cloud detection. Ownership was not re-checked. No detection claim is filled.

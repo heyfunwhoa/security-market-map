@@ -23,6 +23,10 @@ Images, admission, runtime, and cluster configuration. Overlaps SCA for image co
 - Software supply-chain security (`supply-chain-security`)
 - CTO / VP of engineering (`cto`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Aqua Security: Container and cloud-native security candidate. No image or runtime capability is checked.

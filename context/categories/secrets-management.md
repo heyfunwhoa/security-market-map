@@ -24,6 +24,15 @@ Vaulting, dynamic issuance, rotation, PKI, and key management. The secret is the
 - Platform security (`platform-security`)
 - CTO / VP of engineering (`cto`)
 
+## Who vendors sell to
+
+From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.
+
+- DevOps / platform engineering (`platform`): 4 of 4 vendors
+- Platform security (`platform-security`): 3 of 4 vendors
+- Software developer (`developer`): 2 of 4 vendors
+- GRC or trust lead (`grc-owner`): 1 of 4 vendors
+
 ## Vendors (primary)
 
 - Palo Alto Networks: Closed the CyberArk acquisition on 11 Feb 2026 and introduced Idira on 12 May 2026. Brand changes toward Idira began 31 May 2026. Prisma Cloud remains a cloud-security product. Do not merge Idira, secrets, and CNAPP into one capability row. Palo Alto Networks markets Cortex DSPM for cloud and AI data exposure. Vendor-reported DSPM scope reviewed 2026-10-13.

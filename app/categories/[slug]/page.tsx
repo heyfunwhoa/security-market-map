@@ -10,7 +10,8 @@ import { ClaimList } from "@/components/claims";
 import { FlowStrip } from "@/components/category-map";
 import { PageIntro } from "@/components/chrome";
 import { catalog, categoryBySlug, claimsForSubject, vendorById } from "@/lib/catalog";
-import { painsForCategory, seatsForCategory } from "@/lib/persona-graph";
+import { painsForCategory, seatById, seatsForCategory } from "@/lib/persona-graph";
+import { targetingForCategory } from "@/lib/vendor-targeting";
 
 export function generateStaticParams() {
   return catalog.categories.map((category) => ({ slug: category.slug }));
@@ -36,6 +37,8 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
   const categoryClaims = claimsForSubject("category", category.id);
   const owningSeats = seatsForCategory(category.id);
   const seatPains = painsForCategory(category.id);
+  const targeting = targetingForCategory(category.id);
+  const targetingRows = catalog.vendorSeatTargeting.filter((row) => row.categoryId === category.id);
   const categoryAlternatives = catalog.alternatives.filter((alt) => alt.categoryId === category.id);
   const categoryTriggers = catalog.buyingTriggers.filter((trigger) => trigger.categoryIds.includes(category.id));
   const categoryObjections = catalog.objections.filter((objection) => objection.categoryIds.includes(category.id));
@@ -238,7 +241,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
           <p className="text-muted-foreground lg:col-span-3">Hypotheses unless a source is listed. Vendor-neutral: none of these name a product.</p>
         </section>
       ) : null}
-      {owningSeats.length > 0 || seatPains.length > 0 ? (
+      {owningSeats.length > 0 || seatPains.length > 0 || targeting.vendorCount > 0 ? (
         <section className="mt-8" aria-labelledby="category-seats">
           <h2 id="category-seats" className="text-2xl">Who owns it and who feels the problem</h2>
           {owningSeats.length > 0 ? (
@@ -252,6 +255,36 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
               ))}
               .
             </p>
+          ) : null}
+          {targeting.vendorCount > 0 ? (
+            <div className="mt-4 text-sm">
+              <h3 className="text-lg">Who vendors sell to</h3>
+              <p className="mt-1 text-muted-foreground">
+                From {targeting.vendorCount} vendors&apos; own pages, mapped to seats by us. A vendor&apos;s audience is not proof of who buys.
+              </p>
+              <ul className="mt-2 space-y-1">
+                {targeting.seats.map(({ seatId, count }) => (
+                  <li key={seatId}>
+                    <Link href={`/personas/${seatId}`} className="underline underline-offset-4 hover:text-foreground">{seatById(seatId)?.name ?? seatId}</Link>
+                    : {count} of {targeting.vendorCount} vendors
+                  </li>
+                ))}
+              </ul>
+              <details className="mt-2">
+                <summary className="cursor-pointer text-muted-foreground">Sources by vendor</summary>
+                <ul className="mt-2 space-y-1">
+                  {targetingRows.map((row) => (
+                    <li key={row.vendorId}>
+                      {vendorById(row.vendorId)?.name ?? row.vendorId}: {row.audience}{" "}
+                      {row.urls.map((url, index) => (
+                        <a key={url} href={url} className="underline underline-offset-4" rel="noreferrer">[{index + 1}]</a>
+                      ))}{" "}
+                      <span className="text-muted-foreground">(checked {row.checkedAt}{row.inspection === "search-excerpt" ? ", from a search excerpt" : ""})</span>
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            </div>
           ) : null}
           {seatPains.length > 0 ? (
             <ul className="mt-3 space-y-2 text-sm">

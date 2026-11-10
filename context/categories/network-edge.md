@@ -22,6 +22,10 @@ Firewalls, secure web gateways, ZTNA, and SASE. Buyers collapse these into one d
 - Network security (`network-security`)
 - OT / ICS security (`ot-security`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Zscaler: Security service edge vendor. Network-edge budget. Not an IdP, though it depends on one.

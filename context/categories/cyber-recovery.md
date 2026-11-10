@@ -20,6 +20,10 @@ Backup and recovery built for a ransomware event: immutable copies and a tested 
 
 - Cyber recovery / resilience (`cyber-recovery`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Rubrik: Homepage retrieved 26 Oct 2026 says the platform keeps immutable backups and can recover data sets across cloud, on-premises, and SaaS. Identity recovery and agent inventory on that page are not identity or agent cells. Rubrik describes its DSPM offering as formerly Laminar in a vendor-published customer story. Vendor-reported DSPM scope reviewed 2026-10-13.

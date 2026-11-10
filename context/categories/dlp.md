@@ -23,6 +23,10 @@ Controls on data leaving through email, the endpoint, the web, or SaaS. Those ar
 - Insider risk (`insider-risk`)
 - SaaS security (`saas-security`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Nightfall: Nightfall markets sensitive-data discovery and classification alongside data exfiltration prevention across SaaS, endpoints, email, and AI workflows. Vendor-reported positioning reviewed 2026-10-13; scope and effectiveness are not independently tested. DSPM is an adjacent discovery use case, not an assertion of full DSPM parity.

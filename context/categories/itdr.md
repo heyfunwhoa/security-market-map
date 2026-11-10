@@ -24,6 +24,10 @@ Detection, investigation, and response for identity-based attacks: token theft, 
 - Detection engineer (`detection-engineer`)
 - Incident responder (`incident-response`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - CrowdStrike: Endpoint and XDR vendor. The Falcon homepage retrieved 26 Oct 2026 describes endpoint detection and response as detecting and prioritizing malicious activity. Identity Protection is a module name on that page, so no ITDR cell is filled.

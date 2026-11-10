@@ -23,6 +23,14 @@ Finding credentials in code, tickets, images, chat, and other places they should
 - Security champion (`security-champion`)
 - Software developer (`developer`)
 
+## Who vendors sell to
+
+From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.
+
+- AppSec lead (`appsec`): 4 of 4 vendors
+- Software developer (`developer`): 4 of 4 vendors
+- DevOps / platform engineering (`platform`): 1 of 4 vendors
+
 ## Vendors (primary)
 
 - Truffle Security: TruffleHog finds secrets and can verify whether detectors recognize them as live. That is detection, not vaulting and not NHI governance.

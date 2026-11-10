@@ -20,6 +20,10 @@ Application security checks meant to be judged against the running system, not o
 
 - AppSec lead (`appsec`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 _None recorded._

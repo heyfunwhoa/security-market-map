@@ -24,6 +24,10 @@ Analysis of source or bytecode for vulnerabilities before the code runs. No capa
 - Product security lead (`product-security`)
 - Software developer (`developer`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Snyk: AppSec vendor associated with dependencies, code, and containers. No scanner capability is checked in this seed.

@@ -28,6 +28,10 @@ The place logs are collected, detections are written, and investigations start. 
 - Digital forensics (`digital-forensics`)
 - MSSP / MDR operations lead (`mssp-ops`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Splunk: Homepage retrieved 26 Oct 2026 describes a data platform for security and observability that searches telemetry where it lives. Detection content is not described on that page.
