@@ -6,7 +6,7 @@ import { Menu } from "lucide-react";
 import { AS_OF } from "@/lib/schema";
 import { formatDate } from "@/lib/format";
 import { cn } from "@/lib/utils";
-import { TRUST_TONES, trustLabel } from "@/lib/evidence-labels";
+import { ANSWER_LABELS, TRUST_TONES, trustLabel } from "@/lib/evidence-labels";
 import type { SearchHit } from "@/lib/search";
 import { SearchCommand } from "@/components/search-panel";
 import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetClose } from "@/components/ui/sheet";
@@ -97,9 +97,6 @@ export function SiteFooter() {
 }
 
 const PILL_LABELS: Record<string, string> = {
-  superseded: "Superseded",
-  limited: "Scoped",
-  not_supported: "Not supported",
   taxonomy_mapping: "Taxonomy mapping",
   catalog_structure: "Catalog structure",
   announced: "Announced",
@@ -125,12 +122,9 @@ const PILL_LABELS: Record<string, string> = {
 export function StatusPill({ status }: { status: string }) {
   // Trust statuses share one label and tone (lib/evidence-labels.ts). Everything else is neutral.
   const trust = trustLabel(status);
-  const tone = trust
-    ? TRUST_TONES[trust]
-    : status === "superseded"
-      ? "border-stone-300 bg-stone-100 text-stone-600"
-      : "border-stone-300 bg-transparent text-stone-700";
-  const label = trust ?? PILL_LABELS[status] ?? status;
+  const answer = ANSWER_LABELS[status];
+  const tone = trust ? TRUST_TONES[trust] : (answer?.tone ?? "border-stone-300 bg-transparent text-stone-700");
+  const label = trust ?? answer?.label ?? PILL_LABELS[status] ?? status;
 
   return (
     <span

@@ -1,4 +1,4 @@
-import { trustLabel } from "./evidence-labels";
+import { ANSWER_LABELS, trustLabel } from "./evidence-labels";
 const MONTHS = [
   "Jan",
   "Feb",
@@ -72,21 +72,13 @@ export function sourceTypeLabel(type: string): string {
 }
 
 export function verificationLabel(status: string): string {
-  if (status === "superseded") return "Superseded";
   return trustLabel(status) ?? status;
 }
 
 export function cellStatusLabel(status: string): string {
   const trust = trustLabel(status);
   if (trust) return trust;
-  switch (status) {
-    case "limited":
-      return "Scoped";
-    case "not_supported":
-      return "Not supported";
-    default:
-      return status;
-  }
+  return ANSWER_LABELS[status]?.label ?? status;
 }
 
 export function availabilityLabel(status: string): string {

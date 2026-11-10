@@ -7,7 +7,7 @@ const groups: Record<string, string[]> = {
   "Claim verification": ["verified", "vendor_published", "needs_review", "conflicting", "superseded", "research_candidate", "unknown"],
   "Source type": ["official_docs", "vendor_marketing", "press_release", "customer_story", "analyst", "review", "standard", "news", "internal_note"],
   Availability: ["generally_available", "limited", "announced", "legacy_name", "not_supported"],
-  "Evidence strength": ["independently_verified", "vendor_reported", "source_referenced", "evidenced", "unverified", "disputed", "hypothesis"],
+  "Evidence strength": ["independently_verified", "field_validated", "practitioner_published", "vendor_reported", "source_referenced", "evidenced", "unverified", "disputed", "hypothesis"],
 };
 
 const meta: Meta<typeof StatusPill> = {
@@ -42,7 +42,7 @@ export const AllStatuses: Story = {
   ),
 };
 
-/** The six trust labels after narrowing. Colour means trust; every other pill is neutral. */
+/** The eight trust labels after narrowing. Colour means trust; every other pill is neutral. */
 export const TrustLabels: Story = {
   name: "Trust labels (legend)",
   render: () => (
@@ -57,5 +57,17 @@ export const TrustLabels: Story = {
         );
       })}
     </dl>
+  ),
+};
+
+/** Compare-grid answers sit beside trust labels. Not supported must not look like Unknown. */
+export const CompareAnswers: Story = {
+  name: "Compare-grid answers",
+  render: () => (
+    <ul className="flex flex-wrap gap-2">
+      {["evidenced", "limited", "not_supported", "conflicting", "unknown"].map((status) => (
+        <li key={status}><StatusPill status={status} /></li>
+      ))}
+    </ul>
   ),
 };
