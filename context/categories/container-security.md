@@ -25,7 +25,12 @@ Images, admission, runtime, and cluster configuration. Overlaps SCA for image co
 
 ## Who vendors sell to
 
-- None recorded.
+From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.
+
+- Platform security (`platform-security`): 4 of 4 vendors
+- Software developer (`developer`): 3 of 4 vendors
+- DevOps / platform engineering (`platform`): 2 of 4 vendors
+- GRC or trust lead (`grc-owner`): 1 of 4 vendors
 
 ## Vendors (primary)
 

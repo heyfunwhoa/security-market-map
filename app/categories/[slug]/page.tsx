@@ -279,7 +279,10 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
                       {row.urls.map((url, index) => (
                         <a key={url} href={url} className="underline underline-offset-4" rel="noreferrer">[{index + 1}]</a>
                       ))}{" "}
-                      <span className="text-muted-foreground">(checked {row.checkedAt}{row.inspection === "search-excerpt" ? ", from a search excerpt" : ""})</span>
+                      <span className="text-muted-foreground">
+                        (checked {row.checkedAt}{row.inspection === "search-excerpt" ? ", from a search excerpt" : ""}
+                        {row.mentionedSeatIds.length > 0 ? `; also mentions ${row.mentionedSeatIds.map((id) => seatById(id)?.name ?? id).join(", ")}, not counted` : ""})
+                      </span>
                     </li>
                   ))}
                 </ul>

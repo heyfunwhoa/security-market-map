@@ -25,7 +25,11 @@ The directory, identity provider, single sign-on, MFA or passwordless, and provi
 
 ## Who vendors sell to
 
-- None recorded.
+From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.
+
+- IT operations / systems administrator (`it-operations`): 4 of 4 vendors
+- Identity security lead (`identity-security`): 3 of 4 vendors
+- Security architect (`security-architect`): 1 of 4 vendors
 
 ## Vendors (primary)
 

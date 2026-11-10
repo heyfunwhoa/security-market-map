@@ -482,7 +482,8 @@ export function catalogProblems(catalog: Catalog): string[] {
     if (!vendor) problems.push(`Vendor seat targeting ${key} references missing vendor`);
     else if (!vendor.primaryCategoryIds.includes(row.categoryId) && !vendor.adjacentCategoryIds.includes(row.categoryId)) problems.push(`Vendor seat targeting ${key}: vendor is not mapped to that category`);
     if (!categoryIds.has(row.categoryId)) problems.push(`Vendor seat targeting ${key} references missing category`);
-    for (const id of row.seatIds) if (!seatIdSet.has(id)) problems.push(`Vendor seat targeting ${key} references missing seat ${id}`);
+    for (const id of [...row.seatIds, ...row.mentionedSeatIds]) if (!seatIdSet.has(id)) problems.push(`Vendor seat targeting ${key} references missing seat ${id}`);
+    for (const id of row.mentionedSeatIds) if (row.seatIds.includes(id)) problems.push(`Vendor seat targeting ${key} lists ${id} as both pitched and mentioned`);
   }
   const fieldIds = new Set<string>();
   for (const note of catalog.fieldNotes) {

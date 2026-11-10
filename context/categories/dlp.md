@@ -25,7 +25,14 @@ Controls on data leaving through email, the endpoint, the web, or SaaS. Those ar
 
 ## Who vendors sell to
 
-- None recorded.
+From 3 vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.
+
+- Data security (`data-security`): 2 of 3 vendors
+- CISO / VP of security (`ciso`): 1 of 3 vendors
+- GRC or trust lead (`grc-owner`): 1 of 3 vendors
+- Insider risk (`insider-risk`): 1 of 3 vendors
+- IT operations / systems administrator (`it-operations`): 1 of 3 vendors
+- SOC manager (`soc-lead`): 1 of 3 vendors
 
 ## Vendors (primary)
 

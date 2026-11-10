@@ -28,7 +28,12 @@ Prevention and detection on laptops, servers, and other devices. EDR is the usua
 
 ## Who vendors sell to
 
-- None recorded.
+From 3 vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.
+
+- IT operations / systems administrator (`it-operations`): 3 of 3 vendors
+- IT / corporate security (`it-security`): 2 of 3 vendors
+- SOC manager (`soc-lead`): 2 of 3 vendors
+- SOC analyst (`soc-analyst`): 1 of 3 vendors
 
 ## Vendors (primary)
 

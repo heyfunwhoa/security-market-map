@@ -740,7 +740,12 @@ export type QualificationQuestionInput = z.input<typeof qualificationQuestionSch
 export const vendorSeatTargetingSchema = z.object({
   vendorId: z.string().min(1),
   categoryId: z.string().min(1),
+  /** Seats the page is written for. These are counted. */
   seatIds: z.array(z.string().min(1)).min(1),
+  /** Seats the page only mentions in passing. Shown, never counted. */
+  mentionedSeatIds: z.array(z.string().min(1)).default([]),
+  /** Why this vendor was picked for the sample: leader, specialist, challenger or open-source-led. */
+  selectionReason: z.enum(["leader", "specialist", "challenger", "open-source-led"]).optional(),
   /** The audience as the vendor words it, paraphrased. */
   audience: z.string().min(1).max(200),
   urls: z.array(z.string().url()).min(1),
@@ -750,3 +755,4 @@ export const vendorSeatTargetingSchema = z.object({
   checkedAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
 });
 export type VendorSeatTargeting = z.infer<typeof vendorSeatTargetingSchema>;
+export type VendorSeatTargetingInput = z.input<typeof vendorSeatTargetingSchema>;

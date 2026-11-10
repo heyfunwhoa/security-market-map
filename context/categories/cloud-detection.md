@@ -26,7 +26,15 @@ Detections on cloud control-plane and workload telemetry. The SOC may own the qu
 
 ## Who vendors sell to
 
-- None recorded.
+From 3 vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.
+
+- Cloud security (`cloud-sec`): 2 of 3 vendors
+- Incident responder (`incident-response`): 2 of 3 vendors
+- SOC manager (`soc-lead`): 2 of 3 vendors
+- GRC or trust lead (`grc-owner`): 1 of 3 vendors
+- IT operations / systems administrator (`it-operations`): 1 of 3 vendors
+- DevOps / platform engineering (`platform`): 1 of 3 vendors
+- SOC analyst (`soc-analyst`): 1 of 3 vendors
 
 ## Vendors (primary)
 
