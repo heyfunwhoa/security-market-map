@@ -20,18 +20,16 @@ describe("vendor seat targeting", () => {
 
   it("only uses vendor-owned sources and real dates", () => {
     for (const row of catalog.vendorSeatTargeting) {
-      expect(row.checkedAt <= "2026-11-09").toBe(true);
+      expect(row.checkedAt <= "2026-11-10").toBe(true);
       expect(row.basis.startsWith("vendor-")).toBe(true);
     }
   });
 
-  it("drops the contested-ownership gap once vendor targeting is recorded", () => {
-    const contested = gapReport(catalog, new Date("2026-11-09")).filter((gap) => gap.kind === "contested-ownership").map((gap) => gap.subjectId);
-    expect(contested).not.toContain("secrets-detection");
-    expect(contested).not.toContain("secrets-management");
-    expect(contested).not.toContain("aspm");
-    expect(contested).not.toContain("itdr");
-    expect(contested).toContain("siem");
+  it("keeps the contested-ownership gap open and adds vendor counts as context", () => {
+    const gaps = gapReport(catalog, new Date("2026-11-09")).filter((gap) => gap.kind === "contested-ownership");
+    const secrets = gaps.find((gap) => gap.subjectId === "secrets-detection");
+    expect(secrets?.message).toContain("Vendors mostly pitch appsec, developer");
+    expect(gaps.find((gap) => gap.subjectId === "siem")?.message).not.toContain("Vendors mostly pitch");
   });
 
   it("rejects targeting for a vendor outside the category", () => {

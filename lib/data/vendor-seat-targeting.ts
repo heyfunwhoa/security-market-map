@@ -1,6 +1,7 @@
 import type { VendorSeatTargeting } from "@/lib/schema";
 
-// KRU-329. Who each vendor says it sells to, in the categories where seat ownership is
+// KRU-329. Rows marked page-read were re-read in full on 2026-11-10; the rest come from
+// search excerpts. Who each vendor says it sells to, in the categories where seat ownership is
 // contested. Seat ids are an editorial mapping of the vendor's own audience wording.
 // "Security teams" maps to the seat that owns the category day to day: AppSec for code and
 // dependency scanning, platform security for secrets management, cloud security for CNAPP,
@@ -9,6 +10,7 @@ import type { VendorSeatTargeting } from "@/lib/schema";
 // and "compliance" or "risk officers" to GRC. Vendor audience is not buyer proof.
 
 const CHECKED = "2026-11-09";
+const REREAD = "2026-11-10";
 
 export const vendorSeatTargeting: VendorSeatTargeting[] = [
   // Secrets detection and remediation
@@ -16,19 +18,19 @@ export const vendorSeatTargeting: VendorSeatTargeting[] = [
     vendorId: "truffle-security",
     categoryId: "secrets-detection",
     seatIds: ["appsec", "developer"],
-    audience: "Security teams run the program; pre-commit and pre-receive hooks are for developers.",
+    audience: "Security teams find and remediate secrets; developers appear in customer quotes and hook workflows.",
     urls: ["https://trufflesecurity.com/trufflehog-enterprise", "https://trufflesecurity.com/"],
     basis: "vendor-page",
-    inspection: "search-excerpt",
-    checkedAt: CHECKED,
+    inspection: "page-read",
+    checkedAt: REREAD,
   },
   {
     vendorId: "gitguardian",
     categoryId: "secrets-detection",
     seatIds: ["appsec", "platform", "developer"],
-    audience: "Application security, platform engineering and development teams.",
-    urls: ["https://itwire.com/guest-articles/company-news/gitguardian-unveils-hasmysecretleaked,-bringing-leak-detection-to-every-secret-in-the-devops-pipeline"],
-    basis: "vendor-press",
+    audience: "Developers, security teams and DevOps engineers; pricing FAQ says AppSec runs internal monitoring.",
+    urls: ["https://www.gitguardian.com/monitor-internal-repositories-for-secrets", "https://www.gitguardian.com/pricing"],
+    basis: "vendor-page",
     inspection: "search-excerpt",
     checkedAt: CHECKED,
   },
@@ -39,8 +41,8 @@ export const vendorSeatTargeting: VendorSeatTargeting[] = [
     audience: "Developers get feedback at push time; org owners and security managers enable it and get bypass alerts.",
     urls: ["https://docs.github.com/code-security/secret-scanning/push-protection-for-repositories-and-organizations"],
     basis: "vendor-docs",
-    inspection: "search-excerpt",
-    checkedAt: CHECKED,
+    inspection: "page-read",
+    checkedAt: REREAD,
   },
   {
     vendorId: "cycode",
@@ -49,8 +51,8 @@ export const vendorSeatTargeting: VendorSeatTargeting[] = [
     audience: "Security teams and developers, with an IDE plug-in for developers.",
     urls: ["https://cycode.com/press/cycode-elevates-its-security-first-developer-friendly-appsec-aspm-platform-with-new-capabilities/"],
     basis: "vendor-press",
-    inspection: "search-excerpt",
-    checkedAt: CHECKED,
+    inspection: "page-read",
+    checkedAt: REREAD,
   },
   // Secrets management
   {
@@ -60,8 +62,8 @@ export const vendorSeatTargeting: VendorSeatTargeting[] = [
     audience: "Platform teams that run shared infrastructure services.",
     urls: ["https://www.hashicorp.com/blog/hashiconf-global-preview-sessions-for-cloud-platform-teams"],
     basis: "vendor-page",
-    inspection: "search-excerpt",
-    checkedAt: CHECKED,
+    inspection: "page-read",
+    checkedAt: REREAD,
   },
   {
     vendorId: "doppler",
@@ -70,8 +72,8 @@ export const vendorSeatTargeting: VendorSeatTargeting[] = [
     audience: "Developers first, with DevOps and security teams controlling access.",
     urls: ["https://www.doppler.com/blog/series-a-announcement", "https://www.doppler.com/centralized-secrets-management"],
     basis: "vendor-page",
-    inspection: "search-excerpt",
-    checkedAt: CHECKED,
+    inspection: "page-read",
+    checkedAt: REREAD,
   },
   {
     vendorId: "infisical",
@@ -80,39 +82,39 @@ export const vendorSeatTargeting: VendorSeatTargeting[] = [
     audience: "Developers, infrastructure and security teams.",
     urls: ["https://infisical.com/docs/documentation/getting-started/introduction"],
     basis: "vendor-docs",
-    inspection: "search-excerpt",
-    checkedAt: CHECKED,
+    inspection: "page-read",
+    checkedAt: REREAD,
   },
   {
     vendorId: "akeyless",
     categoryId: "secrets-management",
-    seatIds: ["platform", "platform-security", "grc-owner"],
-    audience: "IT security, DevOps engineers, platform engineers and compliance officers.",
-    urls: ["https://www.akeyless.io/landing/product-tour/"],
+    seatIds: ["platform", "developer", "grc-owner"],
+    audience: "Platform engineers and teams, developers, DevOps, and compliance and audit functions.",
+    urls: ["https://www.akeyless.io/blog/a-platform-engineering-guide-to-managing-secrets-with-akeyless"],
     basis: "vendor-page",
-    inspection: "search-excerpt",
-    checkedAt: CHECKED,
+    inspection: "page-read",
+    checkedAt: REREAD,
   },
   // Application security posture management
   {
     vendorId: "apiiro",
     categoryId: "aspm",
-    seatIds: ["appsec", "developer"],
-    audience: "AppSec teams, with a shared view for developers.",
+    seatIds: ["appsec", "developer", "platform", "cloud-sec", "grc-owner"],
+    audience: "AppSec and development teams first; DevOps, cloud security and risk management teams also named.",
     urls: ["https://apiiro.com/?p=7818"],
     basis: "vendor-page",
-    inspection: "search-excerpt",
-    checkedAt: CHECKED,
+    inspection: "page-read",
+    checkedAt: REREAD,
   },
   {
     vendorId: "armorcode",
     categoryId: "aspm",
-    seatIds: ["appsec", "exposure-management", "product-security"],
-    audience: "Application security and vulnerability management teams, plus a page for product security leaders.",
-    urls: ["https://armorcode.com/platform-overview", "https://www.armorcode.com/product-security-leaders"],
+    seatIds: ["ciso", "appsec", "product-security", "exposure-management", "developer", "grc-owner"],
+    audience: "By role: CISOs, AppSec, infrastructure security and product security leaders; also development and compliance teams.",
+    urls: ["https://armorcode.com/platform-overview"],
     basis: "vendor-page",
-    inspection: "search-excerpt",
-    checkedAt: CHECKED,
+    inspection: "page-read",
+    checkedAt: REREAD,
   },
   {
     vendorId: "ox-security",
@@ -121,18 +123,18 @@ export const vendorSeatTargeting: VendorSeatTargeting[] = [
     audience: "Built for security, translated for developers.",
     urls: ["https://www.ox.security/?p=8807"],
     basis: "vendor-page",
-    inspection: "search-excerpt",
-    checkedAt: CHECKED,
+    inspection: "page-read",
+    checkedAt: REREAD,
   },
   {
     vendorId: "cycode",
     categoryId: "aspm",
-    seatIds: ["appsec", "developer"],
-    audience: "Security teams and developers working from one ASPM view.",
+    seatIds: ["appsec", "developer", "ciso", "product-security"],
+    audience: "Security and development teams, with product areas for CISO visibility and product security leaders.",
     urls: ["https://cycode.com/press/cycode-elevates-its-security-first-developer-friendly-appsec-aspm-platform-with-new-capabilities/"],
     basis: "vendor-press",
-    inspection: "search-excerpt",
-    checkedAt: CHECKED,
+    inspection: "page-read",
+    checkedAt: REREAD,
   },
   // Static analysis (SAST)
   {
@@ -303,9 +305,9 @@ export const vendorSeatTargeting: VendorSeatTargeting[] = [
     vendorId: "entro",
     categoryId: "nhi",
     seatIds: ["identity-security"],
-    audience: "Security teams governing identities that R&D teams create.",
-    urls: ["https://lp.entro.security/hubfs/Entro-One-pager.pdf", "https://entro.security/platform-non-human-identities/"],
-    basis: "vendor-page",
+    audience: "Security teams; Entro is now sold by SailPoint, and its old product pages redirect there.",
+    urls: ["https://investor.sailpoint.com/node/8051/pdf", "https://lp.entro.security/hubfs/Entro-One-pager.pdf"],
+    basis: "vendor-press",
     inspection: "search-excerpt",
     checkedAt: CHECKED,
   },
@@ -316,8 +318,8 @@ export const vendorSeatTargeting: VendorSeatTargeting[] = [
     audience: "Security teams extending identity programs to non-human access.",
     urls: ["https://astrix.security/learn/blog/astrix-named-a-kuppingercole-rising-star/"],
     basis: "vendor-page",
-    inspection: "search-excerpt",
-    checkedAt: CHECKED,
+    inspection: "page-read",
+    checkedAt: REREAD,
   },
   {
     vendorId: "oasis",
@@ -326,8 +328,8 @@ export const vendorSeatTargeting: VendorSeatTargeting[] = [
     audience: "Security, identity and engineering teams.",
     urls: ["https://oasis.security/about-us"],
     basis: "vendor-page",
-    inspection: "search-excerpt",
-    checkedAt: CHECKED,
+    inspection: "page-read",
+    checkedAt: REREAD,
   },
   {
     vendorId: "aembit",
@@ -336,7 +338,7 @@ export const vendorSeatTargeting: VendorSeatTargeting[] = [
     audience: "DevOps and security teams, without extra work for developers.",
     urls: ["https://aembit.io/press-release/aembit-launches-with-16-6m-to-secure-workload-access/"],
     basis: "vendor-press",
-    inspection: "search-excerpt",
-    checkedAt: CHECKED,
+    inspection: "page-read",
+    checkedAt: REREAD,
   },
 ];

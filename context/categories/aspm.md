@@ -29,9 +29,13 @@ A layer that tries to correlate SAST, SCA, secrets, and runtime findings into on
 From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.
 
 - AppSec lead (`appsec`): 4 of 4 vendors
-- Software developer (`developer`): 3 of 4 vendors
+- Software developer (`developer`): 4 of 4 vendors
+- CISO / VP of security (`ciso`): 2 of 4 vendors
+- GRC or trust lead (`grc-owner`): 2 of 4 vendors
+- Product security lead (`product-security`): 2 of 4 vendors
+- Cloud security (`cloud-sec`): 1 of 4 vendors
 - Exposure / attack-surface owner (`exposure-management`): 1 of 4 vendors
-- Product security lead (`product-security`): 1 of 4 vendors
+- DevOps / platform engineering (`platform`): 1 of 4 vendors
 
 ## Vendors (primary)
 

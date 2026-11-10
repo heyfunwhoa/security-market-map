@@ -29,8 +29,8 @@ Vaulting, dynamic issuance, rotation, PKI, and key management. The secret is the
 From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.
 
 - DevOps / platform engineering (`platform`): 4 of 4 vendors
-- Platform security (`platform-security`): 3 of 4 vendors
-- Software developer (`developer`): 2 of 4 vendors
+- Software developer (`developer`): 3 of 4 vendors
+- Platform security (`platform-security`): 2 of 4 vendors
 - GRC or trust lead (`grc-owner`): 1 of 4 vendors
 
 ## Vendors (primary)

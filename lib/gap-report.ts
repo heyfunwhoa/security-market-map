@@ -2,7 +2,7 @@ import { catalog, type Catalog } from "./catalog";
 import { evidenceGraphProblems, type EvidenceGraph } from "./evidence-graph/contract";
 import { marketMapGraph } from "./evidence-graph/market-map-slice";
 import { seats } from "./persona-graph";
-import { targetingForCategory, TARGETING_MIN_VENDORS } from "./vendor-targeting";
+import { majorityTargetedSeats, targetingForCategory, TARGETING_MIN_VENDORS } from "./vendor-targeting";
 
 /**
  * What the map doesn't know yet. Every gap is computed from the typed catalog and the
@@ -48,9 +48,13 @@ export function gapReport(source: Catalog = catalog, now: Date = new Date(), gra
     const owning = owners.get(category.id) ?? [];
     if (owning.length === 0) gaps.push({ kind: "category-no-owner", severity: "high", subjectId: category.id, message: `${category.name} has no owning seat.` });
     if (owning.length >= 4) {
-      // Recorded vendor targeting settles the "who do vendors sell to" half of the question.
+      // Vendor targeting shows who gets pitched, not who buys, so the gap stays open and
+      // carries the vendor counts as context until field notes settle it.
       const targeting = targetingForCategory(category.id, source);
-      if (targeting.vendorCount < TARGETING_MIN_VENDORS) gaps.push({ kind: "contested-ownership", severity: "low", subjectId: category.id, message: `${category.name} is owned by ${owning.length} seats: ${owning.join(", ")}.` });
+      const pitched = targeting.vendorCount >= TARGETING_MIN_VENDORS
+        ? ` Vendors mostly pitch ${majorityTargetedSeats(targeting).join(", ") || "no single seat"} (${targeting.vendorCount} vendors recorded).`
+        : "";
+      gaps.push({ kind: "contested-ownership", severity: "low", subjectId: category.id, message: `${category.name} is owned by ${owning.length} seats: ${owning.join(", ")}.${pitched}` });
     }
     const hasVendor = source.vendors.some((v) => v.primaryCategoryIds.includes(category.id) || v.adjacentCategoryIds.includes(category.id));
     if (!hasVendor) gaps.push({ kind: "category-no-vendors", severity: "low", subjectId: category.id, message: `${category.name} has no vendors in the catalog.` });
