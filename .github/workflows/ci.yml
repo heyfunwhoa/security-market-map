@@ -30,3 +30,5 @@ jobs:
       - run: npm run typecheck
       - run: npm run lint
       - run: npm run build
+      # Component playground: every story must still build (docs/ui-bank-adoption.md).
+      - run: npm run storybook:build

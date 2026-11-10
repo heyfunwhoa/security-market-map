@@ -10,7 +10,9 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:research-integrity": "node --experimental-strip-types --test scripts/catalog-integrity.test.mjs",
-    "docs:personas": "UPDATE_PERSONA_DOCS=1 vitest run lib/persona-model.test.ts"
+    "docs:personas": "UPDATE_PERSONA_DOCS=1 vitest run lib/persona-model.test.ts",
+    "storybook": "storybook dev -p 6006 --host 127.0.0.1",
+    "storybook:build": "storybook build"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
@@ -27,6 +29,7 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@storybook/nextjs-vite": "^10.6.5",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -34,6 +37,7 @@
     "@typescript/native": "npm:typescript@^7.0.2",
     "eslint": "^10.14.0",
     "eslint-config-next": "16.4.5",
+    "storybook": "^10.6.5",
     "tailwindcss": "^4",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
     "vite": "^8.3.5",
@@ -42,6 +46,9 @@
   "overrides": {
     "zod": "$zod",
     "minimatch@>=9.0.0 <11.0.1": "^11.0.4",
-    "glob": "^14.0.3"
+    "glob": "^14.0.3",
+    "tsconfck": {
+      "typescript": "npm:@typescript/typescript6@^6.0.2"
+    }
   }
 }
