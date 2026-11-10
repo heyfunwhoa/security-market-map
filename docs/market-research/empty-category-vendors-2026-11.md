@@ -4,9 +4,9 @@ As of **2026-11-09**. Status: researched and proposed. Human review is pending. 
 
 ## Why
 
-Nine categories had no vendor in the catalog. Call prep had nothing to show for "who else is in this space." This change adds publisher-sourced vendor and product records for seven of them. The other two stay empty on purpose, because an existing editorial gate keeps them empty (see below).
+Nine categories had no vendor in the catalog. Call prep had nothing to show for "who else is in this space." This change adds vendor records for all nine. Seven are backed by publisher sources. The other two are backed by public analyst material and filled at the vendor level only, so the existing product gate stays in place.
 
-Canonical records: [typed data](../../lib/data/category-fill.ts), composed by [catalog](../../lib/catalog.ts). There are 16 new vendors, 17 product records and 17 claims. Each claim has one original source. Sixteen claims are publisher-reported. One (Operant) is news coverage of a vendor launch. No feature-parity cells, scores or direct-competitor edges are added.
+Canonical records: [typed data](../../lib/data/category-fill.ts), composed by [catalog](../../lib/catalog.ts). There are 18 new vendors, 18 product records and 23 claims, plus one existing vendor (Recorded Future) newly linked to digital risk protection. Each claim has one original source. Analyst placements are vendor-reported unless the analyst's own public page is cited. No feature-parity cells, scores or direct-competitor edges are added.
 
 ## Placement (zoom out → zoom in)
 
@@ -22,20 +22,26 @@ Canonical records: [typed data](../../lib/data/category-fill.ts), composed by [c
 
 To zoom back out, open each category page, then its domain. Each vendor page links back to all of its categories.
 
-## Held back: digital risk protection and runtime-validated application security
+## Digital risk protection and runtime-validated AppSec: analyst-backed, vendor level only
 
-`lib/catalog.test.ts` checks that no product lists either category as primary. Those tests were written to keep analyst sentences (SACR) off product cells. My vendor evidence comes from the vendors' own pages, not analyst rosters. Even so, lifting that gate is the owner's call, not mine. These candidates are research notes only and are not in typed data:
+`lib/catalog.test.ts` blocks any product from listing either category as primary. That gate keeps analyst sentences off product cells, and I left it in place. Instead, these two categories are filled at the vendor level, using public analyst material:
 
-| Category | Candidate | Original source | What it says (paraphrased) |
+| Category | Record | Analyst basis (public part only) | How placed |
 | --- | --- | --- | --- |
-| Digital risk protection | ZeroFox | https://www.zerofox.com/protection/ | DRP covering brand, domain, executive, social and dark web, plus EASM. |
-| Digital risk protection | Doppel | https://www.doppel.com/doppel-pedia/what-impersonation-attack-protection | Detects cloned sites and fake profiles, correlates them and runs takedowns. |
-| Digital risk protection | BrandShield | https://www.brandshield.com/ (comparison page) | Brand-focused DRP across web, social, marketplaces, ads and apps. |
-| Runtime-validated AppSec | Oligo Security | https://www.oligo.security/blog/how-oligo-delivers-full-stack-runtime-security | Runtime inspection of which libraries execute, plus application detection and response. |
-| Runtime-validated AppSec | Contrast Security | https://www.contrastsecurity.com/press/contrast-security-introduces-application-detection-and-response-adr-to-identify-and-block-attacks-and-zero-days-on-applications-in-production | ADR inside the app, announced 2024-08-06, with SIEM/XDR/CNAPP integrations. |
-| Runtime-validated AppSec | Miggo Security | https://miggo.io/product/threat-response | Runtime detection and response for application-level attacks. |
+| Digital risk protection | Forrester category claim | Forrester's public blog on its Q3 2026 External Threat Intelligence Wave says the Wave breaks DRP into brand protection, executive protection and fraud intelligence. The report itself is client-only. | Category claim, `needs_review`. No scores. |
+| Digital risk protection | Recorded Future (existing vendor) | Recorded Future's press release says it was named a Leader in that Wave. | DRP added as adjacent. Vendor-reported. |
+| Digital risk protection | ZeroFox (new vendor) | ZeroFox's own page says Gartner and Forrester recognize it in DRP. The analyst documents themselves were not reviewed. | Vendor-level primary. No product record. |
+| Runtime-validated AppSec | Contrast Security (new vendor and product) | Contrast says Gartner's 2026 Hype Cycle for Application Security names it a Sample Vendor for application detection and response (ADR). | Product is primary in application runtime protection and adjacent to runtime-validated AppSec. |
 
-To promote them, relax the three primary-category assertions for these two categories in `lib/catalog.test.ts`, then add the records in the same pattern.
+Not added, because no SACR, Gartner or Forrester source was available to me: Doppel, BrandShield, Oligo and Miggo. I couldn't fetch the SACR DRP and RVAS reports from here, so any vendors those reports profile still need to be pulled by hand.
+
+### Vendor-reported analyst mentions for the other fills (not separate claims)
+
+- Nucleus Security: Gartner Exposure Assessment Platforms Magic Quadrant, Challenger (Nucleus site).
+- Credo AI: Gartner Cool Vendor 2025, AI Cybersecurity Governance (Credo AI press release).
+- Holistic AI: named in Gartner's first Magic Quadrant for AI Governance Platforms (Holistic AI blog).
+- Operant AI: representative vendor in Gartner's AI TRiSM Market Guide (per Pure AI coverage).
+- Lasso Security: Gartner Cool Vendor for AI Security, 2024 (Lasso press release).
 
 ## Limits and open questions
 

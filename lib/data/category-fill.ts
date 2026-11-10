@@ -370,6 +370,52 @@ export const categoryFillVendors: Vendor[] = [
       "Which edition, deployment, integrations and costs fit the buyer's environment?"
     ]
   }
+,{
+    "id": "zerofox",
+    "slug": "zerofox",
+    "name": "ZeroFox",
+    "formerNames": [],
+    "website": "https://www.zerofox.com/",
+    "positioning": "ZeroFox markets digital risk protection across brand, domain, executive, social and dark web exposure, with takedowns. It says Gartner and Forrester recognize it in DRP (vendor-reported). No product cell is assigned.",
+    "primaryCategoryIds": [
+      "digital-risk-protection"
+    ],
+    "adjacentCategoryIds": [
+      "threat-intelligence",
+      "external-attack-surface"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "ZeroFox's comparison pages are vendor claims; do not adopt them as parity.",
+      "Which modules (brand, executive, domain, dark web) are licensed, and who runs takedowns?"
+    ]
+  },
+  {
+    "id": "contrast-security",
+    "slug": "contrast-security",
+    "name": "Contrast Security",
+    "formerNames": [],
+    "website": "https://www.contrastsecurity.com/",
+    "positioning": "Contrast markets runtime application security: instrumentation inside the app for testing and for application detection and response (ADR). It says Gartner's 2026 AppSec Hype Cycle names it a Sample Vendor for ADR (vendor-reported).",
+    "primaryCategoryIds": [
+      "app-runtime"
+    ],
+    "adjacentCategoryIds": [
+      "runtime-validated-application-security",
+      "iast"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Instrumentation needs per-language agents; confirm coverage for the buyer's stack.",
+      "A Hype Cycle Sample Vendor listing is not a ranking or endorsement."
+    ]
+  }
 ];
 
 export const categoryFillProducts: Product[] = [
@@ -782,6 +828,29 @@ export const categoryFillProducts: Product[] = [
     "officialUrl": "https://protectai.com/blog/guardian-local-scanning",
     "useCaseIds": []
   }
+,{
+    "id": "contrast-adr",
+    "slug": "contrast-adr",
+    "vendorId": "contrast-security",
+    "name": "Contrast Application Detection and Response",
+    "positioning": "Detects and blocks attacks inside running applications and APIs, with SOC integrations.",
+    "primaryCategoryIds": [
+      "app-runtime"
+    ],
+    "adjacentCategoryIds": [
+      "runtime-validated-application-security"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Announced as commercially available in August 2024.",
+    "officialUrl": "https://www.contrastsecurity.com/press/contrast-security-introduces-application-detection-and-response-adr-to-identify-and-block-attacks-and-zero-days-on-applications-in-production",
+    "useCaseIds": []
+  }
 ];
 
 export const categoryFillSources: Source[] = [
@@ -988,6 +1057,78 @@ export const categoryFillSources: Source[] = [
     "retrievedAt": "2026-11-09",
     "volatility": "fast",
     "excerpt": "Protect AI says Guardian Local Scanning runs model scanning as a Docker container inside CI/CD pipelines and can scan models from sources such as Artifactory, SageMaker Model Registry and Git. The page banner states Palo Alto Networks completed its acquisition of Protect AI."
+  }
+,{
+    "id": "src-forrester-eti-wave-2026",
+    "title": "Forrester blog — Announcing The Forrester Wave: External Threat Intelligence Service Providers, Q3 2026",
+    "url": "https://www.forrester.com/blogs/announcing-the-forrester-wave-external-threat-intelligence-service-providers-q3-2026/",
+    "canonicalUrl": "https://www.forrester.com/blogs/announcing-the-forrester-wave-external-threat-intelligence-service-providers-q3-2026/",
+    "publisher": "Forrester",
+    "sourceType": "analyst",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-09",
+    "volatility": "fast",
+    "excerpt": "Forrester's public announcement of its Q3 2026 External Threat Intelligence Service Providers Wave says the evaluation breaks digital risk protection into distinct areas, including brand protection, executive protection and fraud intelligence. The full report is client-only."
+  },
+  {
+    "id": "src-recorded-future-forrester-2026",
+    "title": "Recorded Future — named a Leader in External Threat Intelligence (press release)",
+    "url": "https://www.recordedfuture.com/newsroom/press-releases/recorded-future-leader-external-threat-intelligence-2026",
+    "canonicalUrl": "https://www.recordedfuture.com/newsroom/press-releases/recorded-future-leader-external-threat-intelligence-2026",
+    "publisher": "Recorded Future",
+    "sourceType": "press_release",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-09",
+    "volatility": "fast",
+    "excerpt": "Recorded Future says it was named a Leader in The Forrester Wave: External Threat Intelligence Service Providers, Q3 2026 (September 17, 2026), and describes bringing external threat intelligence into third-party and supply chain risk."
+  },
+  {
+    "id": "src-fill-zerofox-protection",
+    "title": "ZeroFox — Protection",
+    "url": "https://www.zerofox.com/protection/",
+    "canonicalUrl": "https://www.zerofox.com/protection/",
+    "publisher": "ZeroFox",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-09",
+    "volatility": "fast",
+    "excerpt": "ZeroFox says its digital risk protection includes external attack surface management, brand, domain, executive, social media, geospatial and dark web protection."
+  },
+  {
+    "id": "src-fill-zerofox-analyst",
+    "title": "ZeroFox — ZeroFox vs Doppel comparison page",
+    "url": "https://www.zerofox.com/compare/zerofox-vs-doppel/",
+    "canonicalUrl": "https://www.zerofox.com/compare/zerofox-vs-doppel/",
+    "publisher": "ZeroFox",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-09",
+    "volatility": "fast",
+    "excerpt": "ZeroFox states that Gartner recognizes it as a Competitive Strategy Leader in global digital risk protection and that Forrester recognizes it as a leader in cyber threat intelligence and digital risk protection. Vendor-reported; the underlying analyst documents were not reviewed."
+  },
+  {
+    "id": "src-fill-contrast-gartner-hc-2026",
+    "title": "Contrast Security — Gartner Hype Cycle for Application Security, 2026",
+    "url": "https://www.contrastsecurity.com/gartner-appsec-hype-cycle-adr",
+    "canonicalUrl": "https://www.contrastsecurity.com/gartner-appsec-hype-cycle-adr",
+    "publisher": "Contrast Security",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-09",
+    "volatility": "fast",
+    "excerpt": "Contrast says it is named a Sample Vendor for Application Detection and Response in Gartner's Hype Cycle for Application Security, 2026 (Dionisio Zumerle, 21 July 2026), and describes ADR as detecting and stopping attacks inside running applications."
+  },
+  {
+    "id": "src-fill-contrast-adr-2024",
+    "title": "Contrast Security — introduces Application Detection and Response",
+    "url": "https://www.contrastsecurity.com/press/contrast-security-introduces-application-detection-and-response-adr-to-identify-and-block-attacks-and-zero-days-on-applications-in-production",
+    "canonicalUrl": "https://www.contrastsecurity.com/press/contrast-security-introduces-application-detection-and-response-adr-to-identify-and-block-attacks-and-zero-days-on-applications-in-production",
+    "publisher": "Contrast Security",
+    "sourceType": "press_release",
+    "publishedAt": "2024-08-06",
+    "retrievedAt": "2026-11-09",
+    "volatility": "fast",
+    "excerpt": "Contrast introduced ADR on 6 Aug 2024 to detect and block attacks on custom applications and APIs from inside the application, with SIEM, XDR and CNAPP integrations; announced as commercially available."
   }
 ];
 
@@ -1331,5 +1472,125 @@ export const categoryFillClaims: Claim[] = [
     "lastCheckedAt": "2026-11-09",
     "conflictsWith": [],
     "notes": "Publisher-reported, not independently tested. Now sold by Palo Alto Networks; confirm current packaging."
+  }
+,{
+    "id": "claim-forrester-eti-drp-2026",
+    "statement": "Forrester's public announcement of its Q3 2026 External Threat Intelligence Wave says the evaluation breaks digital risk protection into brand protection, executive protection and fraud intelligence.",
+    "subjectType": "category",
+    "subjectId": "digital-risk-protection",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-forrester-eti-wave-2026",
+    "sourceUrl": "https://www.forrester.com/blogs/announcing-the-forrester-wave-external-threat-intelligence-service-providers-q3-2026/",
+    "sourceType": "analyst",
+    "publishedAt": null,
+    "observedAt": "2026-11-09",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "needs_review",
+    "lastCheckedAt": "2026-11-09",
+    "conflictsWith": [],
+    "notes": "Category framing only. Vendor placements and scores are client-only and are not cells. No product is assigned."
+  },
+  {
+    "id": "claim-recorded-future-forrester-2026",
+    "statement": "Recorded Future says it was named a Leader in Forrester's Q3 2026 External Threat Intelligence Service Providers Wave.",
+    "subjectType": "vendor",
+    "subjectId": "recorded-future",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-recorded-future-forrester-2026",
+    "sourceUrl": "https://www.recordedfuture.com/newsroom/press-releases/recorded-future-leader-external-threat-intelligence-2026",
+    "sourceType": "press_release",
+    "publishedAt": null,
+    "observedAt": "2026-11-09",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-09",
+    "conflictsWith": [],
+    "notes": "Vendor-reported analyst placement. Forrester's report is client-only; the scoring was not reviewed. This links the vendor to DRP as adjacent only."
+  },
+  {
+    "id": "claim-fill-zerofox-protection",
+    "statement": "ZeroFox says its digital risk protection includes EASM, brand, domain, executive, social media and dark web protection.",
+    "subjectType": "vendor",
+    "subjectId": "zerofox",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-zerofox-protection",
+    "sourceUrl": "https://www.zerofox.com/protection/",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-09",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-09",
+    "conflictsWith": [],
+    "notes": "Publisher-reported, not tested. Vendor-level record only; no product cell, consistent with the DRP gate."
+  },
+  {
+    "id": "claim-fill-zerofox-analyst",
+    "statement": "ZeroFox states Gartner and Forrester recognize it in digital risk protection.",
+    "subjectType": "vendor",
+    "subjectId": "zerofox",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-zerofox-analyst",
+    "sourceUrl": "https://www.zerofox.com/compare/zerofox-vs-doppel/",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-09",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "needs_review",
+    "lastCheckedAt": "2026-11-09",
+    "conflictsWith": [],
+    "notes": "Vendor-reported analyst recognition from a ZeroFox comparison page; the underlying Gartner and Forrester documents were not reviewed."
+  },
+  {
+    "id": "claim-fill-contrast-gartner-hc-2026",
+    "statement": "Contrast says Gartner's Hype Cycle for Application Security, 2026 names it a Sample Vendor for Application Detection and Response.",
+    "subjectType": "vendor",
+    "subjectId": "contrast-security",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-contrast-gartner-hc-2026",
+    "sourceUrl": "https://www.contrastsecurity.com/gartner-appsec-hype-cycle-adr",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-09",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-09",
+    "conflictsWith": [],
+    "notes": "Vendor-reported analyst listing. A Sample Vendor mention is not a ranking."
+  },
+  {
+    "id": "claim-fill-contrast-adr",
+    "statement": "Contrast introduced ADR to detect and block attacks on custom applications and APIs from inside the application, with SIEM, XDR and CNAPP integrations.",
+    "subjectType": "product",
+    "subjectId": "contrast-adr",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-contrast-adr-2024",
+    "sourceUrl": "https://www.contrastsecurity.com/press/contrast-security-introduces-application-detection-and-response-adr-to-identify-and-block-attacks-and-zero-days-on-applications-in-production",
+    "sourceType": "press_release",
+    "publishedAt": "2024-08-06",
+    "observedAt": "2026-11-09",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-09",
+    "conflictsWith": [],
+    "notes": "Publisher-reported, not tested. Product is primary in application runtime protection and only adjacent to runtime-validated AppSec, consistent with the RVAS gate."
   }
 ];
