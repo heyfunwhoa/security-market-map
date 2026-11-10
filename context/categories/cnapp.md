@@ -26,7 +26,13 @@ A suite label that bundles posture, identity entitlements, workload, and sometim
 
 ## Who vendors sell to
 
-- None recorded.
+From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.
+
+- Cloud security (`cloud-sec`): 4 of 4 vendors
+- DevOps / platform engineering (`platform`): 3 of 4 vendors
+- Software developer (`developer`): 2 of 4 vendors
+- GRC or trust lead (`grc-owner`): 1 of 4 vendors
+- Incident responder (`incident-response`): 1 of 4 vendors
 
 ## Vendors (primary)
 

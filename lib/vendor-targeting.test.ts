@@ -4,11 +4,11 @@ import { gapReport } from "@/lib/gap-report";
 import { majorityTargetedSeats, targetingForCategory, TARGETING_MIN_VENDORS } from "@/lib/vendor-targeting";
 
 describe("vendor seat targeting", () => {
-  it("covers at least three contested categories with enough vendors", () => {
-    const covered = ["secrets-detection", "secrets-management", "aspm"].filter(
+  it("covers eight contested categories with enough vendors", () => {
+    const covered = ["secrets-detection", "secrets-management", "aspm", "sast", "sca", "itdr", "cnapp", "nhi"].filter(
       (id) => targetingForCategory(id).vendorCount >= TARGETING_MIN_VENDORS,
     );
-    expect(covered).toHaveLength(3);
+    expect(covered).toHaveLength(8);
   });
 
   it("counts each vendor once per seat", () => {
@@ -30,6 +30,7 @@ describe("vendor seat targeting", () => {
     expect(contested).not.toContain("secrets-detection");
     expect(contested).not.toContain("secrets-management");
     expect(contested).not.toContain("aspm");
+    expect(contested).not.toContain("itdr");
     expect(contested).toContain("siem");
   });
 

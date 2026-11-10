@@ -26,7 +26,12 @@ Detection, investigation, and response for identity-based attacks: token theft, 
 
 ## Who vendors sell to
 
-- None recorded.
+From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.
+
+- Identity security lead (`identity-security`): 4 of 4 vendors
+- Incident responder (`incident-response`): 1 of 4 vendors
+- SOC analyst (`soc-analyst`): 1 of 4 vendors
+- SOC manager (`soc-lead`): 1 of 4 vendors
 
 ## Vendors (primary)
 

@@ -26,7 +26,10 @@ Known vulnerabilities and license risk in dependencies. This is not IT vulnerabi
 
 ## Who vendors sell to
 
-- None recorded.
+From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.
+
+- AppSec lead (`appsec`): 4 of 4 vendors
+- Software developer (`developer`): 4 of 4 vendors
 
 ## Vendors (primary)
 
