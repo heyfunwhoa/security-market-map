@@ -433,3 +433,12 @@ Status: on `research/context-graph`; not merged or deployed.
 - Reuse: `Breadcrumbs`, `PageIntro`, existing card and link classes, native `<details>` for gap groups (keyboard-operable, no script). Decision: reuse; no bank pattern adopted.
 - States: each new category column shows "Not recorded yet." when empty; seat sections hide when empty; high-severity gap groups open by default.
 - Checks run: typecheck, lint, vitest, and `next dev` returning 200 for `/gaps`, `/personas/appsec`, `/categories/secrets-detection` and the three APIs. A real-browser responsive check is still pending on the Vercel preview.
+
+## Component playground (Storybook)
+
+Run `npm run storybook` (port 6006) to see shared components in every state the catalog can produce. CI runs `npm run storybook:build` on every pull request.
+
+- Stories live beside their component as `components/<name>.stories.tsx`.
+- Use real catalog records (`@/lib/catalog`) for fixtures, never invented vendors or claims. Include the edge cases: no claims (Unknown), the longest statement, each verification status.
+- Decide a new look on a design canvas first; build and check it here; then wire it into pages.
+- Storybook is pinned to the patched 10.6.x line the portfolio uses. Keep `storybook` and `@storybook/*` on the same version.
