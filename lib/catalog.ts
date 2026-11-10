@@ -19,6 +19,7 @@ import {
   objectionSchema,
   alternativeSchema,
   buyingTriggerSchema,
+  qualificationQuestionSchema,
   useCaseSeatsSchema,
   pricingSignalSchema,
   productSchema,
@@ -43,6 +44,7 @@ import {
   type Objection,
   type Alternative,
   type BuyingTrigger,
+  type QualificationQuestion,
   type UseCaseSeats,
   type PricingSignal,
   type Product,
@@ -78,6 +80,7 @@ import { fieldNotes } from "./data/field-notes";
 import { objections } from "./data/objections";
 import { alternatives } from "./data/alternatives";
 import { buyingTriggers } from "./data/buying-triggers";
+import { qualificationQuestions } from "./data/qualification-questions";
 import { orphanCategoryOwners, useCaseSeats } from "./data/persona-connections";
 
 const withOrphanCategories = (persona: BuyerPersona): BuyerPersona => {
@@ -120,6 +123,7 @@ export type Catalog = {
   objections: Objection[];
   alternatives: Alternative[];
   buyingTriggers: BuyingTrigger[];
+  qualificationQuestions: QualificationQuestion[];
   sources: Source[];
   claims: Claim[];
   relationships: Relationship[];
@@ -154,6 +158,7 @@ function parseCatalog(): Catalog {
     objections: z.array(objectionSchema).parse(objections),
     alternatives: z.array(alternativeSchema).parse(alternatives),
     buyingTriggers: z.array(buyingTriggerSchema).parse(buyingTriggers),
+    qualificationQuestions: z.array(qualificationQuestionSchema).parse(qualificationQuestions),
     sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources, ...developerEndpointSources, ...personaSources]),
     claims: z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims, ...developerEndpointClaims]),
     relationships: z.array(relationshipSchema).parse([...relationships, ...ecosystemRelationships]),
@@ -168,7 +173,7 @@ function parseCatalog(): Catalog {
 
 export function catalogProblems(catalog: Catalog): string[] {
   // Persona profiles are keyed by personaId and checked below.
-  const { asOf: _asOf, personaProfiles: _personaProfiles, useCaseSeats: _useCaseSeats, fieldNotes: _fieldNotes, objections: _objections, alternatives: _alternatives, buyingTriggers: _buyingTriggers, ...collections } = catalog;
+  const { asOf: _asOf, personaProfiles: _personaProfiles, useCaseSeats: _useCaseSeats, fieldNotes: _fieldNotes, objections: _objections, alternatives: _alternatives, buyingTriggers: _buyingTriggers, qualificationQuestions: _qualificationQuestions, ...collections } = catalog;
   void _asOf;
   void _personaProfiles;
   void _useCaseSeats;
@@ -176,6 +181,7 @@ export function catalogProblems(catalog: Catalog): string[] {
   void _objections;
   void _alternatives;
   void _buyingTriggers;
+  void _qualificationQuestions;
   const problems = [
     ...identityProblems(collections),
     ...provenanceProblems(catalog.sources, catalog.claims, catalog.capabilities.map((item) => item.id)),
@@ -447,6 +453,18 @@ export function catalogProblems(catalog: Catalog): string[] {
   for (const trigger of catalog.buyingTriggers) {
     checkConcept("Trigger", trigger);
     for (const id of trigger.useCaseIds) if (!useCaseIds.has(id)) problems.push(`Trigger ${trigger.id} references missing use case ${id}`);
+  }
+  const questionIds = new Set<string>();
+  const segmentIds = new Set(catalog.segmentOverlays.map((overlay) => overlay.id));
+  for (const question of catalog.qualificationQuestions) {
+    if (questionIds.has(question.id)) problems.push(`Duplicate qualification question ${question.id}`);
+    questionIds.add(question.id);
+    const target = question.appliesTo;
+    if (target.kind === "seat" && !seatIdSet.has(target.id)) problems.push(`Qualification question ${question.id} references missing seat ${target.id}`);
+    if (target.kind === "segment" && !segmentIds.has(target.id)) problems.push(`Qualification question ${question.id} references missing segment ${target.id}`);
+    for (const id of question.categoryIds) if (!categoryIds.has(id)) problems.push(`Qualification question ${question.id} references missing category ${id}`);
+    if (question.evidence === "sourced" && question.sourceIds.length === 0) problems.push(`Qualification question ${question.id} is sourced without sourceIds`);
+    for (const id of question.sourceIds) if (!sourceIds.has(id)) problems.push(`Qualification question ${question.id} source ${id} missing`);
   }
   const fieldIds = new Set<string>();
   for (const note of catalog.fieldNotes) {

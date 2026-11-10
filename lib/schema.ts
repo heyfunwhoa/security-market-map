@@ -711,3 +711,23 @@ export const buyingTriggerSchema = z.object({
 });
 export type BuyingTrigger = z.infer<typeof buyingTriggerSchema>;
 export type BuyingTriggerInput = z.input<typeof buyingTriggerSchema>;
+
+/**
+ * Weighted yes/no questions that help decide whether a seat or segment is a good fit for a
+ * conversation. Vendor-neutral: they qualify the buyer's problem, never a product.
+ * A "yes" answer means what `fit` says: good fit or bad fit.
+ */
+export const qualificationQuestionSchema = z.object({
+  id: z.string().regex(/^qq-[a-z0-9-]+$/),
+  appliesTo: z.object({ kind: z.enum(["seat", "segment"]), id: z.string().min(1) }),
+  question: z.string().min(1).max(200),
+  weight: z.enum(["high", "medium", "low"]),
+  fit: z.enum(["good", "bad"]),
+  /** What a "yes" usually looks like in conversation or public signals. */
+  lookFor: z.string().min(1).max(240),
+  categoryIds: z.array(z.string().min(1)).default([]),
+  evidence: personaEvidenceSchema,
+  sourceIds: z.array(z.string().min(1)).default([]),
+});
+export type QualificationQuestion = z.infer<typeof qualificationQuestionSchema>;
+export type QualificationQuestionInput = z.input<typeof qualificationQuestionSchema>;
