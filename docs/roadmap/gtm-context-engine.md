@@ -41,6 +41,7 @@ Consumers read `/api/evidence-graph?slice=market-map` and `/api/persona-model`, 
 | Evidence graph on main (identity slice, contract `evidence-graph-v1`) | PR #152, merged |
 | Buyer context in the evidence graph: objections, alternatives, triggers, pain → capability, market-map slice, `/api/gaps`, `/gaps`, `/api/context-search` | PR #153 (stacked on #148) |
 | Account Workshop shows seat cards from a pinned snapshot, with a stale reminder | ASE PR #200 |
+| Library fill: alternatives for all 42 core categories, an objection for every seat, 157 qualification questions (every seat and segment), a sourced pain for every seat (16 new sources) | Branch `research/library-fill` (tasks 1.1 and 1.2) |
 
 Merge order: #148 → #149 and #151 (docs) → refresh the ASE snapshot with `--reviewed` → ASE #200 → #153. See the KRU-294 reconciliation.
 
@@ -52,8 +53,8 @@ Pattern: Octave's library entities; Cargo's context files in git.
 
 | Task | Acceptance criteria |
 | --- | --- |
-| 1.1 Qualification questions on seats and segments | `qualificationQuestionSchema`: `{ question, weight: high/medium/low, fit: good/bad, evidence }`. 3+ questions on the top 10 seats and on every segment overlay. Catalog check rejects empty or duplicate questions. |
-| 1.2 Close the gap list | `/gaps` shows 0 core categories without alternatives and 0 seats without objections. Every new record has an evidence label. |
+| 1.1 Qualification questions on seats and segments (done) | `qualificationQuestionSchema`: `{ question, weight: high/medium/low, fit: good/bad, evidence }`. 3+ questions on the top 10 seats and on every segment overlay. Catalog check rejects empty or duplicate questions. |
+| 1.2 Close the gap list (done for alternatives, objections and sourced pains) | `/gaps` shows 0 core categories without alternatives and 0 seats without objections. Every new record has an evidence label. |
 | 1.3 Vendor targeting counts | For each top category, record which seats each vendor's product page targets, with URL and checked date (`practitioner_published`). Seat-to-category links show "N of M vendors target this seat". |
 | 1.4 Markdown export | `npm run context:md` writes one markdown file per seat and per category (frontmatter: id, type, evidence) to `context/`, generated from typed data and never hand-edited. A test fails if the generated output drifts. |
 | 1.5 Brief reviews | Each batch of new hypotheses gets a short review note in the PR: what was added and what still needs a source. |
@@ -139,4 +140,4 @@ Pattern: RevLogic's programs; Octave's assets.
 
 ## Next step
 
-Phase 2.1–2.3 in ASE: offering, motions and the first cells, then 3.1 call prep. Phase 1.1–1.2 runs alongside.
+The private layer (Phase 2) is on hold. Next public work: 1.3 vendor targeting counts, 1.4 markdown export, and replacing new hypotheses with field notes as calls happen. Remaining gaps: contested ownership (18, expected), categories with no vendors (9), and unlinked people/budget pains.

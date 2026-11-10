@@ -179,6 +179,11 @@ export const personaProfiles: PersonaProfileInput[] = [
     job: "Design reusable secure patterns (identity, crypto, API, platform) and sign off on major designs.",
     pains: [
       {
+        pain: "Tool sprawl: dozens of overlapping products that do not integrate",
+        evidence: "sourced",
+        sourceIds: ["src-pain-ibm-panw-platform-2025"],
+      },
+      {
         pain: "Teams buy overlapping tools that bypass shared standards",
         evidence: "hypothesis",
         relatedCategoryIds: ["aspm", "security-asset-management"],
@@ -326,6 +331,12 @@ export const personaProfiles: PersonaProfileInput[] = [
     job: "Run the privacy program: lawful processing, subject rights, DPIAs, and customer DPA evidence.",
     pains: [
       {
+        pain: "Deletion and access request volume keeps climbing",
+        evidence: "sourced",
+        sourceIds: ["src-pain-datagrail-2025"],
+        relatedCategoryIds: ["privacy-governance"],
+      },
+      {
         pain: "Can't say where personal data lives or who touches it",
         evidence: "hypothesis",
         relatedCategoryIds: ["dspm", "privacy-governance", "data-access-governance"],
@@ -372,6 +383,12 @@ export const personaProfiles: PersonaProfileInput[] = [
     function: "security",
     job: "Run the human-risk and training program; distinct from email gateway owners.",
     pains: [
+      {
+        pain: "People are still involved in most breaches, mostly via stolen credentials and social engineering",
+        evidence: "sourced",
+        sourceIds: ["src-pain-dbir-2025-human"],
+        relatedCategoryIds: ["security-awareness", "email-security"],
+      },
       {
         pain: "Completion rates don't show behavior change",
         evidence: "hypothesis",
@@ -515,6 +532,12 @@ export const personaProfiles: PersonaProfileInput[] = [
     function: "security",
     job: "Make the product customers buy trustworthy: threat modeling, design review, secure engineering expectations, disclosure, and launch bars.",
     pains: [
+      {
+        pain: "Pentest findings stay open; many never get fixed",
+        evidence: "sourced",
+        sourceIds: ["src-pain-cobalt-pentest-2025"],
+        relatedCategoryIds: ["pentest-program", "product-security-program"],
+      },
       {
         pain: "Launch deadlines arrive before the security review",
         evidence: "hypothesis",
@@ -669,6 +692,12 @@ export const personaProfiles: PersonaProfileInput[] = [
     job: "Manage software supply chain risk — dependencies, malicious packages, build provenance — as a program, not only a CVE scanner.",
     pains: [
       {
+        pain: "Malicious open source packages arrive faster than review can keep up",
+        evidence: "sourced",
+        sourceIds: ["src-pain-sonatype-sscr-2026"],
+        relatedCategoryIds: ["software-supply-chain", "sca"],
+      },
+      {
         pain: "Can't tell which dependency issues are reachable or malicious",
         evidence: "hypothesis",
         relatedCategoryIds: ["sca", "software-supply-chain"],
@@ -720,6 +749,12 @@ export const personaProfiles: PersonaProfileInput[] = [
     function: "engineering",
     job: "Local security contact inside a product engineering team; translates AppSec asks into team work.",
     pains: [
+      {
+        pain: "Developers lose hours a week triaging noisy security findings",
+        evidence: "sourced",
+        sourceIds: ["src-pain-idc-dev-time"],
+        relatedCategoryIds: ["aspm", "sast", "sca"],
+      },
       {
         pain: "Security work isn't in the sprint plan",
         evidence: "hypothesis",
@@ -861,6 +896,12 @@ export const personaProfiles: PersonaProfileInput[] = [
     function: "security",
     job: "Run joiner/mover/leaver, access requests, and certifications.",
     pains: [
+      {
+        pain: "Leavers keep working access after their last day",
+        evidence: "sourced",
+        sourceIds: ["src-pain-sagiss-offboarding-2026"],
+        relatedCategoryIds: ["iga", "workforce-identity"],
+      },
       { pain: "Access reviews get rubber-stamped", relatedCapabilityIds: ["cap-certification"], evidence: "hypothesis", relatedCategoryIds: ["iga"], relatedUseCaseIds: ["uc-jml"] },
       {
         pain: "Leavers keep access because HR and IT records disagree",
@@ -890,6 +931,12 @@ export const personaProfiles: PersonaProfileInput[] = [
     function: "security",
     job: "Control standing and just-in-time privileged access, vaulted credentials, and session oversight.",
     pains: [
+      {
+        pain: "Long-lived cloud keys that never rotate act as standing privilege",
+        evidence: "sourced",
+        sourceIds: ["src-pain-datadog-cloud-2025"],
+        relatedCategoryIds: ["pam", "secrets-management", "nhi"],
+      },
       {
         pain: "Standing admin privilege is hard to remove",
         relatedCapabilityIds: ["cap-jit-human", "cap-session-control"],
@@ -925,6 +972,12 @@ export const personaProfiles: PersonaProfileInput[] = [
     function: "security",
     job: "Cloud control-plane posture, workload protection, entitlements, and cloud detection foundations.",
     pains: [
+      {
+        pain: "Cloud identities carry access keys older than a year",
+        evidence: "sourced",
+        sourceIds: ["src-pain-datadog-cloud-2025"],
+        relatedCategoryIds: ["ciem", "cspm", "secrets-management", "nhi"],
+      },
       {
         pain: "Findings get routed to teams that don't own the resource",
         evidence: "hypothesis",
@@ -992,6 +1045,12 @@ export const personaProfiles: PersonaProfileInput[] = [
     job: "Discover sensitive data, govern access, and control egress — without collapsing DSPM, DAG, DLP, and privacy into one SKU.",
     pains: [
       {
+        pain: "Does not know where all sensitive data lives",
+        evidence: "sourced",
+        sourceIds: ["src-pain-thales-dtr-2026"],
+        relatedCategoryIds: ["dspm", "dlp"],
+      },
+      {
         pain: "Don't know where sensitive data sits across SaaS and cloud",
         relatedCapabilityIds: ["cap-dspm"],
         evidence: "hypothesis",
@@ -1037,6 +1096,12 @@ export const personaProfiles: PersonaProfileInput[] = [
     job: "Edge access, lateral movement controls, and network detection.",
     pains: [
       {
+        pain: "Edge and VPN appliances became a top exploitation target and patch slowly",
+        evidence: "sourced",
+        sourceIds: ["src-pain-dbir-2025-edge"],
+        relatedCategoryIds: ["network-edge", "external-attack-surface"],
+      },
+      {
         pain: "Edge devices and VPNs are prime exploitation targets",
         evidence: "hypothesis",
         relatedCategoryIds: ["network-edge", "external-attack-surface"],
@@ -1073,6 +1138,12 @@ export const personaProfiles: PersonaProfileInput[] = [
     function: "security",
     job: "Secure SaaS configuration, grants, and integrations across business-critical apps.",
     pains: [
+      {
+        pain: "Can't see or monitor SaaS-to-SaaS tokens and other non-human identities",
+        evidence: "sourced",
+        sourceIds: ["src-pain-csa-saas-2025"],
+        relatedCategoryIds: ["sspm", "nhi"],
+      },
       {
         pain: "Hundreds of SaaS apps configured by business owners",
         evidence: "hypothesis",
@@ -1166,6 +1237,12 @@ export const personaProfiles: PersonaProfileInput[] = [
     function: "security",
     job: "Protect the employee and corporate estate: endpoints, email, network edge, IT asset vulnerability management, awareness.",
     pains: [
+      {
+        pain: "Edge device vulnerabilities are only partly remediated",
+        evidence: "sourced",
+        sourceIds: ["src-pain-dbir-2025-edge"],
+        relatedCategoryIds: ["it-vulnerability-management", "network-edge"],
+      },
       {
         pain: "Patch backlog on endpoints and servers",
         evidence: "hypothesis",
@@ -1412,6 +1489,12 @@ export const personaProfiles: PersonaProfileInput[] = [
     function: "security",
     job: "Tier-3 proactive hunting and major escalations.",
     pains: [
+      {
+        pain: "Not enough skilled hunters, and cloud is the hardest place to hunt",
+        evidence: "sourced",
+        sourceIds: ["src-pain-sans-hunt-2025"],
+        relatedCategoryIds: ["siem", "cloud-detection"],
+      },
       { pain: "Hunts fail on missing telemetry", evidence: "hypothesis", relatedCategoryIds: ["security-data-pipelines", "siem"] },
       { pain: "Hunting time gets eaten by triage", evidence: "hypothesis", relatedCategoryIds: ["soar", "mdr"] },
     ],
@@ -1440,6 +1523,12 @@ export const personaProfiles: PersonaProfileInput[] = [
     function: "security",
     job: "Collect, analyze, and disseminate threat assessments and indicators.",
     pains: [
+      {
+        pain: "Intelligence requirements and collection plans are rarely formalized",
+        evidence: "sourced",
+        sourceIds: ["src-pain-sans-cti-2025"],
+        relatedCategoryIds: ["threat-intelligence"],
+      },
       {
         pain: "Intel doesn't turn into detections or blocks",
         evidence: "hypothesis",
@@ -1483,6 +1572,12 @@ export const personaProfiles: PersonaProfileInput[] = [
     function: "security",
     job: "Preserve and analyze evidence so it survives legal and regulatory scrutiny.",
     pains: [
+      {
+        pain: "The fastest intrusions reach data theft in about an hour, before an investigation can start",
+        evidence: "sourced",
+        sourceIds: ["src-pain-unit42-ir-2026"],
+        relatedCategoryIds: ["siem", "xdr", "security-data-pipelines"],
+      },
       { pain: "Evidence lost during fast containment", evidence: "hypothesis", relatedCategoryIds: ["endpoint-security", "xdr"] },
       {
         pain: "Retainer scope doesn't match the incident",
@@ -1510,6 +1605,12 @@ export const personaProfiles: PersonaProfileInput[] = [
     function: "security",
     job: "Run a people-risk program and its cases, often with HR and legal.",
     pains: [
+      {
+        pain: "Insider incidents are costly and take months to contain",
+        evidence: "sourced",
+        sourceIds: ["src-pain-ponemon-insider-2025"],
+        relatedCategoryIds: ["insider-risk", "dlp"],
+      },
       { pain: "Privacy and HR limits on monitoring", evidence: "hypothesis", relatedCategoryIds: ["insider-risk"] },
       {
         pain: "Cases cut across HR, legal, and security",
@@ -1550,6 +1651,12 @@ export const personaProfiles: PersonaProfileInput[] = [
     job: "Prove controls fail safely and map findings to fixers (BAS platform ≠ pentest program ≠ bug bounty intake).",
     pains: [
       {
+        pain: "Findings are reported but less than half are ever resolved",
+        evidence: "sourced",
+        sourceIds: ["src-pain-cobalt-pentest-2025"],
+        relatedCategoryIds: ["pentest-program", "breach-simulation"],
+      },
+      {
         pain: "Validated findings don't get remediated",
         evidence: "hypothesis",
         relatedCategoryIds: ["pentest-program", "ctem"],
@@ -1588,6 +1695,12 @@ export const personaProfiles: PersonaProfileInput[] = [
     function: "security",
     job: "Find and prioritize exposures across internet-facing, cloud, and IT assets, then route them to fixers.",
     pains: [
+      {
+        pain: "Exploited edge vulnerabilities stay open for weeks",
+        evidence: "sourced",
+        sourceIds: ["src-pain-dbir-2025-edge"],
+        relatedCategoryIds: ["external-attack-surface", "it-vulnerability-management"],
+      },
       { pain: "Asset inventory is incomplete", evidence: "hypothesis", relatedCategoryIds: ["security-asset-management", "external-attack-surface"] },
       {
         pain: "Exposures get routed to the wrong owner",
@@ -1639,6 +1752,12 @@ export const personaProfiles: PersonaProfileInput[] = [
     function: "security",
     job: "Prove the business can restore clean systems after ransomware or destructive attack.",
     pains: [
+      {
+        pain: "Backups fail to restore when ransomware hits",
+        evidence: "sourced",
+        sourceIds: ["src-pain-sophos-ransomware-2025"],
+        relatedCategoryIds: ["cyber-recovery"],
+      },
       {
         pain: "Restores never tested against a ransomware scenario",
         evidence: "hypothesis",
@@ -1870,6 +1989,12 @@ export const personaProfiles: PersonaProfileInput[] = [
     function: "engineering",
     job: "Ship AI gateways, models, and agents; often not the owner of the security bar.",
     pains: [
+      {
+        pain: "AI tools and models shipped without access controls or shadow-AI policy",
+        evidence: "sourced",
+        sourceIds: ["src-pain-ibm-breach-2025"],
+        relatedCategoryIds: ["ai-governance", "ai-application-security", "agent-identity"],
+      },
       {
         pain: "Shipping agents faster than controls exist",
         evidence: "hypothesis",

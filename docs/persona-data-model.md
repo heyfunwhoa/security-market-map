@@ -41,10 +41,11 @@ Do not score accounts from titles alone (see the fit worksheet in `market-resear
 | Field note | `lib/data/field-notes.ts` | `id` | Anonymized patterns from real conversations (patterns only, month only). Needed before any `field_validated` label. Intake: `docs/market-research/field-notes-template.md`. |
 | Objection | `lib/data/objections.ts` | `id` (`obj-`) | Pushback, underlying concern, neutral reframe, qualifying questions; linked to seats, categories, alternatives. |
 | Alternative | `lib/data/alternatives.ts` | `id` (`alt-`) | What buyers do instead of the category, when it wins and when it breaks. |
+| Qualification question | `lib/data/qualification-questions.ts` | `id` (`qq-`) | Question to ask a seat or segment, its weight, whether a yes signals good or poor fit, and what to listen for. Every seat has 3+, every segment 1+. |
 | Buying trigger | `lib/data/buying-triggers.ts` | `id` (`trg-`) | Events that start a buying conversation, with an optional public signal (a lead, not intent). |
 | Title corpus | `lib/fixtures/title-corpus.ts` | title | Representative job titles with the expected seat; regression test for `matchTitle`. |
 
-Schemas live in `lib/schema.ts` (`personaProfileSchema`, `stakeholderSchema`, `segmentOverlaySchema`, `useCaseSeatsSchema`, `painSchema`, `seatFunctionSchema`, `seniorityLevelSchema`, `dealStageSchema`, `companySizeSchema`, `fieldNoteSchema`). `lib/catalog.ts` fails the build on broken links, missing profiles, and unsourced "sourced" claims.
+Schemas live in `lib/schema.ts` (`personaProfileSchema`, `stakeholderSchema`, `segmentOverlaySchema`, `useCaseSeatsSchema`, `painSchema`, `seatFunctionSchema`, `seniorityLevelSchema`, `dealStageSchema`, `companySizeSchema`, `fieldNoteSchema`, `objectionSchema`, `alternativeSchema`, `buyingTriggerSchema`, `qualificationQuestionSchema`). `lib/catalog.ts` fails the build on broken links, missing profiles, and unsourced "sourced" claims.
 
 ## Functions → clusters → seats
 
