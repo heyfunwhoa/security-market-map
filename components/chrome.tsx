@@ -6,6 +6,7 @@ import { Menu } from "lucide-react";
 import { AS_OF } from "@/lib/schema";
 import { formatDate } from "@/lib/format";
 import { cn } from "@/lib/utils";
+import { TRUST_TONES, trustLabel } from "@/lib/evidence-labels";
 import type { SearchHit } from "@/lib/search";
 import { SearchCommand } from "@/components/search-panel";
 import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetClose } from "@/components/ui/sheet";
@@ -96,24 +97,11 @@ export function SiteFooter() {
 }
 
 const PILL_LABELS: Record<string, string> = {
-  verified: "Independent source",
-  vendor_published: "Vendor said this",
-  needs_review: "Needs review",
-  conflicting: "Conflicting",
   superseded: "Superseded",
-  research_candidate: "Research candidate",
-  evidenced: "Evidence",
   limited: "Scoped",
-  unverified: "Unverified",
-  unknown: "Unknown",
   not_supported: "Not supported",
   taxonomy_mapping: "Taxonomy mapping",
   catalog_structure: "Catalog structure",
-  hypothesis: "Hypothesis",
-  source_referenced: "Source referenced",
-  vendor_reported: "Vendor reported",
-  independently_verified: "Independently verified",
-  disputed: "Disputed",
   announced: "Announced",
   generally_available: "Documented",
   legacy_name: "Name in transition",
@@ -135,20 +123,14 @@ const PILL_LABELS: Record<string, string> = {
 };
 
 export function StatusPill({ status }: { status: string }) {
-  const tone =
-    status === "verified" || status === "evidenced" || status === "generally_available" || status === "independently_verified"
-      ? "border-emerald-700/20 bg-emerald-50 text-emerald-950"
-      : status === "vendor_published" || status === "limited" || status === "official_docs" || status === "source_referenced" || status === "vendor_reported"
-        ? "border-sky-800/15 bg-sky-50 text-sky-950"
-        : status === "needs_review" ||
-            status === "unverified" ||
-            status === "announced" ||
-            status === "internal_note" ||
-            status === "hypothesis"
-          ? "border-amber-800/20 bg-amber-50 text-amber-950"
-          : status === "conflicting" || status === "not_supported" || status === "disputed"
-            ? "border-rose-800/20 bg-rose-50 text-rose-950"
-            : "border-stone-300 bg-stone-100 text-stone-700";
+  // Trust statuses share one label and tone (lib/evidence-labels.ts). Everything else is neutral.
+  const trust = trustLabel(status);
+  const tone = trust
+    ? TRUST_TONES[trust]
+    : status === "superseded"
+      ? "border-stone-300 bg-stone-100 text-stone-600"
+      : "border-stone-300 bg-transparent text-stone-700";
+  const label = trust ?? PILL_LABELS[status] ?? status;
 
   return (
     <span
@@ -157,7 +139,7 @@ export function StatusPill({ status }: { status: string }) {
         tone,
       )}
     >
-      {PILL_LABELS[status] ?? status}
+      {label}
     </span>
   );
 }

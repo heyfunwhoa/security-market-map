@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { StatusPill } from "@/components/chrome";
+import { TRUST_LABELS, TRUST_MEANINGS, type TrustLabel } from "@/lib/evidence-labels";
 
 // Every status the catalog can put on a page, grouped the way readers meet them.
 const groups: Record<string, string[]> = {
@@ -38,5 +39,23 @@ export const AllStatuses: Story = {
         </section>
       ))}
     </div>
+  ),
+};
+
+/** The six trust labels after narrowing. Colour means trust; every other pill is neutral. */
+export const TrustLabels: Story = {
+  name: "Trust labels (legend)",
+  render: () => (
+    <dl className="grid max-w-2xl grid-cols-[auto_1fr] items-center gap-x-4 gap-y-3 text-sm">
+      {(Object.keys(TRUST_MEANINGS) as TrustLabel[]).map((label) => {
+        const status = Object.entries(TRUST_LABELS).find(([, l]) => l === label)?.[0] ?? "unknown";
+        return (
+          <div key={label} className="contents">
+            <dt><StatusPill status={status} /></dt>
+            <dd>{TRUST_MEANINGS[label]}</dd>
+          </div>
+        );
+      })}
+    </dl>
   ),
 };
