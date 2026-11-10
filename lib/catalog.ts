@@ -96,6 +96,7 @@ import { useCases } from "./data/use-cases";
 import { includeSecretsDetection, secretsSweepVendors, secretsSweepProducts, secretsSweepSources, secretsSweepClaims } from "./data/secrets-sweep";
 
 import { expandedVendors, expandedProducts, expandedSources, expandedClaims, includeExpandedDspm } from "./data/analyst-expansion";
+import { categoryFillVendors, categoryFillProducts, categoryFillSources, categoryFillClaims } from "./data/category-fill";
 
 const allCategories = [...categories, ...ecosystemCategories];
 
@@ -140,8 +141,8 @@ function parseCatalog(): Catalog {
     asOf: AS_OF,
     domains: z.array(domainSchema).parse(domains),
     categories: z.array(categorySchema).parse(allCategories),
-    vendors: z.array(vendorSchema).parse([...vendors, ...ecosystemVendors, ...secretsSweepVendors, ...expandedVendors].map(includeSecretsDetection).map(includeExpandedDspm)),
-    products: z.array(productSchema).parse([...products, ...ecosystemProducts, ...secretsSweepProducts, ...expandedProducts, ...developerEndpointProducts]),
+    vendors: z.array(vendorSchema).parse([...vendors, ...ecosystemVendors, ...secretsSweepVendors, ...expandedVendors, ...categoryFillVendors].map(includeSecretsDetection).map(includeExpandedDspm)),
+    products: z.array(productSchema).parse([...products, ...ecosystemProducts, ...secretsSweepProducts, ...expandedProducts, ...developerEndpointProducts, ...categoryFillProducts]),
     capabilities: z.array(capabilitySchema).parse([...capabilities, ...ecosystemCapabilities, ...developerEndpointCapabilities]),
     useCases: z.array(useCaseSchema).parse([...useCases, ...ecosystemUseCases, ...developerEndpointUseCases]),
     personas: z.array(personaSchema).parse([...personas, ...ecosystemPersonas]).map(withOrphanCategories),
@@ -159,8 +160,8 @@ function parseCatalog(): Catalog {
     alternatives: z.array(alternativeSchema).parse(alternatives),
     buyingTriggers: z.array(buyingTriggerSchema).parse(buyingTriggers),
     qualificationQuestions: z.array(qualificationQuestionSchema).parse(qualificationQuestions),
-    sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources, ...developerEndpointSources, ...personaSources]),
-    claims: z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims, ...developerEndpointClaims]),
+    sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources, ...developerEndpointSources, ...personaSources, ...categoryFillSources]),
+    claims: z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims, ...developerEndpointClaims, ...categoryFillClaims]),
     relationships: z.array(relationshipSchema).parse([...relationships, ...ecosystemRelationships]),
     stories: z.array(customerStorySchema).parse(customerStories),
     pricing: z.array(pricingSignalSchema).parse(pricingSignals),

@@ -100,6 +100,14 @@ describe("gap report and context search on the evidence graph", () => {
     expect(contextSearch("platform", { types: ["objection"] }).every((hit) => hit.node.kind === "objection")).toBe(true);
     expect(contextSearch("   ")).toEqual([]);
   });
+
+  it("has at least one vendor for every category, without product cells in gated categories", () => {
+    expect(gapReport().filter((gap) => gap.kind === "category-no-vendors")).toEqual([]);
+    for (const id of ["digital-risk-protection", "runtime-validated-application-security", "ctem"]) {
+      expect(catalog.products.some((product) => product.primaryCategoryIds.includes(id)), id).toBe(false);
+    }
+  });
+
   it("puts qualification questions in the market-map slice and context search", () => {
     const questions = marketMapGraph.nodes.filter((node) => node.kind === "question");
     expect(questions.length).toBeGreaterThan(100);
