@@ -156,6 +156,11 @@ export const stakeholderProfiles: PersonaProfileInput[] = [
     job: "Run the company; decide when security becomes a funded function.",
     pains: [
       {
+        pain: "A single breach now averages millions in cost, more in the U.S.",
+        evidence: "sourced",
+        sourceIds: ["src-pain-ibm-breach-2025"],
+      },
+      {
         pain: "Deals stall on customer security reviews",
         evidence: "hypothesis",
         relatedCategoryIds: ["customer-trust"],
@@ -201,6 +206,11 @@ export const stakeholderProfiles: PersonaProfileInput[] = [
     function: "it",
     job: "Own IT strategy and spend; frequently the CISO's manager.",
     pains: [
+      {
+        pain: "Too many security vendors and tools to run and pay for",
+        evidence: "sourced",
+        sourceIds: ["src-pain-ibm-panw-platform-2025"],
+      },
       { pain: "Security and IT budgets compete", evidence: "hypothesis" },
       { pain: "Every new tool adds support load", evidence: "hypothesis" },
     ],
@@ -237,6 +247,12 @@ export const stakeholderProfiles: PersonaProfileInput[] = [
     function: "it",
     job: "Keep endpoints, directory, SaaS, backups, and patches running.",
     pains: [
+      {
+        pain: "Edge device patches take weeks, and many never fully land",
+        evidence: "sourced",
+        sourceIds: ["src-pain-dbir-2025-edge"],
+        relatedCategoryIds: ["it-vulnerability-management"],
+      },
       {
         pain: "Every security tool adds agents and tickets",
         evidence: "hypothesis",
@@ -472,6 +488,12 @@ export const stakeholderProfiles: PersonaProfileInput[] = [
     function: "people",
     job: "Own the employee lifecycle and people-risk cases.",
     pains: [
+      {
+        pain: "Offboarding has no clear owner, so former staff keep access",
+        evidence: "sourced",
+        sourceIds: ["src-pain-sagiss-offboarding-2026"],
+        relatedCategoryIds: ["iga"],
+      },
       { pain: "Access changes lag HR events", evidence: "hypothesis", relatedCategoryIds: ["iga"], relatedUseCaseIds: ["uc-jml"] },
       {
         pain: "People-risk cases need fairness and privacy",

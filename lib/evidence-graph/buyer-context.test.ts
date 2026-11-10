@@ -74,11 +74,23 @@ describe("gap report and context search on the evidence graph", () => {
     expect(gaps.filter((gap) => gap.kind === "graph-problem")).toEqual([]);
   });
 
-  it("flags core categories without alternatives and leaves covered ones alone", () => {
-    const missing = new Set(gaps.filter((gap) => gap.kind === "category-no-alternatives").map((gap) => gap.subjectId));
-    expect(missing.has("secrets-detection")).toBe(false);
-    expect(missing.size).toBeGreaterThan(0);
+  it("has alternatives for every core category, objections for every seat, and a sourced pain for every seat", () => {
+    expect(gaps.filter((gap) => gap.kind === "category-no-alternatives")).toEqual([]);
+    expect(gaps.filter((gap) => gap.kind === "seat-no-objections")).toEqual([]);
+    expect(gaps.filter((gap) => gap.kind === "seat-no-sourced-pain")).toEqual([]);
     expect(gapSummary(gaps).reduce((total, group) => total + group.count, 0)).toBe(gaps.length);
+  });
+
+  it("has qualification questions for every seat and segment, with good- and bad-fit framing", () => {
+    const seatIds = marketMapGraph.nodes.filter((node) => node.kind === "persona").map((node) => node.catalogId);
+    for (const id of seatIds) {
+      const questions = catalog.qualificationQuestions.filter((q) => q.appliesTo.kind === "seat" && q.appliesTo.id === id);
+      expect(questions.length, id).toBeGreaterThanOrEqual(3);
+    }
+    for (const overlay of catalog.segmentOverlays) {
+      expect(catalog.qualificationQuestions.some((q) => q.appliesTo.kind === "segment" && q.appliesTo.id === overlay.id), overlay.id).toBe(true);
+    }
+    expect(catalog.qualificationQuestions.some((q) => q.fit === "bad")).toBe(true);
   });
 
   it("finds concepts with their evidence-labeled neighborhood", () => {
