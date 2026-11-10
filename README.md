@@ -19,6 +19,12 @@ The aspiration is to empower better security decisions with less research fricti
 
 Security categories are difficult to navigate. A product may be described as identity security, secrets management, cloud security, or application security depending on its capabilities and buyer. This project makes those relationships easier to explore without treating every vendor as a direct competitor.
 
+## Industry learning foundation
+
+Start with the [vendor-agnostic industry and category guide](docs/market-research/industry-category-foundation.md): industry participants, domain atlas, category boundaries, SecOps workflows and a reusable category research template. Learn each market first, then explore individual vendor profiles. Company-specific context is optional; formal comparisons require a specific buyer question.
+
+The [6 Nov category audit](docs/market-research/category-audit-2026-11-06.md) inventories all 74 categories and separates structural coverage from reviewed evidence. The [adjacent guide](docs/market-research/adjacent-category-guide.md) and [explanation system](docs/product/category-explanation-system.md) extend the neutral foundation beyond SecOps with authoritative reading anchors and worked workflows. These are research documents; the proposed presentation changes are not deployed.
+
 ## What the map covers
 
 - **Identity:** access management, IGA, PAM, CIEM, and nonhuman identities
@@ -52,6 +58,8 @@ AI security is its own domain: application testing, agent identity, runtime enfo
 The Cyera–Oasis case study separates the companies' strategic rationale and the 3 Sep 2026 completion statement from any claim that a joint enforcement workflow has been reviewed.
 
 ## Research standards
+
+**EDR / SecOps / MSSP expansion (6 Nov 2026):** [Buyer-led competitor and economics research](docs/market-research/secops-mssp-economics-2026-11-06.md) and [SACR category crosswalk](docs/market-research/sacr-category-crosswalk-2026-11-06.md). Includes current source checks, detection-content distinctions and a review queue; candidate research, not deployed capability claims.
 
 **Agentic SecOps / MSSP industry research:** [October 2026 competitive landscape](docs/market-research/agentic-secops-competitive-landscape.md) groups vendors by buyer job, original source and unverified comparison hypotheses. This is editorial research, not yet published as typed catalog claims.
 

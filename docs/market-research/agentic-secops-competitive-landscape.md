@@ -2,6 +2,9 @@
 
 **Scope:** public industry research; Security Market Map owns this reusable competitive view. **Status:** curated source-linked research, not independently benchmarked or a feature-parity claim. **Prepared:** 2026-10-12. **Next editorial check:** 2026-11-12 or earlier for material launches. This document is not yet ingested into the published typed application catalog.
 
+
+**6 Nov 2026 extension:** [EDR, SecOps and MSSP economics](secops-mssp-economics-2026-11-06.md) refreshes the six requested commercial benchmarks, Sekoia and incumbent alternatives. It clarifies available rulesets versus maintained detection responsibility. [SACR crosswalk](sacr-category-crosswalk-2026-11-06.md) maps current broad coverage to existing categories. Earlier observations below retain their original dates.
+
 ## Why this market is difficult to compare
 
 A buying committee may use the phrase "AI SOC" for distinct requirements: (1) managed detection and response infrastructure, (2) multi-tenant SIEM/XDR, (3) cross-tool automation and governed AI agents, (4) code-driven telemetry/detection infrastructure. An adjacent vendor is not automatically a head-to-head competitor. Compare by **job to be done**, not funding amount or labels.

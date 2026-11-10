@@ -41,3 +41,17 @@ For scoped agent work, use the proposed [focused-session procedure](https://gith
 ## Release handoff
 
 For preview, merge and deployment work, read [RELEASE.md](RELEASE.md). Batch related changes into review checkpoints, preserve required tests and private/local-only boundaries, and hand off the exact PR head and evidence to the designated release operator. Do not introduce a second deploy pipeline or treat a successful preflight as merge authorization.
+
+## Vendor-agnostic foundation before competitor analysis
+
+Standing owner direction (2026-11-06): repository knowledge must start with a reusable vendor-agnostic base, then layer vendor and competitor research on top.
+
+1. Establish concepts, category definitions, buyer problems, personas, budgets, workflows, architecture, economics and evaluation criteria independently of a named vendor.
+2. Add attributed vendor/product evidence against that shared framework. Use consistent criteria, preserve Unknown and distinguish alternatives from complements in a defined buyer scenario.
+3. Add clearly labeled company-specific positioning, competitive hypotheses or GTM applications last. LimaCharlie is one application of the foundation, not the organizing center of the market.
+4. Treat SACR and other analyst taxonomies as attributed reference lenses, not the sole or universal definition of a category.
+5. Reuse and link the foundational material across research. Do not duplicate it for each competitor or let company-specific conclusions silently alter neutral definitions.
+
+For each research addition, verify that the foundational section remains useful if all vendor names are removed. Keep public market knowledge separate from private account, employer and interview information. Apply this direction to future repository work; this local rule does not claim other repositories have already been edited.
+
+Clarification (2026-11-06): prioritize industry/category depth and standalone vendor profiles. Do not automatically turn vendor enrichment into competitor comparisons, battlecards or a LimaCharlie-relative matrix. Brief differences or overlap notes may be added when useful; deeper comparisons require a specific buyer decision or user request. Use [the industry/category foundation](docs/market-research/industry-category-foundation.md) as the reusable starting point.
