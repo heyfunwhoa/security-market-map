@@ -20,6 +20,10 @@ Inline controls in front of a web application and its APIs, including blocking a
 
 - Network security (`network-security`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Cloudflare: Application edge and WAF conversations often start here. Not an AppSec scanner and not an identity governance suite.

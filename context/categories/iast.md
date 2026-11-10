@@ -20,6 +20,10 @@ Testing from inside a running application, often with an agent in test. Buyers p
 
 - AppSec lead (`appsec`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 _None recorded._

@@ -23,6 +23,10 @@ A structured look at how a design can be abused, done before or beside the code.
 - Product security lead (`product-security`)
 - Security validation / offensive (`offensive-security`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - IriusRisk: Threat-modeling product. The practice can also be a workshop with no tool. This seed does not check product features.

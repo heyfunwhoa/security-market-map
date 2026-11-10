@@ -21,6 +21,10 @@ Questionnaires, penetration-test letters, and control descriptions a buyer of yo
 - Privacy / DPO (`privacy`)
 - GRC or trust lead (`grc-owner`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Vanta: Customer-trust and compliance automation often bought by smaller companies. Not an enterprise GRC suite by default.

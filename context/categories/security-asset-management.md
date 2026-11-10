@@ -20,6 +20,10 @@ A consolidated inventory of devices, accounts, and cloud assets from the tools t
 
 - Exposure / attack-surface owner (`exposure-management`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Axonius: Cyber asset management vendor. The inventory is the product. It does not replace EDR or vulnerability scanning.

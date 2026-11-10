@@ -731,3 +731,28 @@ export const qualificationQuestionSchema = z.object({
 });
 export type QualificationQuestion = z.infer<typeof qualificationQuestionSchema>;
 export type QualificationQuestionInput = z.input<typeof qualificationQuestionSchema>;
+
+/**
+ * Which seats a vendor says it sells to in one category. Built from the vendor's own pages
+ * (or its own press or marketplace listing), mapped editorially to seat ids. This is the
+ * vendor's audience, not proof of who buys.
+ */
+export const vendorSeatTargetingSchema = z.object({
+  vendorId: z.string().min(1),
+  categoryId: z.string().min(1),
+  /** Seats the page is written for. These are counted. */
+  seatIds: z.array(z.string().min(1)).min(1),
+  /** Seats the page only mentions in passing. Shown, never counted. */
+  mentionedSeatIds: z.array(z.string().min(1)).default([]),
+  /** Why this vendor was picked for the sample: leader, specialist, challenger or open-source-led. */
+  selectionReason: z.enum(["leader", "specialist", "challenger", "open-source-led"]).optional(),
+  /** The audience as the vendor words it, paraphrased. */
+  audience: z.string().min(1).max(200),
+  urls: z.array(z.string().url()).min(1),
+  basis: z.enum(["vendor-page", "vendor-docs", "vendor-press", "vendor-marketplace-listing"]),
+  /** How the page was checked: a search result excerpt, or the full page. */
+  inspection: z.enum(["search-excerpt", "page-read"]),
+  checkedAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+});
+export type VendorSeatTargeting = z.infer<typeof vendorSeatTargetingSchema>;
+export type VendorSeatTargetingInput = z.input<typeof vendorSeatTargetingSchema>;

@@ -24,6 +24,14 @@ Service accounts, service principals, CI jobs, apps, containers, APIs, and bots.
 - AI security (`ai-security`)
 - AI platform owner (`ai-owner`)
 
+## Who vendors sell to
+
+From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.
+
+- Identity security lead (`identity-security`): 4 of 4 vendors
+- DevOps / platform engineering (`platform`): 2 of 4 vendors
+- Software developer (`developer`): 1 of 4 vendors
+
 ## Vendors (primary)
 
 - Entro Security: SailPoint said on 29 Jun 2026 that it completed the Entro acquisition and that Entro's solutions are available to SailPoint customers as standalone offerings while native integration continues. entro.security presents SailPoint Entro: discovery, a human owner, lifecycle language, a Slack DLP description, and NHIDR. The product page does not restate the close date. Customer quotations and credential counts are not adopted.

@@ -21,6 +21,10 @@ The risk register, control tests, and audit evidence. GRC platforms track whethe
 - CISO / VP of security (`ciso`)
 - GRC or trust lead (`grc-owner`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - ServiceNow: Workflow platform. Security incident response and GRC are modules buyers may or may not own. The ITSM ticket is not the control.

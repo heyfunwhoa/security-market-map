@@ -24,6 +24,13 @@ Known vulnerabilities and license risk in dependencies. This is not IT vulnerabi
 - Software supply-chain security (`supply-chain-security`)
 - Software developer (`developer`)
 
+## Who vendors sell to
+
+From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.
+
+- AppSec lead (`appsec`): 4 of 4 vendors
+- Software developer (`developer`): 4 of 4 vendors
+
 ## Vendors (primary)
 
 - Snyk: AppSec vendor associated with dependencies, code, and containers. No scanner capability is checked in this seed.

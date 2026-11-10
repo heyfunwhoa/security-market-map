@@ -20,6 +20,10 @@ Ingest, validate, normalize, enrich and route security telemetry before downstre
 
 - MSSP / MDR operations lead (`mssp-ops`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Cribl: Cribl markets Stream as a vendor-agnostic telemetry pipeline that collects, reduces, enriches and routes data to SIEMs, lakes and other tools.

@@ -20,6 +20,10 @@ Misconfiguration of cloud control planes: public storage, open security groups, 
 
 - Cloud security (`cloud-sec`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Wiz: CNAPP vendor. Cloud entitlement conversations often happen here. That is adjacent budget to IGA, not a certification suite, unless a sourced claim says otherwise. Wiz markets a DSPM solution for cloud data security. Vendor-reported DSPM scope reviewed 2026-10-13.

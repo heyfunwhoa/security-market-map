@@ -21,6 +21,10 @@ Inventory of AI systems, the policy that applies to them, and the audit trail. G
 - AI security (`ai-security`)
 - AI platform owner (`ai-owner`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Credo AI: Credo AI markets an AI governance platform with an AI registry, evidence intake from MLOps tools and a vendor portal.

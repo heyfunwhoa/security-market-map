@@ -20,6 +20,10 @@ Activity monitoring and controls on the database itself. It watches queries. It 
 
 - Data security (`data-security`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Satori: Data access and database-security candidate. A query control is not DSPM classification.

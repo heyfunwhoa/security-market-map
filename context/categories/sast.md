@@ -24,6 +24,16 @@ Analysis of source or bytecode for vulnerabilities before the code runs. No capa
 - Product security lead (`product-security`)
 - Software developer (`developer`)
 
+## Who vendors sell to
+
+From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.
+
+- AppSec lead (`appsec`): 4 of 4 vendors
+- Software developer (`developer`): 4 of 4 vendors
+- CISO / VP of security (`ciso`): 2 of 4 vendors
+- Engineering manager (`engineering-manager`): 1 of 4 vendors
+- GRC or trust lead (`grc-owner`): 1 of 4 vendors
+
 ## Vendors (primary)
 
 - Snyk: AppSec vendor associated with dependencies, code, and containers. No scanner capability is checked in this seed.

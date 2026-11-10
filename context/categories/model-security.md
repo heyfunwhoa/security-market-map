@@ -20,6 +20,10 @@ The model supply chain, how a model is deployed, and protection of the runtime t
 
 - AI platform owner (`ai-owner`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 _None recorded._

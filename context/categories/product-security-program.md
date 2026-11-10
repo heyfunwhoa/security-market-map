@@ -20,6 +20,10 @@ The operating system of product security: design review, secure engineering expe
 
 - Product security lead (`product-security`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 _None recorded._

@@ -22,6 +22,10 @@ A provider watches alerts and responds under a contract. The technology may be t
 - Incident responder (`incident-response`)
 - MSSP / MDR operations lead (`mssp-ops`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Arctic Wolf: Managed detection and response vendor. The contract is the product. No detection content is checked here.

@@ -24,6 +24,18 @@ Detections on cloud control-plane and workload telemetry. The SOC may own the qu
 - SOC analyst (`soc-analyst`)
 - Threat hunter (`threat-hunter`)
 
+## Who vendors sell to
+
+From 3 vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.
+
+- Cloud security (`cloud-sec`): 2 of 3 vendors
+- Incident responder (`incident-response`): 2 of 3 vendors
+- SOC manager (`soc-lead`): 2 of 3 vendors
+- GRC or trust lead (`grc-owner`): 1 of 3 vendors
+- IT operations / systems administrator (`it-operations`): 1 of 3 vendors
+- DevOps / platform engineering (`platform`): 1 of 3 vendors
+- SOC analyst (`soc-analyst`): 1 of 3 vendors
+
 ## Vendors (primary)
 
 - Gem Security: Named in the cloud-security box beside CNAPP and cloud detection. Ownership was not re-checked. No detection claim is filled.

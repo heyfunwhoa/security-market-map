@@ -23,6 +23,10 @@ Review of Terraform, CloudFormation, and similar before apply. It catches the ch
 - Software supply-chain security (`supply-chain-security`)
 - CTO / VP of engineering (`cto`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Gomboc: Named beside cloud and infrastructure-as-code security. No policy-fix claim is checked.

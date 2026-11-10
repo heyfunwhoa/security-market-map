@@ -3,6 +3,7 @@ import { catalog } from "./catalog";
 import { gapReport } from "./gap-report";
 import { seats } from "./persona-graph";
 import { typicalTitles } from "./title-match";
+import { targetingForCategory } from "./vendor-targeting";
 
 /**
  * Markdown export of the buyer library and market map, one file per seat and per category.
@@ -123,6 +124,10 @@ export function renderContext(source: Catalog = catalog): ContextFile[] {
       "",
       list(owners.map((seat) => `${seat.name} (\`${seat.id}\`)`)),
       "",
+      "## Who vendors sell to",
+      "",
+      targetingLines(category.id, source, allSeats),
+      "",
       "## Vendors (primary)",
       "",
       list(primary.map((v) => `${v.name}: ${v.positioning}`)),
@@ -169,3 +174,15 @@ export function renderContext(source: Catalog = catalog): ContextFile[] {
   });
   return files;
 }
+
+function targetingLines(categoryId: string, source: Catalog, allSeats: { id: string; name: string }[]): string {
+  const targeting = targetingForCategory(categoryId, source);
+  if (targeting.vendorCount === 0) return "- None recorded.";
+  const name = (id: string) => allSeats.find((seat) => seat.id === id)?.name ?? id;
+  return [
+    `From ${targeting.vendorCount} vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.`,
+    "",
+    ...targeting.seats.map(({ seatId, count }) => `- ${name(seatId)} (\`${seatId}\`): ${count} of ${targeting.vendorCount} vendors`),
+  ].join("\n");
+}
+

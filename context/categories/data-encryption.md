@@ -20,6 +20,10 @@ Encryption, tokenization, or key control for the data itself. A key manager is n
 
 - Data security (`data-security`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Virtru: Encryption candidate for messages and files. Not a DSPM discovery product.

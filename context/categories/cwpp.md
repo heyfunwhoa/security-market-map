@@ -20,6 +20,10 @@ Runtime protection of cloud workloads: hosts, containers, and serverless. Adjace
 
 - Cloud security (`cloud-sec`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 _None recorded._

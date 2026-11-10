@@ -20,6 +20,10 @@ Visibility and detection for operational technology and unmanaged devices. This 
 
 - OT / ICS security (`ot-security`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Claroty: OT and IoT security vendor. Not a corporate EDR product.

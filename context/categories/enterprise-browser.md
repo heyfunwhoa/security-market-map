@@ -21,6 +21,10 @@ A managed browser as the work surface, used alongside virtual desktop and secure
 - IT / corporate security (`it-security`)
 - SaaS security (`saas-security`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Island: Enterprise browser vendor. It still depends on the workforce identity provider.
