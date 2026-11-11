@@ -38,5 +38,125 @@
     "lastReviewedOn": "2026-10-10",
     "cadence": "weekly",
     "rightsNote": "Review source and advisory licensing before distributing data."
+  },
+  {
+    "id": "source:computerweekly-toyota-tconnect-2022",
+    "publisher": "Computer Weekly",
+    "type": "news_report",
+    "url": "https://www.computerweekly.com/news/252525929/Contractor-left-Toyota-source-code-exposed-for-five-years",
+    "publishedOn": null,
+    "lastReviewedOn": "2026-11-11",
+    "cadence": "event_driven",
+    "rightsNote": "Store citations and limited summaries; check publisher reuse terms before redistribution."
+  },
+  {
+    "id": "source:wiz-microsoft-sas-2023",
+    "publisher": "Wiz Research",
+    "type": "security_research",
+    "url": "https://www.wiz.io/blog/38-terabytes-of-private-data-accidentally-exposed-by-microsoft-ai-researchers",
+    "publishedOn": "2023-09-18",
+    "lastReviewedOn": "2026-11-11",
+    "cadence": "event_driven",
+    "rightsNote": "Store citations and limited summaries; check publisher reuse terms before redistribution."
+  },
+  {
+    "id": "source:ghsa-tj-actions-changed-files-2025",
+    "publisher": "GitHub Advisory Database (via OSV)",
+    "type": "vulnerability_advisory",
+    "url": "https://osv.dev/vulnerability/GHSA-mrrh-fwg8-r2c3",
+    "publishedOn": "2025-03-15",
+    "lastReviewedOn": "2026-11-11",
+    "cadence": "event_driven",
+    "rightsNote": "Store citations and limited summaries; check publisher reuse terms before redistribution."
+  },
+  {
+    "id": "source:codecov-security-update-2021",
+    "publisher": "Codecov",
+    "type": "vendor_incident_report",
+    "url": "https://about.codecov.io/security-update/",
+    "publishedOn": "2021-04-15",
+    "lastReviewedOn": "2026-11-11",
+    "cadence": "event_driven",
+    "rightsNote": "Store citations and limited summaries; check publisher reuse terms before redistribution."
+  },
+  {
+    "id": "source:circleci-incident-report-2023",
+    "publisher": "CircleCI",
+    "type": "vendor_incident_report",
+    "url": "https://circleci.com/blog/jan-4-2023-incident-report",
+    "publishedOn": null,
+    "lastReviewedOn": "2026-11-11",
+    "cadence": "event_driven",
+    "rightsNote": "Store citations and limited summaries; check publisher reuse terms before redistribution."
+  },
+  {
+    "id": "source:cloudflare-thanksgiving-2023",
+    "publisher": "Cloudflare",
+    "type": "vendor_incident_report",
+    "url": "https://blog.cloudflare.com/thanksgiving-2023-security-incident",
+    "publishedOn": "2024-02-01",
+    "lastReviewedOn": "2026-11-11",
+    "cadence": "event_driven",
+    "rightsNote": "Store citations and limited summaries; check publisher reuse terms before redistribution."
+  },
+  {
+    "id": "source:bleepingcomputer-okta-support-2023",
+    "publisher": "BleepingComputer",
+    "type": "news_report",
+    "url": "https://www.bleepingcomputer.com/news/security/okta-says-its-support-system-was-breached-using-stolen-credentials/",
+    "publishedOn": "2023-10-20",
+    "lastReviewedOn": "2026-11-11",
+    "cadence": "event_driven",
+    "rightsNote": "Store citations and limited summaries; check publisher reuse terms before redistribution."
+  },
+  {
+    "id": "source:gitguardian-uber-2022",
+    "publisher": "GitGuardian",
+    "type": "security_research",
+    "url": "https://blog.gitguardian.com/uber-breach-2022/",
+    "publishedOn": "2022-09-16",
+    "lastReviewedOn": "2026-11-11",
+    "cadence": "event_driven",
+    "rightsNote": "Store citations and limited summaries; check publisher reuse terms before redistribution."
+  },
+  {
+    "id": "source:unit42-env-extortion-2024",
+    "publisher": "Palo Alto Networks Unit 42",
+    "type": "security_research",
+    "url": "https://unit42.paloaltonetworks.com/large-scale-cloud-extortion-operation/",
+    "publishedOn": "2024-08-15",
+    "lastReviewedOn": "2026-11-11",
+    "cadence": "event_driven",
+    "rightsNote": "Store citations and limited summaries; check publisher reuse terms before redistribution."
+  },
+  {
+    "id": "source:jfrog-pypi-token-2024",
+    "publisher": "JFrog Security Research",
+    "type": "security_research",
+    "url": "https://jfrog.com/blog/leaked-pypi-secret-token-revealed-in-binary-preventing-suppy-chain-attack/",
+    "publishedOn": null,
+    "lastReviewedOn": "2026-11-11",
+    "cadence": "event_driven",
+    "rightsNote": "Store citations and limited summaries; check publisher reuse terms before redistribution."
+  },
+  {
+    "id": "source:pypi-incident-report-2024",
+    "publisher": "PyPI",
+    "type": "vendor_incident_report",
+    "url": "https://blog.pypi.org/posts/2024-07-08-incident-report-leaked-admin-personal-access-token/",
+    "publishedOn": "2024-07-08",
+    "lastReviewedOn": "2026-11-11",
+    "cadence": "event_driven",
+    "rightsNote": "Store citations and limited summaries; check publisher reuse terms before redistribution."
+  },
+  {
+    "id": "source:msrc-storm-0558-2023",
+    "publisher": "Microsoft Security Response Center",
+    "type": "vendor_incident_report",
+    "url": "https://msrc.microsoft.com/blog/2023/09/results-of-major-technical-investigations-for-storm-0558-key-acquisition/",
+    "publishedOn": "2023-09-06",
+    "lastReviewedOn": "2026-11-11",
+    "cadence": "event_driven",
+    "rightsNote": "Store citations and limited summaries; check publisher reuse terms before redistribution."
   }
 ]

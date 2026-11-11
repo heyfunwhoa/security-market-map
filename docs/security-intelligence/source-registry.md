@@ -34,3 +34,12 @@ The starter JSON files hold two *reported* incidents with direct CISA citations.
 **Ingestion sequence (not implemented):** discover → URL/domain/allowlist check → fetch within terms → record snapshot hash and publish/retrieval dates → normalize aliases → create draft claims with explicit source relationships → conflict and attribution checks → human review → publish via API.
 
 **Negative rule:** absence of an ATT&CK link, package record, exploit status or affected organization means **unknown/not yet evaluated**, not false.
+
+## Adding incidents from research sessions
+
+When a research session turns up a public, sourced incident (for example, real secrets-exposure cases gathered for a lesson), add it to the seed in the same PR flow:
+
+1. Add each source to `data/security-intelligence/sources.seed.json` first: stable `source:` ID, publisher, HTTPS URL, `publishedOn` only if the publisher date is known (otherwise `null`), and today's `lastReviewedOn`.
+2. Add the incident to `incidents.seed.json` with a neutral one-sentence summary in our own words, `occurredOn: null`, `epistemicStatus: "reported"`, no technique or package IDs, and uncertainty notes for anything the source does not settle (attacker-only claims, disputed root cause, usage counts that are not leak counts).
+3. Keep research-wide statistics (survey or scan percentages with no single affected organization) out of the incident seed.
+4. Run `npm test`, open a PR, and leave merge to the human reviewer.
