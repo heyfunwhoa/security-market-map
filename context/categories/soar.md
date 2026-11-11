@@ -3,7 +3,7 @@ id: "soar"
 type: "category"
 name: "SOAR and response automation"
 layer: "core"
-vendors: 3
+vendors: 4
 ---
 
 # SOAR and response automation
@@ -32,6 +32,7 @@ _None recorded._
 
 - Splunk
 - ServiceNow
+- Stairwell
 - Anvilogic
 
 ## What buyers do instead

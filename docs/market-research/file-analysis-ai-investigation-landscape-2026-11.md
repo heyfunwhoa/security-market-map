@@ -4,7 +4,8 @@
 
 ## Zoom placement (progressive exploration)
 
-- **Zoom out — domain:** Security operations (SOC / incident response). Not yet a typed category in `lib/data/categories.ts`; nearest existing placement is `adjacent-security`.
+- **Zoom out — domain:** Security operations (`secops` domain in `lib/data/ecosystem.ts`, beside `siem`, `soar`, `xdr`, `mdr`, `threat-intelligence`, `detection-engineering`).
+- **Typed category added in this PR:** `malware-analysis` ("File and malware analysis"), covering layers 1 and 2 below. Linked from the `threat-hunter`, `incident-response` and `digital-forensics` seats; two hypothesis alternatives (public lookup/sandbox services, EDR-bundled verdicts).
 - **Category layers (proposed, research-only):**
   1. File and malware analysis (verdict on a file)
   2. Retained-evidence hunting (keep files, re-check history as intel changes)
@@ -13,7 +14,8 @@
 - **Zoom in — buyer decision:** "An alert fired on a file. Is it malicious, what else is related, where did it spread, and did we get everything?"
 - **Back out:** related SOC automation and MSSP/MDR layers are mapped in [Agentic SecOps and MSSP/MDR landscape](agentic-secops-competitive-landscape.md). Do not duplicate those vendor records here.
 - **Reused IDs:** `reversinglabs` already exists as a vendor (secrets sweep). Its file-analysis products would be new product records under that vendor, not a new vendor. No other vendors below exist in the catalog (searched 2026-11-11).
-- **Navigation change:** none proposed. Promotion into typed claims needs a new or approved category and human review.
+- **Navigation change:** none; the category appears through existing category and seat pages. Layer 3 (AI SOC investigation) is **not** a typed category yet; it overlaps `soar` and needs a separate taxonomy decision.
+- **Typed records added:** Stairwell vendor/product as `research_candidate` with one vendor-published claim (SW1). Other vendors stay research-only until their official pages are inspected.
 
 ## Plain definition
 
@@ -87,6 +89,6 @@ Rights: short paraphrase only; no reproduced vendor copy.
 
 ## Consumer disposition
 
-- **Security Market Map catalog:** defer. Needs a SOC/malware-analysis category decision and official-source inspection before typed claims.
+- **Security Market Map catalog:** `malware-analysis` category + Stairwell research candidate added; other vendors deferred until official-source inspection.
 - **Career Command Center (Joy Index):** proposed read-only reference for an active opportunity; private owner decides. No private facts here.
 - **Account Signal Engine / GTM Revenue OS / Builder Academy:** no change.

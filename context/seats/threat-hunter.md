@@ -25,6 +25,7 @@ Tier-3 proactive hunting and major escalations.
 - Network detection and response (`ndr`)
 - Threat intelligence (`threat-intelligence`)
 - Cloud detection and response (`cloud-detection`)
+- File and malware analysis (`malware-analysis`)
 
 ## Pains
 

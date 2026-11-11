@@ -27,6 +27,7 @@ Investigate, analyze, and respond to incidents; contain.
 - Managed detection and response (`mdr`)
 - Endpoint security (`endpoint-security`)
 - Identity threat detection (ITDR) (`itdr`)
+- File and malware analysis (`malware-analysis`)
 
 ## Pains
 

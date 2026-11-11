@@ -3,8 +3,32 @@ import type { Claim, Product, Source, Vendor } from "../schema";
 // Vendors for categories that had none (2026-11-09). Research candidates only.
 // Every product statement is publisher-reported unless noted. No direct-competitor or parity claims.
 // See docs/market-research/empty-category-vendors-2026-11.md for placement and limits.
+// malware-analysis (Stairwell, 2026-11-11): docs/market-research/file-analysis-ai-investigation-landscape-2026-11.md.
 
 export const categoryFillVendors: Vendor[] = [
+  {
+    "id": "stairwell",
+    "slug": "stairwell",
+    "name": "Stairwell",
+    "formerNames": [],
+    "website": "https://stairwell.com/",
+    "positioning": "Stairwell says it preserves executables from enrolled endpoints in a private environment, re-checks them as new intelligence arrives, and investigates related variants and affected hosts with its Backstory agent.",
+    "primaryCategoryIds": [
+      "malware-analysis"
+    ],
+    "adjacentCategoryIds": [
+      "threat-intelligence",
+      "soar"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Retention, rehunt and variant claims are vendor-reported and untested here.",
+      "Several Stairwell pages describe the company as threat intelligence or an AI SOC; confirm which budget the buyer uses."
+    ]
+  },
   {
     "id": "cribl",
     "slug": "cribl",
@@ -419,6 +443,30 @@ export const categoryFillVendors: Vendor[] = [
 ];
 
 export const categoryFillProducts: Product[] = [
+  {
+    "id": "stairwell-platform",
+    "slug": "stairwell-platform",
+    "vendorId": "stairwell",
+    "name": "Stairwell platform (Backstory)",
+    "positioning": "Stairwell says it preserves executables from enrolled endpoints in a private environment, re-checks them as new intelligence arrives, and investigates related variants and affected hosts with its Backstory agent.",
+    "primaryCategoryIds": [
+      "malware-analysis"
+    ],
+    "adjacentCategoryIds": [
+      "threat-intelligence",
+      "soar"
+    ],
+    "deployment": [
+      "saas"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Per-asset annual pricing with all capabilities included, per Stairwell's pricing page; rates are quoted, not published.",
+    "officialUrl": "https://stairwell.com/store/",
+    "useCaseIds": []
+  },
   {
     "id": "cribl-stream",
     "slug": "cribl-stream",
@@ -855,6 +903,18 @@ export const categoryFillProducts: Product[] = [
 
 export const categoryFillSources: Source[] = [
   {
+    "id": "src-fill-stairwell-store",
+    "title": "Stairwell \u2014 Private file history (Store)",
+    "url": "https://stairwell.com/store/",
+    "canonicalUrl": "https://stairwell.com/store/",
+    "publisher": "Stairwell",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-11",
+    "volatility": "fast",
+    "excerpt": "Stairwell says it preserves every executable from enrolled endpoints in a dedicated environment with no arbitrary retention window."
+  },
+  {
     "id": "src-fill-cribl-stream",
     "title": "Cribl Stream — product page",
     "url": "https://www.cribl.io/stream",
@@ -1133,6 +1193,26 @@ export const categoryFillSources: Source[] = [
 ];
 
 export const categoryFillClaims: Claim[] = [
+  {
+    "id": "claim-fill-stairwell-store",
+    "statement": "Stairwell says it preserves every executable from enrolled endpoints in a dedicated environment with no arbitrary retention window.",
+    "subjectType": "product",
+    "subjectId": "stairwell-platform",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-stairwell-store",
+    "sourceUrl": "https://stairwell.com/store/",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-11",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-11",
+    "conflictsWith": [],
+    "notes": "Publisher-reported, not independently tested; no direct-competitor claim. See docs/market-research/file-analysis-ai-investigation-landscape-2026-11.md."
+  },
   {
     "id": "claim-fill-cribl-stream",
     "statement": "Cribl markets Stream to collect, reduce, enrich and route telemetry from any source to any tool in the right format.",
