@@ -13,6 +13,32 @@
 
 **Proposed zoom-level placement:** broad market → endpoint detection and response / threat detection and investigation categories → incident as buyer-problem context. No navigation or UI change is proposed.
 
+## Source policy for this intake
+
+Per the [source registry](source-registry.md), news and vendor research are recorded as **context, not verified incident facts**. Keep them, labeled `secondary`, because they carry details primary sources often omit (threat-actor claims, figures, timelines). An incident moves toward seed import only on a primary source: company statement, regulator filing or government alert.
+
+## Primary source status (checked 2026-11-11)
+
+| Incident | Primary source found | Source | What it supports | Gap |
+| --- | --- | --- | --- | --- |
+| Binance | Yes (company) | [Binance preliminary report, Binance Square](https://www.binance.com/square/post/384314395829022); [Binance on X](https://x.com/binance/status/2117626126214504729) | Incident on Oct 29 UTC (report says Oct 30 UTC+8); preliminary report, findings subject to independent review; 0-day malware not detected by endpoint tools (X update) | Report is preliminary; record both UTC and UTC+8 dates |
+| West Pharmaceutical | Yes (SEC filing) | [Form 8-K, sec.gov](https://www.sec.gov/Archives/edgar/data/0000105770/000010577026000068/wst-20260507.htm); [Exhibit 99.1 website statement](https://www.sec.gov/Archives/edgar/data/0000105770/000010577026000068/westcompanyalertswebsite.htm); [8-K/A, May 20 2026](https://investor.westpharma.com/static-files/2b757d1f-a6e3-40f7-b4f1-8897d13d4b02) | Intrusion detected May 4; material determination May 7; data exfiltrated and systems encrypted; global disruption; 8-K/A says no unauthorized activity observed since May 5 | Threat actor not disclosed |
+| Novo Nordisk | Yes (company release, republished) | [Company announcement via Investegate/GlobeNewswire, 11 Jun 2026](https://www.investegate.co.uk/announcement/gnw/novo-nordisk-a-s-class-b--0qiu/novo-nordisk-a-s-it-security-incident-at-nov-/9614494) | Unauthorized access to a limited number of internal IT systems; non-public data incl. personal data copied externally | Dwell time, 1.3 TB and $25M demand remain threat-actor claims |
+| Crédit Mutuel Arkéa | Named, URL not captured | Press release "Crédit Mutuel Arkéa annonce avoir été victime d'une cyberattaque," 4 Nov 2026 (cited by [Leto](https://www.leto.legal/news/credit-mutuel-arkea-fortuneo-cyberattaque-operations-frauduleuses-2026)) | Fraudulent operations; incident contained; customer assets not affected; some transfers delayed | Capture the release and FAQ from arkea.com; amount (€118M order of magnitude per second release, per press) unconfirmed exactly |
+| AstraZeneca | No | None. Company had not confirmed as of late March 2026 per [Bitdefender](https://www.bitdefender.com/en-gb/blog/hotforsecurity/lapsus-astrazeneca-breach) and [SecurityWeek](https://www.securityweek.com/extortion-group-claims-it-hacked-astrazeneca/amp/) | Threat-actor claim only | Recommend holding as `epistemicStatus: unknown` or dropping until confirmed |
+
+### Proposed source records (not yet in `sources.seed.json`)
+
+```json
+[
+  { "id": "source:binance-incident-report-2026", "publisher": "Binance", "type": "company_statement", "url": "https://www.binance.com/square/post/384314395829022", "publishedOn": "2026-11-03", "lastReviewedOn": null, "cadence": "event_driven", "rightsNote": "Store citation and limited summary; check Binance terms." },
+  { "id": "source:sec-wst-8k-2026", "publisher": "U.S. SEC (West Pharmaceutical Services filing)", "type": "regulatory_filing", "url": "https://www.sec.gov/Archives/edgar/data/0000105770/000010577026000068/wst-20260507.htm", "publishedOn": "2026-05-11", "lastReviewedOn": null, "cadence": "event_driven", "rightsNote": "Public filing; store citation and limited summary." },
+  { "id": "source:novo-nordisk-it-incident-2026", "publisher": "Novo Nordisk A/S (via GlobeNewswire)", "type": "company_statement", "url": "https://www.investegate.co.uk/announcement/gnw/novo-nordisk-a-s-class-b--0qiu/novo-nordisk-a-s-it-security-incident-at-nov-/9614494", "publishedOn": "2026-06-11", "lastReviewedOn": null, "cadence": "event_driven", "rightsNote": "Prefer the novonordisk.com original once captured; store citation and limited summary." }
+]
+```
+
+`lastReviewedOn` stays null until a named reviewer checks each record; the seed test requires a real date, so these are not importable as-is. `company_statement` and `regulatory_filing` are proposed new `type` values; the current seed uses `government_alert`, `reference_dataset` and `vulnerability_api`. The West 8-K `publishedOn` is the filing date reported by secondary sources (May 11); the report date is May 7. Verify on EDGAR.
+
 ## Candidate entries
 
 ### 1. Binance internal wallet signing compromise
