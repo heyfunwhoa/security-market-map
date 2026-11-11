@@ -14,8 +14,8 @@
 - **Zoom in — buyer decision:** "An alert fired on a file. Is it malicious, what else is related, where did it spread, and did we get everything?"
 - **Back out:** related SOC automation and MSSP/MDR layers are mapped in [Agentic SecOps and MSSP/MDR landscape](agentic-secops-competitive-landscape.md). Do not duplicate those vendor records here.
 - **Reused IDs:** `reversinglabs` already exists as a vendor (secrets sweep). Its file-analysis products would be new product records under that vendor, not a new vendor. No other vendors below exist in the catalog (searched 2026-11-11).
-- **Navigation change:** none; the category appears through existing category and seat pages. Layer 3 (AI SOC investigation) is **not** a typed category yet; it overlaps `soar` and needs a separate taxonomy decision.
-- **Typed records added:** Stairwell vendor/product as `research_candidate` with one vendor-published claim (SW1). Other vendors stay research-only until their official pages are inspected.
+- **Navigation change:** none; the category appears through existing category and seat pages. Layer 3 is now the typed category `ai-soc-investigation` ("AI SOC investigation"), defined against `soar` (fixed playbooks) and `mdr` (people under contract), and linked from the `soc-lead`, `soc-analyst` and `incident-response` seats.
+- **Typed records added (all `research_candidate`, one vendor-published claim each, official page inspected 2026-11-11):** Stairwell, ReversingLabs Spectra Analyze (existing `reversinglabs` vendor), VirusTotal (existing `google` vendor) in `malware-analysis`; Prophet Security, Dropzone AI, Intezer in `ai-soc-investigation`. Torq, sandboxes, GLIMPS, Threatray and others stay research-only until their official pages are inspected.
 
 ## Plain definition
 
@@ -25,9 +25,9 @@
 
 | Vendor / product | Positioning (source-attributed) | Relationship to buyer decision | Evidence status |
 | --- | --- | --- | --- |
-| Google VirusTotal | Widely used file/URL reputation and analysis service | Incumbent/no-decision for many SOCs; partial overlap | Secondary (directory/review listings); official docs not inspected for this note |
-| ReversingLabs (Spectra Analyze / Spectra Detect) | Says it offers deeper file intelligence than VirusTotal using AI-driven and proprietary static and dynamic techniques [RL1] | Partial overlap | Vendor-published via reseller page; product pages not inspected |
-| Intezer | Malware analysis using code-reuse ("genetic") analysis [CT1]; also sells an AI SOC (Layer 3) | Partial overlap in Layers 1 and 3 | Secondary directory; official pages not inspected |
+| Google VirusTotal | Widely used file/URL reputation and analysis service | Incumbent/no-decision for many SOCs; partial overlap | Official upload page inspected 2026-11-11 (OF5) |
+| ReversingLabs (Spectra Analyze / Spectra Detect) | Says it offers deeper file intelligence than VirusTotal using AI-driven and proprietary static and dynamic techniques [RL1] | Partial overlap | Official product page inspected 2026-11-11 (OF4); reseller comparison is vendor-published |
+| Intezer | Malware analysis using code-reuse ("genetic") analysis [CT1]; also sells an AI SOC (Layer 3) | Partial overlap in Layers 1 and 3 | Official homepage inspected 2026-11-11 (OF3); now positions primarily as AI SOC |
 | ANY.RUN, VMRay, OPSWAT MetaDefender Sandbox | Sandbox / dynamic analysis [CT1, CT2] | Partial overlap or complementary (different method) | Secondary directory |
 | Threatray | AI-driven binary code search and malware family attribution [CT3] | Partial overlap (variant/family) | Secondary directory |
 
@@ -44,8 +44,8 @@ Note: VirusTotal and ReversingLabs also offer retrohunt over *their* corpora. Wh
 
 | Vendor | Public context | Relationship | Evidence status |
 | --- | --- | --- | --- |
-| Prophet Security | $30M Series A, Accel-led, July 2025 [MS1]; one report cites an AWS Marketplace entry tier of ~$50K/year for 5,000 investigations [TI1] | Partial overlap with Backstory's investigation step | Secondary; marketplace listing not inspected |
-| Dropzone AI | $37M Series B, Theory Ventures, July 2025 [MS1]; autonomous triage on an existing stack | Partial overlap | Secondary |
+| Prophet Security | $30M Series A, Accel-led, July 2025 [MS1]; one report cites an AWS Marketplace entry tier of ~$50K/year for 5,000 investigations [TI1] | Partial overlap with Backstory's investigation step | Official homepage inspected 2026-11-11 (OF1); funding/pricing secondary; marketplace listing not inspected |
+| Dropzone AI | $37M Series B, Theory Ventures, July 2025 [MS1]; markets AI agents that investigate alerts, hunt and respond on existing tools [OF2] | Partial overlap | Official homepage inspected 2026-11-11 (OF2); funding secondary |
 | Torq | $140M Series D at $1.2B valuation, January 2026 [MS1] | Partial overlap; also in [agentic SecOps note](agentic-secops-competitive-landscape.md) | Secondary |
 | Intezer | AI SOC combining agentic triage with forensic tools [ID1] | Partial overlap | Vendor-published (competitor-authored) |
 | Others named in 2026 roundups | BlinkOps, Swimlane, Exaforce, D3 Security, Radiant Security, Conifers, 7AI, Command Zero [BO1, MS1] | Candidates only | Secondary; several roundups are vendor-authored |
@@ -83,12 +83,17 @@ Direct win/loss frequency; which layer buyers budget from; ReversingLabs/VirusTo
 | TI1 | Tech Insider — Prophet vs Dropzone vs Radiant | https://tech-insider.org/?p=22875 | Secondary | 2026-11-11 |
 | BO1 | BlinkOps — Top 10 AI SOC vendors 2026 | https://www.blinkops.com/blog/top-10-ai-soc-vendors-in-2026-a-practitioners-comparison | Vendor-authored roundup | 2026-11-11 |
 | ID1 | Intezer — Dropzone AI alternatives | https://intezer.com/?p=53916 | Competitor-authored | 2026-11-11 |
+| OF1 | Prophet Security — homepage | https://www.prophetsecurity.ai/ | Vendor | 2026-11-11 |
+| OF2 | Dropzone AI — homepage | https://www.dropzone.ai/ | Vendor | 2026-11-11 |
+| OF3 | Intezer — homepage | https://intezer.com/ | Vendor | 2026-11-11 |
+| OF4 | ReversingLabs — Spectra Analyze | https://www.reversinglabs.com/products/spectra-analyze | Vendor | 2026-11-11 |
+| OF5 | VirusTotal — upload page | https://www.virustotal.com/gui/home/upload | Vendor service | 2026-11-11 |
 | NH1 | NHI Mgmt Group — agentic SOC labels (summarizing Prophet) | https://nhimg.org/articles/the-agentic-soc-is-here-but-capability-labels-no-longer-help-buyers/ | Secondary of vendor view | 2026-11-11 |
 
 Rights: short paraphrase only; no reproduced vendor copy.
 
 ## Consumer disposition
 
-- **Security Market Map catalog:** `malware-analysis` category + Stairwell research candidate added; other vendors deferred until official-source inspection.
+- **Security Market Map catalog:** `malware-analysis` and `ai-soc-investigation` categories added with six research-candidate products; remaining vendors deferred until official-source inspection.
 - **Career Command Center (Joy Index):** proposed read-only reference for an active opportunity; private owner decides. No private facts here.
 - **Account Signal Engine / GTM Revenue OS / Builder Academy:** no change.

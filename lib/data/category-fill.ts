@@ -3,9 +3,78 @@ import type { Claim, Product, Source, Vendor } from "../schema";
 // Vendors for categories that had none (2026-11-09). Research candidates only.
 // Every product statement is publisher-reported unless noted. No direct-competitor or parity claims.
 // See docs/market-research/empty-category-vendors-2026-11.md for placement and limits.
-// malware-analysis (Stairwell, 2026-11-11): docs/market-research/file-analysis-ai-investigation-landscape-2026-11.md.
+// malware-analysis and ai-soc-investigation (Stairwell, ReversingLabs, VirusTotal, Prophet, Dropzone, Intezer; 2026-11-11): docs/market-research/file-analysis-ai-investigation-landscape-2026-11.md.
 
 export const categoryFillVendors: Vendor[] = [
+  {
+    "id": "prophet-security",
+    "slug": "prophet-security",
+    "name": "Prophet Security",
+    "formerNames": [],
+    "website": "https://www.prophetsecurity.ai/",
+    "positioning": "Prophet Security markets an AI SOC platform that automates alert triage, investigations, response, threat hunting and detection engineering.",
+    "primaryCategoryIds": [
+      "ai-soc-investigation"
+    ],
+    "adjacentCategoryIds": [
+      "soar",
+      "detection-engineering"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Investigation quality, autonomy limits and supported integrations are vendor-reported and untested here.",
+      "Which pricing model, deployment and integrations fit the buyer's environment?"
+    ]
+  },
+  {
+    "id": "dropzone-ai",
+    "slug": "dropzone-ai",
+    "name": "Dropzone AI",
+    "formerNames": [],
+    "website": "https://www.dropzone.ai/",
+    "positioning": "Dropzone AI markets AI agents that investigate alerts, hunt attackers and respond to emerging threats on top of existing security tools.",
+    "primaryCategoryIds": [
+      "ai-soc-investigation"
+    ],
+    "adjacentCategoryIds": [
+      "soar",
+      "threat-intelligence"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Investigation quality, autonomy limits and supported integrations are vendor-reported and untested here.",
+      "Which pricing model, deployment and integrations fit the buyer's environment?"
+    ]
+  },
+  {
+    "id": "intezer",
+    "slug": "intezer",
+    "name": "Intezer",
+    "formerNames": [],
+    "website": "https://intezer.com/",
+    "positioning": "Intezer markets an enterprise AI SOC that investigates alerts at forensic depth, with roots in malware code analysis.",
+    "primaryCategoryIds": [
+      "ai-soc-investigation"
+    ],
+    "adjacentCategoryIds": [
+      "malware-analysis",
+      "soar"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Investigation quality, autonomy limits and supported integrations are vendor-reported and untested here.",
+      "Which pricing model, deployment and integrations fit the buyer's environment?"
+    ]
+  },
   {
     "id": "stairwell",
     "slug": "stairwell",
@@ -18,7 +87,8 @@ export const categoryFillVendors: Vendor[] = [
     ],
     "adjacentCategoryIds": [
       "threat-intelligence",
-      "soar"
+      "soar",
+      "ai-soc-investigation"
     ],
     "identityScopes": [
       "not_an_identity_control"
@@ -444,6 +514,124 @@ export const categoryFillVendors: Vendor[] = [
 
 export const categoryFillProducts: Product[] = [
   {
+    "id": "prophet-ai-soc",
+    "slug": "prophet-ai-soc",
+    "vendorId": "prophet-security",
+    "name": "Prophet AI SOC Platform",
+    "positioning": "Prophet Security markets an AI SOC platform that automates alert triage, investigations, response, threat hunting and detection engineering.",
+    "primaryCategoryIds": [
+      "ai-soc-investigation"
+    ],
+    "adjacentCategoryIds": [
+      "soar",
+      "detection-engineering"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Editions and deployment not verified here.",
+    "officialUrl": "https://www.prophetsecurity.ai/",
+    "useCaseIds": []
+  },
+  {
+    "id": "dropzone-ai-soc",
+    "slug": "dropzone-ai-soc",
+    "vendorId": "dropzone-ai",
+    "name": "Dropzone AI SOC agents",
+    "positioning": "Dropzone AI markets AI agents that investigate alerts, hunt attackers and respond to emerging threats on top of existing security tools.",
+    "primaryCategoryIds": [
+      "ai-soc-investigation"
+    ],
+    "adjacentCategoryIds": [
+      "soar",
+      "threat-intelligence"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Editions and deployment not verified here.",
+    "officialUrl": "https://www.dropzone.ai/",
+    "useCaseIds": []
+  },
+  {
+    "id": "intezer-ai-soc",
+    "slug": "intezer-ai-soc",
+    "vendorId": "intezer",
+    "name": "Intezer AI SOC",
+    "positioning": "Intezer markets an enterprise AI SOC that investigates alerts at forensic depth, with roots in malware code analysis.",
+    "primaryCategoryIds": [
+      "ai-soc-investigation"
+    ],
+    "adjacentCategoryIds": [
+      "malware-analysis",
+      "soar"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Editions and deployment not verified here.",
+    "officialUrl": "https://intezer.com/",
+    "useCaseIds": []
+  },
+  {
+    "id": "reversinglabs-spectra-analyze",
+    "slug": "reversinglabs-spectra-analyze",
+    "vendorId": "reversinglabs",
+    "name": "ReversingLabs Spectra Analyze",
+    "positioning": "ReversingLabs markets Spectra Analyze for SOC malware analysis using static binary and dynamic analysis, threat hunting and YARA support.",
+    "primaryCategoryIds": [
+      "malware-analysis"
+    ],
+    "adjacentCategoryIds": [
+      "threat-intelligence"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Deployment options not verified here.",
+    "officialUrl": "https://www.reversinglabs.com/products/spectra-analyze",
+    "useCaseIds": []
+  },
+  {
+    "id": "virustotal",
+    "slug": "virustotal",
+    "vendorId": "google",
+    "name": "VirusTotal",
+    "positioning": "VirusTotal accepts file, URL and other submissions for malware analysis, with search and an API for automated submissions.",
+    "primaryCategoryIds": [
+      "malware-analysis"
+    ],
+    "adjacentCategoryIds": [
+      "threat-intelligence"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Free public service and paid enterprise tiers; tier features not verified here. Public submissions are subject to VirusTotal's terms and privacy notice.",
+    "officialUrl": "https://www.virustotal.com/",
+    "useCaseIds": []
+  },
+  {
     "id": "stairwell-platform",
     "slug": "stairwell-platform",
     "vendorId": "stairwell",
@@ -454,7 +642,8 @@ export const categoryFillProducts: Product[] = [
     ],
     "adjacentCategoryIds": [
       "threat-intelligence",
-      "soar"
+      "soar",
+      "ai-soc-investigation"
     ],
     "deployment": [
       "saas"
@@ -903,6 +1092,66 @@ export const categoryFillProducts: Product[] = [
 
 export const categoryFillSources: Source[] = [
   {
+    "id": "src-fill-prophet-ai-soc",
+    "title": "Prophet Security \u2014 homepage",
+    "url": "https://www.prophetsecurity.ai/",
+    "canonicalUrl": "https://www.prophetsecurity.ai/",
+    "publisher": "Prophet Security",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-11",
+    "volatility": "fast",
+    "excerpt": "Prophet Security says its AI SOC Platform automates alert triage, investigations, response, threat hunting and detection engineering."
+  },
+  {
+    "id": "src-fill-dropzone-ai-soc",
+    "title": "Dropzone AI \u2014 homepage",
+    "url": "https://www.dropzone.ai/",
+    "canonicalUrl": "https://www.dropzone.ai/",
+    "publisher": "Dropzone AI",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-11",
+    "volatility": "fast",
+    "excerpt": "Dropzone AI describes AI agents that investigate every alert, hunt attackers and respond to emerging threats, guided by the customer."
+  },
+  {
+    "id": "src-fill-intezer-ai-soc",
+    "title": "Intezer \u2014 homepage",
+    "url": "https://intezer.com/",
+    "canonicalUrl": "https://intezer.com/",
+    "publisher": "Intezer",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-11",
+    "volatility": "fast",
+    "excerpt": "Intezer says its AI SOC investigates all alerts at forensic depth, escalates fewer than 2% to a human and returns verdicts in under a minute."
+  },
+  {
+    "id": "src-fill-reversinglabs-spectra-analyze",
+    "title": "ReversingLabs Spectra Analyze \u2014 product page",
+    "url": "https://www.reversinglabs.com/products/spectra-analyze",
+    "canonicalUrl": "https://www.reversinglabs.com/products/spectra-analyze",
+    "publisher": "ReversingLabs",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-11",
+    "volatility": "fast",
+    "excerpt": "ReversingLabs says Spectra Analyze analyzes malware with static binary and dynamic analysis built for the SOC, with threat hunting and YARA support."
+  },
+  {
+    "id": "src-fill-virustotal",
+    "title": "VirusTotal \u2014 upload page",
+    "url": "https://www.virustotal.com/gui/home/upload",
+    "canonicalUrl": "https://www.virustotal.com/gui/home/upload",
+    "publisher": "VirusTotal (Google)",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-11",
+    "volatility": "fast",
+    "excerpt": "VirusTotal's upload page accepts file and URL submissions for analysis under its terms of service and privacy notice, with an API for automated submissions."
+  },
+  {
     "id": "src-fill-stairwell-store",
     "title": "Stairwell \u2014 Private file history (Store)",
     "url": "https://stairwell.com/store/",
@@ -1193,6 +1442,106 @@ export const categoryFillSources: Source[] = [
 ];
 
 export const categoryFillClaims: Claim[] = [
+  {
+    "id": "claim-fill-prophet-ai-soc",
+    "statement": "Prophet Security says its AI SOC Platform automates alert triage, investigations, response, threat hunting and detection engineering.",
+    "subjectType": "product",
+    "subjectId": "prophet-ai-soc",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-prophet-ai-soc",
+    "sourceUrl": "https://www.prophetsecurity.ai/",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-11",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-11",
+    "conflictsWith": [],
+    "notes": "Publisher-reported, not independently tested; no direct-competitor or parity claim. See docs/market-research/file-analysis-ai-investigation-landscape-2026-11.md."
+  },
+  {
+    "id": "claim-fill-dropzone-ai-soc",
+    "statement": "Dropzone AI describes AI agents that investigate every alert, hunt attackers and respond to emerging threats, guided by the customer.",
+    "subjectType": "product",
+    "subjectId": "dropzone-ai-soc",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-dropzone-ai-soc",
+    "sourceUrl": "https://www.dropzone.ai/",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-11",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-11",
+    "conflictsWith": [],
+    "notes": "Publisher-reported, not independently tested; no direct-competitor or parity claim. See docs/market-research/file-analysis-ai-investigation-landscape-2026-11.md."
+  },
+  {
+    "id": "claim-fill-intezer-ai-soc",
+    "statement": "Intezer says its AI SOC investigates all alerts at forensic depth, escalates fewer than 2% to a human and returns verdicts in under a minute.",
+    "subjectType": "product",
+    "subjectId": "intezer-ai-soc",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-intezer-ai-soc",
+    "sourceUrl": "https://intezer.com/",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-11",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-11",
+    "conflictsWith": [],
+    "notes": "Publisher-reported, not independently tested; no direct-competitor or parity claim. See docs/market-research/file-analysis-ai-investigation-landscape-2026-11.md."
+  },
+  {
+    "id": "claim-fill-reversinglabs-spectra-analyze",
+    "statement": "ReversingLabs says Spectra Analyze analyzes malware with static binary and dynamic analysis built for the SOC, with threat hunting and YARA support.",
+    "subjectType": "product",
+    "subjectId": "reversinglabs-spectra-analyze",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-reversinglabs-spectra-analyze",
+    "sourceUrl": "https://www.reversinglabs.com/products/spectra-analyze",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-11",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-11",
+    "conflictsWith": [],
+    "notes": "Publisher-reported, not independently tested; no direct-competitor or parity claim. See docs/market-research/file-analysis-ai-investigation-landscape-2026-11.md."
+  },
+  {
+    "id": "claim-fill-virustotal",
+    "statement": "VirusTotal's upload page accepts file and URL submissions for analysis under its terms of service and privacy notice, with an API for automated submissions.",
+    "subjectType": "product",
+    "subjectId": "virustotal",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-virustotal",
+    "sourceUrl": "https://www.virustotal.com/gui/home/upload",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-11-11",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-11",
+    "conflictsWith": [],
+    "notes": "Publisher-reported, not independently tested; no direct-competitor or parity claim. See docs/market-research/file-analysis-ai-investigation-landscape-2026-11.md."
+  },
   {
     "id": "claim-fill-stairwell-store",
     "statement": "Stairwell says it preserves every executable from enrolled endpoints in a dedicated environment with no arbitrary retention window.",

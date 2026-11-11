@@ -28,6 +28,7 @@ Investigate, analyze, and respond to incidents; contain.
 - Endpoint security (`endpoint-security`)
 - Identity threat detection (ITDR) (`itdr`)
 - File and malware analysis (`malware-analysis`)
+- AI SOC investigation (`ai-soc-investigation`)
 
 ## Pains
 

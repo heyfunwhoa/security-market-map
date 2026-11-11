@@ -1092,7 +1092,7 @@ export const ecosystemCategories: Category[] = [
     budgetSource: "SecOps. Sometimes bundled with threat intelligence or an EDR renewal; verify with the buyer.",
     triggers: ["Analysts pasting hashes into public lookup sites", "A new campaign report", "Sandbox backlog", "Concern about uploading internal binaries publicly"],
     outcomes: ["An explained verdict per file", "Related variants identified", "Known presence or absence in the estate"],
-    adjacentCategoryIds: ["threat-intelligence", "soar", "xdr", "endpoint-security", "detection-engineering"],
+    adjacentCategoryIds: ["threat-intelligence", "soar", "xdr", "endpoint-security", "detection-engineering", "ai-soc-investigation"],
     exampleWorkflow:
       "An EDR alert names an unknown executable. The analyst gets a verdict and a plain explanation, finds related variants, and checks which hosts have seen any of them before deciding what to contain.",
     flow: {
@@ -1102,6 +1102,30 @@ export const ecosystemCategories: Category[] = [
       decision: "Static or dynamic analysis, signatures, similarity and prevalence",
       action: "Classify the file and hand related files and hosts to response",
       evidence: "The analysis report, rule matches and sightings across hosts",
+    },
+  }),
+  category({
+    id: "ai-soc-investigation",
+    name: "AI SOC investigation",
+    group: "secops",
+    domainIds: ["secops"],
+    definition:
+      "AI agents that investigate alerts end to end: pull context from the tools already in place, reach a verdict with the evidence behind it, and recommend or take a response step. SOAR follows fixed playbook steps; MDR is people under contract. The label is broad, so confirm whether a product actually investigates, only enriches, or generates workflows.",
+    buyerQuestion: "Which alerts can an AI agent investigate to a defensible verdict, and which actions may it take without a person?",
+    buyerOwner: "SOC manager or head of security operations.",
+    budgetSource: "SecOps, sometimes funded from analyst headcount, SOAR or MDR spend. Pricing models differ (per investigation, per alert volume, per asset); confirm before comparing.",
+    triggers: ["Alert backlog the team cannot clear", "Analyst hiring freeze", "SOAR playbooks that are hard to maintain", "MDR renewal"],
+    outcomes: ["Every alert investigated with a recorded reason", "Fewer escalations to humans", "Approved limits on automated response"],
+    adjacentCategoryIds: ["soar", "siem", "mdr", "xdr", "malware-analysis"],
+    exampleWorkflow:
+      "An EDR alert arrives. The agent queries the EDR, identity provider and SIEM, writes up what happened, marks it benign or malicious, and asks an analyst before isolating the host.",
+    flow: {
+      actor: "AI agent supervised by an analyst",
+      credential: "API access to the security tools it queries",
+      permission: "Which tools it may read and which actions it may take",
+      decision: "Agent reasoning plus human approval rules",
+      action: "Close, escalate or contain",
+      evidence: "The investigation record: sources queried, steps taken, verdict and approvals",
     },
   }),
   category({
@@ -1878,7 +1902,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "What may a playbook disable without human approval?",
       "Is the pain coverage, noise, or staffing for investigations?",
     ],
-    categoryIds: ["siem", "soar", "itdr", "cloud-detection", "xdr", "mdr"],
+    categoryIds: ["siem", "soar", "itdr", "cloud-detection", "xdr", "mdr", "ai-soc-investigation"],
     aliases: [
       "SOC",
       "Security operations center manager",
@@ -1980,7 +2004,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "Which tools do you open for every Tier-1 case?",
       "What forces an immediate escalation?",
     ],
-    categoryIds: ["siem", "xdr", "soar", "endpoint-security", "cloud-detection"],
+    categoryIds: ["siem", "xdr", "soar", "endpoint-security", "cloud-detection", "ai-soc-investigation", "malware-analysis"],
     aliases: [
       "SOC analyst",
       "Tier 1 analyst",
@@ -2000,7 +2024,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "What evidence must survive for forensics or legal?",
       "Where do identity and endpoint actions get approved?",
     ],
-    categoryIds: ["soar", "siem", "xdr", "mdr", "endpoint-security", "itdr", "malware-analysis"],
+    categoryIds: ["soar", "siem", "xdr", "mdr", "endpoint-security", "itdr", "malware-analysis", "ai-soc-investigation"],
     aliases: [
       "IR",
       "Incident response",

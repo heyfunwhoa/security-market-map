@@ -26,6 +26,7 @@ Own queue outcomes, coverage, staffing, and approval of safe automation.
 - Cloud detection and response (`cloud-detection`)
 - Extended detection and response (`xdr`)
 - Managed detection and response (`mdr`)
+- AI SOC investigation (`ai-soc-investigation`)
 
 ## Pains
 

@@ -24,6 +24,8 @@ Tier-1 triage: decide whether an alert is justified and when to escalate.
 - SOAR and response automation (`soar`)
 - Endpoint security (`endpoint-security`)
 - Cloud detection and response (`cloud-detection`)
+- AI SOC investigation (`ai-soc-investigation`)
+- File and malware analysis (`malware-analysis`)
 
 ## Pains
 
