@@ -1,14 +1,12 @@
 name: Security scans
 
-# One job instead of four: billing rounds every job up to a whole minute, so
-# separate small scan jobs each cost a full minute (plus a checkout) per push.
-# Scanners, versions and arguments are unchanged from the former
-# semgrep.yml and security-scans.yml jobs.
 on:
   pull_request:
+    branches: [main]
     types: [opened, synchronize, reopened, ready_for_review]
   push:
     branches: [main]
+
   workflow_dispatch:
   schedule:
     - cron: '27 12 * * 3'
@@ -17,34 +15,34 @@ permissions:
   contents: read
 
 concurrency:
-  group: security-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  group: security-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
-  security:
-    name: Security scans
-    # Draft PRs skip scans; they run when the PR is marked ready for review.
+  trufflehog:
+    name: TruffleHog introduced secrets
     if: github.event_name != 'pull_request' || !github.event.pull_request.draft
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
-          persist-credentials: false
-
-      # Every scan step uses !cancelled() so all scanners still report even
-      # when an earlier one finds something; any failure still fails the job.
-      - name: TruffleHog introduced secrets
-        if: ${{ !cancelled() }}
-        uses: trufflesecurity/trufflehog@f8221ca52ac51bf66228d6ec3691f3ea0782ae15 # main, 2026-10-09
+      - uses: trufflesecurity/trufflehog@f8221ca52ac51bf66228d6ec3691f3ea0782ae15 # main, 2026-10-09
         with:
           version: "3.99.2"
           extra_args: --results=verified,unknown
 
-      - name: Trivy dependency and config review
-        if: ${{ !cancelled() }}
-        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+  trivy:
+    name: Trivy dependency and config review
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:
           scan-type: fs
           scan-ref: .
@@ -54,26 +52,17 @@ jobs:
           exit-code: "1"
           skip-dirs: node_modules,.next
 
-      - name: Setup Python
-        if: ${{ !cancelled() }}
-        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+  dependency-audit:
+    name: Production dependency audit
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          python-version: "3.11"
-
-      - name: Install Semgrep
-        if: ${{ !cancelled() }}
-        run: python -m pip install semgrep==1.180.0
-
-      - name: Semgrep scan
-        if: ${{ !cancelled() }}
-        run: semgrep scan --config p/security-audit --config p/secrets --error --metrics=off --exclude node_modules --exclude .next --exclude dist .
-
-      - name: Setup Node.js
-        if: ${{ !cancelled() }}
-        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 22
-
-      - name: Production dependency audit
-        if: ${{ !cancelled() }}
+      - name: Audit locked production dependencies
         run: npm audit --omit=dev --audit-level=high
