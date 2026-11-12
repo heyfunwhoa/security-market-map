@@ -2,6 +2,7 @@ name: Security intelligence schema validation
 on:
   pull_request:
     branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
     paths:
       - 'db/security-intelligence/**'
       - '.github/workflows/security-intelligence-schema.yml'
@@ -14,9 +15,15 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   postgres-schema:
     name: PostgreSQL migration and integrity tests
+    # Draft PRs skip this; it runs when the PR is marked ready for review.
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
     runs-on: ubuntu-latest
     timeout-minutes: 12
     services:
