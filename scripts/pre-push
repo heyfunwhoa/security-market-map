@@ -1,0 +1,14 @@
+#!/bin/sh
+# Pre-push hook: run the slower checks once per push instead of on every commit.
+# Draft PRs skip CI, so this is what checks a draft. Same commands as CI, minus the build.
+# This file is tracked in scripts/ and installed by npm prepare.
+
+echo "Running pre-push checks..."
+
+npm run --silent test:research-integrity >/dev/null || { echo "❌ Research integrity tests failed."; exit 1; }
+npm test --silent || { echo "❌ Tests failed. Fix them before pushing."; exit 1; }
+npx next typegen >/dev/null && npm run --silent typecheck || { echo "❌ Typecheck failed."; exit 1; }
+npm run --silent lint || { echo "❌ ESLint failed. Fix the issues above before pushing."; exit 1; }
+node --test .release/preflight.node-check.mjs .release/vercel-ignore.node-check.mjs .release/preview-draft.node-check.mjs >/dev/null || { echo "❌ Release policy tests failed."; exit 1; }
+
+echo "✅ Pre-push checks passed."

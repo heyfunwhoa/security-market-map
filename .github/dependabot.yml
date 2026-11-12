@@ -3,8 +3,8 @@ updates:
   - package-ecosystem: npm
     directory: /
     schedule:
-      interval: weekly
-    open-pull-requests-limit: 5
+      interval: monthly
+    open-pull-requests-limit: 2
     ignore:
       # Keep @types/node on the major that matches the Node.js runtime in CI.
       # Raise it together with node-version, not on its own.
@@ -16,8 +16,14 @@ updates:
         patterns: ["react", "react-dom", "@types/react", "@types/react-dom"]
       nextjs:
         patterns: ["next", "eslint-config-next", "@next/*"]
+      # Everything else in one monthly PR to cut CI runs.
+      npm-dependencies:
+        patterns: ["*"]
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: weekly
-    open-pull-requests-limit: 3
+      interval: monthly
+    open-pull-requests-limit: 1
+    groups:
+      github-actions:
+        patterns: ["*"]

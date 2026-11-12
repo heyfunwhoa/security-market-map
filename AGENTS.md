@@ -41,3 +41,10 @@ For scoped agent work, use the proposed [focused-session procedure](https://gith
 ## Release handoff
 
 For preview, merge and deployment work, read [RELEASE.md](RELEASE.md). Batch related changes into review checkpoints, preserve required tests and private/local-only boundaries, and hand off the exact PR head and evidence to the designated release operator. Do not introduce a second deploy pipeline or treat a successful preflight as merge authorization.
+
+## Working rules for AI coding assistants
+
+- **Open pull requests as drafts** while you're still working. CI skips drafts; mark the PR ready for review when the work is done and the local checks pass. Don't push a stream of small commits to a ready PR — each push to a ready PR bills CI minutes.
+- **Let the git hooks run.** Never use `--no-verify` (or `-n`) on `git commit` or `git push`. If a hook fails, fix the cause. If the secret scan blocks a commit, remove the secret; don't work around the scan.
+- **Never put a secret in the repo, a commit, a chat message, a ticket, a log, or agent settings** (such as `.mcp.json` or `.env` files that get committed). Read keys from the secret manager or environment variables. If a real key was ever written somewhere it shouldn't be, say so — it has to be rotated, not just deleted.
+- **Run the repo's local checks before pushing**, since draft PRs get no CI run.
