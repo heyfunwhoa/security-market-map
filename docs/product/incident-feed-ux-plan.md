@@ -177,3 +177,32 @@ Phase 1 adds no dependencies.
 | 3 | Account prep pack: category + incidents + talk tracks exported to markdown, reusing `lib/context-md.ts` | 2 days | High for sellers |
 | 3 | Category timeline (visx or SVG), once there are 20 or more reviewed incidents | 2 days | Medium |
 | 3 | TanStack Table feed view, once there are more than 50 incidents | 1 day | Medium |
+
+## Reviewer guide
+
+Agent-drafted content starts unpublished or labelled Draft. A human reviewer approves it by editing two data files. No code changes are needed.
+
+### Talk tracks (`data/security-intelligence/sales-notes.json`)
+
+For each note:
+
+1. Open the incident's source (the `basedOnSourceIds` entry in `sources.seed.json`) and confirm the `headline` says only what that source says.
+2. Rewrite `headline` and `discoveryQuestion` in your own voice. Keep `avoid` honest about what the record does not support.
+3. Approve it by setting `"status": "reviewed"`, `"reviewedBy": "<your name>"` and `"reviewedOn": "YYYY-MM-DD"`. The Draft pill and the "(Draft, not editorially reviewed)" suffix in copied text then disappear.
+4. If you can't stand behind a note, delete the entry. The page then shows "No talk track yet."
+
+### Incident → category links (`data/security-intelligence/incident-category-links.json`)
+
+Links follow [relationship vocabulary](../security-intelligence/relationship-vocabulary.md): `related_to` with an explicit rationale, never a causal or prevention claim. For each link, approve it only if all of these hold:
+
+- The cited source supports the `rationale`. A shared word between the incident and the category name is not enough.
+- A buyer of that category would recognise the incident as the risk they pay to address.
+- `doesNotImply` rules out the overclaim a seller is most likely to make.
+
+Then choose one:
+
+- **Approve:** `"status": "reviewed"`, plus `reviewedBy` and `reviewedOn`. The link appears on the incident page, in the category's "Related incidents" section, and as a feed filter.
+- **Reject:** `"status": "rejected"`. Keep the entry so nobody proposes it again. Optionally add a note to `rationale` explaining why.
+- **Change:** edit `rationale` or `doesNotImply` first, then approve.
+
+`npm test` checks that every link points at a real category, a published incident and that incident's own sources, and that a reviewed link names a reviewer and a date.
