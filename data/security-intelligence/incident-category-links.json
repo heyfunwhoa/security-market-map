@@ -1,0 +1,72 @@
+[
+  {
+    "id": "link:cisa-shai-hulud-2025:software-supply-chain",
+    "incidentId": "incident:cisa-shai-hulud-2025",
+    "categoryId": "software-supply-chain",
+    "predicate": "related_to",
+    "rationale": "CISA describes a self-replicating compromise of the npm package ecosystem, which is the risk class software supply chain tools are bought to address.",
+    "doesNotImply": "That any software supply chain product detected or would have prevented this compromise.",
+    "basedOnSourceIds": ["source:cisa-shai-hulud-alert"],
+    "status": "proposed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-14",
+    "reviewedBy": null,
+    "reviewedOn": null
+  },
+  {
+    "id": "link:cisa-shai-hulud-2025:sca",
+    "incidentId": "incident:cisa-shai-hulud-2025",
+    "categoryId": "sca",
+    "predicate": "related_to",
+    "rationale": "The compromise spread through npm, a dependency ecosystem whose packages software composition analysis tools inventory.",
+    "doesNotImply": "That SCA tools flag malicious packages as well as known-vulnerable ones. That depends on the product and must be shown separately.",
+    "basedOnSourceIds": ["source:cisa-shai-hulud-alert"],
+    "status": "proposed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-14",
+    "reviewedBy": null,
+    "reviewedOn": null
+  },
+  {
+    "id": "link:cisa-shai-hulud-2025:secrets-detection",
+    "incidentId": "incident:cisa-shai-hulud-2025",
+    "categoryId": "secrets-detection",
+    "predicate": "related_to",
+    "rationale": "CISA reports attempted credential theft, the exposure that secrets detection and remediation tools are bought to find and respond to.",
+    "doesNotImply": "Which credentials were taken, whether theft succeeded, or that detection would have changed the outcome.",
+    "basedOnSourceIds": ["source:cisa-shai-hulud-alert"],
+    "status": "proposed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-14",
+    "reviewedBy": null,
+    "reviewedOn": null
+  },
+  {
+    "id": "link:cisa-solarwinds-2020:software-supply-chain",
+    "incidentId": "incident:cisa-solarwinds-2020",
+    "categoryId": "software-supply-chain",
+    "predicate": "related_to",
+    "rationale": "CISA reported active exploitation involving affected versions of a vendor's software, the risk of trusting third-party software that software supply chain tools address.",
+    "doesNotImply": "How the affected versions were altered, which is outside this record's verified scope, or that any product would have prevented it.",
+    "basedOnSourceIds": ["source:cisa-solarwinds-2020"],
+    "status": "proposed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-14",
+    "reviewedBy": null,
+    "reviewedOn": null
+  },
+  {
+    "id": "link:cisa-solarwinds-2020:third-party-risk",
+    "incidentId": "incident:cisa-solarwinds-2020",
+    "categoryId": "third-party-risk",
+    "predicate": "related_to",
+    "rationale": "The exploited software came from a third-party vendor, which is the exposure third-party risk programs assess.",
+    "doesNotImply": "That a vendor risk assessment would have revealed this compromise.",
+    "basedOnSourceIds": ["source:cisa-solarwinds-2020"],
+    "status": "proposed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-14",
+    "reviewedBy": null,
+    "reviewedOn": null
+  }
+]

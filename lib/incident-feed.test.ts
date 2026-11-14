@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { catalog } from "./catalog";
 import {
   buildIncidentFeed,
   filterIncidents,
@@ -6,6 +7,11 @@ import {
   incidentFeed,
   incidentFilterUrl,
   incidentSearchHits,
+  allCategoryLinks,
+  incidentsForCategory,
+  isPublishableLink,
+  NO_INCIDENT_FILTERS,
+  type CategoryLink,
   readIncidentFilters,
   talkTrackText,
   type IncidentSource,
@@ -99,8 +105,8 @@ describe("incident feed", () => {
     const older = { ...base, id: "incident:old", disclosedOn: "2020-01-01", kind: "supply_chain" as const, affectedEcosystems: ["enterprise_software"] };
     const feed = buildIncidentFeed([older, base], [source], []);
     expect(feed.map((i) => i.slug)).toEqual(["example", "old"]);
-    expect(filterIncidents(feed, { kind: "supply_chain", ecosystem: "all" }).map((i) => i.slug)).toEqual(["old"]);
-    expect(filterIncidents(feed, { kind: "all", ecosystem: "npm" }).map((i) => i.slug)).toEqual(["example"]);
+    expect(filterIncidents(feed, { ...NO_INCIDENT_FILTERS, kind: "supply_chain" }).map((i) => i.slug)).toEqual(["old"]);
+    expect(filterIncidents(feed, { ...NO_INCIDENT_FILTERS, ecosystem: "npm" }).map((i) => i.slug)).toEqual(["example"]);
   });
 
   it("ignores unknown URL filter values and round-trips valid ones", () => {
@@ -109,7 +115,7 @@ describe("incident feed", () => {
     expect(filters.kind).toBe("all");
     expect(filters.ecosystem).toBe("npm");
     expect(incidentFilterUrl(filters)).toBe("/incidents?ecosystem=npm");
-    expect(incidentFilterUrl({ kind: "all", ecosystem: "all" })).toBe("/incidents");
+    expect(incidentFilterUrl(NO_INCIDENT_FILTERS)).toBe("/incidents");
   });
 
   it("resolves detail slugs without the incident: prefix", () => {
@@ -120,5 +126,72 @@ describe("incident feed", () => {
     const hits = incidentSearchHits();
     expect(hits.map((h) => h.href)).toEqual(incidentFeed.map((i) => `/incidents/${i.slug}`));
     expect(hits.every((h) => h.kind === "Incident")).toBe(true);
+  });
+
+});
+
+const link: CategoryLink = {
+  id: "link:example:sca",
+  incidentId: "incident:example",
+  categoryId: "sca",
+  predicate: "related_to",
+  rationale: "Reason.",
+  doesNotImply: "No prevention claim.",
+  basedOnSourceIds: ["source:a"],
+  status: "reviewed",
+  proposedBy: "agent-draft",
+  proposedOn: "2026-11-14",
+  reviewedBy: "Reviewer",
+  reviewedOn: "2026-11-15",
+};
+
+describe("incident category links", () => {
+  it("publishes only reviewed links with a named reviewer, a date and the incident's own sources", () => {
+    expect(isPublishableLink(link, base)).toBe(true);
+    expect(isPublishableLink({ ...link, status: "proposed" }, base)).toBe(false);
+    expect(isPublishableLink({ ...link, status: "rejected" }, base)).toBe(false);
+    expect(isPublishableLink({ ...link, reviewedBy: null }, base)).toBe(false);
+    expect(isPublishableLink({ ...link, reviewedBy: "  " }, base)).toBe(false);
+    expect(isPublishableLink({ ...link, reviewedOn: null }, base)).toBe(false);
+    expect(isPublishableLink({ ...link, basedOnSourceIds: ["source:other"] }, base)).toBe(false);
+    expect(isPublishableLink({ ...link, basedOnSourceIds: [] }, base)).toBe(false);
+    expect(isPublishableLink({ ...link, incidentId: "incident:other" }, base)).toBe(false);
+  });
+
+  it("filters the feed by category through reviewed links only", () => {
+    const other = { ...base, id: "incident:other" };
+    const feed = buildIncidentFeed([base, other], [source], [], [link, { ...link, id: "x", incidentId: "incident:other", status: "proposed" }]);
+    expect(filterIncidents(feed, { ...NO_INCIDENT_FILTERS, category: "sca" }).map((i) => i.slug)).toEqual(["example"]);
+    expect(readIncidentFilters(new URLSearchParams("category=sca"), feed).category).toBe("sca");
+    expect(readIncidentFilters(new URLSearchParams("category=nope"), feed).category).toBe("all");
+    expect(incidentFilterUrl({ ...NO_INCIDENT_FILTERS, category: "sca" })).toBe("/incidents?category=sca");
+  });
+
+  it("every link in the data file is well formed and points at real records", () => {
+    const categoryIds = new Set(catalog.categories.map((c) => c.id));
+    const ids = new Set<string>();
+    for (const entry of allCategoryLinks) {
+      expect(ids.has(entry.id), `duplicate ${entry.id}`).toBe(false);
+      ids.add(entry.id);
+      expect(categoryIds.has(entry.categoryId), `unknown category ${entry.categoryId}`).toBe(true);
+      const incident = incidentFeed.find((item) => item.incident.id === entry.incidentId);
+      expect(incident, `unknown or unpublished incident ${entry.incidentId}`).toBeDefined();
+      for (const id of entry.basedOnSourceIds) expect(incident!.incident.sourceIds).toContain(id);
+      expect(entry.basedOnSourceIds.length).toBeGreaterThan(0);
+      expect(entry.rationale.trim()).not.toBe("");
+      expect(entry.doesNotImply.trim()).not.toBe("");
+      expect(entry.predicate).toBe("related_to");
+      if (entry.status === "reviewed") {
+        expect(entry.reviewedBy?.trim()).toBeTruthy();
+        expect(entry.reviewedOn).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      }
+    }
+  });
+
+  it("never shows proposed links on public pages", () => {
+    const proposed = allCategoryLinks.filter((entry) => entry.status !== "reviewed");
+    for (const entry of proposed) {
+      expect(incidentsForCategory(entry.categoryId).some(({ link: shown }) => shown.id === entry.id)).toBe(false);
+    }
   });
 });
