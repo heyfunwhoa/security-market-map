@@ -137,18 +137,18 @@ const PILL_LABELS: Record<string, string> = {
 export function StatusPill({ status }: { status: string }) {
   const tone =
     status === "verified" || status === "evidenced" || status === "generally_available" || status === "independently_verified"
-      ? "border-emerald-700/20 bg-emerald-50 text-emerald-950"
+      ? "border-emerald-700/20 bg-emerald-50 text-emerald-950 dark:border-emerald-400/30 dark:bg-emerald-950 dark:text-emerald-100"
       : status === "vendor_published" || status === "limited" || status === "official_docs" || status === "source_referenced" || status === "vendor_reported"
-        ? "border-sky-800/15 bg-sky-50 text-sky-950"
+        ? "border-sky-800/15 bg-sky-50 text-sky-950 dark:border-sky-400/30 dark:bg-sky-950 dark:text-sky-100"
         : status === "needs_review" ||
             status === "unverified" ||
             status === "announced" ||
             status === "internal_note" ||
             status === "hypothesis"
-          ? "border-amber-800/20 bg-amber-50 text-amber-950"
+          ? "border-amber-800/20 bg-amber-50 text-amber-950 dark:border-amber-400/30 dark:bg-amber-950 dark:text-amber-100"
           : status === "conflicting" || status === "not_supported" || status === "disputed"
-            ? "border-rose-800/20 bg-rose-50 text-rose-950"
-            : "border-stone-300 bg-stone-100 text-stone-700";
+            ? "border-rose-800/20 bg-rose-50 text-rose-950 dark:border-rose-400/30 dark:bg-rose-950 dark:text-rose-100"
+            : "border-stone-300 bg-stone-100 text-stone-700 dark:border-stone-600 dark:bg-stone-800 dark:text-stone-200";
 
   return (
     <span
