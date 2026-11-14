@@ -56,19 +56,17 @@ export default function HomePage() {
         The security market, mapped by what each solution protects.
       </h1>
       <p className="mt-4 max-w-3xl text-lg leading-8 text-muted-foreground">
-        A useful way to see the market is to follow an attack. Security teams buy a control at each
-        point, plus tools that detect incidents and manage risk across the whole environment. This is a
-        practical map, not one analyst taxonomy. A quadrant places vendors inside a defined market. It
-        does not rank a company across cybersecurity.
+        Follow an attack, see the control teams buy at each step, and check the evidence behind every claim.
       </p>
-      <MarketMapExplorer />
-      <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">
-        Names on the next page are examples, not placements. Identity is the only slice in this atlas
-        with cited claims. Everywhere else, a capability cell stays Unknown.
-      </p>
-      <div className="mt-6 flex flex-wrap gap-3">
+      <nav aria-label="Start exploring" className="mt-6 flex flex-wrap gap-3">
         <Button asChild>
-          <Link href="/domains#questions">Questions, categories, and examples</Link>
+          <Link href="/domains">Explore domains</Link>
+        </Button>
+        <Button asChild variant="outline">
+          <Link href="/landscape">Browse products</Link>
+        </Button>
+        <Button asChild variant="outline">
+          <Link href="/compare">Compare evidence</Link>
         </Button>
         <Button asChild variant="outline">
           <Link href="/attack-path">Coding-agent attack path</Link>
@@ -76,7 +74,33 @@ export default function HomePage() {
         <Button asChild variant="outline">
           <Link href="/domains/ai">AI security</Link>
         </Button>
-      </div>
+      </nav>
+      <details className="group mt-6 max-w-3xl rounded-xl border border-border bg-card text-sm leading-6">
+        <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 rounded-xl px-4 py-2 font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring [&::-webkit-details-marker]:hidden">
+          How to read this map
+          <span aria-hidden="true" className="text-muted-foreground transition-transform group-open:rotate-180 motion-reduce:transition-none">
+            ▾
+          </span>
+        </summary>
+        <div className="space-y-3 border-t border-border px-4 py-3 text-muted-foreground">
+          <p>
+            Security teams buy a control at each point of an attack, plus tools that detect incidents and manage risk
+            across the whole environment. This is a practical map, not one analyst taxonomy. A quadrant places vendors
+            inside a defined market. It does not rank a company across cybersecurity.
+          </p>
+          <p>
+            Vendor names in the map are examples, not placements. Identity is the only slice in this atlas with cited
+            claims. Everywhere else, a capability cell stays Unknown.
+          </p>
+          <p>
+            <Link href="/domains#questions" className="text-primary underline underline-offset-4">
+              Questions, categories, and examples
+            </Link>{" "}
+            explains how domains, categories, and example vendors relate.
+          </p>
+        </div>
+      </details>
+      <MarketMapExplorer />
       <section className="mt-10">
         <h2 className="text-3xl tracking-tight">Market map</h2>
         <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
