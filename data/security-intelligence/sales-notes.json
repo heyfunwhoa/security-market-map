@@ -1,0 +1,26 @@
+[
+  {
+    "incidentId": "incident:cisa-shai-hulud-2025",
+    "status": "draft",
+    "headline": "CISA alerted on a self-replicating npm supply-chain compromise that attempted credential theft.",
+    "discoveryQuestion": "Which teams install npm packages, and how are developer and CI tokens scoped and rotated?",
+    "avoid": "Do not name affected packages or suggest the account was compromised. Package-level impact is not verified here.",
+    "basedOnSourceIds": ["source:cisa-shai-hulud-alert"],
+    "draftedOn": "2026-11-14",
+    "draftedBy": "agent-draft",
+    "reviewedBy": null,
+    "reviewedOn": null
+  },
+  {
+    "incidentId": "incident:cisa-solarwinds-2020",
+    "status": "draft",
+    "headline": "CISA reported active exploitation involving affected SolarWinds Orion software versions.",
+    "discoveryQuestion": "How does the team decide which vendor software updates to trust, and who owns that check?",
+    "avoid": "Do not claim any product would have prevented it. The victim list and attack techniques are outside this record's verified scope.",
+    "basedOnSourceIds": ["source:cisa-solarwinds-2020"],
+    "draftedOn": "2026-11-14",
+    "draftedBy": "agent-draft",
+    "reviewedBy": null,
+    "reviewedOn": null
+  }
+]

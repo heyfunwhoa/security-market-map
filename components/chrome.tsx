@@ -15,6 +15,7 @@ const NAV_GROUPS = [
     { href: "/domains", label: "Explore domains", description: "Start with broad security areas and their categories." },
     { href: "/landscape", label: "Browse products", description: "Filter vendors and products, inspect details, and build a shortlist." },
     { href: "/compare", label: "Compare", description: "Compare product evidence for a specific use case." },
+    { href: "/incidents", label: "Incidents", description: "Reviewed, sourced security incidents with talk tracks." },
     { href: "/use-cases", label: "Buyer use cases", description: "Start with the problem you need to solve." },
     { href: "/personas", label: "Buyer seats", description: "Who buys, uses, approves, and blocks, with pains and titles." },
   ] },
@@ -48,7 +49,7 @@ export function SiteHeader({ hits }: { hits: SearchHit[] }) {
           <span className="block text-xs text-muted-foreground">Research notes · as of {formatDate(AS_OF)}</span>
         </Link>
         <nav aria-label="Primary" className="hidden items-center gap-1 xl:flex">
-          {NAV_GROUPS[0].links.slice(0, 3).map((link) => <Link key={link.href} href={link.href} aria-current={pathname === link.href ? "page" : undefined} className={cn(navLinkClass, isActive(link.href) ? "bg-muted font-semibold" : "text-muted-foreground")}>{link.label}</Link>)}
+          {NAV_GROUPS[0].links.slice(0, 4).map((link) => <Link key={link.href} href={link.href} aria-current={pathname === link.href ? "page" : undefined} className={cn(navLinkClass, isActive(link.href) ? "bg-muted font-semibold" : "text-muted-foreground")}>{link.label}</Link>)}
         </nav>
         <div className="flex shrink-0 items-center gap-2">
           <SearchCommand hits={hits} />
@@ -132,19 +133,27 @@ const PILL_LABELS: Record<string, string> = {
   bundled_alternative: "Bundled alternative",
   complement: "Complement",
   adjacent_budget: "Adjacent budget",
+  seed_reviewed: "Seed reviewed",
+  approved: "Reviewed",
+  reported: "Reported",
+  observed: "Observed",
+  draft: "Draft",
+  reviewed: "Reviewed",
+  not_evaluated: "Not evaluated",
 };
 
 export function StatusPill({ status }: { status: string }) {
   const tone =
-    status === "verified" || status === "evidenced" || status === "generally_available" || status === "independently_verified"
+    status === "verified" || status === "evidenced" || status === "generally_available" || status === "independently_verified" || status === "seed_reviewed" || status === "approved" || status === "reviewed"
       ? "border-emerald-700/20 bg-emerald-50 text-emerald-950"
-      : status === "vendor_published" || status === "limited" || status === "official_docs" || status === "source_referenced" || status === "vendor_reported"
+      : status === "vendor_published" || status === "limited" || status === "official_docs" || status === "source_referenced" || status === "vendor_reported" || status === "reported" || status === "observed"
         ? "border-sky-800/15 bg-sky-50 text-sky-950"
         : status === "needs_review" ||
             status === "unverified" ||
             status === "announced" ||
             status === "internal_note" ||
-            status === "hypothesis"
+            status === "hypothesis" ||
+            status === "draft"
           ? "border-amber-800/20 bg-amber-50 text-amber-950"
           : status === "conflicting" || status === "not_supported" || status === "disputed"
             ? "border-rose-800/20 bg-rose-50 text-rose-950"
