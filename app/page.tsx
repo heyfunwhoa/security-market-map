@@ -69,6 +69,9 @@ export default function HomePage() {
           <Link href="/compare">Compare evidence</Link>
         </Button>
         <Button asChild variant="outline">
+          <Link href="/incidents">Incidents</Link>
+        </Button>
+        <Button asChild variant="outline">
           <Link href="/attack-path">Coding-agent attack path</Link>
         </Button>
         <Button asChild variant="outline">
