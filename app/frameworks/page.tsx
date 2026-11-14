@@ -13,7 +13,7 @@ export default function FrameworksPage() {
         lede="Two sentences on this map come from pages re-read on 27 Oct 2026. Agentic runtime is the 3 Sep 2026 report. Endpoint control is the 22 Jul 2026 report. They are not Gartner categories. The NHI checklist cites a 27 Sep 2024 page. Lists on this page are not capability cells."
       />
       <p className="mt-4 text-sm text-muted-foreground">Reviewed {REVIEWED}. That label is not a review of the sentences re-read on 27 Oct 2026.</p>
-      <p className="mt-4"><Link href="/frameworks/incident-lab" className="inline-flex rounded-lg border border-border px-4 py-2 text-sm font-medium underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2">Open synthetic incident classification lab</Link></p>
+      <p className="mt-4"><Link href="/review/incident-lab" className="inline-flex rounded-lg border border-border px-4 py-2 text-sm font-medium underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2">Reviewer tool: synthetic incident classification lab</Link></p>
 
       <section className="mt-10">
         <h2 className="text-2xl tracking-tight">NHI lifecycle</h2>
