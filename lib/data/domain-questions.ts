@@ -67,7 +67,7 @@ export const domainQuestions: DomainQuestion[] = [
     question: "Which weaknesses should we fix first?",
     categories: "Vulnerability management, external attack surface, breach simulation, CTEM",
     examples: "Tenable, Qualys, Rapid7, Censys, Pentera",
-    domainId: "offensive",
+    domainId: "corporate",
   },
   {
     id: "cloud",

@@ -120,7 +120,7 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
             {subAreas.map((area) => (
               <article key={area.id} id={area.id} tabIndex={-1} className="scroll-mt-24 rounded-xl border border-border bg-card p-4 focus-visible:outline-2 focus-visible:outline-ring">
                 <h3 className="text-xl">{area.title}</h3>
-                <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">{area.lede}</p>
+                <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground"><AnnotatedText text={area.lede} seen={seen} /></p>
                 <dl className="mt-3 grid gap-3 md:grid-cols-3">
                   {area.body.map((item) => (
                     <div key={item.heading} className="rounded-lg border border-border p-3">
@@ -133,7 +133,7 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
                           item.heading
                         )}
                       </dt>
-                      <dd className="mt-1 text-sm leading-6">{item.text}</dd>
+                      <dd className="mt-1 text-sm leading-6"><AnnotatedText text={item.text} seen={seen} /></dd>
                     </div>
                   ))}
                 </dl>
@@ -193,7 +193,7 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
                   {category.name}
                 </Link>
               </h3>
-              <p className="mt-2 text-sm leading-6">{category.definition}</p>
+              <p className="mt-2 text-sm leading-6"><AnnotatedText text={category.definition} seen={seen} /></p>
               <p className="mt-3 text-sm leading-6">
                 <span className="font-semibold">Buyer question. </span>
                 {category.buyerQuestion}

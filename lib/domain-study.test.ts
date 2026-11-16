@@ -13,7 +13,7 @@ describe("domain study path", () => {
       "ai",
       "appsec",
       "corporate",
-      "offensive",
+      "corporate",
       "cloud",
       "secops",
       "data",

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { AnnotatedText } from "@/components/annotated-text";
 import { PageIntro, StatusPill } from "@/components/chrome";
 import { catalog } from "@/lib/catalog";
 import { domainClaimCounts } from "@/lib/domain-evidence";
@@ -38,7 +39,9 @@ export default function MethodologyPage() {
             Vendor names in examples are examples this map chose. They are not placements. A quadrant places vendors
             inside a defined market. It does not rank a company across cybersecurity.
           </li>
-          <li>This is not an official Gartner, Forrester, IDC, SACR, or vendor classification.</li>
+          <li>
+            <AnnotatedText text="This is not an official Gartner, Forrester, IDC, SACR, or vendor classification." seen={new Set()} />
+          </li>
         </ul>
       </section>
 
