@@ -11,6 +11,7 @@ import {
   reviewQueue,
   staleSources,
 } from "@/lib/coverage";
+import { domainClaimCounts } from "@/lib/domain-evidence";
 import { formatDate } from "@/lib/format";
 
 const PATH = [
@@ -48,56 +49,23 @@ export default function HomePage() {
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
       <p className="text-xs font-semibold tracking-[0.16em] text-primary uppercase">
-        Coverage notes for a cybersecurity analyst
+        For AEs, SEs, and analysts preparing customer conversations
       </p>
       <h1 className="mt-3 max-w-3xl text-4xl tracking-tight text-balance sm:text-5xl">
-        The security market, mapped by what each solution protects.
+        Identity and secrets, mapped with evidence.
       </h1>
       <p className="mt-4 max-w-3xl text-lg leading-8 text-muted-foreground">
-        Follow an attack, see the control teams buy at each step, and check the evidence behind every claim.
+        Every claim links to its source and date. Identity has the deepest evidence. The other ten domains are
+        mapped, and their evidence is thinner.
       </p>
       <nav aria-label="Start exploring" className="mt-6 flex flex-wrap gap-3">
         <Button asChild>
           <Link href="/domains">Explore domains</Link>
         </Button>
         <Button asChild variant="outline">
-          <Link href="/landscape">Browse products</Link>
-        </Button>
-        <Button asChild variant="outline">
           <Link href="/compare">Compare evidence</Link>
         </Button>
-        <Button asChild variant="outline">
-          <Link href="/attack-path">Coding-agent attack path</Link>
-        </Button>
-        <Button asChild variant="outline">
-          <Link href="/domains/ai">AI security</Link>
-        </Button>
       </nav>
-      <details className="group mt-6 max-w-3xl rounded-xl border border-border bg-card text-sm leading-6">
-        <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 rounded-xl px-4 py-2 font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring [&::-webkit-details-marker]:hidden">
-          How to read this map
-          <span aria-hidden="true" className="text-muted-foreground transition-transform group-open:rotate-180 motion-reduce:transition-none">
-            ▾
-          </span>
-        </summary>
-        <div className="space-y-3 border-t border-border px-4 py-3 text-muted-foreground">
-          <p>
-            Security teams buy a control at each point of an attack, plus tools that detect incidents and manage risk
-            across the whole environment. This is a practical map, not one analyst taxonomy. A quadrant places vendors
-            inside a defined market. It does not rank a company across cybersecurity.
-          </p>
-          <p>
-            Vendor names in the map are examples, not placements. Identity is the only slice in this atlas with cited
-            claims. Everywhere else, a capability cell stays Unknown.
-          </p>
-          <p>
-            <Link href="/domains#questions" className="text-primary underline underline-offset-4">
-              Questions, categories, and examples
-            </Link>{" "}
-            explains how domains, categories, and example vendors relate.
-          </p>
-        </div>
-      </details>
       <div className="mt-8 grid gap-6 lg:grid-cols-[1.4fr_0.8fr]">
         <SearchPanel />
         <aside className="rounded-xl border border-border bg-card p-4 text-sm leading-6">
@@ -117,7 +85,7 @@ export default function HomePage() {
           named, and capability cells stay Unknown.
         </p>
         <div className="mt-4">
-          <DomainMap domains={catalog.domains} />
+          <DomainMap domains={catalog.domains} claimCounts={domainClaimCounts(catalog)} />
         </div>
       </section>
 

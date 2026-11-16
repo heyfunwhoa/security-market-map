@@ -3,6 +3,7 @@ import { DomainMap } from "@/components/domain-map";
 import { domainQuestions } from "@/lib/data/domain-questions";
 import { PageIntro } from "@/components/chrome";
 import { catalog } from "@/lib/catalog";
+import { domainClaimCounts } from "@/lib/domain-evidence";
 
 export const metadata = { title: "Domains" };
 
@@ -42,7 +43,7 @@ export default function DomainsPage() {
         lede="Eleven domains. Each one names the buyer, the budget, and the categories inside it. Related categories can share a budget."
       />
       <div className="mt-6">
-        <DomainMap domains={catalog.domains} />
+        <DomainMap domains={catalog.domains} claimCounts={domainClaimCounts(catalog)} />
       </div>
 
       <section className="mt-12" id="questions">

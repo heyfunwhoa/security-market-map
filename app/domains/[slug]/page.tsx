@@ -6,7 +6,7 @@ import { AreaDiagram } from "@/components/area-diagram";
 import { FlowStrip } from "@/components/category-map";
 import { ClaimList } from "@/components/claims";
 import { CloudAppShortlist, DataSecurityShortlist } from "@/components/cloud-app-shortlist";
-import { depthLabel } from "@/components/domain-map";
+import { domainStatusLabel } from "@/lib/domain-evidence";
 import { PageIntro } from "@/components/chrome";
 import { catalog, domainBySlug, sourceById, vendorById } from "@/lib/catalog";
 import { claimsForDomain, claimsForGlossaryTerm, glossaryForDomain, questionsForDomain } from "@/lib/domain-study";
@@ -41,7 +41,7 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
     <main className="mx-auto max-w-6xl px-4 py-10">
       <Breadcrumbs parents={[{ href: "/", label: "Home" }, { href: "/domains", label: "Domains" }]} current={domain.name} />
       <PageIntro
-        kicker={depthLabel(domain.depth)}
+        kicker={domainStatusLabel(domain.depth)}
         title={domain.name}
         lede="Read the question, the charter, then each category. Words link to the learn page when a definition already exists."
       />
@@ -264,9 +264,8 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
         </h2>
         {domain.depth === "mapped" ? (
           <p className="mt-3 max-w-3xl rounded-xl border border-border bg-card p-4 text-sm leading-6">
-            This domain is a research map. Categories that are not also in identity have no capability
-            claims. A vendor listed here is a research candidate. Comparison cells stay Unknown until a
-            page is cited.
+            Mapped, evidence coming. {claims.length} {claims.length === 1 ? "claim" : "claims"} so far, thinner
+            than identity. A vendor without a claim is a research candidate, and its cells stay Unknown.
           </p>
         ) : (
           <div className="mt-3 max-w-3xl rounded-xl border border-border bg-card p-4 text-sm leading-6">

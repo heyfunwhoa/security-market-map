@@ -13,7 +13,7 @@ const NAV_GROUPS = [
   { title: "Explore", links: [
     { href: "/domains", label: "Explore domains", description: "Start with broad security areas and their categories." },
     { href: "/landscape", label: "Browse products", description: "Filter vendors and products, inspect details, and build a shortlist." },
-    { href: "/compare", label: "Compare", description: "Compare product evidence for a specific use case." },
+    { href: "/compare", label: "Compare evidence", description: "Compare product evidence for a specific use case." },
     { href: "/use-cases", label: "Buyer use cases", description: "Start with the problem you need to solve." },
     { href: "/personas", label: "Buyer seats", description: "Who buys, uses, approves, and blocks, with pains and titles." },
   ] },
