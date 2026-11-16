@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { CategoryMap } from "@/components/category-map";
-import { ClaimList, DistinctionCards } from "@/components/claims";
-import { DomainMap } from "@/components/domain-map";
-import { SearchPanel } from "@/components/search-panel";
+import { ClaimList } from "@/components/claims";
+import { DomainExplorer } from "@/components/domain-explorer";
 import { Button } from "@/components/ui/button";
 import { catalog } from "@/lib/catalog";
 import {
@@ -13,29 +12,6 @@ import {
 } from "@/lib/coverage";
 import { domainClaimCounts } from "@/lib/domain-evidence";
 import { formatDate } from "@/lib/format";
-
-const PATH = [
-  {
-    href: "/learn",
-    title: "Learn the layers",
-    body: "Walk a leaked key through detection, the machine identity, the vault, a review, and an agent call.",
-  },
-  {
-    href: "/learn#distinctions",
-    title: "Separate the words",
-    body: "Secret, NHI, entitlement, and privileged session. Then detection versus vaulting versus governance.",
-  },
-  {
-    href: "/compare?use=uc-agent&products=c1-platform,opal-zero,entra-agent-id,idira",
-    title: "Compare with the gaps visible",
-    body: "C1, Opal Zero, Entra Agent ID, and Idira on agent authorization. Unknown stays on the page.",
-  },
-  {
-    href: "/territory",
-    title: "Write an account hypothesis",
-    body: "Only the stack you recorded. The score ignores blank incumbents instead of treating them as whitespace.",
-  },
-];
 
 export default function HomePage() {
   const recent = [...catalog.claims]
@@ -66,35 +42,31 @@ export default function HomePage() {
           <Link href="/compare">Compare evidence</Link>
         </Button>
       </nav>
-      <div className="mt-8 grid gap-6 lg:grid-cols-[1.4fr_0.8fr]">
-        <SearchPanel />
-        <aside className="rounded-xl border border-border bg-card p-4 text-sm leading-6">
-          <p className="font-semibold">As of {formatDate(catalog.asOf)}</p>
-          <p className="mt-2 text-muted-foreground">
-            {catalog.domains.length} domains, {catalog.categories.length} overlapping categories,{" "}
-            {catalog.vendors.length} research-candidate vendors, {catalog.claims.length} cited claims.
-            Only the identity domain carries those claims.
-          </p>
-        </aside>
-      </div>
+      <p className="mt-4 max-w-3xl text-sm leading-6 text-muted-foreground">
+        As of {formatDate(catalog.asOf)}. {catalog.domains.length} domains, {catalog.categories.length} categories,{" "}
+        {catalog.claims.length} cited claims. Not a ranking, and Unknown stays Unknown.{" "}
+        <Link href="/methodology" className="text-primary underline underline-offset-4">
+          How to read this map
+        </Link>
+      </p>
 
-      <section className="mt-12">
-        <h2 className="text-3xl tracking-tight">Domain map</h2>
+      <section className="mt-12" aria-labelledby="domains-heading">
+        <h2 id="domains-heading" className="text-3xl tracking-tight">
+          Eleven domains, one map
+        </h2>
         <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
-          Evidenced means claims, dates, and explicit gaps. Mapped means the category and the buyer are
-          named, and capability cells stay Unknown.
+          Follow an attack to see which domains act at each step, or open a domain directly.
         </p>
         <div className="mt-4">
-          <DomainMap domains={catalog.domains} claimCounts={domainClaimCounts(catalog)} />
+          <DomainExplorer domains={catalog.domains} claimCounts={domainClaimCounts(catalog)} />
         </div>
       </section>
 
       <section className="mt-12">
         <h2 className="text-3xl tracking-tight">Identity, the evidenced slice</h2>
         <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
-          These are not mutually exclusive piles. A vault complements governance when the question is
-          credential issuance, and competes with another vault when the question is secrets management.
-          Several of these categories also appear in AppSec, cloud, corporate security, or platform.
+          These piles overlap. A vault complements governance on credential issuance and competes with another
+          vault on secrets management.
         </p>
         <div className="mt-4">
           <CategoryMap
@@ -103,28 +75,20 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mt-12">
-        <h2 className="text-3xl tracking-tight">If you are new to identity</h2>
-        <ol className="mt-4 grid gap-3 md:grid-cols-2">
-          {PATH.map((step, index) => (
-            <li key={step.href}>
-              <Link
-                href={step.href}
-                className="block h-full rounded-xl border border-border bg-card p-4 hover:bg-muted"
-              >
-                <span className="text-xs font-semibold tracking-wide text-primary uppercase">
-                  {index + 1}
-                </span>
-                <span className="mt-1 block text-lg font-semibold">{step.title}</span>
-                <span className="mt-1 block text-sm leading-6 text-muted-foreground">{step.body}</span>
-              </Link>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      <section className="mt-12" id="distinctions">
-        <DistinctionCards items={catalog.distinctions} />
+      <section className="mt-12" aria-labelledby="learn-heading">
+        <Link
+          href="/learn"
+          className="block rounded-xl border border-border bg-card p-5 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        >
+          <span className="text-xs font-semibold tracking-wide text-primary uppercase">New to identity?</span>
+          <h2 id="learn-heading" className="mt-1 text-2xl tracking-tight">
+            Secret, NHI, entitlement, privileged session
+          </h2>
+          <span className="mt-2 block max-w-3xl text-sm leading-6 text-muted-foreground">
+            The glossary and the difference between detection, vaulting, and NHI governance are on the learn page.
+          </span>
+          <span className="mt-3 block text-sm font-medium text-primary">Open the learn page</span>
+        </Link>
       </section>
 
       <section className="mt-12 grid gap-8 lg:grid-cols-2">
