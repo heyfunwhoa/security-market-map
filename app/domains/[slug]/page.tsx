@@ -7,6 +7,7 @@ import { FlowStrip } from "@/components/category-map";
 import { ClaimList } from "@/components/claims";
 import { CloudAppShortlist, DataSecurityShortlist } from "@/components/cloud-app-shortlist";
 import { domainStatusLabel } from "@/lib/domain-evidence";
+import { AnnotatedText } from "@/components/annotated-text";
 import { PageIntro } from "@/components/chrome";
 import { catalog, domainBySlug, sourceById, vendorById } from "@/lib/catalog";
 import { claimsForDomain, claimsForGlossaryTerm, glossaryForDomain, questionsForDomain } from "@/lib/domain-study";
@@ -32,6 +33,7 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
   const terms = glossaryForDomain(domain.categoryIds, catalog.glossary);
   const claims = claimsForDomain(domain.categoryIds, catalog.claims, catalog.products, catalog.vendors);
   const subAreas = subAreasForDomain(domain.id);
+  const seen = new Set<string>();
   const neighbors = catalog.domains.filter((item) => domain.neighborIds.includes(item.id));
   const products = catalog.products.filter((product) =>
     product.primaryCategoryIds.some((id) => domain.categoryIds.includes(id)),
@@ -64,11 +66,11 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
       <dl className="mt-8 grid gap-4 text-sm leading-6 md:grid-cols-2">
         <div className="rounded-xl border border-border bg-card p-4">
           <dt className="font-semibold">Typical owner</dt>
-          <dd className="mt-1">{domain.typicalOwner}</dd>
+          <dd className="mt-1"><AnnotatedText text={domain.typicalOwner} seen={seen} /></dd>
         </div>
         <div className="rounded-xl border border-border bg-card p-4">
           <dt className="font-semibold">Budget</dt>
-          <dd className="mt-1">{domain.budget}</dd>
+          <dd className="mt-1"><AnnotatedText text={domain.budget} seen={seen} /></dd>
         </div>
       </dl>
       <section className="mt-8" aria-labelledby="study-question">
@@ -98,7 +100,7 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
         <h2 id="study-charter" tabIndex={-1} className="scroll-mt-24 text-2xl focus-visible:outline-2 focus-visible:outline-ring">
           Charter
         </h2>
-        <p className="mt-3 max-w-3xl text-sm leading-6">{domain.charter}</p>
+        <p className="mt-3 max-w-3xl text-sm leading-6"><AnnotatedText text={domain.charter} seen={seen} /></p>
       </section>
       {subAreas.length > 0 ? (
         <section className="mt-8" aria-labelledby="study-sub-areas">

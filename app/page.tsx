@@ -10,7 +10,8 @@ import {
   reviewQueue,
   staleSources,
 } from "@/lib/coverage";
-import { domainClaimCounts } from "@/lib/domain-evidence";
+import { AnnotatedText } from "@/components/annotated-text";
+import { claimDomainLabel, domainClaimCounts } from "@/lib/domain-evidence";
 import { formatDate } from "@/lib/format";
 
 export default function HomePage() {
@@ -21,6 +22,8 @@ export default function HomePage() {
   const unsourcedProducts = productsWithoutCapabilityEvidence(catalog.products, catalog.claims);
   const stale = staleSources(catalog.sources, catalog.asOf);
   const queue = reviewQueue(catalog.claims);
+  const labels = Object.fromEntries(recent.map((claim) => [claim.id, claimDomainLabel(claim, catalog)]));
+  const seen = new Set<string>();
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
@@ -75,19 +78,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mt-12" aria-labelledby="learn-heading">
-        <Link
-          href="/learn"
-          className="block rounded-xl border border-border bg-card p-5 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-        >
-          <span className="text-xs font-semibold tracking-wide text-primary uppercase">New to identity?</span>
-          <h2 id="learn-heading" className="mt-1 text-2xl tracking-tight">
-            Secret, NHI, entitlement, privileged session
-          </h2>
-          <span className="mt-2 block max-w-3xl text-sm leading-6 text-muted-foreground">
-            The glossary and the difference between detection, vaulting, and NHI governance are on the learn page.
-          </span>
-          <span className="mt-3 block text-sm font-medium text-primary">Open the learn page</span>
+      <section className="mt-12 rounded-xl border border-border bg-card p-5" aria-labelledby="learn-heading">
+        <p className="text-xs font-semibold tracking-wide text-primary uppercase">New to identity?</p>
+        <h2 id="learn-heading" className="mt-1 text-2xl tracking-tight">
+          Secret, <AnnotatedText text="NHI" seen={seen} />, entitlement, privileged session
+        </h2>
+        <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
+          The glossary and the difference between detection, vaulting, and NHI governance are on the learn page.
+        </p>
+        <Link href="/learn" className="mt-3 inline-flex min-h-11 items-center text-sm font-medium text-primary underline-offset-4 hover:underline">
+          Open the learn page
         </Link>
       </section>
 
@@ -95,10 +95,10 @@ export default function HomePage() {
         <div>
           <h2 className="text-3xl tracking-tight">Recently dated claims</h2>
           <p className="mt-2 text-sm text-muted-foreground">
-            Newest published or observed date first. Vendor said this means the company page. Independent source means a public standard.
+            Newest first, across all domains. Each card names its domain and how the claim was checked.
           </p>
           <div className="mt-4">
-            <ClaimList claims={recent} />
+            <ClaimList claims={recent} labels={labels} />
           </div>
         </div>
         <div>
@@ -106,7 +106,7 @@ export default function HomePage() {
           <ul className="mt-4 space-y-3 text-sm leading-6">
             <li className="rounded-xl border border-border bg-card p-4">
               <span className="font-semibold">{thin.length} capabilities</span> have no verified or
-              vendor-published assertion. Session control and ITDR detection are in that set on purpose.
+              vendor-published assertion. <AnnotatedText text="Session control and ITDR detection are in that set on purpose." seen={seen} />
             </li>
             <li className="rounded-xl border border-border bg-card p-4">
               <span className="font-semibold">{unsourcedProducts.length} products</span> have no

@@ -133,6 +133,10 @@ const PILL_LABELS: Record<string, string> = {
   adjacent_budget: "Adjacent budget",
 };
 
+export function pillLabel(status: string): string {
+  return PILL_LABELS[status] ?? status;
+}
+
 export function StatusPill({ status }: { status: string }) {
   const tone =
     status === "verified" || status === "evidenced" || status === "generally_available" || status === "independently_verified"
