@@ -76,7 +76,8 @@ describe("product research pages", () => {
     expect(html).not.toContain(">Previous<");
     expect(html).toContain("not evaluated");
     expect(html).not.toContain("detector coverage is evaluated");
-    expect(html).toContain("Publisher-reported, not independently tested.");
+    // The caveat lives in the source badge (accessible name and tooltip), not repeated in body text.
+    expect(html).toMatch(/Vendor published\. Not independently tested\./);
     expect(html).toContain("Vendor said this");
     expect(html).toContain("https://github.com/mongodb/kingfisher");
     expect(html).toContain("https://github.com/heyfunwhoa/detector-coverage-atlas");
@@ -102,7 +103,7 @@ describe("product research pages", () => {
     expect(aikido).toContain("AI coding assistant tool-call hooks");
     expect(aikido).toContain("Endpoint honeytoken alert");
     expect(aikido).toContain("https://help.aikido.dev/aikido-device-protection/miscellaneous-aikido-endpoint/how-does-endpoint-protection-work");
-    expect(aikido).toContain("not independently tested");
+    expect(aikido).toMatch(/not independently tested/i);
     expect(anchorIds(aikido).every((id) => aikido.includes(`id="${id}"`))).toBe(true);
   });
 

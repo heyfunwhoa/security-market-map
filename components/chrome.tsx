@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
-import { AS_OF } from "@/lib/schema";
 import { formatDate } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import type { SearchHit } from "@/lib/search";
@@ -14,7 +13,7 @@ const NAV_GROUPS = [
   { title: "Explore", links: [
     { href: "/domains", label: "Explore domains", description: "Start with broad security areas and their categories." },
     { href: "/landscape", label: "Browse products", description: "Filter vendors and products, inspect details, and build a shortlist." },
-    { href: "/compare", label: "Compare", description: "Compare product evidence for a specific use case." },
+    { href: "/compare", label: "Compare evidence", description: "Compare product evidence for a specific use case." },
     { href: "/use-cases", label: "Buyer use cases", description: "Start with the problem you need to solve." },
     { href: "/personas", label: "Buyer seats", description: "Who buys, uses, approves, and blocks, with pains and titles." },
   ] },
@@ -31,13 +30,15 @@ const NAV_GROUPS = [
     { href: "/territory", label: "Territory planning", description: "Organize account and territory research." },
   ] },
   { title: "Research", links: [
+    { href: "/methodology", label: "Methodology", description: "How evidence, status labels, and Unknown work on this map." },
     { href: "/sources", label: "Sources & references", description: "Inspect the references behind the research." },
+    { href: "/about", label: "About", description: "Who maintains the map and what it is for." },
   ] },
 ];
 
 const navLinkClass = "inline-flex min-h-11 items-center rounded-md px-3 text-sm hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring";
 
-export function SiteHeader({ hits }: { hits: SearchHit[] }) {
+export function SiteHeader({ hits, asOf }: { hits: SearchHit[]; asOf: string }) {
   const pathname = usePathname();
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
   return (
@@ -45,7 +46,7 @@ export function SiteHeader({ hits }: { hits: SearchHit[] }) {
       <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-4 gap-y-2 px-4 py-3">
         <Link href="/" aria-label="Security Market Map home" className="min-w-0 flex-1 rounded-sm py-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring">
           <span className="block font-heading text-lg leading-snug tracking-tight">Security Market Map</span>
-          <span className="block text-xs text-muted-foreground">Research notes · as of {formatDate(AS_OF)}</span>
+          <span className="block text-xs text-muted-foreground">Research notes · as of {formatDate(asOf)}</span>
         </Link>
         <nav aria-label="Primary" className="hidden items-center gap-1 xl:flex">
           {NAV_GROUPS[0].links.slice(0, 3).map((link) => <Link key={link.href} href={link.href} aria-current={pathname === link.href ? "page" : undefined} className={cn(navLinkClass, isActive(link.href) ? "bg-muted font-semibold" : "text-muted-foreground")}>{link.label}</Link>)}
@@ -81,7 +82,7 @@ export function SiteHeader({ hits }: { hits: SearchHit[] }) {
   );
 }
 
-export function SiteFooter() {
+export function SiteFooter({ asOf }: { asOf: string }) {
   return (
     <footer className="mt-16 border-t border-border">
       <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-8 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
@@ -89,7 +90,11 @@ export function SiteFooter() {
           Independent research notes. Not an official Gartner, Forrester, IDC, SACR, or vendor classification,
           and not a ranking.
         </p>
-        <p>As of {formatDate(AS_OF)}</p>
+        <p className="flex flex-wrap gap-x-4 gap-y-1">
+          <Link href="/methodology" className="underline underline-offset-4 hover:text-foreground">Methodology</Link>
+          <Link href="/about" className="underline underline-offset-4 hover:text-foreground">About</Link>
+          <span>As of {formatDate(asOf)}</span>
+        </p>
       </div>
     </footer>
   );
@@ -133,6 +138,10 @@ const PILL_LABELS: Record<string, string> = {
   complement: "Complement",
   adjacent_budget: "Adjacent budget",
 };
+
+export function pillLabel(status: string): string {
+  return PILL_LABELS[status] ?? status;
+}
 
 export function StatusPill({ status }: { status: string }) {
   const tone =
