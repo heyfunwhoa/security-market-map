@@ -15,13 +15,29 @@ const fraunces = Fraunces({
   variable: "--font-serif",
 });
 
+const SITE_URL = "https://security-market-map.vercel.app";
+const DESCRIPTION =
+  "Identity and secrets security, mapped with cited evidence. Eleven security domains, the buyer behind each category, and the source and date for every claim.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Security Market Map",
     template: "%s · Security Market Map",
   },
-  description:
-    "A cybersecurity analyst's coverage map across identity, corporate IT, application security, product security, and neighboring domains. Identity is the evidenced slice. Unknown stays unknown.",
+  description: DESCRIPTION,
+  openGraph: {
+    type: "website",
+    url: SITE_URL,
+    siteName: "Security Market Map",
+    title: "Security Market Map: identity and secrets, mapped with evidence",
+    description: DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Security Market Map: identity and secrets, mapped with evidence",
+    description: DESCRIPTION,
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

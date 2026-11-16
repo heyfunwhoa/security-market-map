@@ -435,3 +435,12 @@ Status: on `research/context-graph`; not merged or deployed.
 - Reuse: `Breadcrumbs`, `PageIntro`, existing card and link classes, native `<details>` for gap groups (keyboard-operable, no script). Decision: reuse; no bank pattern adopted.
 - States: each new category column shows "Not recorded yet." when empty; seat sections hide when empty; high-severity gap groups open by default.
 - Checks run: typecheck, lint, vitest, and `next dev` returning 200 for `/gaps`, `/personas/appsec`, `/categories/secrets-detection` and the three APIs. A real-browser responsive check is still pending on the Vercel preview.
+
+## Homepage restructure · 2026-11-16
+
+Status: on branch `claude/homepage-one-taxonomy`, not merged.
+
+- One taxonomy: the 11 catalog domains. `MarketMapExplorer` and the nine buyer views were removed. `/markets/{endpoint,network,exposure}` redirect (308) to anchored sections on `/domains/corporate`; any other `/markets/*` path goes to `/domains`.
+- Reuse/adapt/new: reused `DomainMap` (adds status label, claim count, and highlight), `CategoryMap` (group note promoted to the heading), `ClaimList`, the local Radix `Tooltip`, and existing tokens. New: `DomainExplorer` (native buttons with `aria-pressed` and a polite live region), `SourceBadge` and `Term` (tooltip on a native button, opens on hover, focus, or tap), `/methodology`, `/about`, `/domain-map.svg`, and a generated OG/Twitter image. No new dependencies.
+- Verification (local production build, Chromium): homepage height 6358 to 3872 px at 1280 wide and 14047 to 7717 px at 375 wide; words in `main` 2008 to 1098. No horizontal scroll at 375. Skip link is the first tab stop. Attack-path steps toggle with Enter and Space and highlight the mapped tiles. Badge and term tooltips open on focus and hover. A crawl of 399 internal pages found no broken links or anchors. `npm test`, lint, typecheck, and build pass.
+- Not verified: spoken screen-reader output, a physical touch device, 200% browser zoom, and contrast measured with a tool. The highlight ring adds a border and ring rather than dimming other tiles, so text contrast is unchanged.

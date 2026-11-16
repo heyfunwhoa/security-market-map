@@ -30,7 +30,9 @@ const NAV_GROUPS = [
     { href: "/territory", label: "Territory planning", description: "Organize account and territory research." },
   ] },
   { title: "Research", links: [
+    { href: "/methodology", label: "Methodology", description: "How evidence, status labels, and Unknown work on this map." },
     { href: "/sources", label: "Sources & references", description: "Inspect the references behind the research." },
+    { href: "/about", label: "About", description: "Who maintains the map and what it is for." },
   ] },
 ];
 
@@ -88,7 +90,11 @@ export function SiteFooter({ asOf }: { asOf: string }) {
           Independent research notes. Not an official Gartner, Forrester, IDC, SACR, or vendor classification,
           and not a ranking.
         </p>
-        <p>As of {formatDate(asOf)}</p>
+        <p className="flex flex-wrap gap-x-4 gap-y-1">
+          <Link href="/methodology" className="underline underline-offset-4 hover:text-foreground">Methodology</Link>
+          <Link href="/about" className="underline underline-offset-4 hover:text-foreground">About</Link>
+          <span>As of {formatDate(asOf)}</span>
+        </p>
       </div>
     </footer>
   );

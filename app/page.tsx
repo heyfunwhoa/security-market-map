@@ -58,7 +58,10 @@ export default function HomePage() {
           Eleven domains, one map
         </h2>
         <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
-          Follow an attack to see which domains act at each step, or open a domain directly.
+          Follow an attack to see which domains act at each step, or open a domain directly.{" "}
+          <a href="/domain-map.svg" download="security-market-map.svg" className="text-primary underline underline-offset-4">
+            Download the map (SVG)
+          </a>
         </p>
         <div className="mt-4">
           <DomainExplorer domains={catalog.domains} claimCounts={domainClaimCounts(catalog)} />
