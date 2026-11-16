@@ -1,22 +1,25 @@
-export type MarketArea = {
+/**
+ * Buyer questions and illustrative vendors, keyed to the canonical catalog domains.
+ * These lines are teaching notes, not sourced claims. A domain can hold more than one
+ * question: corporate covers email, endpoint, and the network edge.
+ */
+export type DomainQuestion = {
   id: string;
+  domainId: string;
   name: string;
   question: string;
   categories: string;
   examples: string;
-  href: string;
-  fill: string;
 };
 
-export const marketAreas: MarketArea[] = [
+export const domainQuestions: DomainQuestion[] = [
   {
     id: "email",
     name: "Email and collaboration",
     question: "Can we stop phishing and account compromise?",
     categories: "Email security, phishing detection, account takeover defense, security awareness",
     examples: "Proofpoint, Mimecast, Abnormal, Microsoft",
-    href: "/domains/corporate",
-    fill: "oklch(0.86 0.06 25)",
+    domainId: "corporate",
   },
   {
     id: "identity",
@@ -24,8 +27,7 @@ export const marketAreas: MarketArea[] = [
     question: "Who or what can access a system?",
     categories: "SSO, MFA, access management, customer identity, IGA, PAM, nonhuman identity",
     examples: "Microsoft Entra, Okta, SailPoint, Saviynt, CyberArk",
-    href: "/domains/identity",
-    fill: "oklch(0.84 0.05 240)",
+    domainId: "identity",
   },
   {
     id: "endpoint",
@@ -33,8 +35,7 @@ export const marketAreas: MarketArea[] = [
     question: "Is a laptop, server, or mobile device compromised?",
     categories: "Endpoint protection, endpoint detection and response, mobile security",
     examples: "CrowdStrike, Microsoft Defender, SentinelOne",
-    href: "/domains/corporate",
-    fill: "oklch(0.86 0.03 70)",
+    domainId: "corporate",
   },
   {
     id: "ai",
@@ -42,8 +43,7 @@ export const marketAreas: MarketArea[] = [
     question: "Can we govern models, apps, agents, and their access?",
     categories: "AI posture, model and application testing, prompt-injection defenses, agent identity",
     examples: "Lakera, HiddenLayer, Robust Intelligence",
-    href: "/domains/ai",
-    fill: "oklch(0.86 0.05 190)",
+    domainId: "ai",
   },
   {
     id: "app",
@@ -51,8 +51,7 @@ export const marketAreas: MarketArea[] = [
     question: "Is the software we build and ship safe?",
     categories: "SAST, SCA, secrets detection, API security, ASPM, software supply chain security",
     examples: "GitHub, GitLab, Snyk, Checkmarx, Truffle Security",
-    href: "/domains/appsec",
-    fill: "oklch(0.86 0.06 150)",
+    domainId: "appsec",
   },
   {
     id: "network",
@@ -60,8 +59,7 @@ export const marketAreas: MarketArea[] = [
     question: "Which traffic and connections should be allowed?",
     categories: "Firewalls, secure web gateway, ZTNA, SSE, SASE, segmentation",
     examples: "Palo Alto Networks, Fortinet, Zscaler, Netskope, Cloudflare",
-    href: "/domains/corporate",
-    fill: "oklch(0.88 0.06 85)",
+    domainId: "corporate",
   },
   {
     id: "exposure",
@@ -69,8 +67,7 @@ export const marketAreas: MarketArea[] = [
     question: "Which weaknesses should we fix first?",
     categories: "Vulnerability management, external attack surface, breach simulation, CTEM",
     examples: "Tenable, Qualys, Rapid7, Censys, Pentera",
-    href: "/domains/offensive",
-    fill: "oklch(0.87 0.07 55)",
+    domainId: "offensive",
   },
   {
     id: "cloud",
@@ -78,8 +75,7 @@ export const marketAreas: MarketArea[] = [
     question: "Are cloud resources configured and running safely?",
     categories: "CSPM, CIEM, CWPP, CNAPP",
     examples: "Wiz, Orca, Palo Alto Networks, Microsoft, CrowdStrike",
-    href: "/domains/cloud",
-    fill: "oklch(0.85 0.05 220)",
+    domainId: "cloud",
   },
   {
     id: "secops",
@@ -87,8 +83,7 @@ export const marketAreas: MarketArea[] = [
     question: "What happened, and how do we respond?",
     categories: "SIEM, security data pipelines, detection engineering, XDR, SOAR, threat intelligence, managed detection and response",
     examples: "Microsoft Sentinel, Splunk, Google SecOps, Palo Alto Cortex, Rapid7",
-    href: "/domains/secops",
-    fill: "oklch(0.84 0.05 20)",
+    domainId: "secops",
   },
   {
     id: "data",
@@ -96,8 +91,7 @@ export const marketAreas: MarketArea[] = [
     question: "Where is sensitive data, who can reach it, and can it leave?",
     categories: "Discovery and classification, DSPM, DLP, encryption and key management",
     examples: "Cyera, Teleskope, Concentric AI, Varonis, BigID",
-    href: "/domains/data",
-    fill: "oklch(0.85 0.05 310)",
+    domainId: "data",
   },
   {
     id: "governance",
@@ -105,8 +99,7 @@ export const marketAreas: MarketArea[] = [
     question: "Can we demonstrate control and recover?",
     categories: "GRC, third-party risk, privacy, backup, disaster recovery, incident readiness",
     examples: "ServiceNow, Archer, OneTrust, Veeam, Rubrik",
-    href: "/domains/grc",
-    fill: "oklch(0.86 0.04 140)",
+    domainId: "grc",
   },
 ];
 

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { DomainMap } from "@/components/domain-map";
-import { MarketMapExplorer } from "@/components/market-map-explorer";
-import { marketAreas } from "@/lib/market-areas";
+import { domainQuestions } from "@/lib/data/domain-questions";
 import { PageIntro } from "@/components/chrome";
 import { catalog } from "@/lib/catalog";
 
@@ -40,12 +39,14 @@ export default function DomainsPage() {
       <PageIntro
         kicker="Domains"
         title="The security market, mapped by what each solution protects"
-        lede="Select a market area to inspect its question, categories, and examples. Related categories can share buyer budgets. A category name on this map is not a ranking of vendors."
+        lede="Eleven domains. Each one names the buyer, the budget, and the categories inside it. Related categories can share a budget."
       />
-      <MarketMapExplorer />
+      <div className="mt-6">
+        <DomainMap domains={catalog.domains} />
+      </div>
 
       <section className="mt-12" id="questions">
-        <h2 className="text-3xl tracking-tight">The question each market area answers</h2>
+        <h2 className="text-3xl tracking-tight">The question each domain answers</h2>
         <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
           Vendor names in the table are examples this map chose. They are not a ranking. A{" "}
           <Link href="/categories/cnapp" className="text-primary hover:underline">
@@ -70,15 +71,19 @@ export default function DomainsPage() {
               </tr>
             </thead>
             <tbody>
-              {["identity", "app", "cloud", "data", "network", "endpoint", "secops", "exposure", "email", "governance", "ai"]
-                .map((id) => marketAreas.find((area) => area.id === id))
-                .filter((area) => area != null)
-                .map((area) => (
+              {catalog.domains.flatMap((domain) =>
+                domainQuestions
+                  .filter((area) => area.domainId === domain.id)
+                  .map((area) => ({ area, domain })),
+              ).map(({ area, domain }) => (
                 <tr key={area.id} className="border-t border-border align-top">
                   <td className="p-3 font-medium">
-                    <Link href={area.href} className="text-primary hover:underline">
-                      {area.name}
+                    <Link href={`/domains/${domain.slug}`} className="text-primary hover:underline">
+                      {domain.name}
                     </Link>
+                    {area.name !== domain.name ? (
+                      <span className="mt-1 block text-xs font-normal text-muted-foreground">{area.name}</span>
+                    ) : null}
                   </td>
                   <td className="p-3">{area.question}</td>
                   <td className="p-3 text-muted-foreground">{area.categories}</td>
@@ -162,17 +167,6 @@ export default function DomainsPage() {
         </ul>
       </section>
 
-      <section className="mt-12">
-        <h2 className="text-3xl tracking-tight">How this atlas records them</h2>
-        <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
-          {catalog.domains.filter((domain) => domain.depth === "evidenced").length} domain is evidenced.
-          The other {catalog.domains.filter((domain) => domain.depth === "mapped").length} are mapped:
-          the buyer and the category are named, and capability cells stay Unknown until a page is cited.
-        </p>
-        <div className="mt-4">
-          <DomainMap domains={catalog.domains} />
-        </div>
-      </section>
     </main>
   );
 }

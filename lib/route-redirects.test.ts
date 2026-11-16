@@ -15,4 +15,18 @@ describe("moved routes", () => {
     // A page left at the old path would never render, because redirects run before the filesystem.
     expect(existsSync(join(process.cwd(), "app/frameworks/incident-lab"))).toBe(false);
   });
+
+  it("sends every old market-view route to its canonical domain section", async () => {
+    const redirects = (await nextConfig.redirects?.()) ?? [];
+    for (const [slug, anchor] of [["endpoint", "endpoint"], ["network", "network"], ["exposure", "exposure"]]) {
+      expect(redirects).toContainEqual({
+        source: `/markets/${slug}`,
+        destination: `/domains/corporate#${anchor}`,
+        permanent: true,
+      });
+    }
+    expect(redirects).toContainEqual({ source: "/markets/:slug*", destination: "/domains", permanent: true });
+    // Redirects run before the filesystem, so a page left under /markets would be dead code.
+    expect(existsSync(join(process.cwd(), "app/markets"))).toBe(false);
+  });
 });
