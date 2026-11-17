@@ -1,0 +1,28 @@
+{
+  "batch": "2026-11-17-company-disclosures",
+  "status": "candidate_only",
+  "publishable": false,
+  "framework": "docs/security-intelligence/incident-classification-framework.md",
+  "discoveryContext": "From the November 2026 intake notes on branch docs/candidate-incidents-2026-11; the SEC filing itself was retrieved and checked on 2026-11-17.",
+  "candidates": [],
+  "promotedToSeed": {
+    "promotedOn": "2026-11-17",
+    "reviewRecord": "docs/security-intelligence/review-2026-11-17.md",
+    "incidentIds": [
+      "incident:west-pharmaceutical-intrusion-2026"
+    ],
+    "intakeRecord": {
+      "incidentId": "incident:west-pharmaceutical-intrusion-2026",
+      "incidentKind": "intrusion",
+      "discovery": [
+        {
+          "publisher": "U.S. SEC EDGAR (West Pharmaceutical Services Form 8-K)",
+          "canonicalUrl": "https://www.sec.gov/Archives/edgar/data/105770/000010577026000068/wst-20260507.htm",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-17T04:00:00Z",
+          "usageRights": "Public SEC filing; cite and paraphrase."
+        }
+      ]
+    }
+  }
+}
