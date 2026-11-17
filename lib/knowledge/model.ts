@@ -203,6 +203,12 @@ export const upstreamAssessmentSchema = z.object({
   contract: z.literal("research-evidence-v1"),
   status: z.enum(["accepted", "blocked", "unknown", "outdated"]),
   evidenceKind: z.enum(["sourced_fact", "vendor_claim"]),
+  /**
+   * Catalog records the evidence is about, as "kind:id" (for example "capability:cap-secret-verification").
+   * A mapping with a catalog end must share one of these, so evidence about one product cannot
+   * support a mapping about another.
+   */
+  subjectRefs: z.array(text).default([]),
   checkedOn: isoDate,
 });
 export type UpstreamAssessment = z.infer<typeof upstreamAssessmentSchema>;

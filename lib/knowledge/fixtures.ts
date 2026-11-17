@@ -135,8 +135,8 @@ export function secretsExposureFixture(catalogRev: string) {
   ];
 
   const upstream: UpstreamAssessment[] = [
-    { evidenceId: "fx-ase-evidence-1", contract: "research-evidence-v1", status: "accepted", evidenceKind: "sourced_fact", checkedOn: "2026-11-17" },
-    { evidenceId: "fx-ase-evidence-2", contract: "research-evidence-v1", status: "accepted", evidenceKind: "sourced_fact", checkedOn: "2026-11-17" },
+    { evidenceId: "fx-ase-evidence-1", contract: "research-evidence-v1", status: "accepted", evidenceKind: "sourced_fact", subjectRefs: ["capability:cap-secret-verification"], checkedOn: "2026-11-17" },
+    { evidenceId: "fx-ase-evidence-2", contract: "research-evidence-v1", status: "accepted", evidenceKind: "sourced_fact", subjectRefs: ["category:secrets-detection"], checkedOn: "2026-11-17" },
   ];
 
   const consumers: ConsumerAcceptance[] = [
