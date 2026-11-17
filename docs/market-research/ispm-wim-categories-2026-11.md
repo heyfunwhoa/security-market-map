@@ -78,11 +78,29 @@ This session's network policy refused every vendor and documentation host tried:
 
 ## Research review record
 
-- Topic / buyer decision: identity posture baseline (ISPM); secretless workload access (WIM).
-- Owner: repository maintainer. Reviewer / decision: pending.
-- Changed IDs: categories `ispm`, `wim`; capabilities listed above; use cases `uc-ispm`, `uc-wim`; alternatives `alt-ispm-*`, `alt-wim-*`; glossary `ispm`, `wim`, `workload-attestation`, `federation` (category moved); vendor/product category links `aembit`, `entra-workload-id`, `brinqa`.
-- Sources: no new sources. Reused claims `claim-aembit-secretless`, `claim-wid-federation` and `claim-fill-brinqa-platform`.
-- Evidence status: category text, alternatives and seat links are editorial hypotheses. Vendor statements are unchanged and vendor-published.
-- Unknowns: every new capability cell; every candidate above; whether ISPM is bought as a standalone product or inside IdP, ITDR or CNAPP; whether WIM competes with vault budget at a given account.
-- Rights: no third-party text was copied.
-- Consumer disposition: Security Market Map, update (this change). Other consumers: no change.
+- Topic / buyer decision: ISPM: "Which identity weaknesses do we fix first, and who owns each fix?" WIM: "Which workload credentials can we stop storing, and what replaces them?"
+- Owner: repository maintainer.
+- Reviewer / review date / decision: pending / Unknown / pending.
+- Changed vendor / product / claim IDs: no claim changed. Vendor `aembit` (adds `wim` primary); product `aembit` (derived from the vendor record); product `entra-workload-id` (adds `wim` adjacent); vendor `brinqa` (adds `ispm` adjacent). Also new: categories `ispm`, `wim`; capabilities `cap-ispm-config`, `cap-ispm-mfa-coverage`, `cap-ispm-hygiene`, `cap-ispm-correlation`, `cap-wim-attestation`, `cap-wim-short-lived-identity`, `cap-wim-access-policy`, `cap-wim-credential-brokering`; use cases `uc-ispm`, `uc-wim`; alternatives `alt-ispm-*`, `alt-wim-*`; glossary `ispm`, `wim`, `workload-attestation`. The `federation` term moved from `nhi` to `wim`.
+- Primary / adjacent categories and rationale: see [Placement](#placement-zoom-out--zoom-in) and [Vendor links](#vendor-links-in-this-change-existing-records-only-no-new-claims). Each link rests on an existing claim. Brinqa is adjacent only and is not evidence of ISPM capability.
+- Original source URLs / source IDs / publisher: no new sources. Reused claims: `claim-aembit-secretless` (Aembit, existing source `src-aembit-nhi`), `claim-wid-federation` (Microsoft), `claim-fill-brinqa-platform` (Brinqa). URLs are on those existing records.
+- Source type / evidence status: reused claims are vendor documentation or vendor marketing, `vendor_published`. Category text, alternatives and seat links are editorial hypotheses with no source.
+- Published date (Unknown allowed) / observed date / last checked date: unchanged on the reused claims. Not re-checked in this change, because the hosts were unreachable.
+- Next review date / reason for cadence: 2026-12-17, or sooner once the vendor hosts are reachable. Both categories are fast-moving, and every candidate vendor is unverified.
+- Rights / usage constraints: no third-party text copied or excerpted. Category and capability text is original.
+- Unknowns / conflicting evidence: every new capability cell; every candidate in the lists above; whether ISPM is bought standalone or inside an IdP, ITDR or CNAPP purchase; whether WIM competes with vault budget at a given account; whether Aembit's mechanism is federation (existing open question).
+- Parent / product / historical names: unchanged for the three linked records. For candidates, historical names (for example Defakto, reportedly formerly SPIRL) are unverified and recorded only as research tasks.
+- Acquisition, rename or discontinuation status / effective date / original evidence: none asserted. Acquisitions reported for some ISPM candidates are unverified and not recorded as events.
+- Duplicate and alias search result: searched `lib/data`, docs and PRs for `ispm`, `wim`, "identity security posture" and "workload identity". No existing category or open PR. The only prior mention is a SACR section heading noted in `claim-sacr-iga-entitlements-20251202`. Workload federation existed as `cap-workload-federation` under `nhi`; it was reused, not duplicated. Candidates that already have catalog IDs are marked in the tables above, so they will be reused rather than re-created.
+- Consumer disposition (map / index / other): Security Market Map: update (this change). Job Interview Command Center, Account Signal Engine, GTM Revenue OS, Builder Academy: no change; category-only work with no new sourced claims.
+
+## Acceptance evidence
+
+| Criterion | Pass / fail / not run | Evidence |
+| --- | --- | --- |
+| Source and classification review | Not run | Human review pending. Vendor sources blocked by network policy, so no new source was inspected. |
+| No confidential data | Pass | Public category concepts only. No customer, interview, employer or credential data. |
+| Catalog and research integrity checks | Pass | `npm run test:research-integrity` 7/7; `npm test` 704/704 on commit `b5f9be0` (local). |
+| Typecheck / lint / build | Pass | `npx next typegen`, `npm run typecheck`, `npm run lint`, `npm run build` clean locally. `/categories/ispm`, `/categories/wim` and both use-case routes returned 200 on `next start`. |
+| Human review | Not run | Pending. |
+| Merge commit | Not applicable yet | Not merged. |
