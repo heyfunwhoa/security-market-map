@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Source_Sans_3 } from "next/font/google";
 import { SiteFooter, SiteHeader } from "@/components/chrome";
 import { catalog, searchIndex } from "@/lib/catalog";
+import { incidentSearchHits } from "@/lib/incident-feed";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
 
@@ -54,7 +55,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           >
             Skip to content
           </a>
-          <SiteHeader hits={searchIndex()} asOf={catalog.asOf} />
+          <SiteHeader hits={[...searchIndex(), ...incidentSearchHits()]} asOf={catalog.asOf} />
           <div id="content" tabIndex={-1}>{children}</div>
           <SiteFooter asOf={catalog.asOf} />
         </TooltipProvider>
