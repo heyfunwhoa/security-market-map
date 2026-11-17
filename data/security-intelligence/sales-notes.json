@@ -29,7 +29,7 @@
   },
   {
     "incidentId": "incident:codecov-bash-uploader-2021",
-    "status": "draft",
+    "status": "reviewed",
     "headline": "Codecov reported that an attacker modified its Bash Uploader so it could export information from customers' CI environments.",
     "discoveryQuestion": "Which third-party scripts run inside your CI pipelines, and what secrets can they read?",
     "avoid": "Don't say which customers lost secrets; that is not established.",
@@ -38,12 +38,12 @@
     ],
     "draftedOn": "2026-11-17",
     "draftedBy": "agent-draft",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "incidentId": "incident:tj-actions-changed-files-2025",
-    "status": "draft",
+    "status": "reviewed",
     "headline": "A widely used GitHub Action had its version tags repointed to a malicious commit that printed CI secrets into workflow logs.",
     "discoveryQuestion": "Do your workflows pin third-party Actions to a commit SHA, or to tags that can move?",
     "avoid": "The 23,000 figure is repositories using the Action, not confirmed leaks.",
@@ -52,12 +52,12 @@
     ],
     "draftedOn": "2026-11-17",
     "draftedBy": "agent-draft",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "incidentId": "incident:nx-s1ngularity-2025",
-    "status": "draft",
+    "status": "reviewed",
     "headline": "Malicious Nx packages harvested developer tokens and SSH keys, and used installed AI coding CLIs to search for more secrets.",
     "discoveryQuestion": "Which AI coding tools run on developer machines, and what can they read?",
     "avoid": "Don't present the initial token-theft route as confirmed.",
@@ -66,12 +66,12 @@
     ],
     "draftedOn": "2026-11-17",
     "draftedBy": "agent-draft",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "incidentId": "incident:circleci-engineer-laptop-2023",
-    "status": "draft",
+    "status": "reviewed",
     "headline": "Malware on one engineer's laptop stole a 2FA-backed SSO session, and CircleCI told every customer to rotate stored secrets.",
     "discoveryQuestion": "If a CI vendor asked you to rotate every stored secret today, how long would it take?",
     "avoid": "Don't claim specific customer impact; the source covers the rotation advice, not individual customers.",
@@ -80,12 +80,12 @@
     ],
     "draftedOn": "2026-11-17",
     "draftedBy": "agent-draft",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "incidentId": "incident:cloudflare-unrotated-okta-tokens-2023",
-    "status": "draft",
+    "status": "reviewed",
     "headline": "Cloudflare missed rotating one service token and three service accounts after the Okta compromise, and an attacker used them to reach Confluence and Jira.",
     "discoveryQuestion": "After a vendor breach, how do you find every credential that needs rotating, including ones you think are unused?",
     "avoid": "Don't name an actor; attribution is Cloudflare's own assessment.",
@@ -94,12 +94,12 @@
     ],
     "draftedOn": "2026-11-17",
     "draftedBy": "agent-draft",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "incidentId": "incident:uber-github-aws-key-2016",
-    "status": "draft",
+    "status": "reviewed",
     "headline": "Per the FTC, intruders used reused passwords to get into a private GitHub repository, found an AWS key, and reached Uber's S3 data.",
     "discoveryQuestion": "Do you scan private repositories for cloud keys, and is MFA required on your code host?",
     "avoid": "This happened in 2016; don't present it as recent.",
@@ -108,12 +108,12 @@
     ],
     "draftedOn": "2026-11-17",
     "draftedBy": "agent-draft",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "incidentId": "incident:storm-0558-signing-key-2023",
-    "status": "draft",
+    "status": "reviewed",
     "headline": "Microsoft reported that an attacker used an acquired consumer signing key to forge tokens and access Outlook Web Access and Outlook.com.",
     "discoveryQuestion": "Where do your signing keys live, and how would you know if key material left that environment?",
     "avoid": "Don't state how the key was stolen; Microsoft has not confirmed it.",
@@ -122,12 +122,12 @@
     ],
     "draftedOn": "2026-11-17",
     "draftedBy": "agent-draft",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "incidentId": "incident:pypi-admin-token-docker-image-2024",
-    "status": "draft",
+    "status": "reviewed",
     "headline": "An admin GitHub token for Python's core organizations sat in a compiled .pyc file inside a public Docker image.",
     "discoveryQuestion": "Do your secret scans cover build artifacts and container images, or only source code?",
     "avoid": "PyPI found no malicious use; don't describe it as an attack.",
@@ -136,12 +136,12 @@
     ],
     "draftedOn": "2026-11-17",
     "draftedBy": "agent-draft",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "incidentId": "incident:microsoft-ai-sas-token-2023",
-    "status": "draft",
+    "status": "reviewed",
     "headline": "One over-scoped Azure SAS token in a public GitHub repository exposed 38TB of private Microsoft research data.",
     "discoveryQuestion": "How do you track the scope and expiry of shared-access tokens your teams create?",
     "avoid": "Wiz reported no attacker activity; describe it as an exposure, not an attack.",
@@ -150,12 +150,12 @@
     ],
     "draftedOn": "2026-11-17",
     "draftedBy": "agent-draft",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "incidentId": "incident:env-file-cloud-extortion-2024",
-    "status": "draft",
+    "status": "reviewed",
     "headline": "Attackers harvested AWS keys from exposed .env files at scale, targeting 110,000 domains.",
     "discoveryQuestion": "Could a deployed web app expose its .env file, and would you notice those keys being used?",
     "avoid": "Don't name an actor or a number of extorted organizations; neither is stated.",
@@ -164,7 +164,7 @@
     ],
     "draftedOn": "2026-11-17",
     "draftedBy": "agent-draft",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   }
 ]
