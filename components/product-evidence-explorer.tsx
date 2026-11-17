@@ -1,7 +1,8 @@
 "use client";
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { StatusPill } from "@/components/chrome";
+import { SourceBadge } from "@/components/source-badge";
+import { evidenceBasis, noteWithoutCaveat } from "@/lib/claim-basis";
 import type { Claim } from "@/lib/schema";
 
 export function ProductEvidenceExplorer({ claims }: { claims: Claim[] }) {
@@ -26,17 +27,11 @@ export function ProductEvidenceExplorer({ claims }: { claims: Claim[] }) {
         {claims.map((claim) => (
           <AccordionItem key={claim.id} value={claim.id} className="min-w-0 rounded-xl border border-border bg-card px-4">
             <div className="flex flex-wrap items-center gap-2 pt-3">
-              <StatusPill status={claim.verificationStatus} />
-              <StatusPill status={claim.sourceType} />
+              <SourceBadge claim={claim} />
               <span className="text-xs text-muted-foreground">Checked {claim.lastCheckedAt}</span>
               <span className="text-xs text-muted-foreground">Publication date {claim.publishedAt ?? "Unknown"}</span>
             </div>
             <p className="mt-3 text-sm leading-6 [overflow-wrap:anywhere]">{claim.statement}</p>
-            <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              {claim.verificationStatus === "vendor_published"
-                ? "Publisher-reported, not independently tested."
-                : "Inspect source and verification status before drawing a conclusion."}
-            </p>
             <a
               href={claim.sourceUrl}
               aria-label={`Open original source: ${claim.statement}`}
@@ -55,11 +50,7 @@ export function ProductEvidenceExplorer({ claims }: { claims: Claim[] }) {
               <dl className="grid gap-3 border-t border-border pt-3 text-sm sm:grid-cols-2">
                 <div>
                   <dt className="font-semibold">Evidence basis</dt>
-                  <dd className="mt-1 text-muted-foreground">
-                    {claim.verificationStatus === "vendor_published"
-                      ? "Publisher-reported, not independently tested."
-                      : "Inspect source and verification status before drawing a conclusion."}
-                  </dd>
+                  <dd className="mt-1 text-muted-foreground">{evidenceBasis(claim)}</dd>
                 </div>
                 <div>
                   <dt className="font-semibold">Publication date</dt>
@@ -72,7 +63,7 @@ export function ProductEvidenceExplorer({ claims }: { claims: Claim[] }) {
                 <div>
                   <dt className="font-semibold">Scope and caveats</dt>
                   <dd className="mt-1 text-muted-foreground [overflow-wrap:anywhere]">
-                    {claim.notes || "No additional qualification recorded; do not infer broad support."}
+                    {noteWithoutCaveat(claim.notes) || "No additional qualification recorded. Do not infer broad support."}
                   </dd>
                 </div>
               </dl>

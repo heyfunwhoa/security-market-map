@@ -1,4 +1,4 @@
-import { marketAreas } from "./market-areas";
+import { domainQuestions } from "./data/domain-questions";
 import type { Claim, GlossaryTerm } from "./schema";
 
 type Placed = { id: string; primaryCategoryIds: readonly string[] };
@@ -16,9 +16,9 @@ export type DomainQuestion = {
   question: string;
 };
 
-export function questionsForDomain(slug: string): DomainQuestion[] {
-  return marketAreas
-    .filter((area) => area.href === `/domains/${slug}`)
+export function questionsForDomain(domainId: string): DomainQuestion[] {
+  return domainQuestions
+    .filter((area) => area.domainId === domainId)
     .map((area) => ({ id: area.id, name: area.name, question: area.question }));
 }
 

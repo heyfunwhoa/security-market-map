@@ -3,6 +3,7 @@ name: Security scans
 on:
   pull_request:
     branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
   push:
     branches: [main]
 
@@ -20,6 +21,7 @@ concurrency:
 jobs:
   trufflehog:
     name: TruffleHog introduced secrets
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -33,6 +35,7 @@ jobs:
 
   trivy:
     name: Trivy dependency and config review
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -51,6 +54,7 @@ jobs:
 
   dependency-audit:
     name: Production dependency audit
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

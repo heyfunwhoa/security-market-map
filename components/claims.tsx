@@ -1,28 +1,10 @@
 import Link from "next/link";
-import { StatusPill } from "@/components/chrome";
+import { SourceBadge } from "@/components/source-badge";
+import { noteWithoutCaveat } from "@/lib/claim-basis";
 import { formatDate } from "@/lib/format";
 import type { Claim, Distinction } from "@/lib/schema";
 
-function evidenceBasis(claim: Claim): string {
-  if (claim.verificationStatus === "verified" && claim.sourceType === "standard") {
-    return "Checked against an independent public source. This is not a test of a product.";
-  }
-  if (claim.verificationStatus === "vendor_published") {
-    return "This is what the vendor published. It is not an independent test.";
-  }
-  if (claim.sourceType === "analyst") {
-    return "Taken from a public analyst page. Paid report text and rankings are not copied here.";
-  }
-  if (claim.verificationStatus === "conflicting") {
-    return "Two sources disagree. Both stay on the page.";
-  }
-  if (claim.verificationStatus === "needs_review") {
-    return "Saved for a person to check. It is not treated as fact.";
-  }
-  return "Tied to the source linked below.";
-}
-
-export function ClaimList({ claims }: { claims: Claim[] }) {
+export function ClaimList({ claims, labels }: { claims: Claim[]; labels?: Record<string, string> }) {
   if (claims.length === 0) {
     return (
       <p className="rounded-lg border border-dashed border-border px-4 py-6 text-sm text-muted-foreground">
@@ -36,16 +18,19 @@ export function ClaimList({ claims }: { claims: Claim[] }) {
       {claims.map((claim) => (
         <li key={claim.id} className="rounded-xl border border-border bg-card p-4">
           <div className="flex flex-wrap items-center gap-2">
-            <StatusPill status={claim.verificationStatus} />
-            <StatusPill status={claim.sourceType} />
+            <SourceBadge claim={claim} />
+            {labels?.[claim.id] ? (
+              <span className="rounded-full border border-border px-2 py-0.5 text-xs font-medium">{labels[claim.id]}</span>
+            ) : null}
             <span className="text-xs text-muted-foreground">
               {claim.publishedAt ? `Published ${formatDate(claim.publishedAt)} · ` : ""}
               Checked {formatDate(claim.lastCheckedAt)}
             </span>
           </div>
           <p className="mt-3 text-sm leading-6">{claim.statement}</p>
-          <p className="mt-2 text-sm leading-6 text-muted-foreground">{evidenceBasis(claim)}</p>
-          {claim.notes ? <p className="mt-2 text-sm leading-6 text-muted-foreground">{claim.notes}</p> : null}
+          {noteWithoutCaveat(claim.notes) ? (
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">{noteWithoutCaveat(claim.notes)}</p>
+          ) : null}
           <a
             href={claim.sourceUrl}
             className="mt-3 inline-block text-sm font-medium text-primary underline-offset-4 hover:underline"

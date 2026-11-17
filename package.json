@@ -6,6 +6,7 @@
     "dev": "next dev --hostname 0.0.0.0 --port 43123",
     "build": "next build",
     "start": "next start --hostname 0.0.0.0 --port 43123",
+    "prepare": "node scripts/install-hooks.mjs",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
