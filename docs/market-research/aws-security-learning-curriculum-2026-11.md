@@ -2,6 +2,10 @@
 
 **Status:** proposed curriculum for review | **Date:** 2026-11-17 | **Owner:** Security Market Map (reference), Builder Academy (future instructional consumer) | **No cloud resources created**
 
+## Complete Security Hub + AI expansion roadmap
+
+See [Security Hub + AI security curriculum and product roadmap](aws-security-hub-ai-curriculum-roadmap-2026-11.md) for Essentials and add-ons, native AWS integrations, all 23 curated Extended partners, Bedrock and AgentCore security, and phased learning implementation. This is a research curriculum, not released product coverage.
+
 ## Existing baseline, verified in repository
 
 - [AWS ecosystem research](aws-security-ecosystem-2026-11.md): buyer-problem → native security control → adjacent product → sourced market relationship.
