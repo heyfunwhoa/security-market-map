@@ -3,6 +3,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import salesNotesSeed from "@/data/security-intelligence/sales-notes.json";
 import incidentsSeed from "@/data/security-intelligence/incidents.seed.json";
+import industriesSeed from "@/data/security-intelligence/incident-industries.json";
 import { buildIncidentFeedExport, INCIDENT_FEED_EXPORT_PATH, renderIncidentFeedExport } from "./incident-feed-export";
 import { incidentFeed } from "./incident-feed";
 
@@ -34,6 +35,15 @@ describe("incident feed consumer export", () => {
         expect(c.doesNotImply.trim()).not.toBe("");
       }
     }
+  });
+
+  it("only carries reviewed industry tags", () => {
+    const reviewed = new Set(
+      (industriesSeed as { incidentId: string; industry: string; status: string }[])
+        .filter((t) => t.status === "reviewed")
+        .map((t) => `${t.incidentId}|${t.industry}`),
+    );
+    for (const i of exported.incidents) for (const tag of i.industries) expect(reviewed.has(`${i.id}|${tag.id}`)).toBe(true);
   });
 
   it("matches the committed file (run npm run export:feed to update)", () => {

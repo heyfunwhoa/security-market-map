@@ -6,6 +6,7 @@ It is built from the same join the site's `/incidents` page uses (`lib/incident-
 
 - **Incidents:** reviewed and sourced only. Candidates never appear.
 - **Sales notes:** `reviewed` notes grounded in the incident's own sources only. Drafts are dropped (`salesNote: null`).
+- **Industries:** reviewed industry tags only. Each tag is the industry of the organization the source names; wide campaigns with no named organization have none.
 - **Market categories:** reviewed links only, each with its `doesNotImply` line.
 
 Each incident carries its facts, original sources, epistemic status and uncertainty notes, then the sales note and categories as separate fields. Consumers should keep that split: cite the sources for facts, treat the sales note as interpretation, and follow the top-level `usageRules`.

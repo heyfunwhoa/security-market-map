@@ -5,7 +5,8 @@
     "Every fact comes from the listed sources; cite the source when you use it.",
     "Sales notes are interpretation, not evidence. Follow each note's 'avoid' line.",
     "Category links mean related, not that any product would have prevented the incident.",
-    "Don't infer that a prospect or customer was affected."
+    "Don't infer that a prospect or customer was affected.",
+    "Industry is the industry of the organization the source names, not a list of affected industries."
   ],
   "incidents": [
     {
@@ -46,6 +47,7 @@
         ],
         "reviewedOn": "2026-11-17"
       },
+      "industries": [],
       "marketCategories": [
         {
           "categoryId": "external-attack-surface",
@@ -90,6 +92,12 @@
         ],
         "reviewedOn": "2026-11-17"
       },
+      "industries": [
+        {
+          "id": "healthcare_life_sciences",
+          "name": "Healthcare and life sciences"
+        }
+      ],
       "marketCategories": [
         {
           "categoryId": "cyber-recovery",
@@ -134,6 +142,7 @@
         ],
         "reviewedOn": "2026-11-17"
       },
+      "industries": [],
       "marketCategories": [
         {
           "categoryId": "software-supply-chain",
@@ -186,6 +195,7 @@
         ],
         "reviewedOn": "2026-11-17"
       },
+      "industries": [],
       "marketCategories": [
         {
           "categoryId": "software-supply-chain",
@@ -237,6 +247,7 @@
         ],
         "reviewedOn": "2026-11-17"
       },
+      "industries": [],
       "marketCategories": [
         {
           "categoryId": "software-supply-chain",
@@ -282,6 +293,7 @@
         ],
         "reviewedOn": "2026-11-17"
       },
+      "industries": [],
       "marketCategories": [
         {
           "categoryId": "secrets-detection",
@@ -333,6 +345,7 @@
         ],
         "reviewedOn": "2026-11-17"
       },
+      "industries": [],
       "marketCategories": [
         {
           "categoryId": "secrets-detection",
@@ -378,6 +391,12 @@
         ],
         "reviewedOn": "2026-11-17"
       },
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
       "marketCategories": [
         {
           "categoryId": "nhi",
@@ -430,6 +449,12 @@
         ],
         "reviewedOn": "2026-11-17"
       },
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
       "marketCategories": [
         {
           "categoryId": "itdr",
@@ -482,6 +507,12 @@
         ],
         "reviewedOn": "2026-11-17"
       },
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
       "marketCategories": [
         {
           "categoryId": "secrets-detection",
@@ -527,6 +558,12 @@
         ],
         "reviewedOn": "2026-11-17"
       },
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
       "marketCategories": []
     },
     {
@@ -564,6 +601,12 @@
         ],
         "reviewedOn": "2026-11-17"
       },
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
       "marketCategories": [
         {
           "categoryId": "secrets-management",
@@ -610,6 +653,12 @@
         ],
         "reviewedOn": "2026-11-17"
       },
+      "industries": [
+        {
+          "id": "automotive",
+          "name": "Automotive"
+        }
+      ],
       "marketCategories": [
         {
           "categoryId": "secrets-detection",
@@ -656,6 +705,12 @@
         ],
         "reviewedOn": "2026-11-17"
       },
+      "industries": [
+        {
+          "id": "transportation",
+          "name": "Transportation"
+        }
+      ],
       "marketCategories": [
         {
           "categoryId": "workforce-identity",
@@ -706,6 +761,12 @@
         ],
         "reviewedOn": "2026-11-17"
       },
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
       "marketCategories": [
         {
           "categoryId": "software-supply-chain",
@@ -749,6 +810,12 @@
         ],
         "reviewedOn": "2026-11-17"
       },
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
       "marketCategories": [
         {
           "categoryId": "software-supply-chain",
@@ -801,6 +868,12 @@
         ],
         "reviewedOn": "2026-11-17"
       },
+      "industries": [
+        {
+          "id": "transportation",
+          "name": "Transportation"
+        }
+      ],
       "marketCategories": [
         {
           "categoryId": "secrets-detection",

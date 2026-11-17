@@ -1,5 +1,5 @@
 import { catalog } from "@/lib/catalog";
-import { incidentFeed, type FeedIncident } from "@/lib/incident-feed";
+import { incidentFeed, industryLabel, type FeedIncident } from "@/lib/incident-feed";
 
 /**
  * Consumer export of the reviewed incident feed for this owner's other tools
@@ -22,8 +22,9 @@ export function buildIncidentFeedExport(feed: readonly FeedIncident[] = incident
       "Sales notes are interpretation, not evidence. Follow each note's 'avoid' line.",
       "Category links mean related, not that any product would have prevented the incident.",
       "Don't infer that a prospect or customer was affected.",
+      "Industry is the industry of the organization the source names, not a list of affected industries.",
     ],
-    incidents: feed.map(({ slug, incident, sources, salesNote, categoryLinks }) => ({
+    incidents: feed.map(({ slug, incident, sources, salesNote, categoryLinks, industries }) => ({
       id: incident.id,
       slug,
       title: incident.title,
@@ -46,6 +47,8 @@ export function buildIncidentFeedExport(feed: readonly FeedIncident[] = incident
               reviewedOn: salesNote.reviewedOn,
             }
           : null,
+      // Industry of the organization the source names, reviewed only; never the industry of a prospect.
+      industries: industries.map((id) => ({ id, name: industryLabel(id) })),
       marketCategories: categoryLinks.map((link) => ({
         categoryId: link.categoryId,
         categoryName: categoryName.get(link.categoryId) ?? null,
