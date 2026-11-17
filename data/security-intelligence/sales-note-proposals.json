@@ -1,0 +1,213 @@
+{
+  "status": "proposed",
+  "proposedBy": "agent-draft",
+  "proposedOn": "2026-11-17",
+  "note": "Proposals only. Nothing here reaches the feed, the exports or other tools until the owner records a decision and the approved text is copied into sales-notes.json. proposedHeadline null means keep the current headline.",
+  "proposals": [
+    {
+      "incidentId": "incident:cisa-solarwinds-2020",
+      "sellerCaveat": "Older incident (2020); victims and methods aren't covered here.",
+      "proposedHeadline": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:cisa-solarwinds-2020"
+      ],
+      "decision": null,
+      "reviewedBy": null,
+      "reviewedOn": null
+    },
+    {
+      "incidentId": "incident:cisa-shai-hulud-2025",
+      "sellerCaveat": "Affected packages aren't verified; don't imply this account was hit.",
+      "proposedHeadline": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:cisa-shai-hulud-alert"
+      ],
+      "decision": null,
+      "reviewedBy": null,
+      "reviewedOn": null
+    },
+    {
+      "incidentId": "incident:codecov-bash-uploader-2021",
+      "sellerCaveat": "Which customers actually lost secrets is unknown.",
+      "proposedHeadline": "One leaked credential let an attacker change Codecov's Bash Uploader and pull data out of customers' CI environments.",
+      "reason": "Leads with the cause (one leaked credential), which is the secrets lesson.",
+      "basedOnSourceIds": [
+        "source:codecov-bash-uploader-2021"
+      ],
+      "decision": null,
+      "reviewedBy": null,
+      "reviewedOn": null
+    },
+    {
+      "incidentId": "incident:tj-actions-changed-files-2025",
+      "sellerCaveat": "About 23,000 repos used it; that's not a count of leaks.",
+      "proposedHeadline": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:ghsa-mrrh-fwg8-r2c3"
+      ],
+      "decision": null,
+      "reviewedBy": null,
+      "reviewedOn": null
+    },
+    {
+      "incidentId": "incident:nx-s1ngularity-2025",
+      "sellerCaveat": "How the publishing token was first stolen isn't confirmed.",
+      "proposedHeadline": "Malicious Nx packages turned developers' own AI coding tools into secret hunters. Wiz saw over a thousand valid GitHub tokens leak.",
+      "reason": "Leads with the new twist (AI tools used against their owners) and adds the scale figure from the summary.",
+      "basedOnSourceIds": [
+        "source:wiz-s1ngularity-2025"
+      ],
+      "decision": null,
+      "reviewedBy": null,
+      "reviewedOn": null
+    },
+    {
+      "incidentId": "incident:circleci-engineer-laptop-2023",
+      "sellerCaveat": "Impact on individual customers isn't covered.",
+      "proposedHeadline": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:circleci-incident-report-2023"
+      ],
+      "decision": null,
+      "reviewedBy": null,
+      "reviewedOn": null
+    },
+    {
+      "incidentId": "incident:cloudflare-unrotated-okta-tokens-2023",
+      "sellerCaveat": "Attribution is Cloudflare's own; don't name an actor.",
+      "proposedHeadline": "Four credentials Cloudflare thought were unused, left unrotated after the Okta breach, let an attacker into Confluence and Jira.",
+      "reason": "Leads with the rotation gap, the part a buyer can act on. Four is the one token plus three accounts in the summary.",
+      "basedOnSourceIds": [
+        "source:cloudflare-thanksgiving-2023"
+      ],
+      "decision": null,
+      "reviewedBy": null,
+      "reviewedOn": null
+    },
+    {
+      "incidentId": "incident:uber-github-aws-key-2016",
+      "sellerCaveat": "This was 2016; use it as a lesson, not news.",
+      "proposedHeadline": "One AWS key in a private GitHub repo, reached with reused passwords, gave intruders Uber's S3 data.",
+      "reason": "Puts the single key up front.",
+      "basedOnSourceIds": [
+        "source:ftc-uber-revised-analysis"
+      ],
+      "decision": null,
+      "reviewedBy": null,
+      "reviewedOn": null
+    },
+    {
+      "incidentId": "incident:storm-0558-signing-key-2023",
+      "sellerCaveat": "How the key left Microsoft is still unconfirmed.",
+      "proposedHeadline": "With one acquired signing key, an attacker forged tokens to get into Outlook Web Access and Outlook.com.",
+      "reason": "Puts the single key up front; keeps 'acquired', not 'stolen'.",
+      "basedOnSourceIds": [
+        "source:msrc-storm-0558-key-acquisition"
+      ],
+      "decision": null,
+      "reviewedBy": null,
+      "reviewedOn": null
+    },
+    {
+      "incidentId": "incident:pypi-admin-token-docker-image-2024",
+      "sellerCaveat": "No malicious use was found; this was an exposure.",
+      "proposedHeadline": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:pypi-leaked-admin-token-2024"
+      ],
+      "decision": null,
+      "reviewedBy": null,
+      "reviewedOn": null
+    },
+    {
+      "incidentId": "incident:microsoft-ai-sas-token-2023",
+      "sellerCaveat": "No attacker activity was reported; this was an exposure.",
+      "proposedHeadline": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:wiz-microsoft-sas-token-2023"
+      ],
+      "decision": null,
+      "reviewedBy": null,
+      "reviewedOn": null
+    },
+    {
+      "incidentId": "incident:env-file-cloud-extortion-2024",
+      "sellerCaveat": "The actor and number of extorted orgs aren't stated.",
+      "proposedHeadline": "Exposed .env files handed attackers AWS keys. The campaign targeted 110,000 domains and pulled over 90,000 unique variables.",
+      "reason": "Adds the second figure from the summary to show scale.",
+      "basedOnSourceIds": [
+        "source:unit42-env-extortion-2024"
+      ],
+      "decision": null,
+      "reviewedBy": null,
+      "reviewedOn": null
+    },
+    {
+      "incidentId": "incident:okta-support-har-files-2023",
+      "sellerCaveat": "The exact path the password leaked by isn't confirmed.",
+      "proposedHeadline": null,
+      "reason": "No hook proposed: a causal hook would present the unconfirmed exposure path as fact.",
+      "basedOnSourceIds": [
+        "source:okta-support-root-cause-2023",
+        "source:okta-harfiles-closure-2024"
+      ],
+      "decision": null,
+      "reviewedBy": null,
+      "reviewedOn": null
+    },
+    {
+      "incidentId": "incident:toyota-tconnect-github-key-2022",
+      "sellerCaveat": "Toyota couldn't confirm the key was ever used.",
+      "proposedHeadline": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:toyota-tconnect-notice-2022"
+      ],
+      "decision": null,
+      "reviewedBy": null,
+      "reviewedOn": null
+    },
+    {
+      "incidentId": "incident:uber-contractor-mfa-push-2022",
+      "sellerCaveat": "Uber saw no access to production systems or user databases.",
+      "proposedHeadline": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:uber-security-update-2022"
+      ],
+      "decision": null,
+      "reviewedBy": null,
+      "reviewedOn": null
+    },
+    {
+      "incidentId": "incident:cl-sta-1238-cairn-ai-intrusions-2026",
+      "sellerCaveat": "Victims are unnamed; the China link is a moderate-confidence assessment.",
+      "proposedHeadline": "Attackers ran an open-source AI pentest framework through 25 operations against at least 19 organizations, and got in at 10.",
+      "reason": "Adds the 'at least 19' denominator so 10 reads as a hit rate, not a raw count.",
+      "basedOnSourceIds": [
+        "source:unit42-cairn-ai-intrusions-2026"
+      ],
+      "decision": null,
+      "reviewedBy": null,
+      "reviewedOn": null
+    },
+    {
+      "incidentId": "incident:west-pharmaceutical-intrusion-2026",
+      "sellerCaveat": "The filing names no attacker and no impact figures.",
+      "proposedHeadline": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:sec-8k-west-pharmaceutical-2026"
+      ],
+      "decision": null,
+      "reviewedBy": null,
+      "reviewedOn": null
+    }
+  ]
+}
