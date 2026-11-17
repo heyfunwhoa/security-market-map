@@ -1,5 +1,6 @@
 "use client";
 
+import { useId } from "react";
 import { useSearchParams } from "next/navigation";
 import { IncidentCardList } from "@/components/incident-card";
 import { cn } from "@/lib/utils";
@@ -14,6 +15,8 @@ import {
   type IncidentFilters,
 } from "@/lib/incident-feed";
 
+const MAX_BUTTON_OPTIONS = 6;
+
 function FilterGroup({
   legend,
   value,
@@ -25,6 +28,31 @@ function FilterGroup({
   options: { id: string; label: string }[];
   onChange: (value: string) => void;
 }) {
+  const selectId = useId();
+  // Short lists stay one-tap buttons; longer ones become a dropdown so the filter bar
+  // stays scannable as the catalog grows (same native select as the landscape filters).
+  if (options.length > MAX_BUTTON_OPTIONS) {
+    return (
+      <div className="flex flex-wrap items-center gap-2">
+        <label htmlFor={selectId} className="mr-1 text-sm font-semibold">
+          {legend}:
+        </label>
+        <select
+          id={selectId}
+          value={value}
+          onChange={(event) => onChange(event.target.value)}
+          className="min-h-11 w-full min-w-0 rounded-md border border-input bg-background px-2 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring sm:min-h-9 sm:w-auto"
+        >
+          <option value="all">All</option>
+          {options.map((option) => (
+            <option key={option.id} value={option.id}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </div>
+    );
+  }
   return (
     <fieldset className="flex flex-wrap items-center gap-2">
       <legend className="sr-only">{legend}</legend>

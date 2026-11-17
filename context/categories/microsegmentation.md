@@ -21,6 +21,10 @@ Workload-to-workload policy, usually sold apart from the perimeter firewall. Thi
 - Network security (`network-security`)
 - OT / ICS security (`ot-security`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Illumio: Microsegmentation vendor. Not a perimeter firewall and not an identity provider.

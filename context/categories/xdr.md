@@ -26,6 +26,10 @@ Detection and response sold together across more than the endpoint. This map doe
 - Digital forensics (`digital-forensics`)
 - MSSP / MDR operations lead (`mssp-ops`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 _None recorded._

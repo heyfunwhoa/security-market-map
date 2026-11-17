@@ -20,6 +20,10 @@ Authentication and account experience for customers, partners, or developers usi
 
 - Identity security lead (`identity-security`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Ping Identity: Workforce and customer identity vendor. Not assumed to be an IGA or NHI governance suite in this seed.

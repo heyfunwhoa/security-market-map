@@ -1,5 +1,7 @@
 # Market Map implementation plan — Reusable Security & GTM Intelligence Foundation
 
+> **2026-11-16 offline continuation:** The [native v1 preview and verification record](../integrations/research-evidence-offline-v1.md) implements the bounded synthetic consumer on its feature branch. Older implementation/PR-state notes below are historical. No authenticated handoff, real-record review, publication or deployment follows from that offline proof.
+
 > Status: review, subordinate plan · Owner: Kristen Aing / SMM · Version: 0.1 · Reviewed: 2026-10-11 · Classification: public-safe · No runtime changes
 
 Existing [research vision](research-atlas-vision.md), [knowledge architecture](../security-intelligence/architecture.md), [knowledge-model proposal](../architecture/knowledge-model-proposal.md), [engineering adoption](../engineering-standards.md) and pending [product PRD PR #14](https://github.com/heyfunwhoa/security-market-map/pull/14) remain authoritative for the application. No competing product PRD is introduced here.
