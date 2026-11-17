@@ -1,0 +1,778 @@
+{
+  "type": "bundle",
+  "id": "bundle--674ee770-8a54-52b1-ad35-7c12cf831e1a",
+  "objects": [
+    {
+      "type": "identity",
+      "spec_version": "2.1",
+      "id": "identity--8f71ca68-e0b8-587e-9909-25d9911741ad",
+      "created": "2026-10-10T00:00:00.000Z",
+      "modified": "2026-10-10T00:00:00.000Z",
+      "name": "Security Market Map incident feed",
+      "identity_class": "system",
+      "description": "Curated, source-cited summaries of publicly reported security incidents. Not original threat research."
+    },
+    {
+      "type": "extension-definition",
+      "spec_version": "2.1",
+      "id": "extension-definition--ce493920-a67c-54ea-9b43-349420e0636b",
+      "created_by_ref": "identity--8f71ca68-e0b8-587e-9909-25d9911741ad",
+      "created": "2026-11-17T00:00:00.000Z",
+      "modified": "2026-11-17T00:00:00.000Z",
+      "name": "Security Market Map incident evidence fields",
+      "description": "x_smm_disclosed_on, x_smm_occurred_on (omitted when unknown), x_smm_epistemic_status (reported, observed, hypothesis, disputed, unknown), x_smm_review_status and x_smm_uncertainty_notes.",
+      "schema": "https://github.com/heyfunwhoa/security-market-map/blob/main/docs/security-intelligence/stix-export.md",
+      "version": "1.0.0",
+      "extension_types": [
+        "toplevel-property-extension"
+      ],
+      "extension_properties": [
+        "x_smm_disclosed_on",
+        "x_smm_occurred_on",
+        "x_smm_epistemic_status",
+        "x_smm_review_status",
+        "x_smm_uncertainty_notes"
+      ]
+    },
+    {
+      "type": "report",
+      "spec_version": "2.1",
+      "id": "report--9bc5f0f6-0d74-5709-8260-87e1c2b91923",
+      "created_by_ref": "identity--8f71ca68-e0b8-587e-9909-25d9911741ad",
+      "created": "2026-10-10T00:00:00.000Z",
+      "modified": "2026-11-17T00:00:00.000Z",
+      "name": "Security Market Map reviewed incident feed",
+      "description": "All reviewed incidents. Each incident cites its original sources in external_references; uncertainty is kept in x_smm_uncertainty_notes.",
+      "report_types": [
+        "threat-report"
+      ],
+      "published": "2026-11-17T00:00:00.000Z",
+      "object_refs": [
+        "incident--d783de7e-76fc-5344-9a3e-c9369e3c5773",
+        "incident--d61403f4-3934-5d5a-96fd-42a7aba71db9",
+        "incident--17ca2e89-e542-5eae-940c-1ba719a7841b",
+        "incident--32670f05-ef7b-5928-af10-adaf48612186",
+        "incident--2db5fcb0-35af-5327-9d2b-79ea54f49c20",
+        "incident--cf56f39b-4b10-5009-a136-b8fb340f1df7",
+        "incident--63876472-2b3d-516c-acaf-f3c3d5addbe2",
+        "incident--0288771a-6856-5596-bf78-9fc1c8250cfc",
+        "incident--d777ae0a-4d80-5657-b75d-c5865ff4b3e9",
+        "incident--5cc9af9c-5585-5e0e-b514-1ef2701002c5",
+        "incident--62bcdf43-4ec6-5c06-94fe-75b63b443054",
+        "incident--74452ac5-e43c-5262-adae-40a6c0a7f986",
+        "incident--44f281da-285b-518d-ab35-cd395f5e6623",
+        "incident--6858ce65-7583-50da-b4e6-3b8f6a9f0e16",
+        "incident--e42b85f9-4f19-57e0-8fe5-5aa86a7bd329",
+        "incident--59ad5553-fe74-52d1-a07a-87b78f97f9f7",
+        "incident--0c8460a8-2686-57a8-a40a-7013483ed006"
+      ],
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "incident",
+      "spec_version": "2.1",
+      "id": "incident--d783de7e-76fc-5344-9a3e-c9369e3c5773",
+      "created_by_ref": "identity--8f71ca68-e0b8-587e-9909-25d9911741ad",
+      "created": "2026-10-10T00:00:00.000Z",
+      "modified": "2026-10-10T00:00:00.000Z",
+      "name": "SolarWinds Orion supply-chain compromise",
+      "description": "CISA reported active exploitation involving affected SolarWinds Orion software versions.",
+      "labels": [
+        "supply_chain",
+        "enterprise_software"
+      ],
+      "external_references": [
+        {
+          "source_name": "security-market-map",
+          "external_id": "incident:cisa-solarwinds-2020"
+        },
+        {
+          "source_name": "CISA",
+          "url": "https://www.cisa.gov/news-events/alerts/2020/12/13/active-exploitation-solarwinds-software",
+          "external_id": "source:cisa-solarwinds-2020"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ],
+      "extensions": {
+        "extension-definition--ce493920-a67c-54ea-9b43-349420e0636b": {
+          "extension_type": "toplevel-property-extension"
+        }
+      },
+      "x_smm_disclosed_on": "2020-12-13",
+      "x_smm_epistemic_status": "reported",
+      "x_smm_review_status": "seed_reviewed",
+      "x_smm_uncertainty_notes": [
+        "Exact occurrence date, complete victim list and attack-technique links are outside this seed's verified scope."
+      ]
+    },
+    {
+      "type": "incident",
+      "spec_version": "2.1",
+      "id": "incident--d61403f4-3934-5d5a-96fd-42a7aba71db9",
+      "created_by_ref": "identity--8f71ca68-e0b8-587e-9909-25d9911741ad",
+      "created": "2026-10-10T00:00:00.000Z",
+      "modified": "2026-10-10T00:00:00.000Z",
+      "name": "Shai-Hulud npm ecosystem compromise",
+      "description": "CISA issued an alert describing a self-replicating npm ecosystem supply-chain compromise and attempted credential theft.",
+      "labels": [
+        "supply_chain",
+        "npm"
+      ],
+      "external_references": [
+        {
+          "source_name": "security-market-map",
+          "external_id": "incident:cisa-shai-hulud-2025"
+        },
+        {
+          "source_name": "CISA",
+          "url": "https://content.govdelivery.com/accounts/USDHSCISA/bulletins/3f408db",
+          "external_id": "source:cisa-shai-hulud-alert"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ],
+      "extensions": {
+        "extension-definition--ce493920-a67c-54ea-9b43-349420e0636b": {
+          "extension_type": "toplevel-property-extension"
+        }
+      },
+      "x_smm_disclosed_on": "2025-09-23",
+      "x_smm_epistemic_status": "reported",
+      "x_smm_review_status": "seed_reviewed",
+      "x_smm_uncertainty_notes": [
+        "Affected individual packages and versions require package-level primary evidence before asserting links.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ]
+    },
+    {
+      "type": "incident",
+      "spec_version": "2.1",
+      "id": "incident--17ca2e89-e542-5eae-940c-1ba719a7841b",
+      "created_by_ref": "identity--8f71ca68-e0b8-587e-9909-25d9911741ad",
+      "created": "2026-11-17T00:00:00.000Z",
+      "modified": "2026-11-17T00:00:00.000Z",
+      "name": "Codecov Bash Uploader compromise",
+      "description": "Codecov reported that a credential exposed by an error in its Docker image creation process let an actor modify its Bash Uploader script, which could then export information from customers' CI environments. Codecov says it learned of the change on 1 April 2021.",
+      "labels": [
+        "supply_chain",
+        "ci_cd"
+      ],
+      "external_references": [
+        {
+          "source_name": "security-market-map",
+          "external_id": "incident:codecov-bash-uploader-2021"
+        },
+        {
+          "source_name": "Codecov",
+          "url": "https://about.codecov.io/security-update/",
+          "external_id": "source:codecov-bash-uploader-2021"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ],
+      "extensions": {
+        "extension-definition--ce493920-a67c-54ea-9b43-349420e0636b": {
+          "extension_type": "toplevel-property-extension"
+        }
+      },
+      "x_smm_disclosed_on": "2021-04-15",
+      "x_smm_epistemic_status": "reported",
+      "x_smm_review_status": "seed_reviewed",
+      "x_smm_uncertainty_notes": [
+        "Which customers' secrets were actually used is not established.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ]
+    },
+    {
+      "type": "incident",
+      "spec_version": "2.1",
+      "id": "incident--32670f05-ef7b-5928-af10-adaf48612186",
+      "created_by_ref": "identity--8f71ca68-e0b8-587e-9909-25d9911741ad",
+      "created": "2026-11-17T00:00:00.000Z",
+      "modified": "2026-11-17T00:00:00.000Z",
+      "name": "tj-actions/changed-files GitHub Action compromise",
+      "description": "The GitHub advisory reports that attackers retroactively pointed multiple tj-actions/changed-files version tags at a malicious commit whose script extracted secrets from runner memory and printed them into GitHub Actions logs.",
+      "labels": [
+        "supply_chain",
+        "github_actions"
+      ],
+      "external_references": [
+        {
+          "source_name": "security-market-map",
+          "external_id": "incident:tj-actions-changed-files-2025"
+        },
+        {
+          "source_name": "GitHub Advisory Database (via OSV)",
+          "url": "https://osv.dev/vulnerability/GHSA-mrrh-fwg8-r2c3",
+          "external_id": "source:ghsa-mrrh-fwg8-r2c3"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ],
+      "extensions": {
+        "extension-definition--ce493920-a67c-54ea-9b43-349420e0636b": {
+          "extension_type": "toplevel-property-extension"
+        }
+      },
+      "x_smm_disclosed_on": "2025-03-15",
+      "x_smm_epistemic_status": "reported",
+      "x_smm_review_status": "seed_reviewed",
+      "x_smm_uncertainty_notes": [
+        "Reported usage of the Action (about 23,000 repositories) is not a count of confirmed leaks.",
+        "How the maintainer's token was obtained is reported elsewhere but not confirmed in this record.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ]
+    },
+    {
+      "type": "incident",
+      "spec_version": "2.1",
+      "id": "incident--2db5fcb0-35af-5327-9d2b-79ea54f49c20",
+      "created_by_ref": "identity--8f71ca68-e0b8-587e-9909-25d9911741ad",
+      "created": "2026-11-17T00:00:00.000Z",
+      "modified": "2026-11-17T00:00:00.000Z",
+      "name": "s1ngularity: malicious Nx npm packages",
+      "description": "Wiz reported that malicious Nx versions published to npm on 26 August 2025 ran a post-install script that harvested GitHub and npm tokens, SSH keys and other secrets, prompting installed AI CLI tools with permission-skipping flags to search the filesystem. Wiz observed over a thousand valid GitHub tokens among the leaked data.",
+      "labels": [
+        "supply_chain",
+        "npm"
+      ],
+      "external_references": [
+        {
+          "source_name": "security-market-map",
+          "external_id": "incident:nx-s1ngularity-2025"
+        },
+        {
+          "source_name": "Wiz Research",
+          "url": "https://www.wiz.io/blog/s1ngularity-supply-chain-attack",
+          "external_id": "source:wiz-s1ngularity-2025"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ],
+      "extensions": {
+        "extension-definition--ce493920-a67c-54ea-9b43-349420e0636b": {
+          "extension_type": "toplevel-property-extension"
+        }
+      },
+      "x_smm_disclosed_on": "2025-08-27",
+      "x_smm_epistemic_status": "reported",
+      "x_smm_review_status": "seed_reviewed",
+      "x_smm_uncertainty_notes": [
+        "The Nx maintainers' own advisory is not yet captured as a source.",
+        "How the npm publishing token was first stolen is reported by secondary sources only.",
+        "Any relationship to the Shai-Hulud npm compromise is by ecosystem only and has not been reviewed.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ]
+    },
+    {
+      "type": "incident",
+      "spec_version": "2.1",
+      "id": "incident--cf56f39b-4b10-5009-a136-b8fb340f1df7",
+      "created_by_ref": "identity--8f71ca68-e0b8-587e-9909-25d9911741ad",
+      "created": "2026-11-17T00:00:00.000Z",
+      "modified": "2026-11-17T00:00:00.000Z",
+      "name": "CircleCI breach via malware on an engineer's laptop",
+      "description": "CircleCI reported that malware on an engineer's laptop was used to steal a valid, 2FA-backed SSO session, and recommended that all customers rotate secrets stored in the platform. CircleCI first alerted customers on 4 January 2023 and published its incident report on 12 January.",
+      "labels": [
+        "intrusion",
+        "ci_cd"
+      ],
+      "external_references": [
+        {
+          "source_name": "security-market-map",
+          "external_id": "incident:circleci-engineer-laptop-2023"
+        },
+        {
+          "source_name": "CircleCI",
+          "url": "https://circleci.com/blog/jan-4-2023-incident-report/",
+          "external_id": "source:circleci-incident-report-2023"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ],
+      "extensions": {
+        "extension-definition--ce493920-a67c-54ea-9b43-349420e0636b": {
+          "extension_type": "toplevel-property-extension"
+        }
+      },
+      "x_smm_disclosed_on": "2023-01-04",
+      "x_smm_epistemic_status": "reported",
+      "x_smm_review_status": "seed_reviewed",
+      "x_smm_uncertainty_notes": [
+        "Impact on individual customers is not covered by this record.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ]
+    },
+    {
+      "type": "incident",
+      "spec_version": "2.1",
+      "id": "incident--63876472-2b3d-516c-acaf-f3c3d5addbe2",
+      "created_by_ref": "identity--8f71ca68-e0b8-587e-9909-25d9911741ad",
+      "created": "2026-11-17T00:00:00.000Z",
+      "modified": "2026-11-17T00:00:00.000Z",
+      "name": "Cloudflare intrusion using credentials missed in rotation",
+      "description": "Cloudflare reported that it did not rotate one service token and three service accounts leaked in the October 2023 Okta compromise because it mistakenly believed they were unused. A threat actor used them between 14 and 17 November 2023 to access Cloudflare's Confluence wiki and Jira.",
+      "labels": [
+        "intrusion",
+        "saas"
+      ],
+      "external_references": [
+        {
+          "source_name": "security-market-map",
+          "external_id": "incident:cloudflare-unrotated-okta-tokens-2023"
+        },
+        {
+          "source_name": "Cloudflare",
+          "url": "https://blog.cloudflare.com/thanksgiving-2023-security-incident/",
+          "external_id": "source:cloudflare-thanksgiving-2023"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ],
+      "extensions": {
+        "extension-definition--ce493920-a67c-54ea-9b43-349420e0636b": {
+          "extension_type": "toplevel-property-extension"
+        }
+      },
+      "x_smm_disclosed_on": "2024-02-01",
+      "x_smm_epistemic_status": "reported",
+      "x_smm_review_status": "seed_reviewed",
+      "x_smm_uncertainty_notes": [
+        "Attribution is Cloudflare's own assessment; no actor is recorded here.",
+        "The link to the Okta support-system breach has not been reviewed as a relationship.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ]
+    },
+    {
+      "type": "incident",
+      "spec_version": "2.1",
+      "id": "incident--0288771a-6856-5596-bf78-9fc1c8250cfc",
+      "created_by_ref": "identity--8f71ca68-e0b8-587e-9909-25d9911741ad",
+      "created": "2026-11-17T00:00:00.000Z",
+      "modified": "2026-11-17T00:00:00.000Z",
+      "name": "Uber S3 breach via an AWS key in a private GitHub repository",
+      "description": "The FTC states that between 13 October and 15 November 2016 intruders accessed Uber's Amazon S3 datastore using an AWS access key posted in a private GitHub repository. The intruders reached the repository with passwords exposed in other breaches, and Uber did not require multi-factor authentication for GitHub. Uber disclosed the breach on 21 November 2017.",
+      "labels": [
+        "breach",
+        "aws",
+        "github"
+      ],
+      "external_references": [
+        {
+          "source_name": "security-market-map",
+          "external_id": "incident:uber-github-aws-key-2016"
+        },
+        {
+          "source_name": "U.S. Federal Trade Commission",
+          "url": "https://www.ftc.gov/system/files/documents/cases/1523054_uber_technologies_revised_analysis.pdf",
+          "external_id": "source:ftc-uber-revised-analysis"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ],
+      "extensions": {
+        "extension-definition--ce493920-a67c-54ea-9b43-349420e0636b": {
+          "extension_type": "toplevel-property-extension"
+        }
+      },
+      "x_smm_disclosed_on": "2017-11-21",
+      "x_smm_epistemic_status": "reported",
+      "x_smm_review_status": "seed_reviewed",
+      "x_smm_uncertainty_notes": [
+        "Hard-coded credentials (CWE-798) is a weakness candidate only.",
+        "The captured FTC document does not show its own publication date.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ]
+    },
+    {
+      "type": "incident",
+      "spec_version": "2.1",
+      "id": "incident--d777ae0a-4d80-5657-b75d-c5865ff4b3e9",
+      "created_by_ref": "identity--8f71ca68-e0b8-587e-9909-25d9911741ad",
+      "created": "2026-11-17T00:00:00.000Z",
+      "modified": "2026-11-17T00:00:00.000Z",
+      "name": "Storm-0558 use of an acquired Microsoft signing key",
+      "description": "Microsoft reported that Storm-0558 used an acquired Microsoft account (MSA) consumer signing key to forge tokens and access Outlook Web Access and Outlook.com.",
+      "labels": [
+        "intrusion",
+        "microsoft_cloud"
+      ],
+      "external_references": [
+        {
+          "source_name": "security-market-map",
+          "external_id": "incident:storm-0558-signing-key-2023"
+        },
+        {
+          "source_name": "Microsoft Security Response Center",
+          "url": "https://www.microsoft.com/en-us/msrc/blog/2023/09/results-of-major-technical-investigations-for-storm-0558-key-acquisition",
+          "external_id": "source:msrc-storm-0558-key-acquisition"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ],
+      "extensions": {
+        "extension-definition--ce493920-a67c-54ea-9b43-349420e0636b": {
+          "extension_type": "toplevel-property-extension"
+        }
+      },
+      "x_smm_disclosed_on": "2023-09-06",
+      "x_smm_epistemic_status": "reported",
+      "x_smm_review_status": "seed_reviewed",
+      "x_smm_uncertainty_notes": [
+        "How the key left the signing environment is unknown. Microsoft's crash-dump explanation is its leading hypothesis, and its 12 March 2024 update says no crash dump containing the key material was found.",
+        "Microsoft's earlier disclosures about Storm-0558 are not captured in this record.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ]
+    },
+    {
+      "type": "incident",
+      "spec_version": "2.1",
+      "id": "incident--5cc9af9c-5585-5e0e-b514-1ef2701002c5",
+      "created_by_ref": "identity--8f71ca68-e0b8-587e-9909-25d9911741ad",
+      "created": "2026-11-17T00:00:00.000Z",
+      "modified": "2026-11-17T00:00:00.000Z",
+      "name": "Python admin GitHub token leaked in a Docker Hub image",
+      "description": "PyPI reported that a GitHub personal access token with admin access to the python, pypi, psf and pypa organizations was found in a compiled .pyc file inside a public Docker Hub image. The token was revoked immediately and no indicators of malicious activity were found.",
+      "labels": [
+        "breach",
+        "pypi",
+        "docker_hub"
+      ],
+      "external_references": [
+        {
+          "source_name": "security-market-map",
+          "external_id": "incident:pypi-admin-token-docker-image-2024"
+        },
+        {
+          "source_name": "PyPI",
+          "url": "https://blog.pypi.org/posts/2024-07-08-incident-report-leaked-admin-personal-access-token/",
+          "external_id": "source:pypi-leaked-admin-token-2024"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ],
+      "extensions": {
+        "extension-definition--ce493920-a67c-54ea-9b43-349420e0636b": {
+          "extension_type": "toplevel-property-extension"
+        }
+      },
+      "x_smm_disclosed_on": "2024-07-08",
+      "x_smm_epistemic_status": "reported",
+      "x_smm_review_status": "seed_reviewed",
+      "x_smm_uncertainty_notes": [
+        "This is a researcher-found exposure with no reported attacker activity. It is typed as a breach because the feed has no exposure type.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ]
+    },
+    {
+      "type": "incident",
+      "spec_version": "2.1",
+      "id": "incident--62bcdf43-4ec6-5c06-94fe-75b63b443054",
+      "created_by_ref": "identity--8f71ca68-e0b8-587e-9909-25d9911741ad",
+      "created": "2026-11-17T00:00:00.000Z",
+      "modified": "2026-11-17T00:00:00.000Z",
+      "name": "Microsoft AI research SAS token exposed 38TB",
+      "description": "Wiz Research reported that a Microsoft AI research GitHub repository shared files through an Azure SAS token scoped to the entire storage account, exposing 38TB of additional private data, including two employees' workstation backups. Wiz's timeline says Microsoft invalidated the token on 24 June 2023.",
+      "labels": [
+        "breach",
+        "azure",
+        "github"
+      ],
+      "external_references": [
+        {
+          "source_name": "security-market-map",
+          "external_id": "incident:microsoft-ai-sas-token-2023"
+        },
+        {
+          "source_name": "Wiz Research",
+          "url": "https://www.wiz.io/blog/38-terabytes-of-private-data-accidentally-exposed-by-microsoft-ai-researchers",
+          "external_id": "source:wiz-microsoft-sas-token-2023"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ],
+      "extensions": {
+        "extension-definition--ce493920-a67c-54ea-9b43-349420e0636b": {
+          "extension_type": "toplevel-property-extension"
+        }
+      },
+      "x_smm_disclosed_on": "2023-09-18",
+      "x_smm_epistemic_status": "reported",
+      "x_smm_review_status": "seed_reviewed",
+      "x_smm_uncertainty_notes": [
+        "This is a researcher-found exposure with no reported attacker activity. It is typed as a breach because the feed has no exposure type.",
+        "Microsoft's own MSRC post is not yet captured as a source.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ]
+    },
+    {
+      "type": "incident",
+      "spec_version": "2.1",
+      "id": "incident--74452ac5-e43c-5262-adae-40a6c0a7f986",
+      "created_by_ref": "identity--8f71ca68-e0b8-587e-9909-25d9911741ad",
+      "created": "2026-11-17T00:00:00.000Z",
+      "modified": "2026-11-17T00:00:00.000Z",
+      "name": "Cloud extortion campaign using exposed .env files",
+      "description": "Unit 42 reported an extortion campaign in which attackers took AWS IAM access keys from publicly exposed .env files on web applications. The campaign targeted 110,000 domains and yielded over 90,000 unique variables.",
+      "labels": [
+        "intrusion",
+        "aws"
+      ],
+      "external_references": [
+        {
+          "source_name": "security-market-map",
+          "external_id": "incident:env-file-cloud-extortion-2024"
+        },
+        {
+          "source_name": "Palo Alto Networks Unit 42",
+          "url": "https://unit42.paloaltonetworks.com/large-scale-cloud-extortion-operation/",
+          "external_id": "source:unit42-env-extortion-2024"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ],
+      "extensions": {
+        "extension-definition--ce493920-a67c-54ea-9b43-349420e0636b": {
+          "extension_type": "toplevel-property-extension"
+        }
+      },
+      "x_smm_disclosed_on": "2024-08-15",
+      "x_smm_epistemic_status": "reported",
+      "x_smm_review_status": "seed_reviewed",
+      "x_smm_uncertainty_notes": [
+        "This is a campaign across many organizations. It is typed as an intrusion because the feed's only campaign type is for malware campaigns.",
+        "The actor and the number of extorted organizations are not stated.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ]
+    },
+    {
+      "type": "incident",
+      "spec_version": "2.1",
+      "id": "incident--44f281da-285b-518d-ab35-cd395f5e6623",
+      "created_by_ref": "identity--8f71ca68-e0b8-587e-9909-25d9911741ad",
+      "created": "2026-11-17T00:00:00.000Z",
+      "modified": "2026-11-17T00:00:00.000Z",
+      "name": "Okta support system breach exposing session tokens in HAR files",
+      "description": "Okta reported that an actor used a service account stored in its customer support system to view files uploaded by 134 customers between 28 September and 17 October 2023. Some were HAR files containing session tokens, which the actor used to hijack the Okta sessions of 5 customers. The service account's username and password had been saved to an employee's personal Google account.",
+      "labels": [
+        "breach",
+        "saas"
+      ],
+      "external_references": [
+        {
+          "source_name": "security-market-map",
+          "external_id": "incident:okta-support-har-files-2023"
+        },
+        {
+          "source_name": "Okta Security",
+          "url": "https://sec.okta.com/articles/2023/11/unauthorized-access-oktas-support-case-management-system-root-cause/",
+          "external_id": "source:okta-support-root-cause-2023"
+        },
+        {
+          "source_name": "Okta Security",
+          "url": "https://sec.okta.com/articles/harfiles/",
+          "external_id": "source:okta-harfiles-closure-2024"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ],
+      "extensions": {
+        "extension-definition--ce493920-a67c-54ea-9b43-349420e0636b": {
+          "extension_type": "toplevel-property-extension"
+        }
+      },
+      "x_smm_disclosed_on": "2023-10-20",
+      "x_smm_epistemic_status": "reported",
+      "x_smm_review_status": "seed_reviewed",
+      "x_smm_uncertainty_notes": [
+        "Okta says the credential was most likely exposed through the employee's personal Google account or personal device; the exact path is not confirmed.",
+        "Downstream incidents at Okta customers, such as Cloudflare's, are separate records; the relationship has not been reviewed.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ]
+    },
+    {
+      "type": "incident",
+      "spec_version": "2.1",
+      "id": "incident--6858ce65-7583-50da-b4e6-3b8f6a9f0e16",
+      "created_by_ref": "identity--8f71ca68-e0b8-587e-9909-25d9911741ad",
+      "created": "2026-11-17T00:00:00.000Z",
+      "modified": "2026-11-17T00:00:00.000Z",
+      "name": "Toyota T-Connect access key exposed on public GitHub",
+      "description": "Toyota reported that a T-Connect website development contractor uploaded part of the site's source code, including a data server access key, to a public GitHub repository in December 2017. The code stayed public until 15 September 2022 and the key was changed on 17 September 2022. Up to 296,019 customer email addresses and customer management numbers may have been exposed.",
+      "labels": [
+        "breach",
+        "github"
+      ],
+      "external_references": [
+        {
+          "source_name": "security-market-map",
+          "external_id": "incident:toyota-tconnect-github-key-2022"
+        },
+        {
+          "source_name": "Toyota Motor Corporation",
+          "url": "https://global.toyota/jp/newsroom/corporate/38095972.html",
+          "external_id": "source:toyota-tconnect-notice-2022"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ],
+      "extensions": {
+        "extension-definition--ce493920-a67c-54ea-9b43-349420e0636b": {
+          "extension_type": "toplevel-property-extension"
+        }
+      },
+      "x_smm_disclosed_on": "2022-10-07",
+      "x_smm_epistemic_status": "reported",
+      "x_smm_review_status": "seed_reviewed",
+      "x_smm_uncertainty_notes": [
+        "Toyota says third-party access could not be confirmed from access history but could not be ruled out; no misuse had been confirmed. It is typed as a breach because the feed has no exposure type.",
+        "Toyota's notice is in Japanese; this summary is a translated paraphrase.",
+        "Hard-coded credentials (CWE-798) is a weakness candidate only.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ]
+    },
+    {
+      "type": "incident",
+      "spec_version": "2.1",
+      "id": "incident--e42b85f9-4f19-57e0-8fe5-5aa86a7bd329",
+      "created_by_ref": "identity--8f71ca68-e0b8-587e-9909-25d9911741ad",
+      "created": "2026-11-17T00:00:00.000Z",
+      "modified": "2026-11-17T00:00:00.000Z",
+      "name": "Uber intrusion via a compromised contractor account and MFA push approval",
+      "description": "Uber reported that an attacker compromised an external contractor's account, likely using a corporate password bought on the dark web after malware infected the contractor's personal device. The attacker repeatedly triggered two-factor login approval requests until the contractor accepted one, then reached other employee accounts with elevated permissions to tools including G-Suite and Slack, and downloaded some internal Slack messages and invoice-tool information. Uber says it did not see access to production systems, user accounts or sensitive user databases.",
+      "labels": [
+        "intrusion",
+        "saas"
+      ],
+      "external_references": [
+        {
+          "source_name": "security-market-map",
+          "external_id": "incident:uber-contractor-mfa-push-2022"
+        },
+        {
+          "source_name": "Uber",
+          "url": "https://www.uber.com/us/en/newsroom/security-update/",
+          "external_id": "source:uber-security-update-2022"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ],
+      "extensions": {
+        "extension-definition--ce493920-a67c-54ea-9b43-349420e0636b": {
+          "extension_type": "toplevel-property-extension"
+        }
+      },
+      "x_smm_disclosed_on": "2022-09-15",
+      "x_smm_epistemic_status": "reported",
+      "x_smm_review_status": "seed_reviewed",
+      "x_smm_uncertainty_notes": [
+        "Uber attributes the attack to Lapsus$; as with other vendor attributions in this feed, no actor is recorded.",
+        "Reports that the attacker found a PowerShell script with hard-coded admin credentials for Uber's PAM system come from the attacker's own statements and secondary coverage. Uber's statement does not mention it, so it is not part of this record.",
+        "Distinct from incident:uber-github-aws-key-2016 (different year and method).",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ]
+    },
+    {
+      "type": "incident",
+      "spec_version": "2.1",
+      "id": "incident--59ad5553-fe74-52d1-a07a-87b78f97f9f7",
+      "created_by_ref": "identity--8f71ca68-e0b8-587e-9909-25d9911741ad",
+      "created": "2026-11-17T00:00:00.000Z",
+      "modified": "2026-11-17T00:00:00.000Z",
+      "name": "AI-driven intrusion campaign using a forked Cairn pentest framework",
+      "description": "Unit 42 reported that between August and September 2026 an actor it tracks as CL-STA-1238 used a customized fork of the open-source Cairn AI penetration-testing framework, running on Zhipu GLM and DeepSeek models, to conduct 25 operations against at least 19 organizations in the semiconductor, defense and civil-society sectors. Unit 42 confirmed unauthorized access or data retrieval at 10 of them; reported impacts include a persistent production API token at a semiconductor company.",
+      "labels": [
+        "intrusion",
+        "ai_agents"
+      ],
+      "external_references": [
+        {
+          "source_name": "security-market-map",
+          "external_id": "incident:cl-sta-1238-cairn-ai-intrusions-2026"
+        },
+        {
+          "source_name": "Palo Alto Networks Unit 42",
+          "url": "https://unit42.paloaltonetworks.com/cairn-framework-ai-autonomous-attacks/",
+          "external_id": "source:unit42-cairn-ai-intrusions-2026"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ],
+      "extensions": {
+        "extension-definition--ce493920-a67c-54ea-9b43-349420e0636b": {
+          "extension_type": "toplevel-property-extension"
+        }
+      },
+      "x_smm_disclosed_on": "2026-11-12",
+      "x_smm_epistemic_status": "reported",
+      "x_smm_review_status": "seed_reviewed",
+      "x_smm_uncertainty_notes": [
+        "Unit 42 assesses with moderate confidence that this is China-nexus intelligence collection; that is a hypothesis, and no actor is recorded here.",
+        "Victim organizations are unnamed; do not attribute this campaign to any specific company or customer.",
+        "This is a campaign across many organizations, typed as an intrusion because the feed's only campaign type is for malware campaigns.",
+        "Recent report (published 12 November 2026); no corrections had appeared as of 17 November 2026.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ]
+    },
+    {
+      "type": "incident",
+      "spec_version": "2.1",
+      "id": "incident--0c8460a8-2686-57a8-a40a-7013483ed006",
+      "created_by_ref": "identity--8f71ca68-e0b8-587e-9909-25d9911741ad",
+      "created": "2026-11-17T00:00:00.000Z",
+      "modified": "2026-11-17T00:00:00.000Z",
+      "name": "West Pharmaceutical Services intrusion with data theft and encrypted systems",
+      "description": "West Pharmaceutical Services reported in an SEC Form 8-K that an intrusion detected on 4 May 2026 involved the exfiltration of certain data by an unauthorized party and the encryption of certain systems, temporarily disrupting its business operations globally.",
+      "labels": [
+        "intrusion"
+      ],
+      "external_references": [
+        {
+          "source_name": "security-market-map",
+          "external_id": "incident:west-pharmaceutical-intrusion-2026"
+        },
+        {
+          "source_name": "U.S. SEC EDGAR (West Pharmaceutical Services Form 8-K)",
+          "url": "https://www.sec.gov/Archives/edgar/data/105770/000010577026000068/wst-20260507.htm",
+          "external_id": "source:sec-8k-west-pharmaceutical-2026"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ],
+      "extensions": {
+        "extension-definition--ce493920-a67c-54ea-9b43-349420e0636b": {
+          "extension_type": "toplevel-property-extension"
+        }
+      },
+      "x_smm_disclosed_on": "2026-05-11",
+      "x_smm_epistemic_status": "reported",
+      "x_smm_review_status": "seed_reviewed",
+      "x_smm_uncertainty_notes": [
+        "No threat actor or ransomware group is named in the filing.",
+        "Material financial impact had not been determined at filing, and the extent of the data affected was still under investigation.",
+        "The 8-K gives 7 May 2026 as its report date and was filed on 11 May 2026; the feed uses the filing date.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ]
+    }
+  ]
+}

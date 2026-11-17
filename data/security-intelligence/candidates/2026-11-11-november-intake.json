@@ -29,7 +29,7 @@
           "publisher": "Binance (Binance Square preliminary report)",
           "canonicalUrl": "https://www.binance.com/square/post/384314395829022",
           "sourceRole": "primary",
-          "discoveredAt": "2026-11-11",
+          "discoveredAt": "2026-11-17T10:20:00Z",
           "usageRights": "Store citation and limited summary; check Binance terms."
         },
         {
@@ -48,7 +48,14 @@
         }
       ],
       "dedupeCheck": "Not in incidents.seed.json or another candidate batch as of 2026-11-17.",
-      "veris": { "schemaVersion": null, "actor": null, "action": null, "asset": null, "attribute": null, "sourceClaimIds": [] },
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
       "claims": [
         {
           "id": "claim:binance-wallet-signing-2026:1",
@@ -67,18 +74,42 @@
           "statement": "Secondary reporting says initial access came from a fake recruiter's technical assignment that was downloaded to a work computer.",
           "epistemicStatus": "reported",
           "sourceUrl": "https://cybelangel.com/blog/weekly-cyber-roundup-november-2-8/"
+        },
+        {
+          "id": "claim:binance-wallet-signing-2026:4",
+          "statement": "Binance's preliminary report says the chain began in June 2026 when a wallet DevOps engineer downloaded a tampered Homebrew installer while setting up an AI coding tool found through a search engine.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.binance.com/square/post/384314395829022"
+        },
+        {
+          "id": "claim:binance-wallet-signing-2026:5",
+          "statement": "Binance says it will bear the full cost of the stolen funds and that the report's findings will undergo further independent review.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.binance.com/square/post/384314395829022"
         }
       ],
       "attackMappings": [
-        { "domain": "enterprise-attack", "attackId": null, "stixId": null, "attackDatasetVersion": null, "mappingStatus": "not_evaluated", "evidenceStatus": "unknown", "rationale": null, "sourceClaimIds": [], "reviewer": null, "reviewedAt": null }
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
       ],
       "defensiveMappings": [],
       "weaknessMappings": [],
       "unresolvedQuestions": [
-        "The primary sources were identified on 2026-11-11 but not re-checked during conversion; verify both before review.",
+        "Binance Square report re-checked 2026-11-17 via search index (direct fetch blocked); the X post was not re-checked.",
         "The report is preliminary; record both the UTC and UTC+8 dates and watch for the final report.",
         "Affected-asset figures (about $6.34B affected, about $2.85B frozen) come from a secondary summary of the company report and are not verified.",
-        "Initial access via a fake recruiter is secondary reporting only; attribution is not established."
+        "Initial access via a fake recruiter is secondary reporting only; attribution is not established.",
+        "The fake-recruiter claim (secondary) and the tampered-Homebrew claim (Binance's report) may describe different stages; reconcile against the final report."
       ]
     },
     {
@@ -110,7 +141,14 @@
         }
       ],
       "dedupeCheck": "Not in incidents.seed.json or another candidate batch as of 2026-11-17.",
-      "veris": { "schemaVersion": null, "actor": null, "action": null, "asset": null, "attribute": null, "sourceClaimIds": [] },
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
       "claims": [
         {
           "id": "claim:credit-mutuel-arkea-2026:1",
@@ -132,12 +170,23 @@
         }
       ],
       "attackMappings": [
-        { "domain": "enterprise-attack", "attackId": null, "stixId": null, "attackDatasetVersion": null, "mappingStatus": "not_evaluated", "evidenceStatus": "unknown", "rationale": null, "sourceClaimIds": [], "reviewer": null, "reviewedAt": null }
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
       ],
       "defensiveMappings": [],
       "weaknessMappings": [],
       "unresolvedQuestions": [
-        "Primary source needed: capture the bank's 4 November 2026 press release and FAQ from arkea.com.",
+        "Primary source needed: the bank issued two releases on 4 November 2026 (the second around 17:30 local, acknowledging EUR 118M as the order of magnitude), widely cited but not found on arkea.com as of 2026-11-17.",
         "Loss figures differ across reports (about EUR 100M per secondary reporting of the bank's statements, a EUR 118M order of magnitude per a second release as reported by press, about $133M per an on-chain investigator); none is confirmed exactly.",
         "The service provider is not named."
       ]
@@ -148,6 +197,13 @@
       "incidentKind": "breach",
       "reviewStatus": "candidate",
       "discovery": [
+        {
+          "publisher": "Novo Nordisk A/S (company announcement, original)",
+          "canonicalUrl": "https://www.novonordisk.com/news-and-media/news-and-ir-materials/news-details.html?id=916571",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-17T10:20:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
         {
           "publisher": "Novo Nordisk A/S (company announcement via GlobeNewswire, republished by Investegate)",
           "canonicalUrl": "https://www.investegate.co.uk/announcement/gnw/novo-nordisk-a-s-class-b--0qiu/novo-nordisk-a-s-it-security-incident-at-nov-/9614494",
@@ -164,13 +220,20 @@
         }
       ],
       "dedupeCheck": "Not in incidents.seed.json or another candidate batch as of 2026-11-17.",
-      "veris": { "schemaVersion": null, "actor": null, "action": null, "asset": null, "attribute": null, "sourceClaimIds": [] },
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
       "claims": [
         {
           "id": "claim:novo-nordisk-2026:1",
           "statement": "Novo Nordisk said on 11 June 2026 that there had been unauthorized access to a limited number of internal IT systems and that non-public data, including personal data, was copied externally.",
           "epistemicStatus": "reported",
-          "sourceUrl": "https://www.investegate.co.uk/announcement/gnw/novo-nordisk-a-s-class-b--0qiu/novo-nordisk-a-s-it-security-incident-at-nov-/9614494"
+          "sourceUrl": "https://www.novonordisk.com/news-and-media/news-and-ir-materials/news-details.html?id=916571"
         },
         {
           "id": "claim:novo-nordisk-2026:2",
@@ -186,12 +249,23 @@
         }
       ],
       "attackMappings": [
-        { "domain": "enterprise-attack", "attackId": null, "stixId": null, "attackDatasetVersion": null, "mappingStatus": "not_evaluated", "evidenceStatus": "unknown", "rationale": null, "sourceClaimIds": [], "reviewer": null, "reviewedAt": null }
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
       ],
       "defensiveMappings": [],
       "weaknessMappings": [],
       "unresolvedQuestions": [
-        "The company statement is a republication; capture the original on novonordisk.com before review.",
+        "Original announcement captured on novonordisk.com (11 June 2026). The company's separate incident page with patient-data details is not yet captured.",
         "Dwell time (about two months or more), data volume and the reported $25M demand are threat-actor or secondary claims; keep them out of the summary.",
         "Do not record an actor: responsibility is claimed, not confirmed."
       ]
@@ -218,7 +292,14 @@
         }
       ],
       "dedupeCheck": "Not in incidents.seed.json or another candidate batch as of 2026-11-17.",
-      "veris": { "schemaVersion": null, "actor": null, "action": null, "asset": null, "attribute": null, "sourceClaimIds": [] },
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
       "claims": [
         {
           "id": "claim:astrazeneca-2026:1",
@@ -234,14 +315,26 @@
         }
       ],
       "attackMappings": [
-        { "domain": "enterprise-attack", "attackId": null, "stixId": null, "attackDatasetVersion": null, "mappingStatus": "not_evaluated", "evidenceStatus": "unknown", "rationale": null, "sourceClaimIds": [], "reviewer": null, "reviewedAt": null }
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
       ],
       "defensiveMappings": [],
       "weaknessMappings": [],
       "unresolvedQuestions": [
         "Primary source needed: no company disclosure was found as of 2026-11-11.",
         "Threat-actor claim only. Hold at epistemic status unknown, or drop, until the company confirms.",
-        "Do not record an actor."
+        "Do not record an actor.",
+        "Re-checked 2026-11-17: still no company statement found. Separate, unrelated claim against AstraZeneca Türkiye (N0n, September 2026) should not be merged into this record."
       ]
     }
   ]
