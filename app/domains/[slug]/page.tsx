@@ -6,11 +6,13 @@ import { AreaDiagram } from "@/components/area-diagram";
 import { FlowStrip } from "@/components/category-map";
 import { ClaimList } from "@/components/claims";
 import { CloudAppShortlist, DataSecurityShortlist } from "@/components/cloud-app-shortlist";
-import { depthLabel } from "@/components/domain-map";
+import { domainStatusLabel } from "@/lib/domain-evidence";
+import { AnnotatedText } from "@/components/annotated-text";
 import { PageIntro } from "@/components/chrome";
 import { catalog, domainBySlug, sourceById, vendorById } from "@/lib/catalog";
 import { claimsForDomain, claimsForGlossaryTerm, glossaryForDomain, questionsForDomain } from "@/lib/domain-study";
-import { aiIntersections, REVIEWED } from "@/lib/data/brief";
+import { aiIntersections, ecpZones, REVIEWED } from "@/lib/data/brief";
+import { subAreasForDomain } from "@/lib/data/domain-sub-areas";
 
 export function generateStaticParams() {
   return catalog.domains.map((domain) => ({ slug: domain.slug }));
@@ -27,9 +29,11 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
   if (!domain) notFound();
 
   const categories = catalog.categories.filter((category) => domain.categoryIds.includes(category.id));
-  const questions = questionsForDomain(domain.slug);
+  const questions = questionsForDomain(domain.id);
   const terms = glossaryForDomain(domain.categoryIds, catalog.glossary);
   const claims = claimsForDomain(domain.categoryIds, catalog.claims, catalog.products, catalog.vendors);
+  const subAreas = subAreasForDomain(domain.id);
+  const seen = new Set<string>();
   const neighbors = catalog.domains.filter((item) => domain.neighborIds.includes(item.id));
   const products = catalog.products.filter((product) =>
     product.primaryCategoryIds.some((id) => domain.categoryIds.includes(id)),
@@ -39,7 +43,7 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
     <main className="mx-auto max-w-6xl px-4 py-10">
       <Breadcrumbs parents={[{ href: "/", label: "Home" }, { href: "/domains", label: "Domains" }]} current={domain.name} />
       <PageIntro
-        kicker={depthLabel(domain.depth)}
+        kicker={domainStatusLabel(domain.depth)}
         title={domain.name}
         lede="Read the question, the charter, then each category. Words link to the learn page when a definition already exists."
       />
@@ -62,11 +66,11 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
       <dl className="mt-8 grid gap-4 text-sm leading-6 md:grid-cols-2">
         <div className="rounded-xl border border-border bg-card p-4">
           <dt className="font-semibold">Typical owner</dt>
-          <dd className="mt-1">{domain.typicalOwner}</dd>
+          <dd className="mt-1"><AnnotatedText text={domain.typicalOwner} seen={seen} /></dd>
         </div>
         <div className="rounded-xl border border-border bg-card p-4">
           <dt className="font-semibold">Budget</dt>
-          <dd className="mt-1">{domain.budget}</dd>
+          <dd className="mt-1"><AnnotatedText text={domain.budget} seen={seen} /></dd>
         </div>
       </dl>
       <section className="mt-8" aria-labelledby="study-question">
@@ -96,8 +100,76 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
         <h2 id="study-charter" tabIndex={-1} className="scroll-mt-24 text-2xl focus-visible:outline-2 focus-visible:outline-ring">
           Charter
         </h2>
-        <p className="mt-3 max-w-3xl text-sm leading-6">{domain.charter}</p>
+        <p className="mt-3 max-w-3xl text-sm leading-6"><AnnotatedText text={domain.charter} seen={seen} /></p>
       </section>
+      {subAreas.length > 0 ? (
+        <section className="mt-8" aria-labelledby="study-sub-areas">
+          <h2 id="study-sub-areas" className="text-2xl">
+            Areas inside this domain
+          </h2>
+          <ul className="mt-3 flex flex-wrap gap-2">
+            {subAreas.map((area) => (
+              <li key={area.id}>
+                <a href={`#${area.id}`} className="inline-flex min-h-11 items-center rounded-full border border-border px-3 text-sm hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring">
+                  {area.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-4 grid gap-6">
+            {subAreas.map((area) => (
+              <article key={area.id} id={area.id} tabIndex={-1} className="scroll-mt-24 rounded-xl border border-border bg-card p-4 focus-visible:outline-2 focus-visible:outline-ring">
+                <h3 className="text-xl">{area.title}</h3>
+                <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground"><AnnotatedText text={area.lede} seen={seen} /></p>
+                <dl className="mt-3 grid gap-3 md:grid-cols-3">
+                  {area.body.map((item) => (
+                    <div key={item.heading} className="rounded-lg border border-border p-3">
+                      <dt className="font-semibold">
+                        {item.href ? (
+                          <Link href={item.href} className="text-primary hover:underline">
+                            {item.heading}
+                          </Link>
+                        ) : (
+                          item.heading
+                        )}
+                      </dt>
+                      <dd className="mt-1 text-sm leading-6"><AnnotatedText text={item.text} seen={seen} /></dd>
+                    </div>
+                  ))}
+                </dl>
+                {area.id === "endpoint" ? (
+                  <div className="mt-4">
+                    <h4 className="font-semibold">Endpoint control labels</h4>
+                    <p className="mt-1 max-w-3xl text-sm leading-6 text-muted-foreground">
+                      <a
+                        className="text-primary hover:underline"
+                        href="https://softwareanalyst.io/reports/the-ciso-guide-to-endpoint-control-and-prevention-ecp-the-next-architecture-for-endpoint-security"
+                      >
+                        SACR&apos;s 22 Jul 2026 report
+                      </a>
+                      , updated 29 Jul 2026 and re-read 27 Oct 2026, defines endpoint control and prevention as
+                      visibility beyond operating systems, files, and processes. These five labels were not
+                      copied into capability cells. The page did not rank products and did not say this
+                      replaces endpoint detection.
+                    </p>
+                    <ol className="mt-3 grid gap-2 md:grid-cols-2">
+                      {ecpZones.map((zone, index) => (
+                        <li key={zone.zone} className="rounded-lg border border-border p-3 text-sm leading-6">
+                          <span className="font-semibold">
+                            {index + 1}. {zone.zone}.{" "}
+                          </span>
+                          {zone.meaning}
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                ) : null}
+              </article>
+            ))}
+          </div>
+          <p className="mt-3 text-sm text-muted-foreground">Reviewed {REVIEWED}. Not an analyst or vendor classification.</p>
+        </section>
+      ) : null}
       <section className="mt-8" aria-labelledby="study-categories">
         <h2 id="study-categories" tabIndex={-1} className="scroll-mt-24 text-2xl focus-visible:outline-2 focus-visible:outline-ring">
           Categories
@@ -121,7 +193,7 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
                   {category.name}
                 </Link>
               </h3>
-              <p className="mt-2 text-sm leading-6">{category.definition}</p>
+              <p className="mt-2 text-sm leading-6"><AnnotatedText text={category.definition} seen={seen} /></p>
               <p className="mt-3 text-sm leading-6">
                 <span className="font-semibold">Buyer question. </span>
                 {category.buyerQuestion}
@@ -194,9 +266,8 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
         </h2>
         {domain.depth === "mapped" ? (
           <p className="mt-3 max-w-3xl rounded-xl border border-border bg-card p-4 text-sm leading-6">
-            This domain is a research map. Categories that are not also in identity have no capability
-            claims. A vendor listed here is a research candidate. Comparison cells stay Unknown until a
-            page is cited.
+            Mapped, evidence coming. {claims.length} {claims.length === 1 ? "claim" : "claims"} so far, thinner
+            than identity. A vendor without a claim is a research candidate, and its cells stay Unknown.
           </p>
         ) : (
           <div className="mt-3 max-w-3xl rounded-xl border border-border bg-card p-4 text-sm leading-6">

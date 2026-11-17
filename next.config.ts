@@ -7,6 +7,12 @@ const nextConfig: NextConfig = {
     return [
       // The synthetic classification lab is a reviewer tool, not the reader-facing incident view.
       { source: "/frameworks/incident-lab", destination: "/review/incident-lab", permanent: true },
+      // One taxonomy: the market-view pages are now sections of their canonical domain page.
+      { source: "/markets/endpoint", destination: "/domains/corporate#endpoint", permanent: true },
+      { source: "/markets/network", destination: "/domains/corporate#network", permanent: true },
+      { source: "/markets/exposure", destination: "/domains/corporate#exposure", permanent: true },
+      { source: "/markets", destination: "/domains", permanent: true },
+      { source: "/markets/:slug*", destination: "/domains", permanent: true },
     ];
   },
 };
