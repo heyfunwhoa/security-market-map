@@ -203,6 +203,30 @@ export const upstreamAssessmentSchema = z.object({
   contract: z.literal("research-evidence-v1"),
   status: z.enum(["accepted", "blocked", "unknown", "outdated"]),
   evidenceKind: z.enum(["sourced_fact", "vendor_claim"]),
+  /**
+   * Catalog records the evidence is about, as "kind:id" (for example "capability:cap-secret-verification").
+   * A mapping with a catalog end must share one of these, so evidence about one product cannot
+   * support a mapping about another.
+   */
+  subjectRefs: z.array(text).default([]),
   checkedOn: isoDate,
 });
 export type UpstreamAssessment = z.infer<typeof upstreamAssessmentSchema>;
+
+/**
+ * A recorded revocation (K4). Names either one piece of evidence (an upstream evidence ID or a
+ * catalog claim ID) or one knowledge or catalog record. Kept as its own append-only list, so a
+ * rollback of records, mappings or upstream results can never undo it.
+ */
+export const revocationSchema = z
+  .object({
+    evidenceId: text.optional(),
+    ref: z.object({ kind: refKindSchema, id: text }).optional(),
+    reason: z.enum(["rights_revoked", "retracted", "withdrawn"]),
+    recordedOn: isoDate,
+    recordedBy: text,
+  })
+  .refine((value) => (value.evidenceId ? 1 : 0) + (value.ref ? 1 : 0) === 1, {
+    message: "A revocation names exactly one of evidenceId or ref.",
+  });
+export type Revocation = z.infer<typeof revocationSchema>;

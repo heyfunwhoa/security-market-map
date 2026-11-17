@@ -5,6 +5,7 @@ import {
   consumerAcceptanceSchema,
   knowledgeRecordSchema,
   mappingSchema,
+  revocationSchema,
   upstreamAssessmentSchema,
   type CatalogKind,
   type ConsumerAcceptance,
@@ -48,7 +49,12 @@ export type DenialCode =
   | "consumer_unknown_mapping"
   | "consumer_revision_mismatch"
   | "consumer_accepts_failing_mapping"
-  | "duplicate_consumer_decision";
+  | "duplicate_consumer_decision"
+  | "evidence_revoked"
+  | "target_revoked"
+  | "evidence_stale"
+  | "target_stale"
+  | "freshness_date_invalid";
 
 export type Denial = { code: DenialCode; message: string };
 
@@ -79,6 +85,23 @@ export type KnowledgeContext = {
   upstream: readonly unknown[];
   /** Off by default, so worked examples and fixtures can never pass as real research. */
   allowSynthetic?: boolean;
+  /**
+   * Freshness gate (K4). The caller supplies the evaluation date; the validator never reads a
+   * clock. When set, evidence or publications checked longer ago than the limit cannot support a
+   * current mapping. Leave it unset only for historical review, never for promotion.
+   */
+  freshness?: FreshnessPolicy;
+  /**
+   * Revocations (K4): append-only, kept apart from the inputs. A revoked evidence ID or record
+   * fails every mapping that uses it, whatever its assessment says, so rolling inputs back to an
+   * older version cannot bring revoked evidence back.
+   */
+  revocations?: readonly unknown[];
+};
+
+export type FreshnessPolicy = {
+  evaluatedOn: string;
+  maxAgeDays: { upstream: number; publicationRevision: number };
 };
 
 export type MappingResult = {
@@ -90,6 +113,8 @@ export type MappingResult = {
   /** Carried through unchanged, including "unknown". */
   confidence: Mapping["confidence"];
   epistemicStatus: Mapping["epistemicStatus"];
+  /** Days since the oldest upstream check behind this mapping, when a freshness policy is given. */
+  evidenceAgeDays: number | null;
 };
 
 export type ConsumerResult = {
@@ -108,10 +133,16 @@ export type KnowledgeReport = {
   mappings: MappingResult[];
   consumers: ConsumerResult[];
   /** Entries in the input that could not be parsed at all. */
-  rejectedInputs: { list: "mappings" | "consumers" | "upstream"; index: number; message: string }[];
+  rejectedInputs: { list: "mappings" | "consumers" | "upstream" | "revocations"; index: number; message: string }[];
 };
 
 const deny = (code: DenialCode, message: string): Denial => ({ code, message });
+const DAY = 24 * 60 * 60 * 1000;
+/** Whole days from one ISO date to another; negative when `from` is after `to`. */
+const daysBetween = (from: string, to: string) => Math.floor((Date.parse(to) - Date.parse(from)) / DAY);
+/** True only for a real calendar date in YYYY-MM-DD form (rejects 2026-13-45 and 2026-02-30). */
+const isRealIsoDate = (value: string) =>
+  /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(Date.parse(value)) && new Date(value).toISOString().slice(0, 10) === value;
 const refLabel = (ref: Ref) => `${ref.kind}:${ref.id}@${ref.revision}`;
 const isCatalogKind = (kind: RefKind): kind is CatalogKind => catalogKindSchema.safeParse(kind).success;
 
@@ -201,6 +232,26 @@ export function validateKnowledge(input: KnowledgeInput, context: KnowledgeConte
     upstream.set(parsed.data.evidenceId, parsed.data);
   });
 
+  // Revocations: append-only and independent of the inputs, so a rollback cannot undo one.
+  const revokedEvidence = new Map<string, string>();
+  const revokedRefs = new Map<string, string>();
+  (context.revocations ?? []).forEach((raw, index) => {
+    const parsed = revocationSchema.safeParse(raw);
+    if (!parsed.success) {
+      report.rejectedInputs.push({ list: "revocations", index, message: parsed.error.issues[0]?.message ?? "Invalid revocation" });
+      return;
+    }
+    const why = `${parsed.data.reason.replace("_", " ")} on ${parsed.data.recordedOn}`;
+    if (parsed.data.evidenceId) revokedEvidence.set(parsed.data.evidenceId, why);
+    if (parsed.data.ref) revokedRefs.set(`${parsed.data.ref.kind}:${parsed.data.ref.id}`, why);
+  });
+
+  // Freshness: only with an explicit evaluation date and limits; the validator reads no clock.
+  const freshness = context.freshness;
+  if (freshness && !isRealIsoDate(freshness.evaluatedOn)) {
+    throw new Error(`freshness.evaluatedOn must be an ISO date, got ${freshness.evaluatedOn}`);
+  }
+
   // Mappings.
   const mappings: Mapping[] = [];
   const seenMappings = new Set<string>();
@@ -224,6 +275,7 @@ export function validateKnowledge(input: KnowledgeInput, context: KnowledgeConte
       denials,
       confidence: mapping.confidence,
       epistemicStatus: mapping.epistemicStatus,
+      evidenceAgeDays: null,
     };
     report.mappings.push(result);
     if (!results.has(key)) results.set(key, result);
@@ -238,6 +290,8 @@ export function validateKnowledge(input: KnowledgeInput, context: KnowledgeConte
 
     // References and exact revisions.
     for (const [end, ref] of [["from", mapping.from], ["to", mapping.to]] as const) {
+      const revoked = revokedRefs.get(`${ref.kind}:${ref.id}`);
+      if (revoked) denials.push(deny("target_revoked", `${end} ${refLabel(ref)} was revoked (${revoked}).`));
       if (isCatalogKind(ref.kind)) {
         if (!context.catalog.ids[ref.kind].has(ref.id)) denials.push(deny("unknown_reference", `${end} ${refLabel(ref)} is not in the catalog.`));
         else if (ref.revision !== context.catalog.revision) denials.push(deny("revision_mismatch", `${end} ${refLabel(ref)} was made against a different catalog snapshot than ${context.catalog.revision}.`));
@@ -252,6 +306,15 @@ export function validateKnowledge(input: KnowledgeInput, context: KnowledgeConte
       if (record.status === "withdrawn") denials.push(deny("target_withdrawn", `${end} ${refLabel(ref)} is withdrawn.`));
       if (record.status === "superseded") denials.push(deny("target_superseded", `${end} ${refLabel(ref)} is superseded; map the replacement instead.`));
       if (badRecords.has(record.id)) denials.push(deny("dangling_internal_reference", `${end} ${refLabel(ref)} has its own record problems.`));
+      if (freshness && record.kind === "publication_revision") {
+        const age = daysBetween(record.checkedOn, freshness.evaluatedOn);
+        // A check date that isn't a real calendar date can't prove freshness: fail closed.
+        if (!isRealIsoDate(record.checkedOn)) denials.push(deny("freshness_date_invalid", `${end} ${refLabel(ref)} has an invalid check date ${record.checkedOn}.`));
+        else if (age < 0) denials.push(deny("freshness_date_invalid", `${end} ${refLabel(ref)} was checked on ${record.checkedOn}, after the evaluation date ${freshness.evaluatedOn}.`));
+        else if (age > freshness.maxAgeDays.publicationRevision) {
+          denials.push(deny("target_stale", `${end} ${refLabel(ref)} was last checked ${age} days ago; the limit is ${freshness.maxAgeDays.publicationRevision}.`));
+        }
+      }
     }
 
     // Relation rules. Compliance can never be inferred from a vendor or product.
@@ -272,6 +335,13 @@ export function validateKnowledge(input: KnowledgeInput, context: KnowledgeConte
     }
     for (const evidence of mapping.evidence) {
       let vendorReported = false;
+      const evidenceKey = evidence.kind === "catalog_claim" ? evidence.claimId : evidence.evidenceId;
+      const revoked = revokedEvidence.get(evidenceKey);
+      if (revoked) {
+        // Overrides any assessment: a re-submitted "accepted" result cannot reactivate it.
+        denials.push(deny("evidence_revoked", `Evidence ${evidenceKey} was revoked (${revoked}).`));
+        continue;
+      }
       if (evidence.kind === "catalog_claim") {
         const claim = context.catalog.claims.get(evidence.claimId);
         if (!claim) {
@@ -294,6 +364,21 @@ export function validateKnowledge(input: KnowledgeInput, context: KnowledgeConte
         if (assessment.status === "blocked") denials.push(deny("upstream_blocked", `Upstream checks blocked ${evidence.evidenceId}.`));
         if (assessment.status === "unknown") denials.push(deny("upstream_unknown", `Upstream status for ${evidence.evidenceId} is unknown; failing closed.`));
         if (assessment.status === "outdated") denials.push(deny("upstream_outdated", `Upstream result for ${evidence.evidenceId} is out of date; re-check before use.`));
+        const catalogEnds = [mapping.from, mapping.to].filter((ref) => isCatalogKind(ref.kind)).map((ref) => `${ref.kind}:${ref.id}`);
+        if (assessment.status === "accepted" && catalogEnds.length > 0 && !assessment.subjectRefs.some((subject) => catalogEnds.includes(subject))) {
+          denials.push(deny("evidence_subject_mismatch", `Evidence ${evidence.evidenceId} is about ${assessment.subjectRefs.join(", ") || "nothing in the catalog"}, not ${catalogEnds.join(" or ")}.`));
+        }
+        if (freshness && assessment.status === "accepted") {
+          const age = daysBetween(assessment.checkedOn, freshness.evaluatedOn);
+          if (!isRealIsoDate(assessment.checkedOn)) denials.push(deny("freshness_date_invalid", `Evidence ${evidence.evidenceId} has an invalid check date ${assessment.checkedOn}.`));
+          else if (age < 0) denials.push(deny("freshness_date_invalid", `Evidence ${evidence.evidenceId} was checked on ${assessment.checkedOn}, after the evaluation date ${freshness.evaluatedOn}.`));
+          else {
+            result.evidenceAgeDays = Math.max(result.evidenceAgeDays ?? 0, age);
+            if (age > freshness.maxAgeDays.upstream) {
+              denials.push(deny("evidence_stale", `Evidence ${evidence.evidenceId} was last checked ${age} days ago; the limit is ${freshness.maxAgeDays.upstream}. Re-check it before using it as current evidence.`));
+            }
+          }
+        }
         vendorReported = assessment.evidenceKind === "vendor_claim";
       }
       if (vendorReported && (mapping.epistemicStatus === "observed" || mapping.epistemicStatus === "tested")) {

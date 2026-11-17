@@ -5,6 +5,7 @@ import { catalog, searchIndex } from "@/lib/catalog";
 import { incidentSearchHits } from "@/lib/incident-feed";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
+import { SITE_URL } from "@/lib/site";
 
 const sourceSans = Source_Sans_3({
   subsets: ["latin"],
@@ -16,7 +17,6 @@ const fraunces = Fraunces({
   variable: "--font-serif",
 });
 
-const SITE_URL = "https://security-market-map.vercel.app";
 const DESCRIPTION =
   "Identity and secrets security, mapped with cited evidence. Eleven security domains, the buyer behind each category, and the source and date for every claim.";
 
