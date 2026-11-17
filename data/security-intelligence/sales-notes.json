@@ -2,8 +2,8 @@
   {
     "incidentId": "incident:cisa-shai-hulud-2025",
     "status": "reviewed",
-    "headline": "CISA alerted on a self-replicating npm supply-chain compromise that attempted credential theft.",
-    "discoveryQuestion": "Which teams install npm packages, and how are developer and CI tokens scoped and rotated?",
+    "headline": "CISA flagged a self-spreading npm attack that tried to steal credentials.",
+    "discoveryQuestion": "Who on your team installs npm packages? And how are your dev and CI tokens scoped and rotated?",
     "avoid": "Do not name affected packages or suggest the account was compromised. Package-level impact is not verified here.",
     "basedOnSourceIds": [
       "source:cisa-shai-hulud-alert"
@@ -16,8 +16,8 @@
   {
     "incidentId": "incident:cisa-solarwinds-2020",
     "status": "reviewed",
-    "headline": "CISA reported active exploitation involving affected SolarWinds Orion software versions.",
-    "discoveryQuestion": "How does the team decide which vendor software updates to trust, and who owns that check?",
+    "headline": "CISA reported attackers actively exploiting affected versions of SolarWinds Orion.",
+    "discoveryQuestion": "How does your team decide which vendor updates to trust? Who owns that check?",
     "avoid": "Do not claim any product would have prevented it. The victim list and attack techniques are outside this record's verified scope.",
     "basedOnSourceIds": [
       "source:cisa-solarwinds-2020"
@@ -30,8 +30,8 @@
   {
     "incidentId": "incident:codecov-bash-uploader-2021",
     "status": "reviewed",
-    "headline": "Codecov reported that an attacker modified its Bash Uploader so it could export information from customers' CI environments.",
-    "discoveryQuestion": "Which third-party scripts run inside your CI pipelines, and what secrets can they read?",
+    "headline": "Codecov said an attacker changed its Bash Uploader to pull data out of customers' CI environments.",
+    "discoveryQuestion": "What third-party scripts run in your CI today, and which secrets can they see?",
     "avoid": "Don't say which customers lost secrets; that is not established.",
     "basedOnSourceIds": [
       "source:codecov-bash-uploader-2021"
@@ -44,8 +44,8 @@
   {
     "incidentId": "incident:tj-actions-changed-files-2025",
     "status": "reviewed",
-    "headline": "A widely used GitHub Action had its version tags repointed to a malicious commit that printed CI secrets into workflow logs.",
-    "discoveryQuestion": "Do your workflows pin third-party Actions to a commit SHA, or to tags that can move?",
+    "headline": "A popular GitHub Action had its version tags pointed at a malicious commit that printed CI secrets into workflow logs.",
+    "discoveryQuestion": "Are your third-party Actions pinned to a commit SHA, or to tags that can move?",
     "avoid": "The 23,000 figure is repositories using the Action, not confirmed leaks.",
     "basedOnSourceIds": [
       "source:ghsa-mrrh-fwg8-r2c3"
@@ -58,8 +58,8 @@
   {
     "incidentId": "incident:nx-s1ngularity-2025",
     "status": "reviewed",
-    "headline": "Malicious Nx packages harvested developer tokens and SSH keys, and used installed AI coding CLIs to search for more secrets.",
-    "discoveryQuestion": "Which AI coding tools run on developer machines, and what can they read?",
+    "headline": "Malicious Nx packages stole developer tokens and SSH keys, then used installed AI coding CLIs to hunt for more secrets.",
+    "discoveryQuestion": "Which AI coding tools run on your developers' machines? What can they read?",
     "avoid": "Don't present the initial token-theft route as confirmed.",
     "basedOnSourceIds": [
       "source:wiz-s1ngularity-2025"
@@ -72,8 +72,8 @@
   {
     "incidentId": "incident:circleci-engineer-laptop-2023",
     "status": "reviewed",
-    "headline": "Malware on one engineer's laptop stole a 2FA-backed SSO session, and CircleCI told every customer to rotate stored secrets.",
-    "discoveryQuestion": "If a CI vendor asked you to rotate every stored secret today, how long would it take?",
+    "headline": "Malware on one engineer's laptop stole a 2FA-backed SSO session. CircleCI told every customer to rotate their stored secrets.",
+    "discoveryQuestion": "If your CI vendor asked you to rotate every stored secret today, how long would it take?",
     "avoid": "Don't claim specific customer impact; the source covers the rotation advice, not individual customers.",
     "basedOnSourceIds": [
       "source:circleci-incident-report-2023"
@@ -86,8 +86,8 @@
   {
     "incidentId": "incident:cloudflare-unrotated-okta-tokens-2023",
     "status": "reviewed",
-    "headline": "Cloudflare missed rotating one service token and three service accounts after the Okta compromise, and an attacker used them to reach Confluence and Jira.",
-    "discoveryQuestion": "After a vendor breach, how do you find every credential that needs rotating, including ones you think are unused?",
+    "headline": "After the Okta breach, Cloudflare missed rotating one service token and three service accounts. An attacker used them to get into Confluence and Jira.",
+    "discoveryQuestion": "After a vendor breach, how do you find every credential that needs rotating, even the ones you think are unused?",
     "avoid": "Don't name an actor; attribution is Cloudflare's own assessment.",
     "basedOnSourceIds": [
       "source:cloudflare-thanksgiving-2023"
@@ -100,8 +100,8 @@
   {
     "incidentId": "incident:uber-github-aws-key-2016",
     "status": "reviewed",
-    "headline": "Per the FTC, intruders used reused passwords to get into a private GitHub repository, found an AWS key, and reached Uber's S3 data.",
-    "discoveryQuestion": "Do you scan private repositories for cloud keys, and is MFA required on your code host?",
+    "headline": "Per the FTC, intruders used reused passwords to get into a private GitHub repo, found an AWS key and reached Uber's S3 data.",
+    "discoveryQuestion": "Do you scan private repos for cloud keys? Is MFA required on your code host?",
     "avoid": "This happened in 2016; don't present it as recent.",
     "basedOnSourceIds": [
       "source:ftc-uber-revised-analysis"
@@ -114,8 +114,8 @@
   {
     "incidentId": "incident:storm-0558-signing-key-2023",
     "status": "reviewed",
-    "headline": "Microsoft reported that an attacker used an acquired consumer signing key to forge tokens and access Outlook Web Access and Outlook.com.",
-    "discoveryQuestion": "Where do your signing keys live, and how would you know if key material left that environment?",
+    "headline": "Microsoft reported an attacker used an acquired consumer signing key to forge tokens and get into Outlook Web Access and Outlook.com.",
+    "discoveryQuestion": "Where do your signing keys live? How would you know if key material left that environment?",
     "avoid": "Don't state how the key was stolen; Microsoft has not confirmed it.",
     "basedOnSourceIds": [
       "source:msrc-storm-0558-key-acquisition"
@@ -128,8 +128,8 @@
   {
     "incidentId": "incident:pypi-admin-token-docker-image-2024",
     "status": "reviewed",
-    "headline": "An admin GitHub token for Python's core organizations sat in a compiled .pyc file inside a public Docker image.",
-    "discoveryQuestion": "Do your secret scans cover build artifacts and container images, or only source code?",
+    "headline": "An admin GitHub token for Python's core organizations was sitting in a compiled .pyc file inside a public Docker image.",
+    "discoveryQuestion": "Do your secret scans cover build artifacts and container images, or just source code?",
     "avoid": "PyPI found no malicious use; don't describe it as an attack.",
     "basedOnSourceIds": [
       "source:pypi-leaked-admin-token-2024"
@@ -142,8 +142,8 @@
   {
     "incidentId": "incident:microsoft-ai-sas-token-2023",
     "status": "reviewed",
-    "headline": "One over-scoped Azure SAS token in a public GitHub repository exposed 38TB of private Microsoft research data.",
-    "discoveryQuestion": "How do you track the scope and expiry of shared-access tokens your teams create?",
+    "headline": "One over-scoped Azure SAS token in a public GitHub repo exposed 38TB of private Microsoft research data.",
+    "discoveryQuestion": "How do you keep track of the scope and expiry of shared-access tokens your teams create?",
     "avoid": "Wiz reported no attacker activity; describe it as an exposure, not an attack.",
     "basedOnSourceIds": [
       "source:wiz-microsoft-sas-token-2023"
@@ -156,8 +156,8 @@
   {
     "incidentId": "incident:env-file-cloud-extortion-2024",
     "status": "reviewed",
-    "headline": "Attackers harvested AWS keys from exposed .env files at scale, targeting 110,000 domains.",
-    "discoveryQuestion": "Could a deployed web app expose its .env file, and would you notice those keys being used?",
+    "headline": "Attackers pulled AWS keys from exposed .env files at scale, targeting 110,000 domains.",
+    "discoveryQuestion": "Could one of your web apps expose its .env file? Would you notice if those keys got used?",
     "avoid": "Don't name an actor or a number of extorted organizations; neither is stated.",
     "basedOnSourceIds": [
       "source:unit42-env-extortion-2024"
@@ -170,8 +170,8 @@
   {
     "incidentId": "incident:okta-support-har-files-2023",
     "status": "reviewed",
-    "headline": "A support-system service account password saved to an employee's personal Google account let an attacker read 134 Okta customers' support files and hijack 5 customers' sessions.",
-    "discoveryQuestion": "When your teams send HAR files or logs to a vendor's support, are session tokens stripped first, and who checks?",
+    "headline": "Okta said an attacker used a support-system service account whose password had been saved to an employee's personal Google account. They read support files from 134 customers and hijacked sessions at 5 of them.",
+    "discoveryQuestion": "When your teams send HAR files or logs to a vendor's support, are session tokens stripped first? Who checks?",
     "avoid": "Don't name a customer beyond those Okta itself named, and don't present the personal-account exposure path as confirmed.",
     "basedOnSourceIds": [
       "source:okta-support-root-cause-2023"
@@ -184,8 +184,8 @@
   {
     "incidentId": "incident:toyota-tconnect-github-key-2022",
     "status": "reviewed",
-    "headline": "Toyota said a contractor left a data server access key in public GitHub code for nearly five years, putting up to 296,019 customer records at risk.",
-    "discoveryQuestion": "Do your contractors' repositories fall under your secret scanning, or only your own?",
+    "headline": "Toyota said a contractor left a data server access key in public GitHub code for almost five years, putting up to 296,019 customer records at risk.",
+    "discoveryQuestion": "Do your contractors' repos fall under your secret scanning, or only your own?",
     "avoid": "Toyota could not confirm the key was used; don't describe it as a confirmed theft.",
     "basedOnSourceIds": [
       "source:toyota-tconnect-notice-2022"
@@ -198,8 +198,8 @@
   {
     "incidentId": "incident:uber-contractor-mfa-push-2022",
     "status": "reviewed",
-    "headline": "An attacker used a contractor's bought password and kept sending MFA push requests until one was approved, then moved into Slack and G-Suite.",
-    "discoveryQuestion": "Do your contractors use push-approval MFA, and would you notice a burst of denied prompts?",
+    "headline": "An attacker used a contractor's bought password and kept sending MFA push requests until one got approved. From there they moved into Slack and G-Suite.",
+    "discoveryQuestion": "Do your contractors use push-approval MFA? Would you notice a burst of denied prompts?",
     "avoid": "Don't repeat the hard-coded PAM credential story; Uber's statement doesn't support it.",
     "basedOnSourceIds": [
       "source:uber-security-update-2022"
@@ -212,8 +212,8 @@
   {
     "incidentId": "incident:cl-sta-1238-cairn-ai-intrusions-2026",
     "status": "reviewed",
-    "headline": "Unit 42 reported attackers running an open-source AI pentest framework on commercial AI models to carry out 25 operations and break into 10 organizations.",
-    "discoveryQuestion": "Which of your exposed weaknesses, such as sprayable logins, exposed APIs or old CVEs, would an automated agent find first?",
+    "headline": "Unit 42 reported attackers running an open-source AI pentest framework on commercial AI models. They carried out 25 operations and broke into 10 organizations.",
+    "discoveryQuestion": "If an automated agent scanned you today, what would it find first? Sprayable logins, exposed APIs, old CVEs?",
     "avoid": "Don't name victims or state attribution as fact; Unit 42's assessment is moderate confidence.",
     "basedOnSourceIds": [
       "source:unit42-cairn-ai-intrusions-2026"
@@ -227,7 +227,7 @@
     "incidentId": "incident:west-pharmaceutical-intrusion-2026",
     "status": "reviewed",
     "headline": "West Pharmaceutical's SEC filing reported data theft and encrypted systems that disrupted its operations worldwide.",
-    "discoveryQuestion": "If key systems were encrypted tomorrow, which operations would stop, and how fast could you restore them?",
+    "discoveryQuestion": "If key systems were encrypted tomorrow, which operations would stop? How fast could you restore them?",
     "avoid": "Don't name a ransomware group or give impact figures; the filing names neither.",
     "basedOnSourceIds": [
       "source:sec-8k-west-pharmaceutical-2026"
