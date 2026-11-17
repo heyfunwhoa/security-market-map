@@ -1,4 +1,4 @@
-import { consumerAcceptanceSchema, mappingSchema, type KnowledgeKind, type Mapping, type RefKind } from "./model";
+import { catalogKindSchema, consumerAcceptanceSchema, mappingSchema, type KnowledgeKind, type Mapping, type RefKind } from "./model";
 
 /**
  * Correction impact (K4, KRU-215): given one change, list the mappings that use the changed thing
@@ -30,7 +30,8 @@ export type ImpactReport = {
   }[];
 };
 
-const CATALOG_KINDS = new Set<RefKind>(["category", "capability", "vendor", "product", "use_case", "source", "claim"]);
+// Derived from the model so a new catalog kind is covered automatically.
+const CATALOG_KINDS = new Set<RefKind>(catalogKindSchema.options);
 
 function reasonFor(mapping: Mapping, change: Change): string | null {
   const ends = [mapping.from, mapping.to];

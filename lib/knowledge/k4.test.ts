@@ -85,6 +85,20 @@ describe("freshness", () => {
   it("refuses an evaluation date that is not an ISO date instead of guessing one", () => {
     expect(() => run(setup({ freshness: { evaluatedOn: "today", maxAgeDays: { upstream: 30, publicationRevision: 365 } } }))).toThrow(/ISO date/);
   });
+
+  it("refuses an evaluation date shaped like ISO but not a real day", () => {
+    for (const day of ["2026-13-45", "2026-02-30"]) {
+      expect(() => run(setup({ freshness: policy(day) }))).toThrow(/ISO date/);
+    }
+  });
+
+  it("fails closed when evidence carries a check date that is not a real day", () => {
+    const f = setup({ freshness: policy("2026-12-01") });
+    const assessment = f.upstream.find((a) => a.evidenceId === "fx-ase-evidence-1");
+    if (!assessment) throw new Error("fixture missing");
+    assessment.checkedOn = "2026-13-45";
+    expect(codes(f, CAP)).toContain("freshness_date_invalid");
+  });
 });
 
 describe("revocation", () => {

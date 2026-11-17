@@ -140,6 +140,9 @@ const deny = (code: DenialCode, message: string): Denial => ({ code, message });
 const DAY = 24 * 60 * 60 * 1000;
 /** Whole days from one ISO date to another; negative when `from` is after `to`. */
 const daysBetween = (from: string, to: string) => Math.floor((Date.parse(to) - Date.parse(from)) / DAY);
+/** True only for a real calendar date in YYYY-MM-DD form (rejects 2026-13-45 and 2026-02-30). */
+const isRealIsoDate = (value: string) =>
+  /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(Date.parse(value)) && new Date(value).toISOString().slice(0, 10) === value;
 const refLabel = (ref: Ref) => `${ref.kind}:${ref.id}@${ref.revision}`;
 const isCatalogKind = (kind: RefKind): kind is CatalogKind => catalogKindSchema.safeParse(kind).success;
 
@@ -245,7 +248,7 @@ export function validateKnowledge(input: KnowledgeInput, context: KnowledgeConte
 
   // Freshness: only with an explicit evaluation date and limits; the validator reads no clock.
   const freshness = context.freshness;
-  if (freshness && !/^\d{4}-\d{2}-\d{2}$/.test(freshness.evaluatedOn)) {
+  if (freshness && !isRealIsoDate(freshness.evaluatedOn)) {
     throw new Error(`freshness.evaluatedOn must be an ISO date, got ${freshness.evaluatedOn}`);
   }
 
@@ -305,7 +308,9 @@ export function validateKnowledge(input: KnowledgeInput, context: KnowledgeConte
       if (badRecords.has(record.id)) denials.push(deny("dangling_internal_reference", `${end} ${refLabel(ref)} has its own record problems.`));
       if (freshness && record.kind === "publication_revision") {
         const age = daysBetween(record.checkedOn, freshness.evaluatedOn);
-        if (age < 0) denials.push(deny("freshness_date_invalid", `${end} ${refLabel(ref)} was checked on ${record.checkedOn}, after the evaluation date ${freshness.evaluatedOn}.`));
+        // A check date that isn't a real calendar date can't prove freshness: fail closed.
+        if (!isRealIsoDate(record.checkedOn)) denials.push(deny("freshness_date_invalid", `${end} ${refLabel(ref)} has an invalid check date ${record.checkedOn}.`));
+        else if (age < 0) denials.push(deny("freshness_date_invalid", `${end} ${refLabel(ref)} was checked on ${record.checkedOn}, after the evaluation date ${freshness.evaluatedOn}.`));
         else if (age > freshness.maxAgeDays.publicationRevision) {
           denials.push(deny("target_stale", `${end} ${refLabel(ref)} was last checked ${age} days ago; the limit is ${freshness.maxAgeDays.publicationRevision}.`));
         }
@@ -365,7 +370,8 @@ export function validateKnowledge(input: KnowledgeInput, context: KnowledgeConte
         }
         if (freshness && assessment.status === "accepted") {
           const age = daysBetween(assessment.checkedOn, freshness.evaluatedOn);
-          if (age < 0) denials.push(deny("freshness_date_invalid", `Evidence ${evidence.evidenceId} was checked on ${assessment.checkedOn}, after the evaluation date ${freshness.evaluatedOn}.`));
+          if (!isRealIsoDate(assessment.checkedOn)) denials.push(deny("freshness_date_invalid", `Evidence ${evidence.evidenceId} has an invalid check date ${assessment.checkedOn}.`));
+          else if (age < 0) denials.push(deny("freshness_date_invalid", `Evidence ${evidence.evidenceId} was checked on ${assessment.checkedOn}, after the evaluation date ${freshness.evaluatedOn}.`));
           else {
             result.evidenceAgeDays = Math.max(result.evidenceAgeDays ?? 0, age);
             if (age > freshness.maxAgeDays.upstream) {
