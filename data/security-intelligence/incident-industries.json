@@ -7,11 +7,11 @@
     "basedOnSourceIds": [
       "source:cisa-solarwinds-2020"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "id": "industry:codecov-bash-uploader-2021:technology",
@@ -21,11 +21,11 @@
     "basedOnSourceIds": [
       "source:codecov-bash-uploader-2021"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "id": "industry:circleci-engineer-laptop-2023:technology",
@@ -35,11 +35,11 @@
     "basedOnSourceIds": [
       "source:circleci-incident-report-2023"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "id": "industry:cloudflare-unrotated-okta-tokens-2023:technology",
@@ -49,11 +49,11 @@
     "basedOnSourceIds": [
       "source:cloudflare-thanksgiving-2023"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "id": "industry:uber-github-aws-key-2016:transportation",
@@ -63,11 +63,11 @@
     "basedOnSourceIds": [
       "source:ftc-uber-revised-analysis"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "id": "industry:uber-contractor-mfa-push-2022:transportation",
@@ -77,11 +77,11 @@
     "basedOnSourceIds": [
       "source:uber-security-update-2022"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "id": "industry:storm-0558-signing-key-2023:technology",
@@ -91,11 +91,11 @@
     "basedOnSourceIds": [
       "source:msrc-storm-0558-key-acquisition"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "id": "industry:microsoft-ai-sas-token-2023:technology",
@@ -105,11 +105,11 @@
     "basedOnSourceIds": [
       "source:wiz-microsoft-sas-token-2023"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "id": "industry:okta-support-har-files-2023:technology",
@@ -119,11 +119,11 @@
     "basedOnSourceIds": [
       "source:okta-support-root-cause-2023"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "id": "industry:toyota-tconnect-github-key-2022:automotive",
@@ -133,11 +133,11 @@
     "basedOnSourceIds": [
       "source:toyota-tconnect-notice-2022"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "id": "industry:west-pharmaceutical-intrusion-2026:healthcare_life_sciences",
@@ -147,10 +147,10 @@
     "basedOnSourceIds": [
       "source:sec-8k-west-pharmaceutical-2026"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   }
 ]
