@@ -393,7 +393,7 @@ export const vendors: Vendor[] = [
     positioning:
       "Vault is the reference product for dynamic secrets and PKI in this atlas. IBM completed the acquisition on 27 Feb 2025. Vault competes in a secrets-management evaluation and complements IGA when the question is issuance.",
     primaryCategoryIds: ["secrets-management"],
-    adjacentCategoryIds: ["nhi", "pam"],
+    adjacentCategoryIds: ["nhi", "pam", "wim"],
     identityScopes: ["nhi", "human"],
     verificationStatus: "research_candidate",
     openQuestions: [
@@ -1195,7 +1195,7 @@ export const products: Product[] = [
     name: "HashiCorp Vault",
     positioning: "Documented dynamic secrets and PKI. Complements governance. Competes with other vaults.",
     primaryCategoryIds: ["secrets-management"],
-    adjacentCategoryIds: ["nhi", "pam"],
+    adjacentCategoryIds: ["nhi", "pam", "wim"],
     deployment: ["self_hosted", "hybrid"],
     identityScopes: ["nhi", "human"],
     availability: "generally_available",

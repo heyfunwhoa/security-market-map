@@ -647,6 +647,30 @@ export const ispmWimSources: Source[] = [
     "retrievedAt": "2026-11-17",
     "volatility": "fast",
     "excerpt": "Silverfort's ISPM page says it automates discovery and mitigation of weaknesses that expose hybrid environments to identity threats, including misconfigurations in AD, cloud IdPs and legacy authentication modes, excessive privileges, stale credentials and shadow admins."
+  },
+  {
+    "id": "src-wim-vault-k8s-auth",
+    "title": "Kubernetes auth method \u2014 Vault",
+    "url": "https://developer.hashicorp.com/vault/docs/auth/kubernetes",
+    "canonicalUrl": "https://developer.hashicorp.com/vault/docs/auth/kubernetes",
+    "publisher": "HashiCorp",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-17",
+    "volatility": "moderate",
+    "excerpt": "HashiCorp documents a Kubernetes auth method that lets workloads authenticate to Vault using a Kubernetes service account token, and notes the token can also be used through JWT auth."
+  },
+  {
+    "id": "src-wim-vault-spiffe-auth",
+    "title": "SPIFFE auth method overview \u2014 Vault",
+    "url": "https://developer.hashicorp.com/vault/docs/auth/spiffe",
+    "canonicalUrl": "https://developer.hashicorp.com/vault/docs/auth/spiffe",
+    "publisher": "HashiCorp",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-17",
+    "volatility": "moderate",
+    "excerpt": "HashiCorp documents a Vault Enterprise SPIFFE auth method that lets workloads authenticate with X.509 or JWT SPIFFE SVIDs trusted through a configured trust bundle, working the same across bare metal, VMs and multi-cloud Kubernetes. An appropriate Enterprise license is required."
   }
 ];
 
@@ -1130,5 +1154,45 @@ export const ispmWimClaims: Claim[] = [
     "lastCheckedAt": "2026-11-17",
     "conflictsWith": [],
     "notes": "Publisher-reported, not independently tested. No direct-competitor or parity claim. See docs/market-research/ispm-wim-categories-2026-11.md. The page frames these as weaknesses attackers chain; it does not say each is auto-remediated."
+  },
+  {
+    "id": "claim-wim-vault-k8s-auth",
+    "statement": "HashiCorp documents a Vault Kubernetes auth method that authenticates workloads with a Kubernetes service account token, so a pod can obtain Vault access without a pre-shared Vault credential.",
+    "subjectType": "product",
+    "subjectId": "vault",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-wim-vault-k8s-auth",
+    "sourceUrl": "https://developer.hashicorp.com/vault/docs/auth/kubernetes",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-11-17",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "high",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-17",
+    "conflictsWith": [],
+    "notes": "Official documentation. This is how a workload reaches Vault; the secrets Vault then returns may still be static or dynamic. Vault remains a secrets manager that complements WIM, not a WIM product."
+  },
+  {
+    "id": "claim-wim-vault-spiffe-auth",
+    "statement": "HashiCorp documents a SPIFFE auth method that lets workloads authenticate to Vault with X.509 or JWT SVIDs; the page states an appropriate Vault Enterprise license is required.",
+    "subjectType": "product",
+    "subjectId": "vault",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-wim-vault-spiffe-auth",
+    "sourceUrl": "https://developer.hashicorp.com/vault/docs/auth/spiffe",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-11-17",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "high",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-17",
+    "conflictsWith": [],
+    "notes": "Official documentation. Enterprise-only per the page; the version that introduced it was not confirmed. Shows Vault accepting identities issued by a WIM layer; it does not issue SVIDs itself."
   }
 ];

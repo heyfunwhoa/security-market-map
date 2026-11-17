@@ -3,7 +3,7 @@ id: "wim"
 type: "category"
 name: "Workload identity management (WIM)"
 layer: "core"
-vendors: 9
+vendors: 10
 ---
 
 # Workload identity management (WIM)
@@ -36,6 +36,7 @@ How a running workload proves what it is and gets a short-lived credential for t
 
 - Microsoft
 - Teleport
+- HashiCorp
 - Amazon Web Services
 - Google
 - Corsha
