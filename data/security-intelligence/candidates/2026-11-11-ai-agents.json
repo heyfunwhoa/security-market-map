@@ -1,0 +1,201 @@
+{
+  "batch": "2026-11-11-ai-agents",
+  "status": "candidate_only",
+  "publishable": false,
+  "framework": "docs/security-intelligence/incident-classification-framework.md",
+  "discoveryContext": "Gathered while building Part 4 (AI agents) of the dailysecrets lesson. Third-party text was paraphrased, not copied.",
+  "excludedFromIncidents": [
+    "Truffle Security Common Crawl live-secrets research (2025)",
+    "Trend Micro MCP server configuration research (2025)",
+    "GitGuardian Copilot and MCP config secret rates (2025)",
+    "Lasso Security Hugging Face token research (2023)"
+  ],
+  "excludedReason": "Research studies with no single affected organization; candidates for the source registry, not incidents.",
+  "candidates": [
+    {
+      "incidentId": "incident:uber-github-aws-key-2016",
+      "title": "Uber S3 breach via an AWS key in a private GitHub repository",
+      "incidentKind": "breach",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "U.S. Federal Trade Commission",
+          "canonicalUrl": "https://business.ftc.gov/system/files/documents/cases/1523054_uber_technologies_revised_analysis.pdf",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-11T17:20:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "Same victim as incident:uber-powershell-pam-credentials-2022 but a separate event.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:uber-github-aws-key-2016:1",
+          "statement": "Between October 13 and November 15, 2016, intruders accessed Uber's Amazon S3 datastore using an AWS access key posted to a private GitHub repository.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://business.ftc.gov/system/files/documents/cases/1523054_uber_technologies_revised_analysis.pdf"
+        },
+        {
+          "id": "claim:uber-github-aws-key-2016:2",
+          "statement": "The FTC says intruders reached the repository using passwords exposed in other breaches; Uber did not require multi-factor authentication for GitHub access.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://business.ftc.gov/system/files/documents/cases/1523054_uber_technologies_revised_analysis.pdf"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Distinct from incident:uber-powershell-pam-credentials-2022 (different year and method).",
+        "CWE-798 is a weakness candidate only."
+      ]
+    },
+    {
+      "incidentId": "incident:nx-s1ngularity-2025",
+      "title": "s1ngularity: malicious Nx npm packages using AI CLI tools to steal secrets",
+      "incidentKind": "supply_chain",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "Wiz Threat Research",
+          "canonicalUrl": "https://wiz.io/blog/s1ngularity-supply-chain-attack",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-11T17:20:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "The Hacker News",
+          "canonicalUrl": "https://thehackernews.com/2025/08/malicious-nx-packages-in-s1ngularity.html",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-11T17:20:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "Related npm-ecosystem campaign to incident:cisa-shai-hulud-2025, but a distinct compromise.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:nx-s1ngularity-2025:1",
+          "statement": "Malicious Nx versions published to npm on August 26, 2025 ran a post-install script that harvested GitHub and npm tokens, SSH keys, and other secrets.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://wiz.io/blog/s1ngularity-supply-chain-attack"
+        },
+        {
+          "id": "claim:nx-s1ngularity-2025:2",
+          "statement": "The script invoked installed AI CLI tools with permission-skipping flags to search the filesystem for sensitive files.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://wiz.io/blog/s1ngularity-supply-chain-attack"
+        },
+        {
+          "id": "claim:nx-s1ngularity-2025:3",
+          "statement": "Wiz observed over a thousand valid GitHub tokens and dozens of valid cloud credentials among the leaked data.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://wiz.io/blog/s1ngularity-supply-chain-attack"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": "T1195.001",
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "candidate",
+          "evidenceStatus": "reported",
+          "rationale": "Reported compromise of a widely used development package (Nx) distributed through npm.",
+          "sourceClaimIds": [
+            "claim:nx-s1ngularity-2025:1"
+          ],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Primary maintainer advisory (Nx GitHub security advisory) should be added.",
+        "Initial npm token theft via a GitHub Actions workflow is reported by secondary sources; not yet confirmed from a primary source.",
+        "Related to incident:cisa-shai-hulud-2025 by ecosystem only; relationship not reviewed."
+      ]
+    },
+    {
+      "incidentId": "incident:samsung-chatgpt-code-upload-2023",
+      "title": "Samsung staff uploaded internal source code to ChatGPT",
+      "incidentKind": "breach",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "TechCrunch",
+          "canonicalUrl": "https://techcrunch.com/2023/05/03/ai-is-just-someone-elses-computer",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-11T17:20:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No existing seed or candidate incident shares this identity.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:samsung-chatgpt-code-upload-2023:1",
+          "statement": "Samsung restricted employee use of generative AI tools after discovering an engineer had uploaded sensitive internal source code to ChatGPT.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://techcrunch.com/2023/05/03/ai-is-just-someone-elses-computer"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Primary source needed: Samsung's internal memo as reported by Bloomberg.",
+        "No credentials or keys are reported in the uploaded material; this is a data-exposure case, included for AI-tool data flow context.",
+        "Whether the data was retained or used for training is unknown."
+      ]
+    }
+  ]
+}
