@@ -329,11 +329,11 @@
     "basedOnSourceIds": [
       "source:uber-security-update-2022"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "id": "link:uber-contractor-mfa-push-2022:itdr",
@@ -345,11 +345,11 @@
     "basedOnSourceIds": [
       "source:uber-security-update-2022"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "id": "link:cl-sta-1238-cairn-ai-intrusions-2026:external-attack-surface",
@@ -361,11 +361,11 @@
     "basedOnSourceIds": [
       "source:unit42-cairn-ai-intrusions-2026"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "id": "link:west-pharmaceutical-intrusion-2026:cyber-recovery",
@@ -377,10 +377,10 @@
     "basedOnSourceIds": [
       "source:sec-8k-west-pharmaceutical-2026"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   }
 ]
