@@ -22,6 +22,10 @@ AI agents that investigate alerts end to end: pull context from the tools alread
 - SOC analyst (`soc-analyst`)
 - Incident responder (`incident-response`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Prophet Security: Prophet Security markets an AI SOC platform that automates alert triage, investigations, response, threat hunting and detection engineering.

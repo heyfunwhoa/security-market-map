@@ -20,6 +20,10 @@ Design, test, version, deploy and measure security detections using known teleme
 
 - Detection engineer (`detection-engineer`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Anvilogic: Anvilogic markets detection engineering with detection-as-code, MITRE ATT&CK coverage and a detection library across SIEMs and data platforms.
