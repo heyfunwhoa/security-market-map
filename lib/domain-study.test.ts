@@ -1,23 +1,25 @@
 import { describe, expect, it } from "vitest";
 import { catalog } from "./catalog";
 import { claimsForDomain, claimsForGlossaryTerm, glossaryForDomain, questionsForDomain } from "./domain-study";
-import { marketAreas } from "./market-areas";
+import { domainQuestions } from "./data/domain-questions";
 
 describe("domain study path", () => {
-  it("opens a domain lesson from every market area", () => {
-    expect(marketAreas.map((area) => area.href)).toEqual([
-      "/domains/corporate",
-      "/domains/identity",
-      "/domains/corporate",
-      "/domains/ai",
-      "/domains/appsec",
-      "/domains/corporate",
-      "/domains/offensive",
-      "/domains/cloud",
-      "/domains/secops",
-      "/domains/data",
-      "/domains/grc",
+  it("keys every buyer question to a canonical catalog domain", () => {
+    const domainIds = new Set(catalog.domains.map((domain) => domain.id));
+    expect(domainQuestions.map((area) => area.domainId)).toEqual([
+      "corporate",
+      "identity",
+      "corporate",
+      "ai",
+      "appsec",
+      "corporate",
+      "corporate",
+      "cloud",
+      "secops",
+      "data",
+      "grc",
     ]);
+    for (const area of domainQuestions) expect(domainIds.has(area.domainId)).toBe(true);
   });
 
   it("uses the identity question and the full glossary", () => {

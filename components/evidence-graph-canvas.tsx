@@ -5,6 +5,21 @@ import type { Core, StylesheetStyle } from "cytoscape";
 import type { EvidenceEdge, GraphNode } from "@/lib/evidence-graph/contract";
 import { layoutPosition } from "@/lib/evidence-graph/view";
 
+/**
+ * Resolve a design token to an rgb() string cytoscape can parse. The browser paints one pixel with
+ * the token, so any CSS colour syntax works (the production build ships hex/lab()/oklch() variants).
+ */
+function tokenColor(element: Element, token: string, fallback: string): string {
+  const value = getComputedStyle(element).getPropertyValue(`--${token}`).trim();
+  const context = document.createElement("canvas").getContext("2d", { willReadFrequently: true });
+  if (!value || !context) return fallback;
+  context.fillStyle = fallback;
+  context.fillStyle = value;
+  context.fillRect(0, 0, 1, 1);
+  const [r, g, b] = context.getImageData(0, 0, 1, 1).data;
+  return `rgb(${r}, ${g}, ${b})`;
+}
+
 const SHAPE: Record<GraphNode["kind"], string> = {
   domain: "round-rectangle",
   category: "ellipse",
@@ -38,6 +53,7 @@ export function EvidenceGraphCanvas({
   const cyRef = useRef<Core | null>(null);
   const onSelectRef = useRef(onSelect);
   const [ready, setReady] = useState(false);
+  const [themeVersion, setThemeVersion] = useState(0);
   const descriptionId = useId();
   const signature = `${nodes.map((node) => node.id).join("|")}::${edges.map((edge) => edge.id).join("|")}::${selectedId}`;
 
@@ -45,12 +61,29 @@ export function EvidenceGraphCanvas({
     onSelectRef.current = onSelect;
   }, [onSelect]);
 
+  // Redraw with the other palette when the operating-system theme changes.
+  useEffect(() => {
+    const query = window.matchMedia("(prefers-color-scheme: dark)");
+    const redraw = () => setThemeVersion((version) => version + 1);
+    query.addEventListener("change", redraw);
+    return () => query.removeEventListener("change", redraw);
+  }, []);
+
   useEffect(() => {
     const container = containerRef.current;
     if (!container || nodes.length === 0) return;
     let destroyed = false;
     let cy: Core | null = null;
     const positions = layoutPosition(nodes);
+    const palette = {
+      label: tokenColor(container, "foreground", "#3f342c"),
+      node: tokenColor(container, "card", "#f4efe4"),
+      nodeBorder: tokenColor(container, "muted-foreground", "#5c5348"),
+      selectedBorder: tokenColor(container, "primary", "#243246"),
+      selectedNode: tokenColor(container, "accent", "#d9e4df"),
+      edge: tokenColor(container, "muted-foreground", "#6d645a"),
+      edgeLabel: tokenColor(container, "accent-foreground", "#1f3d32"),
+    };
     void import("cytoscape").then(({ default: cytoscape }) => {
       if (destroyed || !containerRef.current) return;
       cy = cytoscape({
@@ -88,24 +121,24 @@ export function EvidenceGraphCanvas({
               "text-valign": "bottom",
               "text-halign": "center",
               "text-margin-y": 8,
-              color: "#3f342c",
-              "background-color": "#f4efe4",
+              color: palette.label,
+              "background-color": palette.node,
               "border-width": 2,
-              "border-color": "#5c5348",
+              "border-color": palette.nodeBorder,
               width: 28,
               height: 28,
             },
           },
           {
             selector: "node.is-selected",
-            style: { "border-width": 4, "border-color": "#243246", "background-color": "#d9e4df" },
+            style: { "border-width": 4, "border-color": palette.selectedBorder, "background-color": palette.selectedNode },
           },
           {
             selector: "edge",
             style: {
               width: 1.5,
-              "line-color": "#6d645a",
-              "target-arrow-color": "#6d645a",
+              "line-color": palette.edge,
+              "target-arrow-color": palette.edge,
               "target-arrow-shape": "triangle",
               "curve-style": "bezier",
               "line-style": "solid",
@@ -121,7 +154,7 @@ export function EvidenceGraphCanvas({
           },
           {
             selector: 'edge[capability = "yes"]',
-            style: { label: "Verified capability", "font-size": 9, width: 3, "line-style": "solid", color: "#1f3d32" },
+            style: { label: "Verified capability", "font-size": 9, width: 3, "line-style": "solid", color: palette.edgeLabel },
           },
         ] as StylesheetStyle[],
       });
@@ -142,7 +175,7 @@ export function EvidenceGraphCanvas({
       cyRef.current = null;
       setReady(false);
     };
-  }, [signature, nodes, edges, selectedId]);
+  }, [signature, nodes, edges, selectedId, themeVersion]);
 
   const zoomBy = (factor: number) => {
     const cy = cyRef.current;

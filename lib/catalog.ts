@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { identityProblems, provenanceProblems } from "./catalog-integrity";
+import { latestClaimDate } from "./as-of";
 import { searchHits as filterSearchHits, type SearchHit } from "./search";
 import {
   AS_OF,
@@ -141,8 +142,10 @@ export type Catalog = {
 };
 
 function parseCatalog(): Catalog {
+  const parsedClaims = z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims, ...developerEndpointClaims, ...categoryFillClaims]);
   return {
-    asOf: AS_OF,
+    // Generated from the data so the header matches the newest claim card. AS_OF is only a fallback.
+    asOf: latestClaimDate(parsedClaims) ?? AS_OF,
     domains: z.array(domainSchema).parse(domains),
     categories: z.array(categorySchema).parse(allCategories),
     vendors: z.array(vendorSchema).parse([...vendors, ...ecosystemVendors, ...secretsSweepVendors, ...expandedVendors, ...categoryFillVendors].map(includeSecretsDetection).map(includeExpandedDspm)),
@@ -166,7 +169,7 @@ function parseCatalog(): Catalog {
     qualificationQuestions: z.array(qualificationQuestionSchema).parse(qualificationQuestions),
     vendorSeatTargeting: z.array(vendorSeatTargetingSchema).parse(vendorSeatTargeting),
     sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources, ...developerEndpointSources, ...personaSources, ...categoryFillSources]),
-    claims: z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims, ...developerEndpointClaims, ...categoryFillClaims]),
+    claims: parsedClaims,
     relationships: z.array(relationshipSchema).parse([...relationships, ...ecosystemRelationships]),
     stories: z.array(customerStorySchema).parse(customerStories),
     pricing: z.array(pricingSignalSchema).parse(pricingSignals),

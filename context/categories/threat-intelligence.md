@@ -3,7 +3,7 @@ id: "threat-intelligence"
 type: "category"
 name: "Threat intelligence"
 layer: "core"
-vendors: 6
+vendors: 8
 ---
 
 # Threat intelligence
@@ -34,6 +34,8 @@ Finished reporting and indicator feeds that detection teams use. This map keeps 
 
 - Secureworks
 - Dragos
+- Dropzone AI
+- Stairwell
 - SOC Prime
 - ZeroFox
 
