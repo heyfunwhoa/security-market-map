@@ -1,0 +1,105 @@
+/**
+ * Buyer questions and illustrative vendors, keyed to the canonical catalog domains.
+ * These lines are teaching notes, not sourced claims. A domain can hold more than one
+ * question: corporate covers email, endpoint, and the network edge.
+ */
+export type DomainQuestion = {
+  id: string;
+  domainId: string;
+  name: string;
+  question: string;
+  categories: string;
+  examples: string;
+};
+
+export const domainQuestions: DomainQuestion[] = [
+  {
+    id: "email",
+    name: "Email and collaboration",
+    question: "Can we stop phishing and account compromise?",
+    categories: "Email security, phishing detection, account takeover defense, security awareness",
+    examples: "Proofpoint, Mimecast, Abnormal, Microsoft",
+    domainId: "corporate",
+  },
+  {
+    id: "identity",
+    name: "Identity and access",
+    question: "Who or what can access a system?",
+    categories: "SSO, MFA, access management, customer identity, IGA, PAM, nonhuman identity",
+    examples: "Microsoft Entra, Okta, SailPoint, Saviynt, CyberArk",
+    domainId: "identity",
+  },
+  {
+    id: "endpoint",
+    name: "Endpoint and device",
+    question: "Is a laptop, server, or mobile device compromised?",
+    categories: "Endpoint protection, endpoint detection and response, mobile security",
+    examples: "CrowdStrike, Microsoft Defender, SentinelOne",
+    domainId: "corporate",
+  },
+  {
+    id: "ai",
+    name: "AI security",
+    question: "Can we govern models, apps, agents, and their access?",
+    categories: "AI posture, model and application testing, prompt-injection defenses, agent identity",
+    examples: "Lakera, HiddenLayer, Robust Intelligence",
+    domainId: "ai",
+  },
+  {
+    id: "app",
+    name: "Application and software supply chain",
+    question: "Is the software we build and ship safe?",
+    categories: "SAST, SCA, secrets detection, API security, ASPM, software supply chain security",
+    examples: "GitHub, GitLab, Snyk, Checkmarx, Truffle Security",
+    domainId: "appsec",
+  },
+  {
+    id: "network",
+    name: "Network and access edge",
+    question: "Which traffic and connections should be allowed?",
+    categories: "Firewalls, secure web gateway, ZTNA, SSE, SASE, segmentation",
+    examples: "Palo Alto Networks, Fortinet, Zscaler, Netskope, Cloudflare",
+    domainId: "corporate",
+  },
+  {
+    id: "exposure",
+    name: "Exposure management",
+    question: "Which weaknesses should we fix first?",
+    categories: "Vulnerability management, external attack surface, breach simulation, CTEM",
+    examples: "Tenable, Qualys, Rapid7, Censys, Pentera",
+    domainId: "corporate",
+  },
+  {
+    id: "cloud",
+    name: "Cloud and workload",
+    question: "Are cloud resources configured and running safely?",
+    categories: "CSPM, CIEM, CWPP, CNAPP",
+    examples: "Wiz, Orca, Palo Alto Networks, Microsoft, CrowdStrike",
+    domainId: "cloud",
+  },
+  {
+    id: "secops",
+    name: "Security operations",
+    question: "What happened, and how do we respond?",
+    categories: "SIEM, security data pipelines, detection engineering, XDR, SOAR, threat intelligence, managed detection and response",
+    examples: "Microsoft Sentinel, Splunk, Google SecOps, Palo Alto Cortex, Rapid7",
+    domainId: "secops",
+  },
+  {
+    id: "data",
+    name: "Data security",
+    question: "Where is sensitive data, who can reach it, and can it leave?",
+    categories: "Discovery and classification, DSPM, DLP, encryption and key management",
+    examples: "Cyera, Teleskope, Concentric AI, Varonis, BigID",
+    domainId: "data",
+  },
+  {
+    id: "governance",
+    name: "Governance and resilience",
+    question: "Can we demonstrate control and recover?",
+    categories: "GRC, third-party risk, privacy, backup, disaster recovery, incident readiness",
+    examples: "ServiceNow, Archer, OneTrust, Veeam, Rubrik",
+    domainId: "grc",
+  },
+];
+

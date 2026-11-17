@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { identityProblems, provenanceProblems } from "./catalog-integrity";
+import { latestClaimDate } from "./as-of";
 import { searchHits as filterSearchHits, type SearchHit } from "./search";
 import {
   AS_OF,
@@ -19,6 +20,7 @@ import {
   objectionSchema,
   alternativeSchema,
   buyingTriggerSchema,
+  qualificationQuestionSchema,
   useCaseSeatsSchema,
   pricingSignalSchema,
   productSchema,
@@ -43,6 +45,7 @@ import {
   type Objection,
   type Alternative,
   type BuyingTrigger,
+  type QualificationQuestion,
   type UseCaseSeats,
   type PricingSignal,
   type Product,
@@ -78,6 +81,7 @@ import { fieldNotes } from "./data/field-notes";
 import { objections } from "./data/objections";
 import { alternatives } from "./data/alternatives";
 import { buyingTriggers } from "./data/buying-triggers";
+import { qualificationQuestions } from "./data/qualification-questions";
 import { orphanCategoryOwners, useCaseSeats } from "./data/persona-connections";
 
 const withOrphanCategories = (persona: BuyerPersona): BuyerPersona => {
@@ -93,6 +97,7 @@ import { useCases } from "./data/use-cases";
 import { includeSecretsDetection, secretsSweepVendors, secretsSweepProducts, secretsSweepSources, secretsSweepClaims } from "./data/secrets-sweep";
 
 import { expandedVendors, expandedProducts, expandedSources, expandedClaims, includeExpandedDspm } from "./data/analyst-expansion";
+import { categoryFillVendors, categoryFillProducts, categoryFillSources, categoryFillClaims } from "./data/category-fill";
 
 const allCategories = [...categories, ...ecosystemCategories];
 
@@ -120,6 +125,7 @@ export type Catalog = {
   objections: Objection[];
   alternatives: Alternative[];
   buyingTriggers: BuyingTrigger[];
+  qualificationQuestions: QualificationQuestion[];
   sources: Source[];
   claims: Claim[];
   relationships: Relationship[];
@@ -132,12 +138,14 @@ export type Catalog = {
 };
 
 function parseCatalog(): Catalog {
+  const parsedClaims = z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims, ...developerEndpointClaims, ...categoryFillClaims]);
   return {
-    asOf: AS_OF,
+    // Generated from the data so the header matches the newest claim card. AS_OF is only a fallback.
+    asOf: latestClaimDate(parsedClaims) ?? AS_OF,
     domains: z.array(domainSchema).parse(domains),
     categories: z.array(categorySchema).parse(allCategories),
-    vendors: z.array(vendorSchema).parse([...vendors, ...ecosystemVendors, ...secretsSweepVendors, ...expandedVendors].map(includeSecretsDetection).map(includeExpandedDspm)),
-    products: z.array(productSchema).parse([...products, ...ecosystemProducts, ...secretsSweepProducts, ...expandedProducts, ...developerEndpointProducts]),
+    vendors: z.array(vendorSchema).parse([...vendors, ...ecosystemVendors, ...secretsSweepVendors, ...expandedVendors, ...categoryFillVendors].map(includeSecretsDetection).map(includeExpandedDspm)),
+    products: z.array(productSchema).parse([...products, ...ecosystemProducts, ...secretsSweepProducts, ...expandedProducts, ...developerEndpointProducts, ...categoryFillProducts]),
     capabilities: z.array(capabilitySchema).parse([...capabilities, ...ecosystemCapabilities, ...developerEndpointCapabilities]),
     useCases: z.array(useCaseSchema).parse([...useCases, ...ecosystemUseCases, ...developerEndpointUseCases]),
     personas: z.array(personaSchema).parse([...personas, ...ecosystemPersonas]).map(withOrphanCategories),
@@ -154,8 +162,9 @@ function parseCatalog(): Catalog {
     objections: z.array(objectionSchema).parse(objections),
     alternatives: z.array(alternativeSchema).parse(alternatives),
     buyingTriggers: z.array(buyingTriggerSchema).parse(buyingTriggers),
-    sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources, ...developerEndpointSources, ...personaSources]),
-    claims: z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims, ...developerEndpointClaims]),
+    qualificationQuestions: z.array(qualificationQuestionSchema).parse(qualificationQuestions),
+    sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources, ...developerEndpointSources, ...personaSources, ...categoryFillSources]),
+    claims: parsedClaims,
     relationships: z.array(relationshipSchema).parse([...relationships, ...ecosystemRelationships]),
     stories: z.array(customerStorySchema).parse(customerStories),
     pricing: z.array(pricingSignalSchema).parse(pricingSignals),
@@ -168,7 +177,7 @@ function parseCatalog(): Catalog {
 
 export function catalogProblems(catalog: Catalog): string[] {
   // Persona profiles are keyed by personaId and checked below.
-  const { asOf: _asOf, personaProfiles: _personaProfiles, useCaseSeats: _useCaseSeats, fieldNotes: _fieldNotes, objections: _objections, alternatives: _alternatives, buyingTriggers: _buyingTriggers, ...collections } = catalog;
+  const { asOf: _asOf, personaProfiles: _personaProfiles, useCaseSeats: _useCaseSeats, fieldNotes: _fieldNotes, objections: _objections, alternatives: _alternatives, buyingTriggers: _buyingTriggers, qualificationQuestions: _qualificationQuestions, ...collections } = catalog;
   void _asOf;
   void _personaProfiles;
   void _useCaseSeats;
@@ -176,6 +185,7 @@ export function catalogProblems(catalog: Catalog): string[] {
   void _objections;
   void _alternatives;
   void _buyingTriggers;
+  void _qualificationQuestions;
   const problems = [
     ...identityProblems(collections),
     ...provenanceProblems(catalog.sources, catalog.claims, catalog.capabilities.map((item) => item.id)),
@@ -447,6 +457,18 @@ export function catalogProblems(catalog: Catalog): string[] {
   for (const trigger of catalog.buyingTriggers) {
     checkConcept("Trigger", trigger);
     for (const id of trigger.useCaseIds) if (!useCaseIds.has(id)) problems.push(`Trigger ${trigger.id} references missing use case ${id}`);
+  }
+  const questionIds = new Set<string>();
+  const segmentIds = new Set(catalog.segmentOverlays.map((overlay) => overlay.id));
+  for (const question of catalog.qualificationQuestions) {
+    if (questionIds.has(question.id)) problems.push(`Duplicate qualification question ${question.id}`);
+    questionIds.add(question.id);
+    const target = question.appliesTo;
+    if (target.kind === "seat" && !seatIdSet.has(target.id)) problems.push(`Qualification question ${question.id} references missing seat ${target.id}`);
+    if (target.kind === "segment" && !segmentIds.has(target.id)) problems.push(`Qualification question ${question.id} references missing segment ${target.id}`);
+    for (const id of question.categoryIds) if (!categoryIds.has(id)) problems.push(`Qualification question ${question.id} references missing category ${id}`);
+    if (question.evidence === "sourced" && question.sourceIds.length === 0) problems.push(`Qualification question ${question.id} is sourced without sourceIds`);
+    for (const id of question.sourceIds) if (!sourceIds.has(id)) problems.push(`Qualification question ${question.id} source ${id} missing`);
   }
   const fieldIds = new Set<string>();
   for (const note of catalog.fieldNotes) {
