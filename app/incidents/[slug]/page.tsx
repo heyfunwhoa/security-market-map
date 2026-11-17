@@ -9,6 +9,7 @@ import {
   ecosystemLabel,
   INCIDENT_KIND_LABELS,
   incidentBySlug,
+  industryLabel,
   incidentFeed,
   incidentFilterUrl,
   NO_INCIDENT_FILTERS,
@@ -126,7 +127,7 @@ export default async function IncidentPage({ params }: { params: Promise<{ slug:
 
           <section aria-labelledby="classification">
             <h2 id="classification" className="text-lg font-semibold">Classification</h2>
-            <dl className="mt-3 grid gap-3 text-sm sm:grid-cols-3">
+            <dl className="mt-3 grid gap-3 text-sm sm:grid-cols-2 lg:grid-cols-4">
               <div>
                 <dt className="text-muted-foreground">MITRE ATT&CK</dt>
                 <dd className="mt-1">
@@ -136,6 +137,26 @@ export default async function IncidentPage({ params }: { params: Promise<{ slug:
               <div>
                 <dt className="text-muted-foreground">Ecosystems</dt>
                 <dd className="mt-1">{incident.affectedEcosystems.map(ecosystemLabel).join(", ") || "Not stated"}</dd>
+              </div>
+              <div>
+                <dt className="text-muted-foreground">Industry</dt>
+                <dd className="mt-1">
+                  {item.industries.length ? (
+                    item.industries.map((industry, index) => (
+                      <span key={industry}>
+                        {index > 0 && ", "}
+                        <Link
+                          href={incidentFilterUrl({ ...NO_INCIDENT_FILTERS, industry })}
+                          className="rounded-sm underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-ring"
+                        >
+                          {industryLabel(industry)}
+                        </Link>
+                      </span>
+                    ))
+                  ) : (
+                    "Not stated"
+                  )}
+                </dd>
               </div>
               <div>
                 <dt className="text-muted-foreground">Packages</dt>
