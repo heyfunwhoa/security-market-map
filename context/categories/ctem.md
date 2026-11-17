@@ -20,6 +20,10 @@ A program for deciding which exposures matter, broader than traditional technolo
 
 - Exposure / attack-surface owner (`exposure-management`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 _None recorded._

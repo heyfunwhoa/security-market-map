@@ -21,6 +21,10 @@ Testing a running application from the outside. Useful against what is deployed.
 - AppSec lead (`appsec`)
 - Software developer (`developer`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - PortSwigger: Burp Suite is the usual manual and automated web-testing tool. That is DAST-adjacent. It is not a corporate VM scanner.

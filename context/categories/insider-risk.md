@@ -22,6 +22,10 @@ Behavior that suggests data theft or misuse by someone who already has access. T
 - Insider risk (`insider-risk`)
 - Security awareness / people security (`security-awareness`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Proofpoint: Homepage retrieved 26 Oct 2026 describes collaboration, data, and AI security, including discovery of AI apps and agents and runtime policy. That page does not describe an email gateway. Not an identity threat product unless a specific SKU is sourced.
