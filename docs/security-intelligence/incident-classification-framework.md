@@ -68,6 +68,12 @@ MITRE CTID [VERIS-to-ATT&CK mapping methodology](https://ctid.mitre.org/mappings
 6. Human review approves or rejects each edge; publish only reviewed links and the reviewer's disposition. API returns missing evidence as `Not evaluated`; no implied actor attribution or stage completion.
 7. Downstream GTM Revenue OS and Account Signal Engine read only reviewed public claims; buyer/persona use cases and outreach require separate qualified context.
 
+## Consumer annotations (GTM sales note)
+
+A candidate may carry `consumerAnnotations.gtm`, a seller-facing note kept outside the evidence model (see [data contract](data-contract-and-lifecycle.md)). Fields: `status` (`draft` until reviewed), `whyItMatters`, `audiences`, `sectors`, `marketAreaIds` (existing IDs in `lib/market-areas.ts` only), `angles` (each with `theme`, `talkTrack` and `sourceClaimIds` pointing at the candidate's own claims), `discoveryQuestions` and `doNotSay`.
+
+Rules: every angle cites at least one claim; no victim naming beyond the source; no vendor-prevention claims; hypotheses stay labeled as such. The annotation is never exported to STIX or other external formats, and downstream sales tools read it only after the incident is reviewed.
+
 ## Initial manual fixture and QA
 
 Use a **synthetic** third-party SaaS identity compromise example (not a claim about the linked Reddit post). Scenario: report alleges unauthorized application identity access; method of initial credential acquisition is unknown. VERIS actor/action/asset/attribute are initially unknown pending source review. Candidate ATT&CK mappings should stay `not_evaluated` until behavior-specific authoritative evidence is linked. No verified exploit, exfiltration, privilege escalation, threat actor or compromised customer may be inferred.

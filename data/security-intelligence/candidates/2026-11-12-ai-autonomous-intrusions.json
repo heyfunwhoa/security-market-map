@@ -86,6 +86,38 @@
       ],
       "defensiveMappings": [],
       "weaknessMappings": [],
+      "consumerAnnotations": {
+        "gtm": {
+          "status": "draft",
+          "note": "Consumer annotation per docs/security-intelligence/data-contract-and-lifecycle.md: kept outside core claims, never exported to STIX, and not evidence that any vendor would have prevented this incident.",
+          "whyItMatters": "AI agents let one operator run dozens of intrusions at once. They didn't need new exploits: weak and reused credentials, open endpoints and long-lived tokens were enough. Old credential hygiene gaps now get found and used faster.",
+          "audiences": ["CISO", "AppSec lead", "Identity / IAM lead", "Cloud security lead"],
+          "sectors": ["Semiconductor", "Defense and defense policy", "Standards bodies", "Unions and nonprofits", "Industrial manufacturing"],
+          "marketAreaIds": ["identity", "exposure", "ai"],
+          "angles": [
+            {
+              "theme": "Credentials and long-lived tokens are the attack surface",
+              "talkTrack": "Unit 42's write-up says the attackers didn't need anything new. They used brute-forced and reused passwords and then created a persistent API token in production. How quickly would you know if a credential like that was valid and exposed?",
+              "sourceClaimIds": ["claim:cl-sta-1238-cairn-ai-intrusions-2026:5", "claim:cl-sta-1238-cairn-ai-intrusions-2026:6"]
+            },
+            {
+              "theme": "AI changes speed and scale, not sophistication",
+              "talkTrack": "One small team ran 25 operations against 19 organizations in about two months. Gaps you could leave for a quarter now get found in hours.",
+              "sourceClaimIds": ["claim:cl-sta-1238-cairn-ai-intrusions-2026:1", "claim:cl-sta-1238-cairn-ai-intrusions-2026:2"]
+            }
+          ],
+          "discoveryQuestions": [
+            "How do you find credentials that are valid across more than one account or partner integration?",
+            "Who owns revoking long-lived API tokens in production, and how fast can they do it?",
+            "Are your public-facing apps tested for open registration or account-creation bypasses?"
+          ],
+          "doNotSay": [
+            "Don't name or imply any victim organization; Unit 42 doesn't name them.",
+            "Don't claim a specific product would have stopped this.",
+            "Don't present the China-nexus attribution as confirmed; Unit 42 rates it moderate confidence."
+          ]
+        }
+      },
       "unresolvedQuestions": [
         "Behaviors in claim 5 suggest T1110.003 (password spraying), T1110 (brute force), T1190 (exploit public-facing application) and T1078 (valid accounts), but these IDs are outside the pinned offline subset; left not_evaluated until verified against versioned STIX.",
         "Secrets angle: the persistent production API token and reused partner-integration credential are the closest ties to secrets detection; check the full report for where the credentials were obtained.",
