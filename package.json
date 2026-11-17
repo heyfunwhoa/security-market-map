@@ -6,13 +6,16 @@
     "dev": "next dev --hostname 0.0.0.0 --port 43123",
     "build": "next build",
     "start": "next start --hostname 0.0.0.0 --port 43123",
+    "prepare": "node scripts/install-hooks.mjs",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:research-integrity": "node --experimental-strip-types --test scripts/catalog-integrity.test.mjs",
     "docs:personas": "UPDATE_PERSONA_DOCS=1 vitest run lib/persona-model.test.ts",
     "storybook": "storybook dev -p 6006 --host 127.0.0.1",
-    "storybook:build": "storybook build"
+    "storybook:build": "storybook build",
+    "context:md": "UPDATE_CONTEXT_MD=1 vitest run lib/context-md.test.ts",
+    "context:mcp": "node scripts/context-mcp-server.mjs"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

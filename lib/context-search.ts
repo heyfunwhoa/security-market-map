@@ -34,6 +34,7 @@ const TYPE_WEIGHT: Partial<Record<NodeKind, number>> = {
   persona: 0.2,
   capability: 0.15,
   segment: 0.15,
+  question: 0.2,
 };
 
 export function contextSearch(query: string, options: { types?: NodeKind[]; limit?: number; graph?: EvidenceGraph } = {}): ContextHit[] {

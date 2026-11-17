@@ -46,7 +46,7 @@ describe("comparison source disclosure", () => {
     const html = render([claim]);
     for (const text of [
       "Supporting sources",
-      "Vendor claim",
+      "Vendor said this",
       "Not stated",
       "2026-10-01",
       "fixture-source",

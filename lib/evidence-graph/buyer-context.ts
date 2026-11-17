@@ -169,11 +169,21 @@ export function withBuyerContext(graph: EvidenceGraph, catalog: Catalog, options
     for (const id of overlay.elevatedPersonaIds) addEdge("elevates", segId, graphNodeId("persona", id), overlay.id, basisFor(overlay.evidence, overlay.sourceIds), "This segment usually gives the seat more weight.");
   }
 
+  for (const qq of catalog.qualificationQuestions) {
+    const targetKind: NodeKind = qq.appliesTo.kind === "seat" ? "persona" : "segment";
+    const targetId = graphNodeId(targetKind, qq.appliesTo.id);
+    if (!nodes.has(targetId)) continue;
+    const fitLabel = qq.fit === "good" ? "Good fit if" : "Poor fit if";
+    const qId = addNode({ kind: "question", catalogId: qq.id, label: qq.question, summary: `${fitLabel}: ${qq.lookFor}`, detail: `Weight: ${qq.weight}`, href: qq.appliesTo.kind === "seat" ? `/personas/${qq.appliesTo.id}` : null, categoryIds: qq.categoryIds.filter((id) => sliceCategories.has(id)) });
+    addEdge("qualifies", qId, targetId, qq.id, basisFor(qq.evidence, qq.sourceIds), "A discovery question for this seat or segment. A hypothesis to test on calls.");
+    for (const id of qq.categoryIds) addEdge("probes", qId, graphNodeId("category", id), qq.id, HYPOTHESIS, "Editorial mapping from a question to the category it probes.");
+  }
+
   const draft: EvidenceGraph = {
     ...graph,
     projectionNotes: [
       ...graph.projectionNotes,
-      "Buyer context (seats, pains, objections, alternatives, triggers, segments) is vendor-neutral. Editorial mappings between concepts are hypotheses; each record keeps its own evidence label.",
+      "Buyer context (seats, pains, objections, alternatives, triggers, segments, qualification questions) is vendor-neutral. Editorial mappings between concepts are hypotheses; each record keeps its own evidence label.",
     ],
     nodes: [...nodes.values()].sort((a, b) => a.id.localeCompare(b.id)),
     edges: [...edges.values()].sort((a, b) => a.id.localeCompare(b.id)),

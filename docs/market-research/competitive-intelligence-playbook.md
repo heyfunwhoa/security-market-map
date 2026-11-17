@@ -8,6 +8,8 @@ Give an enterprise AE, future Head of Sales, technical seller or job candidate a
 
 **Additional applied case:** [Secrets management: Infisical and alternatives](secrets-management-comparison.md) — candidate research with evidence, buyer criteria and validation gaps.
 
+**SOC file analysis and AI investigation:** [File analysis, retained-evidence hunting and AI investigation (Nov 2026)](file-analysis-ai-investigation-landscape-2026-11.md) — candidate research by layer, not typed claims.
+
 **First applied case:** [Agentic SecOps and MSSP/MDR competitive landscape](agentic-secops-competitive-landscape.md).
 
 **DSPM and secrets expansion:** [Analyst-informed vendor and product inventory](analyst-dspm-secrets-expansion.md), with public Gartner, SACR and Forrester source limits and original product evidence.
