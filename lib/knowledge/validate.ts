@@ -294,6 +294,10 @@ export function validateKnowledge(input: KnowledgeInput, context: KnowledgeConte
         if (assessment.status === "blocked") denials.push(deny("upstream_blocked", `Upstream checks blocked ${evidence.evidenceId}.`));
         if (assessment.status === "unknown") denials.push(deny("upstream_unknown", `Upstream status for ${evidence.evidenceId} is unknown; failing closed.`));
         if (assessment.status === "outdated") denials.push(deny("upstream_outdated", `Upstream result for ${evidence.evidenceId} is out of date; re-check before use.`));
+        const catalogEnds = [mapping.from, mapping.to].filter((ref) => isCatalogKind(ref.kind)).map((ref) => `${ref.kind}:${ref.id}`);
+        if (assessment.status === "accepted" && catalogEnds.length > 0 && !assessment.subjectRefs.some((subject) => catalogEnds.includes(subject))) {
+          denials.push(deny("evidence_subject_mismatch", `Evidence ${evidence.evidenceId} is about ${assessment.subjectRefs.join(", ") || "nothing in the catalog"}, not ${catalogEnds.join(" or ")}.`));
+        }
         vendorReported = assessment.evidenceKind === "vendor_claim";
       }
       if (vendorReported && (mapping.epistemicStatus === "observed" || mapping.epistemicStatus === "tested")) {
