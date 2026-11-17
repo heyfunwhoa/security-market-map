@@ -270,5 +270,53 @@
     "proposedOn": "2026-11-17",
     "reviewedBy": "Kristen Aing",
     "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "link:okta-support-har-files-2023:itdr",
+    "incidentId": "incident:okta-support-har-files-2023",
+    "categoryId": "itdr",
+    "predicate": "related_to",
+    "rationale": "Stolen session tokens were used to hijack customers' authenticated Okta sessions, the identity-layer attack ITDR tools are bought to detect.",
+    "doesNotImply": "That an ITDR tool would have detected these hijacked sessions.",
+    "basedOnSourceIds": [
+      "source:okta-support-root-cause-2023"
+    ],
+    "status": "proposed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": null,
+    "reviewedOn": null
+  },
+  {
+    "id": "link:okta-support-har-files-2023:secrets-detection",
+    "incidentId": "incident:okta-support-har-files-2023",
+    "categoryId": "secrets-detection",
+    "predicate": "related_to",
+    "rationale": "Session tokens sat inside HAR files uploaded to a support system, and a service account password was saved to a personal account.",
+    "doesNotImply": "That scanning those files or accounts would have changed the outcome.",
+    "basedOnSourceIds": [
+      "source:okta-support-root-cause-2023"
+    ],
+    "status": "proposed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": null,
+    "reviewedOn": null
+  },
+  {
+    "id": "link:toyota-tconnect-github-key-2022:secrets-detection",
+    "incidentId": "incident:toyota-tconnect-github-key-2022",
+    "categoryId": "secrets-detection",
+    "predicate": "related_to",
+    "rationale": "A data server access key sat in a public GitHub repository for nearly five years.",
+    "doesNotImply": "That the key was used; Toyota could not confirm it.",
+    "basedOnSourceIds": [
+      "source:toyota-tconnect-notice-2022"
+    ],
+    "status": "proposed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": null,
+    "reviewedOn": null
   }
 ]
