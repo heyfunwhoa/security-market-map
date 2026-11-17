@@ -72,7 +72,8 @@ describe("knowledge model K1 prototype", () => {
       const f = setup();
       mapping(f, CAP).from.id = "cap-does-not-exist";
       mapping(f, REQ).to.id = "fx-req-missing";
-      expect(codesFor(f, CAP)).toEqual(["unknown_reference"]);
+      // The capability's evidence is about the real capability, so it also stops matching.
+      expect(codesFor(f, CAP)).toEqual(["unknown_reference", "evidence_subject_mismatch"]);
       expect(codesFor(f, REQ)).toEqual(["unknown_reference"]);
     });
 
@@ -121,7 +122,7 @@ describe("knowledge model K1 prototype", () => {
         const f = setup();
         const m = mapping(f, REQ);
         m.from = { kind, id: kind === "product" ? "trufflehog" : "truffle-security", revision: REV };
-        expect(codesFor(f, REQ)).toEqual(["product_compliance_inference"]);
+        expect(codesFor(f, REQ)).toEqual(["product_compliance_inference", "evidence_subject_mismatch"]);
       }
     });
 
