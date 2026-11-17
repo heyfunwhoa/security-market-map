@@ -44,7 +44,12 @@ The validator checks **only what K1 owns**: references, exact revisions, relatio
 
 **How the upstream results arrive:** the validator receives them as inputs (`upstreamAssessmentSchema`), one per evidence ID. A missing, `blocked`, `unknown` or `outdated` result fails closed.
 
-**These inputs are synthetic in the tests.** No adapter turns a real `previewResearchEvidenceBatch()` receipt into an assessment yet. That is the bounded integration step listed under Next steps.
+**Upstream results come from the existing reader.** `lib/knowledge/upstream.ts` (`assessmentsFromPreview()`) reads the output of `previewResearchEvidenceBatch()` without changing it:
+- A package in the reader's current previews becomes `accepted`, with the catalog subjects it is about.
+- A package previewed earlier in the batch but later superseded, invalidated or caught in an identity conflict becomes `blocked`.
+- A rejected package gets no result at all, because the reader's receipt names no evidence ID, so the validator fails closed.
+
+"Accepted" means the reader's checks passed. It is not publication approval: every preview keeps `publicationAllowed: false`. The packages in tests are synthetic, and no live producer is connected.
 
 ## Records
 
@@ -103,6 +108,7 @@ A mapping links two references, `from` and `to`, each at an exact revision. Each
   - Exact and partial correspondence need evidence.
   - Editorial correspondence is interpretation, so it must be `hypothesis` or `unknown`.
 - **Vendor-reported evidence is never upgraded:** a vendor-published claim, or an upstream `vendor_claim`, cannot support a mapping marked `observed` or `tested`.
+- **Upstream evidence must be about a catalog end of the mapping.** If a mapping touches a catalog record, an accepted upstream result must list that record among its subjects. Otherwise the mapping fails with `evidence_subject_mismatch`, so evidence about one product cannot support a mapping about another.
 - **Catalog claims used as evidence must:**
   - exist;
   - not be `needs_review`, `conflicting` or `superseded`;
@@ -170,11 +176,10 @@ There is no mandatory live service and no change to the identity flows.
 ## Next steps
 
 1. **Human design review of this page and the record shapes,** plus confirmation of PRD authority.
-2. **One bounded integration exercise.**
-   - Run an unchanged v1 synthetic ASE package through `previewResearchEvidenceBatch()`.
-   - Derive an `upstreamAssessment` from the receipt and validate one mapping against it.
-   - Draft PR #175 is the related producer-side preview.
-3. **K2 (KRU-213):** publication register. **K4 (KRU-215):** freshness and correction enforcement. Both build on these shapes. **K3 (KRU-214):** real pilot paths, after K2.
+2. **K2 (KRU-213):** publication register. **K4 (KRU-215):** freshness and correction enforcement. Both build on these shapes. **K3 (KRU-214):** real pilot paths, after K2.
+3. **Before any live producer:** the existing reader is offline and synthetic only. Connecting a real producer needs authentication, rights and owner readiness to be verified separately (KRU-217). Draft PR #175 is the related producer-side preview.
+
+The bounded integration exercise is done: `lib/knowledge/upstream.test.ts` runs the pinned v1 package and variants of it through the unchanged reader and into the validator.
 
 ## Verification
 
@@ -188,5 +193,13 @@ There is no mandatory live service and no change to the identity flows.
 - **Mapping lifecycle:** lifecycle states, supersession with and without a replacement, publisher review, and duplicate replay.
 - **Consumer decisions:** pinned revisions, decisions refused on failing mappings, and duplicates.
 - **Other:** Unknown confidence is kept, malformed input is reported rather than thrown, and the module stays isolated.
+
+`lib/knowledge/upstream.test.ts` covers the integration:
+- The unchanged pinned v1 package is accepted for its own subject and refused for an unrelated mapping.
+- A package about the mapping's capability passes end to end, and the consumer can accept it.
+- Superseded or invalidated packages are blocked, and the correction is accepted.
+- A package the reader rejects fails closed.
+- A duplicate replay is not double-counted.
+- Vendor-reported evidence cannot support an observed mapping.
 
 These tests show the prototype's rules hold for the fixtures. They do not prove the model fits real research. The design review and pilots must show that.
