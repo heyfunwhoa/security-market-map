@@ -20,6 +20,10 @@ Platforms that safely run attacker techniques to see whether controls detect or 
 
 - Security validation / offensive (`offensive-security`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - AttackIQ: Breach and attack simulation vendor. A missed technique is a detection gap, not a product failure you can assert without a test.

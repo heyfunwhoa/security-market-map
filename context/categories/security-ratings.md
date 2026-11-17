@@ -20,6 +20,10 @@ Outside-in scores of a company's exposed posture, used in third-party risk and i
 
 - GRC or trust lead (`grc-owner`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - BitSight: Security ratings vendor used in third-party risk. A score is not a questionnaire and not a pentest.

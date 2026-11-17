@@ -21,6 +21,10 @@ Cloud entitlement posture and the question of effective access: what a human or 
 - Identity security lead (`identity-security`)
 - Cloud security (`cloud-sec`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Veza: Access intelligence vendor. Buyers use this class of product to see effective permissions. This atlas does not treat Veza as a joiner-mover-leaver suite.

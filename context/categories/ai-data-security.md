@@ -20,6 +20,10 @@ Sensitive data entering a prompt, retrieved by an agent, or leaving through a to
 
 - AI security (`ai-security`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 _None recorded._
