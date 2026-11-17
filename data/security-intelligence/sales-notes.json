@@ -6,6 +6,16 @@
     "discoveryQuestion": "Who on your team installs npm packages? And how are your dev and CI tokens scoped and rotated?",
     "avoid": "Do not name affected packages or suggest the account was compromised. Package-level impact is not verified here.",
     "sellerCaveat": "Affected packages aren't verified; don't imply this account was hit.",
+    "roleNotes": [
+      {
+        "roleId": "appsec",
+        "note": "A dependency that spreads itself makes package intake and install scripts part of the attack surface."
+      },
+      {
+        "roleId": "platform",
+        "note": "Dev and CI tokens on build machines are exactly what this kind of attack goes after."
+      }
+    ],
     "basedOnSourceIds": [
       "source:cisa-shai-hulud-alert"
     ],
@@ -36,6 +46,16 @@
     "discoveryQuestion": "What third-party scripts run in your CI today, and which secrets can they see?",
     "avoid": "Don't say which customers lost secrets; that is not established.",
     "sellerCaveat": "Which customers actually lost secrets is unknown.",
+    "roleNotes": [
+      {
+        "roleId": "platform",
+        "note": "A vendor's script ran inside customers' pipelines, so anything those pipelines could read was in reach."
+      },
+      {
+        "roleId": "appsec",
+        "note": "One leaked build credential reached into other companies' CI; build-time secrets need the same care as code."
+      }
+    ],
     "basedOnSourceIds": [
       "source:codecov-bash-uploader-2021"
     ],
@@ -51,6 +71,16 @@
     "discoveryQuestion": "Are your third-party Actions pinned to a commit SHA, or to tags that can move?",
     "avoid": "The 23,000 figure is repositories using the Action, not confirmed leaks.",
     "sellerCaveat": "About 23,000 repos used it; that's not a count of leaks.",
+    "roleNotes": [
+      {
+        "roleId": "platform",
+        "note": "Pinning Actions by tag wasn't enough; a tag can be repointed after you trust it."
+      },
+      {
+        "roleId": "appsec",
+        "note": "Secrets printed into build logs are a leak path many teams don't watch."
+      }
+    ],
     "basedOnSourceIds": [
       "source:ghsa-mrrh-fwg8-r2c3"
     ],
@@ -66,6 +96,16 @@
     "discoveryQuestion": "Which AI coding tools run on your developers' machines? What can they read?",
     "avoid": "Don't present the initial token-theft route as confirmed.",
     "sellerCaveat": "How the publishing token was first stolen isn't confirmed.",
+    "roleNotes": [
+      {
+        "roleId": "appsec",
+        "note": "Malicious packages now use the developer's own AI tools to search the machine for secrets."
+      },
+      {
+        "roleId": "platform",
+        "note": "Tokens and SSH keys sitting on developer laptops are the prize; how long they stay valid matters."
+      }
+    ],
     "basedOnSourceIds": [
       "source:wiz-s1ngularity-2025"
     ],
@@ -81,6 +121,16 @@
     "discoveryQuestion": "If your CI vendor asked you to rotate every stored secret today, how long would it take?",
     "avoid": "Don't claim specific customer impact; the source covers the rotation advice, not individual customers.",
     "sellerCaveat": "Impact on individual customers isn't covered.",
+    "roleNotes": [
+      {
+        "roleId": "ciso",
+        "note": "One engineer's laptop led to every customer being told to rotate secrets; a vendor's incident becomes your rotation project."
+      },
+      {
+        "roleId": "platform",
+        "note": "Rotating every secret stored in a CI platform at once is the real cost; you need to know where they all are."
+      }
+    ],
     "basedOnSourceIds": [
       "source:circleci-incident-report-2023"
     ],
@@ -96,6 +146,16 @@
     "discoveryQuestion": "After a vendor breach, how do you find every credential that needs rotating, even the ones you think are unused?",
     "avoid": "Don't name an actor; attribution is Cloudflare's own assessment.",
     "sellerCaveat": "Attribution is Cloudflare's own; don't name an actor.",
+    "roleNotes": [
+      {
+        "roleId": "ciso",
+        "note": "The missed credentials were ones believed unused; the gap was knowing what each credential could still open."
+      },
+      {
+        "roleId": "platform",
+        "note": "Service tokens and service accounts outlive the projects that made them; rotation needs a complete list."
+      }
+    ],
     "basedOnSourceIds": [
       "source:cloudflare-thanksgiving-2023"
     ],
@@ -111,6 +171,16 @@
     "discoveryQuestion": "Do you scan private repos for cloud keys? Is MFA required on your code host?",
     "avoid": "This happened in 2016; don't present it as recent.",
     "sellerCaveat": "This was 2016; use it as a lesson, not news.",
+    "roleNotes": [
+      {
+        "roleId": "appsec",
+        "note": "A key in a private repo is still exposed the moment someone gets into the repo."
+      },
+      {
+        "roleId": "cloud-sec",
+        "note": "An AWS key in code turned access to a code repository into access to cloud data."
+      }
+    ],
     "basedOnSourceIds": [
       "source:ftc-uber-revised-analysis"
     ],
@@ -126,6 +196,16 @@
     "discoveryQuestion": "Where do your signing keys live? How would you know if key material left that environment?",
     "avoid": "Don't state how the key was stolen; Microsoft has not confirmed it.",
     "sellerCaveat": "How the key left Microsoft is still unconfirmed.",
+    "roleNotes": [
+      {
+        "roleId": "ciso",
+        "note": "A single signing key was enough to forge access; key custody is a top-level risk."
+      },
+      {
+        "roleId": "cloud-sec",
+        "note": "Keys that mint tokens need the tightest custody; where they live and who can reach them matters most."
+      }
+    ],
     "basedOnSourceIds": [
       "source:msrc-storm-0558-key-acquisition"
     ],
@@ -141,6 +221,16 @@
     "discoveryQuestion": "Do your secret scans cover build artifacts and container images, or just source code?",
     "avoid": "PyPI found no malicious use; don't describe it as an attack.",
     "sellerCaveat": "No malicious use was found; this was an exposure.",
+    "roleNotes": [
+      {
+        "roleId": "appsec",
+        "note": "Secrets can hide in build outputs like compiled files, not just in source code."
+      },
+      {
+        "roleId": "platform",
+        "note": "Public container images can carry credentials left over from the build that made them."
+      }
+    ],
     "basedOnSourceIds": [
       "source:pypi-leaked-admin-token-2024"
     ],
@@ -156,6 +246,16 @@
     "discoveryQuestion": "How do you keep track of the scope and expiry of shared-access tokens your teams create?",
     "avoid": "Wiz reported no attacker activity; describe it as an exposure, not an attack.",
     "sellerCaveat": "No attacker activity was reported; this was an exposure.",
+    "roleNotes": [
+      {
+        "roleId": "cloud-sec",
+        "note": "A share token scoped to a whole storage account turned sharing a few files into a much larger exposure."
+      },
+      {
+        "roleId": "appsec",
+        "note": "Research and data-sharing repos need the same secrets review as production code."
+      }
+    ],
     "basedOnSourceIds": [
       "source:wiz-microsoft-sas-token-2023"
     ],
@@ -171,6 +271,16 @@
     "discoveryQuestion": "Could one of your web apps expose its .env file? Would you notice if those keys got used?",
     "avoid": "Don't name an actor or a number of extorted organizations; neither is stated.",
     "sellerCaveat": "The actor and number of extorted orgs aren't stated.",
+    "roleNotes": [
+      {
+        "roleId": "cloud-sec",
+        "note": "Cloud keys in exposed web app config files were the starting point for an extortion campaign."
+      },
+      {
+        "roleId": "platform",
+        "note": "Deployment config files holding live keys are something attackers scan the internet for."
+      }
+    ],
     "basedOnSourceIds": [
       "source:unit42-env-extortion-2024"
     ],
@@ -186,6 +296,16 @@
     "discoveryQuestion": "When your teams send HAR files or logs to a vendor's support, are session tokens stripped first? Who checks?",
     "avoid": "Don't name a customer beyond those Okta itself named, and don't present the personal-account exposure path as confirmed.",
     "sellerCaveat": "How the password leaked isn't confirmed.",
+    "roleNotes": [
+      {
+        "roleId": "ciso",
+        "note": "A vendor's support system held session tokens; what you send to vendors is part of your exposure."
+      },
+      {
+        "roleId": "appsec",
+        "note": "Troubleshooting files like HAR files can carry live session tokens; scrub them before they leave."
+      }
+    ],
     "basedOnSourceIds": [
       "source:okta-support-root-cause-2023"
     ],
@@ -201,6 +321,16 @@
     "discoveryQuestion": "Do your contractors' repos fall under your secret scanning, or only your own?",
     "avoid": "Toyota could not confirm the key was used; don't describe it as a confirmed theft.",
     "sellerCaveat": "Toyota couldn't confirm the key was ever used.",
+    "roleNotes": [
+      {
+        "roleId": "appsec",
+        "note": "A contractor's public code held a live server key; third-party developers' repos are your exposure too."
+      },
+      {
+        "roleId": "ciso",
+        "note": "A key left public by a contractor can stay public for years; contractor code needs the same checks as yours."
+      }
+    ],
     "basedOnSourceIds": [
       "source:toyota-tconnect-notice-2022"
     ],
@@ -216,6 +346,16 @@
     "discoveryQuestion": "Do your contractors use push-approval MFA? Would you notice a burst of denied prompts?",
     "avoid": "Don't repeat the hard-coded PAM credential story; Uber's statement doesn't support it.",
     "sellerCaveat": "Uber says it saw no access to production systems or user databases.",
+    "roleNotes": [
+      {
+        "roleId": "ciso",
+        "note": "A bought password plus repeated MFA prompts got past two-factor; identity hygiene is a top-level risk."
+      },
+      {
+        "roleId": "platform",
+        "note": "Once inside, the attacker reached other employees' accounts with elevated permissions; internal access scope matters."
+      }
+    ],
     "basedOnSourceIds": [
       "source:uber-security-update-2022"
     ],
@@ -231,6 +371,16 @@
     "discoveryQuestion": "If an automated agent scanned you today, what would it find first? Sprayable logins, exposed APIs, old CVEs?",
     "avoid": "Don't name victims or state attribution as fact; Unit 42's assessment is moderate confidence.",
     "sellerCaveat": "Victims are unnamed; the China link is a moderate-confidence assessment.",
+    "roleNotes": [
+      {
+        "roleId": "ciso",
+        "note": "AI tooling let one tracked actor run operations across many organizations at once; the scale is what's new."
+      },
+      {
+        "roleId": "appsec",
+        "note": "Automated attack agents work through internet-facing weaknesses at volume; external exposure is the first place to look."
+      }
+    ],
     "basedOnSourceIds": [
       "source:unit42-cairn-ai-intrusions-2026"
     ],
@@ -246,6 +396,16 @@
     "discoveryQuestion": "If key systems were encrypted tomorrow, which operations would stop? How fast could you restore them?",
     "avoid": "Don't name a ransomware group or give impact figures; the filing names neither.",
     "sellerCaveat": "The filing names no attacker and no impact figures.",
+    "roleNotes": [
+      {
+        "roleId": "ciso",
+        "note": "The incident became public through an SEC filing; disclosure and recovery planning are board topics."
+      },
+      {
+        "roleId": "platform",
+        "note": "Encrypted systems disrupted operations worldwide; recovery time is the operational question."
+      }
+    ],
     "basedOnSourceIds": [
       "source:sec-8k-west-pharmaceutical-2026"
     ],

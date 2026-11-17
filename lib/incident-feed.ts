@@ -5,6 +5,7 @@ import salesNotesSeed from "@/data/security-intelligence/sales-notes.json";
 import sourcesSeed from "@/data/security-intelligence/sources.seed.json";
 import type { SearchHit } from "@/lib/search";
 import { makeSourcedIncident, type PublicIncident, type SourceRef } from "@/lib/security-intelligence-contract";
+import { SITE_URL } from "@/lib/site";
 
 /**
  * Read-only presentation layer for the public incident feed.
@@ -25,6 +26,8 @@ export type SalesNote = {
   avoid: string;
   /** One plain line for sellers on what not to overstate. Optional; reviewed with the note. */
   sellerCaveat?: string;
+  /** Owner-approved angle per buyer role (catalog persona id). Interpretation, not evidence. */
+  roleNotes?: { roleId: string; note: string }[];
   basedOnSourceIds: string[];
   draftedOn: string;
   draftedBy: string;
@@ -251,7 +254,9 @@ export function talkTrackText(item: FeedIncident): string | null {
     .map((source) => `${source.publisher}, ${source.publishedOn ?? "date not stated"}, ${source.url}`);
   const draft = note.status === "draft" ? " (Draft, not editorially reviewed)" : "";
   const caveat = note.sellerCaveat ? `\nCaveat: ${note.sellerCaveat}` : "";
-  return `${note.headline} Ask: ${note.discoveryQuestion}${caveat}\nSource: ${cited.join("; ")}${draft}`;
+  // Link back to this site so a pasted talk track (Slack, notes) is self-contained.
+  const more = `\nMore: ${SITE_URL}/incidents/${item.slug}`;
+  return `${note.headline} Ask: ${note.discoveryQuestion}${caveat}\nSource: ${cited.join("; ")}${draft}${more}`;
 }
 
 /** Call-prep block: each incident's title and disclosure date with its sourced talk track. */
