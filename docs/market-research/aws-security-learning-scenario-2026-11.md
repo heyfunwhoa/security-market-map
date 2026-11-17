@@ -2,7 +2,7 @@
 
 **Status:** public research / synthetic educational exercise, not a deployed lab or catalog claim  
 **Created:** 2026-11-16 | **Review due:** 2026-12-16 | **Editorial owner:** pending  
-**Parent:** [AWS Security Ecosystem](aws-security-ecosystem-2026-11.md) | **Companion:** [AWS vs CNAPP and SecOps buyer decisions](aws-security-buyer-comparisons-2026-11.md)
+**Parent:** [AWS Security Ecosystem](aws-security-ecosystem-2026-11.md) | **Companion:** Draft Learn comparison at `/learn?scenario=cedar-ridge&mode=reference#market`
 
 ## Learning contract
 
@@ -20,17 +20,21 @@ A fictional healthcare analytics company runs a customer reporting service on EC
 
 ```mermaid
 flowchart LR
-  A[Application workload: ECS task] -->|AssumeRole role credentials| B[IAM task role]
+  A[Application workload: ECS task] -->|Temporary task-role session| B[IAM task role]
   B -->|Permitted S3 API access| C[S3 sensitive dataset]
-  D[CloudTrail S3 data events: hypothetical] --> E[GuardDuty S3 Protection]
+  C -->|Independent S3 activity stream| E[GuardDuty S3 Protection]
+  C -->|Configured S3 object data events| D[Retained CloudTrail audit records]
+  D --> J[SOC review, case and response decision]
   E -->|Supported finding path| F[Security Hub unified context]
   G[Security Hub CSPM controls] -->|Finding and posture context| F
   H[Inspector and Macie: optional context] --> F
-  D -->|Eligible Security Lake source| I[Security Lake OCSF data]
+  C -->|Optional supported S3 telemetry source| I[Security Lake OCSF data]
   F --> J[SOC review, case and response decision]
   I --> J
   J --> K[Authorized containment + verification]
 ```
+
+GuardDuty S3 Protection does not require customer-configured CloudTrail data event logging. The trail or event data store used by investigators needs separate object-level coverage. See [GuardDuty S3 Protection](https://docs.aws.amazon.com/guardduty/latest/ug/s3-protection.html) and [CloudTrail data events](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html).
 
 **Important:** Security Hub is not the same service as Security Hub CSPM. The new Security Hub combines and prioritizes findings and exposures; CSPM focuses on security best-practice checks. Security Lake is a normalized security data store and subscription/query layer, **not** a full SIEM or a substitute for the SOC investigation process. Sources: [AWS distinctions](https://docs.aws.amazon.com/securityhub/latest/userguide/), [Security Lake overview](https://docs.aws.amazon.com/security-lake/latest/userguide/).
 
