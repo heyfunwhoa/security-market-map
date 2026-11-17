@@ -89,11 +89,11 @@
     "basedOnSourceIds": [
       "source:codecov-bash-uploader-2021"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "id": "link:tj-actions-changed-files-2025:software-supply-chain",
@@ -105,11 +105,11 @@
     "basedOnSourceIds": [
       "source:ghsa-mrrh-fwg8-r2c3"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "id": "link:nx-s1ngularity-2025:software-supply-chain",
@@ -121,11 +121,11 @@
     "basedOnSourceIds": [
       "source:wiz-s1ngularity-2025"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "id": "link:nx-s1ngularity-2025:secrets-detection",
@@ -137,11 +137,11 @@
     "basedOnSourceIds": [
       "source:wiz-s1ngularity-2025"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "id": "link:circleci-engineer-laptop-2023:secrets-management",
@@ -153,11 +153,11 @@
     "basedOnSourceIds": [
       "source:circleci-incident-report-2023"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "id": "link:cloudflare-unrotated-okta-tokens-2023:nhi",
@@ -169,11 +169,11 @@
     "basedOnSourceIds": [
       "source:cloudflare-thanksgiving-2023"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "id": "link:uber-github-aws-key-2016:secrets-detection",
@@ -185,11 +185,11 @@
     "basedOnSourceIds": [
       "source:ftc-uber-revised-analysis"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "id": "link:storm-0558-signing-key-2023:secrets-management",
@@ -201,11 +201,11 @@
     "basedOnSourceIds": [
       "source:msrc-storm-0558-key-acquisition"
     ],
-    "status": "proposed",
+    "status": "rejected",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "id": "link:pypi-admin-token-docker-image-2024:secrets-detection",
@@ -217,11 +217,11 @@
     "basedOnSourceIds": [
       "source:pypi-leaked-admin-token-2024"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "id": "link:microsoft-ai-sas-token-2023:secrets-detection",
@@ -233,11 +233,11 @@
     "basedOnSourceIds": [
       "source:wiz-microsoft-sas-token-2023"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "id": "link:env-file-cloud-extortion-2024:secrets-detection",
@@ -249,11 +249,11 @@
     "basedOnSourceIds": [
       "source:unit42-env-extortion-2024"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "id": "link:env-file-cloud-extortion-2024:cloud-detection",
@@ -265,10 +265,58 @@
     "basedOnSourceIds": [
       "source:unit42-env-extortion-2024"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "link:okta-support-har-files-2023:itdr",
+    "incidentId": "incident:okta-support-har-files-2023",
+    "categoryId": "itdr",
+    "predicate": "related_to",
+    "rationale": "Stolen session tokens were used to hijack customers' authenticated Okta sessions, the identity-layer attack ITDR tools are bought to detect.",
+    "doesNotImply": "That an ITDR tool would have detected these hijacked sessions.",
+    "basedOnSourceIds": [
+      "source:okta-support-root-cause-2023"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "link:okta-support-har-files-2023:secrets-detection",
+    "incidentId": "incident:okta-support-har-files-2023",
+    "categoryId": "secrets-detection",
+    "predicate": "related_to",
+    "rationale": "Session tokens sat inside HAR files uploaded to a support system, and a service account password was saved to a personal account.",
+    "doesNotImply": "That scanning those files or accounts would have changed the outcome.",
+    "basedOnSourceIds": [
+      "source:okta-support-root-cause-2023"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "link:toyota-tconnect-github-key-2022:secrets-detection",
+    "incidentId": "incident:toyota-tconnect-github-key-2022",
+    "categoryId": "secrets-detection",
+    "predicate": "related_to",
+    "rationale": "A data server access key sat in a public GitHub repository for nearly five years.",
+    "doesNotImply": "That the key was used; Toyota could not confirm it.",
+    "basedOnSourceIds": [
+      "source:toyota-tconnect-notice-2022"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   }
 ]

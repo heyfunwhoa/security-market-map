@@ -1,0 +1,99 @@
+{
+  "batch": "2026-11-12-ai-autonomous-intrusions",
+  "status": "candidate_only",
+  "publishable": false,
+  "framework": "docs/security-intelligence/incident-classification-framework.md",
+  "discoveryContext": "Lead from an r/blueteamsec post (reddit.com/r/blueteamsec/s/kDSEpktbXS, not retrievable from the research session); the linked Unit 42 report is the source used. Third-party text was paraphrased, not copied. IOCs from the report are intentionally not stored here.",
+  "excludedFromIncidents": [
+    "Cairn open-source penetration testing framework itself (github.com/oritera/Cairn)"
+  ],
+  "excludedReason": "The tool is dual-use software, not an incident; only its reported misuse is a candidate.",
+  "candidates": [
+    {
+      "incidentId": "incident:cl-sta-1238-cairn-ai-intrusions-2026",
+      "title": "CL-STA-1238 campaign using a forked Cairn autonomous AI pentest framework against semiconductor, defense and civil-society organizations",
+      "incidentKind": "intrusion",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "Palo Alto Networks Unit 42",
+          "canonicalUrl": "https://unit42.paloaltonetworks.com/cairn-framework-ai-autonomous-attacks/",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-12T21:41:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No match in incidents.seed.json or open candidate batches (PRs #164, #166). Victims are unnamed, so the campaign is one candidate rather than one per organization.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:cl-sta-1238-cairn-ai-intrusions-2026:1",
+          "statement": "Between August and September 2026, an actor Unit 42 tracks as CL-STA-1238 ran 25 operations against at least 19 organizations using a customized fork of the open-source Cairn framework, in which AI-model-driven agent workers carry out the intrusion steps.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://unit42.paloaltonetworks.com/cairn-framework-ai-autonomous-attacks/"
+        },
+        {
+          "id": "claim:cl-sta-1238-cairn-ai-intrusions-2026:2",
+          "statement": "Unit 42 confirmed unauthorized access or data retrieval at 10 of those organizations; individual operations lasted from about 20 minutes to more than 50 hours.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://unit42.paloaltonetworks.com/cairn-framework-ai-autonomous-attacks/"
+        },
+        {
+          "id": "claim:cl-sta-1238-cairn-ai-intrusions-2026:3",
+          "statement": "Unit 42 assesses with moderate confidence that the activity is China-nexus intelligence collection, likely run by one operator or a small team.",
+          "epistemicStatus": "hypothesis",
+          "sourceUrl": "https://unit42.paloaltonetworks.com/cairn-framework-ai-autonomous-attacks/"
+        },
+        {
+          "id": "claim:cl-sta-1238-cairn-ai-intrusions-2026:4",
+          "statement": "The agents ran on Zhipu GLM and DeepSeek models; the operator used a Chinese-language authorization preamble and a generated AUTHORIZATION.md file, and Unit 42 reports neither model refused.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://unit42.paloaltonetworks.com/cairn-framework-ai-autonomous-attacks/"
+        },
+        {
+          "id": "claim:cl-sta-1238-cairn-ai-intrusions-2026:5",
+          "statement": "Reported access paths were known weaknesses: password spraying and brute-forced credentials, authentication bypasses, IDOR, open registration endpoints, exposed cloud storage and APIs, and older CVEs. Tasking for one semiconductor equipment supplier included previously gathered VPN gateway addresses and shared site passwords.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://unit42.paloaltonetworks.com/cairn-framework-ai-autonomous-attacks/"
+        },
+        {
+          "id": "claim:cl-sta-1238-cairn-ai-intrusions-2026:6",
+          "statement": "Reported impacts include dozens of valid credentials and an overwritten ballot document at an industry standards body; unauthorized admin accounts and a persistent production API token at a semiconductor company; over a million member records and staff password hashes at a U.S. teachers' union; and about 500 user records, including .mil and .gov accounts, from a defense-policy identity platform.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://unit42.paloaltonetworks.com/cairn-framework-ai-autonomous-attacks/"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Behaviors in claim 5 suggest T1110.003 (password spraying), T1110 (brute force), T1190 (exploit public-facing application) and T1078 (valid accounts), but these IDs are outside the pinned offline subset; left not_evaluated until verified against versioned STIX.",
+        "Secrets angle: the persistent production API token and reused partner-integration credential are the closest ties to secrets detection; check the full report for where the credentials were obtained.",
+        "Victim organizations are unnamed; do not attribute this campaign to any specific company or customer.",
+        "Attribution (claim 3) is a vendor assessment at moderate confidence; keep as hypothesis.",
+        "Same-day report (published 2026-11-12); look for corroborating coverage or corrections before promotion.",
+        "The report names five CMS-related cases but describes only three; the remaining two are unknown."
+      ]
+    }
+  ]
+}
