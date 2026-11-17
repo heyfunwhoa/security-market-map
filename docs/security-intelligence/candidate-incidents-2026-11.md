@@ -2,6 +2,13 @@
 
 **Status:** candidate research only. Nothing here is a published typed claim, and nothing here is added to `data/security-intelligence/incidents.seed.json`. Each entry needs a named human reviewer, a primary-source check and an approval decision recorded in a PR before it can move into the seed registry.
 
+**Converted 2026-11-17:**
+- **West Pharmaceutical:** promoted through [`candidates/2026-11-17-company-disclosures.json`](../../data/security-intelligence/candidates/2026-11-17-company-disclosures.json), after its SEC 8-K was checked.
+- **The other four** (Binance, Crédit Mutuel Arkéa, Novo Nordisk, AstraZeneca): now candidate records in [`candidates/2026-11-11-november-intake.json`](../../data/security-intelligence/candidates/2026-11-11-november-intake.json). There, `lib/incident-candidates.test.ts` enforces the framework rules.
+- **Trend reports:** listed in that batch's `excludedFromIncidents`.
+
+This page stays as the research narrative. The batch file is what review and promotion use.
+
 **Intake date:** 2026-11-11. **Collected by:** agent-assisted web research. **Reviewer:** unassigned.
 
 **Boundaries (per [incident classification framework](incident-classification-framework.md)):**

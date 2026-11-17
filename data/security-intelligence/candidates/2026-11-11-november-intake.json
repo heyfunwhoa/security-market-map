@@ -1,0 +1,248 @@
+{
+  "batch": "2026-11-11-november-intake",
+  "status": "candidate_only",
+  "publishable": false,
+  "framework": "docs/security-intelligence/incident-classification-framework.md",
+  "discoveryContext": "Converted from the November 2026 intake notes (docs/security-intelligence/candidate-incidents-2026-11.md, agent-assisted research, sources checked 2026-11-11). West Pharmaceutical from the same notes was promoted separately via candidates/2026-11-17-company-disclosures.json. Statements are paraphrased from those notes; no source was re-checked during conversion.",
+  "excludedFromIncidents": [
+    "Halcyon Q2 2026 ransomware report: EDR kill techniques as standard practice (via Infosecurity Magazine)",
+    "ESET research on almost 90 EDR killers in the wild, more than half using BYOVD (March 2026)",
+    "ESET research on GentleKiller, the Gentlemen RaaS EDR-killer suite (June 2026)",
+    "Cyware monthly threat briefing, October 2026: industrialization of EDR evasion"
+  ],
+  "excludedReason": "Threat-landscape reports with no single affected organization; candidates for the source registry, not incidents.",
+  "candidates": [
+    {
+      "incidentId": "incident:binance-wallet-signing-2026",
+      "title": "Binance internal wallet signing compromise",
+      "incidentKind": "intrusion",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "Binance (X account)",
+          "canonicalUrl": "https://x.com/binance/status/2117626126214504729",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-11",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Binance (Binance Square preliminary report)",
+          "canonicalUrl": "https://www.binance.com/square/post/384314395829022",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-11",
+          "usageRights": "Store citation and limited summary; check Binance terms."
+        },
+        {
+          "publisher": "CybelAngel (weekly roundup, 2-8 Nov 2026)",
+          "canonicalUrl": "https://cybelangel.com/blog/weekly-cyber-roundup-november-2-8/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-11",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "This Week in Security (8 Nov 2026)",
+          "canonicalUrl": "https://this.weekinsecurity.com/this-week-in-security-november-8-2026-edition/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-11",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "Not in incidents.seed.json or another candidate batch as of 2026-11-17.",
+      "veris": { "schemaVersion": null, "actor": null, "action": null, "asset": null, "attribute": null, "sourceClaimIds": [] },
+      "claims": [
+        {
+          "id": "claim:binance-wallet-signing-2026:1",
+          "statement": "Binance said the malware replaced a component of a legitimate development tool, and that this 0-day malware was not detected by its endpoint security tools at the time.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://x.com/binance/status/2117626126214504729"
+        },
+        {
+          "id": "claim:binance-wallet-signing-2026:2",
+          "statement": "Binance's preliminary report dates the incident to 29 October 2026 UTC (30 October in UTC+8) and says its findings are subject to independent review.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.binance.com/square/post/384314395829022"
+        },
+        {
+          "id": "claim:binance-wallet-signing-2026:3",
+          "statement": "Secondary reporting says initial access came from a fake recruiter's technical assignment that was downloaded to a work computer.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://cybelangel.com/blog/weekly-cyber-roundup-november-2-8/"
+        }
+      ],
+      "attackMappings": [
+        { "domain": "enterprise-attack", "attackId": null, "stixId": null, "attackDatasetVersion": null, "mappingStatus": "not_evaluated", "evidenceStatus": "unknown", "rationale": null, "sourceClaimIds": [], "reviewer": null, "reviewedAt": null }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "The primary sources were identified on 2026-11-11 but not re-checked during conversion; verify both before review.",
+        "The report is preliminary; record both the UTC and UTC+8 dates and watch for the final report.",
+        "Affected-asset figures (about $6.34B affected, about $2.85B frozen) come from a secondary summary of the company report and are not verified.",
+        "Initial access via a fake recruiter is secondary reporting only; attribution is not established."
+      ]
+    },
+    {
+      "incidentId": "incident:credit-mutuel-arkea-2026",
+      "title": "Crédit Mutuel Arkéa fraudulent transfers via a service provider",
+      "incidentKind": "intrusion",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "BleepingComputer (7 Nov 2026)",
+          "canonicalUrl": "https://www.bleepingcomputer.com/news/security/hackers-pull-off-133-million-french-bank-heist-via-service-provider/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-11",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Help Net Security (9 Nov 2026)",
+          "canonicalUrl": "https://www.helpnetsecurity.com/2026/11/09/credit-mutuel-arkea-cyberattack-133-million/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-11",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Leto (citing the bank's 4 Nov 2026 press release)",
+          "canonicalUrl": "https://www.leto.legal/news/credit-mutuel-arkea-fortuneo-cyberattaque-operations-frauduleuses-2026",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-11",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "Not in incidents.seed.json or another candidate batch as of 2026-11-17.",
+      "veris": { "schemaVersion": null, "actor": null, "action": null, "asset": null, "attribute": null, "sourceClaimIds": [] },
+      "claims": [
+        {
+          "id": "claim:credit-mutuel-arkea-2026:1",
+          "statement": "Secondary reporting says the bank disclosed an attack that allowed fraudulent transactions, with the attacker reaching its network through a service provider's platform.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.bleepingcomputer.com/news/security/hackers-pull-off-133-million-french-bank-heist-via-service-provider/"
+        },
+        {
+          "id": "claim:credit-mutuel-arkea-2026:2",
+          "statement": "As cited from the bank's 4 November 2026 release, the incident was contained, customer assets were not affected and some transfers were delayed.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.leto.legal/news/credit-mutuel-arkea-fortuneo-cyberattaque-operations-frauduleuses-2026"
+        },
+        {
+          "id": "claim:credit-mutuel-arkea-2026:3",
+          "statement": "A loss of about $133 million comes from an independent on-chain investigator; the bank has not confirmed that figure.",
+          "epistemicStatus": "unknown",
+          "sourceUrl": "https://www.helpnetsecurity.com/2026/11/09/credit-mutuel-arkea-cyberattack-133-million/"
+        }
+      ],
+      "attackMappings": [
+        { "domain": "enterprise-attack", "attackId": null, "stixId": null, "attackDatasetVersion": null, "mappingStatus": "not_evaluated", "evidenceStatus": "unknown", "rationale": null, "sourceClaimIds": [], "reviewer": null, "reviewedAt": null }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Primary source needed: capture the bank's 4 November 2026 press release and FAQ from arkea.com.",
+        "Loss figures differ across reports (about EUR 100M per secondary reporting of the bank's statements, a EUR 118M order of magnitude per a second release as reported by press, about $133M per an on-chain investigator); none is confirmed exactly.",
+        "The service provider is not named."
+      ]
+    },
+    {
+      "incidentId": "incident:novo-nordisk-2026",
+      "title": "Novo Nordisk unauthorized access and data copied externally",
+      "incidentKind": "breach",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "Novo Nordisk A/S (company announcement via GlobeNewswire, republished by Investegate)",
+          "canonicalUrl": "https://www.investegate.co.uk/announcement/gnw/novo-nordisk-a-s-class-b--0qiu/novo-nordisk-a-s-it-security-incident-at-nov-/9614494",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-11",
+          "usageRights": "Prefer the novonordisk.com original once captured; store citation and limited summary."
+        },
+        {
+          "publisher": "HIPAA Journal (18 Jun 2026)",
+          "canonicalUrl": "https://www.hipaajournal.com/novo-nordisk-cyberattack/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-11",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "Not in incidents.seed.json or another candidate batch as of 2026-11-17.",
+      "veris": { "schemaVersion": null, "actor": null, "action": null, "asset": null, "attribute": null, "sourceClaimIds": [] },
+      "claims": [
+        {
+          "id": "claim:novo-nordisk-2026:1",
+          "statement": "Novo Nordisk said on 11 June 2026 that there had been unauthorized access to a limited number of internal IT systems and that non-public data, including personal data, was copied externally.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.investegate.co.uk/announcement/gnw/novo-nordisk-a-s-class-b--0qiu/novo-nordisk-a-s-it-security-incident-at-nov-/9614494"
+        },
+        {
+          "id": "claim:novo-nordisk-2026:2",
+          "statement": "Secondary reporting says clinical-trial-related data was among the data copied.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.hipaajournal.com/novo-nordisk-cyberattack/"
+        },
+        {
+          "id": "claim:novo-nordisk-2026:3",
+          "statement": "An extortion group claimed responsibility and claimed 1.3 TB was stolen; the company has not confirmed the claim or the volume.",
+          "epistemicStatus": "unknown",
+          "sourceUrl": "https://www.hipaajournal.com/novo-nordisk-cyberattack/"
+        }
+      ],
+      "attackMappings": [
+        { "domain": "enterprise-attack", "attackId": null, "stixId": null, "attackDatasetVersion": null, "mappingStatus": "not_evaluated", "evidenceStatus": "unknown", "rationale": null, "sourceClaimIds": [], "reviewer": null, "reviewedAt": null }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "The company statement is a republication; capture the original on novonordisk.com before review.",
+        "Dwell time (about two months or more), data volume and the reported $25M demand are threat-actor or secondary claims; keep them out of the summary.",
+        "Do not record an actor: responsibility is claimed, not confirmed."
+      ]
+    },
+    {
+      "incidentId": "incident:astrazeneca-2026",
+      "title": "AstraZeneca reported cyberattack (unconfirmed)",
+      "incidentKind": "breach",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "INCIBE-CERT (21 Apr 2026)",
+          "canonicalUrl": "https://www.incibe.es/en/incibe-cert/publications/cybersecurity-highlights/astrazeneca-strengthening-its-cybersecurity-following-cyberattack",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-11",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Bitdefender (late March 2026)",
+          "canonicalUrl": "https://www.bitdefender.com/en-gb/blog/hotforsecurity/lapsus-astrazeneca-breach",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-11",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "Not in incidents.seed.json or another candidate batch as of 2026-11-17.",
+      "veris": { "schemaVersion": null, "actor": null, "action": null, "asset": null, "attribute": null, "sourceClaimIds": [] },
+      "claims": [
+        {
+          "id": "claim:astrazeneca-2026:1",
+          "statement": "Reports from March 2026 describe IT disruption and theft of confidential data, claimed by a group calling itself LAPSUS$.",
+          "epistemicStatus": "unknown",
+          "sourceUrl": "https://www.bitdefender.com/en-gb/blog/hotforsecurity/lapsus-astrazeneca-breach"
+        },
+        {
+          "id": "claim:astrazeneca-2026:2",
+          "statement": "INCIBE-CERT noted that the company had not confirmed the details.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.incibe.es/en/incibe-cert/publications/cybersecurity-highlights/astrazeneca-strengthening-its-cybersecurity-following-cyberattack"
+        }
+      ],
+      "attackMappings": [
+        { "domain": "enterprise-attack", "attackId": null, "stixId": null, "attackDatasetVersion": null, "mappingStatus": "not_evaluated", "evidenceStatus": "unknown", "rationale": null, "sourceClaimIds": [], "reviewer": null, "reviewedAt": null }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Primary source needed: no company disclosure was found as of 2026-11-11.",
+        "Threat-actor claim only. Hold at epistemic status unknown, or drop, until the company confirms.",
+        "Do not record an actor."
+      ]
+    }
+  ]
+}
