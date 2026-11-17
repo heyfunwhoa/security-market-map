@@ -284,5 +284,55 @@
       "No ATT&CK technique is asserted until a separate sourced mapping review."
     ],
     "lastReviewedOn": "2026-11-17"
+  },
+  {
+    "id": "incident:okta-support-har-files-2023",
+    "title": "Okta support system breach exposing session tokens in HAR files",
+    "kind": "breach",
+    "disclosedOn": "2023-10-20",
+    "occurredOn": null,
+    "summary": "Okta reported that an actor used a service account stored in its customer support system to view files uploaded by 134 customers between 28 September and 17 October 2023. Some were HAR files containing session tokens, which the actor used to hijack the Okta sessions of 5 customers. The service account's username and password had been saved to an employee's personal Google account.",
+    "epistemicStatus": "reported",
+    "reviewStatus": "seed_reviewed",
+    "affectedEcosystems": [
+      "saas"
+    ],
+    "sourceIds": [
+      "source:okta-support-root-cause-2023",
+      "source:okta-harfiles-closure-2024"
+    ],
+    "techniqueIds": [],
+    "packageIds": [],
+    "uncertaintyNotes": [
+      "Okta says the credential was most likely exposed through the employee's personal Google account or personal device; the exact path is not confirmed.",
+      "Downstream incidents at Okta customers, such as Cloudflare's, are separate records; the relationship has not been reviewed.",
+      "No ATT&CK technique is asserted until a separate sourced mapping review."
+    ],
+    "lastReviewedOn": "2026-11-17"
+  },
+  {
+    "id": "incident:toyota-tconnect-github-key-2022",
+    "title": "Toyota T-Connect access key exposed on public GitHub",
+    "kind": "breach",
+    "disclosedOn": "2022-10-07",
+    "occurredOn": null,
+    "summary": "Toyota reported that a T-Connect website development contractor uploaded part of the site's source code, including a data server access key, to a public GitHub repository in December 2017. The code stayed public until 15 September 2022 and the key was changed on 17 September 2022. Up to 296,019 customer email addresses and customer management numbers may have been exposed.",
+    "epistemicStatus": "reported",
+    "reviewStatus": "seed_reviewed",
+    "affectedEcosystems": [
+      "github"
+    ],
+    "sourceIds": [
+      "source:toyota-tconnect-notice-2022"
+    ],
+    "techniqueIds": [],
+    "packageIds": [],
+    "uncertaintyNotes": [
+      "Toyota says third-party access could not be confirmed from access history but could not be ruled out; no misuse had been confirmed. It is typed as a breach because the feed has no exposure type.",
+      "Toyota's notice is in Japanese; this summary is a translated paraphrase.",
+      "Hard-coded credentials (CWE-798) is a weakness candidate only.",
+      "No ATT&CK technique is asserted until a separate sourced mapping review."
+    ],
+    "lastReviewedOn": "2026-11-17"
   }
 ]
