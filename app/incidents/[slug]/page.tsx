@@ -70,6 +70,12 @@ export default async function IncidentPage({ params }: { params: Promise<{ slug:
                   <dt className="font-semibold">Ask</dt>
                   <dd className="mt-1">{salesNote.discoveryQuestion}</dd>
                 </div>
+                {salesNote.sellerCaveat && (
+                  <div>
+                    <dt className="font-semibold">Caveat</dt>
+                    <dd className="mt-1">{salesNote.sellerCaveat}</dd>
+                  </div>
+                )}
                 <div>
                   <dt className="font-semibold">Avoid</dt>
                   <dd className="mt-1">{salesNote.avoid}</dd>

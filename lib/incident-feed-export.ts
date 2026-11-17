@@ -43,6 +43,7 @@ export function buildIncidentFeedExport(feed: readonly FeedIncident[] = incident
               headline: salesNote.headline,
               discoveryQuestion: salesNote.discoveryQuestion,
               avoid: salesNote.avoid,
+              sellerCaveat: salesNote.sellerCaveat ?? null,
               basedOnSourceIds: salesNote.basedOnSourceIds,
               reviewedOn: salesNote.reviewedOn,
             }

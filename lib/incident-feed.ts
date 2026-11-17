@@ -23,6 +23,8 @@ export type SalesNote = {
   headline: string;
   discoveryQuestion: string;
   avoid: string;
+  /** One plain line for sellers on what not to overstate. Optional; reviewed with the note. */
+  sellerCaveat?: string;
   basedOnSourceIds: string[];
   draftedOn: string;
   draftedBy: string;
@@ -248,7 +250,8 @@ export function talkTrackText(item: FeedIncident): string | null {
     .filter((source) => note.basedOnSourceIds.includes(source.id))
     .map((source) => `${source.publisher}, ${source.publishedOn ?? "date not stated"}, ${source.url}`);
   const draft = note.status === "draft" ? " (Draft, not editorially reviewed)" : "";
-  return `${note.headline} Ask: ${note.discoveryQuestion}\nSource: ${cited.join("; ")}${draft}`;
+  const caveat = note.sellerCaveat ? `\nCaveat: ${note.sellerCaveat}` : "";
+  return `${note.headline} Ask: ${note.discoveryQuestion}${caveat}\nSource: ${cited.join("; ")}${draft}`;
 }
 
 /** Call-prep block: each incident's title and disclosure date with its sourced talk track. */

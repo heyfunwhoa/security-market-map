@@ -37,6 +37,12 @@ export function IncidentCard({ item }: { item: FeedIncident }) {
               <span className="font-semibold text-foreground">Ask: </span>
               {salesNote.discoveryQuestion}
             </p>
+            {salesNote.sellerCaveat && (
+              <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                <span className="font-semibold text-foreground">Caveat: </span>
+                {salesNote.sellerCaveat}
+              </p>
+            )}
             <div className="mt-2">
               <CopyTalkTrack
                 text={talkTrackText(item) ?? ""}
