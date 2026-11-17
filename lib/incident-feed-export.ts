@@ -13,6 +13,7 @@ export const INCIDENT_FEED_EXPORT_PATH = "data/security-intelligence/exports/inc
 
 export function buildIncidentFeedExport(feed: readonly FeedIncident[] = incidentFeed) {
   const categoryName = new Map(catalog.categories.map((c) => [c.id, c.name]));
+  const personaName = new Map(catalog.personas.map((p) => [p.id, p.name]));
   const asOf = feed.map((item) => item.incident.lastReviewedOn).sort().at(-1) ?? null;
   return {
     schemaVersion: "1",
@@ -44,6 +45,11 @@ export function buildIncidentFeedExport(feed: readonly FeedIncident[] = incident
               discoveryQuestion: salesNote.discoveryQuestion,
               avoid: salesNote.avoid,
               sellerCaveat: salesNote.sellerCaveat ?? null,
+              roleNotes: (salesNote.roleNotes ?? []).map((r) => ({
+                roleId: r.roleId,
+                roleName: personaName.get(r.roleId) ?? r.roleId,
+                note: r.note,
+              })),
               basedOnSourceIds: salesNote.basedOnSourceIds,
               reviewedOn: salesNote.reviewedOn,
             }

@@ -25,6 +25,8 @@ export type SalesNote = {
   avoid: string;
   /** One plain line for sellers on what not to overstate. Optional; reviewed with the note. */
   sellerCaveat?: string;
+  /** Owner-approved angle per buyer role (catalog persona id). Interpretation, not evidence. */
+  roleNotes?: { roleId: string; note: string }[];
   basedOnSourceIds: string[];
   draftedOn: string;
   draftedBy: string;

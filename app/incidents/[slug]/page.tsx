@@ -6,6 +6,7 @@ import { CopyTalkTrack } from "@/components/copy-talk-track";
 import { catalog } from "@/lib/catalog";
 import { formatDate } from "@/lib/format";
 import {
+
   ecosystemLabel,
   INCIDENT_KIND_LABELS,
   incidentBySlug,
@@ -16,6 +17,8 @@ import {
   sourceTypeLabel,
   talkTrackText,
 } from "@/lib/incident-feed";
+
+const personaName = (id: string) => catalog.personas.find((persona) => persona.id === id)?.name ?? id;
 
 export function generateStaticParams() {
   return incidentFeed.map((item) => ({ slug: item.slug }));
@@ -76,6 +79,20 @@ export default async function IncidentPage({ params }: { params: Promise<{ slug:
                     <dd className="mt-1">{salesNote.sellerCaveat}</dd>
                   </div>
                 )}
+                {salesNote.roleNotes?.length ? (
+                  <div>
+                    <dt className="font-semibold">By role</dt>
+                    <dd className="mt-1">
+                      <ul className="space-y-1">
+                        {salesNote.roleNotes.map((role) => (
+                          <li key={role.roleId}>
+                            <span className="font-medium">{personaName(role.roleId)}:</span> {role.note}
+                          </li>
+                        ))}
+                      </ul>
+                    </dd>
+                  </div>
+                ) : null}
                 <div>
                   <dt className="font-semibold">Avoid</dt>
                   <dd className="mt-1">{salesNote.avoid}</dd>

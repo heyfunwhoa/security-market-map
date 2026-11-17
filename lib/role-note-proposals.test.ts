@@ -17,7 +17,9 @@ type RoleNote = {
 };
 const notes = proposalsFile.notes as RoleNote[];
 const incidents = new Map((incidentsSeed as { id: string; summary: string }[]).map((i) => [i.id, i]));
-const withSalesNote = new Set((salesNotesSeed as { incidentId: string }[]).map((n) => n.incidentId));
+type Note = { incidentId: string; roleNotes?: { roleId: string; note: string }[] };
+const salesNotes = new Map((salesNotesSeed as Note[]).map((n) => [n.incidentId, n]));
+const withSalesNote = new Set(salesNotes.keys());
 const personaIds = new Set(catalog.personas.map((p) => p.id));
 const numbers = (text: string) => (text.match(/\d[\d,.]*/g) ?? []).map((n) => n.replace(/[,.]$/, "").replaceAll(",", ""));
 
@@ -47,5 +49,9 @@ describe("role note proposals", () => {
       expect(n.reviewedBy?.trim()).toBeTruthy();
       expect(n.reviewedOn).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     }
+    // Only approved (or owner-edited) lines reach sales-notes.json, word for word.
+    const applied = salesNotes.get(n.incidentId)?.roleNotes?.find((r) => r.roleId === n.roleId);
+    if (n.decision === "approved" || n.decision === "edited") expect(applied?.note).toBe(text);
+    else expect(applied).toBeUndefined();
   });
 });
