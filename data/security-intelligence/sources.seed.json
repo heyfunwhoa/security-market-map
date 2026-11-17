@@ -168,5 +168,35 @@
     "lastReviewedOn": "2026-11-17",
     "cadence": "event_driven",
     "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse. Japanese-language notice; statements are translated paraphrases."
+  },
+  {
+    "id": "source:uber-security-update-2022",
+    "publisher": "Uber",
+    "type": "company_incident_report",
+    "url": "https://www.uber.com/us/en/newsroom/security-update/",
+    "publishedOn": "2022-09-15",
+    "lastReviewedOn": "2026-11-17",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:unit42-cairn-ai-intrusions-2026",
+    "publisher": "Palo Alto Networks Unit 42",
+    "type": "security_research",
+    "url": "https://unit42.paloaltonetworks.com/cairn-framework-ai-autonomous-attacks/",
+    "publishedOn": "2026-11-12",
+    "lastReviewedOn": "2026-11-17",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:sec-8k-west-pharmaceutical-2026",
+    "publisher": "U.S. SEC EDGAR (West Pharmaceutical Services Form 8-K)",
+    "type": "regulator_filing",
+    "url": "https://www.sec.gov/Archives/edgar/data/105770/000010577026000068/wst-20260507.htm",
+    "publishedOn": "2026-05-11",
+    "lastReviewedOn": "2026-11-17",
+    "cadence": "event_driven",
+    "rightsNote": "Public SEC filing; cite and paraphrase."
   }
 ]

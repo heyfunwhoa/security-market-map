@@ -194,5 +194,47 @@
     "draftedBy": "agent-draft",
     "reviewedBy": "Kristen Aing",
     "reviewedOn": "2026-11-17"
+  },
+  {
+    "incidentId": "incident:uber-contractor-mfa-push-2022",
+    "status": "draft",
+    "headline": "An attacker used a contractor's bought password and kept sending MFA push requests until one was approved, then moved into Slack and G-Suite.",
+    "discoveryQuestion": "Do your contractors use push-approval MFA, and would you notice a burst of denied prompts?",
+    "avoid": "Don't repeat the hard-coded PAM credential story; Uber's statement doesn't support it.",
+    "basedOnSourceIds": [
+      "source:uber-security-update-2022"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": null,
+    "reviewedOn": null
+  },
+  {
+    "incidentId": "incident:cl-sta-1238-cairn-ai-intrusions-2026",
+    "status": "draft",
+    "headline": "Unit 42 reported attackers running an open-source AI pentest framework on commercial AI models to carry out 25 operations and break into 10 organizations.",
+    "discoveryQuestion": "Which of your exposed weaknesses, such as sprayable logins, exposed APIs or old CVEs, would an automated agent find first?",
+    "avoid": "Don't name victims or state attribution as fact; Unit 42's assessment is moderate confidence.",
+    "basedOnSourceIds": [
+      "source:unit42-cairn-ai-intrusions-2026"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": null,
+    "reviewedOn": null
+  },
+  {
+    "incidentId": "incident:west-pharmaceutical-intrusion-2026",
+    "status": "draft",
+    "headline": "West Pharmaceutical's SEC filing reported data theft and encrypted systems that disrupted its operations worldwide.",
+    "discoveryQuestion": "If key systems were encrypted tomorrow, which operations would stop, and how fast could you restore them?",
+    "avoid": "Don't name a ransomware group or give impact figures; the filing names neither.",
+    "basedOnSourceIds": [
+      "source:sec-8k-west-pharmaceutical-2026"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": null,
+    "reviewedOn": null
   }
 ]

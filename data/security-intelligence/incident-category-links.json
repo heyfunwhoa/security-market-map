@@ -318,5 +318,69 @@
     "proposedOn": "2026-11-17",
     "reviewedBy": "Kristen Aing",
     "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "link:uber-contractor-mfa-push-2022:workforce-identity",
+    "incidentId": "incident:uber-contractor-mfa-push-2022",
+    "categoryId": "workforce-identity",
+    "predicate": "related_to",
+    "rationale": "A contractor's corporate account was taken over through a bought password and an accepted MFA push request.",
+    "doesNotImply": "That a different MFA method would certainly have stopped it.",
+    "basedOnSourceIds": [
+      "source:uber-security-update-2022"
+    ],
+    "status": "proposed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": null,
+    "reviewedOn": null
+  },
+  {
+    "id": "link:uber-contractor-mfa-push-2022:itdr",
+    "incidentId": "incident:uber-contractor-mfa-push-2022",
+    "categoryId": "itdr",
+    "predicate": "related_to",
+    "rationale": "After the first account, the attacker reached other employee accounts with elevated permissions.",
+    "doesNotImply": "That an ITDR tool would have detected this activity.",
+    "basedOnSourceIds": [
+      "source:uber-security-update-2022"
+    ],
+    "status": "proposed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": null,
+    "reviewedOn": null
+  },
+  {
+    "id": "link:cl-sta-1238-cairn-ai-intrusions-2026:external-attack-surface",
+    "incidentId": "incident:cl-sta-1238-cairn-ai-intrusions-2026",
+    "categoryId": "external-attack-surface",
+    "predicate": "related_to",
+    "rationale": "The operations targeted internet-facing weaknesses at the victim organizations.",
+    "doesNotImply": "That attack surface monitoring would have prevented any of the intrusions.",
+    "basedOnSourceIds": [
+      "source:unit42-cairn-ai-intrusions-2026"
+    ],
+    "status": "proposed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": null,
+    "reviewedOn": null
+  },
+  {
+    "id": "link:west-pharmaceutical-intrusion-2026:cyber-recovery",
+    "incidentId": "incident:west-pharmaceutical-intrusion-2026",
+    "categoryId": "cyber-recovery",
+    "predicate": "related_to",
+    "rationale": "Encrypted systems disrupted the company's operations globally, the outcome cyber recovery tools are bought to shorten.",
+    "doesNotImply": "How West recovered, or that any product would have changed the outcome.",
+    "basedOnSourceIds": [
+      "source:sec-8k-west-pharmaceutical-2026"
+    ],
+    "status": "proposed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": null,
+    "reviewedOn": null
   }
 ]

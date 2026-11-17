@@ -89,6 +89,8 @@ const ECOSYSTEM_LABELS: Record<string, string> = {
   github: "GitHub",
   docker_hub: "Docker Hub",
   microsoft_cloud: "Microsoft cloud",
+  ai_agents: "AI agents",
+  pharmaceutical: "Pharmaceutical",
 };
 
 export function ecosystemLabel(id: string): string {

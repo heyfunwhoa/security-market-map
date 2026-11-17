@@ -334,5 +334,81 @@
       "No ATT&CK technique is asserted until a separate sourced mapping review."
     ],
     "lastReviewedOn": "2026-11-17"
+  },
+  {
+    "id": "incident:uber-contractor-mfa-push-2022",
+    "title": "Uber intrusion via a compromised contractor account and MFA push approval",
+    "kind": "intrusion",
+    "disclosedOn": "2022-09-15",
+    "occurredOn": null,
+    "summary": "Uber reported that an attacker compromised an external contractor's account, likely using a corporate password bought on the dark web after malware infected the contractor's personal device. The attacker repeatedly triggered two-factor login approval requests until the contractor accepted one, then reached other employee accounts with elevated permissions to tools including G-Suite and Slack, and downloaded some internal Slack messages and invoice-tool information. Uber says it did not see access to production systems, user accounts or sensitive user databases.",
+    "epistemicStatus": "reported",
+    "reviewStatus": "seed_reviewed",
+    "affectedEcosystems": [
+      "saas"
+    ],
+    "sourceIds": [
+      "source:uber-security-update-2022"
+    ],
+    "techniqueIds": [],
+    "packageIds": [],
+    "uncertaintyNotes": [
+      "Uber attributes the attack to Lapsus$; as with other vendor attributions in this feed, no actor is recorded.",
+      "Reports that the attacker found a PowerShell script with hard-coded admin credentials for Uber's PAM system come from the attacker's own statements and secondary coverage. Uber's statement does not mention it, so it is not part of this record.",
+      "Distinct from incident:uber-github-aws-key-2016 (different year and method).",
+      "No ATT&CK technique is asserted until a separate sourced mapping review."
+    ],
+    "lastReviewedOn": "2026-11-17"
+  },
+  {
+    "id": "incident:cl-sta-1238-cairn-ai-intrusions-2026",
+    "title": "AI-driven intrusion campaign using a forked Cairn pentest framework",
+    "kind": "intrusion",
+    "disclosedOn": "2026-11-12",
+    "occurredOn": null,
+    "summary": "Unit 42 reported that between August and September 2026 an actor it tracks as CL-STA-1238 used a customized fork of the open-source Cairn AI penetration-testing framework, running on Zhipu GLM and DeepSeek models, to conduct 25 operations against at least 19 organizations in the semiconductor, defense and civil-society sectors. Unit 42 confirmed unauthorized access or data retrieval at 10 of them; reported impacts include a persistent production API token at a semiconductor company.",
+    "epistemicStatus": "reported",
+    "reviewStatus": "seed_reviewed",
+    "affectedEcosystems": [
+      "ai_agents"
+    ],
+    "sourceIds": [
+      "source:unit42-cairn-ai-intrusions-2026"
+    ],
+    "techniqueIds": [],
+    "packageIds": [],
+    "uncertaintyNotes": [
+      "Unit 42 assesses with moderate confidence that this is China-nexus intelligence collection; that is a hypothesis, and no actor is recorded here.",
+      "Victim organizations are unnamed; do not attribute this campaign to any specific company or customer.",
+      "This is a campaign across many organizations, typed as an intrusion because the feed's only campaign type is for malware campaigns.",
+      "Recent report (published 12 November 2026); no corrections had appeared as of 17 November 2026.",
+      "No ATT&CK technique is asserted until a separate sourced mapping review."
+    ],
+    "lastReviewedOn": "2026-11-17"
+  },
+  {
+    "id": "incident:west-pharmaceutical-intrusion-2026",
+    "title": "West Pharmaceutical Services intrusion with data theft and encrypted systems",
+    "kind": "intrusion",
+    "disclosedOn": "2026-05-11",
+    "occurredOn": null,
+    "summary": "West Pharmaceutical Services reported in an SEC Form 8-K that an intrusion detected on 4 May 2026 involved the exfiltration of certain data by an unauthorized party and the encryption of certain systems, temporarily disrupting its business operations globally.",
+    "epistemicStatus": "reported",
+    "reviewStatus": "seed_reviewed",
+    "affectedEcosystems": [
+      "pharmaceutical"
+    ],
+    "sourceIds": [
+      "source:sec-8k-west-pharmaceutical-2026"
+    ],
+    "techniqueIds": [],
+    "packageIds": [],
+    "uncertaintyNotes": [
+      "No threat actor or ransomware group is named in the filing.",
+      "Material financial impact had not been determined at filing, and the extent of the data affected was still under investigation.",
+      "The 8-K gives 7 May 2026 as its report date and was filed on 11 May 2026; the feed uses the filing date.",
+      "No ATT&CK technique is asserted until a separate sourced mapping review."
+    ],
+    "lastReviewedOn": "2026-11-17"
   }
 ]
