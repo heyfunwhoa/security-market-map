@@ -22,6 +22,10 @@ Discovery and classification of sensitive data in the stores a product can see, 
 - Privacy / DPO (`privacy`)
 - SaaS security (`saas-security`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Metomic: Metomic describes its SaaS DSPM foundation and expansion into AI-agent data security. Vendor-reported; reviewed 2026-10-13.

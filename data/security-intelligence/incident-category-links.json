@@ -1,0 +1,386 @@
+[
+  {
+    "id": "link:cisa-shai-hulud-2025:software-supply-chain",
+    "incidentId": "incident:cisa-shai-hulud-2025",
+    "categoryId": "software-supply-chain",
+    "predicate": "related_to",
+    "rationale": "CISA describes a self-replicating compromise of the npm package ecosystem, which is the risk class software supply chain tools are bought to address.",
+    "doesNotImply": "That any software supply chain product detected or would have prevented this compromise.",
+    "basedOnSourceIds": [
+      "source:cisa-shai-hulud-alert"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-14",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "link:cisa-shai-hulud-2025:sca",
+    "incidentId": "incident:cisa-shai-hulud-2025",
+    "categoryId": "sca",
+    "predicate": "related_to",
+    "rationale": "The compromise spread through npm, a dependency ecosystem whose packages software composition analysis tools inventory.",
+    "doesNotImply": "That SCA tools flag malicious packages as well as known-vulnerable ones. That depends on the product and must be shown separately.",
+    "basedOnSourceIds": [
+      "source:cisa-shai-hulud-alert"
+    ],
+    "status": "rejected",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-14",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "link:cisa-shai-hulud-2025:secrets-detection",
+    "incidentId": "incident:cisa-shai-hulud-2025",
+    "categoryId": "secrets-detection",
+    "predicate": "related_to",
+    "rationale": "CISA reports attempted credential theft, the exposure that secrets detection and remediation tools are bought to find and respond to.",
+    "doesNotImply": "Which credentials were taken, whether theft succeeded, or that detection would have changed the outcome.",
+    "basedOnSourceIds": [
+      "source:cisa-shai-hulud-alert"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-14",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "link:cisa-solarwinds-2020:software-supply-chain",
+    "incidentId": "incident:cisa-solarwinds-2020",
+    "categoryId": "software-supply-chain",
+    "predicate": "related_to",
+    "rationale": "CISA reported active exploitation involving affected versions of a vendor's software, the risk of trusting third-party software that software supply chain tools address.",
+    "doesNotImply": "How the affected versions were altered, which is outside this record's verified scope, or that any product would have prevented it.",
+    "basedOnSourceIds": [
+      "source:cisa-solarwinds-2020"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-14",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "link:cisa-solarwinds-2020:third-party-risk",
+    "incidentId": "incident:cisa-solarwinds-2020",
+    "categoryId": "third-party-risk",
+    "predicate": "related_to",
+    "rationale": "The exploited software came from a third-party vendor, which is the exposure third-party risk programs assess.",
+    "doesNotImply": "That a vendor risk assessment would have revealed this compromise.",
+    "basedOnSourceIds": [
+      "source:cisa-solarwinds-2020"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-14",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "link:codecov-bash-uploader-2021:software-supply-chain",
+    "incidentId": "incident:codecov-bash-uploader-2021",
+    "categoryId": "software-supply-chain",
+    "predicate": "related_to",
+    "rationale": "A modified third-party script ran inside customers' CI pipelines, the supplier risk software supply chain tools address.",
+    "doesNotImply": "That any product in this category would have prevented it.",
+    "basedOnSourceIds": [
+      "source:codecov-bash-uploader-2021"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "link:tj-actions-changed-files-2025:software-supply-chain",
+    "incidentId": "incident:tj-actions-changed-files-2025",
+    "categoryId": "software-supply-chain",
+    "predicate": "related_to",
+    "rationale": "A compromised third-party GitHub Action delivered malicious code into workflows that used it.",
+    "doesNotImply": "That any product in this category would have prevented it.",
+    "basedOnSourceIds": [
+      "source:ghsa-mrrh-fwg8-r2c3"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "link:nx-s1ngularity-2025:software-supply-chain",
+    "incidentId": "incident:nx-s1ngularity-2025",
+    "categoryId": "software-supply-chain",
+    "predicate": "related_to",
+    "rationale": "Malicious versions of a widely used npm package ran a post-install script on install.",
+    "doesNotImply": "That any product in this category would have prevented it.",
+    "basedOnSourceIds": [
+      "source:wiz-s1ngularity-2025"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "link:nx-s1ngularity-2025:secrets-detection",
+    "incidentId": "incident:nx-s1ngularity-2025",
+    "categoryId": "secrets-detection",
+    "predicate": "related_to",
+    "rationale": "The malware harvested tokens, keys and other secrets from developer machines.",
+    "doesNotImply": "That detection would have stopped the theft, or which secrets were used afterwards.",
+    "basedOnSourceIds": [
+      "source:wiz-s1ngularity-2025"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "link:circleci-engineer-laptop-2023:secrets-management",
+    "incidentId": "incident:circleci-engineer-laptop-2023",
+    "categoryId": "secrets-management",
+    "predicate": "related_to",
+    "rationale": "CircleCI told all customers to rotate secrets stored in its platform, the rotation work secrets management tools are bought for.",
+    "doesNotImply": "That any tool would have avoided the rotation.",
+    "basedOnSourceIds": [
+      "source:circleci-incident-report-2023"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "link:cloudflare-unrotated-okta-tokens-2023:nhi",
+    "incidentId": "incident:cloudflare-unrotated-okta-tokens-2023",
+    "categoryId": "nhi",
+    "predicate": "related_to",
+    "rationale": "The credentials used were a service token and service accounts that were missed in rotation.",
+    "doesNotImply": "That any product in this category would have prevented it.",
+    "basedOnSourceIds": [
+      "source:cloudflare-thanksgiving-2023"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "link:uber-github-aws-key-2016:secrets-detection",
+    "incidentId": "incident:uber-github-aws-key-2016",
+    "categoryId": "secrets-detection",
+    "predicate": "related_to",
+    "rationale": "An AWS access key stored in a private GitHub repository gave the intruders access to S3.",
+    "doesNotImply": "That scanning was absent, or that it would have changed the outcome.",
+    "basedOnSourceIds": [
+      "source:ftc-uber-revised-analysis"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "link:storm-0558-signing-key-2023:secrets-management",
+    "incidentId": "incident:storm-0558-signing-key-2023",
+    "categoryId": "secrets-management",
+    "predicate": "related_to",
+    "rationale": "The attacker used an acquired signing key, the kind of key material secrets and key management programs protect.",
+    "doesNotImply": "How the key was stolen, which Microsoft has not confirmed.",
+    "basedOnSourceIds": [
+      "source:msrc-storm-0558-key-acquisition"
+    ],
+    "status": "rejected",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "link:pypi-admin-token-docker-image-2024:secrets-detection",
+    "incidentId": "incident:pypi-admin-token-docker-image-2024",
+    "categoryId": "secrets-detection",
+    "predicate": "related_to",
+    "rationale": "An admin token was exposed inside a compiled file in a public container image.",
+    "doesNotImply": "Any malicious use; PyPI found none.",
+    "basedOnSourceIds": [
+      "source:pypi-leaked-admin-token-2024"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "link:microsoft-ai-sas-token-2023:secrets-detection",
+    "incidentId": "incident:microsoft-ai-sas-token-2023",
+    "categoryId": "secrets-detection",
+    "predicate": "related_to",
+    "rationale": "An over-scoped storage token was exposed through a public GitHub repository.",
+    "doesNotImply": "Any attacker activity; none is reported.",
+    "basedOnSourceIds": [
+      "source:wiz-microsoft-sas-token-2023"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "link:env-file-cloud-extortion-2024:secrets-detection",
+    "incidentId": "incident:env-file-cloud-extortion-2024",
+    "categoryId": "secrets-detection",
+    "predicate": "related_to",
+    "rationale": "Attackers collected cloud access keys from publicly exposed .env files.",
+    "doesNotImply": "That any product in this category would have prevented it.",
+    "basedOnSourceIds": [
+      "source:unit42-env-extortion-2024"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "link:env-file-cloud-extortion-2024:cloud-detection",
+    "incidentId": "incident:env-file-cloud-extortion-2024",
+    "categoryId": "cloud-detection",
+    "predicate": "related_to",
+    "rationale": "The stolen keys were used inside victims' AWS environments, the activity cloud detection tools watch for.",
+    "doesNotImply": "That detection was absent at any victim.",
+    "basedOnSourceIds": [
+      "source:unit42-env-extortion-2024"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "link:okta-support-har-files-2023:itdr",
+    "incidentId": "incident:okta-support-har-files-2023",
+    "categoryId": "itdr",
+    "predicate": "related_to",
+    "rationale": "Stolen session tokens were used to hijack customers' authenticated Okta sessions, the identity-layer attack ITDR tools are bought to detect.",
+    "doesNotImply": "That an ITDR tool would have detected these hijacked sessions.",
+    "basedOnSourceIds": [
+      "source:okta-support-root-cause-2023"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "link:okta-support-har-files-2023:secrets-detection",
+    "incidentId": "incident:okta-support-har-files-2023",
+    "categoryId": "secrets-detection",
+    "predicate": "related_to",
+    "rationale": "Session tokens sat inside HAR files uploaded to a support system, and a service account password was saved to a personal account.",
+    "doesNotImply": "That scanning those files or accounts would have changed the outcome.",
+    "basedOnSourceIds": [
+      "source:okta-support-root-cause-2023"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "link:toyota-tconnect-github-key-2022:secrets-detection",
+    "incidentId": "incident:toyota-tconnect-github-key-2022",
+    "categoryId": "secrets-detection",
+    "predicate": "related_to",
+    "rationale": "A data server access key sat in a public GitHub repository for nearly five years.",
+    "doesNotImply": "That the key was used; Toyota could not confirm it.",
+    "basedOnSourceIds": [
+      "source:toyota-tconnect-notice-2022"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "link:uber-contractor-mfa-push-2022:workforce-identity",
+    "incidentId": "incident:uber-contractor-mfa-push-2022",
+    "categoryId": "workforce-identity",
+    "predicate": "related_to",
+    "rationale": "A contractor's corporate account was taken over through a bought password and an accepted MFA push request.",
+    "doesNotImply": "That a different MFA method would certainly have stopped it.",
+    "basedOnSourceIds": [
+      "source:uber-security-update-2022"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "link:uber-contractor-mfa-push-2022:itdr",
+    "incidentId": "incident:uber-contractor-mfa-push-2022",
+    "categoryId": "itdr",
+    "predicate": "related_to",
+    "rationale": "After the first account, the attacker reached other employee accounts with elevated permissions.",
+    "doesNotImply": "That an ITDR tool would have detected this activity.",
+    "basedOnSourceIds": [
+      "source:uber-security-update-2022"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "link:cl-sta-1238-cairn-ai-intrusions-2026:external-attack-surface",
+    "incidentId": "incident:cl-sta-1238-cairn-ai-intrusions-2026",
+    "categoryId": "external-attack-surface",
+    "predicate": "related_to",
+    "rationale": "The operations targeted internet-facing weaknesses at the victim organizations.",
+    "doesNotImply": "That attack surface monitoring would have prevented any of the intrusions.",
+    "basedOnSourceIds": [
+      "source:unit42-cairn-ai-intrusions-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "link:west-pharmaceutical-intrusion-2026:cyber-recovery",
+    "incidentId": "incident:west-pharmaceutical-intrusion-2026",
+    "categoryId": "cyber-recovery",
+    "predicate": "related_to",
+    "rationale": "Encrypted systems disrupted the company's operations globally, the outcome cyber recovery tools are bought to shorten.",
+    "doesNotImply": "How West recovered, or that any product would have changed the outcome.",
+    "basedOnSourceIds": [
+      "source:sec-8k-west-pharmaceutical-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  }
+]

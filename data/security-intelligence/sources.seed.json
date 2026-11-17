@@ -38,5 +38,165 @@
     "lastReviewedOn": "2026-10-10",
     "cadence": "weekly",
     "rightsNote": "Review source and advisory licensing before distributing data."
+  },
+  {
+    "id": "source:codecov-bash-uploader-2021",
+    "publisher": "Codecov",
+    "type": "company_incident_report",
+    "url": "https://about.codecov.io/security-update/",
+    "publishedOn": "2021-04-15",
+    "lastReviewedOn": "2026-11-17",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:ghsa-mrrh-fwg8-r2c3",
+    "publisher": "GitHub Advisory Database (via OSV)",
+    "type": "vulnerability_advisory",
+    "url": "https://osv.dev/vulnerability/GHSA-mrrh-fwg8-r2c3",
+    "publishedOn": "2025-03-15",
+    "lastReviewedOn": "2026-11-17",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:wiz-s1ngularity-2025",
+    "publisher": "Wiz Research",
+    "type": "security_research",
+    "url": "https://www.wiz.io/blog/s1ngularity-supply-chain-attack",
+    "publishedOn": "2025-08-27",
+    "lastReviewedOn": "2026-11-17",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:circleci-incident-report-2023",
+    "publisher": "CircleCI",
+    "type": "company_incident_report",
+    "url": "https://circleci.com/blog/jan-4-2023-incident-report/",
+    "publishedOn": "2023-01-12",
+    "lastReviewedOn": "2026-11-17",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:cloudflare-thanksgiving-2023",
+    "publisher": "Cloudflare",
+    "type": "company_incident_report",
+    "url": "https://blog.cloudflare.com/thanksgiving-2023-security-incident/",
+    "publishedOn": "2024-02-01",
+    "lastReviewedOn": "2026-11-17",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:ftc-uber-revised-analysis",
+    "publisher": "U.S. Federal Trade Commission",
+    "type": "regulator_filing",
+    "url": "https://www.ftc.gov/system/files/documents/cases/1523054_uber_technologies_revised_analysis.pdf",
+    "publishedOn": null,
+    "lastReviewedOn": "2026-11-17",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:msrc-storm-0558-key-acquisition",
+    "publisher": "Microsoft Security Response Center",
+    "type": "company_incident_report",
+    "url": "https://www.microsoft.com/en-us/msrc/blog/2023/09/results-of-major-technical-investigations-for-storm-0558-key-acquisition",
+    "publishedOn": "2023-09-06",
+    "lastReviewedOn": "2026-11-17",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:pypi-leaked-admin-token-2024",
+    "publisher": "PyPI",
+    "type": "company_incident_report",
+    "url": "https://blog.pypi.org/posts/2024-07-08-incident-report-leaked-admin-personal-access-token/",
+    "publishedOn": "2024-07-08",
+    "lastReviewedOn": "2026-11-17",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:wiz-microsoft-sas-token-2023",
+    "publisher": "Wiz Research",
+    "type": "security_research",
+    "url": "https://www.wiz.io/blog/38-terabytes-of-private-data-accidentally-exposed-by-microsoft-ai-researchers",
+    "publishedOn": "2023-09-18",
+    "lastReviewedOn": "2026-11-17",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:unit42-env-extortion-2024",
+    "publisher": "Palo Alto Networks Unit 42",
+    "type": "security_research",
+    "url": "https://unit42.paloaltonetworks.com/large-scale-cloud-extortion-operation/",
+    "publishedOn": "2024-08-15",
+    "lastReviewedOn": "2026-11-17",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:okta-support-root-cause-2023",
+    "publisher": "Okta Security",
+    "type": "company_incident_report",
+    "url": "https://sec.okta.com/articles/2023/11/unauthorized-access-oktas-support-case-management-system-root-cause/",
+    "publishedOn": "2023-11-03",
+    "lastReviewedOn": "2026-11-17",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:okta-harfiles-closure-2024",
+    "publisher": "Okta Security",
+    "type": "company_incident_report",
+    "url": "https://sec.okta.com/articles/harfiles/",
+    "publishedOn": "2024-02-08",
+    "lastReviewedOn": "2026-11-17",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:toyota-tconnect-notice-2022",
+    "publisher": "Toyota Motor Corporation",
+    "type": "company_incident_report",
+    "url": "https://global.toyota/jp/newsroom/corporate/38095972.html",
+    "publishedOn": "2022-10-07",
+    "lastReviewedOn": "2026-11-17",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse. Japanese-language notice; statements are translated paraphrases."
+  },
+  {
+    "id": "source:uber-security-update-2022",
+    "publisher": "Uber",
+    "type": "company_incident_report",
+    "url": "https://www.uber.com/us/en/newsroom/security-update/",
+    "publishedOn": "2022-09-15",
+    "lastReviewedOn": "2026-11-17",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:unit42-cairn-ai-intrusions-2026",
+    "publisher": "Palo Alto Networks Unit 42",
+    "type": "security_research",
+    "url": "https://unit42.paloaltonetworks.com/cairn-framework-ai-autonomous-attacks/",
+    "publishedOn": "2026-11-12",
+    "lastReviewedOn": "2026-11-17",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:sec-8k-west-pharmaceutical-2026",
+    "publisher": "U.S. SEC EDGAR (West Pharmaceutical Services Form 8-K)",
+    "type": "regulator_filing",
+    "url": "https://www.sec.gov/Archives/edgar/data/105770/000010577026000068/wst-20260507.htm",
+    "publishedOn": "2026-05-11",
+    "lastReviewedOn": "2026-11-17",
+    "cadence": "event_driven",
+    "rightsNote": "Public SEC filing; cite and paraphrase."
   }
 ]

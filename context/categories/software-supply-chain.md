@@ -20,6 +20,10 @@ The path from a dependency, image, or build to what runs in production. SCA, SBO
 
 - Software supply-chain security (`supply-chain-security`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Chainguard: Software supply-chain vendor associated with hardened images. Not an SCA scanner by assumption.

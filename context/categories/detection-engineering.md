@@ -3,7 +3,7 @@ id: "detection-engineering"
 type: "category"
 name: "Detection engineering lifecycle"
 layer: "core"
-vendors: 4
+vendors: 5
 ---
 
 # Detection engineering lifecycle
@@ -20,6 +20,10 @@ Design, test, version, deploy and measure security detections using known teleme
 
 - Detection engineer (`detection-engineer`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Anvilogic: Anvilogic markets detection engineering with detection-as-code, MITRE ATT&CK coverage and a detection library across SIEMs and data platforms.
@@ -27,6 +31,7 @@ Design, test, version, deploy and measure security detections using known teleme
 
 ## Vendors (adjacent)
 
+- Prophet Security
 - Tenzir
 - Panther
 

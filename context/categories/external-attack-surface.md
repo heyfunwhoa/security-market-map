@@ -21,6 +21,10 @@ Discovery of internet-facing assets and the exposures on them. This map keeps th
 - Threat intelligence analyst (`threat-intel`)
 - Exposure / attack-surface owner (`exposure-management`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Censys: External attack-surface vendor. Discovery of internet-facing assets, not a patch scanner by assumption.

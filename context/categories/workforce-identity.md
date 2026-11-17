@@ -23,6 +23,14 @@ The directory, identity provider, single sign-on, MFA or passwordless, and provi
 - IGA program owner (`iga-owner`)
 - SaaS security (`saas-security`)
 
+## Who vendors sell to
+
+From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.
+
+- IT operations / systems administrator (`it-operations`): 4 of 4 vendors
+- Identity security lead (`identity-security`): 3 of 4 vendors
+- Security architect (`security-architect`): 1 of 4 vendors
+
 ## Vendors (primary)
 
 - Microsoft: Entra ID is the workforce directory for many accounts. ID Governance, PIM, Workload ID, and Agent ID are separate documented capabilities. Do not treat a single Entra logo as IGA, PAM, NHI, and agent authorization at once. Microsoft documents Purview DSPM for discovering, protecting and investigating sensitive-data risks; some non-Microsoft coverage depends on partner integrations. Vendor-reported DSPM scope reviewed 2026-10-13. Completed the Protect AI acquisition; Guardian model scanning is sold under Prisma AIRS (reviewed 2026-11-09).
