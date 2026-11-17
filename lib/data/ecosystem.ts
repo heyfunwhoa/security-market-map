@@ -2717,7 +2717,7 @@ export const ecosystemVendors: Vendor[] = [
     website: "https://www.aembit.io/",
     positioning:
       "Aembit's non-human identity page describes policy-based, secretless, just-in-time access between workloads and resources. It does not say federation, and it does not list targets. Inventory and decommissioning are not on that page.",
-    primaryCategoryIds: ["nhi", "agentic-runtime"],
+    primaryCategoryIds: ["nhi", "wim", "agentic-runtime"],
     adjacentCategoryIds: ["secrets-management", "agent-identity"],
     identityScopes: ["nhi"],
     verificationStatus: "research_candidate",
@@ -3419,7 +3419,7 @@ export const ecosystemVendors: Vendor[] = [
     website: "https://www.corsha.com/",
     positioning: "Named in SACR's 2024 NHI guide beside Aembit for machine authentication. No capability is checked.",
     primaryCategoryIds: ["nhi", "agentic-runtime"],
-    adjacentCategoryIds: ["api-security"],
+    adjacentCategoryIds: ["api-security", "wim"],
     identityScopes: ["nhi"],
     verificationStatus: "research_candidate",
     openQuestions: ["Machine authentication only, or API protection as well?"],

@@ -144,6 +144,70 @@ export const useCases: UseCase[] = [
     buyerQuestion: "Who owns each machine identity, and how does it get turned off?",
   },
   {
+    id: "uc-wim",
+    slug: "secretless-workload-access",
+    name: "Secretless workload-to-workload access",
+    problem:
+      "Services, CI jobs, and containers hold long-lived keys to call clouds, databases, and each other. Rotation is manual, and a leaked key works until someone notices.",
+    architecture:
+      "Attest the workload at runtime, issue a short-lived identity, and exchange it for a scoped token through federation. Where the target cannot federate, broker a credential at call time. A vault still holds what cannot be removed. A secrets scanner still finds what leaked. NHI inventory still decides who owns the workload.",
+    stakeholders: ["Platform engineering", "Cloud security", "IAM", "Service owners"],
+    triggers: ["Leaked long-lived key", "CI static deploy credentials", "Multi-cloud service calls", "Zero-trust program"],
+    budgetOwner: "Usually platform engineering or cloud security. It may compete with vault expansion for the same budget. Ask.",
+    successMetrics: [
+      "Share of workload hops with no stored secret",
+      "Median credential lifetime for workloads",
+      "Static keys retired after migration",
+    ],
+    categoryIds: ["wim", "secrets-management", "nhi"],
+    capabilityIds: [
+      "cap-wim-attestation",
+      "cap-wim-short-lived-identity",
+      "cap-wim-access-policy",
+      "cap-wim-credential-brokering",
+      "cap-workload-federation",
+    ],
+    discoveryQuestions: [
+      "Which hops still use a stored key: cloud APIs, databases, SaaS APIs, or service-to-service?",
+      "Do the targets accept federation or OIDC tokens, or only a key or password?",
+      "Is there a service mesh or SPIFFE deployment already?",
+      "Who owns the workload policy: platform, cloud security, or IAM?",
+    ],
+    buyerQuestion: "Which workload credentials can we stop storing, and what replaces them?",
+  },
+  {
+    id: "uc-ispm",
+    slug: "identity-posture-baseline",
+    name: "Identity posture baseline and cleanup",
+    problem:
+      "Identity is spread across several IdPs, directories, cloud accounts, and SaaS apps. Nobody can say which accounts lack MFA, which admins are dormant, or which trusts are risky until an incident does.",
+    architecture:
+      "Connect the identity systems, correlate accounts into identities, score misconfigurations and hygiene gaps, and route each finding to an owner. ITDR still watches for live abuse. IGA still certifies and removes access. CIEM still answers effective cloud permissions.",
+    stakeholders: ["Identity security", "IAM", "Security architecture", "SOC"],
+    triggers: ["Identity breach in the news", "MFA coverage audit question", "Merger with a second directory", "ITDR without prevention"],
+    budgetOwner: "Identity security or exposure management. It may arrive bundled with an IdP or ITDR product. Ask before you forecast it.",
+    successMetrics: [
+      "Accounts with phishing-resistant MFA",
+      "Dormant privileged accounts removed",
+      "Open identity findings with an owner",
+    ],
+    categoryIds: ["ispm", "itdr", "iga", "ciem"],
+    capabilityIds: [
+      "cap-ispm-config",
+      "cap-ispm-mfa-coverage",
+      "cap-ispm-hygiene",
+      "cap-ispm-correlation",
+      "cap-entitlement-visibility",
+    ],
+    discoveryQuestions: [
+      "How many IdPs and directories are in scope: Entra, Okta, on-premises AD, Google?",
+      "Can you list accounts without MFA today, and who would run that report?",
+      "Who fixes an identity finding: IAM, the SOC, or the app owner?",
+      "Is posture expected from your IdP, ITDR, or CNAPP vendor already?",
+    ],
+    buyerQuestion: "Which identity weaknesses do we fix first, and who owns each fix?",
+  },
+  {
     id: "uc-agent",
     slug: "agent-authorization",
     name: "Agent tool-call authorization",

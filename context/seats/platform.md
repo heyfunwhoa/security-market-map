@@ -26,6 +26,7 @@ Deliver reliable self-service: pipelines, environments, developer portals, infra
 - NHI and workload identity (`nhi`)
 - Container and Kubernetes security (`container-security`)
 - Infrastructure-as-code security (`iac-security`)
+- Workload identity management (WIM) (`wim`)
 
 ## Pains
 
