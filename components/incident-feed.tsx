@@ -2,6 +2,7 @@
 
 import { useId } from "react";
 import { useSearchParams } from "next/navigation";
+import { CopyTalkTrack } from "@/components/copy-talk-track";
 import { IncidentCardList } from "@/components/incident-card";
 import { cn } from "@/lib/utils";
 import {
@@ -11,6 +12,7 @@ import {
   incidentFilterUrl,
   NO_INCIDENT_FILTERS,
   readIncidentFilters,
+  talkTracksDocument,
   type FeedIncident,
   type IncidentFilters,
 } from "@/lib/incident-feed";
@@ -120,6 +122,13 @@ export function IncidentFeed({
           <span role="status">
             {visible.length} of {feed.length} reviewed incident{feed.length === 1 ? "" : "s"}
           </span>
+          {visible.some((item) => item.salesNote) && (
+            <CopyTalkTrack
+              text={talkTracksDocument(visible)}
+              label={`Copy all ${visible.filter((item) => item.salesNote).length} talk tracks`}
+              copiedMessage="Copied, each with its source."
+            />
+          )}
           {active && (
             <button
               type="button"

@@ -195,3 +195,24 @@ describe("incident category links", () => {
     }
   });
 });
+
+describe("seller shortcuts", () => {
+  it("builds one copyable call-prep block with every talk track and its source", async () => {
+    const { talkTracksDocument, latestIncidents } = await import("./incident-feed");
+    const doc = talkTracksDocument(incidentFeed);
+    const withNotes = incidentFeed.filter((item) => item.salesNote);
+    expect(doc.split("\n\n")).toHaveLength(withNotes.length);
+    for (const item of withNotes) {
+      expect(doc).toContain(item.incident.title);
+      for (const id of item.salesNote!.basedOnSourceIds) {
+        expect(doc).toContain(item.sources.find((source) => source.id === id)!.url);
+      }
+    }
+    expect(talkTracksDocument([])).toBe("");
+    expect(latestIncidents(3).map((item) => item.slug)).toEqual(incidentFeed.slice(0, 3).map((item) => item.slug));
+  });
+
+  it("keeps ecosystems to technology ecosystems, not industries", () => {
+    for (const item of incidentFeed) expect(item.incident.affectedEcosystems).not.toContain("pharmaceutical");
+  });
+});

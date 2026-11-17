@@ -395,9 +395,7 @@
     "summary": "West Pharmaceutical Services reported in an SEC Form 8-K that an intrusion detected on 4 May 2026 involved the exfiltration of certain data by an unauthorized party and the encryption of certain systems, temporarily disrupting its business operations globally.",
     "epistemicStatus": "reported",
     "reviewStatus": "seed_reviewed",
-    "affectedEcosystems": [
-      "pharmaceutical"
-    ],
+    "affectedEcosystems": [],
     "sourceIds": [
       "source:sec-8k-west-pharmaceutical-2026"
     ],
