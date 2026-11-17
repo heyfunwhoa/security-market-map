@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "1",
+  "id": "evidence:synthetic-nhi-auth",
+  "kind": "vendor_claim",
+  "reviewStatus": "approved",
+  "epistemicStatus": "reported",
+  "classification": "public-reviewed",
+  "subject": {
+    "type": "product",
+    "id": "fictional-machine-credentials",
+    "displayName": "Fictional machine credentials"
+  },
+  "statement": "Fictional publisher describes machine-to-machine authentication.",
+  "limitations": [
+    "Synthetic contract test only, not independently corroborated."
+  ],
+  "sources": [
+    {
+      "sourceId": "source:synthetic-nhi-docs",
+      "canonicalUrl": "https://docs.example.com/machine-credentials?a=1&b=2",
+      "publisher": "Fictional Documentation Publisher",
+      "publishedAt": null,
+      "retrievedAt": "2026-10-10T14:00:00.000Z",
+      "contentHash": "3cb17c8be6d5f7f513286ccd1d6cc97369124cf1a242f0ab9e6792e104a760ed",
+      "sourceVersion": "fixture-v1",
+      "excerpt": "Synthetic text about an invented machine credential workflow."
+    }
+  ],
+  "interpretations": [],
+  "marketMapRefs": {
+    "vendorIds": [],
+    "productIds": [
+      "fictional-machine-credentials"
+    ],
+    "categoryIds": [],
+    "capabilityIds": [],
+    "unresolvedRefs": [
+      "category:machine-identity-unknown"
+    ]
+  },
+  "supersedes": null,
+  "invalidatedBySourceCorrection": false,
+  "producedAt": "2026-10-11T15:00:00.000Z",
+  "reviewedAt": "2026-10-11T12:00:00.000Z",
+  "correlationId": "corr-synthetic-nhi-auth",
+  "idempotencyKey": "idem-synthetic-nhi-auth"
+}
