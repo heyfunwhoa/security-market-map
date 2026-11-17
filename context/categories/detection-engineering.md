@@ -3,7 +3,7 @@ id: "detection-engineering"
 type: "category"
 name: "Detection engineering lifecycle"
 layer: "core"
-vendors: 4
+vendors: 5
 ---
 
 # Detection engineering lifecycle
@@ -27,6 +27,7 @@ Design, test, version, deploy and measure security detections using known teleme
 
 ## Vendors (adjacent)
 
+- Prophet Security
 - Tenzir
 - Panther
 

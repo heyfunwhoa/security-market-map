@@ -47,22 +47,45 @@ Filters are URL parameters, so a filtered view can be shared or bookmarked. Each
 
 ## Wireframes
 
-### Market map entry (home, phase 2 trim)
+### Market map view (home, `MarketMapExplorer`)
+
+The map already exists in `components/market-map-explorer.tsx`. The change is to show actions first, fold the caveats away, and add an incident entry point to the selected area's detail panel. That is two links; the component is not redesigned.
 
 ```
-┌──────────────────────────────────────────────────────────────┐
-│ The security market, mapped by what each solution protects.  │
-│ [Explore domains]  [Browse products]  [Recent incidents →]   │
-├──────────────────────────────────────────────────────────────┤
-│  Prevent        Detect         Respond        Govern         │
-│  ┌──────┐       ┌──────┐       ┌──────┐       ┌──────┐       │
-│  │ Id.  │       │ SecOps│      │ IR   │       │ GRC  │       │
-│  └──────┘       └──────┘       └──────┘       └──────┘       │
-│  Click a block → domain page → category → related incidents  │
-├──────────────────────────────────────────────────────────────┤
-│ ▸ How to read this map (caveats, collapsed)                  │
-└──────────────────────────────────────────────────────────────┘
+Desktop (≥1024px)
+┌──────────────────────────────────────────────────────────────────────┐
+│ COVERAGE NOTES FOR A CYBERSECURITY ANALYST                           │
+│ The security market, mapped by what each solution protects.          │
+│ Follow an attack, see the control teams buy at each step, and check… │
+│ [Explore domains] [Browse products] [Compare] [Incidents] [AI sec.]  │
+│ ▸ How to read this map                     (details, closed)         │
+├──────────────────────────────────────────────────────────────────────┤
+│ Illustrative path through an environment   A sequence, not coverage  │
+│ (1) Identity → (2) App/network → (3) Workload → (4) Data             │
+├────────────────────────────────────────────┬─────────────────────────┤
+│ Market areas (equal-size tiles)            │ Identity and access     │
+│ ┌────────┐ ┌────────┐ ┌────────┐           │ Who or what can access  │
+│ │ Email  │ │●Ident. │ │Endpoint│           │ a system?               │
+│ └────────┘ └────────┘ └────────┘           │ CATEGORIES  SSO, IGA,…  │
+│ ┌────────┐ ┌────────┐ ┌────────┐           │ EXAMPLES    Entra, Okta…│
+│ │ AppSec │ │ Cloud  │ │ Data   │           │ ─────────────────────── │
+│ └────────┘ └────────┘ └────────┘           │ Reviewed incidents (n)  │
+│ ┌────────┐ ┌────────┐ ┌────────┐           │ Newest: <title>, <date> │
+│ │ SecOps │ │ GRC    │ │ AI     │           │ [Open this area]        │
+│ └────────┘ └────────┘ └────────┘           │ [See n incidents →]     │
+├────────────────────────────────────────────┴─────────────────────────┤
+│ Zoom in: area → /domains/[slug] → category → Related incidents       │
+│ Zoom out: breadcrumbs and "All incidents" on every incident page     │
+└──────────────────────────────────────────────────────────────────────┘
+
+Mobile (<640px): tiles in one column; the detail panel opens directly
+below the selected tile instead of in a side column; the incident line
+reads "n reviewed incidents →". The incident count shows only when
+reviewed category links exist ("No reviewed incidents yet" otherwise,
+never 0 presented as "none happened").
 ```
+
+The incident line in the detail panel counts reviewed incident→category links for that area's categories. It depends on the links in PR #172 and on #171 being merged.
 
 ### Incident feed (`/incidents`, phase 1)
 
@@ -151,13 +174,15 @@ unknowns, sources, classification.
 | Styling | Tailwind CSS v4 | MIT | Already installed | Existing tokens in `app/globals.css` |
 | Search / command palette | cmdk | MIT | Already installed | Phase 1 adds incidents to the existing index |
 | Icons | lucide-react | ISC | Already installed | Copy, external-link and filter icons |
-| Relationship graphs | cytoscape | MIT | Already installed | Already powers `/evidence-graph`. React Flow (`@xyflow/react`, MIT) would duplicate it, so it is not proposed |
-| Tables | TanStack Table | MIT | Phase 3 proposal | Headless sort/filter for a feed of more than ~50 incidents. Replaces hand-written filtering. About 15 KB gzipped, under the ask threshold |
-| Timelines / charts | visx (per-package) or Recharts | MIT | Phase 3 proposal | Category-over-time view. Recharts is likely over the 50 KB gzipped threshold, so it needs approval first. visx can be installed per package and stays smaller. Hand-written SVG is the fallback |
+| Relationship graphs | cytoscape | MIT | Already installed | Already powers `/evidence-graph`. React Flow (`@xyflow/react` 12.12.1, MIT) measured **58.6 KB** gzipped: over the ask threshold and a duplicate of cytoscape, so it is not proposed |
+| Tables | TanStack Table (`@tanstack/react-table` 9.3.1) | MIT | Phase 3 proposal | Headless sort/filter for a feed of more than ~50 incidents. Replaces hand-written filtering. Measured **14.1 KB** gzipped with sorting and filtering, under the threshold. Note: v9 renamed its API (`useTable`, `createSortedRowModel`, feature objects), so v8 examples don't apply |
+| Timelines / charts | visx (`@visx/scale`, `/shape`, `/axis` 4.0.0) | MIT | Phase 3 proposal | Category-over-time view. Measured **25.6 KB** gzipped for those three packages, under the threshold. **Recharts 3.10.1 measured 103.4 KB, so it is not proposed** without your approval. Hand-written SVG is the zero-dependency fallback |
 | Technique taxonomy | MITRE ATT&CK STIX data | ATT&CK Terms of Use (royalty-free, attribution) | Phase 3 | A pinned dataset version is required before any reviewed mapping, per the classification framework |
 | Interchange format | STIX 2.1 | OASIS open standard | Phase 3 | Export and import shape. No runtime dependency is needed to emit JSON |
 
 Phase 1 adds no dependencies.
+
+**How sizes were measured (2026-11-14):** each library's typical imports were bundled with esbuild 0.28.2 (`--bundle --minify --format=esm`, with React and React DOM excluded because the app already ships them), then compressed with `gzip -9`. Real-world cost can be lower with tree-shaking in Next.js, or higher if more components are imported. For reference, cmdk 1.1.1 (already installed) measured 17.5 KB.
 
 ## Phased plan
 
