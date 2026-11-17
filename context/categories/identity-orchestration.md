@@ -3,7 +3,7 @@ id: "identity-orchestration"
 type: "category"
 name: "Identity orchestration and authorization"
 layer: "adjacent"
-vendors: 3
+vendors: 4
 ---
 
 # Identity orchestration and authorization
@@ -32,7 +32,7 @@ Policy engines and relationship-based authorization that sit beside the director
 
 ## Vendors (adjacent)
 
-_None recorded._
+- Orchid Security
 
 ## What buyers do instead
 

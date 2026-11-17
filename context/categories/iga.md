@@ -3,7 +3,7 @@ id: "iga"
 type: "category"
 name: "Identity governance (IGA)"
 layer: "core"
-vendors: 20
+vendors: 21
 ---
 
 # Identity governance (IGA)
@@ -51,6 +51,7 @@ Joiner-mover-leaver, access requests, certifications, role mining, separation of
 - Token Security
 - AppOmni
 - Grip Security
+- Orchid Security
 
 ## What buyers do instead
 

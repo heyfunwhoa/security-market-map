@@ -3,7 +3,7 @@ id: "ispm"
 type: "category"
 name: "Identity security posture management (ISPM)"
 layer: "core"
-vendors: 1
+vendors: 8
 ---
 
 # Identity security posture management (ISPM)
@@ -26,11 +26,17 @@ Continuous assessment of the identity estate itself: IdP and directory misconfig
 
 ## Vendors (primary)
 
-_None recorded._
+- AuthMind: AuthMind markets identity observability: correlating access-path activity of human, non-human and AI agent identities across cloud, SaaS and on-premises.
+- Orchid Security: Orchid markets discovery of unmanaged apps, hidden authentication flows and ungoverned access, with posture across self-hosted and SaaS applications.
 
 ## Vendors (adjacent)
 
-- Brinqa
+- Microsoft
+- Okta
+- Veza
+- CrowdStrike
+- Semperis
+- Push Security
 
 ## What buyers do instead
 

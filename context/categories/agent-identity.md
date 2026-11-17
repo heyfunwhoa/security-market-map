@@ -3,7 +3,7 @@ id: "agent-identity"
 type: "category"
 name: "AI agent identity and runtime authorization"
 layer: "core"
-vendors: 15
+vendors: 17
 ---
 
 # AI agent identity and runtime authorization
@@ -46,6 +46,8 @@ Inventory of agents, human delegation, MCP or tool access, gateways, and a decis
 - Noma Security
 - Strata Identity
 - Cerbos
+- Riptides
+- AuthMind
 
 ## What buyers do instead
 

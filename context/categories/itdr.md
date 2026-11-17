@@ -3,7 +3,7 @@ id: "itdr"
 type: "category"
 name: "Identity threat detection (ITDR)"
 layer: "core"
-vendors: 11
+vendors: 13
 ---
 
 # Identity threat detection (ITDR)
@@ -40,6 +40,7 @@ From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - Semperis: Identity threat detection and recovery vendor associated with directory environments. Confirm Active Directory versus Entra scope before a comparison.
 - SpecterOps: BloodHound is an attack-path tool for identity. Useful beside ITDR and privileged access. Not an IGA product.
 - SentinelOne: Homepage retrieved 26 Oct 2026 describes endpoint and identity protection in one agent, and says the platform detects, contains, and responds. That detection sentence is not an endpoint-only cell and not an ITDR cell.
+- AuthMind: AuthMind markets identity observability: correlating access-path activity of human, non-human and AI agent identities across cloud, SaaS and on-premises.
 
 ## Vendors (adjacent)
 
@@ -49,6 +50,7 @@ From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - Vectra AI
 - DTEX Systems
 - Obsidian Security
+- Push Security
 
 ## What buyers do instead
 

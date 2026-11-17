@@ -3419,7 +3419,7 @@ export const ecosystemVendors: Vendor[] = [
     website: "https://www.corsha.com/",
     positioning: "Named in SACR's 2024 NHI guide beside Aembit for machine authentication. No capability is checked.",
     primaryCategoryIds: ["nhi", "agentic-runtime"],
-    adjacentCategoryIds: ["api-security"],
+    adjacentCategoryIds: ["api-security", "wim"],
     identityScopes: ["nhi"],
     verificationStatus: "research_candidate",
     openQuestions: ["Machine authentication only, or API protection as well?"],
