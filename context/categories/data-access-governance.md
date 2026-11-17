@@ -20,6 +20,10 @@ Policy on who may query or read a dataset, usually at a catalog, warehouse, or d
 
 - Data security (`data-security`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Immuta: Data access governance candidate for analytics platforms. Not an IGA suite and not a DSPM scanner by assumption.

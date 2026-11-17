@@ -21,6 +21,10 @@ Privileged elevation, just-in-time access, session controls, credential custody,
 - Identity security lead (`identity-security`)
 - PAM owner (`pam-owner`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - ManageEngine: Mid-market Active Directory administration and privileged access products. Confirm which SKU is installed before comparing it to an enterprise IGA suite.

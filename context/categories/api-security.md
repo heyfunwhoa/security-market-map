@@ -20,6 +20,10 @@ Inventory and abuse of APIs the product exposes. Overlaps DAST, gateways, and ru
 
 - AppSec lead (`appsec`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Salt Security: API security candidate. No capability is asserted.
