@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CedarRidgeScenario } from "@/components/cedar-ridge-scenario";
+import { AwsFoundationsCourse } from "@/components/aws-foundations-course";
 import { cedarRidgeId } from "@/lib/data/cedar-ridge";
 import { DistinctionCards } from "@/components/claims";
 import { PageIntro } from "@/components/chrome";
@@ -43,6 +44,8 @@ export default async function LearnPage({
         title="The words a cybersecurity analyst needs before the logo slide"
         lede="Explore the glossary, investigate suspicious AWS workload access in the Cedar Ridge scenario, or walk through two calls about a leaked key and standing administrator access."
       />
+
+      {scenario !== cedarRidgeId && <AwsFoundationsCourse />}
 
       {scenario === cedarRidgeId ? (
         <CedarRidgeScenario mode={mode} step={step} />
