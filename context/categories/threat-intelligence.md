@@ -3,7 +3,7 @@ id: "threat-intelligence"
 type: "category"
 name: "Threat intelligence"
 layer: "core"
-vendors: 6
+vendors: 8
 ---
 
 # Threat intelligence
@@ -21,6 +21,10 @@ Finished reporting and indicator feeds that detection teams use. This map keeps 
 - Threat hunter (`threat-hunter`)
 - Threat intelligence analyst (`threat-intel`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Recorded Future: Threat intelligence vendor. A feed is not a detection. No indicator quality is asserted. Recorded Future says it was named a Leader in Forrester's Q3 2026 External Threat Intelligence Wave, which breaks out digital risk protection; it lists digital risk protection among its connected capabilities (vendor-reported, reviewed 2026-11-09).
@@ -30,6 +34,8 @@ Finished reporting and indicator feeds that detection teams use. This map keeps 
 
 - Secureworks
 - Dragos
+- Dropzone AI
+- Stairwell
 - SOC Prime
 - ZeroFox
 

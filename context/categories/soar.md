@@ -3,7 +3,7 @@ id: "soar"
 type: "category"
 name: "SOAR and response automation"
 layer: "core"
-vendors: 3
+vendors: 7
 ---
 
 # SOAR and response automation
@@ -24,6 +24,10 @@ Playbooks that enrich and sometimes contain an incident. Automation that disable
 - Incident responder (`incident-response`)
 - MSSP / MDR operations lead (`mssp-ops`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 _None recorded._
@@ -32,6 +36,10 @@ _None recorded._
 
 - Splunk
 - ServiceNow
+- Prophet Security
+- Dropzone AI
+- Intezer
+- Stairwell
 - Anvilogic
 
 ## What buyers do instead

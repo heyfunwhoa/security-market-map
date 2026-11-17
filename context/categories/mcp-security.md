@@ -20,6 +20,10 @@ Discovery and control of Model Context Protocol servers and the tools an agent c
 
 - AI security (`ai-security`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Lasso Security: Lasso markets AI security including MCP server discovery, tool-call monitoring and an open-source MCP gateway.
