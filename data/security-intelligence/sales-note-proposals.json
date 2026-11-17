@@ -39,13 +39,15 @@
       "sellerCaveat": "Which customers actually lost secrets is unknown.",
       "approvedSellerCaveat": "Which customers actually lost secrets is unknown.",
       "proposedHeadline": "One leaked credential let an attacker change Codecov's Bash Uploader and pull data out of customers' CI environments.",
-      "headlineDecision": "approved",
+      "headlineDecision": "edited",
+      "approvedHeadline": "Codecov said one leaked credential let an attacker change its Bash Uploader and pull data out of customers' CI environments.",
+      "headlineNote": "Edited by the owner to keep the publisher attribution.",
       "reason": "Leads with the cause (one leaked credential), which is the secrets lesson.",
       "basedOnSourceIds": [
         "source:codecov-bash-uploader-2021"
       ],
-      "decision": "approved",
-      "decisionSummary": "caveat approved, headline approved",
+      "decision": "edited",
+      "decisionSummary": "caveat approved, headline edited",
       "reviewedBy": "Kristen Aing",
       "reviewedOn": "2026-11-17"
     },
@@ -237,13 +239,15 @@
       "sellerCaveat": "Victims are unnamed; the China link is a moderate-confidence assessment.",
       "approvedSellerCaveat": "Victims are unnamed; the China link is a moderate-confidence assessment.",
       "proposedHeadline": "Attackers ran an open-source AI pentest framework through 25 operations against at least 19 organizations, and got in at 10.",
-      "headlineDecision": "approved",
+      "headlineDecision": "edited",
+      "approvedHeadline": "Unit 42 reported that attackers ran an open-source AI pentest framework through 25 operations against at least 19 organizations, and got in at 10.",
+      "headlineNote": "Edited by the owner to keep the publisher attribution.",
       "reason": "Adds the 'at least 19' denominator so 10 reads as a hit rate, not a raw count.",
       "basedOnSourceIds": [
         "source:unit42-cairn-ai-intrusions-2026"
       ],
-      "decision": "approved",
-      "decisionSummary": "caveat approved, headline approved",
+      "decision": "edited",
+      "decisionSummary": "caveat approved, headline edited",
       "reviewedBy": "Kristen Aing",
       "reviewedOn": "2026-11-17"
     },

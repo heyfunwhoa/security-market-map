@@ -12,7 +12,8 @@ type Proposal = {
   sellerCaveat: string;
   approvedSellerCaveat?: string;
   proposedHeadline: string | null;
-  headlineDecision?: "approved" | "rejected" | null;
+  headlineDecision?: "approved" | "edited" | "rejected" | null;
+  approvedHeadline?: string;
   reason: string | null;
   basedOnSourceIds: string[];
   decision: "approved" | "edited" | "rejected" | null;
@@ -41,14 +42,18 @@ describe("sales note proposals", () => {
     expect(p.sellerCaveat.trim()).not.toBe("");
     expect(p.sellerCaveat.split(/\s+/).length).toBeLessThanOrEqual(12);
 
+    const summaryNumbers = new Set(numbers(incident.summary));
     if (p.proposedHeadline !== null) {
       expect(p.reason?.trim()).toBeTruthy();
       // Applied only when approved; otherwise the reviewed headline stays as it was.
       const current = notes.get(p.incidentId)!.headline;
       if (p.headlineDecision === "approved") expect(current).toBe(p.proposedHeadline);
-      else expect(current).not.toBe(p.proposedHeadline);
+      else if (p.headlineDecision === "edited") {
+        expect(current).toBe(p.approvedHeadline);
+        expect(p.approvedHeadline!.split(/\s+/).length).toBeLessThanOrEqual(30);
+        for (const n of numbers(p.approvedHeadline!)) expect(summaryNumbers.has(n), `${n} not in summary`).toBe(true);
+      } else expect(current).not.toBe(p.proposedHeadline);
       expect(p.proposedHeadline.split(/\s+/).length).toBeLessThanOrEqual(30);
-      const summaryNumbers = new Set(numbers(incident.summary));
       for (const n of numbers(p.proposedHeadline)) expect(summaryNumbers.has(n), `${n} not in summary`).toBe(true);
     }
 

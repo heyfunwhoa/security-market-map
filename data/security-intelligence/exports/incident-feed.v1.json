@@ -39,7 +39,7 @@
         }
       ],
       "salesNote": {
-        "headline": "Attackers ran an open-source AI pentest framework through 25 operations against at least 19 organizations, and got in at 10.",
+        "headline": "Unit 42 reported that attackers ran an open-source AI pentest framework through 25 operations against at least 19 organizations, and got in at 10.",
         "discoveryQuestion": "If an automated agent scanned you today, what would it find first? Sprayable logins, exposed APIs, old CVEs?",
         "avoid": "Don't name victims or state attribution as fact; Unit 42's assessment is moderate confidence.",
         "sellerCaveat": "Victims are unnamed; the China link is a moderate-confidence assessment.",
@@ -767,7 +767,7 @@
         }
       ],
       "salesNote": {
-        "headline": "One leaked credential let an attacker change Codecov's Bash Uploader and pull data out of customers' CI environments.",
+        "headline": "Codecov said one leaked credential let an attacker change its Bash Uploader and pull data out of customers' CI environments.",
         "discoveryQuestion": "What third-party scripts run in your CI today, and which secrets can they see?",
         "avoid": "Don't say which customers lost secrets; that is not established.",
         "sellerCaveat": "Which customers actually lost secrets is unknown.",
