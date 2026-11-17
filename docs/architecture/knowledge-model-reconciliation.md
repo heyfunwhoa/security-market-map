@@ -183,7 +183,7 @@ There is no mandatory live service and no change to the identity flows.
 
 ## Next steps
 
-1. **K4 (KRU-215), next:** freshness and correction enforcement, including the per-record revision question from decision 3.
+1. **K4 (KRU-215):** freshness, revocation and correction-impact checks are implemented offline; see [knowledge freshness and corrections](knowledge-freshness-and-corrections.md), which also covers the per-record revision question from decision 3.
 2. **K2 (KRU-213):** publication register. **K3 (KRU-214):** real pilot paths, after K2.
 3. **If the Notion PRD is revalidated:** recheck this model against it (decision 2).
 4. **Before any live producer:** the existing reader is offline and synthetic only. Connecting a real producer needs authentication, rights and owner readiness to be verified separately (KRU-217). Draft PR #175 is the related producer-side preview.

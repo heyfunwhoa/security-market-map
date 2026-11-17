@@ -212,3 +212,21 @@ export const upstreamAssessmentSchema = z.object({
   checkedOn: isoDate,
 });
 export type UpstreamAssessment = z.infer<typeof upstreamAssessmentSchema>;
+
+/**
+ * A recorded revocation (K4). Names either one piece of evidence (an upstream evidence ID or a
+ * catalog claim ID) or one knowledge or catalog record. Kept as its own append-only list, so a
+ * rollback of records, mappings or upstream results can never undo it.
+ */
+export const revocationSchema = z
+  .object({
+    evidenceId: text.optional(),
+    ref: z.object({ kind: refKindSchema, id: text }).optional(),
+    reason: z.enum(["rights_revoked", "retracted", "withdrawn"]),
+    recordedOn: isoDate,
+    recordedBy: text,
+  })
+  .refine((value) => (value.evidenceId ? 1 : 0) + (value.ref ? 1 : 0) === 1, {
+    message: "A revocation names exactly one of evidenceId or ref.",
+  });
+export type Revocation = z.infer<typeof revocationSchema>;
