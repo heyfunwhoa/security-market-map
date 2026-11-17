@@ -22,6 +22,10 @@ Records of processing, consent, data-subject requests, and privacy reviews. Lega
 - Privacy / DPO (`privacy`)
 - GRC or trust lead (`grc-owner`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - OneTrust: Privacy and third-party risk platform. Privacy governance is not DSPM.

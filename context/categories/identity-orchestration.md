@@ -20,6 +20,10 @@ Policy engines and relationship-based authorization that sit beside the director
 
 - Security architect (`security-architect`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Strata Identity: Strata documents Maverics, an identity orchestration layer that routes authentication and authorization between apps and any identity provider.

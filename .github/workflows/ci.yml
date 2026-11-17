@@ -33,6 +33,8 @@ jobs:
       - run: npm run typecheck
       - run: npm run lint
       - run: npm run build
+      # Component playground: every story must still build (docs/ui-bank-adoption.md).
+      - run: npm run storybook:build
       # Formerly the separate "Release policy tests" workflow (release-policy.yml).
       - name: Release policy tests
         run: node --test .release/preflight.node-check.mjs .release/vercel-ignore.node-check.mjs .release/preview-draft.node-check.mjs

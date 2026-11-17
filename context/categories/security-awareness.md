@@ -21,6 +21,10 @@ Training and simulated phishing for people. It changes behavior. It does not rep
 - IT / corporate security (`it-security`)
 - Security awareness / people security (`security-awareness`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - KnowBe4: Security awareness and simulated phishing. It does not stop the email.
