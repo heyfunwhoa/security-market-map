@@ -2,7 +2,7 @@
   "status": "decided",
   "proposedBy": "agent-draft",
   "proposedOn": "2026-11-17",
-  "note": "Owner decisions recorded 2026-11-17: 32 approved, 2 rejected (SolarWinds, too generic). Approved lines are copied into sales-notes.json as roleNotes.",
+  "note": "Owner decisions recorded 2026-11-17: 32 approved, 2 rejected (SolarWinds, too generic). Approved lines are copied into sales-notes.json as roleNotes. Round 2 (2026-11-17): proposedRevision on 7 CISO lines for owner review; sales-notes.json keeps the approved text until a revision is approved.",
   "roles": [
     {
       "id": "ciso",
@@ -137,7 +137,10 @@
       "decision": "approved",
       "editedNote": null,
       "reviewedBy": "Kristen Aing",
-      "reviewedOn": "2026-11-17"
+      "reviewedOn": "2026-11-17",
+      "proposedRevision": "An incomplete credential list turned a vendor's breach into an intrusion at Cloudflare itself.",
+      "revisionReason": "Names the consequence (a second incident) instead of a principle.",
+      "revisionDecision": null
     },
     {
       "incidentId": "incident:cloudflare-unrotated-okta-tokens-2023",
@@ -173,7 +176,10 @@
       "decision": "approved",
       "editedNote": null,
       "reviewedBy": "Kristen Aing",
-      "reviewedOn": "2026-11-17"
+      "reviewedOn": "2026-11-17",
+      "proposedRevision": "One acquired key was enough to forge access to email accounts. Expect your board to ask who controls keys like that.",
+      "revisionReason": "Replaces 'key custody is a top-level risk' with what the board will actually ask.",
+      "revisionDecision": null
     },
     {
       "incidentId": "incident:storm-0558-signing-key-2023",
@@ -245,7 +251,10 @@
       "decision": "approved",
       "editedNote": null,
       "reviewedBy": "Kristen Aing",
-      "reviewedOn": "2026-11-17"
+      "reviewedOn": "2026-11-17",
+      "proposedRevision": "Files your team uploads to a vendor's support desk can carry live session tokens. Vendor support is part of your attack surface.",
+      "revisionReason": "Makes it about something the CISO's own team does.",
+      "revisionDecision": null
     },
     {
       "incidentId": "incident:okta-support-har-files-2023",
@@ -272,7 +281,10 @@
       "decision": "approved",
       "editedNote": null,
       "reviewedBy": "Kristen Aing",
-      "reviewedOn": "2026-11-17"
+      "reviewedOn": "2026-11-17",
+      "proposedRevision": "A contractor's mistake left customer records at risk for almost five years. Their code is your liability too.",
+      "revisionReason": "Leads with the business impact and duration from the reviewed headline.",
+      "revisionDecision": null
     },
     {
       "incidentId": "incident:uber-contractor-mfa-push-2022",
@@ -281,7 +293,10 @@
       "decision": "approved",
       "editedNote": null,
       "reviewedBy": "Kristen Aing",
-      "reviewedOn": "2026-11-17"
+      "reviewedOn": "2026-11-17",
+      "proposedRevision": "Two-factor gave way to a bought password and repeated push requests. Push-only MFA is worth raising with leadership.",
+      "revisionReason": "Replaces 'identity hygiene' with a specific control to bring up.",
+      "revisionDecision": null
     },
     {
       "incidentId": "incident:uber-contractor-mfa-push-2022",
@@ -299,7 +314,10 @@
       "decision": "approved",
       "editedNote": null,
       "reviewedBy": "Kristen Aing",
-      "reviewedOn": "2026-11-17"
+      "reviewedOn": "2026-11-17",
+      "proposedRevision": "One tracked actor used AI tooling to work through many organizations at once, so expect attempts in volume.",
+      "revisionReason": "Turns 'the scale is what's new' into what it means for the CISO.",
+      "revisionDecision": null
     },
     {
       "incidentId": "incident:cl-sta-1238-cairn-ai-intrusions-2026",
@@ -317,7 +335,10 @@
       "decision": "approved",
       "editedNote": null,
       "reviewedBy": "Kristen Aing",
-      "reviewedOn": "2026-11-17"
+      "reviewedOn": "2026-11-17",
+      "proposedRevision": "West had to report this in an SEC filing. For public companies, incident disclosure is now part of the CISO's job.",
+      "revisionReason": "Ties the incident to a responsibility the CISO owns.",
+      "revisionDecision": null
     },
     {
       "incidentId": "incident:west-pharmaceutical-intrusion-2026",
