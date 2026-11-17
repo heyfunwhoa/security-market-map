@@ -41,7 +41,7 @@ export default async function LearnPage({
       <PageIntro
         kicker="Learn"
         title="The words a cybersecurity analyst needs before the logo slide"
-        lede="Start with the glossary, then walk two calls: a leaked key that becomes an agent request, and a standing administrator. Products appear on a step only when a claim supports that capability."
+        lede="Explore the glossary, investigate suspicious AWS workload access in the Cedar Ridge scenario, or walk through two calls about a leaked key and standing administrator access."
       />
 
       {scenario === cedarRidgeId ? (
@@ -51,7 +51,7 @@ export default async function LearnPage({
           <h2 id="cedar-ridge-entry" className="text-xl">Cedar Ridge Health</h2>
           <p className="mt-2 text-sm">Investigate suspicious access to S3 by a workload identity in a fictional AWS environment.</p>
           <Link className="mt-2 inline-flex min-h-11 items-center text-primary underline" href={`/learn?scenario=${cedarRidgeId}#${cedarRidgeId}`}>
-            Open the draft scenario
+            Start the Cedar Ridge scenario
           </Link>
         </section>
       )}

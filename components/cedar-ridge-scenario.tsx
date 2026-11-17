@@ -49,7 +49,7 @@ export function CedarRidgeScenario({ mode, step }: { mode?: string; step?: strin
 
   return (
     <section id={cedarRidgeId} className="mt-10 scroll-mt-24" aria-labelledby="cedar-ridge-title">
-      <p className="text-sm text-muted-foreground">Synthetic scenario · Draft for editorial review</p>
+      <p className="text-sm text-muted-foreground">Synthetic scenario</p>
       <h2 id="cedar-ridge-title" className="mt-2 text-3xl">Cedar Ridge Health: compromised workload identity</h2>
       <p className="mt-2 max-w-3xl text-sm leading-6">Investigate unusual S3 access, explain the role of each AWS service, and recommend a measurable security improvement.</p>
       <nav className="mt-3 flex flex-wrap gap-x-5" aria-label="Learning mode">
