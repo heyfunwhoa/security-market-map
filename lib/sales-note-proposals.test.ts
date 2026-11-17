@@ -10,7 +10,9 @@ import salesNotesSeed from "@/data/security-intelligence/sales-notes.json";
 type Proposal = {
   incidentId: string;
   sellerCaveat: string;
+  approvedSellerCaveat?: string;
   proposedHeadline: string | null;
+  headlineDecision?: "approved" | "rejected" | null;
   reason: string | null;
   basedOnSourceIds: string[];
   decision: "approved" | "edited" | "rejected" | null;
@@ -18,13 +20,13 @@ type Proposal = {
   reviewedOn: string | null;
 };
 const incidents = new Map((incidentsSeed as { id: string; summary: string; sourceIds: string[] }[]).map((i) => [i.id, i]));
-const notes = new Map((salesNotesSeed as { incidentId: string; headline: string }[]).map((n) => [n.incidentId, n]));
+const notes = new Map((salesNotesSeed as { incidentId: string; headline: string; sellerCaveat?: string }[]).map((n) => [n.incidentId, n]));
 const proposals = proposalsFile.proposals as Proposal[];
 const numbers = (text: string) => (text.match(/\d[\d,.]*/g) ?? []).map((n) => n.replace(/[,.]$/, "").replaceAll(",", ""));
 
 describe("sales note proposals", () => {
   it("is a proposal file covering every incident with a sales note, once each", () => {
-    expect(proposalsFile.status).toBe("proposed");
+    expect(["proposed", "decided"]).toContain(proposalsFile.status);
     const ids = proposals.map((p) => p.incidentId);
     expect(new Set(ids).size).toBe(ids.length);
     expect(new Set(ids)).toEqual(new Set(notes.keys()));
@@ -41,7 +43,10 @@ describe("sales note proposals", () => {
 
     if (p.proposedHeadline !== null) {
       expect(p.reason?.trim()).toBeTruthy();
-      expect(p.proposedHeadline).not.toBe(notes.get(p.incidentId)!.headline);
+      // Applied only when approved; otherwise the reviewed headline stays as it was.
+      const current = notes.get(p.incidentId)!.headline;
+      if (p.headlineDecision === "approved") expect(current).toBe(p.proposedHeadline);
+      else expect(current).not.toBe(p.proposedHeadline);
       expect(p.proposedHeadline.split(/\s+/).length).toBeLessThanOrEqual(30);
       const summaryNumbers = new Set(numbers(incident.summary));
       for (const n of numbers(p.proposedHeadline)) expect(summaryNumbers.has(n), `${n} not in summary`).toBe(true);
@@ -50,7 +55,11 @@ describe("sales note proposals", () => {
     if (p.decision === null) {
       expect(p.reviewedBy).toBeNull();
       expect(p.reviewedOn).toBeNull();
+      expect(notes.get(p.incidentId)!.sellerCaveat).toBeUndefined();
     } else {
+      // The approved caveat (possibly edited by the owner) is what reaches sales-notes.json.
+      expect(p.approvedSellerCaveat?.split(/\s+/).length).toBeLessThanOrEqual(12);
+      expect(notes.get(p.incidentId)!.sellerCaveat).toBe(p.approvedSellerCaveat);
       expect(p.reviewedBy?.trim()).toBeTruthy();
       expect(p.reviewedOn).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     }
