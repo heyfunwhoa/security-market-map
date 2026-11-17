@@ -270,7 +270,8 @@ export const categoryFillVendors: Vendor[] = [
     ],
     "adjacentCategoryIds": [
       "ctem",
-      "aspm"
+      "aspm",
+      "ispm"
     ],
     "identityScopes": [
       "not_an_identity_control"

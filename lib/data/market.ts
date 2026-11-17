@@ -835,7 +835,7 @@ export const products: Product[] = [
     name: "Microsoft Entra Workload ID",
     positioning: "Workload identities in Entra: applications, service principals, managed identities, and federation without a stored secret for supported hops.",
     primaryCategoryIds: ["nhi"],
-    adjacentCategoryIds: ["secrets-management"],
+    adjacentCategoryIds: ["secrets-management", "wim"],
     deployment: ["saas"],
     identityScopes: ["nhi"],
     availability: "generally_available",

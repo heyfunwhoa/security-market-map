@@ -46,8 +46,32 @@ export const glossary: GlossaryTerm[] = [
     term: "Workload identity federation",
     definition:
       "The workload proves who it is with a short-lived assertion from a platform it already runs on, instead of storing a long-lived secret for that hop.",
-    categoryId: "nhi",
-    relatedTermIds: ["workload-identity", "dynamic-secret"],
+    categoryId: "wim",
+    relatedTermIds: ["workload-identity", "dynamic-secret", "wim"],
+  },
+  {
+    id: "wim",
+    term: "Workload identity management (WIM)",
+    definition:
+      "Issuing, attesting, and authorizing identities for running software so it can reach other services without a stored secret. It changes how a workload authenticates. NHI governance decides who owns it.",
+    categoryId: "wim",
+    relatedTermIds: ["workload-identity", "federation", "workload-attestation", "nhi"],
+  },
+  {
+    id: "workload-attestation",
+    term: "Workload attestation",
+    definition:
+      "Checking runtime facts about a workload, such as the node, cloud instance metadata, or Kubernetes service account, before issuing it an identity. The workload proves what it is, not what it was told.",
+    categoryId: "wim",
+    relatedTermIds: ["wim", "federation"],
+  },
+  {
+    id: "ispm",
+    term: "Identity security posture management (ISPM)",
+    definition:
+      "Continuous assessment of identity systems for misconfiguration, missing MFA, dormant or orphaned accounts, and hidden admin paths. It finds weaknesses before abuse. ITDR detects the abuse itself.",
+    categoryId: "ispm",
+    relatedTermIds: ["identity", "entitlement"],
   },
   {
     id: "dynamic-secret",

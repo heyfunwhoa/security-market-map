@@ -2717,7 +2717,7 @@ export const ecosystemVendors: Vendor[] = [
     website: "https://www.aembit.io/",
     positioning:
       "Aembit's non-human identity page describes policy-based, secretless, just-in-time access between workloads and resources. It does not say federation, and it does not list targets. Inventory and decommissioning are not on that page.",
-    primaryCategoryIds: ["nhi", "agentic-runtime"],
+    primaryCategoryIds: ["nhi", "wim", "agentic-runtime"],
     adjacentCategoryIds: ["secrets-management", "agent-identity"],
     identityScopes: ["nhi"],
     verificationStatus: "research_candidate",
