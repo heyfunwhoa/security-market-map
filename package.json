@@ -15,7 +15,8 @@
     "storybook": "storybook dev -p 6006 --host 127.0.0.1",
     "storybook:build": "storybook build",
     "context:md": "UPDATE_CONTEXT_MD=1 vitest run lib/context-md.test.ts",
-    "context:mcp": "node scripts/context-mcp-server.mjs"
+    "context:mcp": "node scripts/context-mcp-server.mjs",
+    "export:stix": "node --experimental-strip-types scripts/export-stix.ts"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
