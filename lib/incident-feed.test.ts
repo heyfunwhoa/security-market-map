@@ -216,3 +216,51 @@ describe("seller shortcuts", () => {
     for (const item of incidentFeed) expect(item.incident.affectedEcosystems).not.toContain("pharmaceutical");
   });
 });
+
+describe("industry tags", () => {
+  it("publishes only reviewed tags with a known industry, a named reviewer and the incident's own sources", async () => {
+    const { isPublishableIndustry } = await import("./incident-feed");
+    const tag = {
+      id: "industry:example:technology",
+      incidentId: "incident:example",
+      industry: "technology",
+      rationale: "Named company is a software company.",
+      basedOnSourceIds: ["source:a"],
+      status: "reviewed" as const,
+      proposedBy: "agent-draft",
+      proposedOn: "2026-11-17",
+      reviewedBy: "Reviewer",
+      reviewedOn: "2026-11-17",
+    };
+    expect(isPublishableIndustry(tag, base)).toBe(true);
+    expect(isPublishableIndustry({ ...tag, status: "proposed" }, base)).toBe(false);
+    expect(isPublishableIndustry({ ...tag, industry: "pharmaceutical_guess" }, base)).toBe(false);
+    expect(isPublishableIndustry({ ...tag, reviewedBy: " " }, base)).toBe(false);
+    expect(isPublishableIndustry({ ...tag, basedOnSourceIds: ["source:other"] }, base)).toBe(false);
+    const feed = buildIncidentFeed([base], [source], [], [], [tag, { ...tag, id: "x", industry: "retail", status: "proposed" }]);
+    expect(feed[0].industries).toEqual(["technology"]);
+    expect(filterIncidents(feed, { ...NO_INCIDENT_FILTERS, industry: "technology" })).toHaveLength(1);
+    expect(filterIncidents(feed, { ...NO_INCIDENT_FILTERS, industry: "retail" })).toHaveLength(0);
+    expect(readIncidentFilters(new URLSearchParams("industry=retail"), feed).industry).toBe("all");
+    expect(incidentFilterUrl({ ...NO_INCIDENT_FILTERS, industry: "technology" })).toBe("/incidents?industry=technology");
+  });
+
+  it("every industry tag in the data file is well formed and points at a published incident", async () => {
+    const { allIndustryTags, INDUSTRY_LABELS } = await import("./incident-feed");
+    const ids = new Set<string>();
+    for (const tag of allIndustryTags) {
+      expect(ids.has(tag.id), `duplicate ${tag.id}`).toBe(false);
+      ids.add(tag.id);
+      expect(tag.industry in INDUSTRY_LABELS, `unknown industry ${tag.industry}`).toBe(true);
+      const incident = incidentFeed.find((item) => item.incident.id === tag.incidentId);
+      expect(incident, `unknown incident ${tag.incidentId}`).toBeDefined();
+      expect(tag.basedOnSourceIds.length).toBeGreaterThan(0);
+      for (const id of tag.basedOnSourceIds) expect(incident!.incident.sourceIds).toContain(id);
+      expect(tag.rationale.trim()).not.toBe("");
+      if (tag.status === "reviewed") {
+        expect(tag.reviewedBy?.trim()).toBeTruthy();
+        expect(tag.reviewedOn).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      }
+    }
+  });
+});
