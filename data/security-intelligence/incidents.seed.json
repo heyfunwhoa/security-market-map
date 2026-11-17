@@ -43,5 +43,246 @@
       "No ATT&CK technique is asserted until a separate sourced mapping review."
     ],
     "lastReviewedOn": "2026-10-10"
+  },
+  {
+    "id": "incident:codecov-bash-uploader-2021",
+    "title": "Codecov Bash Uploader compromise",
+    "kind": "supply_chain",
+    "disclosedOn": "2021-04-15",
+    "occurredOn": null,
+    "summary": "Codecov reported that a credential exposed by an error in its Docker image creation process let an actor modify its Bash Uploader script, which could then export information from customers' CI environments. Codecov says it learned of the change on 1 April 2021.",
+    "epistemicStatus": "reported",
+    "reviewStatus": "seed_reviewed",
+    "affectedEcosystems": [
+      "ci_cd"
+    ],
+    "sourceIds": [
+      "source:codecov-bash-uploader-2021"
+    ],
+    "techniqueIds": [],
+    "packageIds": [],
+    "uncertaintyNotes": [
+      "Which customers' secrets were actually used is not established.",
+      "No ATT&CK technique is asserted until a separate sourced mapping review."
+    ],
+    "lastReviewedOn": "2026-11-17"
+  },
+  {
+    "id": "incident:tj-actions-changed-files-2025",
+    "title": "tj-actions/changed-files GitHub Action compromise",
+    "kind": "supply_chain",
+    "disclosedOn": "2025-03-15",
+    "occurredOn": null,
+    "summary": "The GitHub advisory reports that attackers retroactively pointed multiple tj-actions/changed-files version tags at a malicious commit whose script extracted secrets from runner memory and printed them into GitHub Actions logs.",
+    "epistemicStatus": "reported",
+    "reviewStatus": "seed_reviewed",
+    "affectedEcosystems": [
+      "github_actions"
+    ],
+    "sourceIds": [
+      "source:ghsa-mrrh-fwg8-r2c3"
+    ],
+    "techniqueIds": [],
+    "packageIds": [],
+    "uncertaintyNotes": [
+      "Reported usage of the Action (about 23,000 repositories) is not a count of confirmed leaks.",
+      "How the maintainer's token was obtained is reported elsewhere but not confirmed in this record.",
+      "No ATT&CK technique is asserted until a separate sourced mapping review."
+    ],
+    "lastReviewedOn": "2026-11-17"
+  },
+  {
+    "id": "incident:nx-s1ngularity-2025",
+    "title": "s1ngularity: malicious Nx npm packages",
+    "kind": "supply_chain",
+    "disclosedOn": "2025-08-27",
+    "occurredOn": null,
+    "summary": "Wiz reported that malicious Nx versions published to npm on 26 August 2025 ran a post-install script that harvested GitHub and npm tokens, SSH keys and other secrets, prompting installed AI CLI tools with permission-skipping flags to search the filesystem. Wiz observed over a thousand valid GitHub tokens among the leaked data.",
+    "epistemicStatus": "reported",
+    "reviewStatus": "seed_reviewed",
+    "affectedEcosystems": [
+      "npm"
+    ],
+    "sourceIds": [
+      "source:wiz-s1ngularity-2025"
+    ],
+    "techniqueIds": [],
+    "packageIds": [],
+    "uncertaintyNotes": [
+      "The Nx maintainers' own advisory is not yet captured as a source.",
+      "How the npm publishing token was first stolen is reported by secondary sources only.",
+      "Any relationship to the Shai-Hulud npm compromise is by ecosystem only and has not been reviewed.",
+      "No ATT&CK technique is asserted until a separate sourced mapping review."
+    ],
+    "lastReviewedOn": "2026-11-17"
+  },
+  {
+    "id": "incident:circleci-engineer-laptop-2023",
+    "title": "CircleCI breach via malware on an engineer's laptop",
+    "kind": "intrusion",
+    "disclosedOn": "2023-01-04",
+    "occurredOn": null,
+    "summary": "CircleCI reported that malware on an engineer's laptop was used to steal a valid, 2FA-backed SSO session, and recommended that all customers rotate secrets stored in the platform. CircleCI first alerted customers on 4 January 2023 and published its incident report on 12 January.",
+    "epistemicStatus": "reported",
+    "reviewStatus": "seed_reviewed",
+    "affectedEcosystems": [
+      "ci_cd"
+    ],
+    "sourceIds": [
+      "source:circleci-incident-report-2023"
+    ],
+    "techniqueIds": [],
+    "packageIds": [],
+    "uncertaintyNotes": [
+      "Impact on individual customers is not covered by this record.",
+      "No ATT&CK technique is asserted until a separate sourced mapping review."
+    ],
+    "lastReviewedOn": "2026-11-17"
+  },
+  {
+    "id": "incident:cloudflare-unrotated-okta-tokens-2023",
+    "title": "Cloudflare intrusion using credentials missed in rotation",
+    "kind": "intrusion",
+    "disclosedOn": "2024-02-01",
+    "occurredOn": null,
+    "summary": "Cloudflare reported that it did not rotate one service token and three service accounts leaked in the October 2023 Okta compromise because it mistakenly believed they were unused. A threat actor used them between 14 and 17 November 2023 to access Cloudflare's Confluence wiki and Jira.",
+    "epistemicStatus": "reported",
+    "reviewStatus": "seed_reviewed",
+    "affectedEcosystems": [
+      "saas"
+    ],
+    "sourceIds": [
+      "source:cloudflare-thanksgiving-2023"
+    ],
+    "techniqueIds": [],
+    "packageIds": [],
+    "uncertaintyNotes": [
+      "Attribution is Cloudflare's own assessment; no actor is recorded here.",
+      "The link to the Okta support-system breach has not been reviewed as a relationship.",
+      "No ATT&CK technique is asserted until a separate sourced mapping review."
+    ],
+    "lastReviewedOn": "2026-11-17"
+  },
+  {
+    "id": "incident:uber-github-aws-key-2016",
+    "title": "Uber S3 breach via an AWS key in a private GitHub repository",
+    "kind": "breach",
+    "disclosedOn": "2017-11-21",
+    "occurredOn": null,
+    "summary": "The FTC states that between 13 October and 15 November 2016 intruders accessed Uber's Amazon S3 datastore using an AWS access key posted in a private GitHub repository. The intruders reached the repository with passwords exposed in other breaches, and Uber did not require multi-factor authentication for GitHub. Uber disclosed the breach on 21 November 2017.",
+    "epistemicStatus": "reported",
+    "reviewStatus": "seed_reviewed",
+    "affectedEcosystems": [
+      "aws",
+      "github"
+    ],
+    "sourceIds": [
+      "source:ftc-uber-revised-analysis"
+    ],
+    "techniqueIds": [],
+    "packageIds": [],
+    "uncertaintyNotes": [
+      "Hard-coded credentials (CWE-798) is a weakness candidate only.",
+      "The captured FTC document does not show its own publication date.",
+      "No ATT&CK technique is asserted until a separate sourced mapping review."
+    ],
+    "lastReviewedOn": "2026-11-17"
+  },
+  {
+    "id": "incident:storm-0558-signing-key-2023",
+    "title": "Storm-0558 use of an acquired Microsoft signing key",
+    "kind": "intrusion",
+    "disclosedOn": "2023-09-06",
+    "occurredOn": null,
+    "summary": "Microsoft reported that Storm-0558 used an acquired Microsoft account (MSA) consumer signing key to forge tokens and access Outlook Web Access and Outlook.com.",
+    "epistemicStatus": "reported",
+    "reviewStatus": "seed_reviewed",
+    "affectedEcosystems": [
+      "microsoft_cloud"
+    ],
+    "sourceIds": [
+      "source:msrc-storm-0558-key-acquisition"
+    ],
+    "techniqueIds": [],
+    "packageIds": [],
+    "uncertaintyNotes": [
+      "How the key left the signing environment is unknown. Microsoft's crash-dump explanation is its leading hypothesis, and its 12 March 2024 update says no crash dump containing the key material was found.",
+      "Microsoft's earlier disclosures about Storm-0558 are not captured in this record.",
+      "No ATT&CK technique is asserted until a separate sourced mapping review."
+    ],
+    "lastReviewedOn": "2026-11-17"
+  },
+  {
+    "id": "incident:pypi-admin-token-docker-image-2024",
+    "title": "Python admin GitHub token leaked in a Docker Hub image",
+    "kind": "breach",
+    "disclosedOn": "2024-07-08",
+    "occurredOn": null,
+    "summary": "PyPI reported that a GitHub personal access token with admin access to the python, pypi, psf and pypa organizations was found in a compiled .pyc file inside a public Docker Hub image. The token was revoked immediately and no indicators of malicious activity were found.",
+    "epistemicStatus": "reported",
+    "reviewStatus": "seed_reviewed",
+    "affectedEcosystems": [
+      "pypi",
+      "docker_hub"
+    ],
+    "sourceIds": [
+      "source:pypi-leaked-admin-token-2024"
+    ],
+    "techniqueIds": [],
+    "packageIds": [],
+    "uncertaintyNotes": [
+      "This is a researcher-found exposure with no reported attacker activity. It is typed as a breach because the feed has no exposure type.",
+      "No ATT&CK technique is asserted until a separate sourced mapping review."
+    ],
+    "lastReviewedOn": "2026-11-17"
+  },
+  {
+    "id": "incident:microsoft-ai-sas-token-2023",
+    "title": "Microsoft AI research SAS token exposed 38TB",
+    "kind": "breach",
+    "disclosedOn": "2023-09-18",
+    "occurredOn": null,
+    "summary": "Wiz Research reported that a Microsoft AI research GitHub repository shared files through an Azure SAS token scoped to the entire storage account, exposing 38TB of additional private data, including two employees' workstation backups. Wiz's timeline says Microsoft invalidated the token on 24 June 2023.",
+    "epistemicStatus": "reported",
+    "reviewStatus": "seed_reviewed",
+    "affectedEcosystems": [
+      "azure",
+      "github"
+    ],
+    "sourceIds": [
+      "source:wiz-microsoft-sas-token-2023"
+    ],
+    "techniqueIds": [],
+    "packageIds": [],
+    "uncertaintyNotes": [
+      "This is a researcher-found exposure with no reported attacker activity. It is typed as a breach because the feed has no exposure type.",
+      "Microsoft's own MSRC post is not yet captured as a source.",
+      "No ATT&CK technique is asserted until a separate sourced mapping review."
+    ],
+    "lastReviewedOn": "2026-11-17"
+  },
+  {
+    "id": "incident:env-file-cloud-extortion-2024",
+    "title": "Cloud extortion campaign using exposed .env files",
+    "kind": "intrusion",
+    "disclosedOn": "2024-08-15",
+    "occurredOn": null,
+    "summary": "Unit 42 reported an extortion campaign in which attackers took AWS IAM access keys from publicly exposed .env files on web applications. The campaign targeted 110,000 domains and yielded over 90,000 unique variables.",
+    "epistemicStatus": "reported",
+    "reviewStatus": "seed_reviewed",
+    "affectedEcosystems": [
+      "aws"
+    ],
+    "sourceIds": [
+      "source:unit42-env-extortion-2024"
+    ],
+    "techniqueIds": [],
+    "packageIds": [],
+    "uncertaintyNotes": [
+      "This is a campaign across many organizations. It is typed as an intrusion because the feed's only campaign type is for malware campaigns.",
+      "The actor and the number of extorted organizations are not stated.",
+      "No ATT&CK technique is asserted until a separate sourced mapping review."
+    ],
+    "lastReviewedOn": "2026-11-17"
   }
 ]
