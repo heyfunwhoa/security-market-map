@@ -63,6 +63,42 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
         <span className="font-semibold">Buyer question. </span>
         {category.buyerQuestion}
       </p>
+      {relatedIncidents.length > 0 && (
+        <section className="mt-6 rounded-xl border border-border bg-card p-4" aria-labelledby="category-incidents">
+          <h2 id="category-incidents" className="text-xl">
+            Related incidents <span className="text-base font-normal text-muted-foreground">({relatedIncidents.length})</span>
+          </h2>
+          <p className="mt-1 max-w-3xl text-sm text-muted-foreground">
+            Reviewed incidents that show the risk this category is bought to address. A link is not a claim that any
+            product here would have prevented the incident.
+          </p>
+          <ul className="mt-3 grid gap-3 md:grid-cols-3">
+            {relatedIncidents.slice(0, 3).map(({ item, link }) => (
+              <li key={link.id} className="min-w-0 rounded-lg border border-border bg-background p-3 text-sm">
+                <Link
+                  href={`/incidents/${item.slug}`}
+                  className="font-semibold text-primary underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                >
+                  {item.incident.title}
+                </Link>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Disclosed {formatDate(item.incident.disclosedOn)} ·{" "}
+                  {item.sources.map((source) => source.publisher).join(", ")}
+                </p>
+                <p className="mt-2 leading-6">{link.rationale}</p>
+              </li>
+            ))}
+          </ul>
+          <Link
+            href={incidentFilterUrl({ ...NO_INCIDENT_FILTERS, category: category.id })}
+            className="mt-3 inline-block text-sm text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+          >
+            {relatedIncidents.length > 3
+              ? `See all ${relatedIncidents.length} in the incident feed, with talk tracks`
+              : "Open in the incident feed, with talk tracks"}
+          </Link>
+        </section>
+      )}
       {category.id === "secrets-detection" ? (
         <section className="mt-6 rounded-xl border border-border bg-card p-4" aria-labelledby="compare-category">
           <h2 id="compare-category" className="text-2xl">Compare secrets detection evidence</h2>
@@ -305,38 +341,6 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
           ) : null}
         </section>
       ) : null}
-      {relatedIncidents.length > 0 && (
-        <section className="mt-8" aria-labelledby="category-incidents">
-          <h2 id="category-incidents" className="text-2xl">Related incidents</h2>
-          <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
-            Reviewed incidents that show the risk this category is bought to address. A link is not a claim that any
-            product here would have prevented the incident.
-          </p>
-          <ul className="mt-3 grid gap-3 md:grid-cols-2">
-            {relatedIncidents.map(({ item, link }) => (
-              <li key={link.id} className="rounded-lg border border-border bg-card p-4 text-sm">
-                <Link
-                  href={`/incidents/${item.slug}`}
-                  className="font-semibold text-primary underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-                >
-                  {item.incident.title}
-                </Link>
-                <p className="mt-1 text-xs text-muted-foreground">
-                  Disclosed {formatDate(item.incident.disclosedOn)} ·{" "}
-                  {item.sources.map((source) => source.publisher).join(", ")}
-                </p>
-                <p className="mt-2 leading-6">{link.rationale}</p>
-              </li>
-            ))}
-          </ul>
-          <Link
-            href={incidentFilterUrl({ ...NO_INCIDENT_FILTERS, category: category.id })}
-            className="mt-3 inline-block text-sm text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-          >
-            Open these in the incident feed
-          </Link>
-        </section>
-      )}
       <section className="mt-8">
         <h2 id="category-evidence" tabIndex={-1} className="scroll-mt-24 text-2xl focus-visible:outline-2 focus-visible:outline-ring">Claims about this category</h2>
         <div className="mt-3">

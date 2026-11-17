@@ -90,7 +90,6 @@ const ECOSYSTEM_LABELS: Record<string, string> = {
   docker_hub: "Docker Hub",
   microsoft_cloud: "Microsoft cloud",
   ai_agents: "AI agents",
-  pharmaceutical: "Pharmaceutical",
 };
 
 export function ecosystemLabel(id: string): string {
@@ -189,6 +188,22 @@ export function talkTrackText(item: FeedIncident): string | null {
     .map((source) => `${source.publisher}, ${source.publishedOn ?? "date not stated"}, ${source.url}`);
   const draft = note.status === "draft" ? " (Draft, not editorially reviewed)" : "";
   return `${note.headline} Ask: ${note.discoveryQuestion}\nSource: ${cited.join("; ")}${draft}`;
+}
+
+/** Call-prep block: each incident's title and disclosure date with its sourced talk track. */
+export function talkTracksDocument(items: readonly FeedIncident[]): string {
+  return items
+    .map((item) => {
+      const text = talkTrackText(item);
+      return text ? `${item.incident.title} (disclosed ${item.incident.disclosedOn})\n${text}` : null;
+    })
+    .filter((block): block is string => block !== null)
+    .join("\n\n");
+}
+
+/** Newest reviewed incidents first, for compact lists such as the home page. */
+export function latestIncidents(count: number): FeedIncident[] {
+  return incidentFeed.slice(0, count);
 }
 
 export const incidentFeed: FeedIncident[] = buildIncidentFeed(
