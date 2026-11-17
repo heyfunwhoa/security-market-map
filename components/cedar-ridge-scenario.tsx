@@ -80,6 +80,17 @@ export function CedarRidgeScenario({ mode, step }: { mode?: string; step?: strin
             <article key={topic.title} className="mt-4 rounded-xl border border-border bg-card p-4">
               <h4 className="font-semibold">{topic.title}</h4>
               <p className="mt-2 text-sm leading-6">{topic.text}</p>
+              {topic.evidence && (
+                <ul className="mt-3 grid gap-2 text-sm" aria-label="Synthetic CloudTrail evidence">
+                  {topic.evidence.map(({ time, session, object, result }) => (
+                    <li key={time} className="rounded-lg border border-border p-3">
+                      <p className="font-medium">{time} · {result}</p>
+                      <p>Session: {session}</p>
+                      <p className="break-all">Object: {object}</p>
+                    </li>
+                  ))}
+                </ul>
+              )}
               {topic.sourceIds && (
                 <details className="mt-3 text-sm">
                   <summary className="min-h-11 cursor-pointer py-3">Sources and evidence</summary>
