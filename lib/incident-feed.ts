@@ -83,6 +83,12 @@ const ECOSYSTEM_LABELS: Record<string, string> = {
   pypi: "PyPI",
   github_actions: "GitHub Actions",
   saas: "SaaS",
+  ci_cd: "CI/CD",
+  aws: "AWS",
+  azure: "Azure",
+  github: "GitHub",
+  docker_hub: "Docker Hub",
+  microsoft_cloud: "Microsoft cloud",
 };
 
 export function ecosystemLabel(id: string): string {
@@ -95,6 +101,10 @@ const SOURCE_TYPE_LABELS: Record<string, string> = {
   vendor_advisory: "Vendor advisory",
   research: "Research",
   news: "News coverage",
+  company_incident_report: "Company incident report",
+  vulnerability_advisory: "Vulnerability advisory",
+  security_research: "Security research",
+  regulator_filing: "Regulator filing",
 };
 
 export function sourceTypeLabel(type: string): string {
