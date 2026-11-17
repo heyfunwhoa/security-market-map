@@ -169,7 +169,7 @@
   },
   {
     "incidentId": "incident:okta-support-har-files-2023",
-    "status": "draft",
+    "status": "reviewed",
     "headline": "A support-system service account password saved to an employee's personal Google account let an attacker read 134 Okta customers' support files and hijack 5 customers' sessions.",
     "discoveryQuestion": "When your teams send HAR files or logs to a vendor's support, are session tokens stripped first, and who checks?",
     "avoid": "Don't name a customer beyond those Okta itself named, and don't present the personal-account exposure path as confirmed.",
@@ -178,12 +178,12 @@
     ],
     "draftedOn": "2026-11-17",
     "draftedBy": "agent-draft",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "incidentId": "incident:toyota-tconnect-github-key-2022",
-    "status": "draft",
+    "status": "reviewed",
     "headline": "Toyota said a contractor left a data server access key in public GitHub code for nearly five years, putting up to 296,019 customer records at risk.",
     "discoveryQuestion": "Do your contractors' repositories fall under your secret scanning, or only your own?",
     "avoid": "Toyota could not confirm the key was used; don't describe it as a confirmed theft.",
@@ -192,7 +192,7 @@
     ],
     "draftedOn": "2026-11-17",
     "draftedBy": "agent-draft",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   }
 ]

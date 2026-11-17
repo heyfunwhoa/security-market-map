@@ -281,11 +281,11 @@
     "basedOnSourceIds": [
       "source:okta-support-root-cause-2023"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "id": "link:okta-support-har-files-2023:secrets-detection",
@@ -297,11 +297,11 @@
     "basedOnSourceIds": [
       "source:okta-support-root-cause-2023"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   },
   {
     "id": "link:toyota-tconnect-github-key-2022:secrets-detection",
@@ -313,10 +313,10 @@
     "basedOnSourceIds": [
       "source:toyota-tconnect-notice-2022"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
   }
 ]
