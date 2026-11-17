@@ -1,6 +1,6 @@
 # Knowledge model reconciliation (K1)
 
-Status: **prototype for review, not adopted.** Tracks [KRU-212](https://linear.app/krusty/issue/KRU-212) under [KRU-211](https://linear.app/krusty/issue/KRU-211), milestone M3. Written 2026-11-17.
+Status: **design accepted by the owner on 2026-11-17** (see Decisions). The module is still offline and not imported by the app. Tracks [KRU-212](https://linear.app/krusty/issue/KRU-212) under [KRU-211](https://linear.app/krusty/issue/KRU-211), milestone M3. Written 2026-11-17.
 
 This page rebuilds the K1 prototype described in KRU-212's 6 November checkpoint. That checkpoint's local commit (`4bcda7b`, branch `implementation/kru-212-knowledge-validation`) was never pushed, and no remote copy exists. This version was written from the issue's recorded acceptance criteria and scope, against current `main`.
 
@@ -13,11 +13,19 @@ This page rebuilds the K1 prototype described in KRU-212's 6 November checkpoint
 - **Nothing outside `lib/knowledge/` imports the module.** A test enforces this.
 - **No catalog record, page or API changes.**
 
-## Unresolved authority
+## Decisions (2026-11-17)
 
-The canonical product requirements document (PRD) is **still unresolved**. KRU-212 records that the Notion project page says its canonical PRD "has not been revalidated". Nothing here should be read as replacing that PRD.
+The owner accepted these three decisions on 2026-11-17:
 
-The prototype follows the requirements recorded in Linear (KRU-211 to KRU-218). It also follows the delivery plan in draft PR #137, `docs/product/knowledge-model-delivery-plan.md`. If the PRD conflicts with either, the PRD wins and this prototype changes. Production adoption stays blocked until a human confirms the authority.
+1. **Record shapes and relation rules: accepted as drafted.** They are the minimum the three pilots need. New record kinds or relations are added later only when a pilot needs one, each with tests.
+2. **Authority: interim.** Until the Notion PRD is revalidated, the authority is:
+   - the Linear issues KRU-211 to KRU-218;
+   - the delivery plan in draft PR #137, `docs/product/knowledge-model-delivery-plan.md`.
+
+   KRU-212 records that the Notion project page says its canonical PRD "has not been revalidated". If a revalidated PRD later conflicts with these, the PRD wins and this model changes.
+3. **Catalog revisions: pin the snapshot.** Catalog references keep pinning `catalog@<asOf>` for now. K4 ([KRU-215](https://linear.app/krusty/issue/KRU-215)) revisits per-record revisions alongside freshness and correction checks.
+
+These decisions accept the design for K2, K3 and K4 to build on. They do not adopt the module in the app, publish any record, or change a shared contract. Each of those still needs its own review.
 
 ## Baseline
 
@@ -165,7 +173,7 @@ PR #137 lists five category teaching exercises: CSPM, DSPM, SAST, third-party ri
 
 1. **Now:** an additive, isolated module. No app import, no catalog change, no data file.
    - **Rollback:** delete `lib/knowledge/` and this page.
-2. **After human design review and PRD confirmation:** add reviewed records as typed data behind the existing `catalogProblems()` gate, one pilot at a time.
+2. **Next, now that the design is accepted:** add reviewed records as typed data behind the existing `catalogProblems()` gate, one pilot at a time.
    - Existing IDs and pages keep working, and nothing is renamed.
    - **Rollback:** remove the data file. The validator rejects orphaned mappings rather than reviving them.
 3. **Only with a separately reviewed Technical Docs change:** any shared-contract addition, such as an initiative-reference contract.
@@ -175,9 +183,10 @@ There is no mandatory live service and no change to the identity flows.
 
 ## Next steps
 
-1. **Human design review of this page and the record shapes,** plus confirmation of PRD authority.
-2. **K2 (KRU-213):** publication register. **K4 (KRU-215):** freshness and correction enforcement. Both build on these shapes. **K3 (KRU-214):** real pilot paths, after K2.
-3. **Before any live producer:** the existing reader is offline and synthetic only. Connecting a real producer needs authentication, rights and owner readiness to be verified separately (KRU-217). Draft PR #175 is the related producer-side preview.
+1. **K4 (KRU-215), next:** freshness and correction enforcement, including the per-record revision question from decision 3.
+2. **K2 (KRU-213):** publication register. **K3 (KRU-214):** real pilot paths, after K2.
+3. **If the Notion PRD is revalidated:** recheck this model against it (decision 2).
+4. **Before any live producer:** the existing reader is offline and synthetic only. Connecting a real producer needs authentication, rights and owner readiness to be verified separately (KRU-217). Draft PR #175 is the related producer-side preview.
 
 The bounded integration exercise is done: `lib/knowledge/upstream.test.ts` runs the pinned v1 package and variants of it through the unchanged reader and into the validator.
 
