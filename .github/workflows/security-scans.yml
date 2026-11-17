@@ -3,6 +3,7 @@ name: Security scans
 on:
   pull_request:
     branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
   push:
     branches: [main]
 
@@ -20,19 +21,21 @@ concurrency:
 jobs:
   trufflehog:
     name: TruffleHog introduced secrets
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
-      - uses: trufflesecurity/trufflehog@421026a6540c63cf143ef53a5859389d473e88da # main, 2026-10-09
+      - uses: trufflesecurity/trufflehog@f8221ca52ac51bf66228d6ec3691f3ea0782ae15 # main, 2026-10-09
         with:
           version: "3.99.2"
           extra_args: --results=verified,unknown
 
   trivy:
     name: Trivy dependency and config review
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -51,6 +54,7 @@ jobs:
 
   dependency-audit:
     name: Production dependency audit
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

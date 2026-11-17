@@ -1,0 +1,10 @@
+#!/bin/sh
+# Pre-commit hook: scan staged changes for secrets. Kept fast (a few seconds).
+# ESLint takes ~30s on this repo, so it runs in pre-push instead.
+# This file is tracked in scripts/ and installed by npm prepare.
+
+echo "Running pre-commit checks..."
+
+sh scripts/secret-scan.sh || exit 1
+
+echo "✅ Pre-commit checks passed."

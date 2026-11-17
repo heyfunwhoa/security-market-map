@@ -10,6 +10,9 @@ import { ClaimList } from "@/components/claims";
 import { FlowStrip } from "@/components/category-map";
 import { PageIntro } from "@/components/chrome";
 import { catalog, categoryBySlug, claimsForSubject, vendorById } from "@/lib/catalog";
+import { painsForCategory, seatsForCategory } from "@/lib/persona-graph";
+import { formatDate } from "@/lib/format";
+import { incidentFilterUrl, incidentsForCategory, NO_INCIDENT_FILTERS } from "@/lib/incident-feed";
 
 export function generateStaticParams() {
   return catalog.categories.map((category) => ({ slug: category.slug }));
@@ -33,6 +36,12 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
   const primaryVendors = [...new Set(products.map((product) => product.vendorId))]
     .flatMap((id) => { const vendor = vendorById(id); return vendor ? [vendor] : []; });
   const categoryClaims = claimsForSubject("category", category.id);
+  const relatedIncidents = incidentsForCategory(category.id);
+  const owningSeats = seatsForCategory(category.id);
+  const seatPains = painsForCategory(category.id);
+  const categoryAlternatives = catalog.alternatives.filter((alt) => alt.categoryId === category.id);
+  const categoryTriggers = catalog.buyingTriggers.filter((trigger) => trigger.categoryIds.includes(category.id));
+  const categoryObjections = catalog.objections.filter((objection) => objection.categoryIds.includes(category.id));
   const sourcingLabel = categoryClaims.length > 0
     ? "The description, buyer question, owner, budget, triggers, outcomes, workflow, and illustrative flow are the map's wording. The sourced sentences are the claims below."
     : "The description, buyer question, owner, budget, triggers, outcomes, workflow, and illustrative flow are the map's wording. No source is attached to them yet.";
@@ -181,6 +190,117 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
           </ul>
         )}
       </section>
+      {categoryAlternatives.length > 0 || categoryTriggers.length > 0 || categoryObjections.length > 0 ? (
+        <section className="mt-8 grid gap-6 text-sm leading-6 lg:grid-cols-3" aria-label="Buying context">
+          <div>
+            <h2 className="text-2xl">What buyers do instead</h2>
+            {categoryAlternatives.length === 0 ? (
+              <p className="mt-2 text-muted-foreground">Not recorded yet.</p>
+            ) : (
+              <ul className="mt-2 space-y-3">
+                {categoryAlternatives.map((alt) => (
+                  <li key={alt.id}>
+                    <p className="font-medium">{alt.name}</p>
+                    <p>Good enough when: {alt.whenItWins}</p>
+                    <p className="text-muted-foreground">Breaks when: {alt.whenItBreaks}</p>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+          <div>
+            <h2 className="text-2xl">What starts the conversation</h2>
+            {categoryTriggers.length === 0 ? (
+              <p className="mt-2 text-muted-foreground">Not recorded yet.</p>
+            ) : (
+              <ul className="mt-2 space-y-3">
+                {categoryTriggers.map((trigger) => (
+                  <li key={trigger.id}>
+                    <p>{trigger.trigger}</p>
+                    {trigger.publicSignal ? <p className="text-muted-foreground">Public signal (a lead, not intent): {trigger.publicSignal}</p> : null}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+          <div>
+            <h2 className="text-2xl">Common objections</h2>
+            {categoryObjections.length === 0 ? (
+              <p className="mt-2 text-muted-foreground">Not recorded yet.</p>
+            ) : (
+              <ul className="mt-2 space-y-3">
+                {categoryObjections.map((objection) => (
+                  <li key={objection.id}>
+                    <p className="font-medium">&ldquo;{objection.objection}&rdquo;</p>
+                    <p>Reframe to test: {objection.reframe}</p>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+          <p className="text-muted-foreground lg:col-span-3">Hypotheses unless a source is listed. Vendor-neutral: none of these name a product.</p>
+        </section>
+      ) : null}
+      {owningSeats.length > 0 || seatPains.length > 0 ? (
+        <section className="mt-8" aria-labelledby="category-seats">
+          <h2 id="category-seats" className="text-2xl">Who owns it and who feels the problem</h2>
+          {owningSeats.length > 0 ? (
+            <p className="mt-2 text-sm">
+              Usually owned by{" "}
+              {owningSeats.map((seat, index) => (
+                <span key={seat.id}>
+                  {index > 0 ? ", " : ""}
+                  <Link href={`/personas/${seat.id}`} className="underline underline-offset-4 hover:text-foreground">{seat.name}</Link>
+                </span>
+              ))}
+              .
+            </p>
+          ) : null}
+          {seatPains.length > 0 ? (
+            <ul className="mt-3 space-y-2 text-sm">
+              {seatPains.map(({ seat, pain }) => (
+                <li key={`${seat.id}-${pain.pain}`}>
+                  <Link href={`/personas/${seat.id}`} className="font-medium underline underline-offset-4 hover:text-foreground">{seat.name}</Link>
+                  : {pain.pain}
+                  {pain.evidence === "hypothesis" ? <span className="text-muted-foreground"> (hypothesis)</span> : null}
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </section>
+      ) : null}
+      {relatedIncidents.length > 0 && (
+        <section className="mt-8" aria-labelledby="category-incidents">
+          <h2 id="category-incidents" className="text-2xl">Related incidents</h2>
+          <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
+            Reviewed incidents that show the risk this category is bought to address. A link is not a claim that any
+            product here would have prevented the incident.
+          </p>
+          <ul className="mt-3 grid gap-3 md:grid-cols-2">
+            {relatedIncidents.map(({ item, link }) => (
+              <li key={link.id} className="rounded-lg border border-border bg-card p-4 text-sm">
+                <Link
+                  href={`/incidents/${item.slug}`}
+                  className="font-semibold text-primary underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                >
+                  {item.incident.title}
+                </Link>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Disclosed {formatDate(item.incident.disclosedOn)} ·{" "}
+                  {item.sources.map((source) => source.publisher).join(", ")}
+                </p>
+                <p className="mt-2 leading-6">{link.rationale}</p>
+              </li>
+            ))}
+          </ul>
+          <Link
+            href={incidentFilterUrl({ ...NO_INCIDENT_FILTERS, category: category.id })}
+            className="mt-3 inline-block text-sm text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+          >
+            Open these in the incident feed
+          </Link>
+        </section>
+      )}
       <section className="mt-8">
         <h2 id="category-evidence" tabIndex={-1} className="scroll-mt-24 text-2xl focus-visible:outline-2 focus-visible:outline-ring">Claims about this category</h2>
         <div className="mt-3">

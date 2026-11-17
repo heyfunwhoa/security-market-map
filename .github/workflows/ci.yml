@@ -3,14 +3,21 @@ name: CI
 on:
   pull_request:
     branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
   push:
     branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 permissions:
   contents: read
 
 jobs:
   check:
+    # Draft PRs skip CI; it runs when the PR is marked ready for review.
+    if: github.event_name != 'pull_request' || !github.event.pull_request.draft
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -26,3 +33,6 @@ jobs:
       - run: npm run typecheck
       - run: npm run lint
       - run: npm run build
+      # Formerly the separate "Release policy tests" workflow (release-policy.yml).
+      - name: Release policy tests
+        run: node --test .release/preflight.node-check.mjs .release/vercel-ignore.node-check.mjs .release/preview-draft.node-check.mjs

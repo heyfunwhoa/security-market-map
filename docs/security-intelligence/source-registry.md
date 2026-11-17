@@ -34,3 +34,12 @@ The starter JSON files hold two *reported* incidents with direct CISA citations.
 **Ingestion sequence (not implemented):** discover → URL/domain/allowlist check → fetch within terms → record snapshot hash and publish/retrieval dates → normalize aliases → create draft claims with explicit source relationships → conflict and attribution checks → human review → publish via API.
 
 **Negative rule:** absence of an ATT&CK link, package record, exploit status or affected organization means **unknown/not yet evaluated**, not false.
+
+## Adding incidents from research sessions
+
+New incidents found during research go through the [incident classification framework](incident-classification-framework.md), not straight into the reviewed seed:
+
+1. Add a candidate batch under `data/security-intelligence/candidates/` with `status: "candidate_only"` and `publishable: false`. Each candidate records discovery (publisher, canonical URL, primary or secondary role, discovery time, usage rights), a de-duplication note, paraphrased claims with their own epistemic status, and unresolved questions.
+2. Leave VERIS fields `null` until the official schema is imported. Mark ATT&CK mappings `not_evaluated` unless the technique is in the pinned offline subset (`lib/incident-taxonomy.ts`) and a reported claim supports it; then `candidate` only, with no STIX ID or reviewer.
+3. Flag any candidate with only secondary sources as "Primary source needed". Keep research-wide studies with no single affected organization out of incidents.
+4. Run `npm test` (`lib/incident-candidates.test.ts` enforces these rules), open a PR, and leave review and promotion into `incidents.seed.json` to the human reviewer.

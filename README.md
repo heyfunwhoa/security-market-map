@@ -85,6 +85,12 @@ npm run lint
 npm run build
 ```
 
+`npm install` also installs two local git hooks from `scripts/` (re-run with `node scripts/install-hooks.mjs`).
+Pre-commit scans the staged changes for secrets with TruffleHog (`scripts/secret-scan.sh`); pre-push runs the
+research integrity tests, unit tests, typecheck, lint and the release policy tests (about 45s; no build).
+Install TruffleHog with `brew install trufflehog` (or see the [install options](https://github.com/trufflesecurity/trufflehog#floppy_disk-installation)); without it the scan only warns.
+`git commit --no-verify` / `git push --no-verify` skip the hooks; CI still checks ready PRs.
+
 Copy `.env.example` to `.env.local` if you want the optional flags. Leave `FIRECRAWL_API_KEY` and `EXA_API_KEY` empty. The app runs on the local seed and does not call those adapters at startup.
 
 ## Vendor research

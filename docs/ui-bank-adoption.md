@@ -89,6 +89,8 @@ Before implementation, inspect actual call sites, record source/package version 
 
 ## Market-map explorer slice · 2026-10-17
 
+**Superseded 2026-11-16.** `MarketMapExplorer` and `lib/market-areas.ts` were removed so the site has one taxonomy: the 11 catalog domains. The area questions and illustrative vendors moved to `lib/data/domain-questions.ts`, the `/markets/*` pages became sections of `/domains/corporate`, and the old routes redirect. See "Homepage restructure · 2026-11-16" below.
+
 Status: implemented and merged into `main` on 2026-10-23 in PR #77 (merge commit `eb8e59e42e880c5dce35cb5450d821b504c0257f`). The merged preview review is not a production publication claim. Audit and full route-family plan: [UI/UX upgrade recommendation](https://github.com/heyfunwhoa/security-market-map/blob/review/ui-ux-map-upgrade-audit-20261017/docs/ui-bank-adoption.md#uiux-upgrade-audit-and-recommendation--2026-10-17).
 
 - User task: orient in the broad security market, inspect an area, then open its detail page. Destinations: `/` and `/domains` through the shared `MarketMapExplorer`.
@@ -111,7 +113,7 @@ The earlier inventory counted 19 route templates. Current `main` has **20 page t
 | Route family and current routes | User task and main interaction | What works; friction to address | Shared local components |
 | --- | --- | --- | --- |
 | Overview and domain directory: `/`, `/domains` | Orient in the market; choose a domain or category. | Search, clear evidence boundary and linked domain cards work. The original homepage circle graphic mixed attack-path storytelling with domain overlap, crowded labels, hand-set unequal radii and a horizontally scrolling SVG. PR #77 replaced it with the equal-weight explorer on `/` and `/domains`; broader route-family improvements remain recommendations. | `MarketConstellation`, `DomainMap`, `CategoryMap`, `SearchPanel`, `PageIntro`, cards/buttons. |
-| Domain/category/market detail: `/domains/[slug]`, `/categories/[slug]`, `/markets/[slug]` | Understand a buyer problem, category boundaries and adjacent areas. | Useful problem/buyer explanations, category groups, adjacent links and some evidence. Page patterns are content-rich and can repeat the same taxonomy; cross-domain relationships are harder to scan than the prose. | `PageIntro`, `AreaDiagram`, `CloudAppShortlist`, `DomainMap`, `CategoryMap`, `Claims`, `AcademyLinks`. |
+| Domain/category/market detail: `/domains/[slug]`, `/categories/[slug]` (`/markets/[slug]` redirects since 2026-11-16) | Understand a buyer problem, category boundaries and adjacent areas. | Useful problem/buyer explanations, category groups, adjacent links and some evidence. Page patterns are content-rich and can repeat the same taxonomy; cross-domain relationships are harder to scan than the prose. | `PageIntro`, `AreaDiagram`, `CloudAppShortlist`, `DomainMap`, `CategoryMap`, `Claims`, `AcademyLinks`. |
 | Vendor/product detail: `/vendors/[slug]` | Inspect a vendor’s positioning and supporting material. | Source/research panels and claim qualifications support traceability; long claim histories and research controls compete for attention. Product-level standalone routes are absent. | `Claims`, `ResearchPanelLive`, `PageIntro`, status/evidence components. |
 | Use cases: `/use-cases`, `/use-cases/[slug]` | Find a buyer job, then follow its workflow, categories and vendors. | Twelve use-case journeys provide a useful entry point. Make the category/vendor/source handoffs and “candidate vs evidence-backed” status more scannable. | `PageIntro`, catalog links, `FlowStrip`/scenario patterns, cards. |
 | Learning and attack scenario: `/learn`, `/attack-path` | Learn terms or step through the coding-agent scenario and associated controls. | The five-step scenario changes control rows and evidence; Learn adds scenarios and definitions. Horizontal step tabs and dense evidence tables need robust small-screen and keyboard behavior; keep the guided sequence distinct from the market taxonomy. | `AttackPath`, `ScenarioPlayer`, `Claims`, `PageIntro`, Tabs/buttons/tables. |
@@ -119,7 +121,7 @@ The earlier inventory counted 19 route templates. Current `main` has **20 page t
 | Landscape and comparison: `/landscape`, `/compare` | Filter the catalog or compare a bounded set using evidence. | Landscape filters and Compare presets/source-linked matrix are valuable and preserve Unknown. The 280-product list and wide matrix are dense; improve filter summaries, reset/no-result feedback, sticky context and mobile row/column navigation without implying rank. | `LandscapeBrowser`, `CompareWorkbench`, `ComparisonEvidence`, `StatusPill`, filter inputs/tables. |
 | Worksheets: `/budget`, `/territory` | Work through a local budget estimate or account hypothesis. | Budget explains price classes and keeps assumptions conservative. Territory’s local-storage workflow has a useful blank state and guards against scoring unknown incumbents; review disclosure of persistence, reset/export, and recoverable errors. No form fields were entered or saved in this audit. | `BudgetWorksheet`, `TerritoryWorkspace`, form primitives, buttons/cards. |
 | Sources/research: `/sources` | Trace evidence, freshness, conflicts, review queue and intake status. | The ledger makes provenance and review states visible, but its large mixed table and intake controls create a high scanning burden. Separate overview/status from source rows and progressively reveal detailed metadata; keep review actions explicit. No source was entered. | `Claims`, `SourceIntake`, `ResearchPanelLive`, `StatusPill`, tables/forms. |
-| Incident lab: `/frameworks/incident-lab` | Test fixture classification under missing/disputed/unreviewed evidence. | Resettable synthetic states and explicit “request reviewed status (not an approval)” protect the evidence boundary. Explain fixture-only scope near the result and ensure state changes are announced accessibly. | `IncidentLab`, buttons, labels, live region, cards. |
+| Incident lab: `/review/incident-lab` (moved from `/frameworks/incident-lab`, which now 308-redirects) | Test fixture classification under missing/disputed/unreviewed evidence. | Resettable synthetic states and explicit “request reviewed status (not an approval)” protect the evidence boundary. Explain fixture-only scope near the result and ensure state changes are announced accessibly. | `IncidentLab`, buttons, labels, live region, cards. |
 | Case study: `/case-studies/cyera-oasis` | Read a bounded company case and distinguish reported facts from interpretation. | The route and content exist in source; this route was not separately exercised in the live walkthrough. Preserve source/date and limitation visibility and align its editorial hierarchy with vendor and source pages. | `PageIntro`, `Claims`, catalog data, cards. |
 
 **Shared system:** the app already has a coherent warm neutral palette, Source Sans/Fraunces typography, spacing/radius tokens, a local shadcn/Radix-style UI family, header/footer/skip link, focus-ring conventions, and cards, badges, tabs, tables, sheets, labels, inputs and buttons. Continue these rather than importing another component kit. Relevant workbench entries are summaries, disclosure, context, data, search and feedback; reuse/adapt local cards, Tabs, Sheet, filters, search and state feedback rather than copying portfolio components or branding. Existing `docs/ui-bank-adoption.md` and `docs/product/prd.md` are the design/requirements references; the PRD remains draft and should not be duplicated.
@@ -412,3 +414,33 @@ at 200%, keyboard stage controls, accordion Enter and ArrowDown, and hash focus.
 VoiceOver or another screen reader, a physical phone, and the operating-system zoom
 control were not run. Rollback reverts these page compositions; catalog claims stay
 vendor-published.
+
+## Buyer seat pages · 2026-11-08
+
+Status: implemented on `research/security-ecosystem-map` (PR #148); not merged or deployed. Owner: repository maintainer.
+
+- User task: find who buys, uses, approves or blocks for a category, then read that seat's pains, titles by level, and coverage by company size.
+- Destinations: new `/personas` index and `/personas/[id]` detail; a "Who owns it and who feels the problem" section on `/categories/[slug]`; a "Buyer seats" link in the Explore nav group.
+- Reuse: `Breadcrumbs`, `PageIntro`, the use-case detail page's two-column layout, existing link and card classes. No new component library, dependency or motion. Decision: reuse; no bank pattern adopted.
+- Zoom path: Home → Buyer seats → seat → category / use case / landscape filtered by `?persona=`; category → seat. Each seat page ends with links back to all seats, use cases and domains.
+- States: unknown seat id → 404; no connected seats → "No connections recorded yet."; optional sections hidden when empty. Hypothesis pains are labeled.
+- Responsive and keyboard: single column below `lg`, grid cards at `sm`/`lg`; native links with `focus-visible` outlines and 44px minimum card height. No animation, so reduced motion is unaffected.
+- Checks run: typecheck, lint, vitest, and `next dev` HTTP 200 for `/personas`, `/personas/ciso`, `/personas/procurement`, `/personas/legal-counsel`, and 404 for an unknown id. **Not yet checked in a real browser** at mobile/tablet/desktop widths or with a screen reader; do that on the Vercel preview before merge.
+
+## Context graph surfaces · 2026-11-08
+
+Status: on `research/context-graph`; not merged or deployed.
+
+- Destinations: `/gaps` (new; now reads the `market-map` evidence-graph slice), plus new sections on `/categories/[slug]` (what buyers do instead, what starts the conversation, common objections) and on `/personas/[id]` (objections and reframes, buying triggers).
+- Reuse: `Breadcrumbs`, `PageIntro`, existing card and link classes, native `<details>` for gap groups (keyboard-operable, no script). Decision: reuse; no bank pattern adopted.
+- States: each new category column shows "Not recorded yet." when empty; seat sections hide when empty; high-severity gap groups open by default.
+- Checks run: typecheck, lint, vitest, and `next dev` returning 200 for `/gaps`, `/personas/appsec`, `/categories/secrets-detection` and the three APIs. A real-browser responsive check is still pending on the Vercel preview.
+
+## Homepage restructure · 2026-11-16
+
+Status: on branch `claude/homepage-one-taxonomy`, not merged.
+
+- One taxonomy: the 11 catalog domains. `MarketMapExplorer` and the nine buyer views were removed. `/markets/{endpoint,network,exposure}` redirect (308) to anchored sections on `/domains/corporate`; any other `/markets/*` path goes to `/domains`.
+- Reuse/adapt/new: reused `DomainMap` (adds status label, claim count, and highlight), `CategoryMap` (group note promoted to the heading), `ClaimList`, the local Radix `Tooltip`, and existing tokens. New: `DomainExplorer` (native buttons with `aria-pressed` and a polite live region), `SourceBadge` and `Term` (tooltip on a native button, opens on hover, focus, or tap), `/methodology`, `/about`, `/domain-map.svg`, and a generated OG/Twitter image. No new dependencies.
+- Verification (local production build, Chromium): homepage height 6358 to 3872 px at 1280 wide and 14047 to 7717 px at 375 wide; words in `main` 2008 to 1098. No horizontal scroll at 375. Skip link is the first tab stop. Attack-path steps toggle with Enter and Space and highlight the mapped tiles. Badge and term tooltips open on focus and hover. A crawl of 399 internal pages found no broken links or anchors. `npm test`, lint, typecheck, and build pass.
+- Not verified: spoken screen-reader output, a physical touch device, 200% browser zoom, and contrast measured with a tool. The highlight ring adds a border and ring rather than dimming other tiles, so text contrast is unchanged.
