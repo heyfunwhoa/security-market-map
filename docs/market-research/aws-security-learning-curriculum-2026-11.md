@@ -5,6 +5,7 @@
 ## Existing baseline, verified in repository
 
 - [AWS ecosystem research](aws-security-ecosystem-2026-11.md): buyer-problem → native security control → adjacent product → sourced market relationship.
+- [2026 AWS security ecosystem expansion](aws-security-ecosystem-expansion-2026-11.md): new Security Hub identity, network, multicloud, AI inventory and Extended partner capabilities, with buyer-led comparative links and review gates.
 - [Cedar Ridge synthetic exercise](aws-security-learning-scenario-2026-11.md): fictional ECS workload identity accessing S3; GuardDuty S3 Protection, CloudTrail data events, Security Hub, posture, investigation, and response.
 - [Existing /learn route](../../app/learn/page.tsx): actual Cedar Ridge guided and reference modes; reuse these and avoid a parallel app.
 - Existing vendor, category and claim catalog: reference through stable IDs; never turn vendor category membership into feature parity.
