@@ -75,9 +75,14 @@ Vendor-level adjacency was also added for `microsoft` (`ispm`, `wim`), `okta` (`
 
 | Candidate | Why not added |
 | --- | --- |
-| Cisco Identity Intelligence | `cisco.com` returned HTTP 403 to the research client on two attempts. |
-| Defakto name history | The homepage does not mention the reported former name (SPIRL). Not recorded in `formerNames`. |
-| HashiCorp Vault workload auth | Not fetched. Treat Vault as a complement to WIM unless evidence says otherwise. |
+| Cisco Identity Intelligence | `www.cisco.com` product page returned HTTP 403 to the research client (2026-11-17). The Oort acquisition announcement on `newsroom.cisco.com` was not reachable from the follow-up session (host not allowed). No workaround such as a spoofed browser user agent was used. |
+| Defakto name history | The homepage does not mention the reported former name (SPIRL). `www.defakto.security/about` was not reachable from the follow-up session. Not recorded in `formerNames`. |
+| HashiCorp Vault workload auth | `developer.hashicorp.com` was not reachable from the follow-up session. Treat Vault as a complement to WIM unless evidence says otherwise. |
+
+## Follow-up status (2026-11-17, after merge of PR #197)
+
+- Merged as `aaee213` on `main`. Production on `security-market-map.vercel.app` was **not verified** from the agent session, because the host is not in its allowed domains. A human should open the post-deploy smoke paths listed in the PR #197 release handoff.
+- Added two learn-page distinctions with no new external claims: "ISPM, ITDR, CIEM, and IGA" (`identity-posture-detection-entitlement`) and "WIM, NHI governance, and the vault" (`workload-identity-layers`). Both restate the boundaries already in the category definitions. They are rendered by the existing `DistinctionCards` component on `/learn#distinctions`. No UI change was needed.
 
 ## Research review record
 
