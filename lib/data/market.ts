@@ -438,7 +438,7 @@ export const vendors: Vendor[] = [
     positioning:
       "Google Secret Manager is the cloud secret store on GCP. Same boundary as the other cloud secret stores: issuance and storage, not governance of every identity.",
     primaryCategoryIds: ["secrets-management"],
-    adjacentCategoryIds: ["nhi"],
+    adjacentCategoryIds: ["nhi", "wim"],
     identityScopes: ["nhi"],
     verificationStatus: "research_candidate",
     openQuestions: ["Is GCP the only place secrets need to live?"],
@@ -628,7 +628,7 @@ export const vendors: Vendor[] = [
     positioning:
       "Identity protection vendor buyers shortlist for ITDR, including environments that are hard to agent. Capabilities unverified here.",
     primaryCategoryIds: ["itdr"],
-    adjacentCategoryIds: ["workforce-identity", "pam"],
+    adjacentCategoryIds: ["workforce-identity", "pam", "ispm"],
     identityScopes: ["human"],
     verificationStatus: "research_candidate",
     openQuestions: ["Is the gap legacy systems that the IdP does not see?"],

@@ -3,7 +3,7 @@ id: "ispm"
 type: "category"
 name: "Identity security posture management (ISPM)"
 layer: "core"
-vendors: 8
+vendors: 9
 ---
 
 # Identity security posture management (ISPM)
@@ -35,6 +35,7 @@ Continuous assessment of the identity estate itself: IdP and directory misconfig
 - Okta
 - Veza
 - CrowdStrike
+- Silverfort
 - Semperis
 - Push Security
 

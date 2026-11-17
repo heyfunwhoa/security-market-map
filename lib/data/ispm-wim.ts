@@ -33,19 +33,21 @@ export const ispmWimVendors: Vendor[] = [
     "name": "Defakto",
     "formerNames": [],
     "website": "https://www.defakto.security/",
-    "positioning": "Listed on the SPIFFE project page as software implementing SPIFFE. Its own site was not read in this research pass, so name history and product scope are unverified.",
+    "positioning": "Defakto describes a non-human IAM platform built on SPIFFE that replaces secrets and standing access with short-lived, verified identities for workloads, CI/CD jobs, machines and AI agents. It is also listed on the SPIFFE project's implementer table.",
     "primaryCategoryIds": [
       "wim"
     ],
     "adjacentCategoryIds": [
-      "nhi"
+      "nhi",
+      "agent-identity"
     ],
     "identityScopes": [
-      "nhi"
+      "nhi",
+      "agent"
     ],
     "verificationStatus": "research_candidate",
     "openQuestions": [
-      "What does the product add over self-run SPIRE, and is the reported former name accurate?"
+      "What does the product add over self-run SPIRE, and is the reported former name (SPIRL) accurate? The homepage does not state it."
     ]
   },
   {
@@ -340,6 +342,104 @@ export const ispmWimProducts: Product[] = [
     "availabilityNote": "Homepage observed 2026-11-17. Browser and device coverage not verified.",
     "officialUrl": "https://pushsecurity.com/",
     "useCaseIds": []
+  },
+  {
+    "id": "gcp-workload-identity-federation",
+    "slug": "gcp-workload-identity-federation",
+    "vendorId": "google",
+    "name": "Google Cloud Workload Identity Federation",
+    "positioning": "Lets workloads outside Google Cloud reach Google Cloud resources with federated identities instead of service account keys.",
+    "primaryCategoryIds": [
+      "wim"
+    ],
+    "adjacentCategoryIds": [
+      "nhi"
+    ],
+    "deployment": [
+      "cloud_native"
+    ],
+    "identityScopes": [
+      "nhi"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Documented on Google Cloud IAM docs observed 2026-11-17.",
+    "officialUrl": "https://docs.cloud.google.com/iam/docs/workload-identity-federation",
+    "useCaseIds": []
+  },
+  {
+    "id": "defakto-platform",
+    "slug": "defakto-platform",
+    "vendorId": "defakto",
+    "name": "Defakto non-human IAM platform",
+    "positioning": "SPIFFE-based short-lived identities for workloads, CI/CD jobs, machines and AI agents, replacing stored secrets.",
+    "primaryCategoryIds": [
+      "wim"
+    ],
+    "adjacentCategoryIds": [
+      "nhi",
+      "agent-identity"
+    ],
+    "deployment": [
+      "saas",
+      "self_hosted",
+      "hybrid"
+    ],
+    "identityScopes": [
+      "nhi",
+      "agent"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Homepage observed 2026-11-17 says cloud, on-premises or hybrid deployment. Editions not verified.",
+    "officialUrl": "https://www.defakto.security/",
+    "useCaseIds": []
+  },
+  {
+    "id": "teleport-machine-workload-identity",
+    "slug": "teleport-machine-workload-identity",
+    "vendorId": "teleport",
+    "name": "Teleport Machine & Workload Identity",
+    "positioning": "Short-lived certificates, automatically issued and renewed, in place of static secrets for machines and workloads.",
+    "primaryCategoryIds": [
+      "wim"
+    ],
+    "adjacentCategoryIds": [
+      "nhi",
+      "pam"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "nhi"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Documentation observed 2026-11-17. Editions and licensing not verified.",
+    "officialUrl": "https://goteleport.com/docs/machine-workload-identity/",
+    "useCaseIds": []
+  },
+  {
+    "id": "silverfort-ispm",
+    "slug": "silverfort-ispm",
+    "vendorId": "silverfort",
+    "name": "Silverfort Identity Security Posture Management",
+    "positioning": "Discovery and mitigation of identity weaknesses across hybrid environments, including AD, cloud IdPs and legacy authentication.",
+    "primaryCategoryIds": [
+      "ispm"
+    ],
+    "adjacentCategoryIds": [
+      "itdr"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "human",
+      "nhi"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Product page observed 2026-11-17. Editions and deployment not verified.",
+    "officialUrl": "https://www.silverfort.com/platform/identity-security-posture-management/",
+    "useCaseIds": []
   }
 ];
 
@@ -499,6 +599,54 @@ export const ispmWimSources: Source[] = [
     "retrievedAt": "2026-11-17",
     "volatility": "fast",
     "excerpt": "Corsha describes itself as an identity provider for machines and an industrial identity security platform that gives every machine a verifiable identity and applies identity-based policies at the connection level."
+  },
+  {
+    "id": "src-wim-gcp-wif",
+    "title": "Workload Identity Federation \u2014 Google Cloud IAM",
+    "url": "https://docs.cloud.google.com/iam/docs/workload-identity-federation",
+    "canonicalUrl": "https://docs.cloud.google.com/iam/docs/workload-identity-federation",
+    "publisher": "Google Cloud",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-17",
+    "volatility": "moderate",
+    "excerpt": "Google documents Workload Identity Federation as granting on-premises or multicloud workloads access to Google Cloud resources with federated identities instead of service account keys, including X.509 certificates, AWS, Azure, Active Directory, GitHub, GitLab and OIDC or SAML IdPs."
+  },
+  {
+    "id": "src-wim-defakto",
+    "title": "Defakto \u2014 homepage",
+    "url": "https://www.defakto.security/",
+    "canonicalUrl": "https://www.defakto.security/",
+    "publisher": "Defakto",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-17",
+    "volatility": "fast",
+    "excerpt": "Defakto describes a non-human IAM platform built on SPIFFE and other open protocols that replaces secrets and standing access with short-lived, verified identities issued and revoked on demand, deployable in cloud, on-premises or hybrid environments."
+  },
+  {
+    "id": "src-wim-teleport-mwi",
+    "title": "Teleport Machine & Workload Identity \u2014 documentation",
+    "url": "https://goteleport.com/docs/machine-workload-identity/",
+    "canonicalUrl": "https://goteleport.com/docs/machine-workload-identity/",
+    "publisher": "Teleport",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-17",
+    "volatility": "moderate",
+    "excerpt": "Teleport documents Machine & Workload Identity as replacing static secrets with short-lived certificates that are automatically issued and renewed for non-human identities, with use cases including CI/CD pipelines and workload-to-workload authentication."
+  },
+  {
+    "id": "src-ispm-silverfort",
+    "title": "Silverfort \u2014 Identity Security Posture Management",
+    "url": "https://www.silverfort.com/platform/identity-security-posture-management/",
+    "canonicalUrl": "https://www.silverfort.com/platform/identity-security-posture-management/",
+    "publisher": "Silverfort",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-17",
+    "volatility": "fast",
+    "excerpt": "Silverfort's ISPM page says it automates discovery and mitigation of weaknesses that expose hybrid environments to identity threats, including misconfigurations in AD, cloud IdPs and legacy authentication modes, excessive privileges, stale credentials and shadow admins."
   }
 ];
 
@@ -801,7 +949,7 @@ export const ispmWimClaims: Claim[] = [
     "verificationStatus": "vendor_published",
     "lastCheckedAt": "2026-11-17",
     "conflictsWith": [],
-    "notes": "Listing on the project page, likely submitted by implementers. Defakto's own site was not reachable from the research session. Not a capability cell."
+    "notes": "Listing on the project page, likely submitted by implementers. Not a capability cell. See claim-wim-defakto for the vendor's own description."
   },
   {
     "id": "claim-wim-spiffe-teleport",
@@ -821,7 +969,7 @@ export const ispmWimClaims: Claim[] = [
     "verificationStatus": "vendor_published",
     "lastCheckedAt": "2026-11-17",
     "conflictsWith": [],
-    "notes": "Listing on the project page. Teleport's own workload identity page was not read. Not a capability cell."
+    "notes": "Listing on the project page. Not a capability cell. See claim-wim-teleport-mwi for Teleport's own documentation."
   },
   {
     "id": "claim-wim-aws-ra",
@@ -882,5 +1030,105 @@ export const ispmWimClaims: Claim[] = [
     "lastCheckedAt": "2026-11-17",
     "conflictsWith": [],
     "notes": "Publisher-reported, not independently tested. No direct-competitor or parity claim. See docs/market-research/ispm-wim-categories-2026-11.md."
+  },
+  {
+    "id": "claim-wim-gcp-wif",
+    "statement": "Google documents Workload Identity Federation as letting on-premises or multicloud workloads access Google Cloud resources with federated identities instead of service account keys, including X.509 certificates, AWS, Azure, Active Directory, GitHub, GitLab and OIDC or SAML identity providers.",
+    "subjectType": "product",
+    "subjectId": "gcp-workload-identity-federation",
+    "capabilityId": "cap-workload-federation",
+    "polarity": "asserts",
+    "sourceId": "src-wim-gcp-wif",
+    "sourceUrl": "https://docs.cloud.google.com/iam/docs/workload-identity-federation",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-11-17",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "high",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-17",
+    "conflictsWith": [],
+    "notes": "Official documentation. Targets are Google Cloud resources only."
+  },
+  {
+    "id": "claim-wim-defakto",
+    "statement": "Defakto says its platform, built on SPIFFE and other open protocols, replaces secrets and standing access with short-lived, verified identities issued and revoked on demand for workloads, CI/CD jobs, machines and AI agents.",
+    "subjectType": "product",
+    "subjectId": "defakto-platform",
+    "capabilityId": "cap-wim-short-lived-identity",
+    "polarity": "asserts",
+    "sourceId": "src-wim-defakto",
+    "sourceUrl": "https://www.defakto.security/",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-17",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-17",
+    "conflictsWith": [],
+    "notes": "Publisher-reported, not independently tested. No direct-competitor or parity claim. See docs/market-research/ispm-wim-categories-2026-11.md."
+  },
+  {
+    "id": "claim-wim-teleport-mwi",
+    "statement": "Teleport documents Machine & Workload Identity as replacing static secrets with short-lived certificates that are automatically issued and renewed for non-human identities, including CI/CD pipelines and workload-to-workload authentication.",
+    "subjectType": "product",
+    "subjectId": "teleport-machine-workload-identity",
+    "capabilityId": "cap-wim-short-lived-identity",
+    "polarity": "asserts",
+    "sourceId": "src-wim-teleport-mwi",
+    "sourceUrl": "https://goteleport.com/docs/machine-workload-identity/",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-11-17",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "high",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-17",
+    "conflictsWith": [],
+    "notes": "Vendor documentation. Supported targets and editions not checked."
+  },
+  {
+    "id": "claim-ispm-silverfort",
+    "statement": "Silverfort's ISPM page says it uncovers and helps mitigate weaknesses that expose hybrid environments to identity threats, including misconfigurations in AD, cloud IdPs and legacy authentication modes.",
+    "subjectType": "product",
+    "subjectId": "silverfort-ispm",
+    "capabilityId": "cap-ispm-config",
+    "polarity": "asserts",
+    "sourceId": "src-ispm-silverfort",
+    "sourceUrl": "https://www.silverfort.com/platform/identity-security-posture-management/",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-17",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-17",
+    "conflictsWith": [],
+    "notes": "Publisher-reported, not independently tested. No direct-competitor or parity claim. See docs/market-research/ispm-wim-categories-2026-11.md."
+  },
+  {
+    "id": "claim-ispm-silverfort-hygiene",
+    "statement": "The same Silverfort page names excessive privileges, stale credentials, unconstrained delegation and shadow admins as identity weaknesses it addresses.",
+    "subjectType": "product",
+    "subjectId": "silverfort-ispm",
+    "capabilityId": "cap-ispm-hygiene",
+    "polarity": "asserts",
+    "sourceId": "src-ispm-silverfort",
+    "sourceUrl": "https://www.silverfort.com/platform/identity-security-posture-management/",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-17",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-17",
+    "conflictsWith": [],
+    "notes": "Publisher-reported, not independently tested. No direct-competitor or parity claim. See docs/market-research/ispm-wim-categories-2026-11.md. The page frames these as weaknesses attackers chain; it does not say each is auto-remediated."
   }
 ];

@@ -3,7 +3,7 @@ id: "wim"
 type: "category"
 name: "Workload identity management (WIM)"
 layer: "core"
-vendors: 8
+vendors: 9
 ---
 
 # Workload identity management (WIM)
@@ -29,7 +29,7 @@ How a running workload proves what it is and gets a short-lived credential for t
 
 - Aembit: Aembit's non-human identity page describes policy-based, secretless, just-in-time access between workloads and resources. It does not say federation, and it does not list targets. Inventory and decommissioning are not on that page.
 - SPIFFE / SPIRE (CNCF): Open-source workload identity standards (SPIFFE) and reference implementation (SPIRE). Project documentation describes short-lived SVIDs and node and workload attestation. A project, not a commercial vendor.
-- Defakto: Listed on the SPIFFE project page as software implementing SPIFFE. Its own site was not read in this research pass, so name history and product scope are unverified.
+- Defakto: Defakto describes a non-human IAM platform built on SPIFFE that replaces secrets and standing access with short-lived, verified identities for workloads, CI/CD jobs, machines and AI agents. It is also listed on the SPIFFE project's implementer table.
 - Riptides: Riptides describes kernel-level, SPIFFE-based workload identity, secretless credentials, automatic mTLS and per-agent controls for AI agents.
 
 ## Vendors (adjacent)
@@ -37,6 +37,7 @@ How a running workload proves what it is and gets a short-lived credential for t
 - Microsoft
 - Teleport
 - Amazon Web Services
+- Google
 - Corsha
 
 ## What buyers do instead
