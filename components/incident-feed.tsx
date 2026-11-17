@@ -8,6 +8,7 @@ import {
   filterIncidents,
   INCIDENT_KIND_LABELS,
   incidentFilterUrl,
+  NO_INCIDENT_FILTERS,
   readIncidentFilters,
   type FeedIncident,
   type IncidentFilters,
@@ -46,7 +47,14 @@ function FilterGroup({
   );
 }
 
-export function IncidentFeed({ feed }: { feed: FeedIncident[] }) {
+export function IncidentFeed({
+  feed,
+  categories,
+}: {
+  feed: FeedIncident[];
+  /** Only categories with at least one reviewed incident link. */
+  categories: { id: string; label: string }[];
+}) {
   const searchParams = useSearchParams();
   const filters = readIncidentFilters(searchParams, feed);
   const visible = filterIncidents(feed, filters);
@@ -60,7 +68,7 @@ export function IncidentFeed({ feed }: { feed: FeedIncident[] }) {
   const ecosystems = [...new Set(feed.flatMap((item) => item.incident.affectedEcosystems))]
     .sort()
     .map((id) => ({ id, label: ecosystemLabel(id) }));
-  const active = filters.kind !== "all" || filters.ecosystem !== "all";
+  const active = filters.kind !== "all" || filters.ecosystem !== "all" || filters.category !== "all";
 
   return (
     <section aria-label="Incident feed" className="mt-8">
@@ -72,6 +80,14 @@ export function IncidentFeed({ feed }: { feed: FeedIncident[] }) {
           options={ecosystems}
           onChange={(ecosystem) => navigate({ ...filters, ecosystem })}
         />
+        {categories.length > 0 && (
+          <FilterGroup
+            legend="Market category"
+            value={filters.category}
+            options={categories}
+            onChange={(category) => navigate({ ...filters, category })}
+          />
+        )}
         <p className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
           <span role="status">
             {visible.length} of {feed.length} reviewed incident{feed.length === 1 ? "" : "s"}
@@ -79,7 +95,7 @@ export function IncidentFeed({ feed }: { feed: FeedIncident[] }) {
           {active && (
             <button
               type="button"
-              onClick={() => navigate({ kind: "all", ecosystem: "all" })}
+              onClick={() => navigate(NO_INCIDENT_FILTERS)}
               className="rounded-sm text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
             >
               Clear filters

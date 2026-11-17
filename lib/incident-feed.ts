@@ -1,3 +1,4 @@
+import categoryLinksSeed from "@/data/security-intelligence/incident-category-links.json";
 import incidentsSeed from "@/data/security-intelligence/incidents.seed.json";
 import salesNotesSeed from "@/data/security-intelligence/sales-notes.json";
 import sourcesSeed from "@/data/security-intelligence/sources.seed.json";
@@ -9,6 +10,8 @@ import { makeSourcedIncident, type PublicIncident, type SourceRef } from "@/lib/
  * Every incident passes the existing publication gate (makeSourcedIncident), so
  * candidates and unreviewed records never reach the feed. Sales notes are a
  * separate interpretation layer keyed by incidentId; they do not alter incident data.
+ * Incident→category links follow docs/security-intelligence/relationship-vocabulary.md:
+ * only reviewed, sourced links are published; proposed links stay in the data file for review.
  */
 
 export type IncidentSource = SourceRef & { type: string; rightsNote: string | null };
@@ -26,14 +29,46 @@ export type SalesNote = {
   reviewedOn: string | null;
 };
 
+export type CategoryLink = {
+  id: string;
+  incidentId: string;
+  categoryId: string;
+  predicate: "related_to";
+  rationale: string;
+  doesNotImply: string;
+  basedOnSourceIds: string[];
+  status: "proposed" | "reviewed" | "rejected";
+  proposedBy: string;
+  proposedOn: string;
+  reviewedBy: string | null;
+  reviewedOn: string | null;
+};
+
 export type FeedIncident = {
   slug: string;
   incident: PublicIncident;
   sources: IncidentSource[];
   salesNote: SalesNote | null;
+  /** Reviewed links only. */
+  categoryLinks: CategoryLink[];
 };
 
-export type IncidentFilters = { kind: string; ecosystem: string };
+export type IncidentFilters = { kind: string; ecosystem: string; category: string };
+
+export const NO_INCIDENT_FILTERS: IncidentFilters = { kind: "all", ecosystem: "all", category: "all" };
+
+/** A link is publishable only when a named reviewer approved it and it cites the incident's own sources. */
+export function isPublishableLink(link: CategoryLink, incident: PublicIncident): boolean {
+  return (
+    link.status === "reviewed" &&
+    !!link.reviewedBy?.trim() &&
+    !!link.reviewedOn &&
+    link.incidentId === incident.id &&
+    link.rationale.trim().length > 0 &&
+    link.basedOnSourceIds.length > 0 &&
+    link.basedOnSourceIds.every((id) => incident.sourceIds.includes(id))
+  );
+}
 
 export const INCIDENT_KIND_LABELS: Record<PublicIncident["kind"], string> = {
   supply_chain: "Supply chain",
@@ -74,6 +109,7 @@ export function buildIncidentFeed(
   incidents: readonly PublicIncident[],
   sources: readonly IncidentSource[],
   notes: readonly SalesNote[],
+  links: readonly CategoryLink[] = [],
 ): FeedIncident[] {
   const sourceById = new Map(sources.map((source) => [source.id, source]));
   const feed: FeedIncident[] = [];
@@ -94,6 +130,7 @@ export function buildIncidentFeed(
       incident: sourced.incident,
       sources: sourced.sources.map((source) => sourceById.get(source.id)!),
       salesNote: noteIsGrounded ? note : null,
+      categoryLinks: links.filter((link) => isPublishableLink(link, sourced.incident)),
     });
   }
   return feed.sort((a, b) => b.incident.disclosedOn.localeCompare(a.incident.disclosedOn));
@@ -103,7 +140,8 @@ export function filterIncidents(feed: readonly FeedIncident[], filters: Incident
   return feed.filter(
     (item) =>
       (filters.kind === "all" || item.incident.kind === filters.kind) &&
-      (filters.ecosystem === "all" || item.incident.affectedEcosystems.includes(filters.ecosystem)),
+      (filters.ecosystem === "all" || item.incident.affectedEcosystems.includes(filters.ecosystem)) &&
+      (filters.category === "all" || item.categoryLinks.some((link) => link.categoryId === filters.category)),
   );
 }
 
@@ -113,9 +151,11 @@ export function readIncidentFilters(
 ): IncidentFilters {
   const kind = params.get("kind") ?? "all";
   const ecosystem = params.get("ecosystem") ?? "all";
+  const category = params.get("category") ?? "all";
   return {
     kind: kind in INCIDENT_KIND_LABELS ? kind : "all",
     ecosystem: feed.some((item) => item.incident.affectedEcosystems.includes(ecosystem)) ? ecosystem : "all",
+    category: feed.some((item) => item.categoryLinks.some((link) => link.categoryId === category)) ? category : "all",
   };
 }
 
@@ -123,6 +163,7 @@ export function incidentFilterUrl(filters: IncidentFilters): string {
   const params = new URLSearchParams();
   if (filters.kind !== "all") params.set("kind", filters.kind);
   if (filters.ecosystem !== "all") params.set("ecosystem", filters.ecosystem);
+  if (filters.category !== "all") params.set("category", filters.category);
   const query = params.toString();
   return query ? `/incidents?${query}` : "/incidents";
 }
@@ -142,7 +183,17 @@ export const incidentFeed: FeedIncident[] = buildIncidentFeed(
   incidentsSeed as PublicIncident[],
   sourcesSeed as IncidentSource[],
   salesNotesSeed as SalesNote[],
+  categoryLinksSeed as CategoryLink[],
 );
+
+/** Every link in the data file, including proposed ones. For review tooling and tests, never for public pages. */
+export const allCategoryLinks: readonly CategoryLink[] = categoryLinksSeed as CategoryLink[];
+
+export function incidentsForCategory(categoryId: string): { item: FeedIncident; link: CategoryLink }[] {
+  return incidentFeed.flatMap((item) =>
+    item.categoryLinks.filter((link) => link.categoryId === categoryId).map((link) => ({ item, link })),
+  );
+}
 
 export function incidentBySlug(slug: string): FeedIncident | undefined {
   return incidentFeed.find((item) => item.slug === slug);

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { StatusPill } from "@/components/chrome";
 import { CopyTalkTrack } from "@/components/copy-talk-track";
+import { catalog } from "@/lib/catalog";
 import { formatDate } from "@/lib/format";
 import {
   ecosystemLabel,
@@ -10,6 +11,7 @@ import {
   incidentBySlug,
   incidentFeed,
   incidentFilterUrl,
+  NO_INCIDENT_FILTERS,
   sourceTypeLabel,
   talkTrackText,
 } from "@/lib/incident-feed";
@@ -30,7 +32,7 @@ export default async function IncidentPage({ params }: { params: Promise<{ slug:
   const { slug } = await params;
   const item = incidentBySlug(slug);
   if (!item) notFound();
-  const { incident, sources, salesNote } = item;
+  const { incident, sources, salesNote, categoryLinks } = item;
   const copyText = talkTrackText(item);
   const noteSources = salesNote ? sources.filter((source) => salesNote.basedOnSourceIds.includes(source.id)) : [];
 
@@ -145,13 +147,41 @@ export default async function IncidentPage({ params }: { params: Promise<{ slug:
               not that the technique was absent.
             </p>
           </section>
+
+          <section aria-labelledby="market-categories">
+            <h2 id="market-categories" className="text-lg font-semibold">Related market categories</h2>
+            {categoryLinks.length ? (
+              <ul className="mt-3 space-y-3">
+                {categoryLinks.map((link) => {
+                  const category = catalog.categories.find((entry) => entry.id === link.categoryId);
+                  if (!category) return null;
+                  return (
+                    <li key={link.id} className="rounded-lg border border-border p-4 text-sm">
+                      <Link href={`/categories/${category.slug}`} className={`font-semibold ${linkClass}`}>
+                        {category.name}
+                      </Link>
+                      <p className="mt-1 leading-6">{link.rationale}</p>
+                      <p className="mt-1 text-muted-foreground">Does not imply: {link.doesNotImply}</p>
+                      <p className="mt-1 text-xs text-muted-foreground">
+                        Reviewed {formatDate(link.reviewedOn)}
+                      </p>
+                    </li>
+                  );
+                })}
+              </ul>
+            ) : (
+              <p className="mt-2 text-sm text-muted-foreground">
+                No reviewed category links yet. A category sharing a label with this incident is not evidence that it addresses it.
+              </p>
+            )}
+          </section>
         </div>
       </div>
 
       <nav aria-label="Back to incidents" className="mt-10 flex flex-wrap gap-x-6 gap-y-2 border-t border-border pt-4 text-sm">
         <Link href="/incidents" className={linkClass}>← All incidents</Link>
         {incident.affectedEcosystems.map((ecosystem) => (
-          <Link key={ecosystem} href={incidentFilterUrl({ kind: "all", ecosystem })} className={linkClass}>
+          <Link key={ecosystem} href={incidentFilterUrl({ ...NO_INCIDENT_FILTERS, ecosystem })} className={linkClass}>
             ← More {ecosystemLabel(ecosystem)} incidents
           </Link>
         ))}
