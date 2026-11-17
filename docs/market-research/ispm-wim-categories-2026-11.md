@@ -104,6 +104,7 @@ Vendor-level adjacency was also added for `microsoft` (`ispm`, `wim`), `okta` (`
 | Source and classification review | Researcher check done; human review not run | Each source page was retrieved 2026-11-17 and the passage behind each claim was read. Human review pending. |
 | No confidential data | Pass | Public vendor and project pages only. No customer, interview, employer or credential data. |
 | Catalog and research integrity checks | Pass | `npm run test:research-integrity` 7/7; `npm test` 704/704 (local). |
-| Typecheck / lint / build | See PR | Recorded on the PR for the pushed commit. |
+| Typecheck / lint / build | Pass | Local on `31aec3f`; CI `check`, Semgrep, Trivy, dependency audit and TruffleHog all passed on PR #197 at `31aec3f`. |
+| Browser QA (local Chromium, production build) | Pass, with limits | `/categories/ispm`, `/categories/wim`, both use cases, `/connections` and `/vendors/defakto` at 390 px and 1280 px, with and without reduced motion: HTTP 200, no horizontal overflow, no console errors. On `/connections` at 390 px, Tab reaches the re-pointed "NHI authentication" link (38 tabs) with a visible 2 px outline; Enter opens `/categories/wim`; Back returns. Breadcrumbs offer a route back out to Landscape and Home. Not tested: screen reader, physical touch device, browser zoom, contrast measurement. `/products/<slug>` returns 404 for these and existing products alike, because only research slugs are generated; products are reached through vendor pages. |
 | Human review | Not run | Pending. |
 | Merge commit | Not applicable yet | Not merged. |
