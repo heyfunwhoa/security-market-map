@@ -54,7 +54,9 @@ describe("role note proposals", () => {
     }
     // Only approved (or owner-edited) lines reach sales-notes.json, word for word.
     const applied = salesNotes.get(n.incidentId)?.roleNotes?.find((r) => r.roleId === n.roleId);
-    if (n.decision === "approved" || n.decision === "edited") expect(applied?.note).toBe(text);
+    // An approved revision (round 2) replaces the round-1 text.
+    const live = n.revisionDecision === "approved" ? n.proposedRevision! : text;
+    if (n.decision === "approved" || n.decision === "edited") expect(applied?.note).toBe(live);
     else expect(applied).toBeUndefined();
   });
 });
