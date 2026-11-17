@@ -138,5 +138,35 @@
     "lastReviewedOn": "2026-11-17",
     "cadence": "event_driven",
     "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:okta-support-root-cause-2023",
+    "publisher": "Okta Security",
+    "type": "company_incident_report",
+    "url": "https://sec.okta.com/articles/2023/11/unauthorized-access-oktas-support-case-management-system-root-cause/",
+    "publishedOn": "2023-11-03",
+    "lastReviewedOn": "2026-11-17",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:okta-harfiles-closure-2024",
+    "publisher": "Okta Security",
+    "type": "company_incident_report",
+    "url": "https://sec.okta.com/articles/harfiles/",
+    "publishedOn": "2024-02-08",
+    "lastReviewedOn": "2026-11-17",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:toyota-tconnect-notice-2022",
+    "publisher": "Toyota Motor Corporation",
+    "type": "company_incident_report",
+    "url": "https://global.toyota/jp/newsroom/corporate/38095972.html",
+    "publishedOn": "2022-10-07",
+    "lastReviewedOn": "2026-11-17",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse. Japanese-language notice; statements are translated paraphrases."
   }
 ]
