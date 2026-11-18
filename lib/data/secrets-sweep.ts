@@ -43,6 +43,26 @@ export const secretsSweepVendors: Vendor[] = [
     ]
   },
   {
+    "id": "betterleaks",
+    "slug": "betterleaks",
+    "name": "Betterleaks",
+    "formerNames": [],
+    "website": "https://github.com/betterleaks/betterleaks",
+    "positioning": "Open-source project maintained by the makers of Gitleaks (README: \"maintained by the folks who made Gitleaks, including the original author\"). Aikido Security sponsors development and uses the engine in its own platform; it is not the publisher. Reviewed 2026-11-18.",
+    "primaryCategoryIds": [
+      "secrets-detection"
+    ],
+    "adjacentCategoryIds": [],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Who owns the betterleaks GitHub organization? No governance or maintainers file was found at e07e69b (2026-11-18).",
+      "When does v2.0.0 ship as a stable release? No date in the README, migration guide or git history (2026-11-18)."
+    ]
+  },
+  {
     "id": "praetorian",
     "slug": "praetorian",
     "name": "Praetorian",
@@ -465,9 +485,9 @@ export const secretsSweepProducts: Product[] = [
   {
     "id": "betterleaks",
     "slug": "betterleaks",
-    "vendorId": "aikido",
+    "vendorId": "betterleaks",
     "name": "Betterleaks",
-    "positioning": "Configurable scanner for exposed secrets. Separate project from Gitleaks; not a rename.",
+    "positioning": "Configurable scanner for exposed secrets, with opt-in credential validation in v1.x (229 of 422 default rules define a validate step at v1.10.1). Separate project from Gitleaks; not a rename. Development sponsored by Aikido Security.",
     "primaryCategoryIds": [
       "secrets-detection"
     ],
@@ -479,7 +499,7 @@ export const secretsSweepProducts: Product[] = [
       "not_an_identity_control"
     ],
     "availability": "unknown",
-    "availabilityNote": "Feature existence is documented separately from current edition, release, support, and availability. Separate project from Gitleaks; not a rename.",
+    "availabilityNote": "Stable release v1.10.1 (2026-11-06). Analysis and revocation exist only in v2.0.0 release candidates and are not asserted here until v2.0.0 is stable. Separate project from Gitleaks; not a rename.",
     "officialUrl": "https://github.com/betterleaks/betterleaks",
     "useCaseIds": [
       "uc-detect"
@@ -789,7 +809,7 @@ export const secretsSweepProducts: Product[] = [
     "slug": "aikido-secrets",
     "vendorId": "aikido",
     "name": "Aikido Secrets Detection",
-    "positioning": "Detects exposed secrets and describes live-secret checks. No independent accuracy comparison inferred.",
+    "positioning": "Detects exposed secrets and describes live-secret checks. Aikido states its platform runs the open-source Betterleaks engine, which it sponsors. No independent accuracy comparison inferred.",
     "primaryCategoryIds": [
       "secrets-detection"
     ],
@@ -801,7 +821,7 @@ export const secretsSweepProducts: Product[] = [
       "not_an_identity_control"
     ],
     "availability": "unknown",
-    "availabilityNote": "Feature existence is documented separately from current edition, release, support, and availability. No independent accuracy comparison inferred.",
+    "availabilityNote": "Feature existence is documented separately from current edition, release, support, and availability. Betterleaks engine use is vendor-reported (aikido.dev/blog/top-secret-scanning-tools, read 2026-11-18). No independent accuracy comparison inferred.",
     "officialUrl": "https://www.aikido.dev/code/secrets-detection",
     "useCaseIds": [
       "uc-detect"
@@ -2043,12 +2063,12 @@ export const secretsSweepSources: Source[] = [
     "title": "Betterleaks — secrets detection scope",
     "url": "https://github.com/betterleaks/betterleaks",
     "canonicalUrl": "https://github.com/betterleaks/betterleaks",
-    "publisher": "Aikido Security",
+    "publisher": "Betterleaks project",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-18",
     "volatility": "fast",
-    "excerpt": "Research paraphrase: Configurable scanner for exposed secrets."
+    "excerpt": "Research paraphrase: Configurable scanner for exposed secrets, maintained by the makers of Gitleaks; development supported by Aikido Security."
   },
   {
     "id": "src-secrets-sweep-kingfisher",
@@ -2982,9 +3002,9 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-18",
     "conflictsWith": [],
-    "notes": "Separate project from Gitleaks; not a rename. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
+    "notes": "Separate project from Gitleaks; not a rename. Publisher corrected 2026-11-18 from Aikido Security to the Betterleaks project: the README at e07e69b says it is maintained by the makers of Gitleaks and development is supported by Aikido; LICENSE copyright Zachary Rice; Aikido's own page (aikido.dev/blog/top-secret-scanning-tools, read 2026-11-18) says it is governed independently and sponsored by Aikido without being dependent on it. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
   {
     "id": "claim-secrets-sweep-kingfisher",

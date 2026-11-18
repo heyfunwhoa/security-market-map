@@ -80,7 +80,9 @@ The Atlas counts 456 *reported* Kingfisher rules at v2.19.1, excluding 47 hidden
 | --- | --- | --- |
 | [CompassSecurity/pipeleek](https://github.com/CompassSecurity/pipeleek), AGPL-3.0, "a tool designed to scan CI/CD logs and artifacts for secrets" | `go.mod`: `github.com/betterleaks/betterleaks/v2 v2.0.0-rc.7` and `github.com/trufflesecurity/trufflehog/v3 v3.99.8`. `pkg/scanner/engine/betterleaks.go` imports Betterleaks v2 `scan`, `config`, `analyze` and `sources`. `pkg/scanner/rules/rules.go` imports TruffleHog `pkg/engine/defaults`. `engine.go` runs Betterleaks detection and keeps "custom GitLab verification alongside default TruffleHog detectors". | A third-party tool **embeds both** engines as libraries. For this buyer scenario (CI/CD log scanning), they're used as complements, not substitutes. Already on a Betterleaks pre-release. One project only; it doesn't show broader adoption. |
 
-## Proposed catalog corrections (not applied, need human review)
+## Proposed catalog corrections
+
+**Applied 2026-11-18 at the owner's request:** the Betterleaks row below (new `betterleaks` project vendor; product, source publisher and claim notes updated; Aikido's own product notes that it runs the Betterleaks engine). The other three rows are still proposals.
 
 | Record | Today | Evidence | Proposal |
 | --- | --- | --- | --- |
@@ -141,7 +143,7 @@ Each page was downloaded directly and read as text. Dates are the page's own `da
 
 ## Consumer disposition
 
-- **Security Market Map catalog:** defer. The four corrections need reviewer decisions.
+- **Security Market Map catalog:** Betterleaks vendor/publisher correction applied (owner request, 2026-11-18). The other three corrections are deferred to reviewer decisions.
 - **Detector Coverage Atlas:** no change from this note. The v2 preview already covers rule-level impact.
 - **TruffleHog positioning (owner's call):**
   - Kingfisher's comparison page marks TruffleHog OSS ❌ for built-in revocation and reports more network requests during scans.

@@ -3,7 +3,7 @@ id: "secrets-detection"
 type: "category"
 name: "Secrets detection and remediation"
 layer: "core"
-vendors: 64
+vendors: 65
 ---
 
 # Secrets detection and remediation
@@ -40,6 +40,7 @@ From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - Cycode: Application security platform often shortlisted for secrets detection and ASPM. Scanner behavior is unverified in this seed.
 - GitLab: Publisher or maintainer of GitLab Secret Detection. Research candidate; see product-level evidence and scope.
 - MongoDB: Publisher or maintainer of Kingfisher. Research candidate; see product-level evidence and scope.
+- Betterleaks: Open-source project maintained by the makers of Gitleaks (README: "maintained by the folks who made Gitleaks, including the original author"). Aikido Security sponsors development and uses the engine in its own platform; it is not the publisher. Reviewed 2026-11-18.
 - Praetorian: Publisher or maintainer of Nosey Parker. Research candidate; see product-level evidence and scope.
 - Yelp: Publisher or maintainer of detect-secrets. Research candidate; see product-level evidence and scope.
 - Secretlint project: Publisher or maintainer of Secretlint. Research candidate; see product-level evidence and scope.
