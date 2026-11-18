@@ -47,7 +47,7 @@
           {
             "roleId": "ciso",
             "roleName": "CISO / VP of security",
-            "note": "AI tooling let one tracked actor run operations across many organizations at once; the scale is what's new."
+            "note": "One tracked actor used AI tooling to work through many organizations at once, so expect attempts in volume."
           },
           {
             "roleId": "appsec",
@@ -105,7 +105,7 @@
           {
             "roleId": "ciso",
             "roleName": "CISO / VP of security",
-            "note": "The incident became public through an SEC filing; disclosure and recovery planning are board topics."
+            "note": "West had to report this in an SEC filing. For public companies, incident disclosure is now part of the CISO's job."
           },
           {
             "roleId": "platform",
@@ -482,7 +482,7 @@
           {
             "roleId": "ciso",
             "roleName": "CISO / VP of security",
-            "note": "The missed credentials were ones believed unused; the gap was knowing what each credential could still open."
+            "note": "An incomplete credential list turned a vendor's breach into an intrusion at Cloudflare itself."
           },
           {
             "roleId": "platform",
@@ -553,7 +553,7 @@
           {
             "roleId": "ciso",
             "roleName": "CISO / VP of security",
-            "note": "A vendor's support system held session tokens; what you send to vendors is part of your exposure."
+            "note": "Files your team uploads to a vendor's support desk can carry live session tokens. Vendor support is part of your attack surface."
           },
           {
             "roleId": "appsec",
@@ -688,7 +688,7 @@
           {
             "roleId": "ciso",
             "roleName": "CISO / VP of security",
-            "note": "A single signing key was enough to forge access; key custody is a top-level risk."
+            "note": "One acquired key was enough to forge access to email accounts. Expect your board to ask who controls keys like that."
           },
           {
             "roleId": "cloud-sec",
@@ -814,7 +814,7 @@
           {
             "roleId": "ciso",
             "roleName": "CISO / VP of security",
-            "note": "A key left public by a contractor can stay public for years; contractor code needs the same checks as yours."
+            "note": "A contractor's mistake left customer records at risk for almost five years. Their code is your liability too."
           }
         ],
         "basedOnSourceIds": [
@@ -874,7 +874,7 @@
           {
             "roleId": "ciso",
             "roleName": "CISO / VP of security",
-            "note": "A bought password plus repeated MFA prompts got past two-factor; identity hygiene is a top-level risk."
+            "note": "Two-factor gave way to a bought password and repeated push requests. Push-only MFA is worth raising with leadership."
           },
           {
             "roleId": "platform",

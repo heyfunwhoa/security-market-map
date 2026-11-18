@@ -14,6 +14,9 @@ type RoleNote = {
   editedNote: string | null;
   reviewedBy: string | null;
   reviewedOn: string | null;
+  proposedRevision?: string;
+  revisionReason?: string;
+  revisionDecision?: "approved" | "rejected" | null;
 };
 const notes = proposalsFile.notes as RoleNote[];
 const incidents = new Map((incidentsSeed as { id: string; summary: string }[]).map((i) => [i.id, i]));
@@ -51,7 +54,25 @@ describe("role note proposals", () => {
     }
     // Only approved (or owner-edited) lines reach sales-notes.json, word for word.
     const applied = salesNotes.get(n.incidentId)?.roleNotes?.find((r) => r.roleId === n.roleId);
-    if (n.decision === "approved" || n.decision === "edited") expect(applied?.note).toBe(text);
+    // An approved revision (round 2) replaces the round-1 text.
+    const live = n.revisionDecision === "approved" ? n.proposedRevision! : text;
+    if (n.decision === "approved" || n.decision === "edited") expect(applied?.note).toBe(live);
     else expect(applied).toBeUndefined();
+  });
+});
+
+describe("role note revisions", () => {
+  const revised = notes.filter((n) => n.proposedRevision);
+  it.each(revised)("$incidentId / $roleId revision stays within the record", (n) => {
+    expect(n.decision).toBe("approved");
+    expect(n.revisionReason?.trim()).toBeTruthy();
+    const text = n.proposedRevision!;
+    expect(text).not.toBe(n.note);
+    expect(text.split(/\s+/).length).toBeLessThanOrEqual(22);
+    const summaryNumbers = new Set(numbers(incidents.get(n.incidentId)!.summary));
+    for (const value of numbers(text)) expect(summaryNumbers.has(value), `${value} not in summary`).toBe(true);
+    // The approved text stays live until the owner approves the revision.
+    const applied = salesNotes.get(n.incidentId)?.roleNotes?.find((r) => r.roleId === n.roleId)?.note;
+    expect(applied).toBe(n.revisionDecision === "approved" ? text : n.note);
   });
 });
