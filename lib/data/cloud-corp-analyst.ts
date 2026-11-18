@@ -21,7 +21,7 @@ export const cloudCorpAnalystSources: Source[] = [
     retrievedAt: RETRIEVED,
     volatility: "fast",
     excerpt:
-      "KuppingerCole's public abstract says CNAPPs are no longer simply cloud protection tools but are becoming the security control plane for AI-native enterprises, combining cloud security, AI-SPM, runtime protection, attack path analysis and cloud detection and response.",
+      "KuppingerCole's public abstract says CNAPPs are no longer simply cloud protection solutions but are becoming the security control plane for AI-native enterprises, with leading vendors combining cloud security, AI-SPM, runtime protection, attack path analysis, cloud detection and response, and agentic AI-driven operations into unified platforms.",
   },
   {
     id: "src-kc-cnapp-bc81045",
@@ -35,7 +35,7 @@ export const cloudCorpAnalystSources: Source[] = [
     retrievedAt: RETRIEVED,
     volatility: "moderate",
     excerpt:
-      "KuppingerCole's public abstract says CNAPP platforms provide integrated tools to help organizations using cloud services identify and manage the risks for which they are responsible.",
+      "KuppingerCole's public abstract says CNAPP platforms provide integrated tools intended to help organizations using cloud services identify and manage the risks for which they are responsible.",
   },
   {
     id: "src-forrester-cloud-federal-20250507",
@@ -43,13 +43,13 @@ export const cloudCorpAnalystSources: Source[] = [
     url: "https://www.forrester.com/blogs/tackling-cloud-security-us-federal-edition/",
     canonicalUrl: "https://www.forrester.com/blogs/tackling-cloud-security-us-federal-edition/",
     publisher: "Forrester",
-    author: "Andras Cser",
+    author: "Andras Cser and Devin Dickerson",
     sourceType: "analyst",
     publishedAt: "2025-05-07",
     retrievedAt: RETRIEVED,
     volatility: "moderate",
     excerpt:
-      "Forrester's blog says CNAPP solutions provide cloud threat detection and response across cloud infrastructure administration, guest OS configuration and storage, container runtime and orchestration, and infrastructure-as-code layers.",
+      "Forrester's blog says CNAPP solutions provide cloud threat detection and response across cloud infrastructure administration, guest OS configuration and storage, container runtime and orchestration, infrastructure-as-code, and application security layers.",
   },
   {
     id: "src-forrester-uvm-20250729",
@@ -94,26 +94,12 @@ export const cloudCorpAnalystSources: Source[] = [
       "Forrester's public abstract says organizations must manage the security posture of AI in several places: cloud infrastructure; training, operational and output data; the model and algorithm; wrapper applications and APIs; and identities.",
   },
   {
-    id: "src-forrester-ml-ai-security-2025",
-    title: "Forrester, Machine Learning And Artificial Intelligence Security: Tools, Technologies, And Detection Surfaces (abstract)",
-    url: "https://www.forrester.com/report/machine-learning-and-artificial-intelligence-security-tools-technologies-and-detection-surfaces/RES182008",
-    canonicalUrl: "https://www.forrester.com/report/machine-learning-and-artificial-intelligence-security-tools-technologies-and-detection-surfaces/RES182008",
-    publisher: "Forrester",
-    author: "Jeff Pollard",
-    sourceType: "analyst",
-    publishedAt: "2025-01-30",
-    retrievedAt: RETRIEVED,
-    volatility: "fast",
-    excerpt:
-      "Forrester's public abstract says generative AI offers security teams a chance to review and resecure existing ML and AI deployments throughout the enterprise.",
-  },
-  {
     id: "src-forrester-ai-governance-20261110",
     title: "Forrester blog: AI Governance Has A Strategy Problem",
     url: "https://www.forrester.com/blogs/ai-governance-has-a-strategy-problem/",
     canonicalUrl: "https://www.forrester.com/blogs/ai-governance-has-a-strategy-problem/",
     publisher: "Forrester",
-    author: "Kasia Jakimowicz",
+    author: "Kasia Jakimowicz and Zachary Stone",
     sourceType: "analyst",
     publishedAt: "2026-11-10",
     retrievedAt: RETRIEVED,
@@ -123,11 +109,11 @@ export const cloudCorpAnalystSources: Source[] = [
   },
   {
     id: "src-kc-ai-security-fabric-an82044",
-    title: "KuppingerCole, AI Security Fabric: Introduction and Overview",
+    title: "KuppingerCole, Advisory Note: AI Security Fabric: Introduction and Overview",
     url: "https://www.kuppingercole.com/research/an82044/ai-security-fabric",
     canonicalUrl: "https://www.kuppingercole.com/research/an82044/ai-security-fabric",
     publisher: "KuppingerCole",
-    author: "Martin Kuppinger",
+    author: "Martin Kuppinger and Phillip Messerschmidt",
     sourceType: "analyst",
     publishedAt: "2026-10-26",
     retrievedAt: RETRIEVED,
@@ -155,7 +141,7 @@ export const cloudCorpAnalystSources: Source[] = [
     url: "https://www.forrester.com/blogs/mcp-doesnt-stand-for-many-critical-problemsbut-maybe-it-should-for-cisos/",
     canonicalUrl: "https://www.forrester.com/blogs/mcp-doesnt-stand-for-many-critical-problemsbut-maybe-it-should-for-cisos/",
     publisher: "Forrester",
-    author: "Jeff Pollard",
+    author: "Jeff Pollard and Rowan Curran",
     sourceType: "analyst",
     publishedAt: "2025-07-22",
     retrievedAt: RETRIEVED,
@@ -169,13 +155,13 @@ export const cloudCorpAnalystSources: Source[] = [
     url: "https://www.forrester.com/blogs/kubecon-na-2025-retrospective-closed-and-open-source-battle-for-the-ai-native-cloud/",
     canonicalUrl: "https://www.forrester.com/blogs/kubecon-na-2025-retrospective-closed-and-open-source-battle-for-the-ai-native-cloud/",
     publisher: "Forrester",
-    author: "Brent Ellis",
+    author: "Brent Ellis and Lee Sustar",
     sourceType: "analyst",
     publishedAt: "2025-12-03",
     retrievedAt: RETRIEVED,
     volatility: "fast",
     excerpt:
-      "Forrester's blog says Kubernetes security has ramped up, with developments including agentic security workflows based on eBPF and deep system telemetry for runtime protection.",
+      "Forrester's blog says Kubernetes security has ramped up in recent years, with developments at KubeCon including agentic security workflows based on eBPF and deep system telemetry for runtime protection.",
   },
   {
     id: "src-kc-sase-bc80175",
@@ -365,27 +351,13 @@ export const cloudCorpAnalystSources: Source[] = [
     url: "https://softwareanalyst.io/reports/sacr-cybersecurity-2026-outlook",
     canonicalUrl: "https://softwareanalyst.io/reports/sacr-cybersecurity-2026-outlook",
     publisher: "Software Analyst Cyber Research",
-    author: "Francis Odum",
+    author: "Francis Odum, Aqsa Taylor, Jensy Johny, Lawrence Pingree and Jocelyn Lee",
     sourceType: "analyst",
     publishedAt: "2026-01-14",
     retrievedAt: RETRIEVED,
     volatility: "fast",
     excerpt:
       "SACR's outlook says the 2026 mindset has shifted from prevention only to prioritizing cyber resilience: maintaining functions and recovering rapidly after a breach.",
-  },
-  {
-    id: "src-forrester-appsec-evolving-20260326",
-    title: "Forrester blog: App Security Is Evolving Fast: Here's What Security Leaders Should Know",
-    url: "https://www.forrester.com/blogs/app-security-is-evolving-fast-heres-what-security-leaders-should-know/",
-    canonicalUrl: "https://www.forrester.com/blogs/app-security-is-evolving-fast-heres-what-security-leaders-should-know/",
-    publisher: "Forrester",
-    author: "Janet Worthington",
-    sourceType: "analyst",
-    publishedAt: "2026-03-26",
-    retrievedAt: RETRIEVED,
-    volatility: "fast",
-    excerpt:
-      "Forrester's blog says the application and product security landscape is evolving as threat actors grow more sophisticated, placing increased demands on security programs.",
   },
   {
     id: "src-forrester-ssc-roles-2026",
@@ -407,7 +379,7 @@ export const cloudCorpAnalystSources: Source[] = [
     url: "https://www.forrester.com/blogs/grc-platforms-enter-their-grad-school-era/",
     canonicalUrl: "https://www.forrester.com/blogs/grc-platforms-enter-their-grad-school-era/",
     publisher: "Forrester",
-    author: "Cody Scott",
+    author: "Cody Scott and Paul McKay",
     sourceType: "analyst",
     publishedAt: "2025-12-02",
     retrievedAt: RETRIEVED,
@@ -421,7 +393,7 @@ export const cloudCorpAnalystSources: Source[] = [
     url: "https://www.forrester.com/blogs/announcing-the-forrester-wave-governance-risk-and-compliance-platforms-q2-2026/",
     canonicalUrl: "https://www.forrester.com/blogs/announcing-the-forrester-wave-governance-risk-and-compliance-platforms-q2-2026/",
     publisher: "Forrester",
-    author: "Paul McKay",
+    author: "Paul McKay and Cody Scott",
     sourceType: "analyst",
     publishedAt: "2026-05-27",
     retrievedAt: RETRIEVED,
@@ -441,7 +413,7 @@ export const cloudCorpAnalystSources: Source[] = [
     retrievedAt: RETRIEVED,
     volatility: "moderate",
     excerpt:
-      "Forrester's public abstract says GRC platforms centralize risk data and processes, track evolving regulatory obligations and cost-effectively reduce risk.",
+      "Forrester's public abstract says GRC platforms can be used to centralize risk data and processes, track evolving regulatory obligations and cost-effectively reduce risk.",
   },
   {
     id: "src-forrester-tprm-landscape-q3-2025",
@@ -483,7 +455,7 @@ export const cloudCorpAnalystSources: Source[] = [
     retrievedAt: RETRIEVED,
     volatility: "moderate",
     excerpt:
-      "Forrester's blog says adoption of continuous security testing such as breach and attack simulation and penetration testing as a service remains tepid, trends toward mature enterprises, and produces siloed results that do not tie back into vulnerability management.",
+      "Forrester's blog lists, among market changes since 2022, that adoption of continuous security testing such as breach and attack simulation and penetration testing as a service remained tepid and trended toward mature enterprises, with siloed results not tied back into vulnerability management.",
   },
   {
     id: "src-forrester-validate-zt-attack-2025",
@@ -505,7 +477,7 @@ export const cloudCorpAnalystSources: Source[] = [
     url: "https://www.forrester.com/blogs/declaring-zero-trust-without-testing-is-a-lie/",
     canonicalUrl: "https://www.forrester.com/blogs/declaring-zero-trust-without-testing-is-a-lie/",
     publisher: "Forrester",
-    author: "Tope Olufon",
+    author: "Tope Olufon, Allie Mellen and Erik Nost",
     sourceType: "analyst",
     publishedAt: "2025-10-20",
     retrievedAt: RETRIEVED,
@@ -546,7 +518,7 @@ export const cloudCorpAnalystClaims: Claim[] = [
     ...base,
     id: "claim-kc-cnapp-shared-resp-2025",
     statement:
-      "KuppingerCole's 10 Jun 2025 abstract says CNAPP platforms provide integrated tools to help organizations using cloud services identify and manage the risks for which they are responsible.",
+      "KuppingerCole's 10 Jun 2025 abstract says CNAPP platforms provide integrated tools intended to help organizations using cloud services identify and manage the risks for which they are responsible.",
     subjectType: "category",
     subjectId: "cnapp",
     sourceId: "src-kc-cnapp-bc81045",
@@ -559,20 +531,20 @@ export const cloudCorpAnalystClaims: Claim[] = [
     ...base,
     id: "claim-kc-cdr-in-cnapp-2026",
     statement:
-      "KuppingerCole's 3 Aug 2026 abstract lists cloud detection and response alongside cloud security, AI-SPM, runtime protection and attack path analysis as parts of unified CNAPP platforms.",
+      "KuppingerCole's 3 Aug 2026 abstract says leading CNAPP vendors are combining cloud detection and response with cloud security, AI-SPM, runtime protection and attack path analysis into unified platforms.",
     subjectType: "category",
     subjectId: "cloud-detection",
     sourceId: "src-kc-cnapp-lc81068",
     sourceUrl: "https://www.kuppingercole.com/research/lc81068/cloud-native-application-protection-platforms-cnapp",
     publishedAt: "2026-08-03",
     notes:
-      "Places CDR inside CNAPP; not a standalone CDR definition.",
+      "The abstract describes CNAPP and CDR as converging; not a standalone CDR definition.",
   },
   {
     ...base,
     id: "claim-forrester-cnapp-cdr-20250507",
     statement:
-      "Forrester's 7 May 2025 blog says CNAPP solutions provide cloud threat detection and response across infrastructure administration, guest OS configuration and storage, container runtime and orchestration, and infrastructure-as-code layers.",
+      "Forrester's 7 May 2025 blog says CNAPP solutions provide cloud threat detection and response across infrastructure administration, guest OS configuration and storage, container runtime and orchestration, infrastructure-as-code, and application security layers.",
     subjectType: "category",
     subjectId: "cloud-detection",
     sourceId: "src-forrester-cloud-federal-20250507",
@@ -580,19 +552,6 @@ export const cloudCorpAnalystClaims: Claim[] = [
     publishedAt: "2025-05-07",
     notes:
       "Written for US federal buyers.",
-  },
-  {
-    ...base,
-    id: "claim-forrester-uvm-cloud-20250729",
-    statement:
-      "Forrester's 29 Jul 2025 blog says vulnerability management has shifted toward integrating existing sources into UVM for assessments across asset classes such as cloud environments, applications and IoT devices.",
-    subjectType: "category",
-    subjectId: "cloud-vulnerability",
-    sourceId: "src-forrester-uvm-20250729",
-    sourceUrl: "https://www.forrester.com/blogs/announcing-the-forrester-wave-unified-vulnerability-management-wave-q3-2025/",
-    publishedAt: "2025-07-29",
-    notes:
-      "Not cloud-specific: cloud is one asset class among several. Vendor placements in the post are not adopted.",
   },
   {
     ...base,
@@ -605,7 +564,7 @@ export const cloudCorpAnalystClaims: Claim[] = [
     sourceUrl: "https://www.forrester.com/blogs/ai-agents-arent-waiting-for-data-security/",
     publishedAt: "2026-11-02",
     notes:
-      "The post also promotes a Forrester event.",
+      "The post also promotes a Forrester event and Forrester's AEGIS framework.",
   },
   {
     ...base,
@@ -619,19 +578,6 @@ export const cloudCorpAnalystClaims: Claim[] = [
     publishedAt: "2025-05-29",
     notes:
       "Public abstract only. Treats the model as one of five layers; also relevant to AI data security.",
-  },
-  {
-    ...base,
-    id: "claim-forrester-ml-ai-resecure-2025",
-    statement:
-      "Forrester's 30 Jan 2025 abstract says generative AI offers security teams a chance to review and resecure existing ML and AI deployments throughout the enterprise.",
-    subjectType: "category",
-    subjectId: "model-security",
-    sourceId: "src-forrester-ml-ai-security-2025",
-    sourceUrl: "https://www.forrester.com/report/machine-learning-and-artificial-intelligence-security-tools-technologies-and-detection-surfaces/RES182008",
-    publishedAt: "2025-01-30",
-    notes:
-      "Public abstract only.",
   },
   {
     ...base,
@@ -689,7 +635,7 @@ export const cloudCorpAnalystClaims: Claim[] = [
     ...base,
     id: "claim-forrester-k8s-runtime-20251203",
     statement:
-      "Forrester's 3 Dec 2025 blog says Kubernetes security has ramped up, with developments including agentic security workflows based on eBPF and deep system telemetry for runtime protection.",
+      "Forrester's 3 Dec 2025 blog says Kubernetes security has ramped up in recent years, with developments at KubeCon including agentic security workflows based on eBPF and deep system telemetry for runtime protection.",
     subjectType: "category",
     subjectId: "container-security",
     sourceId: "src-forrester-kubecon-na-20251203",
@@ -754,7 +700,7 @@ export const cloudCorpAnalystClaims: Claim[] = [
     ...base,
     id: "claim-forrester-psp-rename-20260930",
     statement:
-      "Forrester's 30 Sep 2026 blog says its proactive security platform market evolved from attack surface management and unified vulnerability management, and that prioritization is only an intermediate step because a prioritized vulnerability nobody fixes is still a vulnerability.",
+      "Forrester's 30 Sep 2026 blog says its first proactive security platforms evaluation under that title evolved from its earlier attack surface management and unified vulnerability management evaluations, and that prioritization is only an intermediate step because a prioritized vulnerability nobody fixes is still a vulnerability.",
     subjectType: "category",
     subjectId: "it-vulnerability-management",
     sourceId: "src-forrester-psp-20260930",
@@ -780,7 +726,7 @@ export const cloudCorpAnalystClaims: Claim[] = [
     ...base,
     id: "claim-forrester-ot-beyond-discovery-20260910",
     statement:
-      "Forrester's 10 Sep 2026 blog says the strongest OT security solutions combine asset intelligence with risk posture management, exposure prioritization and OT-specific context, and that asset discovery no longer differentiates leading providers.",
+      "Forrester's 10 Sep 2026 blog says the strongest OT security solutions combine asset intelligence with risk posture management, exposure prioritization and OT-specific context, and that asset discovery is no longer a key differentiator among leading providers.",
     subjectType: "category",
     subjectId: "ot-security",
     sourceId: "src-forrester-ot-20260910",
@@ -793,7 +739,7 @@ export const cloudCorpAnalystClaims: Claim[] = [
     ...base,
     id: "claim-kc-ai-ot-lb82016",
     statement:
-      "KuppingerCole's 19 Feb 2026 abstract says AI adds analytics capabilities to OT security but does not alter the fundamental requirements of safety, determinism and operational continuity.",
+      "KuppingerCole's 19 Feb 2026 abstract says AI adds analytics capabilities to OT but does not alter the fundamental requirements of safety, determinism and operational continuity.",
     subjectType: "category",
     subjectId: "ot-security",
     sourceId: "src-kc-ai-ot-lb82016",
@@ -904,20 +850,7 @@ export const cloudCorpAnalystClaims: Claim[] = [
     sourceUrl: "https://softwareanalyst.io/reports/sacr-cybersecurity-2026-outlook",
     publishedAt: "2026-01-14",
     notes:
-      "A broad annual outlook, not a recovery-category report. No sponsor disclosure found.",
-  },
-  {
-    ...base,
-    id: "claim-forrester-appsec-evolving-20260326",
-    statement:
-      "Forrester's 26 Mar 2026 blog says the application and product security landscape is evolving as threat actors grow more sophisticated, placing increased demands on security programs.",
-    subjectType: "category",
-    subjectId: "product-security-program",
-    sourceId: "src-forrester-appsec-evolving-20260326",
-    sourceUrl: "https://www.forrester.com/blogs/app-security-is-evolving-fast-heres-what-security-leaders-should-know/",
-    publishedAt: "2026-03-26",
-    notes:
-      "Framed around application security.",
+      "A broad annual outlook, not a recovery-category report. Page updated 13 Oct 2026. No sponsor disclosure found on the page, though SACR offers vendor partnerships; vendor-sourced statistics in the outlook are not adopted.",
   },
   {
     ...base,
@@ -961,7 +894,7 @@ export const cloudCorpAnalystClaims: Claim[] = [
     ...base,
     id: "claim-forrester-grc-purpose-2025",
     statement:
-      "Forrester's 24 Nov 2025 abstract says GRC platforms centralize risk data and processes, track evolving regulatory obligations and cost-effectively reduce risk.",
+      "Forrester's 24 Nov 2025 abstract says GRC platforms can be used to centralize risk data and processes, track evolving regulatory obligations and cost-effectively reduce risk.",
     subjectType: "category",
     subjectId: "grc-controls",
     sourceId: "src-forrester-grc-landscape-q4-2025",
@@ -1000,14 +933,14 @@ export const cloudCorpAnalystClaims: Claim[] = [
     ...base,
     id: "claim-forrester-ptaas-adoption-20250812",
     statement:
-      "Forrester's 12 Aug 2025 blog says adoption of continuous security testing, such as breach and attack simulation and penetration testing as a service, remains tepid and skews to mature enterprises, with results siloed from vulnerability management.",
+      "Forrester's 12 Aug 2025 blog lists, among market changes since the author joined in 2022, that adoption of continuous security testing such as breach and attack simulation and penetration testing as a service remained tepid and trended toward mature enterprises, with results siloed from vulnerability management.",
     subjectType: "category",
     subjectId: "pentest-program",
     sourceId: "src-forrester-proactive-fixing-20250812",
     sourceUrl: "https://www.forrester.com/blogs/the-real-future-of-proactive-security-isnt-finding-exposures-its-fixing-them/",
     publishedAt: "2025-08-12",
     notes:
-      "One list item in the post; also relevant to breach simulation. Page modified 10 Nov 2025.",
+      "A retrospective list item, not a new finding; also relevant to breach simulation. Page modified 10 Nov 2025.",
   },
   {
     ...base,
@@ -1026,14 +959,14 @@ export const cloudCorpAnalystClaims: Claim[] = [
     ...base,
     id: "claim-forrester-zt-controlled-attacks-20251020",
     statement:
-      "Forrester's 20 Oct 2025 blog says testing must move from audit checklists to controlled attacks.",
+      "Forrester's 20 Oct 2025 blog says Zero Trust testing must move from audit checklists to controlled attacks.",
     subjectType: "category",
     subjectId: "breach-simulation",
     sourceId: "src-forrester-zt-testing-20251020",
     sourceUrl: "https://www.forrester.com/blogs/declaring-zero-trust-without-testing-is-a-lie/",
     publishedAt: "2025-10-20",
     notes:
-      "Written about validating Zero Trust.",
+      "Co-authored post on validating Zero Trust.",
   },
   {
     ...base,
@@ -1045,6 +978,7 @@ export const cloudCorpAnalystClaims: Claim[] = [
     sourceId: "src-forrester-six-questions-20260120",
     sourceUrl: "https://www.forrester.com/blogs/the-success-of-your-proactive-security-strategy-depends-on-your-answer-to-six-questions/",
     publishedAt: "2026-01-20",
-    notes: null,
+    notes:
+      "Stated in the context of prioritization; the post does not name breach and attack simulation.",
   },
 ];
