@@ -81,7 +81,6 @@ export const ispmWimVendors: Vendor[] = [
     "website": "https://www.authmind.com/",
     "positioning": "AuthMind markets identity observability: correlating access-path activity of human, non-human and AI agent identities across cloud, SaaS and on-premises.",
     "primaryCategoryIds": [
-      "ispm",
       "itdr"
     ],
     "adjacentCategoryIds": [
@@ -107,11 +106,11 @@ export const ispmWimVendors: Vendor[] = [
     "website": "https://www.orchid.security/",
     "positioning": "Orchid markets discovery of unmanaged apps, hidden authentication flows and ungoverned access, with posture across self-hosted and SaaS applications.",
     "primaryCategoryIds": [
-      "ispm"
+      "identity-orchestration"
     ],
     "adjacentCategoryIds": [
-      "iga",
-      "identity-orchestration"
+      "itdr",
+      "iga"
     ],
     "identityScopes": [
       "human",
@@ -133,7 +132,6 @@ export const ispmWimVendors: Vendor[] = [
       "enterprise-browser"
     ],
     "adjacentCategoryIds": [
-      "ispm",
       "itdr"
     ],
     "identityScopes": [
@@ -154,10 +152,9 @@ export const ispmWimProducts: Product[] = [
     "name": "Okta Identity Security Posture Management",
     "positioning": "Okta markets continuous analysis of identity security exposure, including access without MFA, shadow admins, and offboarded users with access.",
     "primaryCategoryIds": [
-      "ispm"
+      "itdr"
     ],
     "adjacentCategoryIds": [
-      "itdr",
       "nhi"
     ],
     "deployment": [
@@ -179,7 +176,7 @@ export const ispmWimProducts: Product[] = [
     "name": "Microsoft Entra Identity Secure Score",
     "positioning": "A score and recommendations measuring an Entra tenant's alignment with Microsoft's identity security recommendations.",
     "primaryCategoryIds": [
-      "ispm"
+      "itdr"
     ],
     "adjacentCategoryIds": [
       "workforce-identity"
@@ -275,7 +272,6 @@ export const ispmWimProducts: Product[] = [
     "name": "AuthMind identity observability",
     "positioning": "Correlates access-path activity of human, non-human and AI agent identities across environments.",
     "primaryCategoryIds": [
-      "ispm",
       "itdr"
     ],
     "adjacentCategoryIds": [
@@ -302,11 +298,11 @@ export const ispmWimProducts: Product[] = [
     "name": "Orchid identity platform",
     "positioning": "Discovers unmanaged apps and hidden authentication flows and tracks application identity posture.",
     "primaryCategoryIds": [
-      "ispm"
+      "identity-orchestration"
     ],
     "adjacentCategoryIds": [
-      "iga",
-      "identity-orchestration"
+      "itdr",
+      "iga"
     ],
     "deployment": [
       "unknown"
@@ -330,7 +326,6 @@ export const ispmWimProducts: Product[] = [
       "enterprise-browser"
     ],
     "adjacentCategoryIds": [
-      "ispm",
       "itdr"
     ],
     "deployment": [
@@ -425,11 +420,9 @@ export const ispmWimProducts: Product[] = [
     "name": "Silverfort Identity Security Posture Management",
     "positioning": "Discovery and mitigation of identity weaknesses across hybrid environments, including AD, cloud IdPs and legacy authentication.",
     "primaryCategoryIds": [
-      "ispm"
-    ],
-    "adjacentCategoryIds": [
       "itdr"
     ],
+    "adjacentCategoryIds": [],
     "deployment": [
       "unknown"
     ],

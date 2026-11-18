@@ -54,7 +54,7 @@ export const personas: BuyerPersona[] = [
       "Who certifies cloud entitlements today?",
       "Are agents and workloads in the same program as people?",
     ],
-    categoryIds: ["workforce-identity", "iga", "pam", "nhi", "ciem", "itdr", "agent-identity", "ispm", "wim"],
+    categoryIds: ["workforce-identity", "iga", "pam", "nhi", "ciem", "itdr", "agent-identity", "wim"],
     aliases: [
       "IdSec",
       "IAM lead",
