@@ -575,7 +575,7 @@
       "marketCategories": [
         {
           "categoryId": "itdr",
-          "categoryName": "Identity threat detection (ITDR)",
+          "categoryName": "Identity threat detection and posture (ITDR, ISPM)",
           "rationale": "Stolen session tokens were used to hijack customers' authenticated Okta sessions, the identity-layer attack ITDR tools are bought to detect.",
           "doesNotImply": "That an ITDR tool would have detected these hijacked sessions."
         },
@@ -902,7 +902,7 @@
         },
         {
           "categoryId": "itdr",
-          "categoryName": "Identity threat detection (ITDR)",
+          "categoryName": "Identity threat detection and posture (ITDR, ISPM)",
           "rationale": "After the first account, the attacker reached other employee accounts with elevated permissions.",
           "doesNotImply": "That an ITDR tool would have detected this activity."
         }

@@ -22,8 +22,11 @@ describe("vendor seat targeting", () => {
   });
 
   it("only uses vendor-owned sources and real dates", () => {
+    // Real dates only: a row can't be checked in the future. Compared with today, not a fixed
+    // cutoff, so later research rows keep passing.
+    const today = new Date().toISOString().slice(0, 10);
     for (const row of catalog.vendorSeatTargeting) {
-      expect(row.checkedAt <= "2026-11-10").toBe(true);
+      expect(row.checkedAt <= today).toBe(true);
       expect(row.basis.startsWith("vendor-")).toBe(true);
     }
   });

@@ -132,8 +132,9 @@ export const segmentOverlays: SegmentOverlayInput[] = [
     elevatedPersonaIds: ["ot-security", "grc-owner", "network-security"],
     addedTriggers: ["CIP audit", "Plant or substation change window"],
     frameworks: ["NERC CIP", "ISA/IEC 62443"],
+    notes: "KuppingerCole's 2026 OT/ICS Buyer's Compass names secure remote access and NHI governance among the capabilities OT security buyers need, aligned to NERC CIP and IEC 62443. Identity work here centers on vendor and remote access to plant systems, not workforce SSO.",
     evidence: "sourced",
-    sourceIds: ["src-seg-nerc-cip-003", "src-persona-isagca-62443-cisa"],
+    sourceIds: ["src-seg-nerc-cip-003", "src-persona-isagca-62443-cisa", "src-kc-ot-ics-bc81089"],
   },
   {
     ...base,

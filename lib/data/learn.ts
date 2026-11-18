@@ -69,8 +69,8 @@ export const glossary: GlossaryTerm[] = [
     id: "ispm",
     term: "Identity security posture management (ISPM)",
     definition:
-      "Continuous assessment of identity systems for misconfiguration, missing MFA, dormant or orphaned accounts, and hidden admin paths. It finds weaknesses before abuse. ITDR detects the abuse itself.",
-    categoryId: "ispm",
+      "Continuous assessment of identity systems for misconfiguration, missing MFA, dormant or orphaned accounts, and hidden admin paths. It finds weaknesses before abuse. In this map it is the posture half of the ITDR category; detection is the other half.",
+    categoryId: "itdr",
     relatedTermIds: ["identity", "entitlement"],
   },
   {
@@ -219,6 +219,48 @@ export const distinctions: Distinction[] = [
       {
         label: "NHI governance",
         body: "Inventory, owner, purpose, permissions, and decommissioning of the machine identity. One company can sell more than one layer. Read the claim for the layer you are in.",
+      },
+    ],
+  },
+  {
+    id: "identity-posture-detection-entitlement",
+    title: "Identity posture and detection, CIEM, and IGA",
+    lede: "Four identity jobs that get sold under one word: risk. This map groups posture (ISPM) and detection (ITDR) in one category because the same vendors sell both, but they still answer different questions. Ask which one the buyer is asking before you name a vendor.",
+    rows: [
+      {
+        label: "Posture (ISPM, in the ITDR category)",
+        body: "Where is the identity estate weak right now? Misconfigured IdPs and directories, accounts without MFA, dormant or orphaned accounts, and shadow admins. It finds and ranks the gap before anyone uses it.",
+      },
+      {
+        label: "Detection (ITDR)",
+        body: "Is someone abusing a real identity right now? Token theft, directory attacks, and privilege abuse in progress. It detects and contains. A posture finding is not an alert.",
+      },
+      {
+        label: "CIEM",
+        body: "What can this identity actually do in cloud? Effective permissions across accounts and roles, including indirect paths. ISPM may report an overprivileged account. CIEM explains the cloud path.",
+      },
+      {
+        label: "IGA",
+        body: "Should this person or identity have this access, and who approved it? Requests, certifications, and removal through a governed process. ISPM hands a finding to an owner. IGA is how access is formally granted and taken away.",
+      },
+    ],
+  },
+  {
+    id: "workload-identity-layers",
+    title: "WIM, NHI governance, and the vault",
+    lede: "All three show up when a service needs to call another service. They answer different questions, and an account may need all three.",
+    rows: [
+      {
+        label: "WIM",
+        body: "How does the workload prove what it is at runtime and get a short-lived credential for the next hop, without a stored secret? Attestation, issued workload identities, and federation.",
+      },
+      {
+        label: "NHI governance",
+        body: "Which machine identities exist, who owns them, and which should be gone? WIM changes how a workload authenticates. NHI governance decides whether it should exist at all.",
+      },
+      {
+        label: "Secrets manager",
+        body: "Where does a credential live when the target cannot federate? A vault stores or issues secrets. WIM tries to remove the stored secret, and the vault still holds what cannot be removed.",
       },
     ],
   },

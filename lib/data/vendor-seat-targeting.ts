@@ -12,10 +12,14 @@ import type { VendorSeatTargetingInput } from "@/lib/schema";
 // platform security for containers, SOC lead for cloud detection and SIEM, and data security
 // for DLP; "IT teams" or "administrators" map to IT operations. Seats a page only mentions
 // go in mentionedSeatIds and are not counted. Vendor audience is not buyer proof.
+// Rows added 2026-11-18 (ISPM, WIM): "security teams" means identity security for ITDR posture
+// pages (formerly ISPM) and cloud security for WIM; "identity" or "IAM" teams map to identity security; "operations
+// teams" running production applications map to platform; "application teams" map to developer.
 
 const CHECKED = "2026-11-09";
 const REREAD = "2026-11-10";
 const SEARCHED = "2026-11-10";
+const ISPM_WIM_READ = "2026-11-18";
 
 export const vendorSeatTargeting: VendorSeatTargetingInput[] = [
   // Secrets detection and remediation
@@ -576,5 +580,89 @@ export const vendorSeatTargeting: VendorSeatTargetingInput[] = [
     basis: "vendor-page",
     inspection: "search-excerpt",
     checkedAt: SEARCHED,
+  },
+  // ITDR posture pages (ISPM, folded into ITDR on 2026-11-18)
+  {
+    vendorId: "okta",
+    categoryId: "itdr",
+    seatIds: ["it-operations"],
+    mentionedSeatIds: ["grc-owner"],
+    selectionReason: "leader",
+    audience: "Admins deprovision dormant accounts and IT teams enforce least privilege; the FAQ also cites passing audits.",
+    urls: ["https://www.okta.com/products/identity-security-posture-management/"],
+    basis: "vendor-page",
+    inspection: "page-read",
+    checkedAt: ISPM_WIM_READ,
+  },
+  {
+    vendorId: "orchid-security",
+    categoryId: "itdr",
+    seatIds: ["identity-security"],
+    mentionedSeatIds: ["iga-owner", "pam-owner", "grc-owner"],
+    selectionReason: "challenger",
+    audience: "Teams running identity programs with blind spots, M&A sprawl or audit pressure; brings apps under IAM, IGA and PAM.",
+    urls: ["https://www.orchid.security/"],
+    basis: "vendor-page",
+    inspection: "page-read",
+    checkedAt: ISPM_WIM_READ,
+  },
+  {
+    vendorId: "authmind",
+    categoryId: "itdr",
+    seatIds: ["identity-security"],
+    mentionedSeatIds: ["ciso"],
+    selectionReason: "challenger",
+    audience: "Security teams that cannot see AI agents and non-human identities; a former CISO is quoted.",
+    urls: ["https://www.authmind.com/"],
+    basis: "vendor-page",
+    inspection: "page-read",
+    checkedAt: ISPM_WIM_READ,
+  },
+  // Workload identity management (WIM)
+  {
+    vendorId: "aembit",
+    categoryId: "wim",
+    seatIds: ["cloud-sec", "identity-security", "platform", "developer"],
+    mentionedSeatIds: ["grc-owner"],
+    selectionReason: "specialist",
+    audience: "Security, identity, platform engineering, DevOps and application teams controlling agent and workload access; audit teams get logs.",
+    urls: ["https://aembit.io/"],
+    basis: "vendor-page",
+    inspection: "page-read",
+    checkedAt: ISPM_WIM_READ,
+  },
+  {
+    vendorId: "defakto",
+    categoryId: "wim",
+    seatIds: ["developer"],
+    mentionedSeatIds: ["ciso", "platform"],
+    selectionReason: "challenger",
+    audience: "Empower developers while improving security posture; works across cloud, legacy and DevOps flows; a retail CISO is quoted.",
+    urls: ["https://www.defakto.security/"],
+    basis: "vendor-page",
+    inspection: "page-read",
+    checkedAt: ISPM_WIM_READ,
+  },
+  {
+    vendorId: "riptides",
+    categoryId: "wim",
+    seatIds: ["cloud-sec", "platform"],
+    selectionReason: "challenger",
+    audience: "Security and platform teams who know workload credentials are a problem but lack a fix short of a large engineering project.",
+    urls: ["https://riptides.io/"],
+    basis: "vendor-page",
+    inspection: "page-read",
+    checkedAt: ISPM_WIM_READ,
+  },
+  {
+    vendorId: "spiffe-project",
+    categoryId: "wim",
+    seatIds: ["developer", "platform"],
+    selectionReason: "open-source-led",
+    audience: "Developers who play a role in production deployment, and operations teams needing visibility into the applications they run.",
+    urls: ["https://spiffe.io/docs/latest/spiffe-about/overview/"],
+    basis: "vendor-docs",
+    inspection: "page-read",
+    checkedAt: ISPM_WIM_READ,
   },
 ];

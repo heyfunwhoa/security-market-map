@@ -3,7 +3,7 @@ id: "wim"
 type: "category"
 name: "Workload identity management (WIM)"
 layer: "core"
-vendors: 9
+vendors: 10
 ---
 
 # Workload identity management (WIM)
@@ -23,7 +23,12 @@ How a running workload proves what it is and gets a short-lived credential for t
 
 ## Who vendors sell to
 
-- None recorded.
+From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.
+
+- Software developer (`developer`): 3 of 4 vendors
+- DevOps / platform engineering (`platform`): 3 of 4 vendors
+- Cloud security (`cloud-sec`): 2 of 4 vendors
+- Identity security lead (`identity-security`): 1 of 4 vendors
 
 ## Vendors (primary)
 
@@ -36,6 +41,7 @@ How a running workload proves what it is and gets a short-lived credential for t
 
 - Microsoft
 - Teleport
+- HashiCorp
 - Amazon Web Services
 - Google
 - Corsha

@@ -120,7 +120,7 @@ export const vendors: Vendor[] = [
     website: "https://www.microsoft.com/en-us/security/business/identity-access/microsoft-entra-id",
     positioning: "Entra ID is the workforce directory for many accounts. ID Governance, PIM, Workload ID, and Agent ID are separate documented capabilities. Do not treat a single Entra logo as IGA, PAM, NHI, and agent authorization at once. Microsoft documents Purview DSPM for discovering, protecting and investigating sensitive-data risks; some non-Microsoft coverage depends on partner integrations. Vendor-reported DSPM scope reviewed 2026-10-13. Completed the Protect AI acquisition; Guardian model scanning is sold under Prisma AIRS (reviewed 2026-11-09).",
     primaryCategoryIds: ["workforce-identity", "iga"],
-    adjacentCategoryIds: ["pam", "nhi", "ispm", "wim", "agent-identity", "secrets-management", "siem", "dspm", "dlp"],
+    adjacentCategoryIds: ["pam", "nhi", "itdr", "wim", "agent-identity", "secrets-management", "siem", "dspm", "dlp"],
     identityScopes: ["human", "nhi", "agent"],
     verificationStatus: "research_candidate",
     openQuestions: [
@@ -137,7 +137,7 @@ export const vendors: Vendor[] = [
     positioning:
       "Workforce identity provider, with a separate customer-identity product in Auth0 and an identity governance offer. This seed does not assert Okta Identity Governance feature parity with C1, Opal, SailPoint, or Entra ID Governance.",
     primaryCategoryIds: ["workforce-identity", "iga"],
-    adjacentCategoryIds: ["ciam", "nhi", "ispm"],
+    adjacentCategoryIds: ["ciam", "nhi", "itdr"],
     identityScopes: ["human", "nhi"],
     verificationStatus: "research_candidate",
     openQuestions: [
@@ -168,7 +168,7 @@ export const vendors: Vendor[] = [
     positioning:
       "Access intelligence vendor. Buyers use this class of product to see effective permissions. This atlas does not treat Veza as a joiner-mover-leaver suite.",
     primaryCategoryIds: ["ciem"],
-    adjacentCategoryIds: ["iga", "nhi", "ispm"],
+    adjacentCategoryIds: ["iga", "nhi", "itdr"],
     identityScopes: ["human", "nhi"],
     verificationStatus: "research_candidate",
     openQuestions: ["Is the budget cloud entitlement visibility, or an IGA replacement?"],
@@ -393,7 +393,7 @@ export const vendors: Vendor[] = [
     positioning:
       "Vault is the reference product for dynamic secrets and PKI in this atlas. IBM completed the acquisition on 27 Feb 2025. Vault competes in a secrets-management evaluation and complements IGA when the question is issuance.",
     primaryCategoryIds: ["secrets-management"],
-    adjacentCategoryIds: ["nhi", "pam"],
+    adjacentCategoryIds: ["nhi", "pam", "wim"],
     identityScopes: ["nhi", "human"],
     verificationStatus: "research_candidate",
     openQuestions: [
@@ -536,7 +536,7 @@ export const vendors: Vendor[] = [
     website: "https://www.nightfall.ai/",
     positioning: "Nightfall markets sensitive-data discovery and classification alongside data exfiltration prevention across SaaS, endpoints, email, and AI workflows. Vendor-reported positioning reviewed 2026-10-13; scope and effectiveness are not independently tested. DSPM is an adjacent discovery use case, not an assertion of full DSPM parity.",
     primaryCategoryIds: ["dlp"],
-    adjacentCategoryIds: ["secrets-detection","dspm","ai-data-security"],
+    adjacentCategoryIds: ["secrets-detection", "dspm", "ai-data-security"],
     identityScopes: ["human", "nhi"],
     verificationStatus: "research_candidate",
     openQuestions: ["Are the painful surfaces Slack and SaaS, or git history?"],
@@ -614,7 +614,7 @@ export const vendors: Vendor[] = [
     positioning:
       "Endpoint and XDR vendor. The Falcon homepage retrieved 26 Oct 2026 describes endpoint detection and response as detecting and prioritizing malicious activity. Identity Protection is a module name on that page, so no ITDR cell is filled.",
     primaryCategoryIds: ["itdr", "endpoint-security"],
-    adjacentCategoryIds: ["workforce-identity", "ispm"],
+    adjacentCategoryIds: ["workforce-identity", "itdr"],
     identityScopes: ["human"],
     verificationStatus: "research_candidate",
     openQuestions: ["Which identity SKU is on the quote, and is response in scope or only detection?"],
@@ -628,7 +628,7 @@ export const vendors: Vendor[] = [
     positioning:
       "Identity protection vendor buyers shortlist for ITDR, including environments that are hard to agent. Capabilities unverified here.",
     primaryCategoryIds: ["itdr"],
-    adjacentCategoryIds: ["workforce-identity", "pam", "ispm"],
+    adjacentCategoryIds: ["workforce-identity", "pam", "itdr"],
     identityScopes: ["human"],
     verificationStatus: "research_candidate",
     openQuestions: ["Is the gap legacy systems that the IdP does not see?"],
@@ -642,7 +642,7 @@ export const vendors: Vendor[] = [
     positioning:
       "Identity threat detection and recovery vendor associated with directory environments. Confirm Active Directory versus Entra scope before a comparison.",
     primaryCategoryIds: ["itdr"],
-    adjacentCategoryIds: ["workforce-identity", "ispm"],
+    adjacentCategoryIds: ["workforce-identity", "itdr"],
     identityScopes: ["human"],
     verificationStatus: "research_candidate",
     openQuestions: ["Is the buyer buying detection, or recovery of the directory?"],
@@ -925,7 +925,7 @@ export const products: Product[] = [
     name: "Veza",
     positioning: "Access intelligence for effective permissions. Not assumed to replace IGA lifecycle.",
     primaryCategoryIds: ["ciem"],
-    adjacentCategoryIds: ["iga", "ispm"],
+    adjacentCategoryIds: ["iga", "itdr"],
     deployment: ["unknown"],
     identityScopes: ["human", "nhi"],
     availability: "unknown",
@@ -1195,7 +1195,7 @@ export const products: Product[] = [
     name: "HashiCorp Vault",
     positioning: "Documented dynamic secrets and PKI. Complements governance. Competes with other vaults.",
     primaryCategoryIds: ["secrets-management"],
-    adjacentCategoryIds: ["nhi", "pam"],
+    adjacentCategoryIds: ["nhi", "pam", "wim"],
     deployment: ["self_hosted", "hybrid"],
     identityScopes: ["nhi", "human"],
     availability: "generally_available",
@@ -1455,7 +1455,7 @@ export const products: Product[] = [
     name: "CrowdStrike identity protection",
     positioning: "SKU name unconfirmed. Do not check ITDR features from the company name.",
     primaryCategoryIds: ["itdr"],
-    adjacentCategoryIds: ["endpoint-security", "ispm"],
+    adjacentCategoryIds: ["endpoint-security", "itdr"],
     deployment: ["unknown"],
     identityScopes: ["human"],
     availability: "unknown",
@@ -1485,7 +1485,7 @@ export const products: Product[] = [
     name: "Semperis",
     positioning: "Directory detection and recovery candidate.",
     primaryCategoryIds: ["itdr"],
-    adjacentCategoryIds: ["workforce-identity", "ispm"],
+    adjacentCategoryIds: ["workforce-identity", "itdr"],
     deployment: ["unknown"],
     identityScopes: ["human"],
     availability: "unknown",
