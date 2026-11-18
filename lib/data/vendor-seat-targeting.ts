@@ -12,8 +12,8 @@ import type { VendorSeatTargetingInput } from "@/lib/schema";
 // platform security for containers, SOC lead for cloud detection and SIEM, and data security
 // for DLP; "IT teams" or "administrators" map to IT operations. Seats a page only mentions
 // go in mentionedSeatIds and are not counted. Vendor audience is not buyer proof.
-// Rows added 2026-11-18 (ISPM, WIM): "security teams" means identity security for ISPM and
-// cloud security for WIM; "identity" or "IAM" teams map to identity security; "operations
+// Rows added 2026-11-18 (ISPM, WIM): "security teams" means identity security for ITDR posture
+// pages (formerly ISPM) and cloud security for WIM; "identity" or "IAM" teams map to identity security; "operations
 // teams" running production applications map to platform; "application teams" map to developer.
 
 const CHECKED = "2026-11-09";
@@ -581,10 +581,10 @@ export const vendorSeatTargeting: VendorSeatTargetingInput[] = [
     inspection: "search-excerpt",
     checkedAt: SEARCHED,
   },
-  // Identity security posture management (ISPM)
+  // ITDR posture pages (ISPM, folded into ITDR on 2026-11-18)
   {
     vendorId: "okta",
-    categoryId: "ispm",
+    categoryId: "itdr",
     seatIds: ["it-operations"],
     mentionedSeatIds: ["grc-owner"],
     selectionReason: "leader",
@@ -595,19 +595,8 @@ export const vendorSeatTargeting: VendorSeatTargetingInput[] = [
     checkedAt: ISPM_WIM_READ,
   },
   {
-    vendorId: "silverfort",
-    categoryId: "ispm",
-    seatIds: ["identity-security"],
-    selectionReason: "specialist",
-    audience: "Security teams overwhelmed by patching identity exposures with audits, scripts and guesswork.",
-    urls: ["https://www.silverfort.com/platform/identity-security-posture-management/"],
-    basis: "vendor-page",
-    inspection: "page-read",
-    checkedAt: ISPM_WIM_READ,
-  },
-  {
     vendorId: "orchid-security",
-    categoryId: "ispm",
+    categoryId: "itdr",
     seatIds: ["identity-security"],
     mentionedSeatIds: ["iga-owner", "pam-owner", "grc-owner"],
     selectionReason: "challenger",
@@ -619,7 +608,7 @@ export const vendorSeatTargeting: VendorSeatTargetingInput[] = [
   },
   {
     vendorId: "authmind",
-    categoryId: "ispm",
+    categoryId: "itdr",
     seatIds: ["identity-security"],
     mentionedSeatIds: ["ciso"],
     selectionReason: "challenger",

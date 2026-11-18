@@ -69,8 +69,8 @@ export const glossary: GlossaryTerm[] = [
     id: "ispm",
     term: "Identity security posture management (ISPM)",
     definition:
-      "Continuous assessment of identity systems for misconfiguration, missing MFA, dormant or orphaned accounts, and hidden admin paths. It finds weaknesses before abuse. ITDR detects the abuse itself.",
-    categoryId: "ispm",
+      "Continuous assessment of identity systems for misconfiguration, missing MFA, dormant or orphaned accounts, and hidden admin paths. It finds weaknesses before abuse. In this map it is the posture half of the ITDR category; detection is the other half.",
+    categoryId: "itdr",
     relatedTermIds: ["identity", "entitlement"],
   },
   {
@@ -224,15 +224,15 @@ export const distinctions: Distinction[] = [
   },
   {
     id: "identity-posture-detection-entitlement",
-    title: "ISPM, ITDR, CIEM, and IGA",
-    lede: "Four identity jobs that get sold under one word: risk. Ask which question the buyer is answering before you name a vendor.",
+    title: "Identity posture and detection, CIEM, and IGA",
+    lede: "Four identity jobs that get sold under one word: risk. This map groups posture (ISPM) and detection (ITDR) in one category because the same vendors sell both, but they still answer different questions. Ask which one the buyer is asking before you name a vendor.",
     rows: [
       {
-        label: "ISPM",
+        label: "Posture (ISPM, in the ITDR category)",
         body: "Where is the identity estate weak right now? Misconfigured IdPs and directories, accounts without MFA, dormant or orphaned accounts, and shadow admins. It finds and ranks the gap before anyone uses it.",
       },
       {
-        label: "ITDR",
+        label: "Detection (ITDR)",
         body: "Is someone abusing a real identity right now? Token theft, directory attacks, and privilege abuse in progress. It detects and contains. A posture finding is not an alert.",
       },
       {

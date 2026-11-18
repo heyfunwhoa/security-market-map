@@ -12,6 +12,8 @@ const nextConfig: NextConfig = {
       { source: "/markets/network", destination: "/domains/corporate#network", permanent: true },
       { source: "/markets/exposure", destination: "/domains/corporate#exposure", permanent: true },
       { source: "/markets", destination: "/domains", permanent: true },
+      // ISPM was folded into ITDR (identity threat detection and posture) on 2026-11-18.
+      { source: "/categories/ispm", destination: "/categories/itdr", permanent: true },
       { source: "/markets/:slug*", destination: "/domains", permanent: true },
     ];
   },

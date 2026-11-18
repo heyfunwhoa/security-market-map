@@ -577,7 +577,7 @@ export const identityAnalystClaims: Claim[] = [
     statement:
       "SACR's 2 Dec 2025 identity-stack report says ISPM continuously assesses the security configuration of identity systems across cloud, SaaS and IAM platforms, surfacing misconfigurations, unused privileges, weak MFA enforcement and stale accounts, and that ISPM shows where risk exists while IGA decides what must be done.",
     subjectType: "category",
-    subjectId: "ispm",
+    subjectId: "itdr",
     sourceId: "src-sacr-iga-entitlements-20251202",
     sourceUrl: "https://softwareanalyst.io/reports/modernizing-the-identity-stack-from-visibility-to-governance-through-entitlement-intelligence",
     publishedAt: "2025-12-02",
@@ -590,7 +590,7 @@ export const identityAnalystClaims: Claim[] = [
     statement:
       "SACR's 11 Feb 2025 report describes Identity Attack Surface Management as a response to gaps in legacy identity vendors, aimed at full visibility into legacy identity stacks, posture controls and remediation.",
     subjectType: "category",
-    subjectId: "ispm",
+    subjectId: "itdr",
     sourceId: "src-sacr-identity-attack-surface-20250211",
     sourceUrl: "https://softwareanalyst.io/reports/securing-the-identity-attack-surface-a-deep-dive-into-the-new-battlefield-of-identity-security",
     publishedAt: "2025-02-11",
@@ -641,12 +641,12 @@ export const identityAnalystClaims: Claim[] = [
     statement:
       "KuppingerCole's research plan for its 2027 ITDR evaluation says identity security posture and exposure management capabilities, such as configuration assessment and excessive-privilege identification, are important components of ITDR platforms but not, on their own, sufficient for inclusion.",
     subjectType: "category",
-    subjectId: "ispm",
+    subjectId: "itdr",
     sourceId: "src-kc-itdr-plan-2027",
     sourceUrl: "https://www.kuppingercole.com/researchplan/leadership-compass-itdr-2027",
     publishedAt: null,
     notes:
-      "Counter-framing: KuppingerCole treats posture as part of ITDR, not a standalone market, while SACR describes ISPM separately. The map keeps ISPM as its own buyer conversation and records this disagreement. Research-plan page; no publication date.",
+      "The map follows this framing: since 2026-11-18 posture (ISPM) is part of the ITDR category rather than a standalone one. SACR describes ISPM separately and Forrester places it inside workforce identity platforms. Research-plan page; no publication date.",
   },
   {
     ...base,
@@ -758,12 +758,12 @@ export const identityAnalystClaims: Claim[] = [
     statement:
       "Forrester's 21 May 2026 blog says identity security posture management and identity threat detection and response have become core capabilities of workforce identity security platforms.",
     subjectType: "category",
-    subjectId: "ispm",
+    subjectId: "itdr",
     sourceId: "src-forrester-workforce-identity-20260521",
     sourceUrl: "https://www.forrester.com/blogs/announcing-the-forrester-wave-workforce-identity-platforms-q2-2026/",
     publishedAt: "2026-05-21",
     notes:
-      "Forrester frames ISPM and ITDR as capabilities inside workforce identity platforms, not standalone markets. Recorded alongside the SACR and KuppingerCole framings; vendor scores are not adopted.",
+      "Forrester frames ISPM and ITDR as capabilities inside workforce identity platforms. The map groups them together in the ITDR category instead; vendor scores are not adopted.",
   },
   {
     ...base,

@@ -191,7 +191,7 @@ export const useCases: UseCase[] = [
       "Dormant privileged accounts removed",
       "Open identity findings with an owner",
     ],
-    categoryIds: ["ispm", "itdr", "iga", "ciem"],
+    categoryIds: ["itdr", "iga", "ciem"],
     capabilityIds: [
       "cap-ispm-config",
       "cap-ispm-mfa-coverage",

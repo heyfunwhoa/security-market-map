@@ -2,6 +2,8 @@
 
 As of **2026-11-17**. Status: categories, capabilities, use cases, glossary, alternatives, seat links and a first vendor batch are proposed. Human review is pending. Owner: repository maintainer. Next review: **2026-12-17**, or sooner if a listed product is acquired, renamed or repackaged.
 
+> **Decision 2026-11-18: ISPM is no longer a standalone category.** On review, the owner folded ISPM into ITDR, now named "Identity threat detection and posture (ITDR, ISPM)". This follows KuppingerCole's framing that posture is part of ITDR, and most ISPM vendors already sell ITDR. Sections below that describe ISPM as its own category record the earlier proposal; the current state is in "ISPM fold-in" at the end of this note.
+
 ## Why
 
 The catalog had no place for two buyer conversations that come up next to NHI, CIEM and ITDR:
@@ -212,6 +214,18 @@ There are 20 more `analyst` / `needs_review` claims from SACR, KuppingerCole and
 | Data access governance | SACR (definition), KuppingerCole, Forrester | |
 | Agentic runtime | Forrester ×2 (least agency; checks on every tool call), KuppingerCole (agent observability), SACR (JIT trust) | |
 | SSPM | KuppingerCole ×2 | |
+
+## ISPM fold-in (2026-11-18)
+
+Decision: ISPM is not a standalone category. It is now the posture half of `itdr`.
+
+- **Category:** `ispm` removed. `itdr` is renamed "Identity threat detection and posture (ITDR, ISPM)", and its definition, buyer question, triggers, outcomes, budget and example workflow now cover both posture and detection. `/categories/ispm` permanently redirects to `/categories/itdr` (`next.config.ts`).
+- **Stable IDs kept:** `cap-ispm-*` capabilities, `uc-ispm` (identity posture baseline), `alt-ispm-*`, the `ispm` glossary term and the `claim-*ispm*` claims keep their IDs and now point at `itdr`. `alt-ispm-itdr` ("posture inside the ITDR product") was removed, because it would now point at its own category.
+- **Products and vendors:** `ispm` was replaced by `itdr` (deduplicated) for Okta ISPM, Entra Identity Secure Score, Silverfort ISPM, AuthMind, Push and the existing Veza, CrowdStrike, Semperis, Silverfort, Okta and Microsoft records. Orchid Security moved to primary `identity-orchestration` with `itdr` adjacent, because its product is application identity observability and orchestration rather than posture or detection.
+- **Analyst claims:** the four ISPM category claims now attach to `itdr`. Notes record that the map follows KuppingerCole's framing, and that SACR treats ISPM separately and Forrester places it in workforce identity.
+- **Seat targeting:** the Okta, Orchid and AuthMind rows moved to `itdr`. The Silverfort ISPM row was dropped as a duplicate of Silverfort's existing ITDR row.
+- **Learn card:** retitled "Identity posture and detection, CIEM, and IGA". Its rows still separate posture from detection.
+- **Regenerated:** `context/*` and `data/security-intelligence/exports/incident-feed.v1.json` (ITDR category name only).
 
 ## Research review record
 
