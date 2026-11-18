@@ -30,7 +30,10 @@ describe("sales note proposals", () => {
     expect(["proposed", "decided"]).toContain(proposalsFile.status);
     const ids = proposals.map((p) => p.incidentId);
     expect(new Set(ids).size).toBe(ids.length);
-    expect(new Set(ids)).toEqual(new Set(notes.keys()));
+    // Every reviewed note went through this round; newer draft notes get their own review.
+    const reviewed = (salesNotesSeed as { incidentId: string; status: string }[]).filter((n) => n.status === "reviewed");
+    for (const n of reviewed) expect(ids, n.incidentId).toContain(n.incidentId);
+    for (const id of ids) expect(notes.has(id), id).toBe(true);
   });
 
   it.each(proposals)("$incidentId stays grounded in the reviewed record", (p) => {

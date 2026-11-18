@@ -13,106 +13,6 @@
   "excludedReason": "Threat-landscape reports with no single affected organization; candidates for the source registry, not incidents.",
   "candidates": [
     {
-      "incidentId": "incident:binance-wallet-signing-2026",
-      "title": "Binance internal wallet signing compromise",
-      "incidentKind": "intrusion",
-      "reviewStatus": "candidate",
-      "discovery": [
-        {
-          "publisher": "Binance (X account)",
-          "canonicalUrl": "https://x.com/binance/status/2117626126214504729",
-          "sourceRole": "primary",
-          "discoveredAt": "2026-11-11",
-          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
-        },
-        {
-          "publisher": "Binance (Binance Square preliminary report)",
-          "canonicalUrl": "https://www.binance.com/square/post/384314395829022",
-          "sourceRole": "primary",
-          "discoveredAt": "2026-11-17T10:20:00Z",
-          "usageRights": "Store citation and limited summary; check Binance terms."
-        },
-        {
-          "publisher": "CybelAngel (weekly roundup, 2-8 Nov 2026)",
-          "canonicalUrl": "https://cybelangel.com/blog/weekly-cyber-roundup-november-2-8/",
-          "sourceRole": "secondary",
-          "discoveredAt": "2026-11-11",
-          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
-        },
-        {
-          "publisher": "This Week in Security (8 Nov 2026)",
-          "canonicalUrl": "https://this.weekinsecurity.com/this-week-in-security-november-8-2026-edition/",
-          "sourceRole": "secondary",
-          "discoveredAt": "2026-11-11",
-          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
-        }
-      ],
-      "dedupeCheck": "Not in incidents.seed.json or another candidate batch as of 2026-11-17.",
-      "veris": {
-        "schemaVersion": null,
-        "actor": null,
-        "action": null,
-        "asset": null,
-        "attribute": null,
-        "sourceClaimIds": []
-      },
-      "claims": [
-        {
-          "id": "claim:binance-wallet-signing-2026:1",
-          "statement": "Binance said the malware replaced a component of a legitimate development tool, and that this 0-day malware was not detected by its endpoint security tools at the time.",
-          "epistemicStatus": "reported",
-          "sourceUrl": "https://x.com/binance/status/2117626126214504729"
-        },
-        {
-          "id": "claim:binance-wallet-signing-2026:2",
-          "statement": "Binance's preliminary report dates the incident to 29 October 2026 UTC (30 October in UTC+8) and says its findings are subject to independent review.",
-          "epistemicStatus": "reported",
-          "sourceUrl": "https://www.binance.com/square/post/384314395829022"
-        },
-        {
-          "id": "claim:binance-wallet-signing-2026:3",
-          "statement": "Secondary reporting says initial access came from a fake recruiter's technical assignment that was downloaded to a work computer.",
-          "epistemicStatus": "reported",
-          "sourceUrl": "https://cybelangel.com/blog/weekly-cyber-roundup-november-2-8/"
-        },
-        {
-          "id": "claim:binance-wallet-signing-2026:4",
-          "statement": "Binance's preliminary report says the chain began in June 2026 when a wallet DevOps engineer downloaded a tampered Homebrew installer while setting up an AI coding tool found through a search engine.",
-          "epistemicStatus": "reported",
-          "sourceUrl": "https://www.binance.com/square/post/384314395829022"
-        },
-        {
-          "id": "claim:binance-wallet-signing-2026:5",
-          "statement": "Binance says it will bear the full cost of the stolen funds and that the report's findings will undergo further independent review.",
-          "epistemicStatus": "reported",
-          "sourceUrl": "https://www.binance.com/square/post/384314395829022"
-        }
-      ],
-      "attackMappings": [
-        {
-          "domain": "enterprise-attack",
-          "attackId": null,
-          "stixId": null,
-          "attackDatasetVersion": null,
-          "mappingStatus": "not_evaluated",
-          "evidenceStatus": "unknown",
-          "rationale": null,
-          "sourceClaimIds": [],
-          "reviewer": null,
-          "reviewedAt": null
-        }
-      ],
-      "defensiveMappings": [],
-      "weaknessMappings": [],
-      "unresolvedQuestions": [
-        "Binance Square report re-checked 2026-11-17 via search index (direct fetch blocked); the X post was not re-checked.",
-        "The report is preliminary; record both the UTC and UTC+8 dates and watch for the final report.",
-        "Affected-asset figures (about $6.34B affected, about $2.85B frozen) come from a secondary summary of the company report and are not verified.",
-        "Initial access via a fake recruiter is secondary reporting only; attribution is not established.",
-        "The fake-recruiter claim (secondary) and the tampered-Homebrew claim (Binance's report) may describe different stages; reconcile against the final report."
-      ]
-    },
-    {
       "incidentId": "incident:credit-mutuel-arkea-2026",
       "title": "Crédit Mutuel Arkéa fraudulent transfers via a service provider",
       "incidentKind": "intrusion",
@@ -190,152 +90,88 @@
         "Loss figures differ across reports (about EUR 100M per secondary reporting of the bank's statements, a EUR 118M order of magnitude per a second release as reported by press, about $133M per an on-chain investigator); none is confirmed exactly.",
         "The service provider is not named."
       ]
-    },
-    {
-      "incidentId": "incident:novo-nordisk-2026",
-      "title": "Novo Nordisk unauthorized access and data copied externally",
-      "incidentKind": "breach",
-      "reviewStatus": "candidate",
-      "discovery": [
-        {
-          "publisher": "Novo Nordisk A/S (company announcement, original)",
-          "canonicalUrl": "https://www.novonordisk.com/news-and-media/news-and-ir-materials/news-details.html?id=916571",
-          "sourceRole": "primary",
-          "discoveredAt": "2026-11-17T10:20:00Z",
-          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
-        },
-        {
-          "publisher": "Novo Nordisk A/S (company announcement via GlobeNewswire, republished by Investegate)",
-          "canonicalUrl": "https://www.investegate.co.uk/announcement/gnw/novo-nordisk-a-s-class-b--0qiu/novo-nordisk-a-s-it-security-incident-at-nov-/9614494",
-          "sourceRole": "primary",
-          "discoveredAt": "2026-11-11",
-          "usageRights": "Prefer the novonordisk.com original once captured; store citation and limited summary."
-        },
-        {
-          "publisher": "HIPAA Journal (18 Jun 2026)",
-          "canonicalUrl": "https://www.hipaajournal.com/novo-nordisk-cyberattack/",
-          "sourceRole": "secondary",
-          "discoveredAt": "2026-11-11",
-          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
-        }
-      ],
-      "dedupeCheck": "Not in incidents.seed.json or another candidate batch as of 2026-11-17.",
-      "veris": {
-        "schemaVersion": null,
-        "actor": null,
-        "action": null,
-        "asset": null,
-        "attribute": null,
-        "sourceClaimIds": []
-      },
-      "claims": [
-        {
-          "id": "claim:novo-nordisk-2026:1",
-          "statement": "Novo Nordisk said on 11 June 2026 that there had been unauthorized access to a limited number of internal IT systems and that non-public data, including personal data, was copied externally.",
-          "epistemicStatus": "reported",
-          "sourceUrl": "https://www.novonordisk.com/news-and-media/news-and-ir-materials/news-details.html?id=916571"
-        },
-        {
-          "id": "claim:novo-nordisk-2026:2",
-          "statement": "Secondary reporting says clinical-trial-related data was among the data copied.",
-          "epistemicStatus": "reported",
-          "sourceUrl": "https://www.hipaajournal.com/novo-nordisk-cyberattack/"
-        },
-        {
-          "id": "claim:novo-nordisk-2026:3",
-          "statement": "An extortion group claimed responsibility and claimed 1.3 TB was stolen; the company has not confirmed the claim or the volume.",
-          "epistemicStatus": "unknown",
-          "sourceUrl": "https://www.hipaajournal.com/novo-nordisk-cyberattack/"
-        }
-      ],
-      "attackMappings": [
-        {
-          "domain": "enterprise-attack",
-          "attackId": null,
-          "stixId": null,
-          "attackDatasetVersion": null,
-          "mappingStatus": "not_evaluated",
-          "evidenceStatus": "unknown",
-          "rationale": null,
-          "sourceClaimIds": [],
-          "reviewer": null,
-          "reviewedAt": null
-        }
-      ],
-      "defensiveMappings": [],
-      "weaknessMappings": [],
-      "unresolvedQuestions": [
-        "Original announcement captured on novonordisk.com (11 June 2026). The company's separate incident page with patient-data details is not yet captured.",
-        "Dwell time (about two months or more), data volume and the reported $25M demand are threat-actor or secondary claims; keep them out of the summary.",
-        "Do not record an actor: responsibility is claimed, not confirmed."
-      ]
-    },
+    }
+  ],
+  "promotedToSeed": {
+    "promotedOn": "2026-11-17",
+    "reviewRecord": "docs/security-intelligence/review-2026-11-17.md",
+    "incidentIds": [
+      "incident:binance-wallet-signing-2026",
+      "incident:novo-nordisk-2026"
+    ]
+  },
+  "droppedCandidates": [
     {
       "incidentId": "incident:astrazeneca-2026",
-      "title": "AstraZeneca reported cyberattack (unconfirmed)",
-      "incidentKind": "breach",
-      "reviewStatus": "candidate",
-      "discovery": [
-        {
-          "publisher": "INCIBE-CERT (21 Apr 2026)",
-          "canonicalUrl": "https://www.incibe.es/en/incibe-cert/publications/cybersecurity-highlights/astrazeneca-strengthening-its-cybersecurity-following-cyberattack",
-          "sourceRole": "secondary",
-          "discoveredAt": "2026-11-11",
-          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+      "droppedOn": "2026-11-17",
+      "reason": "No company disclosure found; the only basis is a threat actor's claim (LAPSUS$) and secondary reports that the company hadn't confirmed details. Re-open if AstraZeneca confirms.",
+      "record": {
+        "incidentId": "incident:astrazeneca-2026",
+        "title": "AstraZeneca reported cyberattack (unconfirmed)",
+        "incidentKind": "breach",
+        "reviewStatus": "candidate",
+        "discovery": [
+          {
+            "publisher": "INCIBE-CERT (21 Apr 2026)",
+            "canonicalUrl": "https://www.incibe.es/en/incibe-cert/publications/cybersecurity-highlights/astrazeneca-strengthening-its-cybersecurity-following-cyberattack",
+            "sourceRole": "secondary",
+            "discoveredAt": "2026-11-11",
+            "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+          },
+          {
+            "publisher": "Bitdefender (late March 2026)",
+            "canonicalUrl": "https://www.bitdefender.com/en-gb/blog/hotforsecurity/lapsus-astrazeneca-breach",
+            "sourceRole": "secondary",
+            "discoveredAt": "2026-11-11",
+            "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+          }
+        ],
+        "dedupeCheck": "Not in incidents.seed.json or another candidate batch as of 2026-11-17.",
+        "veris": {
+          "schemaVersion": null,
+          "actor": null,
+          "action": null,
+          "asset": null,
+          "attribute": null,
+          "sourceClaimIds": []
         },
-        {
-          "publisher": "Bitdefender (late March 2026)",
-          "canonicalUrl": "https://www.bitdefender.com/en-gb/blog/hotforsecurity/lapsus-astrazeneca-breach",
-          "sourceRole": "secondary",
-          "discoveredAt": "2026-11-11",
-          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
-        }
-      ],
-      "dedupeCheck": "Not in incidents.seed.json or another candidate batch as of 2026-11-17.",
-      "veris": {
-        "schemaVersion": null,
-        "actor": null,
-        "action": null,
-        "asset": null,
-        "attribute": null,
-        "sourceClaimIds": []
-      },
-      "claims": [
-        {
-          "id": "claim:astrazeneca-2026:1",
-          "statement": "Reports from March 2026 describe IT disruption and theft of confidential data, claimed by a group calling itself LAPSUS$.",
-          "epistemicStatus": "unknown",
-          "sourceUrl": "https://www.bitdefender.com/en-gb/blog/hotforsecurity/lapsus-astrazeneca-breach"
-        },
-        {
-          "id": "claim:astrazeneca-2026:2",
-          "statement": "INCIBE-CERT noted that the company had not confirmed the details.",
-          "epistemicStatus": "reported",
-          "sourceUrl": "https://www.incibe.es/en/incibe-cert/publications/cybersecurity-highlights/astrazeneca-strengthening-its-cybersecurity-following-cyberattack"
-        }
-      ],
-      "attackMappings": [
-        {
-          "domain": "enterprise-attack",
-          "attackId": null,
-          "stixId": null,
-          "attackDatasetVersion": null,
-          "mappingStatus": "not_evaluated",
-          "evidenceStatus": "unknown",
-          "rationale": null,
-          "sourceClaimIds": [],
-          "reviewer": null,
-          "reviewedAt": null
-        }
-      ],
-      "defensiveMappings": [],
-      "weaknessMappings": [],
-      "unresolvedQuestions": [
-        "Primary source needed: no company disclosure was found as of 2026-11-11.",
-        "Threat-actor claim only. Hold at epistemic status unknown, or drop, until the company confirms.",
-        "Do not record an actor.",
-        "Re-checked 2026-11-17: still no company statement found. Separate, unrelated claim against AstraZeneca Türkiye (N0n, September 2026) should not be merged into this record."
-      ]
+        "claims": [
+          {
+            "id": "claim:astrazeneca-2026:1",
+            "statement": "Reports from March 2026 describe IT disruption and theft of confidential data, claimed by a group calling itself LAPSUS$.",
+            "epistemicStatus": "unknown",
+            "sourceUrl": "https://www.bitdefender.com/en-gb/blog/hotforsecurity/lapsus-astrazeneca-breach"
+          },
+          {
+            "id": "claim:astrazeneca-2026:2",
+            "statement": "INCIBE-CERT noted that the company had not confirmed the details.",
+            "epistemicStatus": "reported",
+            "sourceUrl": "https://www.incibe.es/en/incibe-cert/publications/cybersecurity-highlights/astrazeneca-strengthening-its-cybersecurity-following-cyberattack"
+          }
+        ],
+        "attackMappings": [
+          {
+            "domain": "enterprise-attack",
+            "attackId": null,
+            "stixId": null,
+            "attackDatasetVersion": null,
+            "mappingStatus": "not_evaluated",
+            "evidenceStatus": "unknown",
+            "rationale": null,
+            "sourceClaimIds": [],
+            "reviewer": null,
+            "reviewedAt": null
+          }
+        ],
+        "defensiveMappings": [],
+        "weaknessMappings": [],
+        "unresolvedQuestions": [
+          "Primary source needed: no company disclosure was found as of 2026-11-11.",
+          "Threat-actor claim only. Hold at epistemic status unknown, or drop, until the company confirms.",
+          "Do not record an actor.",
+          "Re-checked 2026-11-17: still no company statement found. Separate, unrelated claim against AstraZeneca Türkiye (N0n, September 2026) should not be merged into this record."
+        ]
+      }
     }
   ]
 }
