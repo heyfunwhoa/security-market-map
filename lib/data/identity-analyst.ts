@@ -78,13 +78,13 @@ export const identityAnalystClaims: Claim[] = [
     sourceUrl: "https://softwareanalyst.io/reports/modernizing-the-identity-stack-from-visibility-to-governance-through-entitlement-intelligence",
     publishedAt: "2025-12-02",
     notes:
-      "Paraphrases the report's ISPM section body, which claim-sacr-iga-entitlements-20251202 deliberately did not. Analyst framing; it does not fill a capability cell or rank vendors.",
+      "Paraphrases the report's ISPM section body; the map's earlier IGA claim on this report deliberately left that section out. Analyst framing; it does not fill a capability cell or rank vendors.",
   },
   {
     ...base,
     id: "claim-sacr-ispm-iasm-20250211",
     statement:
-      "SACR's 11 Feb 2025 report describes Identity Attack Surface Management as a response to gaps in legacy identity vendors, aimed at visibility into identity stacks, posture controls and remediation.",
+      "SACR's 11 Feb 2025 report describes Identity Attack Surface Management as a response to gaps in legacy identity vendors, aimed at full visibility into legacy identity stacks, posture controls and remediation.",
     subjectType: "category",
     subjectId: "ispm",
     sourceId: "src-sacr-identity-attack-surface-20250211",
@@ -97,14 +97,14 @@ export const identityAnalystClaims: Claim[] = [
     ...base,
     id: "claim-sacr-wim-20240927",
     statement:
-      "SACR's 27 Sep 2024 NHI guide distinguishes vendors that broker workload access through real-time policy and secretless, short-lived credentials from vendors focused on NHI discovery, visibility, lifecycle management and remediation.",
+      "SACR's 27 Sep 2024 NHI guide contrasts Aembit, which it says brokers workload access through real-time policy and secretless, short-lived credentials, with the other vendors discussed, which it says focus on NHI discovery, visibility, lifecycle management and remediation.",
     subjectType: "category",
     subjectId: "wim",
     sourceId: "src-sacr-nhi-guide-20240927",
     sourceUrl: "https://softwareanalyst.io/reports/the-complete-guide-to-the-growing-impact-of-non-human-identities-in-cybersecurity",
     publishedAt: "2024-09-27",
     notes:
-      "SACR makes the distinction using Aembit as its example; the report does not use the label WIM. Supports the map's WIM-versus-NHI boundary. Not a vendor ranking or capability cell.",
+      "SACR draws the contrast around one vendor, not a named class, and does not use the label WIM. Aembit is credited as a research partner on the same page. Supports the map's WIM-versus-NHI boundary only as framing. Not a vendor ranking or capability cell.",
   },
   {
     ...base,
@@ -122,7 +122,7 @@ export const identityAnalystClaims: Claim[] = [
     ...base,
     id: "claim-sacr-identity-orchestration-20261117",
     statement:
-      "SACR's 17 Nov 2026 report says an IAM coverage gap persists wherever an enterprise cannot discover an identity path, apply the intended control or verify the result, including local accounts, fallback authentication and application-specific permissions outside central IAM.",
+      "SACR's 17 Nov 2026 report says an IAM coverage gap persists wherever an enterprise cannot reach an identity path, apply the intended control or verify the result, including local accounts, fallback authentication and application-specific permissions outside central IAM.",
     subjectType: "category",
     subjectId: "identity-orchestration",
     sourceId: "src-sacr-identity-policy-enforcement-20261117",

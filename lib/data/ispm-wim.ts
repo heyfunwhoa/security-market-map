@@ -718,7 +718,7 @@ export const ispmWimClaims: Claim[] = [
   },
   {
     "id": "claim-ispm-entra-score",
-    "statement": "Microsoft documents the Identity Secure Score as a percentage showing alignment with Microsoft's security recommendations for an Entra tenant, available to free and paid customers; some recommendations need a paid license.",
+    "statement": "Microsoft documents the Identity Secure Score as a percentage showing how aligned a Microsoft Entra directory is with Microsoft's security recommendations, available to free and paid customers; some recommendations need a paid license.",
     "subjectType": "product",
     "subjectId": "entra-identity-secure-score",
     "capabilityId": null,
@@ -758,7 +758,7 @@ export const ispmWimClaims: Claim[] = [
   },
   {
     "id": "claim-ispm-entra-mfa",
-    "statement": "Microsoft lists 'Require multifactor authentication (MFA) for administrative roles' among the Identity Secure Score recommendations.",
+    "statement": "Microsoft lists 'Require multifactor authentication (MFA) for administrative roles' and 'Ensure all users can complete MFA' among the Identity Secure Score recommendations.",
     "subjectType": "product",
     "subjectId": "entra-identity-secure-score",
     "capabilityId": "cap-ispm-mfa-coverage",
@@ -774,11 +774,11 @@ export const ispmWimClaims: Claim[] = [
     "verificationStatus": "vendor_published",
     "lastCheckedAt": "2026-11-17",
     "conflictsWith": [],
-    "notes": "Official documentation. A recommendation on admin roles, not a per-account MFA coverage report across all users."
+    "notes": "Official documentation. The all-users recommendation is what supports the per-account MFA coverage cell; the admin-roles item alone would not."
   },
   {
     "id": "claim-ispm-entra-config",
-    "statement": "Microsoft lists recommendations to edit misconfigured certificate templates among the Identity Secure Score recommendations.",
+    "statement": "Microsoft lists recommendations to enable a policy blocking legacy authentication and to edit misconfigured certificate templates among the Identity Secure Score recommendations.",
     "subjectType": "product",
     "subjectId": "entra-identity-secure-score",
     "capabilityId": "cap-ispm-config",
@@ -798,7 +798,7 @@ export const ispmWimClaims: Claim[] = [
   },
   {
     "id": "claim-ispm-veza-hygiene",
-    "statement": "Veza's homepage lists Identity Security Posture Management among its offerings and says it uncovers dormant accounts, excessive privileges, access drift, and non-human and third-party access.",
+    "statement": "Veza's homepage lists Identity Security Posture Management as a use case and says Veza maps users, groups, roles, policies, permissions and resources to uncover dormant accounts, excessive privileges, access drift, and non-human and third-party access.",
     "subjectType": "product",
     "subjectId": "veza",
     "capabilityId": "cap-ispm-hygiene",
@@ -814,7 +814,7 @@ export const ispmWimClaims: Claim[] = [
     "verificationStatus": "vendor_published",
     "lastCheckedAt": "2026-11-17",
     "conflictsWith": [],
-    "notes": "Publisher-reported, not independently tested. No direct-competitor or parity claim. See docs/market-research/ispm-wim-categories-2026-11.md."
+    "notes": "The 'uncover' sentence describes Veza's platform in general; ISPM appears as a use-case menu item, not a separately described product. Publisher-reported."
   },
   {
     "id": "claim-ispm-crowdstrike-correlate",
@@ -858,7 +858,7 @@ export const ispmWimClaims: Claim[] = [
   },
   {
     "id": "claim-ispm-authmind",
-    "statement": "AuthMind says it continuously correlates the access-path activity of AI agent, non-human and human identities across cloud, SaaS and on-premises environments.",
+    "statement": "AuthMind says it continuously correlates the access-path activity of AI agent, non-human and human identities across cloud, SaaS and on-premises environments, and maps every agent back to its human owner.",
     "subjectType": "product",
     "subjectId": "authmind-platform",
     "capabilityId": "cap-ispm-correlation",
@@ -874,7 +874,7 @@ export const ispmWimClaims: Claim[] = [
     "verificationStatus": "vendor_published",
     "lastCheckedAt": "2026-11-17",
     "conflictsWith": [],
-    "notes": "Publisher-reported, not independently tested. No direct-competitor or parity claim. See docs/market-research/ispm-wim-categories-2026-11.md."
+    "notes": "Publisher-reported. The correlation described is of access activity across environments, which only partly matches the cross-system identity correlation cell. No direct-competitor or parity claim."
   },
   {
     "id": "claim-ispm-orchid",
@@ -974,7 +974,7 @@ export const ispmWimClaims: Claim[] = [
     "verificationStatus": "vendor_published",
     "lastCheckedAt": "2026-11-17",
     "conflictsWith": [],
-    "notes": "Listing on the project page, likely submitted by implementers. Not a capability cell. See claim-wim-defakto for the vendor's own description."
+    "notes": "Listing on the project page, likely submitted by implementers. Not a capability cell. Defakto's own homepage is cited separately."
   },
   {
     "id": "claim-wim-spiffe-teleport",
@@ -994,14 +994,14 @@ export const ispmWimClaims: Claim[] = [
     "verificationStatus": "vendor_published",
     "lastCheckedAt": "2026-11-17",
     "conflictsWith": [],
-    "notes": "Listing on the project page. Not a capability cell. See claim-wim-teleport-mwi for Teleport's own documentation."
+    "notes": "Listing on the project page. Not a capability cell. Teleport's own documentation is cited separately."
   },
   {
     "id": "claim-wim-aws-ra",
     "statement": "AWS documents IAM Roles Anywhere as a way for workloads running outside AWS to obtain temporary IAM credentials, authenticating with X.509 certificates issued by the customer's certificate authority.",
     "subjectType": "product",
     "subjectId": "aws-iam-roles-anywhere",
-    "capabilityId": "cap-wim-short-lived-identity",
+    "capabilityId": "cap-workload-federation",
     "polarity": "asserts",
     "sourceId": "src-wim-aws-roles-anywhere",
     "sourceUrl": "https://docs.aws.amazon.com/rolesanywhere/latest/userguide/introduction.html",
@@ -1014,7 +1014,7 @@ export const ispmWimClaims: Claim[] = [
     "verificationStatus": "vendor_published",
     "lastCheckedAt": "2026-11-17",
     "conflictsWith": [],
-    "notes": "Official documentation. Requires a customer CA and trust anchor; scope is AWS targets only."
+    "notes": "Official documentation. The X.509 certificate comes from the customer's own CA; Roles Anywhere exchanges it for temporary IAM session credentials, so this is federation away from long-lived AWS keys, not issuance of a workload identity. Scope is AWS targets only."
   },
   {
     "id": "claim-wim-riptides",
@@ -1038,7 +1038,7 @@ export const ispmWimClaims: Claim[] = [
   },
   {
     "id": "claim-wim-corsha",
-    "statement": "Corsha describes itself as an identity provider for machines that gives every machine a verifiable identity and applies identity-based policies at the connection level, with an industrial and OT focus.",
+    "statement": "Corsha's site metadata calls it an identity provider for machines; the page says it gives every machine a verifiable identity and applies identity-based policies at the connection level, with an industrial and OT focus.",
     "subjectType": "vendor",
     "subjectId": "corsha",
     "capabilityId": null,
@@ -1118,7 +1118,7 @@ export const ispmWimClaims: Claim[] = [
   },
   {
     "id": "claim-ispm-silverfort",
-    "statement": "Silverfort's ISPM page says it uncovers and helps mitigate weaknesses that expose hybrid environments to identity threats, including misconfigurations in AD, cloud IdPs and legacy authentication modes.",
+    "statement": "Silverfort's ISPM page says it automatically detects risks and exposures, including misconfigurations, legacy settings and insecure protocols, across on-premises, cloud and hybrid environments.",
     "subjectType": "product",
     "subjectId": "silverfort-ispm",
     "capabilityId": "cap-ispm-config",
@@ -1138,10 +1138,10 @@ export const ispmWimClaims: Claim[] = [
   },
   {
     "id": "claim-ispm-silverfort-hygiene",
-    "statement": "The same Silverfort page names excessive privileges, stale credentials, unconstrained delegation and shadow admins as identity weaknesses it addresses.",
+    "statement": "Silverfort's ISPM page names excessive privileges, stale credentials, unconstrained delegation and shadow admins as weaknesses that frontier AI models can discover and chain into breach paths.",
     "subjectType": "product",
     "subjectId": "silverfort-ispm",
-    "capabilityId": "cap-ispm-hygiene",
+    "capabilityId": null,
     "polarity": "asserts",
     "sourceId": "src-ispm-silverfort",
     "sourceUrl": "https://www.silverfort.com/platform/identity-security-posture-management/",
@@ -1154,11 +1154,11 @@ export const ispmWimClaims: Claim[] = [
     "verificationStatus": "vendor_published",
     "lastCheckedAt": "2026-11-17",
     "conflictsWith": [],
-    "notes": "Publisher-reported, not independently tested. No direct-competitor or parity claim. See docs/market-research/ispm-wim-categories-2026-11.md. The page frames these as weaknesses attackers chain; it does not say each is auto-remediated."
+    "notes": "Problem framing on the vendor page, not a statement of what the product fixes; it fills no capability cell. The separate Silverfort claim covers what the product does."
   },
   {
     "id": "claim-wim-vault-k8s-auth",
-    "statement": "HashiCorp documents a Vault Kubernetes auth method that authenticates workloads with a Kubernetes service account token, so a pod can obtain Vault access without a pre-shared Vault credential.",
+    "statement": "HashiCorp documents a Vault Kubernetes auth method that authenticates workloads with a Kubernetes service account token, which the page says makes it easy to introduce a Vault token into a Kubernetes pod.",
     "subjectType": "product",
     "subjectId": "vault",
     "capabilityId": null,

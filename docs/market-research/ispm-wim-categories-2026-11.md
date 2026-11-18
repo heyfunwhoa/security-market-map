@@ -136,6 +136,32 @@ Canonical records: [typed data](../../lib/data/identity-analyst.ts). There are f
 
 **SACR identity reports still unsourced** (candidates for a later pass): "Identity Security Dark Matter", "Why CISOs Must Re-think Identity", "Introducing Social Engineering Identity", "The Dawn of Intent-Aware Access Fabrics", "How Palo Alto and CyberArk Will Reshape Identity Security", "The Future of Just-in-Time Trust", "Oktane 2026" and "Inside 1Password's Enterprise Identity Transformation".
 
+## Independent claim check (2026-11-18)
+
+A separate reviewer agent, not the one that drafted the claims, re-fetched all 23 unique source URLs (all HTTP 200) and graded all 31 claims in `ispm-wim.ts` and `identity-analyst.ts`. Result: 21 supported, 10 partially supported, none unsupported. All SACR dates match each page's `datePublished`.
+
+Fixes applied:
+- **Capability cells corrected:**
+  - `claim-ispm-silverfort-hygiene` no longer fills `cap-ispm-hygiene`. The page names those weaknesses as things attackers find, not things the product fixes.
+  - `claim-wim-aws-ra` moved from `cap-wim-short-lived-identity` to `cap-workload-federation`. The certificate comes from the customer's CA.
+  - `claim-ispm-entra-mfa` now cites "Ensure all users can complete MFA", which supports per-account MFA coverage. The admin-roles item alone did not.
+- **Wording narrowed to what the page says:** Silverfort (product statement, not problem framing), Veza (ISPM is a use-case menu item), Vault Kubernetes auth (the page's own words), Corsha ("identity provider for machines" is site metadata only), AuthMind (activity correlation plus owner mapping), Entra (directory; legacy-authentication recommendation).
+- **SACR WIM claim:** now says SACR contrasts one vendor (Aembit) with the others, not a named class, and notes that Aembit is credited as a research partner on that page.
+- **Minor wording:** "legacy identity stacks", "reach", "directory".
+- **Notes:** no longer show internal claim IDs to readers.
+
+## Source display on claim cards (UI change, 2026-11-18)
+
+- **User task:** "Which source backs this claim, and how much should I trust it?" without leaving the page.
+- **Destination:** `ClaimList` in `components/claims.tsx`. It is used on category, vendor, domain, home and sources pages.
+- **Before:** a hover/focus/tap badge (status and source type), dates, the statement, notes and a bare "Open source" link.
+- **Decision: adapt.** The `/compare` evidence block in `components/comparison-evidence.tsx` already shows the source title, publisher, dates and excerpt.
+  - The link text is now "Publisher: Source title". Em dashes in registry titles are shown as colons.
+  - A native `<details>` "Source details" holds the type, author, published and retrieved dates, and the registry's summary of the source. The summary is labelled as possibly citing a different passage from the claim.
+  - Native disclosure works by keyboard and touch; nothing depends on hover. There is no new dependency, the existing tokens are kept, and the component stays server-rendered with no client JavaScript added.
+- **Checks:** local Chromium on a production build covered `/`, `/categories/ispm`, `/categories/wim`, `/vendors/okta`, `/vendors/hashicorp` and `/sources` at 320, 375 and 1280 px. All returned HTTP 200 with no overflow and no console errors; every claim shows "Source details" and no bare "Open source" links remain. Keyboard: Tab reaches a summary and Enter opens it. No motion is added. Not tested: screen reader, physical touch device.
+- **Rollback:** revert `ClaimSource` in `components/claims.tsx`.
+
 ## Research review record
 
 - Topic / buyer decision: ISPM: "Which identity weaknesses do we fix first, and who owns each fix?" WIM: "Which workload credentials can we stop storing, and what replaces them?"
