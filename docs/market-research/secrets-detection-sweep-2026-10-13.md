@@ -2,6 +2,8 @@
 
 Observed/reviewed: **2026-10-13**. Status: public-source research and proposed catalog additions, pending PR review. This is a broad sweep, not a claim that every small project or vendor has been discovered.
 
+Later update: [Gitleaks, Betterleaks and Kingfisher: recent sources (Sep–Nov 2026)](secrets-scanners-recent-sources-2026-11-18.md) has newer primary sources and proposes four corrections to entries below, including Betterleaks' vendor/publisher. Candidate research only; nothing below has been changed.
+
 ## Buyer decision and inclusion rule
 
 An AppSec, cloud security, or platform team needs to find exposed credentials in its actual estate. Include a company or OSS maintainer when a primary source describes detection, bundled scanning, or ingestion of secret findings. Secret storage, credential issuance, inventory metadata, and rotation alone do not qualify as exposed-secret detection. A vault may have a separate scanner, as with Vault Radar, Infisical, and Akeyless.
