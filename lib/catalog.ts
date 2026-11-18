@@ -515,6 +515,13 @@ export function catalogProblems(catalog: Catalog): string[] {
       if (seat.personaId && !seatIds.has(seat.personaId)) problems.push(`${label} mandated seat ${seat.personaId} missing`);
       for (const id of seat.sourceIds) if (!sourceIds.has(id)) problems.push(`${label} mandated seat source ${id} missing`);
     }
+    const requirementIds = new Set<string>();
+    for (const req of overlay.identityRequirements) {
+      if (requirementIds.has(req.id)) problems.push(`${label} duplicate identity requirement ${req.id}`);
+      requirementIds.add(req.id);
+      for (const id of req.categoryIds) if (!categoryIds.has(id)) problems.push(`${label} identity requirement ${req.id} category ${id} missing`);
+      for (const id of req.sourceIds) if (!sourceIds.has(id)) problems.push(`${label} identity requirement ${req.id} source ${id} missing`);
+    }
   }
   return problems;
 }
@@ -560,6 +567,15 @@ export function relationshipsForProduct(productId: string): Relationship[] {
   return catalog.relationships.filter(
     (relationship) =>
       relationship.fromProductId === productId || relationship.toProductId === productId,
+  );
+}
+
+/** Industry and regulatory identity requirements that name this category. */
+export function identityRequirementsForCategory(categoryId: string) {
+  return catalog.segmentOverlays.flatMap((overlay) =>
+    overlay.identityRequirements
+      .filter((req) => req.categoryIds.includes(categoryId))
+      .map((req) => ({ overlay, req })),
   );
 }
 
