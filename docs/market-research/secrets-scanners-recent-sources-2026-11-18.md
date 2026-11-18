@@ -84,33 +84,70 @@ The Atlas counts 456 *reported* Kingfisher rules at v2.19.1, excluding 47 hidden
 
 | Record | Today | Evidence | Proposal |
 | --- | --- | --- | --- |
-| `betterleaks.vendorId` = `aikido`; `src-secrets-sweep-betterleaks.publisher` = "Aikido Security" | Aikido shown as vendor and publisher | README: maintained by the Gitleaks makers, development *supported by* Aikido. LICENSE copyright: Zachary Rice. | Decide whether Betterleaks should be a project with Aikido as sponsor rather than an Aikido product. Unknown: who owns the `betterleaks` GitHub org (no governance file found). |
+| `betterleaks.vendorId` = `aikido`; `src-secrets-sweep-betterleaks.publisher` = "Aikido Security" | Aikido shown as vendor and publisher | README: maintained by the Gitleaks makers, development *supported by* Aikido. LICENSE copyright: Zachary Rice. **Aikido's own page:** "governed independently, sponsored by Aikido without being dependent on it", and Aikido's platform "runs the Betterleaks engine". | Model Betterleaks as an independent project with Aikido as **sponsor and commercial user**, not an Aikido product. Publisher should be the Betterleaks project. Still unknown: who owns the `betterleaks` GitHub org. |
 | `gitleaks` | "Review maintenance status separately" | README since 2026-05-21: feature complete, security patches only. No tag since 2026-03-12. | Record maintenance status with this source and date. |
 | `betterleaks.positioning` | "Configurable scanner for exposed secrets." | Validation is already in v1.x (229 rules in v1.10.1). Analysis and revocation exist only in v2 pre-releases. | Mention v1 validation. Keep analysis and revocation out of published capabilities until v2.0.0 is stable. |
 | `kingfisher-oss-deep-dive-2026-10-30.md` | No rule lineage | v2.0.0 CHANGELOG (catalog built on Betterleaks plus Veles) | Add lineage, so overlap with Betterleaks isn't read as independent confirmation. |
 
-## Gaps and leads (unverified)
+## Third-party and press sources (read 2026-11-18)
 
-- **Independent coverage:** none read. The hosts below don't resolve under this session's network policy (checked 2026-11-18). Each line is what a **web search summary** said: a lead to read, not a source.
+Each page was downloaded directly and read as text. Dates are the page's own `datePublished`. Quotes are verbatim and 25 words or fewer. None of these is a neutral source: each row says who published it and why that matters.
 
-| Lead | URL | Search summary claims (unverified) | Why it matters |
+### MongoDB guest post: Gitee scan with TruffleHog and Kingfisher
+
+[Scanning 7.25 Million Public Repositories on China's Largest Git Platform for Secrets](https://www.mongodb.com/company/blog/technical/scanning-7-point-25-million-public-repositories-chinas-largest-git-platform-for-secrets). MongoDB blog, published 2026-10-28.
+
+- **Who:** "This guest post by independent security researcher Ben Zimmermann was developed in collaboration with the Kingfisher team at MongoDB." Compute was paid by "the $5,000 compute-credit sponsorship from Modal".
+- **What:** 7,256,531 public Gitee repositories, scanned with both tools, over "roughly one month". Each tool kept only credentials it confirmed live (TruffleHog `--only-verified`, Kingfisher `--only-valid`).
+- **Result:** "26,400 unique verified-live credentials", deduplicated by secret value. "TruffleHog 12,737 / Kingfisher 14,664 / Caught by both 1,001" (the totals reconcile: 12,737 + 14,664 − 1,001 = 26,400).
+- **Coverage was complementary.** The post says "Either scanner alone would have caught only about half of these credentials." TruffleHog led on Alibaba Cloud keys (9,428 vs 993). Kingfisher led on DeepSeek, OpenAI, HuggingFace and "Chinese-AI services like Zhipu (1,489 vs. 0) that TruffleHog has no detector for."
+- **TruffleHog relevance:**
+  - The post compares its density with Truffle Security's 5.6M-repository GitLab scan.
+  - It notes "stripping our findings to TruffleHog-only puts Gitee at 1.76 per 1,000 repos" (vs 3.64 combined).
+  - It concludes TruffleHog's library "skews toward Western vendors".
+  - This is a concrete, sourced detector gap (Chinese AI and cloud providers) that the Detector Coverage Atlas could check.
+- **Limits:**
+  - Both tools ran from `:latest` images, so versions aren't recorded.
+  - The research was done "in collaboration with" Kingfisher's team and published by MongoDB.
+  - Disclosure: vendors were emailed; "revocation status for the disclosed credentials has not yet been confirmed."
+
+### Hands-on tests (planted fake keys, verification off)
+
+| Source | Published / run | Versions | Result | Limits |
+| --- | --- | --- | --- | --- |
+| [CybeDefend](https://www.cybedefend.com/en/blog/open-source-secret-scanning-tools) | 2026-10-29 / run "On 29 October 2026" | Betterleaks 1.9.0, Gitleaks 8.30.1, Kingfisher 2.14.0, TruffleHog 3.99.7 | Of 12 planted: Betterleaks 12, Gitleaks 10, Kingfisher 10, TruffleHog 9. TruffleHog missed "Google API key, JWT signing secret, Django password". | One small repo, default rules. "Live verification, the feature TruffleHog and Kingfisher are built around, cannot be tested with fake keys." CybeDefend sells AppSec tooling but "is not one of the six scanners". |
+| [DevToolLab](https://devtoollab.com/blog/best-secret-scanning-tools) | 2026-09-24 | Betterleaks 1.8.1, Kingfisher 2.7.0, Gitleaks 8.30.1, TruffleHog 3.97.9 | Of 10 planted: TruffleHog 10, the other three 9 each. "TruffleHog from Truffle Security was the only scanner to catch all ten secrets." | One small repo; no affiliation statement found |
+
+**The two tests rank TruffleHog last and first.** With 10–12 fake keys, one or two misses decide the order. Neither test is evidence of general detection quality, and neither can test live verification. Record both, or neither.
+
+### Governance of Betterleaks (resolves part of the Aikido correction)
+
+| Source | Published | Passage | Note |
 | --- | --- | --- | --- |
-| MongoDB blog, Gitee scan | [mongodb.com](https://www.mongodb.com/company/blog/technical/scanning-7-point-25-million-public-repositories-chinas-largest-git-platform-for-secrets) | Dated 2026-10-28. Guest post with the Kingfisher team. 7.25M public Gitee repositories, about 26,400 unique verified-live credentials, compared with TruffleHog | Primary MongoDB source naming TruffleHog. Read before citing any number. |
-| CybeDefend, "Open Source Secret Scanning Tools 2026: 6 Tested" | [cybedefend.com](https://www.cybedefend.com/en/blog/open-source-secret-scanning-tools) | Run 2026-10-29 on Kingfisher v2.14.0. 10 of 12 planted secrets, tied with Gitleaks | Hands-on test by a security vendor. Check methodology and whether it sells a competing product. |
-| DevToolLab, "Best Secret Scanning Tools in 2026, Tested" | [devtoollab.com](https://devtoollab.com/blog/best-secret-scanning-tools) | Kingfisher v2.7.0: 9 of 10 planted secrets, 0.91 s median | Small corpus; affiliation unknown |
-| BleepingComputer, Betterleaks launch (March 2026, before the window) | [bleepingcomputer.com](https://www.bleepingcomputer.com/news/security/betterleaks-a-new-open-source-secrets-scanner-to-replace-gitleaks/) | Search summaries call Zach Rice "Head of Secrets Scanning at Aikido Security" | **Key for the Aikido vendor/publisher correction:** shows employment, not ownership |
-| Aikido, "Best Secret Scanning Tools in 2026" | [aikido.dev](https://www.aikido.dev/blog/top-secret-scanning-tools) | Describes Kingfisher blast-radius mapping across 43 providers | Aikido sponsors Betterleaks, so this isn't independent |
-| Stéphane Robert, Betterleaks guide | [stephane-robert.info](https://www.stephane-robert.info/en/docs/devsecops/code-dependencies/betterleaks/) | Betterleaks detection plus checking whether secrets are still active | Possibly the only independent technical write-up; date unknown |
+| [Aikido, "Best Secret Scanning Tools in 2026"](https://www.aikido.dev/blog/top-secret-scanning-tools) | modified 2026-09-27 (no published date in page metadata) | "It's MIT-licensed, governed independently, sponsored by Aikido without being dependent on it, and maintained by Rice alongside three other engineers" | **Aikido's own statement** that it sponsors, not owns, Betterleaks |
+| same | same | Aikido's platform "runs the Betterleaks engine for detection" | Aikido is a commercial **user** of Betterleaks as well as its sponsor |
+| [Stéphane Robert, Betterleaks guide](https://www.stephane-robert.info/en/docs/devsecops/code-dependencies/betterleaks/) | 2026-10-29 | "written by the Gitleaks team … its development is backed by Aikido Security" | Independent technical guide (a free training site), consistent with the README |
+| [CybeDefend](https://www.cybedefend.com/en/blog/open-source-secret-scanning-tools) | 2026-10-29 | Betterleaks is "a new MIT project created in February 2026 by the people who made Gitleaks, whose development is supported by Aikido Security" | Consistent |
 
-To read these, allow those hosts in the environment's network settings and re-run this check.
-- **Third-party rule counts:** snippets cite 942, 958 and 1,051 Kingfisher rules. They probably refer to the older v1.x catalog. Unverified; use only version-pinned primary counts.
+**Competitor statements that name Truffle Security.** These are recorded, not verified; the owner should review them.
+- **Rice's employment:** Aikido's page says "Rice joined Truffle Security in 2023, where his focus shifted to TruffleHog". It also says he "lost full control over the repo and name" of Gitleaks. DevToolLab reports the same, citing a 12 March 2026 post by Rice. This note doesn't record Rice's current employer: search summaries elsewhere call him Aikido's "Head of Secrets Scanning", and BleepingComputer, which would settle it, returned HTTP 403 to automated download.
+- **TruffleHog weaknesses:** Aikido's page lists, among others, "Entropy-based filtering produces more noise" and "Generic and custom credential types aren't detected by default". Aikido is a competitor. These claims weren't checked against TruffleHog's documentation.
+
+## Gaps and leads
+
+- **BleepingComputer** (Betterleaks launch, March 2026) returned HTTP 403 to automated download; read it in a browser.
+- **Rule counts:** search snippets cite 942, 958 and 1,051 Kingfisher rules; probably the older v1.x catalog. Unverified; use version-pinned primary counts only. CybeDefend's "462 of its 488 rules" matches Kingfisher's own CHANGELOG at v2.11.0.
 - **v2.0.0 date:** no release date for Betterleaks v2.0.0 found in any primary source.
 
 ## Consumer disposition
 
 - **Security Market Map catalog:** defer. The four corrections need reviewer decisions.
 - **Detector Coverage Atlas:** no change from this note. The v2 preview already covers rule-level impact.
-- **TruffleHog positioning (owner's call):** Kingfisher's comparison page marks TruffleHog OSS ❌ for built-in revocation and reports more network requests during scans. Those are MongoDB's claims on its own page, recorded here as vendor-competitor content. Whether to respond is a separate decision.
+- **TruffleHog positioning (owner's call):**
+  - Kingfisher's comparison page marks TruffleHog OSS ❌ for built-in revocation and reports more network requests during scans.
+  - Aikido's page lists TruffleHog "pain points" and states Rice's 2023 move to Truffle Security.
+  - These are competitors' claims, recorded as such. Whether to respond is a separate decision.
+- **Detector Coverage Atlas, candidate follow-up:** the MongoDB Gitee post names providers where TruffleHog found nothing (Zhipu: 1,489 vs 0) or much less than Kingfisher (DeepSeek, OpenAI, HuggingFace). The atlas could check those providers against its catalog. Not done here.
 - **Other consumers** (interview prep, sales, revenue): no update. Nothing here is account-specific.
 
 Rights: short quotes (25 words or fewer) from MIT (Gitleaks, Betterleaks) and Apache-2.0 (Kingfisher) repositories, with links. Next review: when Betterleaks v2.0.0 ships, when Gitleaks tags a release, or by 2026-12-18.
