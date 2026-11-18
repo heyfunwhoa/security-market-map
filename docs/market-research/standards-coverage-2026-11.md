@@ -7,7 +7,8 @@ As of **2026-11-18**. Status: researched and proposed. Human review is pending. 
 The analyst passes left several categories with no recent framing: vulnerability disclosure, threat modeling, product security, API security, CIAM, crypto, and parts of AI and cloud security. Primary standards and regulation text fills some of those gaps directly. This pass prefers texts published or updated from 2024 to 2026, and reads each one at its source.
 
 Canonical records: [typed data](../../lib/data/standards.ts). There are 28 sources and 43 claims, all `needs_review` with `capabilityId: null`:
-- NIST and OWASP sources are `standard`.
+- NIST SPs, FIPS and OWASP projects are `standard`.
+- NIST white papers, IRs, AI reports and the NCCoE announcement are `official_docs`, because they are guidance or reports rather than standards.
 - The EU regulations are `official_docs`.
 - Final texts are `high` confidence. Drafts, indirect fits and lists the project itself calls provisional are `medium`.
 
@@ -24,14 +25,13 @@ Canonical records: [typed data](../../lib/data/standards.ts). There are 28 sourc
 | AI application security | 1 | OWASP LLM Top 10 2026 (prompt injection) |
 | AI data security | 1 | OWASP LLM Top 10 2026 (sensitive information disclosure) |
 | MCP security | 1 | OWASP AISVS 1.01 |
-| Data encryption | 4 | NIST CSWP 39 (crypto agility, updated Jun 2026); NIST IR 8547 (PQC transition, Oct 2026); FIPS 203 (Aug 2024); EU CRA Annex I |
-| Vulnerability disclosure | 2 | EU CRA Annex I Part II(5)-(6) (CVD policy and contact); CRA Art. 14 (24-hour early warning) |
+| Data encryption | 4 | NIST CSWP 39 (crypto agility, Dec 2025, updated Jun 2026); NIST IR 8547 (PQC transition, Oct 2026); FIPS 203 (Aug 2024); EU CRA Annex I |
+| Vulnerability disclosure | 3 | EU CRA Annex I Part II(5)-(6) (CVD policy and contact); CRA Annex II (published contact and policy in user information); CRA Art. 14 (24-hour early warning to authorities, noted as regulatory reporting rather than outsider intake) |
 | Product security program | 4 | EU CRA Annex I (security by design); NIST SP 800-53 Release 5.2.0 (Aug 2025); OWASP ASVS 5.0 (May 2025); OWASP Top 10:2025 program guidance |
 | Threat modeling | 3 | NIST SP 800-218A PW.1.1; EU CRA Art. 13(2) (risk assessment, not named threat modeling); OWASP Top 10:2025 A06 |
 | Software supply chain | 2 | EU CRA Annex I (SBOM); OWASP Top 10:2025 A03 |
-| Customer trust | 1 | EU CRA Annex II (published vulnerability contact and CVD policy); indirect |
 | API security | 2 | NIST SP 800-228 (Jun 2025, updated Mar 2026) |
-| CIAM | 2 | NIST SP 800-63B-4 (Jul 2025): phishing-resistant AAL2 option; synced passkeys |
+| CIAM | 2 | NIST SP 800-63B-4 (Jul 2025): phishing-resistant AAL2 option; syncable authenticators |
 | Secrets management | 2 | OWASP ASVS 5.0 V13; OWASP Kubernetes Top 10 (2025) |
 | Container security | 1 | OWASP Kubernetes Top 10 (2025) |
 | SCA | 1 | OWASP Top 10:2025 A03 (track all components, including transitive) |
@@ -47,6 +47,7 @@ Canonical records: [typed data](../../lib/data/standards.ts). There are 28 sourc
 
 - **Incident response:** NIST SP 800-61 Rev. 3 (Apr 2025) was researched, but `incident-response` is a seat in this catalog, not a category, so no claim was added.
 - **CSPM, CWPP, IaC:** no final NIST text from 2024 to 2026. SP 800-190 (2017) and SP 800-210 (2020) are older. The NCCoE DevSecOps draft is on a host this research could not reach.
+- **Customer trust:** no standard or regulation defines trust centers or security questionnaires. The CRA Annex II passage was moved to vulnerability disclosure during the independent check.
 - **NHI:** no 2024 to 2026 NIST or EU text defines non-human identity governance. The OWASP NHI Top 10 2025 is already cited in the catalog.
 - **OWASP Agentic Top 10 2026:** its source files could not be located on a reachable host.
 - **Hosts not reachable from the research environment:** cisa.gov, owasp.org, genai.owasp.org, cloudsecurityalliance.org, enisa.europa.eu, ncsc.gov.uk, nist.gov landing pages, nccoe.nist.gov and pages.nist.gov. CISA Secure by Design, CSA guidance and ENISA material are not covered.
@@ -70,6 +71,8 @@ Canonical records: [typed data](../../lib/data/standards.ts). There are 28 sourc
 - **OWASP sources are community projects.** The cited files are on raw.githubusercontent.com, because owasp.org could not be reached.
   - Where a file gives only a year or a month (Top 10:2025, Kubernetes Top 10 2025, AISVS 1.01, ASVS 5.0.0), `publishedAt` is null and the period is stated in the claim.
   - The OWASP Kubernetes Top 10 says its 2025 list still invites feedback.
+- **Moving branches:** the OWASP raw URLs (except ASVS, pinned to `v5.0.0`) point at `main` or `master`, so their text can change. The commit API was blocked, so they could not be pinned to commits.
+- **Rights:** the OWASP Kubernetes Top 10 license statement names CC BY-NC-SA 4.0 (non-commercial) inconsistently; its two claims say a rights review is required.
 - **Terminology drift:** several CSRC pages carry a banner saying NIST is updating terms in response to a 2026 executive order. That was not verified, and it does not change the quoted passages.
 
 ## Research review record
@@ -82,7 +85,7 @@ Canonical records: [typed data](../../lib/data/standards.ts). There are 28 sourc
 - Rights:
   - NIST publications are US government works.
   - EU legislation is under the EUR-Lex reuse policy.
-  - OWASP projects are CC BY-SA 4.0.
+  - OWASP projects are CC BY-SA 4.0, except the Kubernetes Top 10 (see Limits).
   - Only short quotations and paraphrases are used.
 - Unknowns: the gaps listed above; how each rule applies to a specific organization.
 - Consumer disposition: Security Market Map, update. Other consumers: no change.
@@ -91,7 +94,7 @@ Canonical records: [typed data](../../lib/data/standards.ts). There are 28 sourc
 
 | Criterion | Result | Evidence |
 | --- | --- | --- |
-| Source review | Researcher check done; independent re-check pending | All 55 candidate passages (38 NIST and EU, 17 OWASP selected) matched with `grep -F` against saved primary text on 2026-11-18 |
+| Source review | Researcher check and independent re-check done; human review not run | All 55 candidate passages (38 NIST and EU, 17 OWASP selected) matched with `grep -F` against saved primary text on 2026-11-18. An independent reviewer re-fetched every source: 31 claims supported, 12 partial, 0 unsupported. Fixes: SP 800-63B-4 URL and authors corrected; AI 600-1 pointed at the fetchable PDF; original publication dates used for update-1 NIST pages; five NIST guidance documents retyped from `standard` to `official_docs`; AISVS title corrected; "passkeys" removed (not in the source); CRA encryption qualifier added; CRA Annex II moved to vulnerability disclosure; AI Act application dates stated; the concept-paper claim attributed to the CSRC announcement; OWASP A03 and A06 notes corrected; Kubernetes rights flagged. |
 | Integrity checks | Pass | `npm test` 714/714; `npm run test:research-integrity` 7/7 |
 | Typecheck / lint / build | Pass | Local; build generated 448 static pages |
 | Human review | Not run | Pending |

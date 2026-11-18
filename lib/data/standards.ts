@@ -16,7 +16,7 @@ export const standardsSources: Source[] = [
     publisher: "NIST",
     author: "Ramaswamy Chandramouli and Zack Butcher",
     sourceType: "standard",
-    publishedAt: "2026-03-13",
+    publishedAt: "2025-06-27",
     retrievedAt: RETRIEVED,
     volatility: "moderate",
     excerpt:
@@ -25,16 +25,16 @@ export const standardsSources: Source[] = [
   {
     id: "src-nist-sp800-63b-4",
     title: "NIST SP 800-63B-4, Authentication and Authenticator Management",
-    url: "https://csrc.nist.gov/pubs/sp/800/63/4/final",
-    canonicalUrl: "https://csrc.nist.gov/pubs/sp/800/63/4/final",
+    url: "https://csrc.nist.gov/pubs/sp/800/63/b/4/final",
+    canonicalUrl: "https://csrc.nist.gov/pubs/sp/800/63/b/4/final",
     publisher: "NIST",
-    author: "David Temoshok, Diana Proud-Madruga, Yee-Yin Choong, Ryan Galluzzo, Sarbari Gupta, Connie LaSalle, Naomi Lefkovitz and Andrew Regenscheid",
+    author: "David Temoshok, James L. Fenton, Yee-Yin Choong, Naomi Lefkovitz, Andrew Regenscheid, Ryan Galluzzo and Justin P. Richer",
     sourceType: "standard",
     publishedAt: "2025-07-31",
     retrievedAt: RETRIEVED,
     volatility: "moderate",
     excerpt:
-      "NIST's digital identity guidelines require verifiers to offer at least one phishing-resistant option at AAL2 and recognize syncable authenticators (synced passkeys) that manage keys through a sync fabric.",
+      "NIST's digital identity guidelines require verifiers to offer at least one phishing-resistant option at AAL2 and recognize syncable authenticators that manage authentication keys through a sync fabric, such as a cloud provider.",
   },
   {
     id: "src-nist-cswp39-upd1",
@@ -43,8 +43,8 @@ export const standardsSources: Source[] = [
     canonicalUrl: "https://csrc.nist.gov/pubs/cswp/39/upd1/considerations-for-achieving-crypto-agility/final",
     publisher: "NIST",
     author: "Elaine Barker, Lily Chen, David Cooper, Dustin Moody, Andrew Regenscheid, Murugiah Souppaya, William Newhouse, Russ Housley, Sean Turner, William Barker and Karen Kent",
-    sourceType: "standard",
-    publishedAt: "2026-06-29",
+    sourceType: "official_docs",
+    publishedAt: "2025-12-19",
     retrievedAt: RETRIEVED,
     volatility: "moderate",
     excerpt:
@@ -57,7 +57,7 @@ export const standardsSources: Source[] = [
     canonicalUrl: "https://csrc.nist.gov/pubs/ir/8547/final",
     publisher: "NIST",
     author: "Dustin Moody, Ray Perlner, Andrew Regenscheid, Angela Robinson and David Cooper",
-    sourceType: "standard",
+    sourceType: "official_docs",
     publishedAt: "2026-10-27",
     retrievedAt: RETRIEVED,
     volatility: "moderate",
@@ -111,7 +111,7 @@ export const standardsSources: Source[] = [
     canonicalUrl: "https://csrc.nist.gov/pubs/ai/100/2/e2025/final",
     publisher: "NIST",
     author: "Apostol Vassilev, Alina Oprea, Alie Fordyce, Hyrum Anderson, Xander Davies and Maia Hamin",
-    sourceType: "standard",
+    sourceType: "official_docs",
     publishedAt: "2025-03-24",
     retrievedAt: RETRIEVED,
     volatility: "moderate",
@@ -121,10 +121,10 @@ export const standardsSources: Source[] = [
   {
     id: "src-nist-ai600-1",
     title: "NIST AI 600-1, Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile",
-    url: "https://doi.org/10.6028/NIST.AI.600-1",
-    canonicalUrl: "https://doi.org/10.6028/NIST.AI.600-1",
+    url: "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf",
+    canonicalUrl: "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf",
     publisher: "NIST",
-    sourceType: "standard",
+    sourceType: "official_docs",
     publishedAt: null,
     retrievedAt: RETRIEVED,
     volatility: "stable",
@@ -138,7 +138,7 @@ export const standardsSources: Source[] = [
     canonicalUrl: "https://csrc.nist.gov/pubs/other/2026/02/05/accelerating-the-adoption-of-software-and-ai-agent/ipd",
     publisher: "NIST",
     author: "Harold Booth, William Fisher, Ryan Galluzzo and Joshua Roberts",
-    sourceType: "standard",
+    sourceType: "official_docs",
     publishedAt: "2026-02-05",
     retrievedAt: RETRIEVED,
     volatility: "fast",
@@ -243,7 +243,7 @@ export const standardsSources: Source[] = [
   },
   {
     id: "src-owasp-aisvs-c09",
-    title: "OWASP AISVS 1.01: C9 Orchestration and Agentic Action",
+    title: "OWASP AISVS 1.01: C9 Orchestration & Agentic Security",
     url: "https://raw.githubusercontent.com/OWASP/AISVS/main/1.01/en/0x10-C09-Orchestration-and-Agentic-Action.md",
     canonicalUrl: "https://raw.githubusercontent.com/OWASP/AISVS/main/1.01/en/0x10-C09-Orchestration-and-Agentic-Action.md",
     publisher: "OWASP",
@@ -419,10 +419,10 @@ export const standardsClaims: Claim[] = [
     sourceType: "standard",
     sourceId: "src-nist-sp800-228-upd1",
     sourceUrl: "https://csrc.nist.gov/pubs/sp/800/228/upd1/final",
-    publishedAt: "2026-03-13",
+    publishedAt: "2025-06-27",
     confidence: "high",
     notes:
-      "First published June 2025; the cited update is dated 13 Mar 2026. Written for cloud-native systems.",
+      "Published 27 Jun 2025, with updates as of 13 Mar 2026 (the cited version). Written for cloud-native systems.",
   },
   {
     ...base,
@@ -434,7 +434,7 @@ export const standardsClaims: Claim[] = [
     sourceType: "standard",
     sourceId: "src-nist-sp800-228-upd1",
     sourceUrl: "https://csrc.nist.gov/pubs/sp/800/228/upd1/final",
-    publishedAt: "2026-03-13",
+    publishedAt: "2025-06-27",
     confidence: "high",
     notes:
       "A recommendation, not a regulation.",
@@ -448,7 +448,7 @@ export const standardsClaims: Claim[] = [
     subjectId: "ciam",
     sourceType: "standard",
     sourceId: "src-nist-sp800-63b-4",
-    sourceUrl: "https://csrc.nist.gov/pubs/sp/800/63/4/final",
+    sourceUrl: "https://csrc.nist.gov/pubs/sp/800/63/b/4/final",
     publishedAt: "2025-07-31",
     confidence: "high",
     notes:
@@ -458,16 +458,16 @@ export const standardsClaims: Claim[] = [
     ...base,
     id: "claim-nist-syncable-authenticators-2025",
     statement:
-      "NIST SP 800-63B-4 (Jul 2025) recognizes syncable authenticators, such as synced passkeys, that manage authentication keys through a sync fabric like a cloud provider.",
+      "NIST SP 800-63B-4 (Jul 2025) recognizes syncable authenticators that manage authentication keys through a sync fabric like a cloud provider.",
     subjectType: "category",
     subjectId: "ciam",
     sourceType: "standard",
     sourceId: "src-nist-sp800-63b-4",
-    sourceUrl: "https://csrc.nist.gov/pubs/sp/800/63/4/final",
+    sourceUrl: "https://csrc.nist.gov/pubs/sp/800/63/b/4/final",
     publishedAt: "2025-07-31",
     confidence: "high",
     notes:
-      "Syncable authenticators are not permitted at AAL3.",
+      "Syncable authenticators are not permitted at AAL3. The publication does not use the term passkey.",
   },
   {
     ...base,
@@ -476,13 +476,13 @@ export const standardsClaims: Claim[] = [
       "NIST CSWP 39 defines crypto agility as the capabilities needed to replace and adapt cryptographic algorithms across protocols, applications, software, hardware, firmware and infrastructure while preserving security and ongoing operations.",
     subjectType: "category",
     subjectId: "data-encryption",
-    sourceType: "standard",
+    sourceType: "official_docs",
     sourceId: "src-nist-cswp39-upd1",
     sourceUrl: "https://csrc.nist.gov/pubs/cswp/39/upd1/considerations-for-achieving-crypto-agility/final",
-    publishedAt: "2026-06-29",
+    publishedAt: "2025-12-19",
     confidence: "high",
     notes:
-      "A white paper, not a standard. First published 19 Dec 2025; the cited update is dated 29 Jun 2026.",
+      "A white paper, not a standard. Published 19 Dec 2025, with updates as of 29 Jun 2026 (the cited version).",
   },
   {
     ...base,
@@ -491,13 +491,13 @@ export const standardsClaims: Claim[] = [
       "NIST IR 8547 (Oct 2026) says NIST will deprecate quantum-vulnerable public-key cryptography after 2030 and disallow it under NIST standards and guidelines after 2035.",
     subjectType: "category",
     subjectId: "data-encryption",
-    sourceType: "standard",
+    sourceType: "official_docs",
     sourceId: "src-nist-ir8547",
     sourceUrl: "https://csrc.nist.gov/pubs/ir/8547/final",
     publishedAt: "2026-10-27",
     confidence: "high",
     notes:
-      "Applies to NIST standards and US federal use; a driver for cryptographic inventory and migration elsewhere.",
+      "Applies to NIST standards and US federal use. The page also cites earlier federal deadlines set by executive order and OMB memorandum for the most sensitive systems; those are not adopted here.",
   },
   {
     ...base,
@@ -527,7 +527,7 @@ export const standardsClaims: Claim[] = [
     publishedAt: "2025-08-27",
     confidence: "high",
     notes:
-      "Federal control catalog; the change summary also adds SA-24, design for cyber resiliency.",
+      "US federal control catalog; the change summary also adds SA-24, design for cyber resiliency.",
   },
   {
     ...base,
@@ -566,13 +566,13 @@ export const standardsClaims: Claim[] = [
       "NIST AI 100-2 E2025 (Mar 2025) says that because agents can take actions using tools, attacks can let actors hijack agents to execute arbitrary code or exfiltrate data from the environment.",
     subjectType: "category",
     subjectId: "agentic-runtime",
-    sourceType: "standard",
+    sourceType: "official_docs",
     sourceId: "src-nist-ai100-2-e2025",
     sourceUrl: "https://csrc.nist.gov/pubs/ai/100/2/e2025/final",
     publishedAt: "2025-03-24",
     confidence: "high",
     notes:
-      "A taxonomy, not a requirement. A successor draft was published in Nov 2026 and is not used.",
+      "A taxonomy, not a requirement. A successor draft, SP 2400-102 E2026 (Nov 2026), is not used.",
   },
   {
     ...base,
@@ -581,9 +581,9 @@ export const standardsClaims: Claim[] = [
       "NIST AI 600-1 is a cross-sectoral profile of, and companion resource for, the AI Risk Management Framework for generative AI.",
     subjectType: "category",
     subjectId: "ai-governance",
-    sourceType: "standard",
+    sourceType: "official_docs",
     sourceId: "src-nist-ai600-1",
-    sourceUrl: "https://doi.org/10.6028/NIST.AI.600-1",
+    sourceUrl: "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf",
     publishedAt: null,
     confidence: "high",
     notes:
@@ -593,16 +593,16 @@ export const standardsClaims: Claim[] = [
     ...base,
     id: "claim-nist-agent-identity-concept-2026",
     statement:
-      "A NIST NCCoE draft concept paper (Feb 2026) says realizing the benefits of AI agents requires understanding the risks of giving them access to data sets, tools and applications, and applying appropriate identification and authorization controls.",
+      "NIST's announcement of an NCCoE draft concept paper on agent identity and authorization (5 Feb 2026) says realizing the benefits of AI agents requires understanding the risks of giving them access to data sets, tools and applications, and applying appropriate identification and authorization controls.",
     subjectType: "category",
     subjectId: "agent-identity",
-    sourceType: "standard",
+    sourceType: "official_docs",
     sourceId: "src-nist-agent-identity-concept-2026",
     sourceUrl: "https://csrc.nist.gov/pubs/other/2026/02/05/accelerating-the-adoption-of-software-and-ai-agent/ipd",
     publishedAt: "2026-02-05",
     confidence: "medium",
     notes:
-      "Draft concept paper; the passage is from the CSRC announcement. The paper itself is on a host this research could not reach.",
+      "Draft concept paper; the passage is from the CSRC announcement page. The paper itself is on a host this research could not reach.",
   },
   {
     ...base,
@@ -662,7 +662,7 @@ export const standardsClaims: Claim[] = [
     publishedAt: "2024-11-20",
     confidence: "high",
     notes:
-      "Reporting obligations apply from 11 Sep 2026 (Art. 71). Notices go to the coordinating CSIRT and ENISA.",
+      "Regulatory reporting by the manufacturer, not outsider intake. Applies from 11 Sep 2026 (Art. 71); notices go to the coordinating CSIRT and ENISA.",
   },
   {
     ...base,
@@ -683,7 +683,7 @@ export const standardsClaims: Claim[] = [
     ...base,
     id: "claim-eu-cra-encryption",
     statement:
-      "The EU Cyber Resilience Act (Annex I, Part I(2)(e)) requires products to protect the confidentiality of stored, transmitted or otherwise processed data, such as by encrypting relevant data at rest or in transit by state-of-the-art mechanisms.",
+      "The EU Cyber Resilience Act (Annex I, Part I(2)(e)) requires products, on the basis of the risk assessment and where applicable, to protect the confidentiality of stored, transmitted or otherwise processed data, such as by encrypting relevant data at rest or in transit by state-of-the-art mechanisms.",
     subjectType: "category",
     subjectId: "data-encryption",
     sourceType: "official_docs",
@@ -700,14 +700,14 @@ export const standardsClaims: Claim[] = [
     statement:
       "The EU Cyber Resilience Act (Annex II) requires the information supplied to users to include the single point of contact for reporting vulnerabilities and where the coordinated vulnerability disclosure policy can be found.",
     subjectType: "category",
-    subjectId: "customer-trust",
+    subjectId: "vulnerability-disclosure",
     sourceType: "official_docs",
     sourceId: "src-eu-cra-2024-2847",
     sourceUrl: "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32024R2847",
     publishedAt: "2024-11-20",
-    confidence: "medium",
+    confidence: "high",
     notes:
-      "Indirect fit: mandatory product documentation, not trust-center software or security questionnaires.",
+      "Mandatory user-facing product documentation. Also relevant to customer trust, but not trust-center software or security questionnaires.",
   },
   {
     ...base,
@@ -722,7 +722,7 @@ export const standardsClaims: Claim[] = [
     publishedAt: "2024-07-12",
     confidence: "high",
     notes:
-      "High-risk systems only. EUR-Lex shows Regulation (EU) 2026/1744 postponed when these obligations apply; this wording is unchanged in the consolidated text.",
+      "High-risk systems only. As amended by Regulation (EU) 2026/1744, these obligations apply from 2 Dec 2027 (Annex III systems) or 2 Aug 2028 (Annex I systems); the wording is unchanged.",
   },
   {
     ...base,
@@ -737,7 +737,7 @@ export const standardsClaims: Claim[] = [
     publishedAt: "2024-07-12",
     confidence: "high",
     notes:
-      "High-risk systems only; application dates postponed by Regulation (EU) 2026/1744.",
+      "High-risk systems only; applies from 2 Dec 2027 (Annex III) or 2 Aug 2028 (Annex I) as amended by Regulation (EU) 2026/1744.",
   },
   {
     ...base,
@@ -752,7 +752,7 @@ export const standardsClaims: Claim[] = [
     publishedAt: "2024-07-12",
     confidence: "high",
     notes:
-      "High-risk systems only; application dates postponed by Regulation (EU) 2026/1744.",
+      "High-risk systems only; applies from 2 Dec 2027 (Annex III) or 2 Aug 2028 (Annex I) as amended by Regulation (EU) 2026/1744.",
   },
   {
     ...base,
@@ -767,7 +767,7 @@ export const standardsClaims: Claim[] = [
     publishedAt: "2024-07-12",
     confidence: "high",
     notes:
-      "Qualified by \"where appropriate\". High-risk systems only; application dates postponed by Regulation (EU) 2026/1744.",
+      "Qualified by \"where appropriate\"; the article also covers confidentiality attacks and model flaws. High-risk systems only; applies from 2 Dec 2027 (Annex III) or 2 Aug 2028 (Annex I) as amended by Regulation (EU) 2026/1744.",
   },
   {
     ...base,
@@ -947,7 +947,7 @@ export const standardsClaims: Claim[] = [
     publishedAt: null,
     confidence: "medium",
     notes:
-      "The project says the 2025 list invites feedback and is not yet backed by data.",
+      "The project says the 2025 list invites feedback and is not yet backed by data. Its license statement names CC BY-NC-SA 4.0 (non-commercial) inconsistently; rights review required.",
   },
   {
     ...base,
@@ -962,7 +962,7 @@ export const standardsClaims: Claim[] = [
     publishedAt: null,
     confidence: "medium",
     notes:
-      "The project says the 2025 list invites feedback and is not yet backed by data.",
+      "The project says the 2025 list invites feedback and is not yet backed by data. Its license statement names CC BY-NC-SA 4.0 (non-commercial) inconsistently; rights review required.",
   },
   {
     ...base,
@@ -977,7 +977,7 @@ export const standardsClaims: Claim[] = [
     publishedAt: null,
     confidence: "high",
     notes:
-      "An awareness document; OWASP says the category has limited test data. Exact release day not stated in the source.",
+      "An awareness document; OWASP notes few CVEs map to this category's CWEs. Exact release day not stated in the source.",
   },
   {
     ...base,
@@ -1007,7 +1007,7 @@ export const standardsClaims: Claim[] = [
     publishedAt: null,
     confidence: "medium",
     notes:
-      "Supports design-time review; OWASP credits threat modeling for this category's drop in rank.",
+      "Supports design-time review. OWASP separately notes industry improvement in threat modeling.",
   },
   {
     ...base,
