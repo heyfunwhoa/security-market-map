@@ -29,7 +29,7 @@ export const secopsDataAnalystSources: Source[] = [
     url: "https://softwareanalyst.io/reports/sacr-ai-soc-market-landscape-for-2025",
     canonicalUrl: "https://softwareanalyst.io/reports/sacr-ai-soc-market-landscape-for-2025",
     publisher: "Software Analyst Cyber Research",
-    author: "Francis Odum",
+    author: "Francis Odum and Rafal Kitab",
     sourceType: "analyst",
     publishedAt: "2025-08-04",
     retrievedAt: RETRIEVED,
@@ -39,17 +39,17 @@ export const secopsDataAnalystSources: Source[] = [
   },
   {
     id: "src-sacr-siem-2025",
-    title: "SACR, Modernizing SIEM: The 2025 State of the Market",
+    title: "SACR, The Convergence of SIEMs and Data Lakes: Market Evolution, Key Players and What's Next",
     url: "https://softwareanalyst.io/reports/modernizing-siem-the-2025-state-of-the-market",
     canonicalUrl: "https://softwareanalyst.io/reports/modernizing-siem-the-2025-state-of-the-market",
     publisher: "Software Analyst Cyber Research",
-    author: "Aqsa Taylor",
+    author: "Aqsa Taylor, Francis Odum and Rafal Kitab",
     sourceType: "analyst",
     publishedAt: "2025-09-24",
     retrievedAt: RETRIEVED,
     volatility: "moderate",
     excerpt:
-      "SACR's report says SIEM is not disappearing but transforming: despite pricing and volume pressure from XDR, data lakes and security data pipelines, it remains central to the SOC and its definition has expanded.",
+      "SACR's report says SIEM is not disappearing but transforming: despite concerns with pricing and volume bloat, and pressure from XDR, data lakes and security data pipeline platforms, it remains central to the SOC and its definition has expanded.",
   },
   {
     id: "src-forrester-security-analytics-20250624",
@@ -119,7 +119,7 @@ export const secopsDataAnalystSources: Source[] = [
     retrievedAt: RETRIEVED,
     volatility: "moderate",
     excerpt:
-      "Forrester's public abstract says network analysis and visibility solutions identify threats across complex networks, uncover posture improvements and provide telemetry to orchestrate response.",
+      "Forrester's public abstract says network analysis and visibility solutions identify threats across sophisticated networks, uncover opportunities to bolster security posture and use supplemental telemetry to orchestrate and respond.",
   },
   {
     id: "src-kc-cti-lb82047",
@@ -365,7 +365,7 @@ export const secopsDataAnalystSources: Source[] = [
     url: "https://www.forrester.com/blogs/weaponized-insiders-can-result-in-big-consequences/",
     canonicalUrl: "https://www.forrester.com/blogs/weaponized-insiders-can-result-in-big-consequences/",
     publisher: "Forrester",
-    author: "Joseph Blankenship",
+    author: "Joseph Blankenship and Jess Burn",
     sourceType: "analyst",
     publishedAt: "2026-01-27",
     retrievedAt: RETRIEVED,
@@ -440,7 +440,7 @@ export const secopsDataAnalystClaims: Claim[] = [
     sourceUrl: "https://softwareanalyst.io/reports/modernizing-siem-the-2025-state-of-the-market",
     publishedAt: "2025-09-24",
     notes:
-      "The report's key-player vendor sections are not adopted.",
+      "Page modified 29 Jul 2026. The report's key-player vendor sections are not adopted.",
   },
   {
     ...base,
@@ -459,14 +459,14 @@ export const secopsDataAnalystClaims: Claim[] = [
     ...base,
     id: "claim-kc-xdr-lc80923",
     statement:
-      "KuppingerCole's 5 Dec 2024 abstract describes XDR solutions as providing comprehensive observability and remediation across endpoints and networks, including cloud environments.",
+      "KuppingerCole's 5 Dec 2024 Leadership Compass abstract says the report examines XDR solutions that provide comprehensive observability and remediation across endpoints and networks, including cloud environments.",
     subjectType: "category",
     subjectId: "xdr",
     sourceId: "src-kc-xdr-lc80923",
     sourceUrl: "https://www.kuppingercole.com/research/lc80923/extended-detection-and-response-xdr",
     publishedAt: "2024-12-05",
     notes:
-      "Public abstract only. Vendor ratings are not adopted.",
+      "Describes the report's scope. Predates the 2025-2026 preference; no newer KuppingerCole XDR page was suitable. Vendor ratings are not adopted.",
   },
   {
     ...base,
@@ -505,7 +505,7 @@ export const secopsDataAnalystClaims: Claim[] = [
     sourceUrl: "https://www.forrester.com/report/the-network-analysis-and-visibility-solutions-landscape-q2-2025/RES182961",
     publishedAt: "2025-05-21",
     notes:
-      "Forrester's label is network analysis and visibility (NAV); an earlier Forrester post maps NDR to NAV. Public abstract only.",
+      "Forrester's label is network analysis and visibility (NAV); a later Forrester post (15 Oct 2025) maps NDR to NAV. Public abstract only.",
   },
   {
     ...base,
@@ -648,7 +648,7 @@ export const secopsDataAnalystClaims: Claim[] = [
     sourceUrl: "https://www.forrester.com/blogs/prevent-mdr-to-ir-handoff-chaos-before-a-breach/",
     publishedAt: "2026-03-16",
     notes:
-      "The post's point is the handoff from MDR to incident response, where MDR's role stops.",
+      "The post is about the handoff from MDR to incident response, where authority, scope and legal posture shift to IR.",
   },
   {
     ...base,
@@ -656,12 +656,12 @@ export const secopsDataAnalystClaims: Claim[] = [
     statement:
       "SACR's 27 Jul 2026 report says several AI SOC vendors are adding detection engineering and even SIEM capabilities, partly because weak upstream detections cap the value of downstream investigation and response.",
     subjectType: "category",
-    subjectId: "detection-engineering",
+    subjectId: "ai-soc-investigation",
     sourceId: "src-sacr-trusted-soc-part1-20260727",
     sourceUrl: "https://softwareanalyst.io/reports/ai-soc-technoscope-series-building-the-trusted-soc-part-1",
     publishedAt: "2026-07-27",
     notes:
-      "Market-convergence observation, not a category definition. Part 2 of the series ranks vendors and is not used.",
+      "AI SOC vendors expanding upstream into detection engineering and SIEM; not a definition of the detection-engineering lifecycle. Part 2 of the series ranks vendors and is not used.",
   },
   {
     ...base,
@@ -674,7 +674,7 @@ export const secopsDataAnalystClaims: Claim[] = [
     sourceUrl: "https://www.forrester.com/report/the-privacy-management-software-landscape-q2-2025/RES184404",
     publishedAt: "2025-06-25",
     notes:
-      "Public abstract only. No 2025-2026 privacy page was found from KuppingerCole or SACR.",
+      "Public abstract only. No 2025-2026 KuppingerCole or SACR privacy page was found in this session's search (not exhaustive).",
   },
   {
     ...base,
@@ -682,12 +682,12 @@ export const secopsDataAnalystClaims: Claim[] = [
     statement:
       "KuppingerCole's 28 Apr 2026 abstract says traditional controls tied to individual systems no longer provide consistent protection as sensitive data spreads across clouds, analytics and AI, and that platforms enforcing policy at the data layer control access by humans, services and AI.",
     subjectType: "category",
-    subjectId: "database-security",
+    subjectId: "data-access-governance",
     sourceId: "src-kc-dsp-lb80905",
     sourceUrl: "https://www.kuppingercole.com/research/lb80905/data-security-platforms",
     publishedAt: "2026-04-28",
     notes:
-      "Framed as data security platforms, not database activity monitoring; supports the view that per-system controls such as database security are being absorbed into data-layer platforms. No recent database-specific analyst page was found.",
+      "Framed as data security platforms (data-centric policy enforcement), not database activity monitoring. Public abstract only.",
   },
   {
     ...base,
@@ -739,7 +739,7 @@ export const secopsDataAnalystClaims: Claim[] = [
     sourceUrl: "https://www.kuppingercole.com/research/lb80919/crypto-agility",
     publishedAt: "2026-05-15",
     notes:
-      "About managing cryptography as a practice, not encryption products. Public abstract only.",
+      "Weak fit: crypto-agility is cryptographic lifecycle governance rather than an encryption product capability. Public abstract only.",
   },
   {
     ...base,

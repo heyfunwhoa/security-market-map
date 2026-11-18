@@ -12,26 +12,25 @@ Canonical records: [typed data](../../lib/data/secops-data-analyst.ts). There ar
 
 | Category | Claims | Sources (date) |
 | --- | --- | --- |
-| AI SOC investigation | 3 | KuppingerCole (May 2026); SACR (Aug 2025); Forrester (Jun 2026) |
+| AI SOC investigation | 4 | KuppingerCole (May 2026); SACR ×2 (Aug 2025; Jul 2026, AI SOC vendors adding detection engineering); Forrester (Jun 2026) |
 | SIEM | 2 | SACR (Sep 2025); Forrester (Jun 2025) |
 | XDR | 3 | KuppingerCole (Dec 2024, no newer KC page); Forrester ×2 (Feb and Jun 2026) |
 | NDR | 3 | KuppingerCole (May 2026); Forrester ×2 (May and Oct 2025). Forrester's label is NAV. |
 | Threat intelligence | 3 | KuppingerCole (Nov 2026); Forrester ×2 (Dec 2025, Jul 2026) |
 | MDR | 3 | KuppingerCole (May 2026); Forrester ×2 (Feb 2025, Mar 2026) |
 | SOAR | 1 | KuppingerCole (Apr 2026): "security automation, historically called SOAR" |
-| Detection engineering | 1 | SACR (Jul 2026): market convergence, not a definition |
 | Security data pipelines | 1 | Forrester (Nov 2024): the clearest definition found; no newer one |
 | Privacy governance | 1 | Forrester (Jun 2025) |
-| Database security | 1 | KuppingerCole (Apr 2026), framed as data-layer platforms, not database monitoring |
+| Data access governance | 1 | KuppingerCole (Apr 2026): data-layer policy enforcement for humans, services and AI |
 | DLP | 1 | Forrester (Jun 2025) |
 | Encryption | 3 | Forrester ×2 (Sep 2025, Jan 2026); KuppingerCole (May 2026, crypto-agility) |
 | Insider risk | 2 | Forrester ×2 (Jan and Sep 2026) |
 
 **Gaps:**
 - **Malware analysis:** no category-level page from any of the three firms.
-- **Detection engineering:** no recent definition; the 2023 Forrester post was dropped for age.
+- **Detection engineering:** no recent definition; the 2023 Forrester post was dropped for age. A SACR convergence sentence was moved to AI SOC during the independent check.
 - **Privacy governance, DLP and insider risk:** no recent KuppingerCole or SACR page.
-- **Database security:** no database-specific recent page.
+- **Database security:** no database-specific recent page. A KuppingerCole data-platform brief was moved to data access governance during the independent check.
 - **DSPM:** nothing added, because no strong KuppingerCole or Forrester DSPM page was found.
 
 ## What was excluded
@@ -57,7 +56,7 @@ Canonical records: [typed data](../../lib/data/secops-data-analyst.ts). There ar
 
 | Criterion | Result | Evidence |
 | --- | --- | --- |
-| Source review | Researcher check done; independent re-check pending; human review not run | Every passage matched against saved page text on 2026-11-18 |
+| Source review | Researcher check and independent re-check done; human review not run | Every passage matched against saved page text on 2026-11-18. An independent reviewer re-fetched all 27 URLs (HTTP 200): 26 supported, 2 partial, 0 unsupported, all dates correct. Fixes: two claims re-categorized (data-layer brief to data access governance; SACR AI SOC sentence to AI SOC), a SACR source title and co-authors corrected, the KuppingerCole XDR claim reworded as report scope, excerpts tightened, and notes softened where the page did not say it. |
 | Integrity checks | Pass | `npm test` 714/714; `npm run test:research-integrity` 7/7 |
-| Typecheck / lint / build | See PR | |
+| Typecheck / lint / build | Pass | Local |
 | Human review | Not run | Pending |
