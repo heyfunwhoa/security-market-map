@@ -199,6 +199,20 @@ Two research passes fetched public pages with plain requests. Every quoted passa
   The identity requirements in these regulations (NYDFS Part 500 MFA and access privileges, HIPAA technical safeguards, CMMC's NIST SP 800-171 controls, NERC CIP access management) are better sourced from the regulation text itself. Doing that needs a new typed field on the industry profiles; see the PR for the proposal.
 - **Gartner:** `www.gartner.com` refuses automated requests (HTTP 403), and that was not worked around. Gartner pages can be added from URLs and passages a person supplies.
 
+## Secrets and other thin categories (2026-11-18)
+
+There are 20 more `analyst` / `needs_review` claims from SACR, KuppingerCole and Forrester, each passage re-checked against the saved page text. Pages that disclose vendor sponsorship were excluded (for example SACR "Beyond the Action", sponsored by Pluto, and the Teleskope- and Cyera-sponsored DSPM reports).
+
+| Category | Claims added | Note |
+| --- | --- | --- |
+| Secrets detection | KuppingerCole ×2 (2026 software supply chain security Leadership Compass and Buyer's Compass) | KuppingerCole puts secrets detection inside software supply chain security and says specialists still lead. **Gap:** no analyst page found covers secrets outside code (tickets, chat, logs) or checks whether a found secret is still live. |
+| Secrets management | KuppingerCole ×2, Forrester (PKI), SACR (static secrets) | Includes PKI and certificate lifecycle |
+| CIEM | KuppingerCole Buyer's Compass, SACR | |
+| IGA | KuppingerCole Buyer's Compass, SACR (where IGA stops), Forrester (agents don't fit IGA) | |
+| Data access governance | SACR (definition), KuppingerCole, Forrester | |
+| Agentic runtime | Forrester ×2 (least agency; checks on every tool call), KuppingerCole (agent observability), SACR (JIT trust) | |
+| SSPM | KuppingerCole ×2 | |
+
 ## Research review record
 
 - Topic / buyer decision: ISPM: "Which identity weaknesses do we fix first, and who owns each fix?" WIM: "Which workload credentials can we stop storing, and what replaces them?"
