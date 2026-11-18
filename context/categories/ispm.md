@@ -22,7 +22,10 @@ Continuous assessment of the identity estate itself: IdP and directory misconfig
 
 ## Who vendors sell to
 
-- None recorded.
+From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.
+
+- Identity security lead (`identity-security`): 3 of 4 vendors
+- IT operations / systems administrator (`it-operations`): 1 of 4 vendors
 
 ## Vendors (primary)
 

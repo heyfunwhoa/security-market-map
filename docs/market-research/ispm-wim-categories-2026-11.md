@@ -84,6 +84,42 @@ Vendor-level adjacency was also added for `microsoft` (`ispm`, `wim`), `okta` (`
 - Vault: added sources `src-wim-vault-k8s-auth` and `src-wim-vault-spiffe-auth` (HashiCorp docs, retrieved 2026-11-17) with claims `claim-wim-vault-k8s-auth` and `claim-wim-vault-spiffe-auth` on the existing `vault` product, and added `wim` as adjacent on `hashicorp` and `vault`. Vault stays primary `secrets-management`. The claims show it **accepting** workload identities (Kubernetes service account tokens, and SPIFFE SVIDs on Enterprise), not issuing them. No capability cell is filled.
 - Added two learn-page distinctions with no new external claims: "ISPM, ITDR, CIEM, and IGA" (`identity-posture-detection-entitlement`) and "WIM, NHI governance, and the vault" (`workload-identity-layers`). Both restate the boundaries already in the category definitions. They are rendered by the existing `DistinctionCards` component on `/learn#distinctions`. No UI change was needed.
 
+## Template compliance (2026-11-18)
+
+### Vendor seat targeting ([template](vendor-seat-targeting-template.md))
+
+Eight rows in `lib/data/vendor-seat-targeting.ts`, four per new category. Every row was `page-read` on 2026-11-18 from a vendor-owned page or vendor docs. A new header rule maps "security teams" to identity security for ISPM and cloud security for WIM.
+
+| Category | Vendor (role) | Pitched seats | Mentioned only |
+| --- | --- | --- | --- |
+| ISPM | Okta (leader) | it-operations | grc-owner |
+| ISPM | Silverfort (specialist) | identity-security | none |
+| ISPM | Orchid Security (challenger) | identity-security | iga-owner, pam-owner, grc-owner |
+| ISPM | AuthMind (challenger) | identity-security | ciso |
+| WIM | Aembit (specialist) | cloud-sec, identity-security, platform, developer | grc-owner |
+| WIM | Defakto (challenger) | developer | ciso, platform |
+| WIM | Riptides (challenger) | cloud-sec, platform | none |
+| WIM | SPIFFE / SPIRE (open-source-led) | developer, platform | none |
+
+**What's missing (template step 6):**
+- ISPM has no open-source-led vendor in the catalog.
+- Okta, the leader, pitches admins and IT teams, not identity security, which the map lists as ISPM's owner.
+- No ISPM page pitches the SOC.
+- WIM has no large-platform "leader" with WIM as its vendor-level primary category. AWS, Google and Microsoft carry WIM only as adjacent at vendor level, so they were not sampled.
+
+**Redirects and acquisitions (step 9):** AuthMind's homepage carries the headline "AuthMind Joins IBM to Build the Future of Agentic AI Identity Security". This is recorded as an open question on the vendor. Announcement versus close, effective date and product status are unverified. The vendor is not renamed.
+
+**Test change:** `lib/vendor-targeting.test.ts` had a fixed `checkedAt <= "2026-11-10"` ceiling. It now compares against the current date, so it still rejects future dates without needing an edit for every research batch.
+
+### Product research page template ([v1](../product/product-research-page-template-v1.md))
+
+- **Product pages: not applicable.** The template governs products with a dedicated `/products/<slug>` page, listed in the reviewed `PRODUCT_RESEARCH_SLUGS` registry. None of the ISPM or WIM products were added there. The template says not to insert unreviewed product names, and these products are reached through their category and vendor pages. Promoting any of them needs its own page review.
+- **Intake decision:** done (existing IDs searched, records reused, new-versus-existing recorded). The two new categories still need the separate **taxonomy review** the template requires; that review is pending.
+- **Edition and version:** recorded where the source states it (Vault SPIFFE auth needs Enterprise; Entra Secure Score is free and paid). Otherwise it is Unknown.
+- **Atlas handoff:** not applicable. These are not secret-detector products.
+- **Browser checklist (local Chromium, production build, 2026-11-18):** 14 pages at 320 px, 375 px, 768 px, 1280 px and 200% zoom (640 CSS px at DPR 2), 70 page loads in total. Every load returned HTTP 200 with no horizontal overflow and no console errors. Keyboard: on `/categories/ispm` at 375 px, Tab reaches the first vendor link with a visible outline, and Enter opens it. Not tested: screen reader, physical touch device.
+- **Source link check:** all 21 source and official URLs in `lib/data/ispm-wim.ts` and the new seat rows returned HTTP 200 on 2026-11-18.
+
 ## Research review record
 
 - Topic / buyer decision: ISPM: "Which identity weaknesses do we fix first, and who owns each fix?" WIM: "Which workload credentials can we stop storing, and what replaces them?"

@@ -95,7 +95,8 @@ export const ispmWimVendors: Vendor[] = [
     ],
     "verificationStatus": "research_candidate",
     "openQuestions": [
-      "Is it bought as posture, detection, or both, and which identity sources does it read?"
+      "Is it bought as posture, detection, or both, and which identity sources does it read?",
+      "The homepage (retrieved 2026-11-18) carries a headline 'AuthMind Joins IBM to Build the Future of Agentic AI Identity Security'. Announcement versus closed acquisition, effective date and product status are not verified."
     ]
   },
   {
