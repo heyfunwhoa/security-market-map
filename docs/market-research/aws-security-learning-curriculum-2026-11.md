@@ -2,6 +2,10 @@
 
 **Status:** proposed curriculum for review | **Date:** 2026-11-17 | **Owner:** Security Market Map (reference), Builder Academy (future instructional consumer) | **No cloud resources created**
 
+## AWS Industries Security Specialist role track
+
+Use the [AWSI Security + AI Specialist curriculum](awsi-security-ai-specialist-curriculum-2026-11.md) for the role-specific CISO, SA, account-management, security platform, AI workload, industry buying and pipeline-learning path. Personal candidate examples remain in the private job tracker.
+
 ## Complete Security Hub + AI expansion roadmap
 
 See [Security Hub + AI security curriculum and product roadmap](aws-security-hub-ai-curriculum-roadmap-2026-11.md) for Essentials and add-ons, native AWS integrations, all 23 curated Extended partners, Bedrock and AgentCore security, and phased learning implementation. This is a research curriculum, not released product coverage.
