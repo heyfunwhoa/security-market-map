@@ -147,7 +147,7 @@ Each page was downloaded directly and read as text. Dates are the page's own `da
   - Kingfisher's comparison page marks TruffleHog OSS ❌ for built-in revocation and reports more network requests during scans.
   - Aikido's page lists TruffleHog "pain points" and states Rice's 2023 move to Truffle Security.
   - These are competitors' claims, recorded as such. Whether to respond is a separate decision.
-- **Detector Coverage Atlas, candidate follow-up:** the MongoDB Gitee post names providers where TruffleHog found nothing (Zhipu: 1,489 vs 0) or much less than Kingfisher (DeepSeek, OpenAI, HuggingFace). The atlas could check those providers against its catalog. Not done here.
+- **Detector Coverage Atlas, follow-up done 2026-11-18:** TruffleHog (pinned catalog and current `main`) has no detector for Z.ai/Zhipu, Kimi/Moonshot or MiniMax. Betterleaks and Kingfisher detect and validate all three. Details are in the atlas note `docs/market-research/trufflehog-gaps-chinese-ai-providers.md` (branch `claude/vigilant-volta-b65gar`). TruffleHog does have Alibaba, DeepSeek, OpenAI and HuggingFace detectors, so the post's lower TruffleHog counts for those are coverage differences, not missing detectors.
 - **Other consumers** (interview prep, sales, revenue): no update. Nothing here is account-specific.
 
 Rights: short quotes (25 words or fewer) from MIT (Gitleaks, Betterleaks) and Apache-2.0 (Kingfisher) repositories, with links. Next review: when Betterleaks v2.0.0 ships, when Gitleaks tags a release, or by 2026-12-18.
