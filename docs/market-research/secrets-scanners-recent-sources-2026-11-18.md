@@ -61,6 +61,25 @@ Also in the window (CHANGELOG, exact, tag dates): opt-in GitHub gist scanning (v
 
 The Atlas counts 456 *reported* Kingfisher rules at v2.19.1, excluding 47 hidden helper rules (456 + 47 = 503). Both figures are right; they count different things.
 
+### Kingfisher's own comparison page (vendor-competitor content)
+
+[`docs/COMPARISON.md`](https://github.com/mongodb/kingfisher/blob/0b57b8122e10050db3cefffde1a555a061e0b280/docs/COMPARISON.md) was last changed 2026-11-04 (commit `35aaf17`, "preparing for v2.17.0") and edited at four earlier releases in the window. MongoDB is the publisher and compares its own tool, so this is **not independent**. All passages are exact (git).
+
+- **Runtime table, nine public repositories (Kingfisher, TruffleHog, Gitleaks):** Kingfisher is fastest on all nine (for example `linux`: 205.19 s vs 597.51 s TruffleHog vs 548.96 s Gitleaks). The page's own caveat: "These are published reference results, not a fresh benchmark of the current release." The tables don't record tool versions; the stated environment is "OS: darwin / Architecture: arm64 / CPU Cores: 16 / RAM: 48.00 GB". Betterleaks isn't in the runtime table.
+- **Validated findings:** equal where non-zero (`gitlab`: 6 Kingfisher validated, 6 TruffleHog verified). Gitleaks is marked "N/A, not zero".
+- **Network requests during scans:** `gitlab` 17 Kingfisher vs 15,624 TruffleHog vs 0 Gitleaks. The proxy "counts plain HTTP requests and HTTPS CONNECT tunnels"; it doesn't decrypt TLS.
+- **Capability table:**
+  - "Credential revocation": ✅ Kingfisher, ✅ Betterleaks 2.0 RC5, ❌ TruffleHog OSS, ❌ Gitleaks.
+  - "Live credential verification": ❌ for Gitleaks only.
+  - Cites a TruffleHog README pinned at `662edea`.
+  - **TruffleHog relevance:** the ❌ is MongoDB's reading of TruffleHog OSS's README, labelled "Not supported as a built-in capability". This note doesn't verify it, and it says nothing about TruffleHog's commercial editions. Betterleaks' revocation is pre-release only (see above).
+
+## Downstream use
+
+| Project | Evidence (exact, at commit `c02727b`, 2026-11-16) | What it shows |
+| --- | --- | --- |
+| [CompassSecurity/pipeleek](https://github.com/CompassSecurity/pipeleek), AGPL-3.0, "a tool designed to scan CI/CD logs and artifacts for secrets" | `go.mod`: `github.com/betterleaks/betterleaks/v2 v2.0.0-rc.7` and `github.com/trufflesecurity/trufflehog/v3 v3.99.8`. `pkg/scanner/engine/betterleaks.go` imports Betterleaks v2 `scan`, `config`, `analyze` and `sources`. `pkg/scanner/rules/rules.go` imports TruffleHog `pkg/engine/defaults`. `engine.go` runs Betterleaks detection and keeps "custom GitLab verification alongside default TruffleHog detectors". | A third-party tool **embeds both** engines as libraries. For this buyer scenario (CI/CD log scanning), they're used as complements, not substitutes. Already on a Betterleaks pre-release. One project only; it doesn't show broader adoption. |
+
 ## Proposed catalog corrections (not applied, need human review)
 
 | Record | Today | Evidence | Proposal |
@@ -72,7 +91,18 @@ The Atlas counts 456 *reported* Kingfisher rules at v2.19.1, excluding 47 hidden
 
 ## Gaps and leads (unverified)
 
-- **Independent coverage:** none read. Hosts for a MongoDB blog post (search snippet: Oct 2026, scanning 7.25M public repositories with Kingfisher and TruffleHog), Aikido's comparison posts (Aikido sponsors Betterleaks, so not independent), CybeDefend (a vendor) and AppSecSanta were unreachable from this session. These are leads, not sources.
+- **Independent coverage:** none read. The hosts below don't resolve under this session's network policy (checked 2026-11-18). Each line is what a **web search summary** said: a lead to read, not a source.
+
+| Lead | URL | Search summary claims (unverified) | Why it matters |
+| --- | --- | --- | --- |
+| MongoDB blog, Gitee scan | [mongodb.com](https://www.mongodb.com/company/blog/technical/scanning-7-point-25-million-public-repositories-chinas-largest-git-platform-for-secrets) | Dated 2026-10-28. Guest post with the Kingfisher team. 7.25M public Gitee repositories, about 26,400 unique verified-live credentials, compared with TruffleHog | Primary MongoDB source naming TruffleHog. Read before citing any number. |
+| CybeDefend, "Open Source Secret Scanning Tools 2026: 6 Tested" | [cybedefend.com](https://www.cybedefend.com/en/blog/open-source-secret-scanning-tools) | Run 2026-10-29 on Kingfisher v2.14.0. 10 of 12 planted secrets, tied with Gitleaks | Hands-on test by a security vendor. Check methodology and whether it sells a competing product. |
+| DevToolLab, "Best Secret Scanning Tools in 2026, Tested" | [devtoollab.com](https://devtoollab.com/blog/best-secret-scanning-tools) | Kingfisher v2.7.0: 9 of 10 planted secrets, 0.91 s median | Small corpus; affiliation unknown |
+| BleepingComputer, Betterleaks launch (March 2026, before the window) | [bleepingcomputer.com](https://www.bleepingcomputer.com/news/security/betterleaks-a-new-open-source-secrets-scanner-to-replace-gitleaks/) | Search summaries call Zach Rice "Head of Secrets Scanning at Aikido Security" | **Key for the Aikido vendor/publisher correction:** shows employment, not ownership |
+| Aikido, "Best Secret Scanning Tools in 2026" | [aikido.dev](https://www.aikido.dev/blog/top-secret-scanning-tools) | Describes Kingfisher blast-radius mapping across 43 providers | Aikido sponsors Betterleaks, so this isn't independent |
+| Stéphane Robert, Betterleaks guide | [stephane-robert.info](https://www.stephane-robert.info/en/docs/devsecops/code-dependencies/betterleaks/) | Betterleaks detection plus checking whether secrets are still active | Possibly the only independent technical write-up; date unknown |
+
+To read these, allow those hosts in the environment's network settings and re-run this check.
 - **Third-party rule counts:** snippets cite 942, 958 and 1,051 Kingfisher rules. They probably refer to the older v1.x catalog. Unverified; use only version-pinned primary counts.
 - **v2.0.0 date:** no release date for Betterleaks v2.0.0 found in any primary source.
 
@@ -80,6 +110,7 @@ The Atlas counts 456 *reported* Kingfisher rules at v2.19.1, excluding 47 hidden
 
 - **Security Market Map catalog:** defer. The four corrections need reviewer decisions.
 - **Detector Coverage Atlas:** no change from this note. The v2 preview already covers rule-level impact.
+- **TruffleHog positioning (owner's call):** Kingfisher's comparison page marks TruffleHog OSS ❌ for built-in revocation and reports more network requests during scans. Those are MongoDB's claims on its own page, recorded here as vendor-competitor content. Whether to respond is a separate decision.
 - **Other consumers** (interview prep, sales, revenue): no update. Nothing here is account-specific.
 
 Rights: short quotes (25 words or fewer) from MIT (Gitleaks, Betterleaks) and Apache-2.0 (Kingfisher) repositories, with links. Next review: when Betterleaks v2.0.0 ships, when Gitleaks tags a release, or by 2026-12-18.
