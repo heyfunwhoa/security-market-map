@@ -120,6 +120,22 @@ Eight rows in `lib/data/vendor-seat-targeting.ts`, four per new category. Every 
 - **Browser checklist (local Chromium, production build, 2026-11-18):** 14 pages at 320 px, 375 px, 768 px, 1280 px and 200% zoom (640 CSS px at DPR 2), 70 page loads in total. Every load returned HTTP 200 with no horizontal overflow and no console errors. Keyboard: on `/categories/ispm` at 375 px, Tab reaches the first vendor link with a visible outline, and Enter opens it. Not tested: screen reader, physical touch device.
 - **Source link check:** all 21 source and official URLs in `lib/data/ispm-wim.ts` and the new seat rows returned HTTP 200 on 2026-11-18.
 
+## Analyst sources (SACR, 2026-11-18)
+
+Canonical records: [typed data](../../lib/data/identity-analyst.ts). There are five category claims, all `analyst` / `needs_review`, each paraphrasing one public SACR passage. Report figures, market sizes and vendor rankings are not adopted. Analyst framing fills no capability cell.
+
+| Category | Claim | Source (published) | What it supports |
+| --- | --- | --- | --- |
+| ISPM | `claim-sacr-ispm-20251202` | Existing `src-sacr-iga-entitlements-20251202` (2025-12-02) | ISPM definition: continuous identity-configuration assessment. ISPM shows where risk is; IGA decides what to do. Matches the map's ISPM/IGA boundary. |
+| ISPM | `claim-sacr-ispm-iasm-20250211` | New `src-sacr-identity-attack-surface-20250211` | SACR's "Identity Attack Surface Management" (IASM): visibility, posture controls, remediation. Mapped to ISPM, but the labels are not treated as identical. |
+| WIM | `claim-sacr-wim-20240927` | New `src-sacr-nhi-guide-20240927` | SACR separates secretless, policy-based workload access brokering from NHI discovery and lifecycle vendors. Backs the map's WIM/NHI boundary. SACR does not use the label "WIM". |
+| NHI | `claim-sacr-nhi-20240927` | New `src-sacr-nhi-guide-20240927` | NHIs are spread across cloud, SaaS, on-premises and service paths, not centralized in IGA; visibility and inventory are the main challenge. |
+| Identity orchestration | `claim-sacr-identity-orchestration-20261117` | New `src-sacr-identity-policy-enforcement-20261117` | IAM coverage gap: identity paths that can't be discovered, controlled or verified. Profiles Orchid as an observability and orchestration layer; the vendor claims in it are not adopted. |
+
+**Not reachable from the research session:** `www.gartner.com`, `www.forrester.com`, `www.kuppingercole.com`, `owasp.org` and `www.cncf.io`. Gartner is needed for industry-specific identity coverage (the segment overlays in `lib/data/company-segments.ts`). SACR's report index (73 reports checked on 2026-11-18) has no industry-specific identity report.
+
+**SACR identity reports still unsourced** (candidates for a later pass): "Identity Security Dark Matter", "Why CISOs Must Re-think Identity", "Introducing Social Engineering Identity", "The Dawn of Intent-Aware Access Fabrics", "How Palo Alto and CyberArk Will Reshape Identity Security", "The Future of Just-in-Time Trust", "Oktane 2026" and "Inside 1Password's Enterprise Identity Transformation".
+
 ## Research review record
 
 - Topic / buyer decision: ISPM: "Which identity weaknesses do we fix first, and who owns each fix?" WIM: "Which workload credentials can we stop storing, and what replaces them?"
