@@ -413,5 +413,36 @@
     "draftedBy": "agent-draft",
     "reviewedBy": "Kristen Aing",
     "reviewedOn": "2026-11-17"
+  },
+  {
+    "incidentId": "incident:binance-wallet-signing-2026",
+    "status": "draft",
+    "headline": "Binance said attackers reached its internal wallet-signing service; press summaries of its report say a deployment token on an engineer's laptop was a key step.",
+    "discoveryQuestion": "Where do deployment and CI tokens live on your engineers' laptops, and would you notice one being used from the wrong machine?",
+    "avoid": "Don't state a dollar figure or name an attacker; the report is preliminary and the amounts differ across reports.",
+    "sellerCaveat": "Preliminary report; amounts and attribution aren't confirmed.",
+    "basedOnSourceIds": [
+      "source:binance-incident-report-2026",
+      "source:thehackernews-binance-2026"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": null,
+    "reviewedOn": null
+  },
+  {
+    "incidentId": "incident:novo-nordisk-2026",
+    "status": "draft",
+    "headline": "Novo Nordisk said attackers got into a limited number of internal systems and copied non-public data, including personal data.",
+    "discoveryQuestion": "If someone copied data out of a few internal systems, how quickly could you tell which accounts or credentials they used?",
+    "avoid": "Don't repeat the extortion group's data volume or ransom figure; Novo Nordisk hasn't confirmed them.",
+    "sellerCaveat": "How the attackers got in hasn't been disclosed.",
+    "basedOnSourceIds": [
+      "source:novo-nordisk-it-incident-2026"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": null,
+    "reviewedOn": null
   }
 ]

@@ -198,5 +198,35 @@
     "lastReviewedOn": "2026-11-17",
     "cadence": "event_driven",
     "rightsNote": "Public SEC filing; cite and paraphrase."
+  },
+  {
+    "id": "source:binance-incident-report-2026",
+    "publisher": "Binance",
+    "type": "company_incident_report",
+    "url": "https://www.binance.com/square/post/384314395829022",
+    "publishedOn": "2026-11-03",
+    "lastReviewedOn": "2026-11-17",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check Binance terms before reuse."
+  },
+  {
+    "id": "source:thehackernews-binance-2026",
+    "publisher": "The Hacker News",
+    "type": "news",
+    "url": "https://thehackernews.com/2026/11/binance-reveals-how-fake-job-interviews.html",
+    "publishedOn": "2026-11-03",
+    "lastReviewedOn": "2026-11-17",
+    "cadence": "event_driven",
+    "rightsNote": "Secondary coverage summarizing Binance's report. Citation and short paraphrase only."
+  },
+  {
+    "id": "source:novo-nordisk-it-incident-2026",
+    "publisher": "Novo Nordisk A/S (via GlobeNewswire)",
+    "type": "company_incident_report",
+    "url": "https://www.investegate.co.uk/announcement/gnw/novo-nordisk-a-s-class-b--0qiu/novo-nordisk-a-s-it-security-incident-at-nov-/9614494",
+    "publishedOn": "2026-06-11",
+    "lastReviewedOn": "2026-11-17",
+    "cadence": "event_driven",
+    "rightsNote": "Company announcement as distributed by GlobeNewswire. Citation and short paraphrase only."
   }
 ]
