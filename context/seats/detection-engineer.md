@@ -24,7 +24,7 @@ Write, test, and maintain detection content; close telemetry gaps; own tuning.
 - SIEM (`siem`)
 - SOAR and response automation (`soar`)
 - Cloud detection and response (`cloud-detection`)
-- Identity threat detection (ITDR) (`itdr`)
+- Identity threat detection and posture (ITDR, ISPM) (`itdr`)
 - Extended detection and response (`xdr`)
 - Detection engineering lifecycle (`detection-engineering`)
 

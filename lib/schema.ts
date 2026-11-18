@@ -401,6 +401,19 @@ export const mandatedSeatSchema = z.object({
 });
 
 /** How a company type changes the map: which seats a rule requires, which seats gain weight, what triggers appear. */
+/**
+ * An identity control a law or standard requires for a segment, linked to the identity categories
+ * that address it. `rule` is the citation; `requirement` paraphrases the rule text. A requirement
+ * names a control, not a product: no vendor or category is "compliant" because it is linked here.
+ */
+export const identityRequirementSchema = z.object({
+  id: z.string().min(1),
+  requirement: z.string().min(1).max(320),
+  rule: z.string().min(1),
+  categoryIds: z.array(z.string().min(1)).min(1),
+  sourceIds: z.array(z.string().min(1)).min(1),
+});
+
 export const segmentOverlaySchema = z.object({
   id: z.string().min(1),
   name: z.string().min(1),
@@ -410,6 +423,7 @@ export const segmentOverlaySchema = z.object({
   elevatedPersonaIds: z.array(z.string().min(1)).default([]),
   addedTriggers: z.array(z.string().min(1)).default([]),
   frameworks: z.array(z.string().min(1)).default([]),
+  identityRequirements: z.array(identityRequirementSchema).default([]),
   notes: z.string().min(1).optional(),
   evidence: personaEvidenceSchema,
   sourceIds: z.array(z.string().min(1)).default([]),

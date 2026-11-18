@@ -98,7 +98,12 @@ describe("incident feed", () => {
     expect(text).toContain("2025-01-02");
     expect(text).toContain("https://example.org/alert");
     expect(text).toContain("Draft");
+    expect(text).not.toContain("Caveat:");
+    expect(text.endsWith(`\nMore: https://security-market-map.vercel.app/incidents/${item.slug}`)).toBe(true);
     expect(talkTrackText({ ...item, salesNote: null })).toBeNull();
+    const [withCaveat] = buildIncidentFeed([base], [source], [{ ...note, sellerCaveat: "Impact isn't confirmed." }]);
+    expect(talkTrackText(withCaveat)).toContain("\nCaveat: Impact isn't confirmed.\nSource:");
+    expect(talkTrackText(withCaveat)).toContain("\nMore: https://security-market-map.vercel.app/incidents/");
   });
 
   it("sorts newest disclosure first and filters by kind and ecosystem", () => {

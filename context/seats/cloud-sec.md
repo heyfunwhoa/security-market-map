@@ -27,7 +27,7 @@ Cloud control-plane posture, workload protection, entitlements, and cloud detect
 - CIEM and access intelligence (`ciem`)
 - Cloud-native application protection (`cnapp`)
 - Cloud detection and response (`cloud-detection`)
-- Identity threat detection (ITDR) (`itdr`)
+- Identity threat detection and posture (ITDR, ISPM) (`itdr`)
 - Adjacent security (`adjacent-security`)
 
 ## Pains

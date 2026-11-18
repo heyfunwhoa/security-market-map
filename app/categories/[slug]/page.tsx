@@ -9,7 +9,7 @@ import { CloudAppShortlist, DataSecurityShortlist } from "@/components/cloud-app
 import { ClaimList } from "@/components/claims";
 import { FlowStrip } from "@/components/category-map";
 import { PageIntro } from "@/components/chrome";
-import { catalog, categoryBySlug, claimsForSubject, vendorById } from "@/lib/catalog";
+import { catalog, categoryBySlug, claimsForSubject, identityRequirementsForCategory, sourceById, vendorById } from "@/lib/catalog";
 import { painsForCategory, seatById, seatsForCategory } from "@/lib/persona-graph";
 import { targetingForCategory } from "@/lib/vendor-targeting";
 import { formatDate } from "@/lib/format";
@@ -37,6 +37,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
   const primaryVendors = [...new Set(products.map((product) => product.vendorId))]
     .flatMap((id) => { const vendor = vendorById(id); return vendor ? [vendor] : []; });
   const categoryClaims = claimsForSubject("category", category.id);
+  const requirements = identityRequirementsForCategory(category.id);
   const relatedIncidents = incidentsForCategory(category.id);
   const owningSeats = seatsForCategory(category.id);
   const seatPains = painsForCategory(category.id);
@@ -339,6 +340,37 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
               ))}
             </ul>
           ) : null}
+        </section>
+      ) : null}
+      {requirements.length > 0 ? (
+        <section className="mt-8" aria-labelledby="category-regulation">
+          <h2 id="category-regulation" className="text-2xl">Industry rules that call for these controls</h2>
+          <p className="mt-2 text-sm leading-6 text-muted-foreground">
+            Each rule names a control this category can help with. Linking a rule here does not make any product compliant.
+          </p>
+          <ul className="mt-3 space-y-3">
+            {requirements.map(({ overlay, req }) => (
+              <li key={`${overlay.id}-${req.id}`} className="rounded-xl border border-border bg-card p-4 text-sm">
+                <p className="font-medium">{overlay.name}</p>
+                <p className="mt-1 leading-6">{req.requirement}</p>
+                <p className="mt-2 text-xs text-muted-foreground">
+                  {req.rule}
+                  {req.sourceIds.map((id) => {
+                    const source = sourceById(id);
+                    return source ? (
+                      <span key={id}>
+                        {" · "}
+                        <a href={source.url} className="text-primary underline-offset-4 hover:underline">
+                          {source.publisher}
+                        </a>
+                        {` (retrieved ${formatDate(source.retrievedAt)})`}
+                      </span>
+                    ) : null;
+                  })}
+                </p>
+              </li>
+            ))}
+          </ul>
         </section>
       ) : null}
       <section className="mt-8">
