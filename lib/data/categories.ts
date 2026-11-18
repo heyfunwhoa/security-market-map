@@ -10,6 +10,8 @@ const identityDomains: Record<string, string[]> = {
   "secrets-detection": ["identity", "appsec"],
   "secrets-management": ["identity", "platform"],
   nhi: ["identity", "platform"],
+  wim: ["identity", "platform", "cloud"],
+  ispm: ["identity"],
   "agent-identity": ["identity", "product", "ai"],
   "identity-orchestration": ["identity", "appsec"],
   "adjacent-security": ["identity", "cloud", "data", "grc"],
@@ -17,12 +19,15 @@ const identityDomains: Record<string, string[]> = {
 
 const extraAdjacent: Record<string, string[]> = {
   pam: ["endpoint-security"],
-  ciem: ["cspm", "cnapp"],
-  itdr: ["siem"],
+  ciem: ["cspm", "cnapp", "ispm"],
+  itdr: ["siem", "ispm"],
   "secrets-detection": ["sast", "sca", "aspm"],
-  "secrets-management": ["container-security"],
+  "secrets-management": ["container-security", "wim"],
+  nhi: ["wim"],
   "adjacent-security": ["cnapp", "dspm", "grc-controls", "aspm"],
   "agent-identity": ["agentic-runtime", "mcp-security", "ai-data-security"],
+  ispm: ["sspm", "cspm"],
+  wim: ["container-security", "cnapp"],
 };
 
 const identitySeed: Omit<Category, "domainIds">[] = [
@@ -257,6 +262,74 @@ const identitySeed: Omit<Category, "domainIds">[] = [
       decision: "Owner, policy, or a review",
       action: "Call an API or deploy",
       evidence: "Inventory record, owner, and last-used or decommission event",
+    },
+  },
+  {
+    id: "wim",
+    slug: "wim",
+    name: "Workload identity management (WIM)",
+    group: "machines",
+    layer: "core",
+    definition:
+      "How a running workload proves what it is and gets a short-lived credential for the next hop, without a stored secret: attestation, issued workload identities such as SPIFFE IDs, federation between clouds and CI, and policy on which workload may reach which resource. NHI programs inventory and govern identities that already exist. WIM changes how workloads authenticate. A vault stores or issues secrets. WIM tries to remove the stored secret.",
+    buyerQuestion: "Can this service, job, or container prove what it is at runtime and get access without a long-lived key?",
+    buyerOwner: "Platform engineering or SRE, with cloud security or IAM setting policy.",
+    triggers: [
+      "Leaked long-lived cloud or API key",
+      "Multi-cloud or hybrid workloads calling each other",
+      "CI pipelines holding static deploy credentials",
+      "Zero-trust or service-mesh program",
+    ],
+    budgetSource: "Platform engineering or cloud security. It is rarely the IGA budget, and it may compete with vault spend.",
+    outcomes: [
+      "Fewer stored secrets for workload-to-workload hops",
+      "Credentials that expire in minutes or hours",
+      "Access policy keyed to workload identity, not network location",
+    ],
+    adjacentCategoryIds: ["nhi", "secrets-management", "agent-identity", "ciem"],
+    exampleWorkflow:
+      "A Kubernetes pod is attested by node and service account, receives a short-lived workload identity, exchanges it with the cloud provider for a scoped token, and reads the database without a password in its config.",
+    flow: {
+      actor: "Service, CI job, container, or function",
+      credential: "Attested workload identity (X.509 or JWT) or a federated token",
+      permission: "Policy naming which workload may reach which resource",
+      decision: "Attestation result plus access policy at request time",
+      action: "Workload calls the API, database, or other service",
+      evidence: "Issuance log, attestation record, and access decision",
+    },
+  },
+  {
+    id: "ispm",
+    slug: "ispm",
+    name: "Identity security posture management (ISPM)",
+    group: "detection",
+    layer: "core",
+    definition:
+      "Continuous assessment of the identity estate itself: IdP and directory misconfiguration, MFA and authentication gaps, dormant and orphaned accounts, shadow admins, and risky trust across identity systems. It finds and prioritizes weaknesses before an attacker uses them. CIEM measures effective cloud permissions. ITDR detects active abuse. IGA certifies and removes access. ISPM sits between them and often feeds all three.",
+    buyerQuestion: "Where is our identity estate weak right now, and which fix removes the most risk?",
+    buyerOwner: "Identity security or IAM, sometimes the security architect or a posture or exposure-management owner.",
+    triggers: [
+      "Identity-based breach or IdP incident in the news",
+      "MFA coverage question from the board or an auditor",
+      "IdP consolidation or merger exposing multiple directories",
+      "ITDR alert volume with no prevention story",
+    ],
+    budgetSource: "Identity security or exposure management. It may be bundled into an IdP, ITDR, or CNAPP purchase. Ask which.",
+    outcomes: [
+      "MFA and phishing-resistant coverage measured per account",
+      "Dormant and orphaned privileged accounts removed",
+      "Prioritized identity misconfigurations with an owner",
+    ],
+    adjacentCategoryIds: ["itdr", "ciem", "iga", "workforce-identity", "nhi"],
+    exampleWorkflow:
+      "A posture scan finds an admin who has an MFA exemption, has not signed in for 120 days, and holds a role in a second directory. The finding goes to IAM, which removes the role. Governance later asks why no certification caught it.",
+    flow: {
+      actor: "Human or machine account across IdPs, directories, and SaaS",
+      credential: "Password, MFA method, token, or key as configured",
+      permission: "Roles and group memberships across identity systems",
+      decision: "Posture rule or risk score",
+      action: "Open a finding, a ticket, or an automated fix",
+      evidence: "Posture finding, severity, owner, and remediation record",
     },
   },
   {

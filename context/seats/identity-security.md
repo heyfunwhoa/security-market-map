@@ -29,6 +29,8 @@ One coherent identity story across workforce, privilege, cloud entitlements, and
 - CIEM and access intelligence (`ciem`)
 - Identity threat detection (ITDR) (`itdr`)
 - AI agent identity and runtime authorization (`agent-identity`)
+- Identity security posture management (ISPM) (`ispm`)
+- Workload identity management (WIM) (`wim`)
 - Agentic runtime enforcement (`agentic-runtime`)
 - Customer identity (CIAM) (`ciam`)
 

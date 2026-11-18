@@ -3,7 +3,7 @@ id: "secrets-management"
 type: "category"
 name: "Secrets management"
 layer: "core"
-vendors: 22
+vendors: 23
 ---
 
 # Secrets management
@@ -60,6 +60,7 @@ From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - DigiCert
 - Keycard
 - Fortanix
+- SPIFFE / SPIRE (CNCF)
 
 ## What buyers do instead
 
