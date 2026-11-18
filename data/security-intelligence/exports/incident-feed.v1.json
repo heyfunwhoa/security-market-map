@@ -105,9 +105,38 @@
           "publishedOn": "2026-11-03"
         }
       ],
-      "salesNote": null,
-      "industries": [],
-      "marketCategories": []
+      "salesNote": {
+        "headline": "Binance said attackers reached its internal wallet-signing service; press summaries of its report say a deployment token on an engineer's laptop was a key step.",
+        "discoveryQuestion": "Where do deployment and CI tokens live on your engineers' laptops, and would you notice one being used from the wrong machine?",
+        "avoid": "Don't state a dollar figure or name an attacker; the report is preliminary and the amounts differ across reports.",
+        "sellerCaveat": "Preliminary report; amounts and attribution aren't confirmed.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:binance-incident-report-2026",
+          "source:thehackernews-binance-2026"
+        ],
+        "reviewedOn": "2026-11-18"
+      },
+      "industries": [
+        {
+          "id": "financial_services",
+          "name": "Financial services"
+        }
+      ],
+      "marketCategories": [
+        {
+          "categoryId": "software-supply-chain",
+          "categoryName": "Software supply chain",
+          "rationale": "The campaign reportedly began with a tampered Homebrew installer and a malicious repository delivered through a fake job assignment.",
+          "doesNotImply": "That a supply-chain tool would have caught the tampered installer or the repository."
+        },
+        {
+          "categoryId": "secrets-detection",
+          "categoryName": "Secrets detection and remediation",
+          "rationale": "A container deployment permission token found on an engineer's computer was reportedly used to deploy the malicious container.",
+          "doesNotImply": "That secrets scanning would have found or stopped use of that token."
+        }
+      ]
     },
     {
       "id": "incident:novo-nordisk-2026",
@@ -135,8 +164,23 @@
           "publishedOn": "2026-06-11"
         }
       ],
-      "salesNote": null,
-      "industries": [],
+      "salesNote": {
+        "headline": "Novo Nordisk said attackers got into a limited number of internal systems and copied non-public data, including personal data.",
+        "discoveryQuestion": "If someone copied data out of a few internal systems, how quickly could you tell which accounts or credentials they used?",
+        "avoid": "Don't repeat the extortion group's data volume or ransom figure; Novo Nordisk hasn't confirmed them.",
+        "sellerCaveat": "How the attackers got in hasn't been disclosed.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:novo-nordisk-it-incident-2026"
+        ],
+        "reviewedOn": "2026-11-18"
+      },
+      "industries": [
+        {
+          "id": "healthcare_life_sciences",
+          "name": "Healthcare and life sciences"
+        }
+      ],
       "marketCategories": []
     },
     {

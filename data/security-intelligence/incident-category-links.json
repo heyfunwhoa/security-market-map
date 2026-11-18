@@ -393,11 +393,11 @@
     "basedOnSourceIds": [
       "source:thehackernews-binance-2026"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-18"
   },
   {
     "id": "link:binance-wallet-signing-2026:secrets-detection",
@@ -409,10 +409,10 @@
     "basedOnSourceIds": [
       "source:thehackernews-binance-2026"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-18"
   }
 ]

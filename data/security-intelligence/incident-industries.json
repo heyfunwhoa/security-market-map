@@ -161,11 +161,11 @@
     "basedOnSourceIds": [
       "source:binance-incident-report-2026"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-18"
   },
   {
     "id": "industry:novo-nordisk-2026:healthcare_life_sciences",
@@ -175,10 +175,10 @@
     "basedOnSourceIds": [
       "source:novo-nordisk-it-incident-2026"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
     "proposedOn": "2026-11-17",
-    "reviewedBy": null,
-    "reviewedOn": null
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-18"
   }
 ]
