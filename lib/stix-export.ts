@@ -54,7 +54,12 @@ export function uuidv5(name: string, namespace = NAMESPACE): string {
 
 const stamp = (day: string) => `${day}T00:00:00.000Z`;
 
-export function toStixBundle(incidents: SeedIncident[], sources: SeedSource[]): StixBundle {
+/**
+ * `createdOn` pins each incident's STIX `created` date (data/security-intelligence/stix-created-on.json).
+ * STIX keeps `created` fixed for an object ID across versions; only `modified` moves. Deriving it
+ * from lastReviewedOn would change it on every re-review, so it comes from this ledger instead.
+ */
+export function toStixBundle(incidents: SeedIncident[], sources: SeedSource[], createdOn: Readonly<Record<string, string>>): StixBundle {
   const sourceById = new Map(sources.map((s) => [s.id, s]));
   const reviewed = incidents.filter((i) => EXPORTABLE.has(i.reviewStatus));
   const latest = reviewed.map((i) => i.lastReviewedOn).sort().at(-1) ?? "2026-01-01";
@@ -76,29 +81,34 @@ export function toStixBundle(incidents: SeedIncident[], sources: SeedSource[]): 
     spec_version: "2.1",
     id: `extension-definition--${uuidv5("extension:smm-incident-evidence")}`,
     created_by_ref: producer.id,
+    // `created` never changes; a new field moves `modified` and `version`.
     created: stamp("2026-11-17"),
-    modified: stamp("2026-11-17"),
+    modified: stamp("2026-11-18"),
     name: "Security Market Map incident evidence fields",
     description:
-      "x_smm_disclosed_on, x_smm_occurred_on (omitted when unknown), x_smm_epistemic_status (reported, observed, hypothesis, disputed, unknown), x_smm_review_status and x_smm_uncertainty_notes.",
+      "x_smm_disclosed_on, x_smm_occurred_on (omitted when unknown), x_smm_epistemic_status (reported, observed, hypothesis, disputed, unknown), x_smm_review_status, x_smm_uncertainty_notes and x_smm_source_rights (one entry per external reference: source_id and the reuse limits that apply to it).",
     schema: "https://github.com/heyfunwhoa/security-market-map/blob/main/docs/security-intelligence/stix-export.md",
-    version: "1.0.0",
+    version: "1.1.0",
     extension_types: ["toplevel-property-extension"],
-    extension_properties: ["x_smm_disclosed_on", "x_smm_occurred_on", "x_smm_epistemic_status", "x_smm_review_status", "x_smm_uncertainty_notes"],
+    extension_properties: ["x_smm_disclosed_on", "x_smm_occurred_on", "x_smm_epistemic_status", "x_smm_review_status", "x_smm_uncertainty_notes", "x_smm_source_rights"],
   };
 
   const objects: StixObject[] = reviewed.map((incident) => {
-    const refs = incident.sourceIds.map((id) => {
+    const cited = incident.sourceIds.map((id) => {
       const source = sourceById.get(id);
       if (!source) throw new Error(`${incident.id} cites unknown source ${id}`);
-      return { source_name: source.publisher, url: source.url, external_id: source.id };
+      return source;
     });
+    const refs = cited.map((source) => ({ source_name: source.publisher, url: source.url, external_id: source.id }));
+    const created = createdOn[incident.id];
+    if (!created) throw new Error(`${incident.id} has no pinned STIX created date; add it to stix-created-on.json once, then never change it`);
+    if (created > incident.lastReviewedOn) throw new Error(`${incident.id}: created ${created} is after lastReviewedOn ${incident.lastReviewedOn}`);
     return {
       type: "incident",
       spec_version: "2.1",
       id: `incident--${uuidv5(incident.id)}`,
       created_by_ref: producer.id,
-      created: stamp(incident.lastReviewedOn),
+      created: stamp(created),
       modified: stamp(incident.lastReviewedOn),
       name: incident.title,
       description: incident.summary,
@@ -112,6 +122,8 @@ export function toStixBundle(incidents: SeedIncident[], sources: SeedSource[]): 
       x_smm_epistemic_status: incident.epistemicStatus,
       x_smm_review_status: incident.reviewStatus,
       x_smm_uncertainty_notes: incident.uncertaintyNotes,
+      // STIX allows no custom fields inside external_references, so reuse limits travel here.
+      x_smm_source_rights: cited.map((source) => ({ source_id: source.id, rights_note: source.rightsNote })),
     };
   });
 

@@ -1,0 +1,22 @@
+{
+  "_comment": "Pinned STIX `created` date per incident. Add an entry when an incident is first exported; never change an existing one. Seeded 2026-11-18 with the value the export emitted until then (lastReviewedOn).",
+  "createdOn": {
+    "incident:circleci-engineer-laptop-2023": "2026-11-17",
+    "incident:cisa-shai-hulud-2025": "2026-10-10",
+    "incident:cisa-solarwinds-2020": "2026-10-10",
+    "incident:cl-sta-1238-cairn-ai-intrusions-2026": "2026-11-17",
+    "incident:cloudflare-unrotated-okta-tokens-2023": "2026-11-17",
+    "incident:codecov-bash-uploader-2021": "2026-11-17",
+    "incident:env-file-cloud-extortion-2024": "2026-11-17",
+    "incident:microsoft-ai-sas-token-2023": "2026-11-17",
+    "incident:nx-s1ngularity-2025": "2026-11-17",
+    "incident:okta-support-har-files-2023": "2026-11-17",
+    "incident:pypi-admin-token-docker-image-2024": "2026-11-17",
+    "incident:storm-0558-signing-key-2023": "2026-11-17",
+    "incident:tj-actions-changed-files-2025": "2026-11-17",
+    "incident:toyota-tconnect-github-key-2022": "2026-11-17",
+    "incident:uber-contractor-mfa-push-2022": "2026-11-17",
+    "incident:uber-github-aws-key-2016": "2026-11-17",
+    "incident:west-pharmaceutical-intrusion-2026": "2026-11-17"
+  }
+}
