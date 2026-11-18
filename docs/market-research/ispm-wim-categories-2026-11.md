@@ -162,6 +162,43 @@ Fixes applied:
 - **Checks:** local Chromium on a production build covered `/`, `/categories/ispm`, `/categories/wim`, `/vendors/okta`, `/vendors/hashicorp` and `/sources` at 320, 375 and 1280 px. All returned HTTP 200 with no overflow and no console errors; every claim shows "Source details" and no bare "Open source" links remain. Keyboard: Tab reaches a summary and Enter opens it. No motion is added. Not tested: screen reader, physical touch device.
 - **Rollback:** revert `ClaimSource` in `components/claims.tsx`.
 
+## KuppingerCole and Forrester (2026-11-18)
+
+Two research passes fetched public pages with plain requests. Every quoted passage was re-checked against the saved page text before it was used. Only public abstracts and blogs are used; the full reports are paywalled. All claims are `analyst` / `needs_review`, and vendor ratings, Wave or Compass placements and figures are not adopted. Claim text avoids score language, following the existing analyst-claim rule in `lib/catalog.test.ts`.
+
+| Category | KuppingerCole | Forrester |
+| --- | --- | --- |
+| ISPM | 2027 ITDR research plan: posture is a component of ITDR, not enough on its own. **Counter-framing, recorded.** | 21 May 2026 blog: ISPM and ITDR are core capabilities of workforce identity platforms |
+| ITDR | 6 Nov 2025 abstract (definition) | none |
+| PAM | 18 May 2026 abstract (now includes NHIs) | 7 Aug 2025 blog (human, machine and agent identities; audit is the most common use) |
+| CIAM | 14 Jan 2026 abstract | 10 Aug 2026 abstract |
+| Identity orchestration | 21 Jul 2025 policy-based access abstract; identity-fabric research plan | none |
+| Secrets management | 2026 research plan (definition of an enterprise secret) | none |
+| WIM | 23 Jul 2025 NHI continuum abstract (static to adaptive credentials) | 1 Oct 2026 recap: SPIFFE is becoming the de facto NHI standard |
+| NHI | (already cited) | 26 Aug 2025 blog |
+| Agent identity | 10 Aug 2026 abstract | 1 Dec 2025 abstract |
+
+**Analysts disagree on ISPM.** SACR describes ISPM as its own layer. KuppingerCole folds it into ITDR. Forrester treats it as a capability inside workforce identity platforms. The map keeps ISPM as a separate buyer conversation, which is what the vendor and use-case evidence supports, and shows all three framings on the category page.
+
+**Not added:**
+- Workforce identity: an existing test fixes it at two Gartner claims, and it was already the best-covered category.
+- Research-plan dates: the plan pages carry only estimated publication dates, so these claims have `publishedAt: null`.
+- CIEM (only a 2023 machine-generated summary was public).
+- KuppingerCole lines labelled "Short Summary" or "Notable Quotes", which look machine-generated.
+- Vendor-sponsored KuppingerCole whitepapers (Exostar/IBM on DORA and CMMC; a 2019 healthcare paper).
+
+### Industries
+
+- **Energy and utilities:** KuppingerCole's 13 Jul 2026 OT/ICS Buyer's Compass is attached to the `energy-utilities` profile. It names secure remote access and NHI governance as capabilities aligned to NERC CIP and IEC 62443.
+- **Nothing identity-specific in public analyst text:**
+  - NYDFS: Forrester's 2023 post is about third-party contracts.
+  - DORA: only general compliance text, or a sponsored whitepaper.
+  - HIPAA: 2021 Zero Trust framing, or a sponsored 2019 paper.
+  - CMMC: Forrester's post covers the program, not identity.
+
+  The identity requirements in these regulations (NYDFS Part 500 MFA and access privileges, HIPAA technical safeguards, CMMC's NIST SP 800-171 controls, NERC CIP access management) are better sourced from the regulation text itself. Doing that needs a new typed field on the industry profiles; see the PR for the proposal.
+- **Gartner:** `www.gartner.com` refuses automated requests (HTTP 403), and that was not worked around. Gartner pages can be added from URLs and passages a person supplies.
+
 ## Research review record
 
 - Topic / buyer decision: ISPM: "Which identity weaknesses do we fix first, and who owns each fix?" WIM: "Which workload credentials can we stop storing, and what replaces them?"
