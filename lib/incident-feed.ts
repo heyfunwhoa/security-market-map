@@ -148,6 +148,7 @@ const ECOSYSTEM_LABELS: Record<string, string> = {
   docker_hub: "Docker Hub",
   microsoft_cloud: "Microsoft cloud",
   ai_agents: "AI agents",
+  ide_extensions: "IDE extensions",
 };
 
 export function ecosystemLabel(id: string): string {
