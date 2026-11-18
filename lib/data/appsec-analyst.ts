@@ -245,7 +245,7 @@ export const appsecAnalystSources: Source[] = [
     retrievedAt: RETRIEVED,
     volatility: "moderate",
     excerpt:
-      "SACR's report says deploying AI introduces novel security risks that are semantic and probabilistic in nature, not simply bugs in lines of code.",
+      "SACR's report says deploying AI introduces novel security risks that are semantic and probabilistic in nature, not simply based on bugs in lines of code.",
   },
   {
     id: "src-forrester-sscs-20261015",
@@ -253,7 +253,7 @@ export const appsecAnalystSources: Source[] = [
     url: "https://www.forrester.com/blogs/your-software-supply-chain-risk-doesnt-stop-at-your-suppliers/",
     canonicalUrl: "https://www.forrester.com/blogs/your-software-supply-chain-risk-doesnt-stop-at-your-suppliers/",
     publisher: "Forrester",
-    author: "Janet Worthington",
+    author: "Janet Worthington and Danielle Chittem",
     sourceType: "analyst",
     publishedAt: "2026-10-15",
     retrievedAt: RETRIEVED,
@@ -322,14 +322,14 @@ export const appsecAnalystClaims: Claim[] = [
     ...base,
     id: "claim-sacr-sast-ai-code-20251126",
     statement:
-      "SACR's 26 Nov 2025 report says security tools built for static analysis and human authorship are now misaligned with AI-generated output.",
+      "SACR's 26 Nov 2025 report says security tools built for static analysis and human authorship are now misaligned with AI-driven output.",
     subjectType: "category",
     subjectId: "sast",
     sourceId: "src-sacr-agentic-remediation-20251126",
     sourceUrl: "https://softwareanalyst.io/reports/agentic-remediation-the-new-control-layer-for-ai-generated-code",
     publishedAt: "2025-11-26",
     notes:
-      "Market-context section only; the report's single-vendor sections are not adopted.",
+      "Framed as an agentic remediation argument across AppSec tooling, not a SAST category definition. Market-context section only; the report's single-vendor sections are not adopted.",
   },
   {
     ...base,
@@ -381,7 +381,7 @@ export const appsecAnalystClaims: Claim[] = [
     sourceUrl: "https://www.forrester.com/blogs/agentic-development-security-why-appsec-needs-a-new-operating-model/",
     publishedAt: "2026-04-02",
     notes:
-      "Forrester frames this under agentic development security, not ASPM; it supports the prioritization job ASPM tools claim. No public KuppingerCole ASPM research was found.",
+      "Forrester frames this under agentic development security and the application security testing market, not ASPM; ASPM is named only as one type of competitor. Relevance to ASPM prioritization is the map's inference. The 2026-11-18 research pass found no public KuppingerCole ASPM page.",
   },
   {
     ...base,
@@ -400,14 +400,14 @@ export const appsecAnalystClaims: Claim[] = [
     ...base,
     id: "claim-forrester-api-components",
     statement:
-      "Forrester's 27 May 2025 abstract lists governance, discovery, testing, authentication and authorization, protection, detection, response and third-party API use as the components of API security.",
+      "Forrester's abstract (updated 27 May 2025) lists governance, discovery, testing, authentication and authorization, protection, detection, response and third-party API use as the components of API security.",
     subjectType: "category",
     subjectId: "api-security",
     sourceId: "src-forrester-api-components-res179903",
     sourceUrl: "https://www.forrester.com/report/the-eight-components-of-api-security/RES179903",
     publishedAt: "2025-05-27",
     notes:
-      "Public abstract only.",
+      "Public abstract only. The page shows 'Updated May 27, 2025'; the original publication date is not shown.",
   },
   {
     ...base,
@@ -439,7 +439,7 @@ export const appsecAnalystClaims: Claim[] = [
     ...base,
     id: "claim-forrester-wapp-definition-20260603",
     statement:
-      "Forrester's 3 Jun 2026 blog defines web application protection platforms as unified solutions that inspect traffic to and from web apps, mobile apps and APIs, block exploit, volumetric and business-logic attacks, and enforce policy.",
+      "Forrester's 3 Jun 2026 blog defines web application protection as unified, integrated solutions that examine input to and responses from web apps, mobile apps and APIs, detect and block application exploits, volumetric and business-logic attacks, and recommend and enforce security policies.",
     subjectType: "category",
     subjectId: "waf-waap",
     sourceId: "src-forrester-wapp-20260603",
@@ -459,7 +459,7 @@ export const appsecAnalystClaims: Claim[] = [
     sourceUrl: "https://www.forrester.com/report/the-rise-of-web-application-protection-platforms/RES187552",
     publishedAt: "2025-10-16",
     notes:
-      "Public abstract only. Forrester treats bot management as a separate market.",
+      "Public abstract only. Forrester describes bot management and API security as adjacent application security tools that WAF vendors built or bought.",
   },
   {
     ...base,
@@ -517,7 +517,7 @@ export const appsecAnalystClaims: Claim[] = [
     ...base,
     id: "claim-sacr-ai-risk-semantic-20260218",
     statement:
-      "SACR's 18 Feb 2026 report says deploying AI introduces novel security risks that are semantic and probabilistic in nature, not simply bugs in lines of code.",
+      "SACR's 18 Feb 2026 report says deploying AI introduces novel security risks that are semantic and probabilistic in nature, not simply based on bugs in lines of code.",
     subjectType: "category",
     subjectId: "ai-application-security",
     sourceId: "src-sacr-uadp-convergence-20260218",
@@ -530,7 +530,7 @@ export const appsecAnalystClaims: Claim[] = [
     ...base,
     id: "claim-forrester-sscs-pipeline-20261015",
     statement:
-      "Forrester's 15 Oct 2026 blog says software supply chain security is no longer just about open-source libraries, because development environments, repositories, build systems, CI/CD pipelines, credentials and release processes give attackers a trusted route downstream.",
+      "Forrester's 15 Oct 2026 blog says software supply chain security is no longer just about knowing which open-source libraries are in your applications, and that development environments, source code repositories, build systems, CI/CD pipelines, credentials and release processes are targets because compromising them can give attackers a trusted route to downstream users.",
     subjectType: "category",
     subjectId: "software-supply-chain",
     sourceId: "src-forrester-sscs-20261015",
@@ -563,7 +563,7 @@ export const appsecAnalystClaims: Claim[] = [
     sourceUrl: "https://www.kuppingercole.com/research/lc81221/software-supply-chain-security",
     publishedAt: "2023-08-02",
     notes:
-      "2023 report (page modified 2026). The next sentence naming vendors is not adopted. A 2026 edition is served only in German and is not used.",
+      "2023 report (page modified 2026). The next sentence naming vendors is not adopted. A 2026 edition (lc81184) fetched on 2026-11-18 served only German text and is not used.",
   },
   {
     ...base,

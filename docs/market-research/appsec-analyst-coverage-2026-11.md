@@ -51,7 +51,7 @@ Vendor seat targeting for API security, WAF/WAAP, AI application security and so
 
 | Criterion | Result | Evidence |
 | --- | --- | --- |
-| Source review | Researcher check done; independent re-check recorded below; human review not run | Every passage matched against saved page text on 2026-11-18 |
-| Integrity checks | Pass | `npm test`; `npm run test:research-integrity` 7/7 |
-| Typecheck / lint / build | See PR | |
+| Source review | Researcher check and independent re-check done; human review not run | Every passage matched against saved page text on 2026-11-18. An independent reviewer re-fetched all 20 sources (HTTP 200): 17 supported, 4 partial, 0 unsupported, all dates correct. All partials fixed: the ASPM note now says the link is the map's inference; SACR wording changed to "AI-driven"; the Forrester API abstract date marked as "updated"; the supply-chain claim reworded and co-author added; "based on bugs"; the bot-management note corrected; the WAPP definition uses Forrester's wording; the German-edition note dated. |
+| Integrity checks | Pass | `npm test` 714/714; `npm run test:research-integrity` 7/7 |
+| Typecheck / lint / build | Pass | Local |
 | Human review | Not run | Pending |
