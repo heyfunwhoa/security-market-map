@@ -1,5 +1,8 @@
 import Link from "next/link";
-import { vendorById } from "@/lib/catalog";
+import { ClaimList } from "@/components/claims";
+import { productById, vendorById } from "@/lib/catalog";
+import { publicMonitoringChecked, publicMonitoringClaims } from "@/lib/data/public-monitoring";
+import { productDetailUrl } from "@/lib/landscape-filters";
 import { formatDate } from "@/lib/format";
 import research from "@/research/public-secret-monitoring.json";
 
@@ -29,26 +32,26 @@ export function PublicSecretMonitoring({ categoryId }: { categoryId: string }) {
         If a developer exposes a company API key in a personal repository, who tells the security team, what connects the key to the company, and who can rotate it?
         Start here when the exposure happens on a public service the organization does not control.
       </p>
-      <p className="text-sm text-muted-foreground">Candidate research · Checked {formatDate(research.reviewedOn)}. Coverage comes from vendor publications. Buyer roles and evaluation questions are the map’s interpretation.</p>
+      <p className="text-sm text-muted-foreground">Candidate research · Sources checked {formatDate(publicMonitoringChecked)} (UTC). Product claims link to vendor publications. Buyer roles and evaluation questions are the map’s interpretation.</p>
       {research.groups.map((group) => (
         <div key={group.need} className="space-y-2">
           <h3 className="text-lg">{group.need}</h3>
           <p className="max-w-3xl text-sm leading-6">{group.buyer}</p>
           {group.offerings.map((offer) => {
-            const vendor = "vendorId" in offer && typeof offer.vendorId === "string" ? vendorById(offer.vendorId) : undefined;
+            const product = productById(offer.productId);
+            const vendor = product && vendorById(product.vendorId);
+            if (!product || !vendor) return null;
+            const claims = publicMonitoringClaims.filter((claim) => claim.subjectId === product.id);
             return (
-              <details key={offer.name} className="rounded-lg border border-border bg-card px-4">
+              <details key={product.id} className="rounded-lg border border-border bg-card px-4">
                 <summary className="min-h-11 cursor-pointer py-3 font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring">
-                  {offer.name} · {offer.product}
+                  {vendor.name} · {offer.offering}
                 </summary>
                 <div className="max-w-3xl space-y-2 pb-4 text-sm leading-6">
-                  <p>{offer.coverage}</p>
-                  <p>{offer.attribution}</p>
+                  <p><strong>When to consider it. </strong>{offer.buyerFit}</p>
                   <p><strong>Ask in an evaluation. </strong>{offer.question}</p>
-                  <ul aria-label={offer.name + " sources"} className="flex flex-wrap gap-x-4 gap-y-2">
-                    {offer.sources.map((source) => <li key={source.url}><a href={source.url} className={link}>{source.label}</a></li>)}
-                  </ul>
-                  {vendor && <Link href={`/vendors/${vendor.slug}`} className={link}>{vendor.name} catalog profile</Link>}
+                  <ClaimList claims={claims} />
+                  <Link href={productDetailUrl(vendor.slug, product.id)} className={link}>{vendor.name} catalog profile and product evidence</Link>
                 </div>
               </details>
             );

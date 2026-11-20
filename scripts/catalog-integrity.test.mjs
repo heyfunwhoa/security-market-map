@@ -37,11 +37,12 @@ test("checks the current merged vendor, product, source and claim records", asyn
   const { capabilities } = await import("../lib/data/capabilities.ts");
   const endpoint = await import("../lib/data/developer-endpoint.ts");
   const endpointComparison = await import("../lib/data/developer-endpoint-comparison.ts");
+  const monitoring = await import("../lib/data/public-monitoring.ts");
   const collections = {
-    vendors: [...market.vendors, ...ecosystem.ecosystemVendors, ...sweep.secretsSweepVendors, ...expanded.expandedVendors],
-    products: [...market.products, ...ecosystem.ecosystemProducts, ...sweep.secretsSweepProducts, ...expanded.expandedProducts, ...endpoint.developerEndpointProducts],
-    sources: [...sources, ...sweep.secretsSweepSources, ...expanded.expandedSources, ...endpoint.developerEndpointSources],
-    claims: [...claims, ...sweep.secretsSweepClaims, ...expanded.expandedClaims, ...endpoint.developerEndpointClaims],
+    vendors: [...market.vendors, ...ecosystem.ecosystemVendors, ...sweep.secretsSweepVendors, ...expanded.expandedVendors, monitoring.flareVendor],
+    products: [...market.products, ...ecosystem.ecosystemProducts, ...sweep.secretsSweepProducts, ...expanded.expandedProducts, ...endpoint.developerEndpointProducts, ...monitoring.publicMonitoringProducts],
+    sources: [...sources, ...sweep.secretsSweepSources, ...expanded.expandedSources, ...endpoint.developerEndpointSources, ...monitoring.publicMonitoringSources],
+    claims: [...claims, ...sweep.secretsSweepClaims, ...expanded.expandedClaims, ...endpoint.developerEndpointClaims, ...monitoring.publicMonitoringClaims],
   };
   assert.deepEqual(identityProblems(collections), []);
   assert.equal(collections.products.filter((product) => product.id === "kingfisher").length, 1);

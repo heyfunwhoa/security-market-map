@@ -3,7 +3,7 @@ id: "digital-risk-protection"
 type: "category"
 name: "Digital risk protection"
 layer: "adjacent"
-vendors: 2
+vendors: 3
 ---
 
 # Digital risk protection
@@ -31,6 +31,7 @@ A search for public abuse of a brand, domain, executive, product, or customer-fa
 ## Vendors (adjacent)
 
 - Recorded Future
+- Flare
 
 ## What buyers do instead
 

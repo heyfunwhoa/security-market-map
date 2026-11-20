@@ -3,7 +3,7 @@ id: "threat-intelligence"
 type: "category"
 name: "Threat intelligence"
 layer: "core"
-vendors: 8
+vendors: 9
 ---
 
 # Threat intelligence
@@ -29,6 +29,7 @@ Finished reporting and indicator feeds that detection teams use. This map keeps 
 
 - Recorded Future: Threat intelligence vendor. A feed is not a detection. No indicator quality is asserted. Recorded Future says it was named a Leader in Forrester's Q3 2026 External Threat Intelligence Wave, which breaks out digital risk protection; it lists digital risk protection among its connected capabilities (vendor-reported, reviewed 2026-11-09).
 - Flashpoint: Threat intelligence vendor named beside Recorded Future. Unverified here.
+- Flare: Flare provides external threat intelligence. Analysts can investigate company code found in public repositories and account credentials reported in breaches.
 
 ## Vendors (adjacent)
 
