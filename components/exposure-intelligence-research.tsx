@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { vendorById } from "@/lib/catalog";
 import { formatDate } from "@/lib/format";
+import { PublicSecretMonitoring } from "@/components/public-secret-monitoring";
 import research from "@/research/easm-cti.json";
 
 const textLink = "text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring";
@@ -54,6 +55,7 @@ export function ExposureIntelligenceResearch({ categoryId }: { categoryId: strin
       </p>
       <p className="max-w-3xl leading-7">{market.intro}</p>
       <p className="max-w-3xl text-sm leading-6"><strong>Ask the buyer. </strong>{market.discoveryQuestion}</p>
+      <PublicSecretMonitoring categoryId={categoryId} />
       <h3 className="text-lg">Companies by buyer need</h3>
       <div className="space-y-2">
         {market.groups.map((group) => (

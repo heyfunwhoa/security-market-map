@@ -1,4 +1,5 @@
 import { ExposureIntelligenceResearch, hasExposureIntelligenceResearch } from "@/components/exposure-intelligence-research";
+import { PublicSecretMonitoring } from "@/components/public-secret-monitoring";
 import { PageJourney } from "@/components/page-journey";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { SECRETS_COMPARISON_URL, DEVELOPER_ENDPOINT_COMPARISON_URL } from "@/lib/comparison-selection";
@@ -117,6 +118,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
           </Link>
         </section>
       ) : null}
+      {["secrets-detection", "digital-risk-protection"].includes(category.id) && <PublicSecretMonitoring categoryId={category.id} />}
       {category.id === "endpoint-control" ? (
         <section className="mt-6 rounded-xl border border-border bg-card p-4" aria-labelledby="compare-developer-endpoint">
           <h2 id="compare-developer-endpoint" className="text-2xl">Compare developer endpoint controls</h2>
