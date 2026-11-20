@@ -1,15 +1,12 @@
 import Link from "next/link";
-import { ClaimList } from "@/components/claims";
+import { BuyerProductOptions } from "@/components/buyer-product-options";
 import { PageIntro } from "@/components/chrome";
-import { categoryBySlug, productById, vendorById } from "@/lib/catalog";
-import { publicMonitoringClaims } from "@/lib/data/public-monitoring";
-import { productDetailUrl } from "@/lib/landscape-filters";
+import { categoryBySlug } from "@/lib/catalog";
 import groups from "@/research/public-exposure-options.json";
 
 export const metadata = { title: "Public monitoring and external exposure buyer guide" };
 
 const linkStyle = "text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring";
-const claimsById = new Map(publicMonitoringClaims.map((claim) => [claim.id, claim]));
 
 export default function PublicExposurePage() {
   return (
@@ -43,23 +40,10 @@ export default function PublicExposurePage() {
                 <div><dt className="font-semibold">How do we know it’s ours?</dt><dd>{item.attribution}</dd></div>
                 <div><dt className="font-semibold">Who acts?</dt><dd>{item.owner}</dd></div>
               </dl>
-              <ul className="space-y-2">
-                {item.options.map((option) => {
-                  const claims = option.claimIds.map((id) => claimsById.get(id)!);
-                  const product = productById(claims[0].subjectId)!;
-                  const vendor = vendorById(product.vendorId)!;
-                  return (
-                    <li key={product.id}>
-                      <details className="rounded-lg border border-border bg-card px-4">
-                        <summary className="cursor-pointer py-3 font-semibold focus-visible:outline-2 focus-visible:outline-ring">{option.label}</summary>
-                        <div className="space-y-3 pb-4 text-sm"><ClaimList claims={claims} />
-                          <Link className={linkStyle} href={productDetailUrl(vendor.slug, product.id)}>View {vendor.name} product profile</Link>
-                        </div>
-                      </details>
-                    </li>
-                  );
-                })}
-              </ul>
+              <BuyerProductOptions options={item.options} />
+              {item.id === "public-secrets" && (
+                <p><Link className={linkStyle} href="/categories/secrets-management#secrets-management-guide">Compare ways to manage or replace an exposed credential</Link></p>
+              )}
               <Link className={linkStyle} href={`/categories/${item.categoryId}`}>Explore {categoryBySlug(item.categoryId)!.name}</Link>
             </article>
           ))}

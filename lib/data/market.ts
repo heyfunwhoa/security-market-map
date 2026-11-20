@@ -462,7 +462,7 @@ export const vendors: Vendor[] = [
     name: "Infisical",
     formerNames: [],
     website: "https://infisical.com/",
-    positioning: "Secrets management product, including an open-source option buyers mention. Capabilities unverified here.",
+    positioning: "Infisical documents credential rotation for supported providers. The handoff between old and new credentials depends on the provider.",
     primaryCategoryIds: ["secrets-management"],
     adjacentCategoryIds: [],
     identityScopes: ["nhi"],

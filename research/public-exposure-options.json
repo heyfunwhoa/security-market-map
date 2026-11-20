@@ -23,6 +23,12 @@
             "claimIds": [
               "claim-public-cycognito-assets"
             ]
+          },
+          {
+            "label": "Cortex Xpanse Expander",
+            "claimIds": [
+              "claim-public-xpanse-attribution"
+            ]
           }
         ]
       },
@@ -31,7 +37,7 @@
         "title": "Public API discovery",
         "categoryId": "api-security",
         "scenario": "The mobile app still works after the old customer portal is retired. Which API host or endpoints support it?",
-        "visibility": "An outside-in service can look for API hosts in an agreed scope. A traffic-based service needs requests to pass through its network.",
+        "visibility": "An outside-in service can look for API hosts in an agreed scope. A traffic-based service needs requests to pass through its network. A configuration-based option needs read-only access to cloud or code systems.",
         "attribution": "Match the host or observed route to a gateway, application and team. Ask which endpoints would be invisible without traffic.",
         "owner": "The API platform owner and application team decide whether to keep, protect or retire it.",
         "options": [
@@ -45,6 +51,12 @@
             "label": "Cloudflare API Shield API Discovery",
             "claimIds": [
               "claim-public-cloudflare-apis"
+            ]
+          },
+          {
+            "label": "Salt Connect",
+            "claimIds": [
+              "claim-public-salt-api-inventory"
             ]
           }
         ]
@@ -69,6 +81,12 @@
             "claimIds": [
               "claim-public-detectify-dns"
             ]
+          },
+          {
+            "label": "SSLMate Cert Spotter",
+            "claimIds": [
+              "claim-public-sslmate-issuance"
+            ]
           }
         ]
       },
@@ -92,6 +110,12 @@
             "claimIds": [
               "claim-public-scorecard-suppliers"
             ]
+          },
+          {
+            "label": "UpGuard Vendor Risk",
+            "claimIds": [
+              "claim-public-upguard-suppliers"
+            ]
           }
         ]
       },
@@ -114,6 +138,12 @@
             "label": "Sonatype Firewall Pro",
             "claimIds": [
               "claim-public-sonatype-packages"
+            ]
+          },
+          {
+            "label": "JFrog Curation",
+            "claimIds": [
+              "claim-public-jfrog-package-policy"
             ]
           }
         ]
@@ -153,6 +183,12 @@
               "claim-public-forager-sources",
               "claim-public-forager-verification"
             ]
+          },
+          {
+            "label": "CybelAngel public repository case",
+            "claimIds": [
+              "claim-public-cybelangel-repository-case"
+            ]
           }
         ]
       },
@@ -182,6 +218,12 @@
             "claimIds": [
               "claim-public-socradar-code"
             ]
+          },
+          {
+            "label": "Outpost24 Data Leakage",
+            "claimIds": [
+              "claim-public-outpost-documents"
+            ]
           }
         ]
       },
@@ -205,6 +247,12 @@
             "claimIds": [
               "claim-public-microsoft-public-storage"
             ]
+          },
+          {
+            "label": "Google Security Command Center Enterprise",
+            "claimIds": [
+              "claim-public-google-storage-findings"
+            ]
           }
         ]
       },
@@ -227,6 +275,12 @@
             "label": "SharePoint Advanced Management",
             "claimIds": [
               "claim-public-sharepoint-links"
+            ]
+          },
+          {
+            "label": "CybelAngel Data Breach Prevention",
+            "claimIds": [
+              "claim-public-cybelangel-documents"
             ]
           }
         ]
@@ -257,6 +311,12 @@
             "claimIds": [
               "claim-public-searchlight-credentials"
             ]
+          },
+          {
+            "label": "Google Threat Intelligence",
+            "claimIds": [
+              "claim-public-google-threat-intelligence"
+            ]
           }
         ]
       },
@@ -286,6 +346,12 @@
             "claimIds": [
               "claim-public-socradar-brand-plans"
             ]
+          },
+          {
+            "label": "Netcraft Phishing Protection",
+            "claimIds": [
+              "claim-public-netcraft-phishing"
+            ]
           }
         ]
       },
@@ -308,6 +374,12 @@
             "label": "Searchlight Threat",
             "claimIds": [
               "claim-public-searchlight-credentials"
+            ]
+          },
+          {
+            "label": "SpyCloud Workforce Threat Protection",
+            "claimIds": [
+              "claim-public-spycloud-watchlist"
             ]
           }
         ]
@@ -332,6 +404,12 @@
             "label": "Proofpoint Email Fraud Defense",
             "claimIds": [
               "claim-public-proofpoint-dmarc"
+            ]
+          },
+          {
+            "label": "dmarcian DMARC Management Platform",
+            "claimIds": [
+              "claim-public-dmarcian-sources"
             ]
           }
         ]

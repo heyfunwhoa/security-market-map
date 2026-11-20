@@ -64,6 +64,7 @@ export function PublicSecretMonitoring({ categoryId }: { categoryId: string }) {
         <p>For exposed API keys, measure time to identify the owner and confirm rotation or revocation. For copied code, track confirmation and removal separately. For stolen employee logins, track the handoff to identity response.</p>
         <p>Broaden the comparison with the <Link href="/categories/external-attack-surface#market-research" className={link}>EASM market map</Link>, <Link href="/categories/threat-intelligence#market-research" className={link}>threat intelligence market map</Link> or <Link href="/categories/digital-risk-protection" className={link}>digital risk protection category</Link>.</p>
       </div>
+      <p className="text-sm"><Link className={link} href="/categories/secrets-management#secrets-management-guide">Once a secret is found, compare storage, delivery and rotation options</Link></p>
     </section>
   );
 }

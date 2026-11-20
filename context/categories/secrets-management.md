@@ -3,7 +3,7 @@ id: "secrets-management"
 type: "category"
 name: "Secrets management"
 layer: "core"
-vendors: 23
+vendors: 25
 ---
 
 # Secrets management
@@ -42,10 +42,12 @@ From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - Amazon Web Services: AWS Secrets Manager is the cloud-native secret store. It is a bundled alternative when the workload and the secret both live in AWS. It is not an IGA product.
 - Google: Google Secret Manager is the cloud secret store on GCP. Same boundary as the other cloud secret stores: issuance and storage, not governance of every identity.
 - Doppler: Developer-oriented secrets manager. Competes in a vault evaluation, not in IGA.
-- Infisical: Secrets management product, including an open-source option buyers mention. Capabilities unverified here.
+- Infisical: Infisical documents credential rotation for supported providers. The handoff between old and new credentials depends on the provider.
 - Bitwarden: Bitwarden documents Secrets Manager with machine accounts, access tokens, CLI/SDK access and secret injection.
 - 1Password: 1Password documents Secrets Automation through service accounts or Connect servers.
 - Keeper Security: Keeper documents Secrets Manager as a KeeperPAM component for infrastructure secrets and application or CI/CD access.
+- Pulumi: Pulumi offers ESC to assemble environment configuration and supply consumers with authorized secrets.
+- OpenBao: The OpenBao project documents a database secrets engine that issues credentials from configured roles.
 
 ## Vendors (adjacent)
 

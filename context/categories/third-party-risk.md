@@ -3,7 +3,7 @@ id: "third-party-risk"
 type: "category"
 name: "Third-party risk"
 layer: "core"
-vendors: 5
+vendors: 6
 ---
 
 # Third-party risk
@@ -27,6 +27,7 @@ Assessments of vendors and subprocessors. Related to customer trust when you are
 ## Vendors (primary)
 
 - OneTrust: Privacy and third-party risk platform. Privacy governance is not DSPM.
+- UpGuard: UpGuard gives third-party risk teams a way to monitor suppliers and track requests for remediation.
 
 ## Vendors (adjacent)
 

@@ -38,11 +38,13 @@ test("checks the current merged vendor, product, source and claim records", asyn
   const endpoint = await import("../lib/data/developer-endpoint.ts");
   const endpointComparison = await import("../lib/data/developer-endpoint-comparison.ts");
   const monitoring = await import("../lib/data/public-monitoring.ts");
+  const management = await import("../lib/data/secrets-management.ts");
+  const managementEvidence = monitoring.registerProductEvidence(management.secretsManagementResearch);
   const collections = {
-    vendors: [...market.vendors, ...ecosystem.ecosystemVendors, ...sweep.secretsSweepVendors, ...expanded.expandedVendors, ...monitoring.publicMonitoringVendors],
-    products: [...market.products, ...ecosystem.ecosystemProducts, ...sweep.secretsSweepProducts, ...expanded.expandedProducts, ...endpoint.developerEndpointProducts, ...monitoring.publicMonitoringProducts],
-    sources: [...sources, ...sweep.secretsSweepSources, ...expanded.expandedSources, ...endpoint.developerEndpointSources, ...monitoring.publicMonitoringSources],
-    claims: [...claims, ...sweep.secretsSweepClaims, ...expanded.expandedClaims, ...endpoint.developerEndpointClaims, ...monitoring.publicMonitoringClaims],
+    vendors: [...market.vendors, ...ecosystem.ecosystemVendors, ...sweep.secretsSweepVendors, ...expanded.expandedVendors, ...monitoring.publicMonitoringVendors, ...management.secretsManagementVendors],
+    products: [...market.products, ...ecosystem.ecosystemProducts, ...sweep.secretsSweepProducts, ...expanded.expandedProducts, ...endpoint.developerEndpointProducts, ...monitoring.publicMonitoringProducts, ...management.secretsManagementProducts],
+    sources: [...sources, ...sweep.secretsSweepSources, ...expanded.expandedSources, ...endpoint.developerEndpointSources, ...monitoring.publicMonitoringSources, ...managementEvidence.sources],
+    claims: [...claims, ...sweep.secretsSweepClaims, ...expanded.expandedClaims, ...endpoint.developerEndpointClaims, ...monitoring.publicMonitoringClaims, ...managementEvidence.claims],
   };
   assert.deepEqual(identityProblems(collections), []);
   assert.equal(collections.products.filter((product) => product.id === "kingfisher").length, 1);

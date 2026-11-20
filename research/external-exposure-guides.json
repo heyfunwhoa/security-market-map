@@ -6,9 +6,22 @@
     "question": "Walk me through the last fake site. Who confirmed it was yours to report, and who checked that customers could no longer reach it?",
     "measure": "Track time to confirm an impersonation, time to submit an authorized request, and time to independently confirm removal.",
     "options": [
-      {"claimId": "claim-public-group-ib-brand", "ask": "What proof of trademark authority do we need before you can act?"},
-      {"claimId": "claim-public-recorded-future-response", "ask": "Which kinds of brand abuse qualify for a takedown under our agreement?"},
-      {"claimId": "claim-public-socradar-brand-plans", "ask": "How do we distinguish a submitted request from a confirmed removal?"}
+      {
+        "claimId": "claim-public-group-ib-brand",
+        "ask": "What proof of trademark authority do we need before you can act?"
+      },
+      {
+        "claimId": "claim-public-recorded-future-response",
+        "ask": "Which kinds of brand abuse qualify for a takedown under our agreement?"
+      },
+      {
+        "claimId": "claim-public-socradar-brand-plans",
+        "ask": "How do we distinguish a submitted request from a confirmed removal?"
+      },
+      {
+        "claimId": "claim-public-netcraft-phishing",
+        "ask": "How do you distinguish a submitted takedown request from a site that is confirmed offline?"
+      }
     ]
   },
   "itdr": {
@@ -18,8 +31,18 @@
     "question": "When a vendor reports an employee login, what evidence lets you distinguish a current work account from an old account at another service?",
     "measure": "Track time to an account match and the percentage of confirmed matches with a documented response. Count evidence of actual account use separately.",
     "options": [
-      {"claimId": "claim-public-flare-breaches", "ask": "Can we see which breached service and customer identifier produced the match?"},
-      {"claimId": "claim-public-searchlight-credentials", "ask": "What source context accompanies the alert, and where does the identity team confirm whether the account was used?"}
+      {
+        "claimId": "claim-public-flare-breaches",
+        "ask": "Can we see which breached service and customer identifier produced the match?"
+      },
+      {
+        "claimId": "claim-public-searchlight-credentials",
+        "ask": "What source context accompanies the alert, and where does the identity team confirm whether the account was used?"
+      },
+      {
+        "claimId": "claim-public-spycloud-watchlist",
+        "ask": "Which verified identifier matched the record, and how do we connect it to a current identity or device?"
+      }
     ]
   },
   "cspm": {
@@ -29,8 +52,18 @@
     "question": "Can you show the permission that allowed access, identify who approved the sharing, and show that the corrected policy took effect?",
     "measure": "Track time to identify the owner and verify the intended access. Use separate evidence when investigating whether anyone actually downloaded data.",
     "options": [
-      {"claimId": "claim-public-aws-external-storage", "ask": "Which policy grants access to anyone, and which grants access only to a named AWS account?"},
-      {"claimId": "claim-public-microsoft-public-storage", "ask": "Can we distinguish an internet-reachable Azure storage account from a container that allows anonymous reads?"}
+      {
+        "claimId": "claim-public-aws-external-storage",
+        "ask": "Which policy grants access to anyone, and which grants access only to a named AWS account?"
+      },
+      {
+        "claimId": "claim-public-microsoft-public-storage",
+        "ask": "Can we distinguish an internet-reachable Azure storage account from a container that allows anonymous reads?"
+      },
+      {
+        "claimId": "claim-public-google-storage-findings",
+        "ask": "Which bucket was identified, and who can authorize a playbook to change its access?"
+      }
     ]
   }
 }

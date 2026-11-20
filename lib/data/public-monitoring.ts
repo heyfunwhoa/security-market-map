@@ -47,7 +47,44 @@ export const publicMonitoringVendors: Vendor[] = [{
   positioning: "Sonatype helps software teams review the open source components requested by their developers and build systems.",
   primaryCategoryIds: ["software-supply-chain"], adjacentCategoryIds: [], identityScopes: ["not_an_identity_control"],
   verificationStatus: "research_candidate", openQuestions: ["Which developer and build request paths are covered by the customer’s configuration?"],
-}];
+},
+  {
+    id: "sslmate", slug: "sslmate", name: "SSLMate", formerNames: [], website: "https://sslmate.com/",
+    positioning: "SSLMate offers Cert Spotter for domain owners who want to review unexpected certificate issuance.", primaryCategoryIds: ["external-attack-surface"], adjacentCategoryIds: [],
+    identityScopes: ["not_an_identity_control"],
+    verificationStatus: "research_candidate", openQuestions: ["Which certificate authorities and issuance patterns should the customer explicitly trust?"],
+  },
+  {
+    id: "upguard", slug: "upguard", name: "UpGuard", formerNames: [], website: "https://www.upguard.com/",
+    positioning: "UpGuard gives third-party risk teams a way to monitor suppliers and track requests for remediation.", primaryCategoryIds: ["third-party-risk"], adjacentCategoryIds: [],
+    identityScopes: ["not_an_identity_control"],
+    verificationStatus: "research_candidate", openQuestions: ["Which suppliers and business units belong in the monitored portfolio?"],
+  },
+  {
+    id: "cybelangel", slug: "cybelangel", name: "CybelAngel", formerNames: [], website: "https://cybelangel.com/",
+    positioning: "CybelAngel investigates exposed company material and provides analyst reports that help an owner identify the leak.", primaryCategoryIds: ["digital-risk-protection"], adjacentCategoryIds: [],
+    identityScopes: ["not_an_identity_control"],
+    verificationStatus: "research_candidate", openQuestions: ["Which matching signals link a reported document or repository to the customer?"],
+  },
+  {
+    id: "netcraft", slug: "netcraft", name: "Netcraft", formerNames: [], website: "https://www.netcraft.com/",
+    positioning: "Netcraft provides brand protection services for detecting phishing and coordinating site takedowns.", primaryCategoryIds: ["digital-risk-protection"], adjacentCategoryIds: [],
+    identityScopes: ["not_an_identity_control"],
+    verificationStatus: "research_candidate", openQuestions: ["What evidence confirms a reported site has been removed?"],
+  },
+  {
+    id: "spycloud", slug: "spycloud", name: "SpyCloud", formerNames: [], website: "https://spycloud.com/",
+    positioning: "SpyCloud connects recovered breach and infostealer data to customer watchlists for investigation.", primaryCategoryIds: ["itdr"], adjacentCategoryIds: [],
+    identityScopes: ["human"],
+    verificationStatus: "research_candidate", openQuestions: ["Which watchlist identifiers have been verified for this organization?"],
+  },
+  {
+    id: "dmarcian", slug: "dmarcian", name: "dmarcian", formerNames: [], website: "https://dmarcian.com/",
+    positioning: "dmarcian helps domain owners interpret mail authentication reports and investigate sending sources.", primaryCategoryIds: ["email-security"], adjacentCategoryIds: [],
+    identityScopes: ["not_an_identity_control"],
+    verificationStatus: "research_candidate", openQuestions: ["Which mail senders still need a business owner?"],
+  },
+];
 
 export const publicMonitoringProducts: Product[] = [
   {
@@ -120,7 +157,7 @@ export const publicMonitoringProducts: Product[] = [
   },
   {
     id: "outpost24-data-leakage", slug: "outpost24-data-leakage", vendorId: "outpost24", name: "Outpost24 Data Leakage",
-    positioning: "Outpost24’s Data Leakage module searches external sources including public and cloud document repositories for exposed documents and confidential material.",
+    positioning: "Outpost24’s Data Leakage module searches external sources including public and cloud document repositories for exposed documents and confidential material. The module also searches public repositories for source code.",
     primaryCategoryIds: ["external-attack-surface"], adjacentCategoryIds: [], useCaseIds: [],
     deployment: ["unknown"], identityScopes: ["not_an_identity_control"], availability: "unknown",
     availabilityNote: "The terms leave the matching identifiers, source-by-source coverage and removal service unspecified.",
@@ -190,11 +227,88 @@ export const publicMonitoringProducts: Product[] = [
     availabilityNote: "Whether a customer’s developer or build would be protected depends on the request passing through the configured service.",
     officialUrl: "https://help.sonatype.com/en/firewall-pro-blocking-logic.html",
   },
+  {
+    id: "palo-alto-xpanse", slug: "palo-alto-xpanse", vendorId: "palo-alto-networks", name: "Cortex Xpanse Expander",
+    positioning: "Expander shows whether Xpanse discovered an asset or the customer supplied it, and which observed data matched the starting identifier.", primaryCategoryIds: ["external-attack-surface"], adjacentCategoryIds: [],
+    useCaseIds: [], deployment: ["unknown"],
+    identityScopes: ["not_an_identity_control"], availability: "unknown",
+    availabilityNote: "The guide excludes attribution evidence for services and websites. A platform or subsidiary owner still needs to confirm responsibility.", officialUrl: "https://docs-cortex.paloaltonetworks.com/r/Cortex-XPANSE/2/Cortex-Xpanse-Expander-User-Guide/Asset-Attribution",
+  },
+  {
+    id: "salt-connect", slug: "salt-connect", vendorId: "salt-security", name: "Salt Connect",
+    positioning: "Salt Connect builds an API inventory from cloud and code configuration through read-only connectors for AWS, Azure, Google Cloud and GitHub.", primaryCategoryIds: ["api-security"], adjacentCategoryIds: [],
+    useCaseIds: [], deployment: ["unknown"],
+    identityScopes: ["not_an_identity_control"], availability: "unknown",
+    availabilityNote: "Connecting a cloud account can reveal APIs absent from observed traffic. A configuration record alone does not establish public reachability.", officialUrl: "https://salt.security/connect",
+  },
+  {
+    id: "sslmate-cert-spotter", slug: "sslmate-cert-spotter", vendorId: "sslmate", name: "SSLMate Cert Spotter",
+    positioning: "Cert Spotter monitors certificates issued for a customer’s domains. The customer can specify expected certificates or trusted authorities to narrow alerts.", primaryCategoryIds: ["external-attack-surface"], adjacentCategoryIds: [],
+    useCaseIds: [], deployment: ["unknown"],
+    identityScopes: ["not_an_identity_control"], availability: "unknown",
+    availabilityNote: "An unexpected certificate needs review by the domain or certificate owner. A certificate alert alone does not identify a stale DNS record.", officialUrl: "https://sslmate.com/certspotter/",
+  },
+  {
+    id: "upguard-vendor-risk", slug: "upguard-vendor-risk", vendorId: "upguard", name: "UpGuard Vendor Risk",
+    positioning: "UpGuard lets teams group monitored vendors and track remediation requests against an individual supplier’s risk profile.", primaryCategoryIds: ["third-party-risk"], adjacentCategoryIds: [],
+    useCaseIds: [], deployment: ["unknown"],
+    identityScopes: ["not_an_identity_control"], availability: "unknown",
+    availabilityNote: "The buyer still needs to map the supplier to a contract, confirm asset ownership and check the response.", officialUrl: "https://help.upguard.com/en/articles/3764556-what-is-upguard-vendor-risk",
+  },
+  {
+    id: "jfrog-curation", slug: "jfrog-curation", vendorId: "jfrog", name: "JFrog Curation",
+    positioning: "JFrog Curation offers a policy condition that blocks third-party packages its security research team has identified as malicious.", primaryCategoryIds: ["software-supply-chain"], adjacentCategoryIds: [],
+    useCaseIds: [], deployment: ["unknown"],
+    identityScopes: ["not_an_identity_control"], availability: "unknown",
+    availabilityNote: "This source supports blocking known malicious packages. Coverage of newly registered lookalike names is unspecified.", officialUrl: "https://docs.jfrog.com/security/docs/list-of-available-conditions",
+  },
+  {
+    id: "cybelangel-data-breach-prevention", slug: "cybelangel-data-breach-prevention", vendorId: "cybelangel", name: "CybelAngel Data Breach Prevention",
+    positioning: "CybelAngel describes analyst reports that include the origin of a leak and samples of exposed documents for the customer to review.", primaryCategoryIds: ["threat-intelligence"], adjacentCategoryIds: ["digital-risk-protection", "secrets-detection"],
+    useCaseIds: [], deployment: ["unknown"],
+    identityScopes: ["not_an_identity_control"], availability: "unknown",
+    availabilityNote: "The buyer needs to confirm the document’s owner, intended audience and who has authority to restrict access.", officialUrl: "https://cybelangel.com/data-breach-prevention/",
+  },
+  {
+    id: "google-scc-public-storage", slug: "google-scc-public-storage", vendorId: "google", name: "Google Security Command Center Enterprise",
+    positioning: "Security Health Analytics identifies publicly accessible Cloud Storage buckets. Security Command Center Enterprise can route those findings to a remediation playbook.", primaryCategoryIds: ["cspm"], adjacentCategoryIds: [],
+    useCaseIds: [], deployment: ["unknown"],
+    identityScopes: ["not_an_identity_control"], availability: "unknown",
+    availabilityNote: "Google documents setup and permissions for remediation. A public-access finding alone leaves actual downloads unknown.", officialUrl: "https://docs.cloud.google.com/security-command-center/docs/playbooks-public-bucket-acl",
+  },
+  {
+    id: "google-threat-intelligence", slug: "google-threat-intelligence", vendorId: "google", name: "Google Threat Intelligence",
+    positioning: "Google Threat Intelligence combines Mandiant intelligence, VirusTotal data and Google visibility in a workbench for investigating threats and their relevance.", primaryCategoryIds: ["threat-intelligence"], adjacentCategoryIds: [],
+    useCaseIds: [], deployment: ["unknown"],
+    identityScopes: ["not_an_identity_control"], availability: "unknown",
+    availabilityNote: "Confirm entitlement to the required intelligence and corroborate any suspected impact in customer telemetry.", officialUrl: "https://cloud.google.com/security/products/threat-intelligence",
+  },
+  {
+    id: "netcraft-phishing-protection", slug: "netcraft-phishing-protection", vendorId: "netcraft", name: "Netcraft Phishing Protection",
+    positioning: "Netcraft describes detecting phishing that impersonates a brand and working with infrastructure providers to disrupt or remove it.", primaryCategoryIds: ["threat-intelligence"], adjacentCategoryIds: ["digital-risk-protection"],
+    useCaseIds: [], deployment: ["unknown"],
+    identityScopes: ["not_an_identity_control"], availability: "unknown",
+    availabilityNote: "Ask which channels are included and what evidence confirms a reported page became unavailable.", officialUrl: "https://www.netcraft.com/platform/threat-detection-and-takedown/phishing-protection",
+  },
+  {
+    id: "spycloud-workforce", slug: "spycloud-workforce", vendorId: "spycloud", name: "SpyCloud Workforce Threat Protection",
+    positioning: "SpyCloud matches verified watchlist identifiers against breach data, phishing collections and information recovered from infostealer infections.", primaryCategoryIds: ["itdr"], adjacentCategoryIds: [],
+    useCaseIds: [], deployment: ["unknown"],
+    identityScopes: ["human"], availability: "unknown",
+    availabilityNote: "Historical coverage varies. The identity team must check whether a reported account remains active and whether a session was used.", officialUrl: "https://docs.spycloud.com/public-sc/docs/workforce-threat-protection",
+  },
+  {
+    id: "dmarcian-platform", slug: "dmarcian-platform", vendorId: "dmarcian", name: "dmarcian DMARC Management Platform",
+    positioning: "dmarcian groups email sources across monitored domains and shows authentication status so mail owners can investigate unfamiliar senders.", primaryCategoryIds: ["email-security"], adjacentCategoryIds: [],
+    useCaseIds: [], deployment: ["unknown"],
+    identityScopes: ["not_an_identity_control"], availability: "unknown",
+    availabilityNote: "Useful sender-level visibility depends on reports reaching the service and the customer identifying its legitimate senders.", officialUrl: "https://dmarcian.com/dmarc-management-platform/",
+  },
 ];
 
 // Each entry produces a standard source and its scoped product claim. The guide
 // reuses these claim IDs so a correction reaches both the comparison and catalog.
-type Evidence = {
+export type ProductEvidence = {
   key: string;
   productId: string;
   publisher: string;
@@ -209,7 +323,7 @@ type Evidence = {
   capabilityId?: string;
 };
 
-const evidence: Evidence[] = [
+const evidence: ProductEvidence[] = [
   {
     key: "socradar-code", productId: "socradar-brand-protection", publisher: "SOCRadar", title: "Implementing CTI in software development lifecycle pipelines",
     url: "https://socradar.io/blog/implementing-cyber-threat-intelligence-in-software-development-lifecycle-sdlc-pipelines/",
@@ -333,7 +447,7 @@ const evidence: Evidence[] = [
     key: "outpost-documents", productId: "outpost24-data-leakage", publisher: "Outpost24", title: "EASM with Threat Intelligence service specific terms",
     url: "https://outpost24.com/wp-content/uploads/2026/03/Service-Specific-Terms-EASM-with-Threat-Intelligence.pdf",
     type: "official_docs", section: "Page 1, Threat Intelligence Modules, Data Leakage (February 2026)",
-    statement: "Outpost24’s Data Leakage module searches external sources including public and cloud document repositories for exposed documents and confidential material.",
+    statement: "Outpost24’s Data Leakage module searches external sources including public and cloud document repositories for exposed documents and confidential material. The module also searches public repositories for source code.",
     caveat: "The terms leave the matching identifiers, source-by-source coverage and removal service unspecified.",
   },
   {
@@ -420,18 +534,113 @@ const evidence: Evidence[] = [
     statement: "Sonatype documents evaluating package requests in Firewall Pro and blocking potentially malicious components, including suspected typosquats.",
     caveat: "Whether a customer’s developer or build would be protected depends on the request passing through the configured service.",
   },
+  {
+    key: "xpanse-attribution", productId: "palo-alto-xpanse", publisher: "Palo Alto Networks", title: "Asset Attribution",
+    url: "https://docs-cortex.paloaltonetworks.com/r/Cortex-XPANSE/2/Cortex-Xpanse-Expander-User-Guide/Asset-Attribution", type: "official_docs",
+    section: "Attribution evidence and origin",
+    statement: "Expander shows whether Xpanse discovered an asset or the customer supplied it, and which observed data matched the starting identifier.",
+    caveat: "The guide excludes attribution evidence for services and websites. A platform or subsidiary owner still needs to confirm responsibility.",
+  },
+  {
+    key: "salt-api-inventory", productId: "salt-connect", publisher: "Salt Security", title: "Salt Connect",
+    url: "https://salt.security/connect", type: "vendor_marketing",
+    section: "Read-only connectors and FAQ",
+    statement: "Salt Connect builds an API inventory from cloud and code configuration through read-only connectors for AWS, Azure, Google Cloud and GitHub.",
+    caveat: "Connecting a cloud account can reveal APIs absent from observed traffic. A configuration record alone does not establish public reachability.",
+  },
+  {
+    key: "sslmate-issuance", productId: "sslmate-cert-spotter", publisher: "SSLMate", title: "Cert Spotter certificate monitoring",
+    url: "https://sslmate.com/certspotter/", type: "vendor_marketing",
+    section: "Monitoring unexpected issuance",
+    statement: "Cert Spotter monitors certificates issued for a customer’s domains. The customer can specify expected certificates or trusted authorities to narrow alerts.",
+    caveat: "An unexpected certificate needs review by the domain or certificate owner. A certificate alert alone does not identify a stale DNS record.",
+  },
+  {
+    key: "upguard-suppliers", productId: "upguard-vendor-risk", publisher: "UpGuard", title: "What is UpGuard Vendor Risk?",
+    url: "https://help.upguard.com/en/articles/3764556-what-is-upguard-vendor-risk", type: "official_docs",
+    section: "Monitored vendors and remediation requests",
+    statement: "UpGuard lets teams group monitored vendors and track remediation requests against an individual supplier’s risk profile.",
+    caveat: "The buyer still needs to map the supplier to a contract, confirm asset ownership and check the response.",
+  },
+  {
+    key: "jfrog-package-policy", productId: "jfrog-curation", publisher: "JFrog", title: "List of available conditions",
+    url: "https://docs.jfrog.com/security/docs/list-of-available-conditions", type: "official_docs",
+    section: "Security conditions, Malicious package",
+    statement: "JFrog Curation offers a policy condition that blocks third-party packages its security research team has identified as malicious.",
+    caveat: "This source supports blocking known malicious packages. Coverage of newly registered lookalike names is unspecified.",
+  },
+  {
+    key: "cybelangel-repository-case", productId: "cybelangel-data-breach-prevention", publisher: "CybelAngel", title: "Alert of the Month: Code Repository Gone Bad",
+    url: "https://cybelangel.com/blog/alert-of-the-month-code-repository-gone-bad/", type: "customer_story", publishedAt: "2021-12-07", author: "Orlaith Traynor",
+    section: "Analyst finding in a personal public repository",
+    statement: "CybelAngel reports finding CRM access tokens in a developer’s personal public repository. This is a vendor-described customer case.",
+    caveat: "The case gives no general commitment on public repository coverage, credential validation, company attribution or alert speed.",
+  },
+  {
+    key: "cybelangel-documents", productId: "cybelangel-data-breach-prevention", publisher: "CybelAngel", title: "Data Breach Prevention",
+    url: "https://cybelangel.com/data-breach-prevention/", type: "vendor_marketing",
+    section: "Incident origin and authenticated document samples",
+    statement: "CybelAngel describes analyst reports that include the origin of a leak and samples of exposed documents for the customer to review.",
+    caveat: "The buyer needs to confirm the document’s owner, intended audience and who has authority to restrict access.",
+  },
+  {
+    key: "google-storage-findings", productId: "google-scc-public-storage", publisher: "Google Cloud", title: "Enable public bucket remediation",
+    url: "https://docs.cloud.google.com/security-command-center/docs/playbooks-public-bucket-acl", type: "official_docs",
+    section: "Security Health Analytics public bucket findings",
+    statement: "Security Health Analytics identifies publicly accessible Cloud Storage buckets. Security Command Center Enterprise can route those findings to a remediation playbook.",
+    caveat: "Google documents setup and permissions for remediation. A public-access finding alone leaves actual downloads unknown.",
+  },
+  {
+    key: "google-threat-intelligence", productId: "google-threat-intelligence", publisher: "Google Cloud", title: "Google Threat Intelligence",
+    url: "https://cloud.google.com/security/products/threat-intelligence", type: "vendor_marketing",
+    section: "Threat intelligence workbench and intelligence sources",
+    statement: "Google Threat Intelligence combines Mandiant intelligence, VirusTotal data and Google visibility in a workbench for investigating threats and their relevance.",
+    caveat: "Confirm entitlement to the required intelligence and corroborate any suspected impact in customer telemetry.",
+  },
+  {
+    key: "netcraft-phishing", productId: "netcraft-phishing-protection", publisher: "Netcraft", title: "Phishing Protection",
+    url: "https://www.netcraft.com/platform/threat-detection-and-takedown/phishing-protection", type: "vendor_marketing",
+    section: "Phishing detection, disruption and takedown",
+    statement: "Netcraft describes detecting phishing that impersonates a brand and working with infrastructure providers to disrupt or remove it.",
+    caveat: "Ask which channels are included and what evidence confirms a reported page became unavailable.",
+  },
+  {
+    key: "spycloud-watchlist", productId: "spycloud-workforce", publisher: "SpyCloud", title: "Workforce Threat Protection",
+    url: "https://docs.spycloud.com/public-sc/docs/workforce-threat-protection", type: "official_docs",
+    section: "Verified watchlist and recaptured data",
+    statement: "SpyCloud matches verified watchlist identifiers against breach data, phishing collections and information recovered from infostealer infections.",
+    caveat: "Historical coverage varies. The identity team must check whether a reported account remains active and whether a session was used.",
+  },
+  {
+    key: "dmarcian-sources", productId: "dmarcian-platform", publisher: "dmarcian", title: "DMARC Management Platform",
+    url: "https://dmarcian.com/dmarc-management-platform/", type: "vendor_marketing",
+    section: "Domain Overview and Source Viewer",
+    statement: "dmarcian groups email sources across monitored domains and shows authentication status so mail owners can investigate unfamiliar senders.",
+    caveat: "Useful sender-level visibility depends on reports reaching the service and the customer identifying its legitimate senders.",
+  },
 ];
 
-export const publicMonitoringSources: Source[] = evidence.map((row) => ({
-  id: "src-public-" + row.key, title: row.title, publisher: row.publisher, author: row.author,
-  url: row.url, canonicalUrl: row.url, sourceType: row.type, publishedAt: row.publishedAt ?? null,
-  retrievedAt: publicMonitoringChecked, volatility: "fast", excerpt: row.section + ". " + row.statement,
-}));
+export function registerProductEvidence({ prefix, checked, entries }: {
+  prefix: string;
+  checked: string;
+  entries: ProductEvidence[];
+}) {
+  const sources: Source[] = entries.map((row) => ({
+    id: `src-${prefix}-${row.key}`, title: row.title, publisher: row.publisher, author: row.author,
+    url: row.url, canonicalUrl: row.url, sourceType: row.type, publishedAt: row.publishedAt ?? null,
+    retrievedAt: checked, volatility: "fast", excerpt: row.section + ". " + row.statement,
+  }));
 
-export const publicMonitoringClaims: Claim[] = evidence.map((row) => ({
-  id: "claim-public-" + row.key, subjectType: "product", subjectId: row.productId,
-  capabilityId: row.capabilityId ?? null, polarity: "asserts", statement: row.statement,
-  sourceId: "src-public-" + row.key, sourceUrl: row.url, sourceType: row.type, publishedAt: row.publishedAt ?? null,
-  observedAt: publicMonitoringChecked, lastCheckedAt: publicMonitoringChecked, effectiveFrom: null, effectiveTo: null,
-  confidence: "medium", verificationStatus: "vendor_published", conflictsWith: [], notes: row.caveat,
-}));
+  const claims: Claim[] = entries.map((row) => ({
+    id: `claim-${prefix}-${row.key}`, subjectType: "product", subjectId: row.productId,
+    capabilityId: row.capabilityId ?? null, polarity: "asserts", statement: row.statement,
+    sourceId: `src-${prefix}-${row.key}`, sourceUrl: row.url, sourceType: row.type, publishedAt: row.publishedAt ?? null,
+    observedAt: checked, lastCheckedAt: checked, effectiveFrom: null, effectiveTo: null,
+    confidence: "medium", verificationStatus: "vendor_published", conflictsWith: [], notes: row.caveat,
+  }));
+  return { sources, claims };
+}
+
+export const { sources: publicMonitoringSources, claims: publicMonitoringClaims } = registerProductEvidence({
+  prefix: "public", checked: publicMonitoringChecked, entries: evidence,
+});

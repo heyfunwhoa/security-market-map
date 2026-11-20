@@ -3,7 +3,7 @@ id: "email-security"
 type: "category"
 name: "Email security"
 layer: "core"
-vendors: 6
+vendors: 7
 ---
 
 # Email security
@@ -31,6 +31,7 @@ Inbound and outbound mail controls: phishing, impersonation, and data leaving by
 - Proofpoint: Homepage retrieved 26 Oct 2026 describes collaboration, data, and AI security, including discovery of AI apps and agents and runtime policy. That page does not describe an email gateway. Not an identity threat product unless a specific SKU is sourced.
 - Abnormal Security: Homepage retrieved 26 Oct 2026 describes a behavioral platform for email, identity, and AI security. An identity graph lists humans, service accounts, and AI agents and is not an NHI inventory cell. The page does not say whether mail is held at a gateway or read by API.
 - Mimecast: Homepage retrieved 26 Oct 2026 names email threat protection and says email security is where the company started. The page does not describe a quarantine or a block.
+- dmarcian: dmarcian helps domain owners interpret mail authentication reports and investigate sending sources.
 
 ## Vendors (adjacent)
 
