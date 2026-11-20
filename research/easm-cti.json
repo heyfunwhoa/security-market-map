@@ -1,0 +1,987 @@
+{
+  "reviewedOn": "2026-11-19",
+  "markets": {
+    "external-attack-surface": {
+      "abbreviation": "EASM",
+      "title": "External attack surface management",
+      "intro": "An acquisition brings in a customer portal that never made it into the parent company’s inventory. EASM helps the security team find the portal from the internet, establish whose it is, and check that the exposure is gone after the owner fixes it.",
+      "discoveryQuestion": "Walk me through the last internet-facing asset your team learned about from someone else. How did you prove it was yours, find the owner and confirm the fix?",
+      "groups": [
+        {
+          "need": "Find assets and establish ownership",
+          "question": "Can we explain why a newly found asset belongs to us, a subsidiary, or a supplier?",
+          "offerings": [
+            {
+              "company": "Censys",
+              "offering": "Censys Attack Surface Management",
+              "description": "Uses its own internet observations to identify exposed hosts and services and alert on changes. Its M&A guide describes attribution to business units.",
+              "buyer": "Exposure management",
+              "question": "Can an asset owner confirm the evidence linking a newly acquired subsidiary’s infrastructure?",
+              "sources": [
+                "https://censys.com/product/attack-surface-management",
+                "https://docs.censys.com/docs/asm-secure-subsidiaries-acquisitions-and-mergers"
+              ],
+              "catalogVendorId": "censys"
+            },
+            {
+              "company": "CyCognito",
+              "offering": "CyCognito platform",
+              "description": "Maps relationships between external assets and organizations, then prioritizes exposures using active validation.",
+              "buyer": "Exposure management",
+              "question": "Can the team explain why a previously unknown asset belongs to a particular business unit?",
+              "sources": [
+                "https://www.cycognito.com/platform/attack-surface-management.php"
+              ],
+              "catalogVendorId": "cycognito"
+            },
+            {
+              "company": "IONIX",
+              "offering": "IONIX Attack Surface Management",
+              "description": "Maps external assets and infrastructure dependencies, provides discovery evidence, and adds reachability and threat context.",
+              "buyer": "Exposure management",
+              "question": "Can we distinguish assets we control from dependencies a supplier must fix?",
+              "sources": [
+                "https://www.ionix.io/guides/exposure-management/ionixs-approach-to-exposure-management/"
+              ]
+            },
+            {
+              "company": "Outpost24",
+              "offering": "External Attack Surface Management",
+              "description": "Discovers unmanaged domains, IP addresses and cloud infrastructure, monitors changes and scores external exposures.",
+              "buyer": "Vulnerability management",
+              "question": "Which new discoveries were absent from our existing vulnerability inventory?",
+              "sources": [
+                "https://outpost24.com/products/external-attack-surface-management/"
+              ]
+            },
+            {
+              "company": "Halo Security",
+              "offering": "External Attack Surface Management",
+              "description": "Combines agentless discovery, daily inventory updates and grouped findings that can be tracked through remediation.",
+              "buyer": "Vulnerability management",
+              "question": "How many previously untracked assets can we assign to a responsible team?",
+              "sources": [
+                "https://www.halosecurity.com/attack-surface-management"
+              ]
+            }
+          ]
+        },
+        {
+          "need": "Extend a security platform",
+          "question": "Which new assets does the module surface in the workflow our team already uses?",
+          "offerings": [
+            {
+              "company": "Palo Alto Networks",
+              "offering": "Cortex Xpanse",
+              "description": "Finds unknown internet-facing assets and offers Cortex workflows for investigating and responding to exposures.",
+              "buyer": "Security operations",
+              "question": "Can the SOC take a previously unknown service from discovery to an assigned response?",
+              "sources": [
+                "https://www.paloaltonetworks.com/cortex/cortex-xpanse"
+              ],
+              "catalogVendorId": "palo-alto-networks"
+            },
+            {
+              "company": "Microsoft",
+              "offering": "Defender External Attack Surface Management",
+              "description": "Builds an outside-in asset inventory. Microsoft documents both a prebuilt footprint and a full Defender EASM integration in Security Exposure Management.",
+              "buyer": "Exposure management",
+              "question": "Which views and ownership controls come with our current Microsoft licenses?",
+              "sources": [
+                "https://learn.microsoft.com/en-us/azure/external-attack-surface-management/overview",
+                "https://learn.microsoft.com/en-us/security-exposure-management/external-attack-surface-management-initiative"
+              ],
+              "catalogVendorId": "microsoft"
+            },
+            {
+              "company": "Tenable",
+              "offering": "Tenable One Attack Surface Management",
+              "description": "Finds domains related to an organization’s assets and brings external inventory and exposure data into Tenable One.",
+              "buyer": "Vulnerability management",
+              "question": "Which external assets were missing from the coverage our VM team already manages?",
+              "sources": [
+                "https://www.tenable.com/products/attack-surface-management"
+              ],
+              "catalogVendorId": "tenable"
+            },
+            {
+              "company": "Qualys",
+              "offering": "CyberSecurity Asset Management (CSAM) EASM",
+              "description": "Discovers internet-facing infrastructure within CSAM and alerts on new assets, changes and critical issues.",
+              "buyer": "Vulnerability management",
+              "question": "Can we reconcile a newly attributed public asset with our Qualys inventory?",
+              "sources": [
+                "https://docs.qualys.com/en/csam/latest/inventory/sensors/easm.htm"
+              ],
+              "catalogVendorId": "qualys"
+            },
+            {
+              "company": "Rapid7",
+              "offering": "Attack Surface Management (Surface Command)",
+              "description": "Uses starting identifiers supplied manually or from connected tools to discover domains, IPs, services and certificates in the Command Platform.",
+              "buyer": "Vulnerability management",
+              "question": "Can a discovery be matched to an existing internal record or routed for ownership review?",
+              "sources": [
+                "https://docs.rapid7.com/surface-command/manage-external-assets/"
+              ],
+              "catalogVendorId": "rapid7"
+            },
+            {
+              "company": "CrowdStrike",
+              "offering": "Falcon Surface / Falcon Exposure Management",
+              "description": "Falcon Surface discovers unknown external assets. Falcon Exposure Management uses threat intelligence and attack-path context to prioritize risk.",
+              "buyer": "Security operations",
+              "question": "What external coverage is included in our Falcon quote, and who can act on a finding?",
+              "sources": [
+                "https://www.crowdstrike.com/en-us/resources/data-sheets/falcon-surface/",
+                "https://www.crowdstrike.com/en-us/resources/tech-hub/exposure-management/falcon-exposure-management/"
+              ],
+              "catalogVendorId": "crowdstrike"
+            },
+            {
+              "company": "Fortinet",
+              "offering": "FortiRecon Attack Surface Management",
+              "description": "FortiRecon combines internal and external attack-surface monitoring and prioritization within its threat exposure management offering.",
+              "buyer": "Security operations",
+              "question": "Can analysts distinguish externally visible issues from internal observations in the same workflow?",
+              "sources": [
+                "https://www.fortinet.com/products/fortirecon"
+              ],
+              "catalogVendorId": "fortinet"
+            },
+            {
+              "company": "Wiz (Google Cloud)",
+              "offering": "Wiz Attack Surface Management",
+              "description": "Connects outside-in discovery to the Wiz Security Graph, cloud context and ownership guidance for remediation.",
+              "buyer": "Cloud security",
+              "question": "Can the team trace a public exposure to a named cloud service owner and affected data?",
+              "sources": [
+                "https://www.wiz.io/solutions/asm",
+                "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/wiz-acquisition/"
+              ],
+              "catalogVendorId": "wiz"
+            }
+          ]
+        },
+        {
+          "need": "Validate external exposures",
+          "question": "What evidence would convince the engineering owner to prioritize this finding?",
+          "offerings": [
+            {
+              "company": "watchTowr",
+              "offering": "watchTowr Platform",
+              "description": "Pairs its security research and emerging-threat intelligence with continuous external testing and exposure validation.",
+              "buyer": "Exposure management",
+              "question": "For a newly disclosed issue, what asset-specific evidence would a remediation owner receive?",
+              "sources": [
+                "https://watchtowr.com/platform/"
+              ]
+            },
+            {
+              "company": "Hadrian",
+              "offering": "Hadrian Atlas",
+              "description": "Atlas discovers and validates external exposures. Hadrian also offers Nova for deeper, on-demand testing of web applications and APIs.",
+              "buyer": "Exposure management",
+              "question": "Which findings are validated by Atlas, and when would we need Nova?",
+              "sources": [
+                "https://hadrian.io/resources/atlas-nova"
+              ]
+            },
+            {
+              "company": "Searchlight Cyber",
+              "offering": "Searchlight Exposure (formerly Assetnote)",
+              "description": "Discovers internet-facing assets and attaches validation evidence to findings. Assetnote’s former ASM platform now carries the Searchlight Exposure name.",
+              "buyer": "Exposure management",
+              "question": "Does the evidence for a finding let its owner decide what action to take?",
+              "sources": [
+                "https://www.slcyber.io/exposure",
+                "https://www.slcyber.io/assetnote"
+              ]
+            },
+            {
+              "company": "Pentera",
+              "offering": "Pentera Surface",
+              "description": "Tests internet-facing assets and web applications to validate which externally reachable security weaknesses matter.",
+              "buyer": "Security validation",
+              "question": "What evidence distinguishes an exposed service from a confirmed security impact?",
+              "sources": [
+                "https://pentera.io/pentera-surface/"
+              ],
+              "catalogVendorId": "pentera"
+            }
+          ]
+        },
+        {
+          "need": "Connect threats to external risk",
+          "question": "Can a threat report be tied to an asset we own or a supplier we depend on?",
+          "offerings": [
+            {
+              "company": "Google Cloud (Mandiant)",
+              "offering": "Mandiant Attack Surface Management",
+              "description": "Combines external asset discovery with checks informed by Mandiant’s frontline threat intelligence.",
+              "buyer": "Threat intelligence",
+              "question": "Can analysts tie a threat advisory to an affected asset and a responsible team?",
+              "sources": [
+                "https://cloud.google.com/security/products/attack-surface-management"
+              ],
+              "catalogVendorId": "google"
+            },
+            {
+              "company": "Bitsight",
+              "offering": "Bitsight External Attack Surface Management",
+              "description": "Maps assets and exposures across both the organization and its third-party network.",
+              "buyer": "Third-party risk",
+              "question": "Can we separate first-party remediation from supplier follow-up and track each independently?",
+              "sources": [
+                "https://www.bitsight.com/products/external-attack-surface-management"
+              ],
+              "catalogVendorId": "bitsight"
+            },
+            {
+              "company": "Recorded Future (Mastercard)",
+              "offering": "Attack Surface Intelligence",
+              "description": "Uses current and historical domain, registration and certificate data for discovery, then prioritizes exposures with threat activity.",
+              "buyer": "Threat intelligence",
+              "question": "Which findings change priority when new attacker activity is observed?",
+              "sources": [
+                "https://www.recordedfuture.com/products/attack-surface-intelligence",
+                "https://investor.mastercard.com/investor-news/investor-news-details/2024/Mastercard-Finalizes-Acquisition-of-Recorded-Future/default.aspx"
+              ],
+              "catalogVendorId": "recorded-future"
+            },
+            {
+              "company": "Check Point",
+              "offering": "External Risk Management",
+              "description": "Offers continuous attack surface management within External Risk Management, alongside a separately described managed assessment service.",
+              "buyer": "Security operations",
+              "question": "Which findings arrive continuously, and which require a services engagement?",
+              "sources": [
+                "https://www.checkpoint.com/cyber-hub/exposure-management/easm/"
+              ],
+              "catalogVendorId": "checkpoint"
+            },
+            {
+              "company": "SOCRadar",
+              "offering": "Autonomous Exposure Management",
+              "description": "Correlates discovered assets with threat intelligence, records the discovery path and supports on-demand rechecks after remediation.",
+              "buyer": "Threat intelligence",
+              "question": "Can an analyst connect an external finding to threat context and confirm closure?",
+              "sources": [
+                "https://socradar.io/products/autonomous-exposure-management/"
+              ]
+            },
+            {
+              "company": "Group-IB",
+              "offering": "Attack Surface Management",
+              "description": "Continuously maps external infrastructure and enriches discoveries with threat intelligence to prioritize remediation.",
+              "buyer": "Threat intelligence",
+              "question": "Can the analyst explain which intelligence changed a finding’s priority?",
+              "sources": [
+                "https://www.group-ib.com/products/attack-surface-management/"
+              ]
+            }
+          ]
+        },
+        {
+          "need": "Scope application testing",
+          "question": "When a new web property appears, who decides whether it enters the testing program?",
+          "offerings": [
+            {
+              "company": "Detectify",
+              "offering": "Surface Monitoring",
+              "description": "Discovers and monitors internet-facing assets at the domain level. Application Scanning adds deeper testing on selected applications.",
+              "buyer": "Application security",
+              "question": "Where does broad monitoring end and testing of an individual application begin?",
+              "sources": [
+                "https://detectify.com/product/surface-monitoring",
+                "https://support.detectify.com/support/solutions/articles/48001061283-what-can-i-scan-using-detectify-"
+              ]
+            },
+            {
+              "company": "HackerOne",
+              "offering": "HackerOne Asset Intelligence",
+              "description": "Combines asset discovery, inventory and exposure signals to suggest assets for HackerOne programs. Availability varies by edition.",
+              "buyer": "Application security",
+              "question": "Can a newly discovered asset be reviewed and scoped into an existing security testing program?",
+              "sources": [
+                "https://docs.hackerone.com/en/articles/13485278-asset-intelligence"
+              ],
+              "catalogVendorId": "hackerone"
+            }
+          ]
+        }
+      ]
+    },
+    "threat-intelligence": {
+      "abbreviation": "CTI",
+      "title": "Cyber threat intelligence",
+      "intro": "If our CISO asks whether a campaign targeting our industry matters to us, one vendor can brief us on the actor, another can supply domain history for the investigation, and a platform can get both into the SOC. I’d start by asking who needs the answer and what they’ll do with it.",
+      "discoveryQuestion": "Think about the last threat report someone forwarded you. What did you need to know, who made a decision, and what evidence was missing?",
+      "groups": [
+        {
+          "need": "Understand actors and campaigns",
+          "question": "Does the buyer need an analyst’s assessment, a recurring report, or a custom briefing?",
+          "offerings": [
+            {
+              "company": "Recorded Future (Mastercard)",
+              "offering": "Threat Intelligence",
+              "description": "Reports on adversary infrastructure, techniques and targets to help analysts prioritize threats and brief stakeholders.",
+              "buyer": "CTI lead",
+              "question": "Show a report that answers a question our CISO actually asked. What evidence supports its assessment?",
+              "sources": [
+                "https://www.recordedfuture.com/products/threat-intelligence",
+                "https://investor.mastercard.com/investor-news/investor-news-details/2024/Mastercard-Finalizes-Acquisition-of-Recorded-Future/default.aspx"
+              ],
+              "catalogVendorId": "recorded-future"
+            },
+            {
+              "company": "Group-IB",
+              "offering": "Threat Intelligence",
+              "description": "Combines collection and analysis on threat actors and campaigns with reporting through its Unified Risk Platform.",
+              "buyer": "CTI lead",
+              "question": "How would you brief us on one campaign affecting our industry and geography?",
+              "sources": [
+                "https://www.group-ib.com/products/threat-intelligence/"
+              ]
+            },
+            {
+              "company": "Cisco",
+              "offering": "Talos IR Intel on Demand",
+              "description": "Delivers tailored threat intelligence and analysis as an incident response service.",
+              "buyer": "Incident response",
+              "question": "Can our incident commander submit a specific question? What turnaround and deliverable would we buy?",
+              "sources": [
+                "https://www.cisco.com/site/us/en/products/security/talos/incident-response.html"
+              ]
+            }
+          ]
+        },
+        {
+          "need": "Monitor cybercrime and dark web sources",
+          "question": "Can the provider corroborate a claim and show why it matters to this organization?",
+          "offerings": [
+            {
+              "company": "Flashpoint",
+              "offering": "Flashpoint Ignite",
+              "description": "Combines primary-source collection and analyst reporting on cybercrime, identity, fraud and other security threats.",
+              "buyer": "CTI lead",
+              "question": "Which findings include the original context and an analyst’s assessment of credibility?",
+              "sources": [
+                "https://flashpoint.io/ignite/"
+              ],
+              "catalogVendorId": "flashpoint"
+            },
+            {
+              "company": "Intel 471",
+              "offering": "Cyber Threat Intelligence / Verity471",
+              "description": "Provides actor-focused reporting sourced from criminal communities, including analyst research and customer-directed intelligence requirements.",
+              "buyer": "CTI lead",
+              "question": "Can the research team answer a question about a criminal group relevant to our business?",
+              "sources": [
+                "https://www.intel471.com/platform/cyber-threat-intelligence"
+              ]
+            },
+            {
+              "company": "KELA",
+              "offering": "KELA Cyber Threat Intelligence",
+              "description": "Brings underground discussions, actor identities, infrastructure and victim data together for investigations.",
+              "buyer": "Cybercrime intelligence",
+              "question": "How do you distinguish a claim in a forum from independently corroborated activity?",
+              "sources": [
+                "https://www.kelacyber.com/platform/"
+              ]
+            },
+            {
+              "company": "Searchlight Cyber",
+              "offering": "Searchlight Threat",
+              "description": "Monitors attacker activity and supports investigations. Its Monitor integration can deliver clear, deep and dark web intelligence to Microsoft Sentinel.",
+              "buyer": "CTI lead",
+              "question": "When a monitored organization is mentioned, what source evidence reaches our analysts?",
+              "sources": [
+                "https://www.slcyber.io/threat",
+                "https://www.slcyber.io/blog/sentinel-integration-for-searchlight-threat-monitor"
+              ]
+            },
+            {
+              "company": "Bitsight",
+              "offering": "Bitsight Cyber Threat Intelligence",
+              "description": "Collects signals from open and underground sources and relates credential exposure, ransomware activity and actor behavior to the organization.",
+              "buyer": "CTI lead",
+              "question": "Could an analyst link an alert to our company or a supplier and judge how reliable it is?",
+              "sources": [
+                "https://www.bitsight.com/products/cyber-threat-intelligence",
+                "https://www.bitsight.com/press-releases/bitsight-completes-acquisition-cyber-threat-intelligence-leader-cybersixgill"
+              ],
+              "catalogVendorId": "bitsight"
+            },
+            {
+              "company": "SOCRadar",
+              "offering": "Cyber Threat Intelligence",
+              "description": "Offers threat research and monitoring across digital risks, including dark web and brand-related activity.",
+              "buyer": "CTI lead",
+              "question": "Which items identify our organization specifically, and which describe broader industry risk?",
+              "sources": [
+                "https://socradar.io/products/cyber-threat-intelligence/"
+              ]
+            }
+          ]
+        },
+        {
+          "need": "Investigate internet infrastructure",
+          "question": "What observation links a suspicious domain or host to a wider campaign?",
+          "offerings": [
+            {
+              "company": "DomainTools",
+              "offering": "Iris platform",
+              "description": "Iris Investigate maps domain infrastructure. Iris Enrich adds domain context to indicators in security workflows.",
+              "buyer": "Threat hunting",
+              "question": "What infrastructure relationships can an analyst substantiate, and when were they last observed?",
+              "sources": [
+                "https://docs.domaintools.com/iris/"
+              ]
+            },
+            {
+              "company": "Silent Push",
+              "offering": "Silent Push platform and intelligence feeds",
+              "description": "Uses DNS history, registration data, certificates and web observations to identify infrastructure associated with suspicious behavior.",
+              "buyer": "Threat hunting",
+              "question": "What corroborating observations and confidence are attached to an infrastructure alert?",
+              "sources": [
+                "https://www.silentpush.com/"
+              ]
+            },
+            {
+              "company": "Censys",
+              "offering": "Adversary Investigation",
+              "description": "Adds threat-specific data to the Censys Platform for investigating and tracking adversary infrastructure.",
+              "buyer": "Threat hunting",
+              "question": "What evidence supports an infrastructure link, and how does it change over time?",
+              "sources": [
+                "https://docs.censys.com/docs/platform-threat-hunting"
+              ],
+              "catalogVendorId": "censys"
+            }
+          ]
+        },
+        {
+          "need": "Bring intelligence into the SOC",
+          "question": "Does new context change what the analyst does in an investigation?",
+          "offerings": [
+            {
+              "company": "Google Cloud (Mandiant)",
+              "offering": "Google Threat Intelligence",
+              "description": "Brings Mandiant research, VirusTotal community data and Google visibility into investigations and triage. Google offers different subscription tiers.",
+              "buyer": "Security operations",
+              "question": "Which sources and API volumes come with the tier our analysts would use?",
+              "sources": [
+                "https://cloud.google.com/security/products/threat-intelligence",
+                "https://cloud.google.com/blog/products/identity-security/introducing-google-threat-intelligence-actionable-threat-intelligence-at-google-scale-at-rsa"
+              ],
+              "catalogVendorId": "google"
+            },
+            {
+              "company": "CrowdStrike",
+              "offering": "Falcon Adversary Intelligence Premium",
+              "description": "Packages adversary profiles, threat reporting and intelligence for Falcon security operations workflows.",
+              "buyer": "Security operations",
+              "question": "What context does our SOC receive beyond the Falcon entitlements we already own?",
+              "sources": [
+                "https://www.crowdstrike.com/en-us/platform/threat-intelligence/adversary-premium/",
+                "https://www.crowdstrike.com/content/dam/crowdstrike/marketing/en-us/documents/pdfs/data-sheets/falcon-adversary-intelligence-premium-data-sheet.pdf"
+              ],
+              "catalogVendorId": "crowdstrike"
+            },
+            {
+              "company": "Microsoft",
+              "offering": "Microsoft Threat Intelligence in Defender",
+              "description": "Intel explorer supports investigation of indicators and related infrastructure in Defender. Access to data and management functions depends on entitlement.",
+              "buyer": "Security operations",
+              "question": "Which intelligence can analysts access under our Defender and Sentinel licenses?",
+              "sources": [
+                "https://learn.microsoft.com/en-us/defender-xdr/threat-intelligence-explorer"
+              ],
+              "catalogVendorId": "microsoft"
+            },
+            {
+              "company": "Palo Alto Networks",
+              "offering": "Unit 42 Threat Intelligence / Cortex XTI",
+              "description": "Pairs Unit 42 analyst services with intelligence embedded in Cortex investigation and response workflows.",
+              "buyer": "Security operations",
+              "question": "Which requests go to Unit 42 analysts, and what intelligence appears directly in Cortex?",
+              "sources": [
+                "https://www.paloaltonetworks.com/resources/techbriefs/unit-42-threat-intelligence"
+              ],
+              "catalogVendorId": "palo-alto-networks"
+            }
+          ]
+        },
+        {
+          "need": "Manage multiple intelligence sources",
+          "question": "Are we buying new intelligence, the platform to manage it, or both?",
+          "offerings": [
+            {
+              "company": "Filigran",
+              "offering": "OpenCTI",
+              "description": "An open-source threat intelligence platform that brings external and internal sources into a STIX-based knowledge graph for analysis and sharing.",
+              "buyer": "CTI platform owner",
+              "question": "Which sources must we bring or license, and how will we maintain their connectors?",
+              "sources": [
+                "https://filigran.io/products/opencti"
+              ]
+            },
+            {
+              "company": "Anomali",
+              "offering": "ThreatStream Next Gen",
+              "description": "Combines threat intelligence management and security operations workflows, including researching and organizing incoming intelligence.",
+              "buyer": "CTI platform owner",
+              "question": "What happens when two feeds disagree about an indicator or its confidence?",
+              "sources": [
+                "https://docs.anomali.com/Content/NextGen/intro.htm"
+              ]
+            },
+            {
+              "company": "Securonix",
+              "offering": "Securonix ThreatQ",
+              "description": "Offers an open threat intelligence platform to aggregate and operationalize intelligence. ThreatQuotient joined Securonix in 2025.",
+              "buyer": "CTI platform owner",
+              "question": "Can our existing feeds be prioritized and distributed to our tools with their source context intact?",
+              "sources": [
+                "https://www.securonix.com/products/securonix-threatq/",
+                "https://www.securonix.com/press_release/securonix-acquires-threatquotient-to-deliver-industrys-broadest-and-deepest-threat-detection-investigation-and-response/"
+              ],
+              "catalogVendorId": "securonix"
+            },
+            {
+              "company": "Dataminr",
+              "offering": "Agentic TI Ops",
+              "description": "Part of Dataminr for Cyber Defense, this product combines Dataminr intelligence with other commercial and internally generated intelligence.",
+              "buyer": "CTI platform owner",
+              "question": "Can analysts see which source supported an assessment and where it was delivered?",
+              "sources": [
+                "https://www.dataminr.com/press/announcement/dataminr-redefines-cyber-defense/"
+              ]
+            }
+          ]
+        },
+        {
+          "need": "Prioritize vulnerabilities",
+          "question": "What evidence of exploitation would change the order in which we patch?",
+          "offerings": [
+            {
+              "company": "VulnCheck",
+              "offering": "Exploit & Vulnerability Intelligence",
+              "description": "Enriches vulnerability records with vendor and government advisories and information about exploitation to support remediation decisions.",
+              "buyer": "Vulnerability management",
+              "question": "What dated evidence would justify moving this vulnerability ahead of a higher-severity issue?",
+              "sources": [
+                "https://docs.vulncheck.com/products/exploit-and-vulnerability-intelligence/vulnerability-intelligence"
+              ]
+            },
+            {
+              "company": "GreyNoise",
+              "offering": "GreyNoise vulnerability intelligence",
+              "description": "Provides observations of exploitation activity seen by its sensors to inform patch prioritization and emergency response.",
+              "buyer": "Vulnerability management",
+              "question": "How recent is the observation, and what would make it relevant to an exposed asset we actually own?",
+              "sources": [
+                "https://www.greynoise.io/press/greynoise-introduces-new-vulnerability-intelligence-solution"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "overlap": [
+    {
+      "company": "Censys",
+      "easm": "Censys Attack Surface Management",
+      "cti": "Adversary Investigation",
+      "question": "What internet infrastructure is associated with the activity we are investigating?",
+      "sources": [
+        "https://censys.com/product/attack-surface-management",
+        "https://docs.censys.com/docs/platform-threat-hunting"
+      ]
+    },
+    {
+      "company": "Palo Alto Networks",
+      "easm": "Cortex Xpanse",
+      "cti": "Unit 42 Threat Intelligence / Cortex XTI",
+      "question": "Which Unit 42 intelligence can our SOC use in its investigation?",
+      "sources": [
+        "https://www.paloaltonetworks.com/cortex/cortex-xpanse",
+        "https://www.paloaltonetworks.com/resources/techbriefs/unit-42-threat-intelligence"
+      ]
+    },
+    {
+      "company": "Microsoft",
+      "easm": "Defender External Attack Surface Management",
+      "cti": "Microsoft Threat Intelligence in Defender",
+      "question": "What evidence about this indicator is available in Defender?",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/external-attack-surface-management/overview",
+        "https://learn.microsoft.com/en-us/defender-xdr/threat-intelligence-explorer"
+      ]
+    },
+    {
+      "company": "CrowdStrike",
+      "easm": "Falcon Surface / Falcon Exposure Management",
+      "cti": "Falcon Adversary Intelligence Premium",
+      "question": "What is known about a relevant adversary’s behavior?",
+      "sources": [
+        "https://www.crowdstrike.com/en-us/resources/data-sheets/falcon-surface/",
+        "https://www.crowdstrike.com/en-us/platform/threat-intelligence/adversary-premium/"
+      ]
+    },
+    {
+      "company": "Searchlight Cyber",
+      "easm": "Searchlight Exposure (formerly Assetnote)",
+      "cti": "Searchlight Threat",
+      "question": "Is there credible external reporting that someone is targeting us?",
+      "sources": [
+        "https://www.slcyber.io/exposure",
+        "https://www.slcyber.io/threat"
+      ]
+    },
+    {
+      "company": "Google Cloud (Mandiant)",
+      "easm": "Mandiant Attack Surface Management",
+      "cti": "Google Threat Intelligence",
+      "question": "What does Google or Mandiant know about this campaign?",
+      "sources": [
+        "https://cloud.google.com/security/products/attack-surface-management",
+        "https://cloud.google.com/security/products/threat-intelligence"
+      ]
+    },
+    {
+      "company": "Bitsight",
+      "easm": "Bitsight External Attack Surface Management",
+      "cti": "Bitsight Cyber Threat Intelligence",
+      "question": "Is the threat report about us, a supplier, or someone else?",
+      "sources": [
+        "https://www.bitsight.com/products/external-attack-surface-management",
+        "https://www.bitsight.com/products/cyber-threat-intelligence"
+      ]
+    },
+    {
+      "company": "Recorded Future (Mastercard)",
+      "easm": "Attack Surface Intelligence",
+      "cti": "Threat Intelligence",
+      "question": "Which campaigns or techniques are relevant to our sector?",
+      "sources": [
+        "https://www.recordedfuture.com/products/attack-surface-intelligence",
+        "https://www.recordedfuture.com/products/threat-intelligence"
+      ]
+    },
+    {
+      "company": "SOCRadar",
+      "easm": "Autonomous Exposure Management",
+      "cti": "Cyber Threat Intelligence",
+      "question": "What external threat activity should we investigate?",
+      "sources": [
+        "https://socradar.io/products/autonomous-exposure-management/",
+        "https://socradar.io/products/cyber-threat-intelligence/"
+      ]
+    },
+    {
+      "company": "Group-IB",
+      "easm": "Attack Surface Management",
+      "cti": "Threat Intelligence",
+      "question": "Which actors and campaigns are relevant to our environment?",
+      "sources": [
+        "https://www.group-ib.com/products/attack-surface-management/",
+        "https://www.group-ib.com/products/threat-intelligence/"
+      ]
+    }
+  ],
+  "industry": [
+    {
+      "market": "EASM",
+      "topic": "Revenue outlook",
+      "evidence": "Frost & Sullivan forecast 33.5% compound annual growth in global EASM revenue from 2024 to 2029.",
+      "interpretation": "Analyst forecast, December 2024. This figure is a growth rate. The public excerpt does not establish realized 2026 revenue.",
+      "sources": [
+        "https://www.dlt.com/sites/default/files/resource-attachments/2025-05/BitSight_Asset%203_EASMRadar_co-branded.pdf"
+      ]
+    },
+    {
+      "market": "CTI",
+      "topic": "Market estimate",
+      "evidence": "Grand View Research estimates the 2025 global threat intelligence market at $18.4B and forecasts $20.1B for 2026.",
+      "interpretation": "Analyst estimate and forecast. Its scope includes solutions and services, including SIEM-related applications. A specialist intelligence feed addresses a narrower market.",
+      "sources": [
+        "https://www.grandviewresearch.com/industry-analysis/threat-intelligence-market"
+      ]
+    },
+    {
+      "market": "EASM",
+      "topic": "Demand signal",
+      "evidence": "Vulnerability exploitation was the initial access vector in 31% of the 2026 Verizon DBIR reporting dataset. The primary incident window was Nov 2024 to Oct 2025.",
+      "interpretation": "Observed breach data, figure 5 excludes Error and Misuse. This indicates urgency around exposed weaknesses. It does not measure EASM spend or prevention.",
+      "sources": [
+        "https://www.verizon.com/business/resources/Td7a/reports/2026-dbir-data-breach-investigations-report.pdf"
+      ]
+    },
+    {
+      "market": "EASM",
+      "topic": "Acquisition trigger",
+      "evidence": "Censys documents a workflow for discovering and attributing external assets across acquired and divested business units.",
+      "interpretation": "Vendor documentation. A GTM hypothesis is that a gap between legal ownership and the security inventory creates urgency.",
+      "sources": [
+        "https://docs.censys.com/docs/asm-secure-subsidiaries-acquisitions-and-mergers"
+      ]
+    },
+    {
+      "market": "EASM",
+      "topic": "Commercial models",
+      "evidence": "Microsoft bills on approved inventory using defined host/IP combinations, domains and IPs. IONIX describes annual pricing by discovered fully qualified domain names and service package.",
+      "interpretation": "Vendor terms. Model both quotes on one customer footprint and a plausible acquisition before comparing totals.",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/external-attack-surface-management/understanding-billable-assets",
+        "https://www.ionix.io/guides/exposure-management/ionixs-approach-to-exposure-management/"
+      ]
+    },
+    {
+      "market": "Both",
+      "topic": "Platform consolidation",
+      "evidence": "Tenable’s acquisition of Bit Discovery added external discovery to its exposure tools. Securonix acquired ThreatQuotient, the company behind ThreatQ.",
+      "interpretation": "Company announcements. Ask what the current contract includes, who runs the module, and whether the required data is an add-on.",
+      "sources": [
+        "https://www.tenable.com/press-releases/tenable-completes-acquisition-of-bit-discovery",
+        "https://www.securonix.com/press_release/securonix-acquires-threatquotient-to-deliver-industrys-broadest-and-deepest-threat-detection-investigation-and-response/"
+      ]
+    },
+    {
+      "market": "CTI",
+      "topic": "What the buyer pays for",
+      "evidence": "Google lists annual subscriptions with an API-call allowance by tier and offers extra API packs. Cisco offers tailored Talos intelligence as a service.",
+      "interpretation": "Vendor packaging. Compare subscription coverage, API consumption, analyst access, and rights to share outputs with clients.",
+      "sources": [
+        "https://cloud.google.com/security/products/threat-intelligence",
+        "https://www.cisco.com/site/us/en/products/security/talos/incident-response.html"
+      ]
+    },
+    {
+      "market": "CTI",
+      "topic": "Buyer requirements",
+      "evidence": "FIRST describes a priority intelligence requirement as a way to direct work toward a stakeholder’s information need. NIST describes goals, sources and sharing rules for threat information.",
+      "interpretation": "Practitioner guidance. In discovery, write down a real stakeholder question, who consumes the answer and when it expires.",
+      "sources": [
+        "https://www.first.org/global/sigs/cti/curriculum/pir",
+        "https://csrc.nist.gov/pubs/sp/800/150/final"
+      ]
+    },
+    {
+      "market": "CTI",
+      "topic": "Standards and delivery",
+      "evidence": "STIX 2.1 gives threat data a structured representation. TAXII 2.1 specifies a protocol for moving that information between systems.",
+      "interpretation": "OASIS standards, June 2021. In evaluation, confirm that confidence, observation times and handling restrictions survive delivery.",
+      "sources": [
+        "https://docs.oasis-open.org/cti/stix/v2.1/os/stix-v2.1-os.html",
+        "https://docs.oasis-open.org/cti/taxii/v2.1/os/taxii-v2.1-os.html"
+      ]
+    }
+  ],
+  "situations": [
+    {
+      "market": "EASM",
+      "situation": "Acquisition or unmanaged subsidiary",
+      "participants": "Exposure lead, IT asset owner, integration lead",
+      "question": "What did the last acquisition add that your inventory still misses?",
+      "measure": "Count newly confirmed, in-scope assets absent from the prior inventory. Divide misattributions by reviewed discoveries."
+    },
+    {
+      "market": "EASM",
+      "situation": "Prioritization backlog",
+      "participants": "Vulnerability management lead, engineering owner",
+      "question": "Walk me through the last internet-facing finding engineering disputed.",
+      "measure": "Measure time from discovery to owner acceptance and the share of remediated findings independently rechecked."
+    },
+    {
+      "market": "EASM",
+      "situation": "Platform renewal",
+      "participants": "Security platform owner, procurement",
+      "question": "Which external discoveries were unique to the module you already pay for?",
+      "measure": "Compare matched assets, owner-confirmed net-new assets and the annual cost under the same scope."
+    },
+    {
+      "market": "CTI",
+      "situation": "Executive or sector briefing",
+      "participants": "CTI lead, CISO",
+      "question": "What decision follows the briefing? Which sectors, geographies and threats would change that decision?",
+      "measure": "Review a briefing against a written priority intelligence requirement. Record whether the decision maker took an action."
+    },
+    {
+      "market": "CTI",
+      "situation": "SOC and detection coverage",
+      "participants": "SOC manager, detection engineering",
+      "question": "Which report changed a triage decision or led you to update a detection last month?",
+      "measure": "Measure time to a documented decision and the share of sampled reports that led to an investigation or detection review."
+    },
+    {
+      "market": "CTI",
+      "situation": "Underground-source monitoring",
+      "participants": "Fraud, identity protection, CTI lead",
+      "question": "When someone claims to have company data, how do you establish credibility and assign an owner?",
+      "measure": "Review a sample for organization relevance, provenance and duplicates. Track time to an owner’s decision."
+    },
+    {
+      "market": "CTI",
+      "situation": "Too many existing feeds",
+      "participants": "CTI platform owner, security architecture",
+      "question": "How do you handle the same indicator arriving from two providers with different dates and confidence?",
+      "measure": "Use sample records to verify deduplication, source retention, expiry and delivery into one downstream tool."
+    },
+    {
+      "market": "Both",
+      "situation": "Sector advisory about exposed technology",
+      "participants": "CTI analyst, exposure lead, remediation owner",
+      "question": "Do we know who is being targeted, which of our assets are affected, and who can confirm the fix?",
+      "measure": "Join a dated intelligence assessment to a confirmed owned asset. Track time to owner acceptance and to verified closure."
+    },
+    {
+      "market": "Adjacent",
+      "situation": "CAASM and asset inventory",
+      "participants": "IT asset management, exposure team",
+      "question": "Do we need to reconcile records from existing tools or discover internet-facing assets our tools missed?",
+      "measure": "CAASM emphasizes aggregation and reconciliation. Use owner-confirmed external discoveries to evaluate incremental EASM coverage."
+    },
+    {
+      "market": "Adjacent",
+      "situation": "Cloud security and application testing",
+      "participants": "Cloud security, application security",
+      "question": "Is the gap an unknown public asset, cloud configuration context or testing depth on a known application?",
+      "measure": "Compare public discovery, cloud ownership context and depth of application testing separately."
+    },
+    {
+      "market": "Adjacent",
+      "situation": "Third-party ratings and digital risk",
+      "participants": "Third-party risk, fraud or brand protection",
+      "question": "Are we remediating our own infrastructure, requesting a vendor fix, or handling brand impersonation?",
+      "measure": "Choose a first-party ticket, supplier escalation or brand-response workflow as the trial outcome."
+    },
+    {
+      "market": "Adjacent",
+      "situation": "CTEM program",
+      "participants": "CISO, head of exposure management",
+      "question": "Who owns the exposure program from scoping through validation and remediation?",
+      "measure": "Continuous threat exposure management (CTEM) is a program. Scope which step each EASM or CTI purchase would support."
+    }
+  ],
+  "history": [
+    {
+      "market": "EASM",
+      "earlier": "Expanse",
+      "reference": "Palo Alto Networks",
+      "timing": "December 2020",
+      "event": "Palo Alto Networks completed the acquisition. Track Cortex Xpanse in the current directory.",
+      "sources": [
+        "https://www.paloaltonetworks.com/company/press/2020/palo-alto-networks-completes-acquisition-of-expanse"
+      ]
+    },
+    {
+      "market": "EASM",
+      "earlier": "RiskIQ",
+      "reference": "Microsoft",
+      "timing": "August 2021",
+      "event": "Microsoft says it used RiskIQ infrastructure and data to build Defender EASM.",
+      "sources": [
+        "https://techcommunity.microsoft.com/blog/MicrosoftDefenderCloudBlog/exposure-management-the-evolution-of-vulnerability-management/4084587"
+      ]
+    },
+    {
+      "market": "EASM",
+      "earlier": "Bit Discovery",
+      "reference": "Tenable",
+      "timing": "June 2022",
+      "event": "Tenable completed the acquisition and announced Tenable.asm. Its current product page uses Tenable One Attack Surface Management.",
+      "sources": [
+        "https://www.tenable.com/press-releases/tenable-completes-acquisition-of-bit-discovery",
+        "https://www.tenable.com/products/attack-surface-management"
+      ]
+    },
+    {
+      "market": "CTI",
+      "earlier": "Cybersixgill",
+      "reference": "Bitsight",
+      "timing": "December 2024",
+      "event": "Bitsight completed the acquisition. Its CTI product is listed under Bitsight.",
+      "sources": [
+        "https://www.bitsight.com/press-releases/bitsight-completes-acquisition-cyber-threat-intelligence-leader-cybersixgill",
+        "https://www.bitsight.com/products/cyber-threat-intelligence"
+      ]
+    },
+    {
+      "market": "Both",
+      "earlier": "Recorded Future",
+      "reference": "Mastercard",
+      "timing": "December 2024",
+      "event": "Mastercard completed the acquisition. Recorded Future remains the product brand used on both directories.",
+      "sources": [
+        "https://investor.mastercard.com/investor-news/investor-news-details/2024/Mastercard-Finalizes-Acquisition-of-Recorded-Future/default.aspx"
+      ]
+    },
+    {
+      "market": "EASM",
+      "earlier": "Assetnote",
+      "reference": "Searchlight Cyber",
+      "timing": "2025 acquisition",
+      "event": "Searchlight states that Assetnote’s ASM platform is now Searchlight Exposure.",
+      "sources": [
+        "https://www.slcyber.io/assetnote"
+      ]
+    },
+    {
+      "market": "CTI",
+      "earlier": "ThreatQuotient",
+      "reference": "Securonix",
+      "timing": "June 2025",
+      "event": "Securonix announced its acquisition of ThreatQuotient. The current platform is Securonix ThreatQ.",
+      "sources": [
+        "https://www.securonix.com/press_release/securonix-acquires-threatquotient-to-deliver-industrys-broadest-and-deepest-threat-detection-investigation-and-response/",
+        "https://www.securonix.com/products/securonix-threatq/"
+      ]
+    },
+    {
+      "market": "CTI",
+      "earlier": "ThreatConnect",
+      "reference": "Dataminr",
+      "timing": "March 2026 product launch",
+      "event": "Dataminr describes its Cyber Defense suite, including Agentic TI Ops, as the first unified release following the acquisition.",
+      "sources": [
+        "https://www.dataminr.com/press/announcement/dataminr-redefines-cyber-defense/"
+      ]
+    },
+    {
+      "market": "EASM",
+      "earlier": "Wiz",
+      "reference": "Google Cloud",
+      "timing": "March 2026",
+      "event": "Google completed its acquisition of Wiz. Wiz ASM and Mandiant ASM have distinct product pages.",
+      "sources": [
+        "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/wiz-acquisition/",
+        "https://www.wiz.io/solutions/asm"
+      ]
+    },
+    {
+      "market": "EASM",
+      "earlier": "IBM Security Randori Recon",
+      "reference": "Historical product",
+      "timing": "April 2026",
+      "event": "Palo Alto Networks lists April 14, 2026 as the end-of-life date for Randori Recon.",
+      "sources": [
+        "https://www.paloaltonetworks.com/services/support/end-of-life-announcements/end-of-life-summary"
+      ]
+    },
+    {
+      "market": "CTI",
+      "earlier": "Legacy Microsoft Threat Intelligence portal",
+      "reference": "Microsoft Defender",
+      "timing": "August 2026",
+      "event": "Microsoft retired the standalone portal and the legacy Intel Explorer experience on August 1. Use the current Defender documentation for entitlement details.",
+      "sources": [
+        "https://learn.microsoft.com/en-us/defender-xdr/threat-intelligence-explorer"
+      ]
+    }
+  ]
+}

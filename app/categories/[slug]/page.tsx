@@ -1,3 +1,4 @@
+import { ExposureIntelligenceResearch, hasExposureIntelligenceResearch } from "@/components/exposure-intelligence-research";
 import { PageJourney } from "@/components/page-journey";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { SECRETS_COMPARISON_URL, DEVELOPER_ENDPOINT_COMPARISON_URL } from "@/lib/comparison-selection";
@@ -56,7 +57,9 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
       <PageIntro kicker={category.layer === "adjacent" ? "Adjacent" : "Category"} title={category.name} lede={category.definition} />
       <PageJourney steps={[
         { href: "#category-buyer", title: "Understand the decision", description: "See the buyer question, owner, workflow and outcomes." },
-        { href: "#category-products", title: "Explore products", description: "Browse primary products, then open their vendor evidence." },
+        hasExposureIntelligenceResearch(category.id)
+          ? { href: "#market-research", title: "Open the market map", description: "Explore companies by buyer need, product evidence and evaluation questions." }
+          : { href: "#category-products", title: "Explore products", description: "Browse primary products, then open their vendor evidence." },
         { href: "#category-evidence", title: "Check category claims", description: "Separate teaching notes from sourced category statements." },
       ]} back={{ href: "/domains", label: "Broaden to all domains" }} />
       <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">{sourcingLabel}</p>
@@ -166,6 +169,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
         </div>
       </dl>
       <p className="mt-6 text-sm leading-6">{category.exampleWorkflow}</p>
+      <ExposureIntelligenceResearch categoryId={category.id} />
       <CloudAppShortlist categoryId={category.id} />
       <DataSecurityShortlist categoryId={category.id} />
       <AcademyLinks categoryId={category.id} />
