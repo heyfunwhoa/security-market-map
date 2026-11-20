@@ -90,6 +90,30 @@ const entries: ProductEvidence[] = [
     statement: "GitHub recommends revoking or rotating a leaked credential and reviewing its use when resolving a secret scanning alert.",
     caveat: "Changing the alert state does not itself invalidate a third-party credential. The issuer and consuming applications provide that evidence.",
   },
+  {
+    key: "app-permission-types", productId: "entra-id", publisher: "Microsoft", title: "Microsoft identity platform permissions and consent",
+    url: "https://learn.microsoft.com/en-us/entra/identity-platform/permissions-consent-overview", type: "official_docs", section: "Delegated and application permissions",
+    statement: "Microsoft distinguishes access delegated by a signed-in person from application permissions an app can exercise on its own.",
+    caveat: "Determine which permission was actually granted and whether other access paths exist.",
+  },
+  {
+    key: "enterprise-app-consent", productId: "entra-id", publisher: "Microsoft", title: "Review permissions granted to enterprise applications",
+    url: "https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/manage-application-permissions", type: "official_docs", section: "Admin consent and user consent",
+    statement: "Microsoft documents reviewing organization-wide admin consent and consent associated with a user or group in separate views, and revoking grants.",
+    caveat: "Confirm the permission type and target enforcement. The documentation does not establish immediate invalidation of every issued token.",
+  },
+  {
+    key: "cross-tenant-lifecycle", productId: "entra-id", publisher: "Microsoft", title: "What is cross-tenant synchronization?",
+    url: "https://learn.microsoft.com/en-us/entra/identity/multi-tenant-organizations/cross-tenant-synchronization-overview", type: "official_docs", section: "Deprovisioning for synchronized users",
+    statement: "For synchronized users, Microsoft documents when a removal in the source tenant leads to soft deletion in the target. Blocking source sign-in instead updates account status in the target.",
+    caveat: "Check the provisioning scope, documented exceptions and any accounts managed locally outside synchronization.",
+  },
+  {
+    key: "emergency-access-drills", productId: "entra-id", publisher: "Microsoft", title: "Manage emergency access accounts in Microsoft Entra ID",
+    url: "https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-emergency-access", type: "official_docs", section: "Monitor sign-in and audit logs; validate accounts regularly",
+    statement: "Microsoft recommends monitoring emergency administrator use, configuring alerts and validating emergency account functionality at least every 90 days.",
+    caveat: "The interval is Microsoft’s guidance for these accounts. The buyer still needs evidence that its own recovery and alerting paths work.",
+  },
 ];
 
 export const workforceGuideResearch = { prefix: "workforce", checked: "2026-11-20", entries };
@@ -105,5 +129,34 @@ export const issuerReferenceSources: Source[] = [
     id: "src-stripe-request-logs", title: "Stripe API request logs", publisher: "Stripe", url: "https://docs.stripe.com/development/dashboard/request-logs",
     canonicalUrl: "https://docs.stripe.com/development/dashboard/request-logs", sourceType: "official_docs", publishedAt: null, retrievedAt: "2026-11-20",
     volatility: "fast", excerpt: "Request logs. Stripe records requests to its API and provides request details in its developer tools. Confirm the account, log window and available attribution.",
+  },
+];
+
+// Native platform controls provide context for buyer scenarios without adding security vendors.
+export const accessScenarioSources: Source[] = [
+  {
+    id: "src-workflow-github-deploy-keys", title: "Managing deploy keys", publisher: "GitHub",
+    url: "https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys", canonicalUrl: "https://docs.github.com/en/authentication/connecting-to-github-with-ssh/managing-deploy-keys", sourceType: "official_docs",
+    publishedAt: null, retrievedAt: "2026-11-20", volatility: "fast", excerpt: "Deploy keys, disadvantages. GitHub ties a deploy key to the repository. Removing the person who created it leaves the key active.",
+  },
+  {
+    id: "src-workflow-actions-logs", title: "Secure use reference for GitHub Actions", publisher: "GitHub",
+    url: "https://docs.github.com/en/actions/reference/security/secure-use", canonicalUrl: "https://docs.github.com/en/actions/reference/security/secure-use", sourceType: "official_docs",
+    publishedAt: null, retrievedAt: "2026-11-20", volatility: "fast", excerpt: "Use secrets. GitHub describes limits of runner log redaction and recommends deleting the affected log and rotating a secret recorded without redaction.",
+  },
+  {
+    id: "src-workflow-npm-publishing", title: "Trusted publishing for npm packages", publisher: "npm",
+    url: "https://docs.npmjs.com/trusted-publishers/", canonicalUrl: "https://docs.npmjs.com/trusted-publishers/", sourceType: "official_docs",
+    publishedAt: null, retrievedAt: "2026-11-20", volatility: "fast", excerpt: "Migration tip. npm recommends verifying the trusted publisher, restricting token access and revoking unnecessary automation tokens.",
+  },
+  {
+    id: "src-workflow-drive-sharing", title: "Share and manage access to files and folders in Google Drive", publisher: "Google",
+    url: "https://support.google.com/drive/answer/7166529?hl=en", canonicalUrl: "https://support.google.com/drive/answer/7166529?hl=en", sourceType: "official_docs",
+    publishedAt: null, retrievedAt: "2026-11-20", volatility: "fast", excerpt: "General access and limited access. Google describes link access without sign-in and how folder permissions constrain sharing for individual files.",
+  },
+  {
+    id: "src-workflow-aws-role-sessions", title: "Revoke IAM role temporary security credentials", publisher: "Amazon Web Services",
+    url: "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_revoke-sessions.html", canonicalUrl: "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_revoke-sessions.html", sourceType: "official_docs",
+    publishedAt: null, retrievedAt: "2026-11-20", volatility: "fast", excerpt: "Revoking session permissions. AWS describes invalidating role credentials issued before a cutoff and requiring affected users to obtain new credentials.",
   },
 ];

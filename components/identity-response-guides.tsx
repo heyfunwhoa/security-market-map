@@ -27,6 +27,7 @@ export function WorkforceIdentityGuide() {
       <h3 className="text-xl">How analysts define the market</h3>
       <p className="text-sm leading-6">KuppingerCole describes the sign-in and access-management layer. Gartner describes the governance record behind access decisions. Forrester asks whether a workforce identity platform can act on identity risk. The market map uses these public sources to frame buyer questions. Product capabilities below come from the individual publishers.</p>
       <Evidence label="Read the three analyst sources" ids={workforce.analystIds} />
+      <p className="text-sm"><Link className={link} href="/landscape/public-exposure#related-access-scenarios">Explore app consent, merger access and emergency administrator scenarios</Link></p>
       <nav aria-label="Workforce identity buyer decisions"><ul className="space-y-1 pl-5 text-sm leading-6 list-disc">
         {workforce.cases.map((item) => <li key={item.id}><a className={link} href={`#workforce-${item.id}`}>{item.title}</a></li>)}
       </ul></nav>
@@ -72,6 +73,7 @@ export function CredentialExposureHandoff() {
           <Link className={link} href={`/categories/${item.guide}`}>Compare the credential management options</Link>
         </article>
       ))}
+      <p className="text-sm"><Link className={link} href="/landscape/public-exposure#related-access-scenarios">Explore repository keys, build logs and package publishing scenarios</Link></p>
       <p className="text-sm"><Link className={link} href="/categories/workforce-identity#workforce-leave">When a person leaves, check their accounts, sessions and shared integrations</Link></p>
     </section>
   );

@@ -1,3 +1,4 @@
+import { RelatedAccessScenarios } from "@/components/related-access-scenarios";
 import Link from "next/link";
 import { BuyerProductOptions } from "@/components/buyer-product-options";
 import { PageIntro } from "@/components/chrome";
@@ -17,6 +18,7 @@ export default function PublicExposurePage() {
         title="Public monitoring and external exposure"
         lede="Start with what surfaced. An unknown host, a leaked key and a stolen employee login each call for different evidence and a different person to act."
       />
+      <p className="text-sm"><a className={linkStyle} href="#related-access-scenarios">Explore eight related identity and credential scenarios</a></p>
       <nav aria-label="Find a buyer scenario" className="grid gap-5 rounded-xl border border-border bg-card p-5 md:grid-cols-3">
         {groups.map((group) => (
           <div key={group.id}>
@@ -55,6 +57,7 @@ export default function PublicExposurePage() {
           ))}
         </section>
       ))}
+      <RelatedAccessScenarios />
       <Link className={linkStyle} href="/landscape">Back to the security landscape</Link>
     </main>
   );

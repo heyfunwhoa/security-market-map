@@ -1,4 +1,5 @@
 import { expect, it } from "vitest";
+import scenarios from "../research/related-access-scenarios.json";
 import workforce from "../research/workforce-identity-buyers.json";
 import handoff from "../research/credential-exposure-handoff.json";
 import { catalog, categoryBySlug, productById, sourceById, vendorById } from "./catalog";
@@ -48,5 +49,27 @@ it("resolves the incident examples to documented controls and external issuer ev
     }
     for (const id of sample.sourceIds) expect(sourceById(id)?.sourceType).toBe("official_docs");
     expect(categoryBySlug(sample.guide.split("#")[0])).toBeDefined();
+  }
+});
+
+
+it("connects each related access scenario to a category and registered first-party evidence", () => {
+  expect(new Set(scenarios.map((sample) => sample.id)).size).toBe(scenarios.length);
+  for (const sample of scenarios) {
+    expect(categoryBySlug(sample.categoryId), sample.id).toBeDefined();
+    expect(sample.claimIds.length + sample.sourceIds.length).toBeGreaterThan(0);
+    const evidence = [...sample.sourceIds];
+    for (const id of sample.claimIds) {
+      const claim = claims.get(id)!;
+      expect(claim.subjectType, id).toBe("product");
+      expect(claim.verificationStatus).toBe("vendor_published");
+      expect(sourceById(claim.sourceId)?.canonicalUrl).toBe(claim.sourceUrl);
+      evidence.push(claim.sourceId);
+    }
+    for (const id of evidence) {
+      const source = sourceById(id)!;
+      expect(source.sourceType, id).toBe("official_docs");
+      expect(catalog.sources.filter((item) => item.canonicalUrl === source.canonicalUrl)).toHaveLength(1);
+    }
   }
 });

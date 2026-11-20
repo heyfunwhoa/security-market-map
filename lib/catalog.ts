@@ -72,7 +72,7 @@ import {
 } from "./data/ecosystem";
 import { distinctions, glossary, scenarios } from "./data/learn";
 import { developerEndpointProducts, developerEndpointSources, developerEndpointClaims } from "./data/developer-endpoint";
-import { issuerReferenceSources, workforceGuideProducts, workforceGuideResearch, workforceGuideVendors } from "./data/workforce-guide";
+import { accessScenarioSources, issuerReferenceSources, workforceGuideProducts, workforceGuideResearch, workforceGuideVendors } from "./data/workforce-guide";
 import { secretsManagementProducts, secretsManagementResearch, secretsManagementVendors } from "./data/secrets-management";
 import { registerProductEvidence, publicMonitoringVendors, publicMonitoringClaims, publicMonitoringProducts, publicMonitoringSources } from "./data/public-monitoring";
 import { developerEndpointCapabilities, developerEndpointUseCases } from "./data/developer-endpoint-comparison";
@@ -176,7 +176,7 @@ function parseCatalog(): Catalog {
     buyingTriggers: z.array(buyingTriggerSchema).parse(buyingTriggers),
     qualificationQuestions: z.array(qualificationQuestionSchema).parse(qualificationQuestions),
     vendorSeatTargeting: z.array(vendorSeatTargetingSchema).parse(vendorSeatTargeting),
-    sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources, ...developerEndpointSources, ...personaSources, ...categoryFillSources, ...ispmWimSources, ...identityAnalystSources, ...industryIdentitySources, ...publicMonitoringSources, ...management.sources, ...workforce.sources, ...issuerReferenceSources]),
+    sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources, ...developerEndpointSources, ...personaSources, ...categoryFillSources, ...ispmWimSources, ...identityAnalystSources, ...industryIdentitySources, ...publicMonitoringSources, ...management.sources, ...workforce.sources, ...issuerReferenceSources, ...accessScenarioSources]),
     claims: parsedClaims,
     relationships: z.array(relationshipSchema).parse([...relationships, ...ecosystemRelationships]),
     stories: z.array(customerStorySchema).parse(customerStories),
