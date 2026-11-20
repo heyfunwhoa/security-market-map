@@ -30,6 +30,30 @@ For an evaluation, use a synthetic finding and a known owner. Record elapsed tim
 
 **Review record.** This addition was researched November 20, 2026. Product assertions use the original publisher, section, date checked and caveat in the shared claim registry. Rights remain with each publisher. Owner for editorial review is the Security Market Map maintainer. Recheck by February 20, 2027 or after a product, integration or service-scope change.
 
+### More SecOps tools and what to test
+
+These research examples extend the existing SecOps categories. Sources were checked November 20, 2026. Product descriptions reflect publisher documentation. Evaluation questions are illustrative.
+
+| Tool or project | Why a buyer would look at it | What to verify |
+| --- | --- | --- |
+| **Amazon Security Lake** | Centralize supported security data in an S3-based lake. Relevant when investigators need historical events across accounts or tools. [AWS documentation](https://docs.aws.amazon.com/security-lake/latest/userguide/what-is-security-lake.html) | Find a known event in the lake and confirm it falls within the enrolled account, Region, source and retention policy. |
+| **Microsoft Sentinel** | Bring supported AWS service logs into the same SIEM used by a Microsoft-oriented SOC. [AWS connector documentation](https://learn.microsoft.com/en-us/azure/sentinel/connect-aws) | Follow a known CloudTrail event into the destination table and compare the account, identity and timestamp with the original. |
+| **Google Security Operations** | Ingest and parse AWS CloudTrail data in an existing Google SecOps deployment. [CloudTrail parser documentation](https://docs.cloud.google.com/chronicle/docs/ingestion/default-parsers/aws-cloudtrail) | Use the same AWS example as the Sentinel evaluation. Check whether the analyst can find the principal and account using the parsed fields. |
+| **LimaCharlie** | Test custom detection and response rules against sample events. Relevant to SOC engineers or managed providers maintaining their own detection content. [Rule testing documentation](https://docs.limacharlie.io/3-detection-response/tutorials/writing-testing-rules/) | Bring one approved synthetic rule test and one benign event. Demonstrate expected behavior and show who can review the rule change. |
+| **Tines Stories** | Build a workflow from connected actions that pass structured events. Useful when enrichment and assignment span tools and teams. [Actions documentation](https://www.tines.com/stories/docs/actions/) | Send the same sample finding twice and simulate a destination timeout. Check whether the case stays coherent and who receives the failure. |
+| **Microsoft Defender for Endpoint** | Investigate an onboarded device and use supported response actions, including isolation. [Device response documentation](https://learn.microsoft.com/en-us/microsoft-365/security/defender-endpoint/respond-machine-alerts?view=o365-worldwide) | Demonstrate evidence and authorization on a test device. Verify action status and recovery ownership. Check OS and entitlement coverage. |
+| **Zeek** | Record network connection metadata through logs such as `conn.log`. Useful when a SOC needs to establish which systems communicated during an incident. [Zeek connection log documentation](https://docs.zeek.org/en/current/reference/logs/conn.html) | Trace a known connection from a monitored segment and establish where sensor visibility ends. Connection records alone leave file contents and business intent unresolved. |
+| **Velociraptor** | Collect endpoint artifacts for deeper investigation. Useful when responders need evidence beyond the original device alert. [Velociraptor artifact documentation](https://docs.velociraptor.app/docs/artifacts/) | Collect an approved artifact from a test host. Check provenance, timestamps, access controls and the ability to reproduce the collection. |
+| **OpenCTI** | Bring external threat intelligence into a workspace with connectors for import or enrichment. Useful when several feeds need to inform an investigation. [Connector documentation](https://docs.opencti.io/latest/deployment/connectors/) | Show how an indicator keeps its origin, confidence and expiry through enrichment. Compare available feeds and connector maintenance requirements. |
+
+### Three expansion conversations
+
+1. **An alert exists but the relevant activity is missing.** Start with the SOC platform lead. Check AWS log generation, routing, parsing and destination retention with one known event. If delivery works, involve detection engineering to test rule behavior. A SIEM connector, a pipeline and a rule can fail at different points.
+2. **Two tools alerted on the same employee.** Start with the incident analyst. Ask for the evidence linking the device, workforce identity and AWS session. Assign one case owner. If the logs leave a gap, consider endpoint artifact collection or network telemetry where available.
+3. **The SOC can investigate but cannot act after hours.** Start with the SOC director and system owner. Compare an approved workflow, a managed responder and an internal on-call rotation. Ask each option to show who can take the action, where the result is recorded and who verifies recovery.
+
+**AWS shortcut.** For the same sample incident, ask where the original CloudTrail event lives, where the Security Hub finding is reviewed and where the SOC keeps its case. Amazon Security Lake, AWS Security Hub and the SIEM can each serve a different step. Run the sample through the customer's actual configuration before drawing conclusions about coverage. [Security Lake](https://docs.aws.amazon.com/security-lake/latest/userguide/what-is-security-lake.html) · [Security Hub exposure findings](https://docs.aws.amazon.com/securityhub/latest/userguide/exposure-findings.html)
+
 ## Evidence and category distinctions
 
 | ID | Source | Publisher; date | Supported scope | Evidence class and caveat |
