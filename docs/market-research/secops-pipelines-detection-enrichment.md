@@ -54,6 +54,26 @@ These research examples extend the existing SecOps categories. Sources were chec
 
 **AWS shortcut.** For the same sample incident, ask where the original CloudTrail event lives, where the Security Hub finding is reviewed and where the SOC keeps its case. Amazon Security Lake, AWS Security Hub and the SIEM can each serve a different step. Run the sample through the customer's actual configuration before drawing conclusions about coverage. [Security Lake](https://docs.aws.amazon.com/security-lake/latest/userguide/what-is-security-lake.html) · [Security Hub exposure findings](https://docs.aws.amazon.com/securityhub/latest/userguide/exposure-findings.html)
 
+### From phishing to cloud and data investigation
+
+A finance employee reports a suspicious message. Identity logs show a risky sign-in, and a cloud team sees unusual AWS activity. The SOC needs evidence connecting the message, person and cloud principal before treating them as one incident. These five evaluations extend the buyer guide. The linked publisher documentation was checked November 20, 2026.
+
+| Buyer decision | Tool and documented role | Evidence to request in a pilot |
+| --- | --- | --- |
+| Find other recipients and determine delivery | **Microsoft Defender for Office 365 Threat Explorer** supports investigation of email using message and threat data. Confirm the required plan and permissions. [Microsoft](https://learn.microsoft.com/en-us/defender-office-365/threat-explorer-threat-hunting) | Show message identifiers, recipients, delivery location and the action taken. Distinguish delivery from user interaction. |
+| Validate an unusual sign-in | **Microsoft Entra ID Protection** gives identity teams risky user, sign-in and detection reports. [Microsoft](https://learn.microsoft.com/en-us/entra/id-protection/howto-identity-protection-investigate-risk) | Identify the right person, event time and risk evidence. Ask which connected application sessions the identity team can account for separately. |
+| Trace activity in AWS | **Amazon Detective** helps investigators analyze activity and relationships among AWS resources and identities using its behavior graph. [AWS](https://docs.aws.amazon.com/detective/latest/userguide/what-is-detective.html) | Match the cloud principal and activity time to the case. Show the AWS accounts and data sources in scope and identify gaps that require retained logs. |
+| Understand what data was at stake | **Amazon Macie** discovers sensitive data in supported Amazon S3 objects and produces findings. [AWS](https://docs.aws.amazon.com/macie/latest/user/what-is-macie.html) | Show why the bucket matters, then check which retained access events establish what the principal actually read. [CloudTrail data events](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html) |
+| Give multiple teams one case | **TheHive** organizes incident investigations into cases with tasks and observables. [StrangeBee](https://docs.strangebee.com/thehive/user-guides/analyst-corner/cases/about-cases/) | Assign separate email, identity and cloud tasks to named owners. Require source references, a decision and proof of closure before closing the case. |
+
+#### Run the same case three ways
+
+- **Microsoft-centered SOC.** Start with a sample message and risky sign-in. Check what the analyst can see in the existing investigation workflow and where AWS evidence must be added. Test the owned tools and licenses before pricing another case platform.
+- **AWS-centered team.** Start with a known AWS finding and show the underlying activity and resource owner. Ask who provides the email and identity evidence and where their findings join the case.
+- **Mixed stack or MDR provider.** Start with an alert that crosses three tools. Verify where the authoritative case lives, which team handles each task after hours and whether a handoff retains the original evidence link.
+
+Use the same synthetic incident, expected evidence and scope for all three. Record time to a named owner, which conclusions the available evidence supports, and whether authorized containment can be verified at the affected system. Add a second benign scenario to check whether the workflow incorrectly merges unrelated events.
+
 ## Evidence and category distinctions
 
 | ID | Source | Publisher; date | Supported scope | Evidence class and caveat |
