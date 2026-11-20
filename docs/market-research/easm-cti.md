@@ -12,6 +12,8 @@ Each category links to the other market, relevant existing vendor profiles and o
 
 ## Research and downloads
 
+Follow a reported [employee login into workforce identity response](./workforce-identity-and-credential-response.md#six-workforce-buying-decisions) or a [company API key through containment](./workforce-identity-and-credential-response.md#from-public-alert-to-confirmed-containment).
+
 ### Which exposure are you trying to find?
 
 Start with the evidence you need and who can act on it. The map uses 13 buyer scenarios across existing categories. The full EASM and threat intelligence directories are available in the workbook below. Scenarios and handoffs are illustrative. Product capabilities are attributed to their publishers and were checked on November 20, 2026 UTC.

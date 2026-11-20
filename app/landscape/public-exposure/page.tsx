@@ -44,6 +44,12 @@ export default function PublicExposurePage() {
               {item.id === "public-secrets" && (
                 <p><Link className={linkStyle} href="/categories/secrets-management#secrets-management-guide">Compare ways to manage or replace an exposed credential</Link></p>
               )}
+              {item.id === "workforce" && (
+                <p><Link className={linkStyle} href="/categories/workforce-identity#workforce-respond">Follow the employee account investigation</Link></p>
+              )}
+              {item.id === "public-secrets" && (
+                <p><Link className={linkStyle} href="/categories/secrets-management#exposure-handoff">Trace a public alert through issuer revocation and consumer cutover</Link></p>
+              )}
               <Link className={linkStyle} href={`/categories/${item.categoryId}`}>Explore {categoryBySlug(item.categoryId)!.name}</Link>
             </article>
           ))}

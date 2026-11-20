@@ -9,6 +9,7 @@ export function SecretsManagementGuide() {
     <section aria-labelledby="secrets-management-guide" className="mt-6 max-w-4xl space-y-5 rounded-xl border border-border p-4 sm:p-6">
       <h2 id="secrets-management-guide" tabIndex={-1} className="scroll-mt-24 text-2xl">How should we manage this credential?</h2>
       <p className="max-w-3xl leading-7">A public alert can tell AppSec that a key escaped. Its owner still needs to revoke it, deliver a replacement and check which systems used it. If the target supports short-lived access, the team may be able to retire the standing credential altogether.</p>
+      <p><Link className={linkStyle} href="#exposure-handoff">See who acts after a credential appears in public</Link></p>
       <nav aria-label="Secrets management buyer questions"><ul className="list-disc space-y-1 pl-5 text-sm leading-6">
         {cases.map((item) => <li key={item.id}><a className={linkStyle} href={`#management-${item.id}`}>{item.title}</a></li>)}
       </ul></nav>

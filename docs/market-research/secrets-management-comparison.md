@@ -4,6 +4,8 @@ Original inventory dated 2026-10-13. Buyer scenarios expanded 2026-11-20 UTC. St
 
 ## Seven secrets management buyer decisions
 
+The [incident handoff guide](./workforce-identity-and-credential-response.md#from-public-alert-to-confirmed-containment) explains who acts after a public finding and what proves issuer revocation, application cutover and the scope of the usage review.
+
 Start with the job the team needs to do. A vault read, a target password change and a database login give the team different evidence. After public exposure, confirm whether the issuer invalidated the old credential and whether the application picked up its replacement.
 
 | Buyer scenario | What to ask for in an evaluation | Products and original evidence |

@@ -1,0 +1,78 @@
+# Workforce identity and credential exposure
+
+Workforce identity management follows people across accounts, entitlements and sessions as they join a company, change jobs or leave. Secrets management follows credentials used by applications and automation. These markets meet when a departing employee administered an integration, or when the team investigating a public credential needs to identify who can actually invalidate it.
+
+## How analysts define the workforce market
+
+| Public analyst research | What the analyst says | How to use it with a buyer |
+| --- | --- | --- |
+| [KuppingerCole, Access Management](https://www.kuppingercole.com/research/lc80867/access-management) · 2025-06-12 | KuppingerCole includes authentication, authorization, single sign-on and federation in access management for applications. | Ask which apps use central sign-in and where local authentication or recovery is still possible. |
+| [Gartner, Guidance for Identity Governance and Administration](https://www.gartner.com/en/documents/7068498) · 2025-10-14 | Gartner describes IGA as the authoritative record for managing identities, administering access and making authorization decisions when access is assigned. | Trace a business approval into an actual target-system entitlement, including what happens when that approval expires. |
+| [Forrester, Workforce Identity Security Platforms](https://www.forrester.com/blogs/announcing-the-forrester-wave-workforce-identity-platforms-q2-2026/) · 2026-05-21 | Forrester’s May 2026 commentary advises evaluating whether workforce identity platforms can turn risk signals into actions, alongside lifecycle controls, governance and phishing-resistant sign-in. | Ask the identity and SOC teams to walk an actual risk signal through to an enforcement action and a target-system check. |
+
+The analyst material is public commentary or a public report summary. Its role is to frame market scope and buyer questions. The vendor evidence below comes from the named publisher. The workflows and measures are the market map’s editorial interpretation.
+
+## Six workforce buying decisions
+
+| Situation | Who owns the decision and what to prove | Examples and sources |
+| --- | --- | --- |
+| **Give a joiner access and remove a mover’s old permissions**. HR moves a finance analyst into sales. She needs CRM access on Monday, and her old ability to approve payments should end. | HR owns the employment event. IAM owns provisioning. Finance and the CRM owner confirm the actual permissions. Start with the role change and follow it into both applications. Time how long necessary access takes to appear and obsolete access takes to disappear. Record connector failures separately. | [Microsoft Entra ID Governance](https://learn.microsoft.com/en-us/entra/id-governance/what-are-lifecycle-workflows) Microsoft documents Entra lifecycle workflows as automation for joiner, mover, and leaver tasks on Microsoft Entra users. The page says the feature requires Microsoft Entra ID Governance or Microsoft Entra Suite licenses.<br>[Okta Lifecycle Management](https://help.okta.com/en-us/Content/topics/provisioning/lcm/lcm-provisioning-workflow.htm) Okta describes flowing a person’s profile and assigned access from a connected user store into application integrations to create downstream accounts.<br>[KuppingerCole, IGA Buyer’s Compass](https://www.kuppingercole.com/research/bc81004/identity-governance-and-administration-iga) |
+| **Decide how an employee proves their identity**. A contractor uses a personal device to sign in to payroll. The customer wants phishing-resistant authentication for that application. | The IAM owner sets sign-in policy. The payroll owner and help desk own exceptions and account recovery. Demonstrate the intended authenticator, a disallowed fallback and a recovery path using test identities. Record the application policy that made the decision. | [Microsoft Entra Conditional Access](https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-strengths) Microsoft Entra Conditional Access can require an authentication strength for a resource, including a built-in strength for phishing-resistant MFA.<br>[Cisco Duo Passwordless](https://duo.com/docs/passwordless) Duo documents phishing-resistant FIDO2 passkeys for passwordless sign-in, including supported platform authenticators and roaming security keys.<br>[KuppingerCole, Access Management](https://www.kuppingercole.com/research/lc80867/access-management) |
+| **Prove that sensitive access is still justified**. A controller finds a former approver on the payment-release list during a quarterly review. Who can remove that permission and prove the change? | The application owner certifies business need. The IGA team runs the review and reconciles the result. Follow one denied entitlement from the reviewer’s decision through remediation to a fresh target-system entitlement record. Track decisions awaiting action. | [Microsoft Entra ID Governance](https://learn.microsoft.com/en-us/entra/id-governance/deploy-access-reviews) Microsoft documents access reviews for groups, applications, access packages, and for Microsoft Entra roles and Azure resource roles.<br>[Okta Identity Governance](https://help.okta.com/oie/en-us/Content/Topics/identity-governance/access-certification/iga-ac-review-campaign.htm) Okta Identity Governance lets reviewers decide whether access should be approved or revoked during an access certification campaign.<br>[SailPoint Human Fabric](https://documentation.sailpoint.com/saas/help/certs/index.html) SailPoint Human Fabric documents a certification workflow in which reviewers approve or revoke access and sign off, followed by remediation and campaign completion.<br>[Gartner, Guidance for Identity Governance and Administration](https://www.gartner.com/en/documents/7068498) |
+| **Grant production admin access for a limited time**. An engineer needs elevated access during an outage. Who approves the grant and verifies when the privilege ends? | Cloud IAM and the production owner define eligible roles, approval rules and emergency exceptions. Show the requester, approved role and resource, start and end times, and effective access after expiry. Check permanent grants separately. | [Microsoft Entra Privileged Identity Management](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure) Microsoft documents Privileged Identity Management as just-in-time, time-based, and approval-based role activation for Microsoft Entra ID and Azure resources. The page also requires a license and describes audit history.<br>[Google Cloud Privileged Access Manager](https://docs.cloud.google.com/iam/docs/pam-overview) Google Cloud Privileged Access Manager supports temporary elevated access to Google Cloud resources through entitlements and grants, with optional approval.<br>[KuppingerCole, Privileged Access Management](https://www.kuppingercole.com/research/lc81007/privileged-access-management-pam) |
+| **Remove a departing contractor’s access**. A contractor’s directory account is disabled Friday. A SaaS session is still open, and an integration key they once administered still has an owner to be assigned. | HR or the sponsor supplies the end time. IAM handles the directory. The app owner handles sessions and the service owner takes custody of the integration. Reconcile accounts and app-issued sessions at the target. Assign a new owner to shared integrations and document whether each credential needs revocation or rotation. | [Microsoft Entra ID session revocation](https://learn.microsoft.com/en-us/entra/identity/users/users-revoke-access) Microsoft documents that an application controls its own session tokens. Entra ID cannot directly revoke a session token issued by the application.<br>[Okta Universal Logout](https://help.okta.com/oie/en-us/content/topics/itp/universal-logout-supported-apps.htm) Okta documents specific applications and devices supported by Universal Logout, with different sign-out behavior depending on the integration.<br>[KuppingerCole, IGA Buyer’s Compass](https://www.kuppingercole.com/research/bc81004/identity-governance-and-administration-iga) |
+| **Investigate an employee credential reported outside the company**. A breach-monitoring alert names an employee email. Is the account active, and was there a suspicious sign-in or a surviving session? | Threat intelligence supplies the observation. The SOC checks sign-in activity. IAM and application owners contain affected access. Correlate the identity and observation time with account status, sign-in evidence and session actions. Record the log coverage and the period reviewed. | [SpyCloud Workforce Threat Protection](https://docs.spycloud.com/public-sc/docs/workforce-threat-protection) SpyCloud matches verified watchlist identifiers against breach data, phishing collections and information recovered from infostealer infections.<br>[Microsoft Entra ID Protection](https://learn.microsoft.com/en-us/entra/id-protection/howto-identity-protection-investigate-risk) Microsoft documents investigating risky users and sign-ins using Entra ID Protection reports and sign-in evidence.<br>[Forrester, Workforce Identity Security Platforms](https://www.forrester.com/blogs/announcing-the-forrester-wave-workforce-identity-platforms-q2-2026/) |
+
+### Using the market map in discovery
+
+A failed payroll login usually starts with the workforce IAM owner. A payment approver who kept access after a transfer brings in the controller and IGA owner. An engineer retaining standing administrator rights brings in the cloud or privileged-access team. An employee credential in an external dataset brings in the SOC and the identity team. The same suite can appear in several evaluations, but the stakeholder, product module and success measure change.
+
+For an evaluation, have the customer choose one identity population and one or two representative applications. Agree on the target-system record they will accept as proof. Useful measures include elapsed time from an HR end date to confirmed removal in each app, revoked review decisions still awaiting remediation, and temporary grants that leave another path to the same privilege. These are suggested measures, not market benchmarks.
+
+## From public alert to confirmed containment
+
+The reporting team may know where the credential appeared while a different team owns the issuer, a third team owns the clients, and the SOC owns the usage investigation. Start by finding those owners.
+
+| Decision | Owner | Evidence to capture |
+| --- | --- | --- |
+| Attribute the finding | AppSec and the service owner | Record the public location, issuer, environment, stable credential identifier and the evidence connecting it to a service. Keep the credential value out of the incident record. |
+| Choose containment and cutover | Incident lead and issuer administrator | Identify the issuer administrator and dependent workloads. An active compromise may call for immediate revocation and a service interruption. If a controlled overlap is appropriate, agree who ends it and by when. |
+| Replace or retire the access | Issuer administrator and platform engineering | Capture the issuer’s change or expiry event. Where a replacement is needed, deliver it to each consumer and verify normal application behavior. A vault version change by itself leaves the issuer state open. |
+| Reconcile old access and investigate use | SOC and target-service owner | Check the old credential’s status at the issuer. Record what the target logs cover, the exposure window reviewed and any observed activity. Track sessions or tokens already issued separately where applicable. |
+| Close with evidence | Incident owner | Record issuer invalidation, consumer cutover or retirement, and the outcome of the usage review. If the available logs leave impact unknown, record that uncertainty separately from containment. |
+
+### A payment API key appears in a personal repository
+
+AppSec can identify the repository. The payments team owns the integration, and a Stripe administrator controls the key. The developer who published it may have neither responsibility. If an overlap is used, move the payment service to the replacement and verify normal requests. Check the old key’s expiry in the correct Stripe account and environment. Review the available request history for the exposure window.
+
+**Where a team could stop too early.** The repository is private again, but the old API key is still valid.
+
+**Evidence to close the exposure.** Issuer expiry time, successful payment-service cutover and the scope and outcome of the target log review.
+
+[GitHub alert resolution](https://docs.github.com/en/code-security/how-tos/manage-security-alerts/manage-secret-scanning-alerts/resolving-alerts) · [AWS runtime retrieval](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html) · [Stripe API keys](https://docs.stripe.com/keys) · [Stripe API request logs](https://docs.stripe.com/development/dashboard/request-logs)
+
+### A shared database password is rotated
+
+The database team controls the login. The vault owner manages the stored value. An API and an overnight batch job both consume it. Confirm how the selected provider handles overlap. Watch both consumers adopt the replacement, including the next batch run. Check existing database sessions separately and have the database owner review authentication records.
+
+**Where a team could stop too early.** The API looks healthy while the overnight job still holds the retired password.
+
+**Evidence to close the exposure.** Target-side credential change, current access state, application and batch-job evidence, and the database audit window.
+
+[Infisical rotation modes](https://infisical.com/docs/documentation/platform/secret-rotation/overview) · [AWS target rotation](https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html) · [Google rotation schedules](https://docs.cloud.google.com/secret-manager/docs/rotation-recommendations)
+
+### A release pipeline moves from a stored key to federation
+
+The build team owns the pipeline. Cloud IAM owns the trust relationship and the long-lived credential that previously authorized releases. Verify the intended workflow can deploy with temporary credentials and a different test workflow is denied. Retire the old cloud key at the issuer, then review its usage and any previously issued sessions within available log coverage.
+
+**Where a team could stop too early.** The pipeline now uses federation, but a copied long-lived cloud key still works.
+
+**Evidence to close the exposure.** Successful federated release, a narrowly scoped trust policy, old-key retirement evidence and a documented cloud log review.
+
+[Google pipeline federation](https://docs.cloud.google.com/iam/docs/workload-identity-federation-with-deployment-pipelines) · [Entra federated trust](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation)
+
+**One discovery question that connects the markets:** If a contractor leaves tonight and a production integration still uses a key they created, who can close the human account, who can retire the key, and what would show that the application still works tomorrow?
+
+The sources above support individual controls and market boundaries. The companies and incidents in the scenarios are illustrative. Dates checked are recorded per source. The Security Market Map maintainer owns editorial review, proposed by February 19, 2027 or when a material source changes.
+
+[Public monitoring and EASM](./easm-cti.md) · [Secrets management product comparisons](./secrets-management-comparison.md)
