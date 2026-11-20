@@ -23,6 +23,8 @@ The map places **AWS Security Hub** under cloud-native application protection fo
 | Evaluate a mixed AWS and Azure estate | AWS documents a prioritized view of supported Azure resources through a configured connector. The connector requires Security Hub and CSPM in the same AWS account and Region. | Inventory the connected Azure subscriptions, resource types and permissions. Agree on one representative finding in each cloud. [Azure support announcement](https://aws.amazon.com/about-aws/whats-new/2026/06/aws-security-hub-supports-monitoring-microsoft-azure/) · [Connector prerequisites](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-v2-azure-prereqs.html) |
 | Understand what procurement is buying | Essentials is billed by monitored resource units. Optional add-ons and Extended partner subscriptions have separate charges. | Size the in-scope resources and add-ons, check existing entitlements and validate the partner’s onboarding and data flow. [AWS pricing](https://aws.amazon.com/security-hub/pricing/) · [Extended plan](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-extended-plan.html) |
 
+For the operational handoff, [compare the seven SecOps buying decisions](secops-pipelines-detection-enrichment.md#secops-and-its-neighboring-markets), from incoming telemetry to a provider acting after hours.
+
 ### Six buyer conversations
 
 The six scenarios are illustrative. The application entry point is `/categories/cnapp#aws-security-hub`. Each scenario includes the team that owns the decision, a discovery question, a proposed proof of closure and its original sources.

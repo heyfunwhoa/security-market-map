@@ -34,6 +34,7 @@ export function AwsSecurityHubGuide() {
         </details>
       ))}
       <p className="text-sm leading-6">For a buying decision, price the resources and optional services in scope. If the team already owns a cloud platform or SIEM, compare the time to identify the owner and verify one fix in the existing workflow. AWS describes Essentials billing and the separate Extended partner subscription and onboarding process in the product evidence above.</p>
+      <p className="text-sm"><Link className={link} href="/domains/secops#secops-buyer-guide">Follow the finding into security operations</Link></p>
       <p className="text-sm"><Link className={link} href="/use-cases/finding-ownership">Broaden to finding ownership across security tools</Link></p>
     </section>
   );

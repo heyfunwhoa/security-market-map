@@ -1,4 +1,5 @@
 import { expect, it } from "vitest";
+import secOps from "../research/secops-buyers.json";
 import awsHub from "../research/aws-security-hub-buyers.json";
 import scenarios from "../research/related-access-scenarios.json";
 import workforce from "../research/workforce-identity-buyers.json";
@@ -90,5 +91,24 @@ it("links the AWS guide to two distinct Amazon products and registered evidence 
   for (const item of awsHub.cases) {
     expect(item.sourceIds.length, item.id).toBeGreaterThan(0);
     for (const id of item.sourceIds) expect(sourceById(id), id).toBeDefined();
+  }
+});
+
+it("connects SecOps buying decisions to existing categories, products and original evidence", () => {
+  expect(new Set(secOps.jobs.map((job) => job.category)).size).toBe(secOps.jobs.length);
+  for (const job of secOps.jobs) {
+    expect(categoryBySlug(job.category), job.title).toBeDefined();
+    for (const option of job.options) {
+      const products = new Set<string>();
+      for (const id of option.claimIds) {
+        const claim = claims.get(id)!;
+        expect(claim.subjectType, id).toBe("product");
+        expect(claim.verificationStatus, id).toBe("vendor_published");
+        expect(productById(claim.subjectId), id).toBeDefined();
+        expect(sourceById(claim.sourceId)?.canonicalUrl, id).toBe(claim.sourceUrl);
+        products.add(claim.subjectId);
+      }
+      expect(products.size, option.label).toBe(1);
+    }
   }
 });

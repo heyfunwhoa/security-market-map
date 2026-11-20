@@ -678,6 +678,36 @@ export const vendors: Vendor[] = [
 ];
 
 export const products: Product[] = [
+  {
+    id: "rapid7-mdr",
+    slug: "rapid7-mdr",
+    vendorId: "rapid7",
+    name: "Rapid7 Managed Detection and Response",
+    positioning: "Managed investigation with an optional Active Response service for covered users and endpoints.",
+    primaryCategoryIds: ["mdr"],
+    adjacentCategoryIds: ["endpoint-security"],
+    useCaseIds: [],
+    deployment: ["unknown"],
+    identityScopes: ["not_an_identity_control"],
+    availability: "unknown",
+    availabilityNote: "Check the service agreement, response add-on and eligible assets.",
+    officialUrl: "https://docs.rapid7.com/services/active-response/",
+  },
+  {
+    id: "aws-security-incident-response",
+    slug: "aws-security-incident-response",
+    vendorId: "amazon-web-services",
+    name: "AWS Security Incident Response",
+    positioning: "AWS incident support that can proactively triage covered cloud findings for enrolled customers.",
+    primaryCategoryIds: ["mdr"],
+    adjacentCategoryIds: ["cloud-detection"],
+    useCaseIds: [],
+    deployment: ["cloud_native"],
+    identityScopes: ["not_an_identity_control"],
+    availability: "unknown",
+    availabilityNote: "Check membership scope, Proactive Response and containment preferences.",
+    officialUrl: "https://docs.aws.amazon.com/security-ir/latest/userguide/detect-and-analyze.html",
+  },
   product({
     id: "c1-platform",
     slug: "c1-platform",
