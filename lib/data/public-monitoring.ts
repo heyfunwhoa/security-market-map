@@ -3,15 +3,69 @@ import type { Claim, Product, Source, Vendor } from "../schema";
 // UTC date the cited passages were inspected. This is a vendor-literature review.
 export const publicMonitoringChecked = "2026-11-20";
 
-export const flareVendor: Vendor = {
+export const publicMonitoringVendors: Vendor[] = [{
   id: "flare", slug: "flare", name: "Flare", formerNames: [], website: "https://flare.io/",
   positioning: "Flare provides external threat intelligence. Analysts can investigate company code found in public repositories and account credentials reported in breaches.",
   primaryCategoryIds: ["threat-intelligence"], adjacentCategoryIds: ["digital-risk-protection"],
   identityScopes: ["human"], verificationStatus: "research_candidate",
   openQuestions: ["Which identifiers link a public repository finding to the company?", "Which types of exposed credentials can the team confirm and route to an owner?"],
-};
+}, {
+  id: "socradar", slug: "socradar", name: "SOCRadar", formerNames: [], website: "https://socradar.io/",
+  positioning: "SOCRadar monitors external threats. Its Brand Protection offering covers impersonation and its public-code monitoring can flag exposed company material.",
+  primaryCategoryIds: ["threat-intelligence"], adjacentCategoryIds: ["digital-risk-protection", "external-attack-surface"],
+  identityScopes: ["human", "nhi"], verificationStatus: "research_candidate",
+  openQuestions: ["How does an analyst establish that a public key belongs to the company?", "Which takedowns are included in the contract?"],
+}, {
+  id: "group-ib", slug: "group-ib", name: "Group-IB", formerNames: [], website: "https://www.group-ib.com/",
+  positioning: "Group-IB offers digital risk protection for companies dealing with suspicious domains and misuse of their trademarks.",
+  primaryCategoryIds: ["threat-intelligence"], adjacentCategoryIds: ["digital-risk-protection", "external-attack-surface"],
+  identityScopes: ["not_an_identity_control"], verificationStatus: "research_candidate",
+  openQuestions: ["Who authorizes a trademark complaint?", "What evidence confirms a reported site came down?"],
+}, {
+  id: "searchlight-cyber", slug: "searchlight-cyber", name: "Searchlight Cyber", formerNames: [], website: "https://www.slcyber.io/",
+  positioning: "Searchlight Cyber provides threat intelligence that connects external activity, including credentials in circulation, to an organization.",
+  primaryCategoryIds: ["threat-intelligence"], adjacentCategoryIds: ["external-attack-surface", "itdr"],
+  identityScopes: ["human"], verificationStatus: "research_candidate",
+  openQuestions: ["Which customer identifier matched the finding?", "What evidence does the identity team receive?"],
+}];
 
 export const publicMonitoringProducts: Product[] = [
+  {
+    id: "socradar-brand-protection", slug: "socradar-brand-protection", vendorId: "socradar", name: "SOCRadar Brand Protection",
+    positioning: "Security teams can investigate impersonation and potential leaks in public code repositories.",
+    primaryCategoryIds: ["threat-intelligence"], adjacentCategoryIds: ["digital-risk-protection", "secrets-detection"], useCaseIds: [],
+    deployment: ["unknown"], identityScopes: ["human", "nhi"], availability: "unknown",
+    availabilityNote: "The vendor lists plan-specific monitoring and takedown features. Confirm entitlements and alert routing.",
+    officialUrl: "https://socradar.io/products/brand-protection/",
+  }, {
+    id: "group-ib-digital-risk-protection", slug: "group-ib-digital-risk-protection", vendorId: "group-ib", name: "Group-IB Digital Risk Protection",
+    positioning: "A brand protection team can review suspicious domains and authorize action on trademark infringements.",
+    primaryCategoryIds: ["threat-intelligence"], adjacentCategoryIds: ["digital-risk-protection"], useCaseIds: [],
+    deployment: ["unknown"], identityScopes: ["not_an_identity_control"], availability: "unknown",
+    availabilityNote: "The vendor specifies separate requirements for detecting infringements and acting for the trademark owner.",
+    officialUrl: "https://www.group-ib.com/products/digital-risk-protection/",
+  }, {
+    id: "searchlight-threat", slug: "searchlight-threat", vendorId: "searchlight-cyber", name: "Searchlight Threat",
+    positioning: "A threat intelligence analyst can review reports of credentials circulating outside the company and hand relevant findings to identity operations.",
+    primaryCategoryIds: ["threat-intelligence"], adjacentCategoryIds: ["itdr"], useCaseIds: [],
+    deployment: ["unknown"], identityScopes: ["human"], availability: "unknown",
+    availabilityNote: "The cited page describes organization-linked alerts. Confirm lookback, retention and covered sources.",
+    officialUrl: "https://www.slcyber.io/threat",
+  }, {
+    id: "aws-iam-access-analyzer-s3", slug: "aws-iam-access-analyzer-s3", vendorId: "amazon-web-services", name: "AWS IAM Access Analyzer for S3",
+    positioning: "Cloud teams can review which S3 general purpose buckets grant public or cross-account access and which permissions allow it.",
+    primaryCategoryIds: ["cspm"], adjacentCategoryIds: ["ciem"], useCaseIds: [],
+    deployment: ["cloud_native"], identityScopes: ["not_an_identity_control"], availability: "generally_available",
+    availabilityNote: "The S3 console view requires an external access analyzer in each relevant Region.",
+    officialUrl: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-analyzer.html",
+  }, {
+    id: "microsoft-defender-cspm", slug: "microsoft-defender-cspm", vendorId: "microsoft", name: "Microsoft Defender CSPM",
+    positioning: "Cloud teams can use attack paths and cloud security graph insights to assess internet exposure and public access on storage resources.",
+    primaryCategoryIds: ["cspm"], adjacentCategoryIds: ["dspm"], useCaseIds: [],
+    deployment: ["cloud_native"], identityScopes: ["not_an_identity_control"], availability: "unknown",
+    availabilityNote: "Microsoft documents plan and environment prerequisites. Confirm onboarding and coverage for the cloud in scope.",
+    officialUrl: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/concept-data-security-posture-prepare",
+  },
   {
     id: "truffle-security-forager", slug: "truffle-security-forager", vendorId: "truffle-security", name: "Truffle Security Forager",
     positioning: "A company can review verified API keys associated with its email domain that surfaced in public GitHub commits or published npm packages.",
@@ -56,6 +110,38 @@ type Evidence = {
 };
 
 const evidence: Evidence[] = [
+  {
+    key: "socradar-code", productId: "socradar-brand-protection", publisher: "SOCRadar", title: "Implementing CTI in software development lifecycle pipelines",
+    url: "https://socradar.io/blog/implementing-cyber-threat-intelligence-in-software-development-lifecycle-sdlc-pipelines/",
+    type: "vendor_marketing", publishedAt: "2024-01-12", section: "Examples of CTI implementation in SDLC, Secret Removal (updated July 8, 2026)",
+    statement: "SOCRadar describes monitoring public GitHub and GitLab repositories for exposed code, login credentials and API keys and alerting organizations to potential leaks.",
+    caveat: "The article leaves the customer attribution rule, historical lookback and live-key verification unspecified.",
+  }, {
+    key: "socradar-brand-plans", productId: "socradar-brand-protection", publisher: "SOCRadar", title: "Brand Protection plans and feature comparison",
+    url: "https://socradar.io/pricing/", type: "vendor_marketing", section: "Brand Protection plans and pricing",
+    statement: "SOCRadar lists phishing monitoring, automated takedown requests, and code and API repository monitoring in its Brand Protection plans.",
+    caveat: "A request starts a removal process. Completion and applicable limits require confirmation with the vendor.",
+  }, {
+    key: "group-ib-brand", productId: "group-ib-digital-risk-protection", publisher: "Group-IB", title: "Digital Risk Protection",
+    url: "https://www.group-ib.com/products/digital-risk-protection/", type: "vendor_marketing", section: "Suspicious domain feed and requirements for detecting and blocking brand infringements",
+    statement: "Group-IB offers suspicious-domain findings. Customers supply brand names and legitimate resources for detection. Acting to block a trademark infringement requires authority from the trademark owner.",
+    caveat: "The provider handling the site can affect whether and when it is removed.",
+  }, {
+    key: "searchlight-credentials", productId: "searchlight-threat", publisher: "Searchlight Cyber", title: "Searchlight Threat",
+    url: "https://www.slcyber.io/threat", type: "vendor_marketing", section: "Organization-linked activity and credential alerts",
+    statement: "Searchlight says it connects credentials circulating on external sources to an organization and surfaces alerts with context for an analyst.",
+    caveat: "The cited material leaves current password validity, successful account use and identity-provider remediation unconfirmed.",
+  }, {
+    key: "aws-external-storage", productId: "aws-iam-access-analyzer-s3", publisher: "Amazon Web Services", title: "Reviewing bucket access using IAM Access Analyzer for S3",
+    url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-analyzer.html", type: "official_docs", section: "Reviewing bucket access and external access summary",
+    statement: "AWS identifies S3 general purpose buckets with public or cross-account access and shows the source and level of the permission. The console uses a regional external access analyzer.",
+    caveat: "Cross-account sharing may be intentional. A permissions finding alone does not establish that anyone read an object.", capabilityId: "cap-cspm",
+  }, {
+    key: "microsoft-public-storage", productId: "microsoft-defender-cspm", publisher: "Microsoft", title: "Prerequisites for data security posture management",
+    url: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/concept-data-security-posture-prepare", type: "official_docs", section: "Exposed to the internet/allows public access (updated November 8, 2026)",
+    statement: "Microsoft documents separate conditions for network exposure and public access in Defender CSPM storage insights, including anonymous-read settings for Azure Blob containers.",
+    caveat: "Confirm the plan and connected resources. Network reachability alone does not establish anonymous read access.", capabilityId: "cap-cspm",
+  },
   {
     key: "gitguardian-sources", productId: "gitguardian", publisher: "GitGuardian", title: "Monitored public sources",
     url: "https://docs.gitguardian.com/public-monitoring/sources/overview", type: "official_docs", section: "Supported sources",

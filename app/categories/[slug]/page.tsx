@@ -1,5 +1,6 @@
 import { ExposureIntelligenceResearch, hasExposureIntelligenceResearch } from "@/components/exposure-intelligence-research";
 import { PublicSecretMonitoring } from "@/components/public-secret-monitoring";
+import { ExternalExposureGuides } from "@/components/external-exposure-guides";
 import { PageJourney } from "@/components/page-journey";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { SECRETS_COMPARISON_URL, DEVELOPER_ENDPOINT_COMPARISON_URL } from "@/lib/comparison-selection";
@@ -68,6 +69,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
         <span className="font-semibold">Buyer question. </span>
         {category.buyerQuestion}
       </p>
+      <ExternalExposureGuides categoryId={category.id} />
       {relatedIncidents.length > 0 && (
         <section className="mt-6 rounded-xl border border-border bg-card p-4" aria-labelledby="category-incidents">
           <h2 id="category-incidents" className="text-xl">

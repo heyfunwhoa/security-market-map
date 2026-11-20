@@ -196,7 +196,8 @@
               "sources": [
                 "https://www.slcyber.io/exposure",
                 "https://www.slcyber.io/assetnote"
-              ]
+              ],
+              "catalogVendorId": "searchlight-cyber"
             },
             {
               "company": "Pentera",
@@ -268,7 +269,8 @@
               "question": "Can an analyst connect an external finding to threat context and confirm closure?",
               "sources": [
                 "https://socradar.io/products/autonomous-exposure-management/"
-              ]
+              ],
+              "catalogVendorId": "socradar"
             },
             {
               "company": "Group-IB",
@@ -278,7 +280,8 @@
               "question": "Can the analyst explain which intelligence changed a finding’s priority?",
               "sources": [
                 "https://www.group-ib.com/products/attack-surface-management/"
-              ]
+              ],
+              "catalogVendorId": "group-ib"
             }
           ]
         },
@@ -342,7 +345,8 @@
               "question": "How would you brief us on one campaign affecting our industry and geography?",
               "sources": [
                 "https://www.group-ib.com/products/threat-intelligence/"
-              ]
+              ],
+              "catalogVendorId": "group-ib"
             },
             {
               "company": "Cisco",
@@ -400,7 +404,8 @@
               "sources": [
                 "https://www.slcyber.io/threat",
                 "https://www.slcyber.io/blog/sentinel-integration-for-searchlight-threat-monitor"
-              ]
+              ],
+              "catalogVendorId": "searchlight-cyber"
             },
             {
               "company": "Bitsight",
@@ -422,7 +427,8 @@
               "question": "Which items identify our organization specifically, and which describe broader industry risk?",
               "sources": [
                 "https://socradar.io/products/cyber-threat-intelligence/"
-              ]
+              ],
+              "catalogVendorId": "socradar"
             }
           ]
         },

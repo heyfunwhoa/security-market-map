@@ -3,7 +3,7 @@ id: "external-attack-surface"
 type: "category"
 name: "External attack surface"
 layer: "core"
-vendors: 5
+vendors: 8
 ---
 
 # External attack surface
@@ -35,6 +35,9 @@ Discovery of internet-facing assets and the exposures on them. This map keeps th
 - BitSight
 - XM Cyber
 - ZeroFox
+- SOCRadar
+- Group-IB
+- Searchlight Cyber
 
 ## What buyers do instead
 

@@ -39,7 +39,7 @@ test("checks the current merged vendor, product, source and claim records", asyn
   const endpointComparison = await import("../lib/data/developer-endpoint-comparison.ts");
   const monitoring = await import("../lib/data/public-monitoring.ts");
   const collections = {
-    vendors: [...market.vendors, ...ecosystem.ecosystemVendors, ...sweep.secretsSweepVendors, ...expanded.expandedVendors, monitoring.flareVendor],
+    vendors: [...market.vendors, ...ecosystem.ecosystemVendors, ...sweep.secretsSweepVendors, ...expanded.expandedVendors, ...monitoring.publicMonitoringVendors],
     products: [...market.products, ...ecosystem.ecosystemProducts, ...sweep.secretsSweepProducts, ...expanded.expandedProducts, ...endpoint.developerEndpointProducts, ...monitoring.publicMonitoringProducts],
     sources: [...sources, ...sweep.secretsSweepSources, ...expanded.expandedSources, ...endpoint.developerEndpointSources, ...monitoring.publicMonitoringSources],
     claims: [...claims, ...sweep.secretsSweepClaims, ...expanded.expandedClaims, ...endpoint.developerEndpointClaims, ...monitoring.publicMonitoringClaims],

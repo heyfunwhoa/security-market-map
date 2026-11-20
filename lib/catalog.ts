@@ -72,7 +72,7 @@ import {
 } from "./data/ecosystem";
 import { distinctions, glossary, scenarios } from "./data/learn";
 import { developerEndpointProducts, developerEndpointSources, developerEndpointClaims } from "./data/developer-endpoint";
-import { flareVendor, publicMonitoringClaims, publicMonitoringProducts, publicMonitoringSources } from "./data/public-monitoring";
+import { publicMonitoringVendors, publicMonitoringClaims, publicMonitoringProducts, publicMonitoringSources } from "./data/public-monitoring";
 import { developerEndpointCapabilities, developerEndpointUseCases } from "./data/developer-endpoint-comparison";
 import { events, products, vendors } from "./data/market";
 import { personas } from "./data/personas";
@@ -152,7 +152,7 @@ function parseCatalog(): Catalog {
     asOf: latestClaimDate(parsedClaims) ?? AS_OF,
     domains: z.array(domainSchema).parse(domains),
     categories: z.array(categorySchema).parse(allCategories),
-    vendors: z.array(vendorSchema).parse([...vendors, ...ecosystemVendors, ...secretsSweepVendors, ...expandedVendors, ...categoryFillVendors, ...ispmWimVendors, flareVendor].map(includeSecretsDetection).map(includeExpandedDspm)),
+    vendors: z.array(vendorSchema).parse([...vendors, ...ecosystemVendors, ...secretsSweepVendors, ...expandedVendors, ...categoryFillVendors, ...ispmWimVendors, ...publicMonitoringVendors].map(includeSecretsDetection).map(includeExpandedDspm)),
     products: z.array(productSchema).parse([...products, ...ecosystemProducts, ...secretsSweepProducts, ...expandedProducts, ...developerEndpointProducts, ...categoryFillProducts, ...ispmWimProducts, ...publicMonitoringProducts]),
     capabilities: z.array(capabilitySchema).parse([...capabilities, ...ecosystemCapabilities, ...developerEndpointCapabilities]),
     useCases: z.array(useCaseSchema).parse([...useCases, ...ecosystemUseCases, ...developerEndpointUseCases]),
