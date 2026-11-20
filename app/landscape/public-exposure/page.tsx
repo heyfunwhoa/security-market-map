@@ -57,6 +57,7 @@ export default function PublicExposurePage() {
           ))}
         </section>
       ))}
+      <p className="text-sm"><Link className={linkStyle} href="/categories/cnapp#aws-security-hub">Follow an external alert into AWS Security Hub and cloud response</Link></p>
       <RelatedAccessScenarios />
       <Link className={linkStyle} href="/landscape">Back to the security landscape</Link>
     </main>

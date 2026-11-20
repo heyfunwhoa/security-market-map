@@ -1,4 +1,5 @@
 import { expect, it } from "vitest";
+import awsHub from "../research/aws-security-hub-buyers.json";
 import scenarios from "../research/related-access-scenarios.json";
 import workforce from "../research/workforce-identity-buyers.json";
 import handoff from "../research/credential-exposure-handoff.json";
@@ -71,5 +72,23 @@ it("connects each related access scenario to a category and registered first-par
       expect(source.sourceType, id).toBe("official_docs");
       expect(catalog.sources.filter((item) => item.canonicalUrl === source.canonicalUrl)).toHaveLength(1);
     }
+  }
+});
+
+it("links the AWS guide to two distinct Amazon products and registered evidence for every case", () => {
+  const products = ["aws-security-hub", "aws-security-hub-cspm"];
+  for (const [i, option] of awsHub.products.entries()) {
+    expect(productById(products[i])?.vendorId).toBe("amazon-web-services");
+    for (const id of option.claimIds) {
+      const claim = claims.get(id)!;
+      expect(claim.subjectId, id).toBe(products[i]);
+      expect(claim.verificationStatus).toBe("vendor_published");
+      expect(sourceById(claim.sourceId)?.canonicalUrl).toBe(claim.sourceUrl);
+    }
+  }
+  expect(new Set(awsHub.cases.map((item) => item.id)).size).toBe(awsHub.cases.length);
+  for (const item of awsHub.cases) {
+    expect(item.sourceIds.length, item.id).toBeGreaterThan(0);
+    for (const id of item.sourceIds) expect(sourceById(id), id).toBeDefined();
   }
 });
