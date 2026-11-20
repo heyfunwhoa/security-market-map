@@ -1,5 +1,6 @@
 import { expect, it } from "vitest";
 import guide from "../research/public-secret-monitoring.json";
+import exposureGroups from "../research/public-exposure-options.json";
 import related from "../research/external-exposure-guides.json";
 import { catalog, categoryBySlug, productById, sourceById, vendorById } from "./catalog";
 import { publicMonitoringClaims } from "./data/public-monitoring";
@@ -20,6 +21,23 @@ it("resolves every public monitoring explanation to one vendor, a catalog produc
     }
     expect(companies.size).toBeGreaterThanOrEqual(2);
   }
+  const scenarioIds = new Set<string>();
+  for (const scenario of exposureGroups.flatMap((group) => group.cases)) {
+    expect(scenarioIds.has(scenario.id)).toBe(false);
+    scenarioIds.add(scenario.id);
+    expect(categoryBySlug(scenario.categoryId)).toBeDefined();
+    const vendors = new Set<string>();
+    for (const option of scenario.options) {
+      const claims = option.claimIds.map((id) => publicMonitoringClaims.find((claim) => claim.id === id));
+      expect(claims.length).toBeGreaterThan(0);
+      expect(claims.every((claim) => claim && claim.subjectId === claims[0]?.subjectId)).toBe(true);
+      const product = productById(claims[0]!.subjectId)!;
+      linkedProducts.add(product.id);
+      vendors.add(product.vendorId);
+    }
+    expect(vendors.size).toBeGreaterThanOrEqual(2);
+  }
+  expect(scenarioIds.size).toBe(13);
   expect(new Set(publicMonitoringClaims.map((claim) => claim.subjectId))).toEqual(linkedProducts);
   for (const id of linkedProducts) {
     const product = productById(id);

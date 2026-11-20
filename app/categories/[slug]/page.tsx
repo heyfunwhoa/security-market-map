@@ -1,3 +1,4 @@
+import exposureGroups from "@/research/public-exposure-options.json";
 import { ExposureIntelligenceResearch, hasExposureIntelligenceResearch } from "@/components/exposure-intelligence-research";
 import { PublicSecretMonitoring } from "@/components/public-secret-monitoring";
 import { ExternalExposureGuides } from "@/components/external-exposure-guides";
@@ -69,6 +70,9 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
         <span className="font-semibold">Buyer question. </span>
         {category.buyerQuestion}
       </p>
+      {exposureGroups.some((group) => group.cases.some((item) => item.categoryId === category.id)) && (
+        <p className="mt-5 text-sm"><Link href="/landscape/public-exposure" className="text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-ring">Compare public monitoring and external exposure scenarios</Link></p>
+      )}
       <ExternalExposureGuides categoryId={category.id} />
       {relatedIncidents.length > 0 && (
         <section className="mt-6 rounded-xl border border-border bg-card p-4" aria-labelledby="category-incidents">

@@ -52,7 +52,8 @@
               "question": "Which new discoveries were absent from our existing vulnerability inventory?",
               "sources": [
                 "https://outpost24.com/products/external-attack-surface-management/"
-              ]
+              ],
+              "catalogVendorId": "outpost24"
             },
             {
               "company": "Halo Security",
@@ -298,7 +299,8 @@
               "sources": [
                 "https://detectify.com/product/surface-monitoring",
                 "https://support.detectify.com/support/solutions/articles/48001061283-what-can-i-scan-using-detectify-"
-              ]
+              ],
+              "catalogVendorId": "detectify"
             },
             {
               "company": "HackerOne",
