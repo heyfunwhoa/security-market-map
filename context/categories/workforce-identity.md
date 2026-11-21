@@ -3,7 +3,7 @@ id: "workforce-identity"
 type: "category"
 name: "Workforce identity"
 layer: "core"
-vendors: 15
+vendors: 16
 ---
 
 # Workforce identity
@@ -38,6 +38,7 @@ From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - IBM: IBM Verify is a workforce identity stack. IBM closed the HashiCorp acquisition in February 2025. Keep Vault as a separate product and a separate evaluation from Verify.
 - ManageEngine: Mid-market Active Directory administration and privileged access products. Confirm which SKU is installed before comparing it to an enterprise IGA suite.
 - Ping Identity: Workforce and customer identity vendor. Not assumed to be an IGA or NHI governance suite in this seed.
+- Cisco: Cisco provides Duo for workforce authentication, including passwordless sign-in.
 
 ## Vendors (adjacent)
 

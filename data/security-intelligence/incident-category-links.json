@@ -382,5 +382,37 @@
     "proposedOn": "2026-11-17",
     "reviewedBy": "Kristen Aing",
     "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "link:binance-wallet-signing-2026:software-supply-chain",
+    "incidentId": "incident:binance-wallet-signing-2026",
+    "categoryId": "software-supply-chain",
+    "predicate": "related_to",
+    "rationale": "The campaign reportedly began with a tampered Homebrew installer and a malicious repository delivered through a fake job assignment.",
+    "doesNotImply": "That a supply-chain tool would have caught the tampered installer or the repository.",
+    "basedOnSourceIds": [
+      "source:thehackernews-binance-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-18"
+  },
+  {
+    "id": "link:binance-wallet-signing-2026:secrets-detection",
+    "incidentId": "incident:binance-wallet-signing-2026",
+    "categoryId": "secrets-detection",
+    "predicate": "related_to",
+    "rationale": "A container deployment permission token found on an engineer's computer was reportedly used to deploy the malicious container.",
+    "doesNotImply": "That secrets scanning would have found or stopped use of that token.",
+    "basedOnSourceIds": [
+      "source:thehackernews-binance-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-18"
   }
 ]
