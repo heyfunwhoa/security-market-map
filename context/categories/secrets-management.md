@@ -3,7 +3,7 @@ id: "secrets-management"
 type: "category"
 name: "Secrets management"
 layer: "core"
-vendors: 22
+vendors: 25
 ---
 
 # Secrets management
@@ -39,13 +39,15 @@ From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - Delinea: PAM vendor known for Secret Server and privileged access. Confirm whether the deal is vaulting, session control, or both.
 - HashiCorp: Vault is the reference product for dynamic secrets and PKI in this atlas. IBM completed the acquisition on 27 Feb 2025. Vault competes in a secrets-management evaluation and complements IGA when the question is issuance.
 - Akeyless: Secrets management and machine-credential vendor. Shortlist it against Vault for issuance. Do not assume NHI governance parity.
-- Amazon Web Services: AWS Secrets Manager is the cloud-native secret store. It is a bundled alternative when the workload and the secret both live in AWS. It is not an IGA product.
+- Amazon Web Services: AWS offers services for storing secrets, managing cloud access, checking configurations and prioritizing exposures. The product and the team responsible depend on the buyer’s decision.
 - Google: Google Secret Manager is the cloud secret store on GCP. Same boundary as the other cloud secret stores: issuance and storage, not governance of every identity.
 - Doppler: Developer-oriented secrets manager. Competes in a vault evaluation, not in IGA.
-- Infisical: Secrets management product, including an open-source option buyers mention. Capabilities unverified here.
+- Infisical: Infisical documents credential rotation for supported providers. The handoff between old and new credentials depends on the provider.
 - Bitwarden: Bitwarden documents Secrets Manager with machine accounts, access tokens, CLI/SDK access and secret injection.
 - 1Password: 1Password documents Secrets Automation through service accounts or Connect servers.
 - Keeper Security: Keeper documents Secrets Manager as a KeeperPAM component for infrastructure secrets and application or CI/CD access.
+- Pulumi: Pulumi offers ESC to assemble environment configuration and supply consumers with authorized secrets.
+- OpenBao: The OpenBao project documents a database secrets engine that issues credentials from configured roles.
 
 ## Vendors (adjacent)
 
@@ -60,6 +62,7 @@ From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - DigiCert
 - Keycard
 - Fortanix
+- SPIFFE / SPIRE (CNCF)
 
 ## What buyers do instead
 

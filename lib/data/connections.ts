@@ -202,7 +202,7 @@ export const segments: Segment[] = [
   {
     name: "Machine IAM and workload identity",
     problem: "Authenticating workloads and managing machine access",
-    href: "/categories/nhi",
+    href: "/categories/wim",
     examples: [
       vendor("Aembit", "aembit"),
       vendor("Akeyless", "akeyless"),
@@ -836,8 +836,8 @@ export const nhiEcosystem: { name: string; note: string; href: string; examples:
   },
   {
     name: "NHI authentication",
-    note: "SACR's 2024 split: who is the machine, and may it connect.",
-    href: "/categories/nhi",
+    note: "SACR's 2024 split: who is the machine, and may it connect. Mapped here to workload identity management.",
+    href: "/categories/wim",
     examples: [vendor("Aembit", "aembit"), vendor("Corsha", "corsha")],
   },
   {

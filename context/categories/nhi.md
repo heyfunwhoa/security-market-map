@@ -3,7 +3,7 @@ id: "nhi"
 type: "category"
 name: "NHI and workload identity"
 layer: "core"
-vendors: 40
+vendors: 44
 ---
 
 # NHI and workload identity
@@ -77,6 +77,10 @@ From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - Keycard
 - Adaptive Shield
 - Cerbos
+- SPIFFE / SPIRE (CNCF)
+- Defakto
+- Riptides
+- AuthMind
 
 ## What buyers do instead
 

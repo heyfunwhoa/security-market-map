@@ -1,3 +1,4 @@
+import { SecOpsBuyerGuide } from "@/components/secops-buyer-guide";
 import { PageJourney } from "@/components/page-journey";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import Link from "next/link";
@@ -47,6 +48,7 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
         title={domain.name}
         lede="Read the question, the charter, then each category. Words link to the learn page when a definition already exists."
       />
+      {domain.id === "secops" && <p className="mt-4 text-sm"><a href="#secops-buyer-guide" className="text-primary underline underline-offset-4">Compare seven SecOps buying decisions</a></p>}
       {domain.id === "identity" ? (
         <p className="mt-4 max-w-3xl text-sm leading-6">
           <Link href="/evidence-graph" className="text-primary underline underline-offset-4">
@@ -102,6 +104,7 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
         </h2>
         <p className="mt-3 max-w-3xl text-sm leading-6"><AnnotatedText text={domain.charter} seen={seen} /></p>
       </section>
+      {domain.id === "secops" && <SecOpsBuyerGuide />}
       {subAreas.length > 0 ? (
         <section className="mt-8" aria-labelledby="study-sub-areas">
           <h2 id="study-sub-areas" className="text-2xl">

@@ -3,7 +3,7 @@ id: "software-supply-chain"
 type: "category"
 name: "Software supply chain"
 layer: "core"
-vendors: 17
+vendors: 18
 ---
 
 # Software supply chain
@@ -37,6 +37,7 @@ The path from a dependency, image, or build to what runs in production. SCA, SBO
 - Stacklok: Supply-chain and open-source trust vendor. Not a secrets vault.
 - Legit Security: Software supply-chain and ASPM vendor. Capabilities unverified.
 - Socket: Dependency supply-chain vendor. A malicious-package signal is not a CVE scanner unless that is what they show.
+- Sonatype: Sonatype helps software teams review the open source components requested by their developers and build systems.
 
 ## Vendors (adjacent)
 

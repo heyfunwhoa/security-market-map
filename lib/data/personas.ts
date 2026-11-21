@@ -54,7 +54,7 @@ export const personas: BuyerPersona[] = [
       "Who certifies cloud entitlements today?",
       "Are agents and workloads in the same program as people?",
     ],
-    categoryIds: ["workforce-identity", "iga", "pam", "nhi", "ciem", "itdr", "agent-identity"],
+    categoryIds: ["workforce-identity", "iga", "pam", "nhi", "ciem", "itdr", "agent-identity", "wim"],
     aliases: [
       "IdSec",
       "IAM lead",
@@ -143,7 +143,7 @@ export const personas: BuyerPersona[] = [
       "Which clouds and data stores must the platform support first?",
       "Who changes the shared CI template when security raises the bar?",
     ],
-    categoryIds: ["secrets-management", "nhi", "container-security", "iac-security"],
+    categoryIds: ["secrets-management", "nhi", "container-security", "iac-security", "wim"],
     aliases: [
       "Platform engineering",
       "Platform eng",
