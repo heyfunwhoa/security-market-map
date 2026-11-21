@@ -6,9 +6,10 @@
   "discoveryContext": "Sweep on November 20, 2026 for incidents disclosed October 1 to November 20, 2026, focused on stolen or exposed credentials, secrets and supply-chain compromise. Zeabur, WorkOS, Chainstack, DreamHost, LiteLLM and the Microsoft ARTEX report were checked against the original pages; GhostAction against GitGuardian's own post listing; the rest are secondary-only and flagged. Third-party text was paraphrased.",
   "excludedFromIncidents": [
     "Fireworks AI second intrusion (Oct 23-30): Fireworks' Nov 17 bulletin now describes two separate incidents; treat as an update to seeded incident:fireworks-ai-eval-secrets-2026",
-    "Lightning AI and CommandCode (October 2026): only one-line mentions in Wiz's roundup so far",
     "ChainDrop npm worm (August 4, 2026): outside this batch's date range",
-    "Nitori, Iris Ohyama, Ipsos, Mr. Cooper, Logitech/Oracle EBS, Eurofiber France, OpsShield cPGuard: not yet checked for a credential or secrets angle"
+    "Nitori, Iris Ohyama, Ipsos, Mr. Cooper, Logitech/Oracle EBS: not yet checked for a credential or secrets angle",
+    "Eurofiber France breach: happened November 13, 2025, outside this batch's date range",
+    "CommandCode (October 28, 2026): only an X post cited by Wiz so far"
   ],
   "excludedReason": "Update to an existing record, too thin, outside the date range, or not yet checked. Good next-batch leads.",
   "candidates": [
@@ -877,6 +878,150 @@
         "Primary source needed: Wellington IT has not published a public statement; facts come from its letters as quoted by press.",
         "Dates conflict (Oct 2-4 vs Oct 6); keep both attributed.",
         "Sales angle caution: a valid member login plus an authorization weakness, not a leaked secret."
+      ]
+    },
+    {
+      "incidentId": "incident:opsshield-cpguard-update-channel-2026",
+      "title": "OpsShield cPGuard update channel hijacked with compromised credentials to push a root-level stealer",
+      "incidentKind": "supply_chain",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "BleepingComputer",
+          "canonicalUrl": "https://bleepingcomputer.com/news/security/hackers-hijack-cpguard-autoupdate-to-deploy-backdoor-steal-data",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-21T03:05:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Help Net Security",
+          "canonicalUrl": "https://www.helpnetsecurity.com/?p=390287",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-21T03:05:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "eSecurity Planet",
+          "canonicalUrl": "https://www.esecurityplanet.com/news/news-cpguard-supply-chain-attack-servers/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-21T03:05:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate shares this identity.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:opsshield-cpguard-update-channel-2026:1",
+          "statement": "OpsShield's advisory, as quoted by BleepingComputer, says an attacker used compromised credentials on November 2, 2026 at 02:06 UTC to reach its update distribution infrastructure and push a malicious script through the cPGuard update channel; versions 5.88.12 to 5.88.19 were affected.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://bleepingcomputer.com/news/security/hackers-hijack-cpguard-autoupdate-to-deploy-backdoor-steal-data"
+        },
+        {
+          "id": "claim:opsshield-cpguard-update-channel-2026:2",
+          "statement": "Help Net Security reports OpsShield's account that the attacker probed its billing portal the day before the update infrastructure was compromised.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.helpnetsecurity.com/?p=390287"
+        },
+        {
+          "id": "claim:opsshield-cpguard-update-channel-2026:3",
+          "statement": "About 2,950 servers ran the poisoned update, which collected sensitive files and installed a hidden root shell; OpsShield revoked the compromised credentials and shipped corrective versions.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.esecurityplanet.com/news/news-cpguard-supply-chain-attack-servers/"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Primary source needed: OpsShield's own advisory was not fetched; facts come from coverage that quotes it.",
+        "OpsShield's account changed as its investigation went on (per CSA); recheck the latest advisory before review.",
+        "Unknown: how the initial credentials were obtained."
+      ]
+    },
+    {
+      "incidentId": "incident:lightning-ai-platform-credentials-2026",
+      "title": "Lightning AI platform taken offline after unauthorized access to credentials",
+      "incidentKind": "intrusion",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "Lightning AI (blog listing)",
+          "canonicalUrl": "https://lightning.ai/blog",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-21T03:05:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Wiz",
+          "canonicalUrl": "https://www.wiz.io/blog/black-october-for-ai-developer-platforms?date=2026-10-30",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-21T03:05:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate shares this identity. Lightning's April 2026 PyPI package compromise (Mini Shai-Hulud) is a separate, earlier event. Part of the Wiz 'Black October' cluster; no shared attacker is established.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:lightning-ai-platform-credentials-2026:1",
+          "statement": "Lightning AI says it identified a security incident on the Lightning Platform involving unauthorized access to credentials on October 15, 2026 at 11:00 PM UTC (post dated October 16).",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://lightning.ai/blog"
+        },
+        {
+          "id": "claim:lightning-ai-platform-credentials-2026:2",
+          "statement": "Wiz lists Lightning AI's October 15 disclosure as credential access and notes Lightning was earlier hit in the Mini Shai-Hulud campaign, without linking the two.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.wiz.io/blog/black-october-for-ai-developer-platforms?date=2026-10-30"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Only the blog listing summary was readable; the full post (lightning.ai/blog/oct-2026-incident) was not fetched. Scope, platform status and customer actions are unknown here.",
+        "Unknown: whose credentials (internal or customer) were accessed."
       ]
     }
   ]
