@@ -3,7 +3,7 @@
   "status": "candidate_only",
   "publishable": false,
   "framework": "docs/security-intelligence/incident-classification-framework.md",
-  "discoveryContext": "Sweep on November 20, 2026 for incidents disclosed October 1 to November 20, 2026, focused on stolen or exposed credentials, secrets and supply-chain compromise. Zeabur, WorkOS, Chainstack, DreamHost and LiteLLM were checked against their own pages; the rest are secondary-only and flagged. Third-party text was paraphrased.",
+  "discoveryContext": "Sweep on November 20, 2026 for incidents disclosed October 1 to November 20, 2026, focused on stolen or exposed credentials, secrets and supply-chain compromise. Zeabur, WorkOS, Chainstack, DreamHost, LiteLLM and the Microsoft ARTEX report were checked against the original pages; GhostAction against GitGuardian's own post listing; the rest are secondary-only and flagged. Third-party text was paraphrased.",
   "excludedFromIncidents": [
     "Fireworks AI second intrusion (Oct 23-30): Fireworks' Nov 17 bulletin now describes two separate incidents; treat as an update to seeded incident:fireworks-ai-eval-secrets-2026",
     "Lightning AI and CommandCode (October 2026): only one-line mentions in Wiz's roundup so far",
@@ -399,6 +399,13 @@
       "reviewStatus": "candidate",
       "discovery": [
         {
+          "publisher": "GitGuardian",
+          "canonicalUrl": "https://blog.gitguardian.com/ghostaction-github-actions-supply-chain-attack-returns/",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-21T02:45:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
           "publisher": "The New Stack",
           "canonicalUrl": "https://thenewstack.io/hackers-hijacked-1900-github-accounts-then-they-went-after-30000-repos/",
           "sourceRole": "secondary",
@@ -453,6 +460,12 @@
           "statement": "Dark Reading reports GitGuardian counted 72,000 commits to 23,000 repositories between October 13 and 21, and that GitHub blocked execution of the malicious workflows.",
           "epistemicStatus": "reported",
           "sourceUrl": "https://darkreading.com/application-security/ghostaction-hacking-wave-fizzles-attackers-github"
+        },
+        {
+          "id": "claim:ghostaction-wave-oct-2026:5",
+          "statement": "GitGuardian's October 7 post summary says the wave hit 772 public repositories between August 31 and September 30 targeting 2,577 secrets, and that an October 8-9 burst hit 30,000 more repositories where, this time, the workflows ran.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://blog.gitguardian.com/ghostaction-github-actions-supply-chain-attack-returns/"
         }
       ],
       "attackMappings": [
@@ -472,7 +485,8 @@
       "defensiveMappings": [],
       "weaknessMappings": [],
       "unresolvedQuestions": [
-        "Primary source needed: GitGuardian's own October 2026 GhostAction posts were not fetched in this pass.",
+        "Primary source checked only through GitGuardian's own post listing (title, date, summary); the full post was not readable from this session.",
+        "Possible conflict: GitGuardian's summary says the Oct 8-9 workflows ran, while Dark Reading says GitHub blocked execution of the later (Oct 13-21) workflows. These may be different phases; keep both attributed.",
         "Unknown: how the GitHub accounts were compromised."
       ]
     },
@@ -482,6 +496,13 @@
       "incidentKind": "intrusion",
       "reviewStatus": "candidate",
       "discovery": [
+        {
+          "publisher": "Microsoft Threat Intelligence",
+          "canonicalUrl": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-21T02:45:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
         {
           "publisher": "Let's Data Science (summarizing Microsoft)",
           "canonicalUrl": "https://letsdatascience.com/news/microsoft-reports-threat-actors-using-artex-agentic-tooling-15b88fc8",
@@ -509,24 +530,30 @@
       "claims": [
         {
           "id": "claim:artex-github-secrets-entra-2026:1",
-          "statement": "Microsoft Threat Intelligence reported on November 5, 2026 that threat actors have used the ARTEX agentic framework since August to search public GitHub repositories for exposed credentials, application secrets and AI API keys.",
+          "statement": "Starting in August 2026, an agentic AI offensive framework (ARTEX) sent large volumes of GitHub searches for credentials, application credentials and AI inference API keys, often pairing a target organization's name with secret-related keywords.",
           "epistemicStatus": "reported",
-          "sourceUrl": "https://letsdatascience.com/news/microsoft-reports-threat-actors-using-artex-agentic-tooling-15b88fc8"
+          "sourceUrl": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/"
         },
         {
           "id": "claim:artex-github-secrets-entra-2026:2",
-          "statement": "In at least one case Microsoft observed an AI agent go from scanning GitHub to exfiltrating data from Azure Key Vault in five minutes.",
+          "statement": "From as early as October 28, 2026, an agentic framework used leaked or stolen application credentials to sign in as service principals to Entra ID tenants of certain organizations, then pulled storage keys, connection strings and other credentials, accessed SharePoint and OneDrive, and mapped Azure resources.",
           "epistemicStatus": "reported",
-          "sourceUrl": "https://letsdatascience.com/news/microsoft-reports-threat-actors-using-artex-agentic-tooling-15b88fc8"
+          "sourceUrl": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/"
         },
         {
           "id": "claim:artex-github-secrets-entra-2026:3",
-          "statement": "The agents also used a compromised OAuth application to run scripts on Azure VMs and searched Azure DevOps for secrets.",
+          "statement": "In one case an AI agent went from searching GitHub for client secrets to exfiltrating Azure Key Vault data in about five minutes; agents also searched Azure DevOps for secrets and ran scripts on Azure VMs.",
           "epistemicStatus": "reported",
-          "sourceUrl": "https://letsdatascience.com/news/microsoft-reports-threat-actors-using-artex-agentic-tooling-15b88fc8"
+          "sourceUrl": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/"
         },
         {
           "id": "claim:artex-github-secrets-entra-2026:4",
+          "statement": "Microsoft does not name victims or give a count, and does not attribute this activity to a named actor; it links separately to its Storm-0940 ARTEX report.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/"
+        },
+        {
+          "id": "claim:artex-github-secrets-entra-2026:5",
           "statement": "Cybersecurity Dive notes ARTEX was previously used by China-nexus actor Storm-0940 against ConnectWise Cloud Backup and downstream Microsoft 365 tenants.",
           "epistemicStatus": "reported",
           "sourceUrl": "https://cybersecuritydive.com/news/hackers-artex-github-repositories-exposed-secrets/874007"
@@ -549,8 +576,8 @@
       "defensiveMappings": [],
       "weaknessMappings": [],
       "unresolvedQuestions": [
-        "Primary source needed: Microsoft's November 5 Security blog post could not be fetched; claims come from coverage that summarizes it.",
-        "This is a campaign, not a single victim; reviewer decides whether it belongs as an incident or a research/context record."
+        "This is a campaign with unnamed victims, not a single affected organization; reviewer decides whether it belongs as an incident or a research/context record.",
+        "Do not tie this activity to Storm-0940; Microsoft does not."
       ]
     },
     {
