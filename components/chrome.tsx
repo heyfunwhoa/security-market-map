@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { evidenceLabel } from "@/lib/evidence-labels";
 import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 import { formatDate } from "@/lib/format";
@@ -101,54 +102,10 @@ export function SiteFooter({ asOf }: { asOf: string }) {
   );
 }
 
-const PILL_LABELS: Record<string, string> = {
-  verified: "Independent source",
-  vendor_published: "Vendor said this",
-  needs_review: "Needs review",
-  conflicting: "Conflicting",
-  superseded: "Superseded",
-  research_candidate: "Research candidate",
-  evidenced: "Evidence",
-  limited: "Scoped",
-  unverified: "Unverified",
-  unknown: "Unknown",
-  not_supported: "Not supported",
-  taxonomy_mapping: "Taxonomy mapping",
-  catalog_structure: "Catalog structure",
-  hypothesis: "Hypothesis",
-  source_referenced: "Source referenced",
-  vendor_reported: "Vendor reported",
-  independently_verified: "Independently verified",
-  disputed: "Disputed",
-  announced: "Announced",
-  generally_available: "Documented",
-  legacy_name: "Name in transition",
-  official_docs: "Official docs",
-  vendor_marketing: "Vendor marketing",
-  press_release: "Press release",
-  customer_story: "Customer story",
-  analyst: "Analyst",
-  review: "Review",
-  standard: "Standard",
-  internal_note: "Internal note",
-  news: "News coverage",
-  legal_summary: "Legal summary",
-  academic: "Academic research",
-  direct_competitor: "Direct competitor",
-  bundled_alternative: "Bundled alternative",
-  complement: "Complement",
-  adjacent_budget: "Adjacent budget",
-  seed_reviewed: "Seed reviewed",
-  approved: "Reviewed",
-  reported: "Reported",
-  observed: "Observed",
-  draft: "Draft",
-  reviewed: "Reviewed",
-  not_evaluated: "Not evaluated",
-};
+
 
 export function pillLabel(status: string): string {
-  return PILL_LABELS[status] ?? status;
+  return evidenceLabel(status);
 }
 
 export function StatusPill({ status }: { status: string }) {
@@ -162,7 +119,8 @@ export function StatusPill({ status }: { status: string }) {
             status === "announced" ||
             status === "internal_note" ||
             status === "hypothesis" ||
-            status === "draft"
+            status === "draft" ||
+            status === "recheck_due"
           ? "border-amber-800/20 bg-amber-50 text-amber-950 dark:border-amber-400/30 dark:bg-amber-950 dark:text-amber-100"
           : status === "conflicting" || status === "not_supported" || status === "disputed"
             ? "border-rose-800/20 bg-rose-50 text-rose-950 dark:border-rose-400/30 dark:bg-rose-950 dark:text-rose-100"
@@ -175,7 +133,7 @@ export function StatusPill({ status }: { status: string }) {
         tone,
       )}
     >
-      {PILL_LABELS[status] ?? status}
+      {evidenceLabel(status)}
     </span>
   );
 }
