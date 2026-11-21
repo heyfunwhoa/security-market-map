@@ -6,6 +6,8 @@
 
 Give an enterprise AE, future Head of Sales, technical seller or job candidate a reusable way to understand cybersecurity competitors **by what buyers are trying to accomplish**. Map the market once with evidence; reuse the same verified public research in private interview preparation, GTM planning and future account research. Do not pretend a company is a direct head-to-head competitor merely because both use an analyst category or buzzword.
 
+**External attack surface management and threat intelligence.** The [paired market maps](easm-cti.md) cover vendor offerings, buyer questions, industry context and overlap.
+
 **Additional applied case:** [Secrets management: Infisical and alternatives](secrets-management-comparison.md) — candidate research with evidence, buyer criteria and validation gaps.
 
 **SOC file analysis and AI investigation:** [File analysis, retained-evidence hunting and AI investigation (Nov 2026)](file-analysis-ai-investigation-landscape-2026-11.md) — candidate research by layer, not typed claims.

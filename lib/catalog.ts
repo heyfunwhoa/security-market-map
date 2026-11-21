@@ -21,6 +21,7 @@ import {
   alternativeSchema,
   buyingTriggerSchema,
   qualificationQuestionSchema,
+  vendorSeatTargetingSchema,
   useCaseSeatsSchema,
   pricingSignalSchema,
   productSchema,
@@ -46,6 +47,7 @@ import {
   type Alternative,
   type BuyingTrigger,
   type QualificationQuestion,
+  type VendorSeatTargeting,
   type UseCaseSeats,
   type PricingSignal,
   type Product,
@@ -70,6 +72,9 @@ import {
 } from "./data/ecosystem";
 import { distinctions, glossary, scenarios } from "./data/learn";
 import { developerEndpointProducts, developerEndpointSources, developerEndpointClaims } from "./data/developer-endpoint";
+import { accessScenarioSources, issuerReferenceSources, workforceGuideProducts, workforceGuideResearch, workforceGuideVendors } from "./data/workforce-guide";
+import { secretsManagementProducts, secretsManagementResearch, secretsManagementVendors } from "./data/secrets-management";
+import { registerProductEvidence, publicMonitoringVendors, publicMonitoringClaims, publicMonitoringProducts, publicMonitoringSources } from "./data/public-monitoring";
 import { developerEndpointCapabilities, developerEndpointUseCases } from "./data/developer-endpoint-comparison";
 import { events, products, vendors } from "./data/market";
 import { personas } from "./data/personas";
@@ -82,6 +87,7 @@ import { objections } from "./data/objections";
 import { alternatives } from "./data/alternatives";
 import { buyingTriggers } from "./data/buying-triggers";
 import { qualificationQuestions } from "./data/qualification-questions";
+import { vendorSeatTargeting } from "./data/vendor-seat-targeting";
 import { orphanCategoryOwners, useCaseSeats } from "./data/persona-connections";
 
 const withOrphanCategories = (persona: BuyerPersona): BuyerPersona => {
@@ -98,6 +104,9 @@ import { includeSecretsDetection, secretsSweepVendors, secretsSweepProducts, sec
 
 import { expandedVendors, expandedProducts, expandedSources, expandedClaims, includeExpandedDspm } from "./data/analyst-expansion";
 import { categoryFillVendors, categoryFillProducts, categoryFillSources, categoryFillClaims } from "./data/category-fill";
+import { ispmWimVendors, ispmWimProducts, ispmWimSources, ispmWimClaims } from "./data/ispm-wim";
+import { identityAnalystSources, identityAnalystClaims } from "./data/identity-analyst";
+import { industryIdentitySources } from "./data/industry-identity";
 
 const allCategories = [...categories, ...ecosystemCategories];
 
@@ -126,6 +135,7 @@ export type Catalog = {
   alternatives: Alternative[];
   buyingTriggers: BuyingTrigger[];
   qualificationQuestions: QualificationQuestion[];
+  vendorSeatTargeting: VendorSeatTargeting[];
   sources: Source[];
   claims: Claim[];
   relationships: Relationship[];
@@ -138,14 +148,16 @@ export type Catalog = {
 };
 
 function parseCatalog(): Catalog {
-  const parsedClaims = z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims, ...developerEndpointClaims, ...categoryFillClaims]);
+  const workforce = registerProductEvidence(workforceGuideResearch);
+  const management = registerProductEvidence(secretsManagementResearch);
+  const parsedClaims = z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims, ...developerEndpointClaims, ...categoryFillClaims, ...ispmWimClaims, ...identityAnalystClaims, ...publicMonitoringClaims, ...management.claims, ...workforce.claims]);
   return {
     // Generated from the data so the header matches the newest claim card. AS_OF is only a fallback.
     asOf: latestClaimDate(parsedClaims) ?? AS_OF,
     domains: z.array(domainSchema).parse(domains),
     categories: z.array(categorySchema).parse(allCategories),
-    vendors: z.array(vendorSchema).parse([...vendors, ...ecosystemVendors, ...secretsSweepVendors, ...expandedVendors, ...categoryFillVendors].map(includeSecretsDetection).map(includeExpandedDspm)),
-    products: z.array(productSchema).parse([...products, ...ecosystemProducts, ...secretsSweepProducts, ...expandedProducts, ...developerEndpointProducts, ...categoryFillProducts]),
+    vendors: z.array(vendorSchema).parse([...vendors, ...ecosystemVendors, ...secretsSweepVendors, ...expandedVendors, ...categoryFillVendors, ...ispmWimVendors, ...publicMonitoringVendors, ...secretsManagementVendors, ...workforceGuideVendors].map(includeSecretsDetection).map(includeExpandedDspm)),
+    products: z.array(productSchema).parse([...products, ...ecosystemProducts, ...secretsSweepProducts, ...expandedProducts, ...developerEndpointProducts, ...categoryFillProducts, ...ispmWimProducts, ...publicMonitoringProducts, ...secretsManagementProducts, ...workforceGuideProducts]),
     capabilities: z.array(capabilitySchema).parse([...capabilities, ...ecosystemCapabilities, ...developerEndpointCapabilities]),
     useCases: z.array(useCaseSchema).parse([...useCases, ...ecosystemUseCases, ...developerEndpointUseCases]),
     personas: z.array(personaSchema).parse([...personas, ...ecosystemPersonas]).map(withOrphanCategories),
@@ -163,7 +175,8 @@ function parseCatalog(): Catalog {
     alternatives: z.array(alternativeSchema).parse(alternatives),
     buyingTriggers: z.array(buyingTriggerSchema).parse(buyingTriggers),
     qualificationQuestions: z.array(qualificationQuestionSchema).parse(qualificationQuestions),
-    sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources, ...developerEndpointSources, ...personaSources, ...categoryFillSources]),
+    vendorSeatTargeting: z.array(vendorSeatTargetingSchema).parse(vendorSeatTargeting),
+    sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources, ...developerEndpointSources, ...personaSources, ...categoryFillSources, ...ispmWimSources, ...identityAnalystSources, ...industryIdentitySources, ...publicMonitoringSources, ...management.sources, ...workforce.sources, ...issuerReferenceSources, ...accessScenarioSources]),
     claims: parsedClaims,
     relationships: z.array(relationshipSchema).parse([...relationships, ...ecosystemRelationships]),
     stories: z.array(customerStorySchema).parse(customerStories),
@@ -177,7 +190,7 @@ function parseCatalog(): Catalog {
 
 export function catalogProblems(catalog: Catalog): string[] {
   // Persona profiles are keyed by personaId and checked below.
-  const { asOf: _asOf, personaProfiles: _personaProfiles, useCaseSeats: _useCaseSeats, fieldNotes: _fieldNotes, objections: _objections, alternatives: _alternatives, buyingTriggers: _buyingTriggers, qualificationQuestions: _qualificationQuestions, ...collections } = catalog;
+  const { asOf: _asOf, personaProfiles: _personaProfiles, useCaseSeats: _useCaseSeats, fieldNotes: _fieldNotes, objections: _objections, alternatives: _alternatives, buyingTriggers: _buyingTriggers, qualificationQuestions: _qualificationQuestions, vendorSeatTargeting: _vendorSeatTargeting, ...collections } = catalog;
   void _asOf;
   void _personaProfiles;
   void _useCaseSeats;
@@ -186,6 +199,7 @@ export function catalogProblems(catalog: Catalog): string[] {
   void _alternatives;
   void _buyingTriggers;
   void _qualificationQuestions;
+  void _vendorSeatTargeting;
   const problems = [
     ...identityProblems(collections),
     ...provenanceProblems(catalog.sources, catalog.claims, catalog.capabilities.map((item) => item.id)),
@@ -470,6 +484,18 @@ export function catalogProblems(catalog: Catalog): string[] {
     if (question.evidence === "sourced" && question.sourceIds.length === 0) problems.push(`Qualification question ${question.id} is sourced without sourceIds`);
     for (const id of question.sourceIds) if (!sourceIds.has(id)) problems.push(`Qualification question ${question.id} source ${id} missing`);
   }
+  const targetingKeys = new Set<string>();
+  for (const row of catalog.vendorSeatTargeting) {
+    const key = `${row.vendorId}/${row.categoryId}`;
+    if (targetingKeys.has(key)) problems.push(`Duplicate vendor seat targeting ${key}`);
+    targetingKeys.add(key);
+    const vendor = catalog.vendors.find((item) => item.id === row.vendorId);
+    if (!vendor) problems.push(`Vendor seat targeting ${key} references missing vendor`);
+    else if (!vendor.primaryCategoryIds.includes(row.categoryId) && !vendor.adjacentCategoryIds.includes(row.categoryId)) problems.push(`Vendor seat targeting ${key}: vendor is not mapped to that category`);
+    if (!categoryIds.has(row.categoryId)) problems.push(`Vendor seat targeting ${key} references missing category`);
+    for (const id of [...row.seatIds, ...row.mentionedSeatIds]) if (!seatIdSet.has(id)) problems.push(`Vendor seat targeting ${key} references missing seat ${id}`);
+    for (const id of row.mentionedSeatIds) if (row.seatIds.includes(id)) problems.push(`Vendor seat targeting ${key} lists ${id} as both pitched and mentioned`);
+  }
   const fieldIds = new Set<string>();
   for (const note of catalog.fieldNotes) {
     if (fieldIds.has(note.id)) problems.push(`Duplicate field note ${note.id}`);
@@ -494,6 +520,13 @@ export function catalogProblems(catalog: Catalog): string[] {
     for (const seat of overlay.mandatedSeats) {
       if (seat.personaId && !seatIds.has(seat.personaId)) problems.push(`${label} mandated seat ${seat.personaId} missing`);
       for (const id of seat.sourceIds) if (!sourceIds.has(id)) problems.push(`${label} mandated seat source ${id} missing`);
+    }
+    const requirementIds = new Set<string>();
+    for (const req of overlay.identityRequirements) {
+      if (requirementIds.has(req.id)) problems.push(`${label} duplicate identity requirement ${req.id}`);
+      requirementIds.add(req.id);
+      for (const id of req.categoryIds) if (!categoryIds.has(id)) problems.push(`${label} identity requirement ${req.id} category ${id} missing`);
+      for (const id of req.sourceIds) if (!sourceIds.has(id)) problems.push(`${label} identity requirement ${req.id} source ${id} missing`);
     }
   }
   return problems;
@@ -540,6 +573,15 @@ export function relationshipsForProduct(productId: string): Relationship[] {
   return catalog.relationships.filter(
     (relationship) =>
       relationship.fromProductId === productId || relationship.toProductId === productId,
+  );
+}
+
+/** Industry and regulatory identity requirements that name this category. */
+export function identityRequirementsForCategory(categoryId: string) {
+  return catalog.segmentOverlays.flatMap((overlay) =>
+    overlay.identityRequirements
+      .filter((req) => req.categoryIds.includes(categoryId))
+      .map((req) => ({ overlay, req })),
   );
 }
 

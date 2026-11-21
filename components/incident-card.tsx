@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { StatusPill } from "@/components/chrome";
+import { CopyTalkTrack } from "@/components/copy-talk-track";
 import { formatDate } from "@/lib/format";
-import { ecosystemLabel, INCIDENT_KIND_LABELS, type FeedIncident } from "@/lib/incident-feed";
+import { ecosystemLabel, INCIDENT_KIND_LABELS, industryLabel, talkTrackText, type FeedIncident } from "@/lib/incident-feed";
 
 /** Card order: what/when/status → title → summary → talk track → evidence footer. */
 export function IncidentCard({ item }: { item: FeedIncident }) {
@@ -30,6 +31,26 @@ export function IncidentCard({ item }: { item: FeedIncident }) {
           Talk track {salesNote && <StatusPill status={salesNote.status} />}
         </p>
         <p className="mt-1 text-sm leading-6">{salesNote ? salesNote.headline : "No talk track yet."}</p>
+        {salesNote && (
+          <>
+            <p className="mt-1 text-sm leading-6 text-muted-foreground">
+              <span className="font-semibold text-foreground">Ask: </span>
+              {salesNote.discoveryQuestion}
+            </p>
+            {salesNote.sellerCaveat && (
+              <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                <span className="font-semibold text-foreground">Caveat: </span>
+                {salesNote.sellerCaveat}
+              </p>
+            )}
+            <div className="mt-2">
+              <CopyTalkTrack
+                text={talkTrackText(item) ?? ""}
+                accessibleLabel={`Copy talk track with source: ${incident.title}`}
+              />
+            </div>
+          </>
+        )}
       </div>
 
       <dl className="mt-4 flex flex-wrap gap-x-6 gap-y-2 border-t border-border pt-3 text-sm">
@@ -49,6 +70,12 @@ export function IncidentCard({ item }: { item: FeedIncident }) {
           <dt className="sr-only">Ecosystems</dt>
           <dd>{incident.affectedEcosystems.map(ecosystemLabel).join(", ") || "Ecosystem not stated"}</dd>
         </div>
+        {item.industries.length > 0 && (
+          <div>
+            <dt className="sr-only">Industry</dt>
+            <dd>{item.industries.map(industryLabel).join(", ")}</dd>
+          </div>
+        )}
         <div>
           <dt className="inline text-muted-foreground">ATT&CK: </dt>
           <dd className="inline">{incident.techniqueIds.length ? incident.techniqueIds.join(", ") : "Not evaluated"}</dd>

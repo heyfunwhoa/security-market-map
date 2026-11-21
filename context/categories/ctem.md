@@ -3,7 +3,7 @@ id: "ctem"
 type: "category"
 name: "Continuous threat exposure management"
 layer: "adjacent"
-vendors: 3
+vendors: 4
 ---
 
 # Continuous threat exposure management
@@ -20,12 +20,17 @@ A program for deciding which exposures matter, broader than traditional technolo
 
 - Exposure / attack-surface owner (`exposure-management`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 _None recorded._
 
 ## Vendors (adjacent)
 
+- Amazon Web Services
 - XM Cyber
 - Brinqa
 - Nucleus Security

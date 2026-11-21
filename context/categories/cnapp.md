@@ -3,7 +3,7 @@ id: "cnapp"
 type: "category"
 name: "Cloud-native application protection"
 layer: "adjacent"
-vendors: 9
+vendors: 10
 ---
 
 # Cloud-native application protection
@@ -24,8 +24,19 @@ A suite label that bundles posture, identity entitlements, workload, and sometim
 - Cyber recovery / resilience (`cyber-recovery`)
 - CTO / VP of engineering (`cto`)
 
+## Who vendors sell to
+
+From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.
+
+- Cloud security (`cloud-sec`): 4 of 4 vendors
+- DevOps / platform engineering (`platform`): 3 of 4 vendors
+- Software developer (`developer`): 2 of 4 vendors
+- GRC or trust lead (`grc-owner`): 1 of 4 vendors
+- Incident responder (`incident-response`): 1 of 4 vendors
+
 ## Vendors (primary)
 
+- Amazon Web Services: AWS offers services for storing secrets, managing cloud access, checking configurations and prioritizing exposures. The product and the team responsible depend on the buyer’s decision.
 - Wiz: CNAPP vendor. Cloud entitlement conversations often happen here. That is adjacent budget to IGA, not a certification suite, unless a sourced claim says otherwise. Wiz markets a DSPM solution for cloud data security. Vendor-reported DSPM scope reviewed 2026-10-13.
 - Orca Security: Homepage retrieved 26 Oct 2026 says the platform unifies cloud posture and evaluates paths that include misconfigurations. Code, secrets, identity permissions, and data are named on the same page and are not separate cells.
 - Sysdig: Cloud and container security vendor named beside Wiz, Orca, and Aqua. Modules unverified.

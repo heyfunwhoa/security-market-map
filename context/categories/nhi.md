@@ -3,7 +3,7 @@ id: "nhi"
 type: "category"
 name: "NHI and workload identity"
 layer: "core"
-vendors: 40
+vendors: 44
 ---
 
 # NHI and workload identity
@@ -23,6 +23,14 @@ Service accounts, service principals, CI jobs, apps, containers, APIs, and bots.
 - DevOps / platform engineering (`platform`)
 - AI security (`ai-security`)
 - AI platform owner (`ai-owner`)
+
+## Who vendors sell to
+
+From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.
+
+- Identity security lead (`identity-security`): 4 of 4 vendors
+- DevOps / platform engineering (`platform`): 2 of 4 vendors
+- Software developer (`developer`): 1 of 4 vendors
 
 ## Vendors (primary)
 
@@ -69,6 +77,10 @@ Service accounts, service principals, CI jobs, apps, containers, APIs, and bots.
 - Keycard
 - Adaptive Shield
 - Cerbos
+- SPIFFE / SPIRE (CNCF)
+- Defakto
+- Riptides
+- AuthMind
 
 ## What buyers do instead
 

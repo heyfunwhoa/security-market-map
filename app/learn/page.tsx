@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { CedarRidgeScenario } from "@/components/cedar-ridge-scenario";
+import { cedarRidgeId } from "@/lib/data/cedar-ridge";
 import { DistinctionCards } from "@/components/claims";
 import { PageIntro } from "@/components/chrome";
 import { ScenarioPlayer, type ScenarioView } from "@/components/scenario-player";
@@ -9,9 +12,9 @@ export const metadata = { title: "Learn" };
 export default async function LearnPage({
   searchParams,
 }: {
-  searchParams: Promise<{ scenario?: string }>;
+  searchParams: Promise<{ scenario?: string; mode?: string; step?: string }>;
 }) {
-  const { scenario } = await searchParams;
+  const { scenario, mode, step } = await searchParams;
   const scenarios: ScenarioView[] = catalog.scenarios.map((scenario) => ({
     ...scenario,
     steps: scenario.steps.map((step) => {
@@ -38,8 +41,20 @@ export default async function LearnPage({
       <PageIntro
         kicker="Learn"
         title="The words a cybersecurity analyst needs before the logo slide"
-        lede="Start with the glossary, then walk two calls: a leaked key that becomes an agent request, and a standing administrator. Products appear on a step only when a claim supports that capability."
+        lede="Explore the glossary, investigate suspicious AWS workload access in the Cedar Ridge scenario, or walk through two calls about a leaked key and standing administrator access."
       />
+
+      {scenario === cedarRidgeId ? (
+        <CedarRidgeScenario mode={mode} step={step} />
+      ) : (
+        <section className="mt-8 rounded-xl border border-border bg-card p-4" aria-labelledby="cedar-ridge-entry">
+          <h2 id="cedar-ridge-entry" className="text-xl">Cedar Ridge Health</h2>
+          <p className="mt-2 text-sm">Investigate suspicious access to S3 by a workload identity in a fictional AWS environment.</p>
+          <Link className="mt-2 inline-flex min-h-11 items-center text-primary underline" href={`/learn?scenario=${cedarRidgeId}#${cedarRidgeId}`}>
+            Start the Cedar Ridge scenario
+          </Link>
+        </section>
+      )}
 
       <section className="mt-10" aria-labelledby="glossary-heading">
         <h2 id="glossary-heading" className="text-3xl">

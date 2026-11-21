@@ -27,8 +27,9 @@ One coherent identity story across workforce, privilege, cloud entitlements, and
 - PAM and PIM (`pam`)
 - NHI and workload identity (`nhi`)
 - CIEM and access intelligence (`ciem`)
-- Identity threat detection (ITDR) (`itdr`)
+- Identity threat detection and posture (ITDR, ISPM) (`itdr`)
 - AI agent identity and runtime authorization (`agent-identity`)
+- Workload identity management (WIM) (`wim`)
 - Agentic runtime enforcement (`agentic-runtime`)
 - Customer identity (CIAM) (`ciam`)
 

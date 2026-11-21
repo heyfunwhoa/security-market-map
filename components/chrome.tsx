@@ -19,7 +19,7 @@ const NAV_GROUPS = [
     { href: "/personas", label: "Buyer seats", description: "Who buys, uses, approves, and blocks, with pains and titles." },
   ] },
   { title: "Learn", links: [
-    { href: "/learn", label: "Concepts & glossary", description: "Understand terminology and practical scenarios." },
+    { href: "/learn", label: "Concepts & scenarios", description: "Understand terminology and practical scenarios." },
     { href: "/connections", label: "How tools connect", description: "Explore identity, secrets, and adjacent security jobs." },
     { href: "/evidence-graph", label: "Evidence graph", description: "Inspect sourced identity, secrets, and non-human identity relationships." },
     { href: "/attack-path", label: "Attack paths", description: "Follow how an exposure can lead to an attack." },

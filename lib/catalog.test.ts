@@ -858,7 +858,10 @@ describe("catalog integrity", () => {
       "claim-forrester-sspm-20220819",
     ];
     expect(catalog.claims.find((claim) => claim.id === "claim-gartner-workforce-am-20250424")?.confidence).toBe("low");
-    expect(catalog.claims.filter((claim) => claim.subjectType === "category" && claim.subjectId === "workforce-identity")).toHaveLength(2);
+    const originalWorkforceIds = catalog.claims
+      .filter((claim) => claim.subjectType === "category" && claim.subjectId === "workforce-identity" && claim.lastCheckedAt === "2026-10-27")
+      .map((claim) => claim.id);
+    expect(new Set(originalWorkforceIds)).toEqual(new Set(ids.slice(0, 2)));
     for (const id of ids) {
       const claim = catalog.claims.find((item) => item.id === id);
       expect(claim, id).toBeDefined();

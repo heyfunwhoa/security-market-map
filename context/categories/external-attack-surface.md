@@ -3,7 +3,7 @@ id: "external-attack-surface"
 type: "category"
 name: "External attack surface"
 layer: "core"
-vendors: 5
+vendors: 11
 ---
 
 # External attack surface
@@ -21,16 +21,26 @@ Discovery of internet-facing assets and the exposures on them. This map keeps th
 - Threat intelligence analyst (`threat-intel`)
 - Exposure / attack-surface owner (`exposure-management`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Censys: External attack-surface vendor. Discovery of internet-facing assets, not a patch scanner by assumption.
 - CyCognito: External attack-surface vendor. Discovery of exposed assets, not a patch scanner by assumption.
+- Outpost24: Outpost24 offers external asset discovery and threat intelligence modules for investigating exposed company information.
+- Detectify: Detectify monitors internet-facing assets and reports DNS records that can outlive the services they reference.
+- SSLMate: SSLMate offers Cert Spotter for domain owners who want to review unexpected certificate issuance.
 
 ## Vendors (adjacent)
 
 - BitSight
 - XM Cyber
 - ZeroFox
+- SOCRadar
+- Group-IB
+- Searchlight Cyber
 
 ## What buyers do instead
 

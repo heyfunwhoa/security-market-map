@@ -20,6 +20,10 @@ Controls aimed at what a device is doing above the file and the process: develop
 
 - IT / corporate security (`it-security`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Cyberhaven: Named by SACR in July 2026 among endpoint-control specialists, beside data-movement detection. No endpoint or DLP capability is checked.

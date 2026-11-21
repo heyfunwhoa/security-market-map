@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Suspense } from "react";
 import { PageIntro } from "@/components/chrome";
 import { LandscapeBrowser, type LandscapeEdge, type LandscapeRow } from "@/components/landscape-browser";
@@ -56,6 +57,7 @@ export default function LandscapePage() {
         title="Who shows up for a use case, without a leaderboard"
         lede="Filter by domain, category, buyer, deployment, and scope. Use “Not an identity control” for AppSec, IT, and other tools that are on the map without being identity products. A relationship counts only inside a use case. There is no overall score."
       />
+      <p className="mt-5"><Link href="/landscape/public-exposure" className="text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-ring">Compare public monitoring and external exposure scenarios</Link></p>
       <div className="mt-8">
         <Suspense fallback={<p role="status">Loading landscape filters…</p>}>
         <LandscapeBrowser

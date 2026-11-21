@@ -13,6 +13,7 @@ import {
 import { AnnotatedText } from "@/components/annotated-text";
 import { claimDomainLabel, domainClaimCounts } from "@/lib/domain-evidence";
 import { formatDate } from "@/lib/format";
+import { INCIDENT_KIND_LABELS, incidentFeed, latestIncidents } from "@/lib/incident-feed";
 
 export default function HomePage() {
   const recent = [...catalog.claims]
@@ -24,6 +25,7 @@ export default function HomePage() {
   const queue = reviewQueue(catalog.claims);
   const labels = Object.fromEntries(recent.map((claim) => [claim.id, claimDomainLabel(claim, catalog)]));
   const seen = new Set<string>();
+  const newestIncidents = latestIncidents(3);
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
@@ -66,6 +68,35 @@ export default function HomePage() {
         <div className="mt-4">
           <DomainExplorer domains={catalog.domains} claimCounts={domainClaimCounts(catalog)} />
         </div>
+      </section>
+
+      <section className="mt-12" aria-labelledby="incidents-heading">
+        <div className="flex flex-wrap items-baseline justify-between gap-2">
+          <h2 id="incidents-heading" className="text-3xl tracking-tight">
+            Latest incidents
+          </h2>
+          <Link href="/incidents" className="text-sm text-primary underline underline-offset-4">
+            All {incidentFeed.length} reviewed incidents, with talk tracks
+          </Link>
+        </div>
+        <ul className="mt-4 grid gap-3 md:grid-cols-3">
+          {newestIncidents.map((item) => (
+            <li key={item.slug} className="min-w-0 rounded-xl border border-border bg-card p-4 text-sm">
+              <p className="text-xs font-semibold tracking-[0.12em] text-primary uppercase">
+                {INCIDENT_KIND_LABELS[item.incident.kind]} · {formatDate(item.incident.disclosedOn)}
+              </p>
+              <Link
+                href={`/incidents/${item.slug}`}
+                className="mt-2 block font-semibold leading-6 underline-offset-4 hover:underline"
+              >
+                {item.incident.title}
+              </Link>
+              <p className="mt-1 text-xs text-muted-foreground">
+                Source: {item.sources.map((source) => source.publisher).join(", ")}
+              </p>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section className="mt-12">

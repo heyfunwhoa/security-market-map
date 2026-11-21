@@ -35,6 +35,18 @@ export const useCaseSeats: UseCaseSeatsInput[] = [
     unmodeledStakeholders: ["Service owners"],
   },
   {
+    useCaseId: "uc-wim",
+    seatIds: ["platform", "cloud-sec", "identity-security"],
+    likelyBudgetSeatIds: ["platform", "cloud-sec"],
+    unmodeledStakeholders: ["Service owners"],
+  },
+  {
+    useCaseId: "uc-ispm",
+    seatIds: ["identity-security", "security-architect", "iga-owner"],
+    likelyBudgetSeatIds: ["identity-security"],
+    unmodeledStakeholders: ["SOC"],
+  },
+  {
     useCaseId: "uc-agent",
     seatIds: ["ai-owner", "identity-security", "ai-security"],
     likelyBudgetSeatIds: ["ai-owner", "identity-security"],

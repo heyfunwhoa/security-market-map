@@ -3,7 +3,7 @@ id: "iga"
 type: "category"
 name: "Identity governance (IGA)"
 layer: "core"
-vendors: 20
+vendors: 21
 ---
 
 # Identity governance (IGA)
@@ -21,6 +21,10 @@ Joiner-mover-leaver, access requests, certifications, role mining, separation of
 - CISO / VP of security (`ciso`)
 - Identity security lead (`identity-security`)
 - IGA program owner (`iga-owner`)
+
+## Who vendors sell to
+
+- None recorded.
 
 ## Vendors (primary)
 
@@ -47,6 +51,7 @@ Joiner-mover-leaver, access requests, certifications, role mining, separation of
 - Token Security
 - AppOmni
 - Grip Security
+- Orchid Security
 
 ## What buyers do instead
 

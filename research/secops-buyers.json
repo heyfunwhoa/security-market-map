@@ -1,0 +1,69 @@
+{
+  "jobs": [
+    {
+      "category": "threat-intelligence",
+      "title": "Threat intelligence and public monitoring",
+      "owner": "Threat intelligence and identity operations",
+      "decision": "An employee credential appears in an external dataset. Does it belong to an active identity, and does it warrant an investigation?",
+      "proof": "Match the observation to the identity and exposure date. Review sign-ins or sessions before drawing a conclusion about use.",
+      "options": [{"label": "SpyCloud Workforce Threat Protection", "claimIds": ["claim-public-spycloud-watchlist"]}, {"label": "GitGuardian Public Monitoring for a leaked machine credential", "claimIds": ["claim-public-gitguardian-sources"]}]
+    },
+    {
+      "category": "security-data-pipelines",
+      "title": "Security data pipelines",
+      "owner": "Security platform engineering",
+      "decision": "The identity team has sign-in events, but the SOC cannot find them in its search tool. Are events reaching the right destination with the necessary fields?",
+      "proof": "Trace a sample event from source to destination. Compare timestamps, identity fields, delivery counts and retention. A missing log can leave an investigation inconclusive.",
+      "options": [{"label": "Cribl Stream", "claimIds": ["claim-secops-buyer-cribl"]}]
+    },
+    {
+      "category": "detection-engineering",
+      "title": "Detection engineering",
+      "owner": "Detection engineering lead",
+      "decision": "A logging change renamed the field that identifies the principal. Will the team's rule still alert on the intended activity?",
+      "proof": "Exercise the rule on a synthetic event expected to alert and a benign event expected to pass. Check the deployed rule against the fields actually reaching the SOC.",
+      "options": [{"label": "Panther detection tests", "claimIds": ["claim-secops-buyer-panther"]}]
+    },
+    {
+      "category": "xdr",
+      "title": "Endpoint and cross-domain detection (EDR and XDR)",
+      "owner": "SOC analyst and endpoint security",
+      "decision": "An employee's laptop alert and a cloud finding appear in the same hour. Is there evidence tying the device, user and cloud session together?",
+      "proof": "Build a timeline with the identifiers and timestamps the two records share. Record which events could belong to different users or sessions.",
+      "options": [{"label": "CrowdStrike Falcon Insight XDR for device and identity telemetry", "claimIds": ["claim-secops-buyer-falcon"]}, {"label": "AWS Security Hub for cloud exposure context", "claimIds": ["claim-aws-hub-exposures"]}]
+    },
+    {
+      "category": "siem",
+      "title": "Security analytics and the investigation queue (SIEM)",
+      "owner": "SOC manager and incident analyst",
+      "decision": "AppSec and cloud security both opened a ticket about a leaked key. Where will the SOC keep one investigation, its timeline and the evidence behind the decision?",
+      "proof": "Walk one finding into an assigned case. Show the source record, the analyst's conclusion, the unresolved questions and the handoff to the credential owner.",
+      "options": [{"label": "Splunk Enterprise Security investigations", "claimIds": ["claim-secops-buyer-splunk"]}]
+    },
+    {
+      "category": "soar",
+      "title": "Response playbooks and automation (SOAR)",
+      "owner": "SOC automation engineering and the owner of the affected system",
+      "decision": "The SOC wants to automate enrichment and ticket assignment. Which actions can run unattended, and who can authorize an access change that could stop a production job?",
+      "proof": "Trace one finding through the configured trigger, any required approval and the action result. Check the target system and record how a failed or repeated action is handled.",
+      "options": [{"label": "Microsoft Sentinel playbooks", "claimIds": ["claim-secops-buyer-sentinel"]}, {"label": "AWS Security Hub event routing", "claimIds": ["claim-secops-buyer-eventbridge"]}]
+    },
+    {
+      "category": "mdr",
+      "title": "Managed detection and incident response",
+      "owner": "CISO or SOC director, managed provider and on-call service owner",
+      "decision": "An incident arrives after hours. Who investigates, whom can the provider page, and which containment actions has the customer authorized?",
+      "proof": "Use an agreed tabletop scenario. Check the contract, enrolled assets, escalation timeline, allowed actions and who confirms recovery. Compare providers against the same service scope.",
+      "options": [{"label": "Rapid7 MDR with optional Active Response", "claimIds": ["claim-secops-buyer-rapid7"]}, {"label": "AWS Security Incident Response with Proactive Response", "claimIds": ["claim-secops-buyer-aws-ir"]}]
+    }
+  ],
+  "adjacent": [
+    {"label": "Application security", "href": "/domains/appsec", "job": "Find the publishing path that exposed a secret and fix the build or repository workflow."},
+    {"label": "Identity security", "href": "/domains/identity", "job": "Identify the principal, retire the compromised credential and account for sessions already issued."},
+    {"label": "Cloud security", "href": "/categories/cnapp#aws-security-hub", "job": "Identify the workload, weigh its exposure and verify the cloud configuration after a fix."},
+    {"label": "Data security", "href": "/domains/data", "job": "Determine what sensitive data was reachable and what retained records show was accessed."},
+    {"label": "Corporate IT and endpoint security", "href": "/domains/corporate#endpoint", "job": "Check the employee device and coordinate any isolation with the service desk."},
+    {"label": "Governance, risk and compliance", "href": "/domains/grc", "job": "Document the decision, accountable owner, evidence and any remaining risk."},
+    {"label": "Cyber recovery", "href": "/categories/cyber-recovery", "job": "Restore affected business services and verify with the service owner that they work."}
+  ]
+}

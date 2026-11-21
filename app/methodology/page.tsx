@@ -99,8 +99,8 @@ export default function MethodologyPage() {
         <h2 id="dates" className="text-2xl">Dates</h2>
         <p className="mt-3 text-sm leading-6">
           Every claim carries a published date when the source has one, an observed date, and the date it was last
-          checked. The site&apos;s &quot;as of&quot; date is the newest of those dates across all claims. Today that is{" "}
-          {formatDate(catalog.asOf)}.
+          checked. The site&apos;s &quot;as of&quot; date is the newest of those dates across all claims. In this version of the
+          site that is {formatDate(catalog.asOf)}. It is a snapshot date, not today&apos;s date.
         </p>
         <p className="mt-3 text-sm leading-6">
           <Link href="/sources" className="text-primary underline underline-offset-4">

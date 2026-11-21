@@ -24,6 +24,10 @@ Playbooks that enrich and sometimes contain an incident. Automation that disable
 - Incident responder (`incident-response`)
 - MSSP / MDR operations lead (`mssp-ops`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 _None recorded._

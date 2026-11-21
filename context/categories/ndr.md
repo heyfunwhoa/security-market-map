@@ -22,6 +22,10 @@ Detection from network traffic and metadata. This map keeps it as its own catego
 - Network security (`network-security`)
 - OT / ICS security (`ot-security`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - ExtraHop: Network detection and response candidate. Not a firewall and not an endpoint agent.

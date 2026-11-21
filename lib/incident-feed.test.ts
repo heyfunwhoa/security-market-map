@@ -98,7 +98,12 @@ describe("incident feed", () => {
     expect(text).toContain("2025-01-02");
     expect(text).toContain("https://example.org/alert");
     expect(text).toContain("Draft");
+    expect(text).not.toContain("Caveat:");
+    expect(text.endsWith(`\nMore: https://security-market-map.vercel.app/incidents/${item.slug}`)).toBe(true);
     expect(talkTrackText({ ...item, salesNote: null })).toBeNull();
+    const [withCaveat] = buildIncidentFeed([base], [source], [{ ...note, sellerCaveat: "Impact isn't confirmed." }]);
+    expect(talkTrackText(withCaveat)).toContain("\nCaveat: Impact isn't confirmed.\nSource:");
+    expect(talkTrackText(withCaveat)).toContain("\nMore: https://security-market-map.vercel.app/incidents/");
   });
 
   it("sorts newest disclosure first and filters by kind and ecosystem", () => {
@@ -192,6 +197,75 @@ describe("incident category links", () => {
     const proposed = allCategoryLinks.filter((entry) => entry.status !== "reviewed");
     for (const entry of proposed) {
       expect(incidentsForCategory(entry.categoryId).some(({ link: shown }) => shown.id === entry.id)).toBe(false);
+    }
+  });
+});
+
+describe("seller shortcuts", () => {
+  it("builds one copyable call-prep block with every talk track and its source", async () => {
+    const { talkTracksDocument, latestIncidents } = await import("./incident-feed");
+    const doc = talkTracksDocument(incidentFeed);
+    const withNotes = incidentFeed.filter((item) => item.salesNote);
+    expect(doc.split("\n\n")).toHaveLength(withNotes.length);
+    for (const item of withNotes) {
+      expect(doc).toContain(item.incident.title);
+      for (const id of item.salesNote!.basedOnSourceIds) {
+        expect(doc).toContain(item.sources.find((source) => source.id === id)!.url);
+      }
+    }
+    expect(talkTracksDocument([])).toBe("");
+    expect(latestIncidents(3).map((item) => item.slug)).toEqual(incidentFeed.slice(0, 3).map((item) => item.slug));
+  });
+
+  it("keeps ecosystems to technology ecosystems, not industries", () => {
+    for (const item of incidentFeed) expect(item.incident.affectedEcosystems).not.toContain("pharmaceutical");
+  });
+});
+
+describe("industry tags", () => {
+  it("publishes only reviewed tags with a known industry, a named reviewer and the incident's own sources", async () => {
+    const { isPublishableIndustry } = await import("./incident-feed");
+    const tag = {
+      id: "industry:example:technology",
+      incidentId: "incident:example",
+      industry: "technology",
+      rationale: "Named company is a software company.",
+      basedOnSourceIds: ["source:a"],
+      status: "reviewed" as const,
+      proposedBy: "agent-draft",
+      proposedOn: "2026-11-17",
+      reviewedBy: "Reviewer",
+      reviewedOn: "2026-11-17",
+    };
+    expect(isPublishableIndustry(tag, base)).toBe(true);
+    expect(isPublishableIndustry({ ...tag, status: "proposed" }, base)).toBe(false);
+    expect(isPublishableIndustry({ ...tag, industry: "pharmaceutical_guess" }, base)).toBe(false);
+    expect(isPublishableIndustry({ ...tag, reviewedBy: " " }, base)).toBe(false);
+    expect(isPublishableIndustry({ ...tag, basedOnSourceIds: ["source:other"] }, base)).toBe(false);
+    const feed = buildIncidentFeed([base], [source], [], [], [tag, { ...tag, id: "x", industry: "retail", status: "proposed" }]);
+    expect(feed[0].industries).toEqual(["technology"]);
+    expect(filterIncidents(feed, { ...NO_INCIDENT_FILTERS, industry: "technology" })).toHaveLength(1);
+    expect(filterIncidents(feed, { ...NO_INCIDENT_FILTERS, industry: "retail" })).toHaveLength(0);
+    expect(readIncidentFilters(new URLSearchParams("industry=retail"), feed).industry).toBe("all");
+    expect(incidentFilterUrl({ ...NO_INCIDENT_FILTERS, industry: "technology" })).toBe("/incidents?industry=technology");
+  });
+
+  it("every industry tag in the data file is well formed and points at a published incident", async () => {
+    const { allIndustryTags, INDUSTRY_LABELS } = await import("./incident-feed");
+    const ids = new Set<string>();
+    for (const tag of allIndustryTags) {
+      expect(ids.has(tag.id), `duplicate ${tag.id}`).toBe(false);
+      ids.add(tag.id);
+      expect(tag.industry in INDUSTRY_LABELS, `unknown industry ${tag.industry}`).toBe(true);
+      const incident = incidentFeed.find((item) => item.incident.id === tag.incidentId);
+      expect(incident, `unknown incident ${tag.incidentId}`).toBeDefined();
+      expect(tag.basedOnSourceIds.length).toBeGreaterThan(0);
+      for (const id of tag.basedOnSourceIds) expect(incident!.incident.sourceIds).toContain(id);
+      expect(tag.rationale.trim()).not.toBe("");
+      if (tag.status === "reviewed") {
+        expect(tag.reviewedBy?.trim()).toBeTruthy();
+        expect(tag.reviewedOn).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      }
     }
   });
 });

@@ -1,3 +1,10 @@
+import { AwsSecurityHubGuide } from "@/components/aws-security-hub-guide";
+import { CredentialExposureHandoff, WorkforceIdentityGuide } from "@/components/identity-response-guides";
+import { SecretsManagementGuide } from "@/components/secrets-management-guide";
+import exposureGroups from "@/research/public-exposure-options.json";
+import { ExposureIntelligenceResearch, hasExposureIntelligenceResearch } from "@/components/exposure-intelligence-research";
+import { PublicSecretMonitoring } from "@/components/public-secret-monitoring";
+import { ExternalExposureGuides } from "@/components/external-exposure-guides";
 import { PageJourney } from "@/components/page-journey";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { SECRETS_COMPARISON_URL, DEVELOPER_ENDPOINT_COMPARISON_URL } from "@/lib/comparison-selection";
@@ -9,8 +16,9 @@ import { CloudAppShortlist, DataSecurityShortlist } from "@/components/cloud-app
 import { ClaimList } from "@/components/claims";
 import { FlowStrip } from "@/components/category-map";
 import { PageIntro } from "@/components/chrome";
-import { catalog, categoryBySlug, claimsForSubject, vendorById } from "@/lib/catalog";
-import { painsForCategory, seatsForCategory } from "@/lib/persona-graph";
+import { catalog, categoryBySlug, claimsForSubject, identityRequirementsForCategory, sourceById, vendorById } from "@/lib/catalog";
+import { painsForCategory, seatById, seatsForCategory } from "@/lib/persona-graph";
+import { targetingForCategory } from "@/lib/vendor-targeting";
 import { formatDate } from "@/lib/format";
 import { incidentFilterUrl, incidentsForCategory, NO_INCIDENT_FILTERS } from "@/lib/incident-feed";
 
@@ -36,9 +44,12 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
   const primaryVendors = [...new Set(products.map((product) => product.vendorId))]
     .flatMap((id) => { const vendor = vendorById(id); return vendor ? [vendor] : []; });
   const categoryClaims = claimsForSubject("category", category.id);
+  const requirements = identityRequirementsForCategory(category.id);
   const relatedIncidents = incidentsForCategory(category.id);
   const owningSeats = seatsForCategory(category.id);
   const seatPains = painsForCategory(category.id);
+  const targeting = targetingForCategory(category.id);
+  const targetingRows = catalog.vendorSeatTargeting.filter((row) => row.categoryId === category.id);
   const categoryAlternatives = catalog.alternatives.filter((alt) => alt.categoryId === category.id);
   const categoryTriggers = catalog.buyingTriggers.filter((trigger) => trigger.categoryIds.includes(category.id));
   const categoryObjections = catalog.objections.filter((objection) => objection.categoryIds.includes(category.id));
@@ -52,7 +63,9 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
       <PageIntro kicker={category.layer === "adjacent" ? "Adjacent" : "Category"} title={category.name} lede={category.definition} />
       <PageJourney steps={[
         { href: "#category-buyer", title: "Understand the decision", description: "See the buyer question, owner, workflow and outcomes." },
-        { href: "#category-products", title: "Explore products", description: "Browse primary products, then open their vendor evidence." },
+        hasExposureIntelligenceResearch(category.id)
+          ? { href: "#market-research", title: "Open the market map", description: "Explore companies by buyer need, product evidence and evaluation questions." }
+          : { href: "#category-products", title: "Explore products", description: "Browse primary products, then open their vendor evidence." },
         { href: "#category-evidence", title: "Check category claims", description: "Separate teaching notes from sourced category statements." },
       ]} back={{ href: "/domains", label: "Broaden to all domains" }} />
       <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">{sourcingLabel}</p>
@@ -60,6 +73,52 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
         <span className="font-semibold">Buyer question. </span>
         {category.buyerQuestion}
       </p>
+      {exposureGroups.some((group) => group.cases.some((item) => item.categoryId === category.id)) && (
+        <p className="mt-5 text-sm"><Link href="/landscape/public-exposure" className="text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-ring">Compare public monitoring and external exposure scenarios</Link></p>
+      )}
+      {category.id === "cnapp" && <AwsSecurityHubGuide />}
+      {["ctem", "cspm", "secrets-management", "workforce-identity"].includes(category.id) && (
+        <p className="mt-4 text-sm"><Link className="text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-ring" href="/categories/cnapp#aws-security-hub">Explore AWS Security Hub buyer scenarios</Link></p>
+      )}
+      {category.id === "workforce-identity" && <WorkforceIdentityGuide />}
+      {category.id === "secrets-management" && <><SecretsManagementGuide /><CredentialExposureHandoff /></>}
+      <ExternalExposureGuides categoryId={category.id} />
+      {relatedIncidents.length > 0 && (
+        <section className="mt-6 rounded-xl border border-border bg-card p-4" aria-labelledby="category-incidents">
+          <h2 id="category-incidents" className="text-xl">
+            Related incidents <span className="text-base font-normal text-muted-foreground">({relatedIncidents.length})</span>
+          </h2>
+          <p className="mt-1 max-w-3xl text-sm text-muted-foreground">
+            Reviewed incidents that show the risk this category is bought to address. A link is not a claim that any
+            product here would have prevented the incident.
+          </p>
+          <ul className="mt-3 grid gap-3 md:grid-cols-3">
+            {relatedIncidents.slice(0, 3).map(({ item, link }) => (
+              <li key={link.id} className="min-w-0 rounded-lg border border-border bg-background p-3 text-sm">
+                <Link
+                  href={`/incidents/${item.slug}`}
+                  className="font-semibold text-primary underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                >
+                  {item.incident.title}
+                </Link>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Disclosed {formatDate(item.incident.disclosedOn)} ·{" "}
+                  {item.sources.map((source) => source.publisher).join(", ")}
+                </p>
+                <p className="mt-2 leading-6">{link.rationale}</p>
+              </li>
+            ))}
+          </ul>
+          <Link
+            href={incidentFilterUrl({ ...NO_INCIDENT_FILTERS, category: category.id })}
+            className="mt-3 inline-block text-sm text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+          >
+            {relatedIncidents.length > 3
+              ? `See all ${relatedIncidents.length} in the incident feed, with talk tracks`
+              : "Open in the incident feed, with talk tracks"}
+          </Link>
+        </section>
+      )}
       {category.id === "secrets-detection" ? (
         <section className="mt-6 rounded-xl border border-border bg-card p-4" aria-labelledby="compare-category">
           <h2 id="compare-category" className="text-2xl">Compare secrets detection evidence</h2>
@@ -74,6 +133,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
           </Link>
         </section>
       ) : null}
+      {["secrets-detection", "digital-risk-protection"].includes(category.id) && <PublicSecretMonitoring categoryId={category.id} />}
       {category.id === "endpoint-control" ? (
         <section className="mt-6 rounded-xl border border-border bg-card p-4" aria-labelledby="compare-developer-endpoint">
           <h2 id="compare-developer-endpoint" className="text-2xl">Compare developer endpoint controls</h2>
@@ -126,6 +186,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
         </div>
       </dl>
       <p className="mt-6 text-sm leading-6">{category.exampleWorkflow}</p>
+      <ExposureIntelligenceResearch categoryId={category.id} />
       <CloudAppShortlist categoryId={category.id} />
       <DataSecurityShortlist categoryId={category.id} />
       <AcademyLinks categoryId={category.id} />
@@ -241,7 +302,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
           <p className="text-muted-foreground lg:col-span-3">Hypotheses unless a source is listed. Vendor-neutral: none of these name a product.</p>
         </section>
       ) : null}
-      {owningSeats.length > 0 || seatPains.length > 0 ? (
+      {owningSeats.length > 0 || seatPains.length > 0 || targeting.vendorCount > 0 ? (
         <section className="mt-8" aria-labelledby="category-seats">
           <h2 id="category-seats" className="text-2xl">Who owns it and who feels the problem</h2>
           {owningSeats.length > 0 ? (
@@ -256,6 +317,39 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
               .
             </p>
           ) : null}
+          {targeting.vendorCount > 0 ? (
+            <div className="mt-4 text-sm">
+              <h3 className="text-lg">Who vendors sell to</h3>
+              <p className="mt-1 text-muted-foreground">
+                From {targeting.vendorCount} vendors&apos; own pages, mapped to seats by us. A vendor&apos;s audience is not proof of who buys.
+              </p>
+              <ul className="mt-2 space-y-1">
+                {targeting.seats.map(({ seatId, count }) => (
+                  <li key={seatId}>
+                    <Link href={`/personas/${seatId}`} className="underline underline-offset-4 hover:text-foreground">{seatById(seatId)?.name ?? seatId}</Link>
+                    : {count} of {targeting.vendorCount} vendors
+                  </li>
+                ))}
+              </ul>
+              <details className="mt-2">
+                <summary className="cursor-pointer text-muted-foreground">Sources by vendor</summary>
+                <ul className="mt-2 space-y-1">
+                  {targetingRows.map((row) => (
+                    <li key={row.vendorId}>
+                      {vendorById(row.vendorId)?.name ?? row.vendorId}: {row.audience}{" "}
+                      {row.urls.map((url, index) => (
+                        <a key={url} href={url} className="underline underline-offset-4" rel="noreferrer">[{index + 1}]</a>
+                      ))}{" "}
+                      <span className="text-muted-foreground">
+                        (checked {row.checkedAt}{row.inspection === "search-excerpt" ? ", from a search excerpt" : ""}
+                        {row.mentionedSeatIds.length > 0 ? `; also mentions ${row.mentionedSeatIds.map((id) => seatById(id)?.name ?? id).join(", ")}, not counted` : ""})
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            </div>
+          ) : null}
           {seatPains.length > 0 ? (
             <ul className="mt-3 space-y-2 text-sm">
               {seatPains.map(({ seat, pain }) => (
@@ -269,38 +363,37 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
           ) : null}
         </section>
       ) : null}
-      {relatedIncidents.length > 0 && (
-        <section className="mt-8" aria-labelledby="category-incidents">
-          <h2 id="category-incidents" className="text-2xl">Related incidents</h2>
-          <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
-            Reviewed incidents that show the risk this category is bought to address. A link is not a claim that any
-            product here would have prevented the incident.
+      {requirements.length > 0 ? (
+        <section className="mt-8" aria-labelledby="category-regulation">
+          <h2 id="category-regulation" className="text-2xl">Industry rules that call for these controls</h2>
+          <p className="mt-2 text-sm leading-6 text-muted-foreground">
+            Each rule names a control this category can help with. Linking a rule here does not make any product compliant.
           </p>
-          <ul className="mt-3 grid gap-3 md:grid-cols-2">
-            {relatedIncidents.map(({ item, link }) => (
-              <li key={link.id} className="rounded-lg border border-border bg-card p-4 text-sm">
-                <Link
-                  href={`/incidents/${item.slug}`}
-                  className="font-semibold text-primary underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-                >
-                  {item.incident.title}
-                </Link>
-                <p className="mt-1 text-xs text-muted-foreground">
-                  Disclosed {formatDate(item.incident.disclosedOn)} ·{" "}
-                  {item.sources.map((source) => source.publisher).join(", ")}
+          <ul className="mt-3 space-y-3">
+            {requirements.map(({ overlay, req }) => (
+              <li key={`${overlay.id}-${req.id}`} className="rounded-xl border border-border bg-card p-4 text-sm">
+                <p className="font-medium">{overlay.name}</p>
+                <p className="mt-1 leading-6">{req.requirement}</p>
+                <p className="mt-2 text-xs text-muted-foreground">
+                  {req.rule}
+                  {req.sourceIds.map((id) => {
+                    const source = sourceById(id);
+                    return source ? (
+                      <span key={id}>
+                        {" · "}
+                        <a href={source.url} className="text-primary underline-offset-4 hover:underline">
+                          {source.publisher}
+                        </a>
+                        {` (retrieved ${formatDate(source.retrievedAt)})`}
+                      </span>
+                    ) : null;
+                  })}
                 </p>
-                <p className="mt-2 leading-6">{link.rationale}</p>
               </li>
             ))}
           </ul>
-          <Link
-            href={incidentFilterUrl({ ...NO_INCIDENT_FILTERS, category: category.id })}
-            className="mt-3 inline-block text-sm text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-          >
-            Open these in the incident feed
-          </Link>
         </section>
-      )}
+      ) : null}
       <section className="mt-8">
         <h2 id="category-evidence" tabIndex={-1} className="scroll-mt-24 text-2xl focus-visible:outline-2 focus-visible:outline-ring">Claims about this category</h2>
         <div className="mt-3">

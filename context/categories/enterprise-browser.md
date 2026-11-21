@@ -3,7 +3,7 @@ id: "enterprise-browser"
 type: "category"
 name: "Enterprise browser"
 layer: "core"
-vendors: 1
+vendors: 2
 ---
 
 # Enterprise browser
@@ -21,9 +21,14 @@ A managed browser as the work surface, used alongside virtual desktop and secure
 - IT / corporate security (`it-security`)
 - SaaS security (`saas-security`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Island: Enterprise browser vendor. It still depends on the workforce identity provider.
+- Push Security: Browser-based security vendor. It says it observes how users actually log in, including accounts, authentication methods and shadow apps, and guides MFA and SSO adoption in the browser.
 
 ## Vendors (adjacent)
 

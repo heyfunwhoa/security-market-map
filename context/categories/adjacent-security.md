@@ -20,6 +20,10 @@ CNAPP and CSPM, AppSec, DSPM and data access governance, SaaS security, and GRC.
 
 - Cloud security (`cloud-sec`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 _None recorded._

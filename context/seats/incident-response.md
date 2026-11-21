@@ -26,7 +26,7 @@ Investigate, analyze, and respond to incidents; contain.
 - Extended detection and response (`xdr`)
 - Managed detection and response (`mdr`)
 - Endpoint security (`endpoint-security`)
-- Identity threat detection (ITDR) (`itdr`)
+- Identity threat detection and posture (ITDR, ISPM) (`itdr`)
 - File and malware analysis (`malware-analysis`)
 - AI SOC investigation (`ai-soc-investigation`)
 

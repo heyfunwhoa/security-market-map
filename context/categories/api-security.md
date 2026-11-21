@@ -3,7 +3,7 @@ id: "api-security"
 type: "category"
 name: "API security"
 layer: "core"
-vendors: 15
+vendors: 16
 ---
 
 # API security
@@ -20,6 +20,10 @@ Inventory and abuse of APIs the product exposes. Overlaps DAST, gateways, and ru
 
 - AppSec lead (`appsec`)
 
+## Who vendors sell to
+
+- None recorded.
+
 ## Vendors (primary)
 
 - Salt Security: API security candidate. No capability is asserted.
@@ -27,6 +31,7 @@ Inventory and abuse of APIs the product exposes. Overlaps DAST, gateways, and ru
 - Traceable: API security vendor beside Salt and Noname. No discovery or blocking claim is checked.
 - Cequence: API and application-runtime vendor. Bot and API protection are different modules until the quote says otherwise.
 - ClearVector: Named on the application-runtime row beside API and WAF vendors. No enforcement claim is checked.
+- Wallarm: Wallarm offers API security tools, including discovery of API hosts visible from outside an organization.
 
 ## Vendors (adjacent)
 
