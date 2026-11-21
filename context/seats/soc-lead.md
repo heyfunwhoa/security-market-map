@@ -22,7 +22,7 @@ Own queue outcomes, coverage, staffing, and approval of safe automation.
 
 - SIEM (`siem`)
 - SOAR and response automation (`soar`)
-- Identity threat detection (ITDR) (`itdr`)
+- Identity threat detection and posture (ITDR, ISPM) (`itdr`)
 - Cloud detection and response (`cloud-detection`)
 - Extended detection and response (`xdr`)
 - Managed detection and response (`mdr`)

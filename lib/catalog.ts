@@ -72,6 +72,9 @@ import {
 } from "./data/ecosystem";
 import { distinctions, glossary, scenarios } from "./data/learn";
 import { developerEndpointProducts, developerEndpointSources, developerEndpointClaims } from "./data/developer-endpoint";
+import { accessScenarioSources, issuerReferenceSources, workforceGuideProducts, workforceGuideResearch, workforceGuideVendors } from "./data/workforce-guide";
+import { secretsManagementProducts, secretsManagementResearch, secretsManagementVendors } from "./data/secrets-management";
+import { registerProductEvidence, publicMonitoringVendors, publicMonitoringClaims, publicMonitoringProducts, publicMonitoringSources } from "./data/public-monitoring";
 import { developerEndpointCapabilities, developerEndpointUseCases } from "./data/developer-endpoint-comparison";
 import { events, products, vendors } from "./data/market";
 import { personas } from "./data/personas";
@@ -102,6 +105,8 @@ import { includeSecretsDetection, secretsSweepVendors, secretsSweepProducts, sec
 import { expandedVendors, expandedProducts, expandedSources, expandedClaims, includeExpandedDspm } from "./data/analyst-expansion";
 import { categoryFillVendors, categoryFillProducts, categoryFillSources, categoryFillClaims } from "./data/category-fill";
 import { ispmWimVendors, ispmWimProducts, ispmWimSources, ispmWimClaims } from "./data/ispm-wim";
+import { identityAnalystSources, identityAnalystClaims } from "./data/identity-analyst";
+import { industryIdentitySources } from "./data/industry-identity";
 
 const allCategories = [...categories, ...ecosystemCategories];
 
@@ -143,14 +148,16 @@ export type Catalog = {
 };
 
 function parseCatalog(): Catalog {
-  const parsedClaims = z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims, ...developerEndpointClaims, ...categoryFillClaims, ...ispmWimClaims]);
+  const workforce = registerProductEvidence(workforceGuideResearch);
+  const management = registerProductEvidence(secretsManagementResearch);
+  const parsedClaims = z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims, ...developerEndpointClaims, ...categoryFillClaims, ...ispmWimClaims, ...identityAnalystClaims, ...publicMonitoringClaims, ...management.claims, ...workforce.claims]);
   return {
     // Generated from the data so the header matches the newest claim card. AS_OF is only a fallback.
     asOf: latestClaimDate(parsedClaims) ?? AS_OF,
     domains: z.array(domainSchema).parse(domains),
     categories: z.array(categorySchema).parse(allCategories),
-    vendors: z.array(vendorSchema).parse([...vendors, ...ecosystemVendors, ...secretsSweepVendors, ...expandedVendors, ...categoryFillVendors, ...ispmWimVendors].map(includeSecretsDetection).map(includeExpandedDspm)),
-    products: z.array(productSchema).parse([...products, ...ecosystemProducts, ...secretsSweepProducts, ...expandedProducts, ...developerEndpointProducts, ...categoryFillProducts, ...ispmWimProducts]),
+    vendors: z.array(vendorSchema).parse([...vendors, ...ecosystemVendors, ...secretsSweepVendors, ...expandedVendors, ...categoryFillVendors, ...ispmWimVendors, ...publicMonitoringVendors, ...secretsManagementVendors, ...workforceGuideVendors].map(includeSecretsDetection).map(includeExpandedDspm)),
+    products: z.array(productSchema).parse([...products, ...ecosystemProducts, ...secretsSweepProducts, ...expandedProducts, ...developerEndpointProducts, ...categoryFillProducts, ...ispmWimProducts, ...publicMonitoringProducts, ...secretsManagementProducts, ...workforceGuideProducts]),
     capabilities: z.array(capabilitySchema).parse([...capabilities, ...ecosystemCapabilities, ...developerEndpointCapabilities]),
     useCases: z.array(useCaseSchema).parse([...useCases, ...ecosystemUseCases, ...developerEndpointUseCases]),
     personas: z.array(personaSchema).parse([...personas, ...ecosystemPersonas]).map(withOrphanCategories),
@@ -169,7 +176,7 @@ function parseCatalog(): Catalog {
     buyingTriggers: z.array(buyingTriggerSchema).parse(buyingTriggers),
     qualificationQuestions: z.array(qualificationQuestionSchema).parse(qualificationQuestions),
     vendorSeatTargeting: z.array(vendorSeatTargetingSchema).parse(vendorSeatTargeting),
-    sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources, ...developerEndpointSources, ...personaSources, ...categoryFillSources, ...ispmWimSources]),
+    sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources, ...developerEndpointSources, ...personaSources, ...categoryFillSources, ...ispmWimSources, ...identityAnalystSources, ...industryIdentitySources, ...publicMonitoringSources, ...management.sources, ...workforce.sources, ...issuerReferenceSources, ...accessScenarioSources]),
     claims: parsedClaims,
     relationships: z.array(relationshipSchema).parse([...relationships, ...ecosystemRelationships]),
     stories: z.array(customerStorySchema).parse(customerStories),
@@ -514,6 +521,13 @@ export function catalogProblems(catalog: Catalog): string[] {
       if (seat.personaId && !seatIds.has(seat.personaId)) problems.push(`${label} mandated seat ${seat.personaId} missing`);
       for (const id of seat.sourceIds) if (!sourceIds.has(id)) problems.push(`${label} mandated seat source ${id} missing`);
     }
+    const requirementIds = new Set<string>();
+    for (const req of overlay.identityRequirements) {
+      if (requirementIds.has(req.id)) problems.push(`${label} duplicate identity requirement ${req.id}`);
+      requirementIds.add(req.id);
+      for (const id of req.categoryIds) if (!categoryIds.has(id)) problems.push(`${label} identity requirement ${req.id} category ${id} missing`);
+      for (const id of req.sourceIds) if (!sourceIds.has(id)) problems.push(`${label} identity requirement ${req.id} source ${id} missing`);
+    }
   }
   return problems;
 }
@@ -559,6 +573,15 @@ export function relationshipsForProduct(productId: string): Relationship[] {
   return catalog.relationships.filter(
     (relationship) =>
       relationship.fromProductId === productId || relationship.toProductId === productId,
+  );
+}
+
+/** Industry and regulatory identity requirements that name this category. */
+export function identityRequirementsForCategory(categoryId: string) {
+  return catalog.segmentOverlays.flatMap((overlay) =>
+    overlay.identityRequirements
+      .filter((req) => req.categoryIds.includes(categoryId))
+      .map((req) => ({ overlay, req })),
   );
 }
 

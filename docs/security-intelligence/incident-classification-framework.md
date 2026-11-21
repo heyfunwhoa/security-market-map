@@ -10,18 +10,20 @@ No new registry, database, collector, product-capability claim or separate PRD i
 
 ## Framework selection
 
-| Framework | Intended use | Boundary |
-| --- | --- | --- |
+| Framework                                                                            | Intended use                                                                                                | Boundary                                                                                           |
+| ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | [MITRE ATT&CK Enterprise](https://attack.mitre.org/resources/attack-data-and-tools/) | Versioned adversary tactic, technique and subtechnique mapping, with attack domain, external ID and STIX ID | A technique requires behavioral evidence; no stage inferred just because the incident was a breach |
-| [VERIS](https://verisframework.org/) | Incident structure, actor/action/asset/attribute and outcome where reported | Unknown fields remain unknown; use schema version; not an automatic technique map |
-| [MITRE D3FEND](https://d3fend.mitre.org/) | Defensive countermeasure **candidates**, with rationale | Do not assert a specific product would have prevented the event |
-| [CWE](https://cwe.mitre.org/) | Identified software weakness | Only where an actual weakness is independently evidenced |
-| [CAPEC](https://capec.mitre.org/) | General attack patterns | Optional explanatory relationship, not a substitute for ATT&CK observation |
-| CVE/CISA KEV, GHSA/OSV/NVD | Vulnerability identity and exploitation status | CVE existence != known exploitation; strict ID and affected-version joins |
+| [VERIS](https://verisframework.org/)                                                 | Incident structure, actor/action/asset/attribute and outcome where reported                                 | Unknown fields remain unknown; use schema version; not an automatic technique map                  |
+| [MITRE D3FEND](https://d3fend.mitre.org/)                                            | Defensive countermeasure **candidates**, with rationale                                                     | Do not assert a specific product would have prevented the event                                    |
+| [CWE](https://cwe.mitre.org/)                                                        | Identified software weakness                                                                                | Only where an actual weakness is independently evidenced                                           |
+| [CAPEC](https://capec.mitre.org/)                                                    | General attack patterns                                                                                     | Optional explanatory relationship, not a substitute for ATT&CK observation                         |
+| CVE/CISA KEV, GHSA/OSV/NVD                                                           | Vulnerability identity and exploitation status                                                              | CVE existence != known exploitation; strict ID and affected-version joins                          |
 
 MITRE CTID [VERIS-to-ATT&CK mapping methodology](https://ctid.mitre.org/mappings/about/methodology/veris-methodology/) is a candidate pivot, not proof an incident used every associated technique.
 
 ## Classification candidate contract (illustrative, not deployed)
+
+To add incidents, use the [candidate template](templates/incident-candidate-template.md); it lists every field the candidate batches use, and `lib/incident-candidates.test.ts` checks it.
 
 ```json
 {
@@ -73,6 +75,7 @@ MITRE CTID [VERIS-to-ATT&CK mapping methodology](https://ctid.mitre.org/mappings
 Use a **synthetic** third-party SaaS identity compromise example (not a claim about the linked Reddit post). Scenario: report alleges unauthorized application identity access; method of initial credential acquisition is unknown. VERIS actor/action/asset/attribute are initially unknown pending source review. Candidate ATT&CK mappings should stay `not_evaluated` until behavior-specific authoritative evidence is linked. No verified exploit, exfiltration, privilege escalation, threat actor or compromised customer may be inferred.
 
 Fixture evaluation cases:
+
 - Report states incident happened but no technique detail -> zero published ATT&CK mappings.
 - Source reports use of a specific credential mechanism -> candidate mapping only, with official ID verified against versioned STIX; publication blocked pending reviewer.
 - Two sources disagree -> retain both, mark disputed and block publication of that edge.

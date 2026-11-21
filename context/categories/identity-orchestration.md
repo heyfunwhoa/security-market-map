@@ -29,10 +29,11 @@ Policy engines and relationship-based authorization that sit beside the director
 - Strata Identity: Strata documents Maverics, an identity orchestration layer that routes authentication and authorization between apps and any identity provider.
 - Cerbos: Cerbos documents an authorization platform: an open-source policy decision point plus a managed policy administration plane.
 - AuthZed: AuthZed builds SpiceDB, an open-source Zanzibar-inspired permissions database for relationship-based authorization, and sells managed offerings.
+- Orchid Security: Orchid markets discovery of unmanaged apps, hidden authentication flows and ungoverned access, with posture across self-hosted and SaaS applications.
 
 ## Vendors (adjacent)
 
-- Orchid Security
+_None recorded._
 
 ## What buyers do instead
 

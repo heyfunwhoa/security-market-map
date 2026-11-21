@@ -1,3 +1,10 @@
+import { AwsSecurityHubGuide } from "@/components/aws-security-hub-guide";
+import { CredentialExposureHandoff, WorkforceIdentityGuide } from "@/components/identity-response-guides";
+import { SecretsManagementGuide } from "@/components/secrets-management-guide";
+import exposureGroups from "@/research/public-exposure-options.json";
+import { ExposureIntelligenceResearch, hasExposureIntelligenceResearch } from "@/components/exposure-intelligence-research";
+import { PublicSecretMonitoring } from "@/components/public-secret-monitoring";
+import { ExternalExposureGuides } from "@/components/external-exposure-guides";
 import { PageJourney } from "@/components/page-journey";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { SECRETS_COMPARISON_URL, DEVELOPER_ENDPOINT_COMPARISON_URL } from "@/lib/comparison-selection";
@@ -9,7 +16,7 @@ import { CloudAppShortlist, DataSecurityShortlist } from "@/components/cloud-app
 import { ClaimList } from "@/components/claims";
 import { FlowStrip } from "@/components/category-map";
 import { PageIntro } from "@/components/chrome";
-import { catalog, categoryBySlug, claimsForSubject, vendorById } from "@/lib/catalog";
+import { catalog, categoryBySlug, claimsForSubject, identityRequirementsForCategory, sourceById, vendorById } from "@/lib/catalog";
 import { painsForCategory, seatById, seatsForCategory } from "@/lib/persona-graph";
 import { targetingForCategory } from "@/lib/vendor-targeting";
 import { formatDate } from "@/lib/format";
@@ -37,6 +44,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
   const primaryVendors = [...new Set(products.map((product) => product.vendorId))]
     .flatMap((id) => { const vendor = vendorById(id); return vendor ? [vendor] : []; });
   const categoryClaims = claimsForSubject("category", category.id);
+  const requirements = identityRequirementsForCategory(category.id);
   const relatedIncidents = incidentsForCategory(category.id);
   const owningSeats = seatsForCategory(category.id);
   const seatPains = painsForCategory(category.id);
@@ -55,7 +63,9 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
       <PageIntro kicker={category.layer === "adjacent" ? "Adjacent" : "Category"} title={category.name} lede={category.definition} />
       <PageJourney steps={[
         { href: "#category-buyer", title: "Understand the decision", description: "See the buyer question, owner, workflow and outcomes." },
-        { href: "#category-products", title: "Explore products", description: "Browse primary products, then open their vendor evidence." },
+        hasExposureIntelligenceResearch(category.id)
+          ? { href: "#market-research", title: "Open the market map", description: "Explore companies by buyer need, product evidence and evaluation questions." }
+          : { href: "#category-products", title: "Explore products", description: "Browse primary products, then open their vendor evidence." },
         { href: "#category-evidence", title: "Check category claims", description: "Separate teaching notes from sourced category statements." },
       ]} back={{ href: "/domains", label: "Broaden to all domains" }} />
       <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">{sourcingLabel}</p>
@@ -63,6 +73,16 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
         <span className="font-semibold">Buyer question. </span>
         {category.buyerQuestion}
       </p>
+      {exposureGroups.some((group) => group.cases.some((item) => item.categoryId === category.id)) && (
+        <p className="mt-5 text-sm"><Link href="/landscape/public-exposure" className="text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-ring">Compare public monitoring and external exposure scenarios</Link></p>
+      )}
+      {category.id === "cnapp" && <AwsSecurityHubGuide />}
+      {["ctem", "cspm", "secrets-management", "workforce-identity"].includes(category.id) && (
+        <p className="mt-4 text-sm"><Link className="text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-ring" href="/categories/cnapp#aws-security-hub">Explore AWS Security Hub buyer scenarios</Link></p>
+      )}
+      {category.id === "workforce-identity" && <WorkforceIdentityGuide />}
+      {category.id === "secrets-management" && <><SecretsManagementGuide /><CredentialExposureHandoff /></>}
+      <ExternalExposureGuides categoryId={category.id} />
       {relatedIncidents.length > 0 && (
         <section className="mt-6 rounded-xl border border-border bg-card p-4" aria-labelledby="category-incidents">
           <h2 id="category-incidents" className="text-xl">
@@ -113,6 +133,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
           </Link>
         </section>
       ) : null}
+      {["secrets-detection", "digital-risk-protection"].includes(category.id) && <PublicSecretMonitoring categoryId={category.id} />}
       {category.id === "endpoint-control" ? (
         <section className="mt-6 rounded-xl border border-border bg-card p-4" aria-labelledby="compare-developer-endpoint">
           <h2 id="compare-developer-endpoint" className="text-2xl">Compare developer endpoint controls</h2>
@@ -165,6 +186,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
         </div>
       </dl>
       <p className="mt-6 text-sm leading-6">{category.exampleWorkflow}</p>
+      <ExposureIntelligenceResearch categoryId={category.id} />
       <CloudAppShortlist categoryId={category.id} />
       <DataSecurityShortlist categoryId={category.id} />
       <AcademyLinks categoryId={category.id} />
@@ -339,6 +361,37 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
               ))}
             </ul>
           ) : null}
+        </section>
+      ) : null}
+      {requirements.length > 0 ? (
+        <section className="mt-8" aria-labelledby="category-regulation">
+          <h2 id="category-regulation" className="text-2xl">Industry rules that call for these controls</h2>
+          <p className="mt-2 text-sm leading-6 text-muted-foreground">
+            Each rule names a control this category can help with. Linking a rule here does not make any product compliant.
+          </p>
+          <ul className="mt-3 space-y-3">
+            {requirements.map(({ overlay, req }) => (
+              <li key={`${overlay.id}-${req.id}`} className="rounded-xl border border-border bg-card p-4 text-sm">
+                <p className="font-medium">{overlay.name}</p>
+                <p className="mt-1 leading-6">{req.requirement}</p>
+                <p className="mt-2 text-xs text-muted-foreground">
+                  {req.rule}
+                  {req.sourceIds.map((id) => {
+                    const source = sourceById(id);
+                    return source ? (
+                      <span key={id}>
+                        {" · "}
+                        <a href={source.url} className="text-primary underline-offset-4 hover:underline">
+                          {source.publisher}
+                        </a>
+                        {` (retrieved ${formatDate(source.retrievedAt)})`}
+                      </span>
+                    ) : null;
+                  })}
+                </p>
+              </li>
+            ))}
+          </ul>
         </section>
       ) : null}
       <section className="mt-8">
