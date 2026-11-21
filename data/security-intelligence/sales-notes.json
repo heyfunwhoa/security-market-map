@@ -413,5 +413,211 @@
     "draftedBy": "agent-draft",
     "reviewedBy": "Kristen Aing",
     "reviewedOn": "2026-11-17"
+  },
+  {
+    "incidentId": "incident:binance-wallet-signing-2026",
+    "status": "reviewed",
+    "headline": "Binance said attackers reached its internal wallet-signing service; press summaries of its report say a deployment token on an engineer's laptop was a key step.",
+    "discoveryQuestion": "Where do deployment and CI tokens live on your engineers' laptops, and would you notice one being used from the wrong machine?",
+    "avoid": "Don't state a dollar figure or name an attacker; the report is preliminary and the amounts differ across reports.",
+    "sellerCaveat": "Preliminary report; amounts and attribution aren't confirmed.",
+    "basedOnSourceIds": [
+      "source:binance-incident-report-2026",
+      "source:thehackernews-binance-2026"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-18"
+  },
+  {
+    "incidentId": "incident:novo-nordisk-2026",
+    "status": "reviewed",
+    "headline": "Novo Nordisk said attackers got into a limited number of internal systems and copied non-public data, including personal data.",
+    "discoveryQuestion": "If someone copied data out of a few internal systems, how quickly could you tell which accounts or credentials they used?",
+    "avoid": "Don't repeat the extortion group's data volume or ransom figure; Novo Nordisk hasn't confirmed them.",
+    "sellerCaveat": "How the attackers got in hasn't been disclosed.",
+    "basedOnSourceIds": [
+      "source:novo-nordisk-it-incident-2026"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-18"
+  },
+  {
+    "incidentId": "incident:salesloft-drift-oauth-tokens-2025",
+    "status": "reviewed",
+    "headline": "A sales tool's OAuth tokens let an attacker export Salesforce data from many companies, then mine it for cloud keys.",
+    "discoveryQuestion": "Which third-party apps hold OAuth grants into your CRM, and how fast could you revoke them all?",
+    "avoid": "Don't say Salesforce was breached; Google found the access came through Drift's tokens.",
+    "sellerCaveat": "Google's report doesn't cover how the tokens were first stolen.",
+    "roleNotes": [
+      {
+        "roleId": "ciso",
+        "note": "A trusted integration became the way in, with no phishing of your own staff."
+      },
+      {
+        "roleId": "appsec",
+        "note": "Keys stored in CRM records were in the export, and the attacker searched it for them."
+      }
+    ],
+    "basedOnSourceIds": [
+      "source:gtig-salesloft-drift-2025"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-18"
+  },
+  {
+    "incidentId": "incident:mercedes-benz-github-token-2024",
+    "status": "reviewed",
+    "headline": "One employee's GitHub token in a public repo reportedly opened Mercedes' internal code server for about four months.",
+    "discoveryQuestion": "Would you know if a token for your internal Git server showed up in someone's personal repo?",
+    "avoid": "Don't claim misuse; no attacker use was reported.",
+    "sellerCaveat": "Exposure only; researcher and Mercedes disagree on access scope.",
+    "roleNotes": [
+      {
+        "roleId": "appsec",
+        "note": "Personal repos are outside most org scanning but can hold work tokens."
+      },
+      {
+        "roleId": "platform",
+        "note": "Long-lived Git tokens with broad scope turn one leak into full code access."
+      }
+    ],
+    "basedOnSourceIds": [
+      "source:redhunt-mercedes-github-token-2024"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-18"
+  },
+  {
+    "incidentId": "incident:glassworm-vscode-extensions-2025",
+    "status": "reviewed",
+    "headline": "A worm in VS Code extensions stole npm, GitHub and Git credentials from developers and used them to spread.",
+    "discoveryQuestion": "Do you know which editor extensions your developers run, and what tokens those machines hold?",
+    "avoid": "Don't imply your customer was hit; Koi's counts are downloads, not confirmed victims.",
+    "sellerCaveat": "Figures are from Koi's first report, October 2025.",
+    "roleNotes": [
+      {
+        "roleId": "appsec",
+        "note": "Developer machines are now a supply chain entry point, not just the build."
+      },
+      {
+        "roleId": "ciso",
+        "note": "Stolen publisher credentials let the worm push malicious versions of more extensions."
+      }
+    ],
+    "basedOnSourceIds": [
+      "source:koi-glassworm-2025"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-18"
+  },
+  {
+    "incidentId": "incident:litellm-pypi-trivy-2026",
+    "status": "reviewed",
+    "headline": "A poisoned security scanner in LiteLLM's CI leaked its PyPI token, and two malicious releases stole cloud and Kubernetes secrets.",
+    "discoveryQuestion": "What secrets can your CI security tools read, and who would notice if one of them was tampered with?",
+    "avoid": "Don't blame Trivy's maintainers or name an actor; LiteLLM only says the compromise likely came through Trivy.",
+    "sellerCaveat": "Malicious versions were live about 40 minutes on PyPI.",
+    "roleNotes": [
+      {
+        "roleId": "platform",
+        "note": "Publishing tokens in CI are reachable by every step, including security tools."
+      },
+      {
+        "roleId": "cloud-sec",
+        "note": "Anything that installed those versions should treat its cloud keys as stolen."
+      }
+    ],
+    "basedOnSourceIds": [
+      "source:litellm-security-update-2026"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-18"
+  },
+  {
+    "incidentId": "incident:railway-env-vars-2026",
+    "status": "reviewed",
+    "headline": "Attackers decrypted environment variables for up to about 100,000 Railway workspaces and went after AI keys first.",
+    "discoveryQuestion": "If your hosting provider asked you to rotate every environment variable tomorrow, how long would it take?",
+    "avoid": "Don't quote the 1.85% as confirmed theft; it's Railway's upper bound.",
+    "sellerCaveat": "Misuse estimate is Railway's own, about $740,000.",
+    "roleNotes": [
+      {
+        "roleId": "ciso",
+        "note": "Secrets stored at a vendor share that vendor's breach."
+      },
+      {
+        "roleId": "platform",
+        "note": "Rotation speed decides the damage once a platform tells you to roll keys."
+      }
+    ],
+    "basedOnSourceIds": [
+      "source:railway-incident-report-2026"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-18"
+  },
+  {
+    "incidentId": "incident:fireworks-ai-eval-secrets-2026",
+    "status": "reviewed",
+    "headline": "Stolen internal credentials at Fireworks AI exposed API keys customers had stored in evaluation jobs.",
+    "discoveryQuestion": "Which third-party AI platforms hold copies of your API keys, and who rotates them if one is breached?",
+    "avoid": "Don't say customer models or prompts were accessed; Fireworks says it found no evidence of that.",
+    "sellerCaveat": "Fireworks later disclosed a second, separate incident.",
+    "roleNotes": [
+      {
+        "roleId": "cloud-sec",
+        "note": "Keys copied into vendor job settings outlive the job."
+      },
+      {
+        "roleId": "ciso",
+        "note": "AI vendors are now part of the secrets estate."
+      }
+    ],
+    "basedOnSourceIds": [
+      "source:fireworks-security-bulletin-2026"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-18"
+  },
+  {
+    "incidentId": "incident:chainalysis-agentic-intrusion-2026",
+    "status": "reviewed",
+    "headline": "Chainalysis says an attacker using agentic techniques exposed live tokens and password hashes for every user.",
+    "discoveryQuestion": "If a vendor told you all your users' tokens were exposed, could you rotate every API key that day?",
+    "avoid": "Don't describe the attack method beyond the company's 'offensive agentic techniques' wording.",
+    "sellerCaveat": "Chainalysis first said no tokens were affected, then corrected it.",
+    "roleNotes": [
+      {
+        "roleId": "ciso",
+        "note": "Early vendor statements can change; plan rotation before the final word."
+      },
+      {
+        "roleId": "platform",
+        "note": "API keys tied to a vendor need an owner and a rotation path."
+      }
+    ],
+    "basedOnSourceIds": [
+      "source:chainalysis-security-incident-2026"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-18"
   }
 ]

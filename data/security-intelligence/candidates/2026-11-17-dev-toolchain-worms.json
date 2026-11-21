@@ -1,0 +1,92 @@
+{
+  "batch": "2026-11-17-dev-toolchain-worms",
+  "status": "candidate_only",
+  "publishable": false,
+  "framework": "docs/security-intelligence/incident-classification-framework.md",
+  "discoveryContext": "Surfaced while source-checking the byjoyaing.com field note 'The Developer Workstation Is the New Soft Target' (portfolio PR #341) and the A Key's Day claims recheck (KRU-144). Facts below come from search-result excerpts of the cited pages; the full pages were not fetched from this session. Third-party text was paraphrased, not copied.",
+  "excludedFromIncidents": [
+    "Truffle Security study of 543,699 still-valid credentials in public GitHub code (The Stack v3, published around October 1, 2026)"
+  ],
+  "excludedReason": "Research study with no single affected organization; a candidate for the source registry, not an incident.",
+  "candidates": [
+    {
+      "incidentId": "incident:shai-hulud-second-coming-2025",
+      "title": "Shai-Hulud 2.0 ('The Second Coming') npm worm",
+      "incidentKind": "supply_chain",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "Check Point Research",
+          "canonicalUrl": "https://blog.checkpoint.com/research/shai-hulud-2-0-inside-the-second-coming-the-most-aggressive-npm-supply-chain-attack-of-2025/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-18T03:00:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Palo Alto Networks Unit 42",
+          "canonicalUrl": "https://unit42.paloaltonetworks.com/NPM-supply-chain-attack/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-18T03:00:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "Related to incident:cisa-shai-hulud-2025 (September 2025 wave). Owner decision 2026-11-17: keep as a separate incident; stays a candidate until a primary source is verified.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:shai-hulud-second-coming-2025:1",
+          "statement": "Between November 21 and 23, 2025, attackers compromised hundreds of npm packages and more than 25,000 GitHub repositories within a few hours.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://blog.checkpoint.com/research/shai-hulud-2-0-inside-the-second-coming-the-most-aggressive-npm-supply-chain-attack-of-2025/"
+        },
+        {
+          "id": "claim:shai-hulud-second-coming-2025:2",
+          "statement": "Check Point counted 621 infected npm packages, 487 affected GitHub organizations and 14,206 leaked secrets, of which 2,485 remained valid.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://blog.checkpoint.com/research/shai-hulud-2-0-inside-the-second-coming-the-most-aggressive-npm-supply-chain-attack-of-2025/"
+        },
+        {
+          "id": "claim:shai-hulud-second-coming-2025:3",
+          "statement": "Unit 42 described more than 25,000 malicious repositories across about 350 unique users.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://unit42.paloaltonetworks.com/NPM-supply-chain-attack/"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Package counts differ by source (Check Point 621; other reports 640 to 800). Keep counts attributed, not merged.",
+        "Primary source needed: npm and GitHub advisories for the second wave.",
+        "Sales note: developer and CI credentials were the target; no customer impact should be inferred."
+      ]
+    }
+  ],
+  "promotedToSeed": {
+    "promotedOn": "2026-11-17",
+    "reviewRecord": "docs/security-intelligence/review-2026-11-17.md",
+    "incidentIds": [
+      "incident:glassworm-vscode-extensions-2025"
+    ]
+  }
+}
