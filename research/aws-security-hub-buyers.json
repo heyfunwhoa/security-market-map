@@ -1,0 +1,80 @@
+{
+  "products": [
+    {
+      "label": "AWS Security Hub | Prioritize cloud exposures",
+      "claimIds": ["claim-aws-hub-exposures", "claim-aws-hub-ticketing", "claim-aws-hub-coverage", "claim-aws-hub-azure", "claim-aws-hub-azure-prereqs", "claim-aws-hub-plans", "claim-aws-hub-extended"]
+    },
+    {
+      "label": "AWS Security Hub CSPM | Check cloud configurations",
+      "claimIds": ["claim-aws-hub-posture", "claim-aws-hub-services"]
+    }
+  ],
+  "cases": [
+    {
+      "id": "public-host",
+      "title": "An unfamiliar public hostname points to a production workload",
+      "owner": "Exposure management and the cloud service owner",
+      "decision": "An EASM tool can surface the hostname from the internet. Match it to an account, resource and owner. In Security Hub, look for cloud evidence such as internet reachability and an Inspector vulnerability on that resource. Correlation depends on the signals available.",
+      "question": "Can we match the outside observation to the right workload, explain its priority and reach someone who can change it?",
+      "proof": "Document the resource match, the owner’s decision and a fresh external observation after any fix. If ownership or cloud coverage is unknown, keep that gap visible.",
+      "sourceIds": ["src-public-microsoft-easm", "src-security-hub-exposures"],
+      "guide": "/landscape/public-exposure#easm",
+      "guideLabel": "Compare external asset discovery options"
+    },
+    {
+      "id": "public-key",
+      "title": "A company AWS access key appears in public code",
+      "owner": "AppSec, the IAM administrator and the application owner",
+      "decision": "GitGuardian Public Monitoring or Truffle Security Forager can supply the external observation within their documented scope. Use the key ID to find the IAM user. The cloud team can check for relevant AWS findings while the issuer and workload owner handle the key and its consumers.",
+      "question": "Who can identify which service depends on the key, retire it in IAM and check whether it was used?",
+      "proof": "Record the issuer-side status, healthy application cutover and available activity during the exposure window. A Security Hub ticket tracks work. An empty findings queue cannot establish that the key was unused. The handoff assumes no direct scanner integration.",
+      "sourceIds": ["src-public-gitguardian-sources", "src-public-forager-sources", "src-aws-hub-iam-key", "src-security-hub-exposures"],
+      "guide": "/categories/secrets-management#exposure-handoff",
+      "guideLabel": "Follow the credential through rotation and revocation"
+    },
+    {
+      "id": "employee-session",
+      "title": "An employee credential alert may involve a cloud administrator",
+      "owner": "Threat intelligence, workforce IAM and cloud incident response",
+      "decision": "SpyCloud can flag an exposed workforce identity. IAM checks the employee’s sign-ins and app sessions. If the person used a federated AWS role, cloud responders examine that role and already-issued sessions, using relevant Security Hub findings as additional context.",
+      "question": "Who can connect the named employee to an AWS role session, and what evidence shows when each access path ended?",
+      "proof": "Link the employee investigation to the cloud session timeline and document containment or expiry. Note the users and workloads affected by a shared-role decision. An external credential alert alone leaves actual cloud use unknown.",
+      "sourceIds": ["src-public-spycloud-watchlist", "src-workforce-entra-risk-investigation", "src-workflow-aws-role-sessions", "src-security-hub-exposures"],
+      "guide": "/categories/workforce-identity#workforce-respond",
+      "guideLabel": "Explore the workforce identity investigation"
+    },
+    {
+      "id": "posture-coverage",
+      "title": "A new AWS account has no failed controls",
+      "owner": "Cloud governance and the account owner",
+      "decision": "Start with coverage. Security Hub can report whether a qualifying CSPM standard is enabled. Then review the relevant control, account, Region and evaluation time in Security Hub CSPM.",
+      "question": "Did the resource pass the control, or has the team yet to establish that this resource was evaluated?",
+      "proof": "Reconcile enrolled accounts and Regions against the intended scope. For a failed control, capture the configuration change and a later evaluation of the same control and resource.",
+      "sourceIds": ["src-aws-hub-coverage", "src-security-hub-cspm"],
+      "guide": "/categories/cspm",
+      "guideLabel": "Compare cloud posture management products"
+    },
+    {
+      "id": "s3-investigation",
+      "title": "GuardDuty reports unusual reads from a sensitive S3 bucket",
+      "owner": "SOC, data owner and workload owner",
+      "decision": "GuardDuty supplies the behavioral signal. Macie can add data sensitivity and Security Hub can prioritize related signals. To establish which objects were read, the investigator needs the relevant retained S3 data events. Security Lake can centralize supported telemetry if configured.",
+      "question": "Can we trace the alert to the role, the objects read and the person who knows whether the activity was expected?",
+      "proof": "Reconstruct the timeline from available events and record missing coverage. Time how long it takes to identify the owner. A finding or closed case alone leaves the specific objects and business intent unresolved.",
+      "sourceIds": ["src-guardduty-s3-findings", "src-security-hub-exposures", "src-cloudtrail-data-events", "src-security-lake-aws-sources"],
+      "guide": "/learn?scenario=cedar-ridge&step=investigate#investigate",
+      "guideLabel": "Walk through the fictional Cedar Ridge investigation"
+    },
+    {
+      "id": "mixed-cloud",
+      "title": "An acquisition adds Azure subscriptions to an AWS estate",
+      "owner": "Cloud security architecture and the acquired platform team",
+      "decision": "AWS documents a connector for supported Azure resources and common prioritization across the two clouds. Agree on subscriptions and resource types with the acquired team, then check onboarding, signal coverage and where remediation is assigned.",
+      "question": "For one AWS workload and one comparable Azure workload, can we see the underlying evidence and route each issue to its owner?",
+      "proof": "Record which accounts, subscriptions and resource types were connected. Compare a representative finding and ticket from each cloud. List excluded assets, permissions gaps and incremental cost.",
+      "sourceIds": ["src-aws-hub-azure", "src-aws-hub-azure-prereqs", "src-aws-hub-ticketing", "src-aws-hub-plans"],
+      "guide": "/categories/cnapp#category-products",
+      "guideLabel": "Explore cloud security platform comparisons"
+    }
+  ]
+}

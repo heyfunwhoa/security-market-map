@@ -2,7 +2,7 @@
   "status": "decided",
   "proposedBy": "agent-draft",
   "proposedOn": "2026-11-17",
-  "note": "Owner decisions recorded 2026-11-17: 32 approved, 2 rejected (SolarWinds, too generic). Approved lines are copied into sales-notes.json as roleNotes. Round 2 (2026-11-17): proposedRevision on 7 CISO lines approved by the owner on 2026-11-17 and applied to sales-notes.json.",
+  "note": "Owner decisions recorded 2026-11-17: 32 approved, 2 rejected (SolarWinds, too generic). Approved lines are copied into sales-notes.json as roleNotes. Round 2 (2026-11-17): proposedRevision on 7 CISO lines approved by the owner on 2026-11-17 and applied to sales-notes.json. Round 3 decided 2026-11-17: 14 role notes for newly promoted incidents, 12 approved and 2 edited (Salesloft AppSec, GlassWorm CISO) to match the primary sources.",
   "roles": [
     {
       "id": "ciso",
@@ -358,6 +358,132 @@
       "incidentId": "incident:west-pharmaceutical-intrusion-2026",
       "roleId": "platform",
       "note": "Encrypted systems disrupted operations worldwide; recovery time is the operational question.",
+      "decision": "approved",
+      "editedNote": null,
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:salesloft-drift-oauth-tokens-2025",
+      "roleId": "ciso",
+      "note": "A trusted integration became the way in, with no phishing of your own staff.",
+      "decision": "approved",
+      "editedNote": null,
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:salesloft-drift-oauth-tokens-2025",
+      "roleId": "appsec",
+      "note": "Secrets pasted into support cases ended up in the attacker's export.",
+      "decision": "edited",
+      "editedNote": "Keys stored in CRM records were in the export, and the attacker searched it for them.",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:mercedes-benz-github-token-2024",
+      "roleId": "appsec",
+      "note": "Personal repos are outside most org scanning but can hold work tokens.",
+      "decision": "approved",
+      "editedNote": null,
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:mercedes-benz-github-token-2024",
+      "roleId": "platform",
+      "note": "Long-lived Git tokens with broad scope turn one leak into full code access.",
+      "decision": "approved",
+      "editedNote": null,
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:glassworm-vscode-extensions-2025",
+      "roleId": "appsec",
+      "note": "Developer machines are now a supply chain entry point, not just the build.",
+      "decision": "approved",
+      "editedNote": null,
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:glassworm-vscode-extensions-2025",
+      "roleId": "ciso",
+      "note": "Extensions auto-update, so one compromise reaches many laptops fast.",
+      "decision": "edited",
+      "editedNote": "Stolen publisher credentials let the worm push malicious versions of more extensions.",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:litellm-pypi-trivy-2026",
+      "roleId": "platform",
+      "note": "Publishing tokens in CI are reachable by every step, including security tools.",
+      "decision": "approved",
+      "editedNote": null,
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:litellm-pypi-trivy-2026",
+      "roleId": "cloud-sec",
+      "note": "Anything that installed those versions should treat its cloud keys as stolen.",
+      "decision": "approved",
+      "editedNote": null,
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:railway-env-vars-2026",
+      "roleId": "ciso",
+      "note": "Secrets stored at a vendor share that vendor's breach.",
+      "decision": "approved",
+      "editedNote": null,
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:railway-env-vars-2026",
+      "roleId": "platform",
+      "note": "Rotation speed decides the damage once a platform tells you to roll keys.",
+      "decision": "approved",
+      "editedNote": null,
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:fireworks-ai-eval-secrets-2026",
+      "roleId": "cloud-sec",
+      "note": "Keys copied into vendor job settings outlive the job.",
+      "decision": "approved",
+      "editedNote": null,
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:fireworks-ai-eval-secrets-2026",
+      "roleId": "ciso",
+      "note": "AI vendors are now part of the secrets estate.",
+      "decision": "approved",
+      "editedNote": null,
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:chainalysis-agentic-intrusion-2026",
+      "roleId": "ciso",
+      "note": "Early vendor statements can change; plan rotation before the final word.",
+      "decision": "approved",
+      "editedNote": null,
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:chainalysis-agentic-intrusion-2026",
+      "roleId": "platform",
+      "note": "API keys tied to a vendor need an owner and a rotation path.",
       "decision": "approved",
       "editedNote": null,
       "reviewedBy": "Kristen Aing",

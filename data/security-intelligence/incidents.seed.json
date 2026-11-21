@@ -408,5 +408,229 @@
       "No ATT&CK technique is asserted until a separate sourced mapping review."
     ],
     "lastReviewedOn": "2026-11-17"
+  },
+  {
+    "id": "incident:binance-wallet-signing-2026",
+    "title": "Binance internal wallet-signing service compromise",
+    "kind": "intrusion",
+    "disclosedOn": "2026-11-03",
+    "occurredOn": null,
+    "summary": "Binance's preliminary report says that on 30 October 2026 (UTC+8) attackers used unauthorized access to its internal wallet signing service to start transactions outside the normal withdrawal process. As summarized by The Hacker News, the report traces the campaign to a tampered Homebrew installer an engineer downloaded in June, a fake job interview in September, and a container deployment permission token found on an engineer's computer and used on 29 October.",
+    "epistemicStatus": "reported",
+    "reviewStatus": "seed_reviewed",
+    "affectedEcosystems": [],
+    "sourceIds": [
+      "source:binance-incident-report-2026",
+      "source:thehackernews-binance-2026"
+    ],
+    "techniqueIds": [],
+    "packageIds": [],
+    "uncertaintyNotes": [
+      "Binance's report is preliminary; it says findings will undergo further independent review. Watch for the final report.",
+      "The Binance Square report was checked through a search index on 2026-11-17 because direct fetches are blocked; the attack-chain details come from The Hacker News's summary of that report.",
+      "Amounts differ across reports (about $6.34B and $6.43B); no figure is recorded here.",
+      "No attacker is recorded: the report as summarized does not attribute this theft to a named actor.",
+      "Binance dates the incident 30 October (UTC+8); press timelines give 29 October. occurredOn is left empty until the final report.",
+      "No ATT&CK technique is asserted until a separate sourced mapping review."
+    ],
+    "lastReviewedOn": "2026-11-17"
+  },
+  {
+    "id": "incident:novo-nordisk-2026",
+    "title": "Novo Nordisk unauthorized access and data copied externally",
+    "kind": "breach",
+    "disclosedOn": "2026-06-11",
+    "occurredOn": null,
+    "summary": "Novo Nordisk said on 11 June 2026 that it had identified unauthorized access to a limited number of internal IT systems and that certain non-public data, including personal data, was copied externally without authorization. It said it was investigating with external cybersecurity experts, was in contact with the relevant authorities and was informing impacted parties.",
+    "epistemicStatus": "reported",
+    "reviewStatus": "seed_reviewed",
+    "affectedEcosystems": [],
+    "sourceIds": [
+      "source:novo-nordisk-it-incident-2026"
+    ],
+    "techniqueIds": [],
+    "packageIds": [],
+    "uncertaintyNotes": [
+      "Later company updates, quoted in press, describe pseudonymized clinical-trial data and core operations not being affected; that update page was not captured, so those details are not in the summary.",
+      "An extortion group's claims (about 1.3 TB stolen, a $25M demand) are unconfirmed; no actor is recorded.",
+      "How the attackers got in has not been disclosed.",
+      "No ATT&CK technique is asserted until a separate sourced mapping review."
+    ],
+    "lastReviewedOn": "2026-11-17"
+  },
+  {
+    "id": "incident:salesloft-drift-oauth-tokens-2025",
+    "title": "Salesloft Drift OAuth tokens used to steal Salesforce data",
+    "kind": "breach",
+    "disclosedOn": "2025-08-26",
+    "occurredOn": null,
+    "summary": "Google Threat Intelligence Group reported that from as early as 8 August through at least 18 August 2025, the actor it tracks as UNC6395 used compromised OAuth tokens for the Salesloft Drift app to export large volumes of data from many Salesforce instances, then searched the data for secrets such as AWS access keys and Snowflake tokens. Salesloft and Salesforce revoked all Drift access and refresh tokens on 20 August. Google later confirmed Drift Email tokens were used on 9 August to read mail in a very small number of Google Workspace accounts.",
+    "epistemicStatus": "reported",
+    "reviewStatus": "seed_reviewed",
+    "affectedEcosystems": [
+      "saas"
+    ],
+    "sourceIds": [
+      "source:gtig-salesloft-drift-2025"
+    ],
+    "techniqueIds": [],
+    "packageIds": [],
+    "uncertaintyNotes": [
+      "How the Drift OAuth tokens were first obtained is not covered by this source.",
+      "Counts of affected organizations vary by outlet and are not recorded here.",
+      "No ATT&CK technique is asserted until a separate sourced mapping review."
+    ],
+    "lastReviewedOn": "2026-11-17"
+  },
+  {
+    "id": "incident:mercedes-benz-github-token-2024",
+    "title": "Mercedes-Benz GitHub Enterprise token exposed in a public repository",
+    "kind": "breach",
+    "disclosedOn": "2024-01-29",
+    "occurredOn": null,
+    "summary": "RedHunt Labs reported finding a GitHub token, leaked by a Mercedes-Benz employee in a personal public repository, that it says gave unrestricted access to source code on the company's internal GitHub Enterprise Server. RedHunt dates the leak to 29 September 2023, found it on 11 January 2024, and says Mercedes confirmed the leak and revoked the token on 24 January 2024.",
+    "epistemicStatus": "reported",
+    "reviewStatus": "seed_reviewed",
+    "affectedEcosystems": [
+      "github"
+    ],
+    "sourceIds": [
+      "source:redhunt-mercedes-github-token-2024"
+    ],
+    "techniqueIds": [],
+    "packageIds": [],
+    "uncertaintyNotes": [
+      "Typed as breach to match the Toyota T-Connect precedent; this was an exposure with no confirmed misuse.",
+      "Mercedes said in press statements that the token reached a limited number of repositories, not the entire source code; that statement is not in this source.",
+      "No ATT&CK technique is asserted until a separate sourced mapping review."
+    ],
+    "lastReviewedOn": "2026-11-17"
+  },
+  {
+    "id": "incident:glassworm-vscode-extensions-2025",
+    "title": "GlassWorm self-propagating VS Code extension worm",
+    "kind": "supply_chain",
+    "disclosedOn": "2025-10-18",
+    "occurredOn": null,
+    "summary": "Koi Security reported that seven OpenVSX extensions were compromised on 17 October 2025 with about 35,800 total downloads, and on 19 October found an infected extension in Microsoft's VS Code marketplace. The worm hid code with invisible Unicode characters, harvested npm, GitHub, OpenVSX and Git credentials, and used them to compromise more packages and extensions.",
+    "epistemicStatus": "reported",
+    "reviewStatus": "seed_reviewed",
+    "affectedEcosystems": [
+      "ide_extensions",
+      "npm",
+      "github"
+    ],
+    "sourceIds": [
+      "source:koi-glassworm-2025"
+    ],
+    "techniqueIds": [],
+    "packageIds": [],
+    "uncertaintyNotes": [
+      "Later waves (November 2025 onward) are not covered by this record.",
+      "Extension counts differ between Koi's post and later reporting; Koi's figures are used here.",
+      "No ATT&CK technique is asserted until a separate sourced mapping review."
+    ],
+    "lastReviewedOn": "2026-11-17"
+  },
+  {
+    "id": "incident:litellm-pypi-trivy-2026",
+    "title": "Malicious LiteLLM releases on PyPI after a compromised Trivy scan",
+    "kind": "supply_chain",
+    "disclosedOn": "2026-03-24",
+    "occurredOn": null,
+    "summary": "LiteLLM reported that malicious versions 1.82.7 and 1.82.8 were live on PyPI on 24 March 2026 from 10:39 UTC for about 40 minutes before PyPI quarantined them. It believes the compromise came from the Trivy dependency in its CI/CD security scanning workflow, and that the versions carried a credential stealer that looked for environment variables, SSH keys, cloud credentials, Kubernetes tokens and database passwords.",
+    "epistemicStatus": "reported",
+    "reviewStatus": "seed_reviewed",
+    "affectedEcosystems": [
+      "pypi",
+      "ci_cd"
+    ],
+    "sourceIds": [
+      "source:litellm-security-update-2026"
+    ],
+    "techniqueIds": [],
+    "packageIds": [],
+    "uncertaintyNotes": [
+      "The upstream Trivy compromise is not recorded as its own incident yet.",
+      "Attribution to a named actor is from third-party research and is not recorded here.",
+      "No ATT&CK technique is asserted until a separate sourced mapping review."
+    ],
+    "lastReviewedOn": "2026-11-17"
+  },
+  {
+    "id": "incident:railway-env-vars-2026",
+    "title": "Railway breach exposing customer environment variables",
+    "kind": "breach",
+    "disclosedOn": "2026-10-21",
+    "occurredOn": null,
+    "summary": "Railway reported that an attacker exploited its build infrastructure on 20 October 2026, moved laterally, and decrypted a subset of customer environment variables for at most 1.85% of workspaces, about 100,000. Decrypted data included linked-account tokens, such as GitHub OAuth tokens and bring-your-own AI keys, for 1,852 users. Railway asked major providers to revoke potentially exposed keys on 21 October and estimated unauthorized spend on stolen keys at about $740,000.",
+    "epistemicStatus": "reported",
+    "reviewStatus": "seed_reviewed",
+    "affectedEcosystems": [
+      "saas",
+      "ci_cd",
+      "github"
+    ],
+    "sourceIds": [
+      "source:railway-incident-report-2026"
+    ],
+    "techniqueIds": [],
+    "packageIds": [],
+    "uncertaintyNotes": [
+      "The 1.85% figure is Railway's stated upper bound, not a confirmed count of stolen variables.",
+      "Railway has not established whether the attacker operated the services that later used the stolen keys.",
+      "No ATT&CK technique is asserted until a separate sourced mapping review."
+    ],
+    "lastReviewedOn": "2026-11-17"
+  },
+  {
+    "id": "incident:fireworks-ai-eval-secrets-2026",
+    "title": "Fireworks AI incident exposing secrets in customer evaluation jobs",
+    "kind": "breach",
+    "disclosedOn": "2026-10-09",
+    "occurredOn": null,
+    "summary": "Fireworks AI reported that on 6 October 2026 it identified unauthorized use of internal Fireworks credentials, through which a third party accessed environment variables used in evaluation jobs in a limited number of customer accounts, capturing API keys and tokens stored as secrets. It revoked the internal credentials and affected keys and rotated employee API keys and service-account tokens. A 17 November update describes this as the first of two incidents.",
+    "epistemicStatus": "reported",
+    "reviewStatus": "seed_reviewed",
+    "affectedEcosystems": [
+      "saas",
+      "ai_agents"
+    ],
+    "sourceIds": [
+      "source:fireworks-security-bulletin-2026"
+    ],
+    "techniqueIds": [],
+    "packageIds": [],
+    "uncertaintyNotes": [
+      "How the internal credentials were obtained has not been disclosed.",
+      "The second incident (23 to 30 October 2026) is not recorded separately yet.",
+      "No ATT&CK technique is asserted until a separate sourced mapping review."
+    ],
+    "lastReviewedOn": "2026-11-17"
+  },
+  {
+    "id": "incident:chainalysis-agentic-intrusion-2026",
+    "title": "Chainalysis intrusion exposing live tokens and password hashes",
+    "kind": "intrusion",
+    "disclosedOn": "2026-10-30",
+    "occurredOn": null,
+    "summary": "Chainalysis reported on 30 October 2026 that an external actor using offensive agentic techniques gained unauthorized access to its systems and internal tools. A later update said names, usernames, password hashes and live tokens for all Chainalysis users were exposed, and that KYT, address screening and the login page were taken offline. Every user must reset passwords and rotate API keys.",
+    "epistemicStatus": "reported",
+    "reviewStatus": "seed_reviewed",
+    "affectedEcosystems": [
+      "saas",
+      "ai_agents"
+    ],
+    "sourceIds": [
+      "source:chainalysis-security-incident-2026"
+    ],
+    "techniqueIds": [],
+    "packageIds": [],
+    "uncertaintyNotes": [
+      "Correction in the source: the 30 October update said there was no evidence of access to authentication credentials or session tokens; a later update on the same page reported live tokens for all users exposed.",
+      "'Offensive agentic techniques' is the company's wording; the tooling used is not recorded.",
+      "No ATT&CK technique is asserted until a separate sourced mapping review."
+    ],
+    "lastReviewedOn": "2026-11-17"
   }
 ]

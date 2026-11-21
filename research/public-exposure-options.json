@@ -1,0 +1,419 @@
+[
+  {
+    "id": "assets",
+    "title": "Find exposed assets and dependencies",
+    "cases": [
+      {
+        "id": "easm",
+        "title": "External attack surface management",
+        "categoryId": "external-attack-surface",
+        "scenario": "After an acquisition, a customer finds an old support portal missing from the asset inventory. Is it still theirs?",
+        "visibility": "Domains, hosts and their public relationships are visible from outside. Give the product a starting organization or scope and review suggested assets.",
+        "attribution": "Use the domain history, subsidiary relationship and current service owner to confirm the portal belongs in the inventory.",
+        "owner": "Exposure management identifies the asset. Infrastructure confirms ownership and resolves the finding.",
+        "options": [
+          {
+            "label": "Microsoft Defender EASM",
+            "claimIds": [
+              "claim-public-microsoft-easm"
+            ]
+          },
+          {
+            "label": "CyCognito",
+            "claimIds": [
+              "claim-public-cycognito-assets"
+            ]
+          },
+          {
+            "label": "Cortex Xpanse Expander",
+            "claimIds": [
+              "claim-public-xpanse-attribution"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "public-api-discovery",
+        "title": "Public API discovery",
+        "categoryId": "api-security",
+        "scenario": "The mobile app still works after the old customer portal is retired. Which API host or endpoints support it?",
+        "visibility": "An outside-in service can look for API hosts in an agreed scope. A traffic-based service needs requests to pass through its network. A configuration-based option needs read-only access to cloud or code systems.",
+        "attribution": "Match the host or observed route to a gateway, application and team. Ask which endpoints would be invisible without traffic.",
+        "owner": "The API platform owner and application team decide whether to keep, protect or retire it.",
+        "options": [
+          {
+            "label": "Wallarm API Attack Surface Management",
+            "claimIds": [
+              "claim-public-wallarm-apis"
+            ]
+          },
+          {
+            "label": "Cloudflare API Shield API Discovery",
+            "claimIds": [
+              "claim-public-cloudflare-apis"
+            ]
+          },
+          {
+            "label": "Salt Connect",
+            "claimIds": [
+              "claim-public-salt-api-inventory"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "dns-certificates",
+        "title": "DNS and certificate monitoring",
+        "categoryId": "external-attack-surface",
+        "scenario": "A campaign ends. Its old subdomain still points to a retired service, and a certificate appears for a similar hostname. Who owns each?",
+        "visibility": "DNS records and certificates in public transparency logs are observable. Configure the relevant domains or organization for ongoing alerts.",
+        "attribution": "Check the exact hostname, certificate name and service record against what the DNS and certificate owners intended.",
+        "owner": "DNS operations reviews stale records. The PKI team investigates unexpected issuance.",
+        "options": [
+          {
+            "label": "DigiCert Trust Lifecycle Manager",
+            "claimIds": [
+              "claim-public-digicert-ct"
+            ]
+          },
+          {
+            "label": "Detectify Surface Monitoring",
+            "claimIds": [
+              "claim-public-detectify-dns"
+            ]
+          },
+          {
+            "label": "SSLMate Cert Spotter",
+            "claimIds": [
+              "claim-public-sslmate-issuance"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "supplier-exposure",
+        "title": "Third-party attack surface monitoring and ratings",
+        "categoryId": "third-party-risk",
+        "scenario": "A payroll provider’s security rating drops. Which finding warrants a conversation with the supplier?",
+        "visibility": "Rating services can observe external signals. A buyer needs its supplier list and service criticality to prioritize follow-up.",
+        "attribution": "Ask the supplier to confirm the asset and observation. Map the affected service to the contract and business process.",
+        "owner": "Third-party risk contacts the supplier’s security owner and tracks the response.",
+        "options": [
+          {
+            "label": "Bitsight Continuous Monitoring",
+            "claimIds": [
+              "claim-public-bitsight-suppliers"
+            ]
+          },
+          {
+            "label": "SecurityScorecard Ratings",
+            "claimIds": [
+              "claim-public-scorecard-suppliers"
+            ]
+          },
+          {
+            "label": "UpGuard Vendor Risk",
+            "claimIds": [
+              "claim-public-upguard-suppliers"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "package-impersonation",
+        "title": "Package impersonation and dependency risk",
+        "categoryId": "software-supply-chain",
+        "scenario": "A proposed dependency differs from a familiar package name by one letter. Could it enter the company’s build?",
+        "visibility": "Package names and metadata can be public. A dependency alert or package request ties that evidence to a particular project or download path.",
+        "attribution": "Match the exact package, version and request to the repository or build. Registry-wide monitoring of a company’s brand is a separate capability to verify.",
+        "owner": "Developer security and the build owner review the dependency or block the request.",
+        "options": [
+          {
+            "label": "Socket dependency alerts",
+            "claimIds": [
+              "claim-public-socket-typos"
+            ]
+          },
+          {
+            "label": "Sonatype Firewall Pro",
+            "claimIds": [
+              "claim-public-sonatype-packages"
+            ]
+          },
+          {
+            "label": "JFrog Curation",
+            "claimIds": [
+              "claim-public-jfrog-package-policy"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "leaks",
+    "title": "Find leaked company material",
+    "cases": [
+      {
+        "id": "public-secrets",
+        "title": "Public secrets monitoring",
+        "categoryId": "secrets-detection",
+        "scenario": "An employee accidentally publishes a company API key from a personal account. Who can identify the key and revoke it?",
+        "visibility": "A public commit, Gist or package can be visible outside the company. Supported sources, history and access to company-specific alerts vary by product.",
+        "attribution": "Separate the identity of the person who posted it from ownership of the key. Check the vendor’s attribution evidence and verification for that credential type.",
+        "owner": "AppSec identifies the credential owner, who revokes or rotates the key and checks usage.",
+        "options": [
+          {
+            "label": "GitGuardian Public Monitoring",
+            "claimIds": [
+              "claim-public-gitguardian-sources",
+              "claim-public-gitguardian-attribution"
+            ]
+          },
+          {
+            "label": "GitHub Secret Protection public monitoring",
+            "claimIds": [
+              "claim-public-github-attribution",
+              "claim-public-github-availability"
+            ]
+          },
+          {
+            "label": "Truffle Security Forager",
+            "claimIds": [
+              "claim-public-forager-sources",
+              "claim-public-forager-verification"
+            ]
+          },
+          {
+            "label": "CybelAngel public repository case",
+            "claimIds": [
+              "claim-public-cybelangel-repository-case"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "public-code",
+        "title": "Public code and configuration leaks",
+        "categoryId": "digital-risk-protection",
+        "scenario": "A personal repository contains a file resembling an internal deployment template. Is this actually company code?",
+        "visibility": "Public repository content can be inspected. Available sources differ, and company-specific names or recognizable code help narrow the search.",
+        "attribution": "Compare the material with a known internal file and ask its maintainer to confirm the match. Check separately for embedded credentials.",
+        "owner": "The CTI analyst and engineering owner verify the leak and coordinate removal. AppSec handles any exposed secrets.",
+        "options": [
+          {
+            "label": "Flare Cyber Threat Intelligence Platform",
+            "claimIds": [
+              "claim-public-flare-repositories"
+            ]
+          },
+          {
+            "label": "Recorded Future Brand Intelligence",
+            "claimIds": [
+              "claim-public-recorded-future-sources"
+            ]
+          },
+          {
+            "label": "SOCRadar Brand Protection",
+            "claimIds": [
+              "claim-public-socradar-code"
+            ]
+          },
+          {
+            "label": "Outpost24 Data Leakage",
+            "claimIds": [
+              "claim-public-outpost-documents"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "storage",
+        "title": "Public cloud storage exposure",
+        "categoryId": "cspm",
+        "scenario": "A customer export sits in cloud storage. Can anyone read it, and who can change the permission?",
+        "visibility": "The two examples use connected cloud accounts and permissions. Their policies and configuration provide evidence that an outside observer may lack.",
+        "attribution": "Confirm the bucket or container, account owner, intended audience and effective access. Access logs are separate evidence of a download.",
+        "owner": "Cloud security and the data owner adjust permissions and verify the resulting access.",
+        "options": [
+          {
+            "label": "AWS IAM Access Analyzer for S3",
+            "claimIds": [
+              "claim-public-aws-external-storage"
+            ]
+          },
+          {
+            "label": "Microsoft Defender CSPM",
+            "claimIds": [
+              "claim-public-microsoft-public-storage"
+            ]
+          },
+          {
+            "label": "Google Security Command Center Enterprise",
+            "claimIds": [
+              "claim-public-google-storage-findings"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "documents",
+        "title": "Exposed documents and sharing links",
+        "categoryId": "data-access-governance",
+        "scenario": "A supplier may have posted an internal price list. Is there an external copy, or did someone create a broadly accessible link inside the company?",
+        "visibility": "An external leakage service can search covered repositories. A SharePoint admin can inspect sharing-link activity in the company tenant. Each sees a different part of the incident.",
+        "attribution": "Have the document owner confirm the file and intended recipients. Identify which organization controls the copy or link.",
+        "owner": "The data owner works with supplier management on an external copy or a tenant admin on an internal sharing link.",
+        "options": [
+          {
+            "label": "Outpost24 Data Leakage",
+            "claimIds": [
+              "claim-public-outpost-documents"
+            ]
+          },
+          {
+            "label": "SharePoint Advanced Management",
+            "claimIds": [
+              "claim-public-sharepoint-links"
+            ]
+          },
+          {
+            "label": "CybelAngel Data Breach Prevention",
+            "claimIds": [
+              "claim-public-cybelangel-documents"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "intel",
+    "title": "Investigate threats and identity abuse",
+    "cases": [
+      {
+        "id": "cti",
+        "title": "Cyber threat intelligence",
+        "categoryId": "threat-intelligence",
+        "scenario": "A peer in the same sector reports a threat campaign. What should our SOC investigate this week?",
+        "visibility": "Providers collect external intelligence, which can include restricted sources. Customer identifiers and internal telemetry help establish relevance and impact.",
+        "attribution": "Separate an actor targeting the sector from an observation naming the organization. Check for corroborating evidence in internal systems.",
+        "owner": "The threat intelligence lead briefs the SOC or detection team with a question it can investigate.",
+        "options": [
+          {
+            "label": "Recorded Future Threat Intelligence",
+            "claimIds": [
+              "claim-public-recorded-future-threat"
+            ]
+          },
+          {
+            "label": "Searchlight Threat",
+            "claimIds": [
+              "claim-public-searchlight-credentials"
+            ]
+          },
+          {
+            "label": "Google Threat Intelligence",
+            "claimIds": [
+              "claim-public-google-threat-intelligence"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "brand",
+        "title": "Brand impersonation and takedowns",
+        "categoryId": "digital-risk-protection",
+        "scenario": "Customers report a fake sign-in page using the company’s logo. Who can get it removed and confirm it stayed down?",
+        "visibility": "Lookalike domains and fake public pages can be observed externally. Legitimate brand assets and authority to act support the response.",
+        "attribution": "Compare the page and domain against approved properties. Identify the trademark holder and who may authorize a removal request.",
+        "owner": "Brand protection, fraud and legal coordinate the request and record confirmation from the host or registrar.",
+        "options": [
+          {
+            "label": "Group-IB Digital Risk Protection",
+            "claimIds": [
+              "claim-public-group-ib-brand"
+            ]
+          },
+          {
+            "label": "Recorded Future Brand Intelligence",
+            "claimIds": [
+              "claim-public-recorded-future-response"
+            ]
+          },
+          {
+            "label": "SOCRadar Brand Protection",
+            "claimIds": [
+              "claim-public-socradar-brand-plans"
+            ]
+          },
+          {
+            "label": "Netcraft Phishing Protection",
+            "claimIds": [
+              "claim-public-netcraft-phishing"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "workforce",
+        "title": "Stolen workforce credentials",
+        "categoryId": "itdr",
+        "scenario": "An employee address appears in a breach record. Does it belong to a current account that needs attention?",
+        "visibility": "Breach and underground datasets can surface exposed credentials. These sources may require a subscription. A domain match alone cannot establish account activity.",
+        "attribution": "Match the identity to a current or former employee, then review identity-provider evidence before choosing a response.",
+        "owner": "The SOC and identity operations team review account activity and decide whether to reset credentials or revoke sessions.",
+        "options": [
+          {
+            "label": "Flare breach directory",
+            "claimIds": [
+              "claim-public-flare-breaches"
+            ]
+          },
+          {
+            "label": "Searchlight Threat",
+            "claimIds": [
+              "claim-public-searchlight-credentials"
+            ]
+          },
+          {
+            "label": "SpyCloud Workforce Threat Protection",
+            "claimIds": [
+              "claim-public-spycloud-watchlist"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "email-authentication",
+        "title": "Email domain authentication and DMARC",
+        "categoryId": "email-security",
+        "scenario": "An unfamiliar service sends mail as the company after a marketing launch. Is it an approved sender with broken authentication?",
+        "visibility": "The DNS policy is public. Sender results depend on receiving systems submitting aggregate reports and the customer routing them to a service.",
+        "attribution": "Match reported sending services to approved mail platforms and business owners. DMARC addresses use of the sending domain. A separately registered lookalike belongs in brand protection.",
+        "owner": "Email security and DNS operations consult marketing operations before changing the sending configuration or policy.",
+        "options": [
+          {
+            "label": "Valimail Monitor",
+            "claimIds": [
+              "claim-public-valimail-reports",
+              "claim-public-valimail-owner"
+            ]
+          },
+          {
+            "label": "Proofpoint Email Fraud Defense",
+            "claimIds": [
+              "claim-public-proofpoint-dmarc"
+            ]
+          },
+          {
+            "label": "dmarcian DMARC Management Platform",
+            "claimIds": [
+              "claim-public-dmarcian-sources"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

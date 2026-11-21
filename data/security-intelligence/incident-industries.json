@@ -152,5 +152,33 @@
     "proposedOn": "2026-11-17",
     "reviewedBy": "Kristen Aing",
     "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "industry:binance-wallet-signing-2026:financial_services",
+    "incidentId": "incident:binance-wallet-signing-2026",
+    "industry": "financial_services",
+    "rationale": "Binance, the company that published the report, runs a cryptocurrency exchange. Industry describes the organization the source names.",
+    "basedOnSourceIds": [
+      "source:binance-incident-report-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-18"
+  },
+  {
+    "id": "industry:novo-nordisk-2026:healthcare_life_sciences",
+    "incidentId": "incident:novo-nordisk-2026",
+    "industry": "healthcare_life_sciences",
+    "rationale": "Novo Nordisk, the company that made the announcement, is a pharmaceutical company. Industry describes the organization the source names.",
+    "basedOnSourceIds": [
+      "source:novo-nordisk-it-incident-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-18"
   }
 ]
