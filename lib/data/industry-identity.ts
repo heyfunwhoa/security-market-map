@@ -97,4 +97,30 @@ export const industryIdentitySources: Source[] = [
     excerpt:
       "Article 20 requires identity management that uniquely identifies and authenticates natural persons and systems. Article 21 requires access rights based on need-to-know and least privilege, segregation of duties, and strong authentication for remote, privileged and critical access.",
   },
+  {
+    id: "src-reg-nis2-directive-2022-2555",
+    title: "Directive (EU) 2022/2555 (NIS2)",
+    url: "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32022L2555",
+    canonicalUrl: "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32022L2555",
+    publisher: "European Union (EUR-Lex)",
+    sourceType: "official_docs",
+    publishedAt: "2022-12-14",
+    retrievedAt: "2026-11-18",
+    volatility: "stable",
+    excerpt:
+      "Article 21(2) lists the minimum cybersecurity risk-management measures, including (i) human resources security, access control policies and asset management, and (j) the use of multi-factor or continuous authentication solutions where appropriate.",
+  },
+  {
+    id: "src-reg-nis2-ir-2024-2690",
+    title: "Commission Implementing Regulation (EU) 2024/2690 (NIS2 technical and methodological requirements)",
+    url: "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32024R2690",
+    canonicalUrl: "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32024R2690",
+    publisher: "European Commission (EUR-Lex)",
+    sourceType: "official_docs",
+    publishedAt: "2024-10-17",
+    retrievedAt: "2026-11-18",
+    volatility: "stable",
+    excerpt:
+      "For digital infrastructure and digital provider entities, including managed service and managed security service providers, the Annex requires access rights on need-to-know and least privilege, policies for privileged and administration accounts with strong authentication, full identity life-cycle management, and multi-factor or continuous authentication.",
+  },
 ];
