@@ -1,3 +1,4 @@
+import { evidenceLabel } from "./evidence-labels";
 const MONTHS = [
   "Jan",
   "Feb",
@@ -70,23 +71,9 @@ export function sourceTypeLabel(type: string): string {
   }
 }
 
+/** Same wording as the site's evidence badges. */
 export function verificationLabel(status: string): string {
-  switch (status) {
-    case "verified":
-      return "Independent source";
-    case "vendor_published":
-      return "Vendor said this";
-    case "needs_review":
-      return "Needs review";
-    case "conflicting":
-      return "Conflicting";
-    case "superseded":
-      return "Superseded";
-    case "research_candidate":
-      return "Research candidate";
-    default:
-      return status;
-  }
+  return evidenceLabel(status);
 }
 
 export function cellStatusLabel(status: string): string {
