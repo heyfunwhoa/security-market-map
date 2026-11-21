@@ -10,16 +10,24 @@ import type { SearchHit } from "@/lib/search";
 import { SearchCommand } from "@/components/search-panel";
 import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetClose } from "@/components/ui/sheet";
 
+/**
+ * Menu groups are named for what a visitor is trying to do (UX audit item 1).
+ * Every page keeps its address; only the grouping and order changed.
+ */
 const NAV_GROUPS = [
-  { title: "Explore", links: [
-    { href: "/domains", label: "Explore domains", description: "Start with broad security areas and their categories." },
-    { href: "/landscape", label: "Browse products", description: "Filter vendors and products, inspect details, and build a shortlist." },
-    { href: "/compare", label: "Compare evidence", description: "Compare product evidence for a specific use case." },
+  { title: "Prep for an account", links: [
     { href: "/incidents", label: "Incidents", description: "Reviewed, sourced security incidents with talk tracks." },
     { href: "/use-cases", label: "Buyer use cases", description: "Start with the problem you need to solve." },
     { href: "/personas", label: "Buyer seats", description: "Who buys, uses, approves, and blocks, with pains and titles." },
+    { href: "/territory", label: "Territory planning", description: "Organize account and territory research." },
+    { href: "/budget", label: "Budget worksheet", description: "Work through price signals and budget assumptions." },
   ] },
-  { title: "Learn", links: [
+  { title: "Explore the market", links: [
+    { href: "/domains", label: "Explore domains", description: "Start with broad security areas and their categories." },
+    { href: "/landscape", label: "Browse products", description: "Filter vendors and products, inspect details, and build a shortlist." },
+    { href: "/compare", label: "Compare evidence", description: "Compare product evidence for a specific use case." },
+  ] },
+  { title: "Understand how it works", links: [
     { href: "/learn", label: "Concepts & scenarios", description: "Understand terminology and practical scenarios." },
     { href: "/connections", label: "How tools connect", description: "Explore identity, secrets, and adjacent security jobs." },
     { href: "/evidence-graph", label: "Evidence graph", description: "Inspect sourced identity, secrets, and non-human identity relationships." },
@@ -27,16 +35,18 @@ const NAV_GROUPS = [
     { href: "/control-map", label: "Security controls", description: "Explore the controls that address security problems." },
     { href: "/frameworks", label: "Frameworks", description: "Connect security concepts to framework guidance." },
   ] },
-  { title: "Plan", links: [
-    { href: "/budget", label: "Budget worksheet", description: "Work through price signals and budget assumptions." },
-    { href: "/territory", label: "Territory planning", description: "Organize account and territory research." },
-  ] },
-  { title: "Research", links: [
+  { title: "About the evidence", links: [
     { href: "/methodology", label: "Methodology", description: "How evidence, status labels, and Unknown work on this map." },
     { href: "/sources", label: "Sources & references", description: "Inspect the references behind the research." },
     { href: "/about", label: "About", description: "Who maintains the map and what it is for." },
   ] },
 ];
+
+/** The four pages shown in the desktop header: the account-prep entry point plus the three market views. */
+const HEADER_HREFS = ["/incidents", "/domains", "/landscape", "/compare"];
+export const HEADER_LINKS = HEADER_HREFS.map((href) => NAV_GROUPS.flatMap((group) => group.links).find((link) => link.href === href)!);
+export const NAV_GROUP_TITLES = NAV_GROUPS.map((group) => group.title);
+export const NAV_HREFS = NAV_GROUPS.flatMap((group) => group.links.map((link) => link.href));
 
 const navLinkClass = "inline-flex min-h-11 items-center rounded-md px-3 text-sm hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring";
 
@@ -51,7 +61,7 @@ export function SiteHeader({ hits, asOf }: { hits: SearchHit[]; asOf: string }) 
           <span className="block text-xs text-muted-foreground">Research notes · as of {formatDate(asOf)}</span>
         </Link>
         <nav aria-label="Primary" className="hidden items-center gap-1 xl:flex">
-          {NAV_GROUPS[0].links.slice(0, 4).map((link) => <Link key={link.href} href={link.href} aria-current={pathname === link.href ? "page" : undefined} className={cn(navLinkClass, isActive(link.href) ? "bg-muted font-semibold" : "text-muted-foreground")}>{link.label}</Link>)}
+          {HEADER_LINKS.map((link) => <Link key={link.href} href={link.href} aria-current={pathname === link.href ? "page" : undefined} className={cn(navLinkClass, isActive(link.href) ? "bg-muted font-semibold" : "text-muted-foreground")}>{link.label}</Link>)}
         </nav>
         <div className="flex shrink-0 items-center gap-2">
           <SearchCommand hits={hits} />
@@ -62,7 +72,7 @@ export function SiteHeader({ hits, asOf }: { hits: SearchHit[]; asOf: string }) 
             <SheetContent showCloseButton={false} className="data-[side=right]:w-full data-[side=right]:sm:max-w-lg overflow-y-auto overscroll-contain motion-reduce:animate-none motion-reduce:transition-none">
               <SheetHeader className="border-b border-border p-5">
                 <div className="flex items-center justify-between gap-3"><SheetTitle className="text-xl">Explore the map</SheetTitle><SheetClose className={`${navLinkClass} border border-border`}>Close</SheetClose></div>
-                <SheetDescription>Browse tools, understand the concepts, or inspect the research.</SheetDescription>
+                <SheetDescription>Prep for an account, explore the market, or check how the evidence works.</SheetDescription>
               </SheetHeader>
               <nav aria-label="All pages" className="space-y-6 px-5 pb-6">
                 <SheetClose asChild><Link href="/" aria-current={pathname === "/" ? "page" : undefined} className={`${navLinkClass} border border-border`}>Home overview</Link></SheetClose>
