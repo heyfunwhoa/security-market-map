@@ -3,7 +3,7 @@ id: "itdr"
 type: "category"
 name: "Identity threat detection and posture (ITDR, ISPM)"
 layer: "core"
-vendors: 17
+vendors: 19
 ---
 
 # Identity threat detection and posture (ITDR, ISPM)
@@ -42,6 +42,7 @@ From 7 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - SpecterOps: BloodHound is an attack-path tool for identity. Useful beside ITDR and privileged access. Not an IGA product.
 - SentinelOne: Homepage retrieved 26 Oct 2026 describes endpoint and identity protection in one agent, and says the platform detects, contains, and responds. That detection sentence is not an endpoint-only cell and not an ITDR cell.
 - AuthMind: AuthMind markets identity observability: correlating access-path activity of human, non-human and AI agent identities across cloud, SaaS and on-premises.
+- SpyCloud: SpyCloud connects recovered breach and infostealer data to customer watchlists for investigation.
 
 ## Vendors (adjacent)
 
@@ -56,6 +57,7 @@ From 7 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - Obsidian Security
 - Orchid Security
 - Push Security
+- Searchlight Cyber
 
 ## What buyers do instead
 
