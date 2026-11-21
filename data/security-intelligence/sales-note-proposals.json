@@ -2,7 +2,7 @@
   "status": "decided",
   "proposedBy": "agent-draft",
   "proposedOn": "2026-11-17",
-  "note": "Owner decisions recorded 2026-11-17 and applied to sales-notes.json. proposedHeadline is kept for history; headlineDecision says whether it was applied.",
+  "note": "Owner decisions recorded 2026-11-17 and applied to sales-notes.json. proposedHeadline is kept for history; headlineDecision says whether it was applied. Round 3 decided 2026-11-17: 7 caveats for newly promoted incidents approved as written.",
   "proposals": [
     {
       "incidentId": "incident:cisa-solarwinds-2020",
@@ -260,6 +260,111 @@
       "reason": null,
       "basedOnSourceIds": [
         "source:sec-8k-west-pharmaceutical-2026"
+      ],
+      "decision": "approved",
+      "decisionSummary": "caveat approved",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:salesloft-drift-oauth-tokens-2025",
+      "sellerCaveat": "Google's report doesn't cover how the tokens were first stolen.",
+      "approvedSellerCaveat": "Google's report doesn't cover how the tokens were first stolen.",
+      "proposedHeadline": null,
+      "headlineDecision": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:gtig-salesloft-drift-2025"
+      ],
+      "decision": "approved",
+      "decisionSummary": "caveat approved",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:mercedes-benz-github-token-2024",
+      "sellerCaveat": "Exposure only; researcher and Mercedes disagree on access scope.",
+      "approvedSellerCaveat": "Exposure only; researcher and Mercedes disagree on access scope.",
+      "proposedHeadline": null,
+      "headlineDecision": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:redhunt-mercedes-github-token-2024"
+      ],
+      "decision": "approved",
+      "decisionSummary": "caveat approved",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:glassworm-vscode-extensions-2025",
+      "sellerCaveat": "Figures are from Koi's first report, October 2025.",
+      "approvedSellerCaveat": "Figures are from Koi's first report, October 2025.",
+      "proposedHeadline": null,
+      "headlineDecision": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:koi-glassworm-2025"
+      ],
+      "decision": "approved",
+      "decisionSummary": "caveat approved",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:litellm-pypi-trivy-2026",
+      "sellerCaveat": "Malicious versions were live about 40 minutes on PyPI.",
+      "approvedSellerCaveat": "Malicious versions were live about 40 minutes on PyPI.",
+      "proposedHeadline": null,
+      "headlineDecision": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:litellm-security-update-2026"
+      ],
+      "decision": "approved",
+      "decisionSummary": "caveat approved",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:railway-env-vars-2026",
+      "sellerCaveat": "Misuse estimate is Railway's own, about $740,000.",
+      "approvedSellerCaveat": "Misuse estimate is Railway's own, about $740,000.",
+      "proposedHeadline": null,
+      "headlineDecision": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:railway-incident-report-2026"
+      ],
+      "decision": "approved",
+      "decisionSummary": "caveat approved",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:fireworks-ai-eval-secrets-2026",
+      "sellerCaveat": "Fireworks later disclosed a second, separate incident.",
+      "approvedSellerCaveat": "Fireworks later disclosed a second, separate incident.",
+      "proposedHeadline": null,
+      "headlineDecision": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:fireworks-security-bulletin-2026"
+      ],
+      "decision": "approved",
+      "decisionSummary": "caveat approved",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:chainalysis-agentic-intrusion-2026",
+      "sellerCaveat": "Chainalysis first said no tokens were affected, then corrected it.",
+      "approvedSellerCaveat": "Chainalysis first said no tokens were affected, then corrected it.",
+      "proposedHeadline": null,
+      "headlineDecision": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:chainalysis-security-incident-2026"
       ],
       "decision": "approved",
       "decisionSummary": "caveat approved",

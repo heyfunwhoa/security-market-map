@@ -1,0 +1,159 @@
+{
+  "analystIds": [
+    "claim-kc-access-management-20250612",
+    "claim-gartner-iga-guidance-20251014",
+    "claim-forrester-workforce-risk-response"
+  ],
+  "cases": [
+    {
+      "id": "join-move",
+      "title": "Give a joiner access and remove a mover’s old permissions",
+      "categoryId": "iga",
+      "analystId": "claim-kc-iga-bc81004",
+      "scenario": "HR moves a finance analyst into sales. She needs CRM access on Monday, and her old ability to approve payments should end.",
+      "owner": "HR owns the employment event. IAM owns provisioning. Finance and the CRM owner confirm the actual permissions.",
+      "proof": "Start with the role change and follow it into both applications. Time how long necessary access takes to appear and obsolete access takes to disappear. Record connector failures separately.",
+      "gap": "An identity-provider group changed, but a local finance entitlement survived.",
+      "options": [
+        {
+          "label": "Microsoft Entra ID Governance",
+          "claimIds": [
+            "claim-entra-jml"
+          ]
+        },
+        {
+          "label": "Okta Lifecycle Management",
+          "claimIds": [
+            "claim-workforce-okta-provisioning"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sign-in",
+      "title": "Decide how an employee proves their identity",
+      "categoryId": "workforce-identity",
+      "analystId": "claim-kc-access-management-20250612",
+      "scenario": "A contractor uses a personal device to sign in to payroll. The customer wants phishing-resistant authentication for that application.",
+      "owner": "The IAM owner sets sign-in policy. The payroll owner and help desk own exceptions and account recovery.",
+      "proof": "Demonstrate the intended authenticator, a disallowed fallback and a recovery path using test identities. Record the application policy that made the decision.",
+      "gap": "An enrollment percentage leaves open whether payroll sign-in and account recovery actually enforce the required method.",
+      "options": [
+        {
+          "label": "Microsoft Entra Conditional Access",
+          "claimIds": [
+            "claim-workforce-entra-auth-strength"
+          ]
+        },
+        {
+          "label": "Cisco Duo Passwordless",
+          "claimIds": [
+            "claim-workforce-duo-passkeys"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reviews",
+      "title": "Prove that sensitive access is still justified",
+      "categoryId": "iga",
+      "analystId": "claim-gartner-iga-guidance-20251014",
+      "scenario": "A controller finds a former approver on the payment-release list during a quarterly review. Who can remove that permission and prove the change?",
+      "owner": "The application owner certifies business need. The IGA team runs the review and reconciles the result.",
+      "proof": "Follow one denied entitlement from the reviewer’s decision through remediation to a fresh target-system entitlement record. Track decisions awaiting action.",
+      "gap": "A completed campaign can still include work waiting on an application owner.",
+      "options": [
+        {
+          "label": "Microsoft Entra ID Governance",
+          "claimIds": [
+            "claim-entra-reviews"
+          ]
+        },
+        {
+          "label": "Okta Identity Governance",
+          "claimIds": [
+            "claim-workforce-okta-certification"
+          ]
+        },
+        {
+          "label": "SailPoint Human Fabric",
+          "claimIds": [
+            "claim-workforce-sailpoint-campaign"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "elevation",
+      "title": "Grant production admin access for a limited time",
+      "categoryId": "pam",
+      "analystId": "claim-kc-pam-lc81007",
+      "scenario": "An engineer needs elevated access during an outage. Who approves the grant and verifies when the privilege ends?",
+      "owner": "Cloud IAM and the production owner define eligible roles, approval rules and emergency exceptions.",
+      "proof": "Show the requester, approved role and resource, start and end times, and effective access after expiry. Check permanent grants separately.",
+      "gap": "An expired temporary role can coexist with standing privileges granted through another path.",
+      "options": [
+        {
+          "label": "Microsoft Entra Privileged Identity Management",
+          "claimIds": [
+            "claim-pim-jit"
+          ]
+        },
+        {
+          "label": "Google Cloud Privileged Access Manager",
+          "claimIds": [
+            "claim-workforce-google-privileged-grants"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "title": "Remove a departing contractor’s access",
+      "categoryId": "iga",
+      "analystId": "claim-kc-iga-bc81004",
+      "scenario": "A contractor’s directory account is disabled Friday. A SaaS session is still open, and an integration key they once administered still has an owner to be assigned.",
+      "owner": "HR or the sponsor supplies the end time. IAM handles the directory. The app owner handles sessions and the service owner takes custody of the integration.",
+      "proof": "Reconcile accounts and app-issued sessions at the target. Assign a new owner to shared integrations and document whether each credential needs revocation or rotation.",
+      "gap": "An identity-provider sign-out can leave an app-issued session alive. A service credential may belong to the integration after its human owner leaves.",
+      "options": [
+        {
+          "label": "Microsoft Entra ID session revocation",
+          "claimIds": [
+            "claim-workforce-entra-session-boundary"
+          ]
+        },
+        {
+          "label": "Okta Universal Logout",
+          "claimIds": [
+            "claim-workforce-okta-logout-scope"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "respond",
+      "title": "Investigate an employee credential reported outside the company",
+      "categoryId": "itdr",
+      "analystId": "claim-forrester-workforce-risk-response",
+      "scenario": "A breach-monitoring alert names an employee email. Is the account active, and was there a suspicious sign-in or a surviving session?",
+      "owner": "Threat intelligence supplies the observation. The SOC checks sign-in activity. IAM and application owners contain affected access.",
+      "proof": "Correlate the identity and observation time with account status, sign-in evidence and session actions. Record the log coverage and the period reviewed.",
+      "gap": "A matching email alone cannot establish that the current password was exposed or that someone signed in.",
+      "options": [
+        {
+          "label": "SpyCloud Workforce Threat Protection",
+          "claimIds": [
+            "claim-public-spycloud-watchlist"
+          ]
+        },
+        {
+          "label": "Microsoft Entra ID Protection",
+          "claimIds": [
+            "claim-workforce-entra-risk-investigation"
+          ]
+        }
+      ]
+    }
+  ]
+}

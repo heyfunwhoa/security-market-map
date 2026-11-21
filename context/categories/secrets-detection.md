@@ -33,9 +33,9 @@ From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 
 ## Vendors (primary)
 
-- Truffle Security: TruffleHog finds secrets and can verify whether detectors recognize them as live. That is detection, not vaulting and not NHI governance.
-- GitGuardian: Secrets detection vendor. On the detection shortlist beside TruffleHog and GitHub secret scanning. No capability is checked in this seed.
-- GitHub: GitHub secret scanning and push protection are source-control controls. GitHub is part of Microsoft, and this product is still not Entra ID Governance.
+- Truffle Security: Truffle Security builds TruffleHog for secrets detection. Forager lets a company review verified API keys associated with its email domain from public GitHub commits and npm releases.
+- GitGuardian: GitGuardian helps security teams find exposed credentials. Public Monitoring connects findings in public developer activity to the company using its developer, organization and other attribution signals.
+- GitHub: GitHub, part of Microsoft, offers secret scanning and push protection. Its enterprise public monitoring can link credentials found elsewhere on public GitHub to the company through membership or a verified email domain.
 - Gitleaks: Open-source secret scanner. Detection only in this map. Validity verification is not asserted.
 - Cycode: Application security platform often shortlisted for secrets detection and ASPM. Scanner behavior is unverified in this seed.
 - GitLab: Publisher or maintainer of GitLab Secret Detection. Research candidate; see product-level evidence and scope.

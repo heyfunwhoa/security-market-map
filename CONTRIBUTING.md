@@ -7,6 +7,7 @@ Use this checklist for a vendor addition, category change or factual correction.
 - Search existing IDs, aliases and open PRs. Reuse records; distinguish the parent company from its products.
 - Record the buyer decision, primary/adjacent categories and why the placement fits.
 - Add original source URL, publisher, source type, observation date, last check date and evidence status. Leave unknown publication dates null.
+- For every vendor added or explained in a category guide, link the catalog product to a claim for each material capability and its original source in the shared Sources registry. Reuse existing IDs and URLs. Render those same claims in the guide so source corrections reach both views. Mark unsupported coverage as unknown and identify buyer guidance as editorial.
 - Keep vendor statements vendor-published. A human review does not make marketing independently verified.
 - Put owner, next review date, uncertainty and rights/usage notes in the [research review template](docs/market-research/review-template.md). This is submission metadata, not a claim these fields are enforced in the current catalog schema.
 - For renamed/acquired/discontinued vendors, record parent, historical name, status, source and effective date (or Unknown). Distinguish an acquisition announcement from closing and from integrated product availability. Preserve stable IDs and history; do not count a historical brand as another independent option.
