@@ -10,6 +10,18 @@ const RETRIEVED = "2026-11-18";
 
 export const identityAnalystSources: Source[] = [
   {
+    id: "src-kc-access-management-20250612", title: "Leadership Compass: Access Management", publisher: "KuppingerCole", author: "Alejandro Leal",
+    url: "https://www.kuppingercole.com/research/lc80867/access-management", canonicalUrl: "https://www.kuppingercole.com/research/lc80867/access-management",
+    sourceType: "analyst", publishedAt: "2025-06-12", retrievedAt: "2026-11-20", volatility: "moderate",
+    excerpt: "Public summary. KuppingerCole includes authentication, authorization, single sign-on and federation in access management for applications.",
+  },
+  {
+    id: "src-gartner-iga-guidance-20251014", title: "Guidance for Identity Governance and Administration", publisher: "Gartner",
+    url: "https://www.gartner.com/en/documents/7068498", canonicalUrl: "https://www.gartner.com/en/documents/7068498",
+    sourceType: "analyst", publishedAt: "2025-10-14", retrievedAt: "2026-11-20", volatility: "moderate",
+    excerpt: "Public summary. Gartner describes IGA as the authoritative record for managing identities, administering access and making authorization decisions when access is assigned.",
+  },
+  {
     id: "src-sacr-nhi-guide-20240927",
     title: "SACR, The Complete Guide to the Growing Impact of Non-Human Identities in Cybersecurity",
     url: "https://softwareanalyst.io/reports/the-complete-guide-to-the-growing-impact-of-non-human-identities-in-cybersecurity",
@@ -571,6 +583,26 @@ const base = {
 };
 
 export const identityAnalystClaims: Claim[] = [
+  {
+    ...base, id: "claim-kc-access-management-20250612", subjectType: "category", subjectId: "workforce-identity",
+    statement: "KuppingerCole includes authentication, authorization, single sign-on and federation in access management for applications.", sourceId: "src-kc-access-management-20250612", sourceUrl: "https://www.kuppingercole.com/research/lc80867/access-management",
+    publishedAt: "2025-06-12", observedAt: "2026-11-20", lastCheckedAt: "2026-11-20",
+    notes: "Public analyst summary. Product coverage, rankings and licensing require separate evidence.",
+  },
+  {
+    ...base, id: "claim-gartner-iga-guidance-20251014", subjectType: "category", subjectId: "iga",
+    statement: "Gartner describes IGA as the authoritative record for managing identities, administering access and making authorization decisions when access is assigned.", sourceId: "src-gartner-iga-guidance-20251014", sourceUrl: "https://www.gartner.com/en/documents/7068498",
+    publishedAt: "2025-10-14", observedAt: "2026-11-20", lastCheckedAt: "2026-11-20",
+    notes: "Public analyst summary. Product coverage, rankings and licensing require separate evidence.",
+  },
+  {
+    ...base, id: "claim-forrester-workforce-risk-response", subjectType: "category", subjectId: "workforce-identity",
+    statement: "Forrester’s May 2026 commentary advises evaluating whether workforce identity platforms can turn risk signals into actions, alongside lifecycle controls, governance and phishing-resistant sign-in.",
+    sourceId: "src-forrester-workforce-identity-20260521",
+    sourceUrl: "https://www.forrester.com/blogs/announcing-the-forrester-wave-workforce-identity-platforms-q2-2026/",
+    publishedAt: "2026-05-21", observedAt: "2026-11-20", lastCheckedAt: "2026-11-20",
+    notes: "Public analyst commentary. The evaluation question is category-level. A specific vendor’s response action needs product documentation.",
+  },
   {
     ...base,
     id: "claim-sacr-ispm-20251202",

@@ -47,11 +47,29 @@ The CMMC Level 2 link to NIST SP 800-171 Rev. 2 was checked against the CMMC pro
 - **The HIPAA source uses the eCFR rendering URL,** because the human-facing eCFR page redirects to a bot check.
 - **Not covered:** NIS2 and SEC rules (other profiles), PCI DSS, state privacy laws.
 
+## Second batch: NIS2, managed service providers, SEC (2026-11-18)
+
+| Profile | Rule | Categories | Source |
+| --- | --- | --- | --- |
+| EU essential and important entities (NIS2) | Directive 2022/2555 Art. 21(2)(i): access control policies and asset management | iga, workforce-identity | EUR-Lex |
+| same | Art. 21(2)(j): multi-factor or continuous authentication where appropriate | workforce-identity | same |
+| same | Implementing Regulation 2024/2690 Annex 11.2: access rights on need-to-know, least privilege, separation of duties | iga | EUR-Lex |
+| same | Annex 11.3: privileged and administration accounts with strong authentication | pam | same |
+| same | Annex 11.5: full identity life cycle for systems and users | iga, nhi | same |
+| MSSP / MDR / MSP provider | Annex 11.3 and 11.7 for EU-covered providers: privileged accounts; multi-factor or continuous authentication | pam, workforce-identity | same |
+
+**Scope:** the Directive's Art. 21 applies to all essential and important entities. Implementing Regulation 2024/2690 applies only to the digital-infrastructure and digital-provider entity types it lists, including managed service and managed security service providers. The requirement text says "for entities covered by the implementing regulation" wherever that applies.
+
+**Not added:**
+- **U.S. public company (SEC):** 17 CFR 229.106 (Item 106) requires disclosure of cybersecurity risk management and governance, but it names no identity control. The rule text was read on 2026-11-18 and contains no authentication or access-control requirement, so this profile gets no identity requirements.
+- **PCI DSS:** the PCI Security Standards Council site is not reachable from the research session, and the standard is distributed under a licence that limits reuse of its text. It is a candidate for a separate pass if a reviewer confirms the paraphrase is acceptable.
+
 ## Research review record
 
 - Topic / buyer decision: which identity controls a regulated buyer must show, and which categories address them.
 - Owner: repository maintainer. Reviewer / decision: pending.
 - Changed IDs:
+  - New sources (batch 2): `src-reg-nis2-directive-2022-2555`, `src-reg-nis2-ir-2024-2690`; 7 more requirements on the NIS2 and MSSP profiles.
   - New sources: `src-reg-nydfs-part500`, `src-reg-hipaa-164312`, `src-reg-nist-800-171r2`, `src-reg-nerc-cip-004-7`, `src-reg-nerc-cip-005-7`, `src-reg-nerc-cip-007-6`, `src-reg-dora-rts-2024-1774`.
   - 14 `identityRequirements` across five industry profiles.
 - Source type / evidence status: `official_docs` and `standard`; primary regulatory text.
