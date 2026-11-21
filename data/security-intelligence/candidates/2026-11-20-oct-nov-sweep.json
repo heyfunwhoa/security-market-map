@@ -7,9 +7,9 @@
   "excludedFromIncidents": [
     "Fireworks AI second intrusion (Oct 23-30): Fireworks' Nov 17 bulletin now describes two separate incidents; treat as an update to seeded incident:fireworks-ai-eval-secrets-2026",
     "ChainDrop npm worm (August 4, 2026): outside this batch's date range",
-    "Nitori, Iris Ohyama, Ipsos, Mr. Cooper, Logitech/Oracle EBS: not yet checked for a credential or secrets angle",
     "Eurofiber France breach: happened November 13, 2025, outside this batch's date range",
-    "CommandCode (October 28, 2026): only an X post cited by Wiz so far"
+    "CommandCode (October 28, 2026): only an X post cited by Wiz so far",
+    "Nitori, Iris Ohyama, Ipsos: moved to batch 2026-11-20-broader-breaches; Mr. Cooper (2023) and Logitech (2025) are outside the date range"
   ],
   "excludedReason": "Update to an existing record, too thin, outside the date range, or not yet checked. Good next-batch leads.",
   "candidates": [

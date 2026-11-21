@@ -1,0 +1,250 @@
+{
+  "batch": "2026-11-20-broader-breaches",
+  "status": "candidate_only",
+  "publishable": false,
+  "framework": "docs/security-intelligence/incident-classification-framework.md",
+  "discoveryContext": "Follow-up on November 20, 2026 to cover broader (non-secrets) breaches disclosed October 1 to November 20, 2026 from breach roundups. Nitori and Ipsos were checked against their own disclosures; Iris Ohyama is secondary-only. Third-party text was paraphrased.",
+  "excludedFromIncidents": [
+    "Mr. Cooper breach: October 30 - November 1, 2023, outside the date range",
+    "Logitech / Cl0p Oracle EBS breach: disclosed November 14, 2025, outside the date range"
+  ],
+  "excludedReason": "Breach roundups resurfaced older stories; these happened before October 2026.",
+  "candidates": [
+    {
+      "incidentId": "incident:nitori-customer-records-2026",
+      "title": "Nitori: up to 37.62 million customer records may have leaked after unauthorized system access",
+      "incidentKind": "breach",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "Nitori Holdings (exchange disclosure)",
+          "canonicalUrl": "https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20261109/20261109570090.pdf",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-21T03:20:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "BleepingComputer",
+          "canonicalUrl": "https://bleepingcomputer.com/news/security/japanese-furniture-giant-nitori-says-hackers-stole-376m-customer-records",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-21T03:20:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "The Star (Reuters)",
+          "canonicalUrl": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/11/09/cyberattack-puts-3762-million-nitori-customer-records-at-risk",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-21T03:20:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate shares this identity.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:nitori-customer-records-2026:1",
+          "statement": "Nitori Holdings confirmed on November 6, 2026 that a third party had gained unauthorized access to systems it manages, and said up to 37.62 million records of personal information on its servers may have leaked.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20261109/20261109570090.pdf"
+        },
+        {
+          "id": "claim:nitori-customer-records-2026:2",
+          "statement": "Nitori's investigation found access may also have happened before November 6; BleepingComputer reports this as likely since mid-October.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://bleepingcomputer.com/news/security/japanese-furniture-giant-nitori-says-hackers-stole-376m-customer-records"
+        },
+        {
+          "id": "claim:nitori-customer-records-2026:3",
+          "statement": "Reuters, via The Star, reports login passwords and credit card information were not compromised, but email and home addresses were exposed.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/11/09/cyberattack-puts-3762-million-nitori-customer-records-at-risk"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Unknown: entry point and whether credentials or a vulnerability were involved; Nitori says the cause and path are under investigation.",
+        "No credential, secret or token angle is reported so far; low relevance for secrets-focused selling."
+      ]
+    },
+    {
+      "incidentId": "incident:iris-plaza-cloud-service-2026",
+      "title": "Iris Ohyama's Iris Plaza store: third-party cloud service breach may expose 7.7 million people",
+      "incidentKind": "breach",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "Security Affairs",
+          "canonicalUrl": "https://securityaffairs.com/?p=202740",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-21T03:20:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "The Register",
+          "canonicalUrl": "https://www.theregister.com/a/5308377",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-21T03:20:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "eSecurity Planet",
+          "canonicalUrl": "https://www.esecurityplanet.com/news/news-iris-plaza-cloud-data-breach-apac-japan/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-21T03:20:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate shares this identity.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:iris-plaza-cloud-service-2026:1",
+          "statement": "Iris Plaza found a suspicious file in an external cloud service on October 28, 2026; Security Affairs quotes the company's notice that personal information may have been leaked.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://securityaffairs.com/?p=202740"
+        },
+        {
+          "id": "claim:iris-plaza-cloud-service-2026:2",
+          "statement": "Iris Ohyama says the affected environment held data on about 5.8 million registered (including former) members and 1.9 million non-members, and that credit card data was not stored there.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.theregister.com/a/5308377"
+        },
+        {
+          "id": "claim:iris-plaza-cloud-service-2026:3",
+          "statement": "The company suspended the store, blocked the access route, and notified police and Japan's Personal Information Protection Commission on October 29; the cloud provider and initial access method are not disclosed.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.esecurityplanet.com/news/news-iris-plaza-cloud-data-breach-apac-japan/"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Primary source needed: Iris Ohyama's own November 5 notice was not fetched.",
+        "TechRadar and Security Affairs mention encrypted passwords and password-reset advice; confirm against the company notice before stating it.",
+        "No credential, secret or token angle is reported so far; low relevance for secrets-focused selling."
+      ]
+    },
+    {
+      "incidentId": "incident:ipsos-internal-system-2026",
+      "title": "Ipsos investigates a cybersecurity incident affecting one internal information system",
+      "incidentKind": "breach",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "Ipsos (press release via Ritzau)",
+          "canonicalUrl": "https://via.ritzau.dk/pressemeddelelse/15292478/ipsos?publisherId=90446",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-21T03:20:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "SecurityWeek",
+          "canonicalUrl": "https://securityweek.com/market-research-giant-ipsos-investigating-breach-of-internal-system",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-21T03:20:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Research Live",
+          "canonicalUrl": "https://www.research-live.com/article/news/ipsos-hit-by-cyber-attack/id/5154906",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-21T03:20:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate shares this identity.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:ipsos-internal-system-2026:1",
+          "statement": "Ipsos said on November 16, 2026 that it identified a cybersecurity incident affecting one internal information system and filed a complaint with authorities.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://via.ritzau.dk/pressemeddelelse/15292478/ipsos?publisherId=90446"
+        },
+        {
+          "id": "claim:ipsos-internal-system-2026:2",
+          "statement": "Ipsos filed the complaint on November 11 and says the incident had no impact on its operations or client delivery; it has not said which system, when it was detected or how the intrusion happened.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://securityweek.com/market-research-giant-ipsos-investigating-breach-of-internal-system"
+        },
+        {
+          "id": "claim:ipsos-internal-system-2026:3",
+          "statement": "Ipsos engaged external cybersecurity specialists and says it will contact affected clients, projects or partners if their information was involved.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.research-live.com/article/news/ipsos-hit-by-cyber-attack/id/5154906"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Unknown: system, entry point, data affected.",
+        "Thin record; reviewer may prefer to hold until Ipsos publishes more.",
+        "No credential, secret or token angle is reported so far; low relevance for secrets-focused selling."
+      ]
+    }
+  ]
+}
