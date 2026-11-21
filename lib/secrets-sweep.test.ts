@@ -95,7 +95,13 @@ describe("secrets sweep evidence boundaries", () => {
       expect(evidenceCell(catalog.claims, id, "cap-secret-verification", "2026-10-26").status).toBe("unknown");
       expect(evidenceCell(catalog.claims, id, "cap-secret-discovery", "2026-10-26").status).toBe("evidenced");
     }
-    expect(catalog.products.some((product) => product.id.includes("sonatype"))).toBe(false);
+    const sonatypeProducts = catalog.products.filter((product) => product.vendorId === "sonatype");
+    for (const product of sonatypeProducts) {
+      expect([...product.primaryCategoryIds, ...product.adjacentCategoryIds]).not.toContain("secrets-detection");
+      expect(catalog.claims.some((claim) =>
+        claim.subjectId === product.id && claim.capabilityId?.startsWith("cap-secret-"),
+      )).toBe(false);
+    }
     expect(catalog.products.find((product) => product.id === "black-duck-secrets")?.vendorId).toBe("black-duck");
     expect(catalog.vendors.some((vendor) => vendor.id === "synopsys")).toBe(true);
     expect(catalog.vendors.find((vendor) => vendor.id === "veracode")?.adjacentCategoryIds).toContain(
