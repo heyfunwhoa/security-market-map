@@ -291,7 +291,7 @@
     "kind": "breach",
     "disclosedOn": "2023-10-20",
     "occurredOn": null,
-    "summary": "Okta reported that an actor used a service account stored in its customer support system to view files uploaded by 134 customers between 28 September and 17 October 2023. Some were HAR files containing session tokens, which the actor used to hijack the Okta sessions of 5 customers. The service account's username and password had been saved to an employee's personal Google account.",
+    "summary": "Okta reported that an actor used a service account stored in its customer support system to view files uploaded by 134 customers between 28 September and 17 October 2023. Some were HAR files containing session tokens, which the actor used to hijack the Okta sessions of 5 customers. The service account's username and password had been saved to an employee's personal Google account. A 29 November 2023 update says the actor also obtained the names and email addresses of all Okta customer support system users, and that this report held no user credentials.",
     "epistemicStatus": "reported",
     "reviewStatus": "seed_reviewed",
     "affectedEcosystems": [
@@ -299,16 +299,18 @@
     ],
     "sourceIds": [
       "source:okta-support-root-cause-2023",
-      "source:okta-harfiles-closure-2024"
+      "source:okta-harfiles-closure-2024",
+      "source:okta-support-update-2023-11-29"
     ],
     "techniqueIds": [],
     "packageIds": [],
     "uncertaintyNotes": [
       "Okta says the credential was most likely exposed through the employee's personal Google account or personal device; the exact path is not confirmed.",
       "Downstream incidents at Okta customers, such as Cloudflare's, are separate records; the relationship has not been reviewed.",
+      "Okta's 29 November 2023 update widened the scope from files for 134 customers to contact details for all support system users. It says that report held no credentials or sensitive personal data, and it does not address session tokens.",
       "No ATT&CK technique is asserted until a separate sourced mapping review."
     ],
-    "lastReviewedOn": "2026-11-17"
+    "lastReviewedOn": "2026-11-22"
   },
   {
     "id": "incident:toyota-tconnect-github-key-2022",

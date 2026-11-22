@@ -10,7 +10,9 @@ import {
   ecosystemLabel,
   INCIDENT_KIND_LABELS,
   incidentBySlug,
+  exposureLocationLabel,
   industryLabel,
+  secretTypeLabel,
   incidentFeed,
   incidentFilterUrl,
   NO_INCIDENT_FILTERS,
@@ -150,7 +152,7 @@ export default async function IncidentPage({ params }: { params: Promise<{ slug:
 
           <section aria-labelledby="classification">
             <h2 id="classification" className="text-lg font-semibold">Classification</h2>
-            <dl className="mt-3 grid gap-3 text-sm sm:grid-cols-2 lg:grid-cols-4">
+            <dl className="mt-3 grid gap-3 text-sm sm:grid-cols-2 lg:grid-cols-3">
               <div>
                 <dt className="text-muted-foreground">MITRE ATT&CK</dt>
                 <dd className="mt-1">
@@ -181,13 +183,27 @@ export default async function IncidentPage({ params }: { params: Promise<{ slug:
                   )}
                 </dd>
               </div>
+              <FilterLinks
+                label="Secret type"
+                ids={item.secretTypes}
+                labelFor={secretTypeLabel}
+                hrefFor={(secret) => incidentFilterUrl({ ...NO_INCIDENT_FILTERS, secret })}
+              />
+              <FilterLinks
+                label="Where it was exposed"
+                ids={item.exposureLocations}
+                labelFor={exposureLocationLabel}
+                hrefFor={(location) => incidentFilterUrl({ ...NO_INCIDENT_FILTERS, location })}
+              />
               <div>
                 <dt className="text-muted-foreground">Packages</dt>
                 <dd className="mt-1">{incident.packageIds.length ? incident.packageIds.join(", ") : "None linked"}</dd>
               </div>
             </dl>
             <p className="mt-3 text-sm text-muted-foreground">
-              Techniques are listed only after a sourced mapping review. “Not evaluated” means nobody has reviewed it yet,
+              {item.exposureNote && <>Secret details: {item.exposureNote} </>}
+              Secret type and location are only what the sources state; “Not stated” means the sources don’t say.
+              Location is where the first exposed secret sat. Techniques are listed only after a sourced mapping review. “Not evaluated” means nobody has reviewed it yet,
               not that the technique was absent.
             </p>
           </section>
@@ -231,5 +247,35 @@ export default async function IncidentPage({ params }: { params: Promise<{ slug:
         ))}
       </nav>
     </main>
+  );
+}
+
+function FilterLinks({
+  label,
+  ids,
+  labelFor,
+  hrefFor,
+}: {
+  label: string;
+  ids: string[];
+  labelFor: (id: string) => string;
+  hrefFor: (id: string) => string;
+}) {
+  return (
+    <div>
+      <dt className="text-muted-foreground">{label}</dt>
+      <dd className="mt-1">
+        {ids.length
+          ? ids.map((id, index) => (
+              <span key={id}>
+                {index > 0 && ", "}
+                <Link href={hrefFor(id)} className="rounded-sm underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-ring">
+                  {labelFor(id)}
+                </Link>
+              </span>
+            ))
+          : "Not stated"}
+      </dd>
+    </div>
   );
 }

@@ -1,13 +1,14 @@
 {
   "schemaVersion": "1",
-  "asOf": "2026-11-21",
+  "asOf": "2026-11-22",
   "usageRules": [
     "Every fact comes from the listed sources; cite the source when you use it.",
     "Each source's rightsNote limits how it may be reused. Keep it with the citation, and check the publisher's terms before reusing any source text.",
     "Sales notes are interpretation, not evidence. Follow each note's 'avoid' line.",
     "Category links mean related, not that any product would have prevented the incident.",
     "Don't infer that a prospect or customer was affected.",
-    "Industry is the industry of the organization the source names, not a list of affected industries."
+    "Industry is the industry of the organization the source names, not a list of affected industries.",
+    "Secret types and exposure location are only what the sources state; an empty list means not stated, not none. Location is where the first exposed secret sat."
   ],
   "incidents": [
     {
@@ -61,6 +62,11 @@
         "reviewedOn": "2026-11-21"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -115,6 +121,11 @@
         "reviewedOn": "2026-11-21"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -170,6 +181,11 @@
         "reviewedOn": "2026-11-17"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "external-attack-surface",
@@ -243,6 +259,11 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -306,6 +327,25 @@
         "reviewedOn": "2026-11-21"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "ci_cd_secret",
+            "name": "CI/CD secret"
+          },
+          {
+            "id": "cloud_access_key",
+            "name": "Cloud access key"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "ci_cd",
+            "name": "CI/CD pipeline or logs"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "secrets-detection",
@@ -379,6 +419,25 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "api_key",
+            "name": "API key (non-AI)"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "support_chat_work_files",
+            "name": "Support, chat or work files"
+          },
+          {
+            "id": "vendor_platform",
+            "name": "Vendor or platform"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "secrets-detection",
@@ -446,6 +505,21 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "cloud_access_key",
+            "name": "Cloud access key"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "vendor_platform",
+            "name": "Vendor or platform"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "third-party-risk",
@@ -517,6 +591,11 @@
           "name": "Retail"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -585,6 +664,21 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "cloud_access_key",
+            "name": "Cloud access key"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "vendor_platform",
+            "name": "Vendor or platform"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "third-party-risk",
@@ -656,6 +750,33 @@
         "reviewedOn": "2026-11-21"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "ai_provider_key",
+            "name": "AI provider key"
+          },
+          {
+            "id": "service_account_credential",
+            "name": "Service account or machine credential"
+          },
+          {
+            "id": "cloud_access_key",
+            "name": "Cloud access key"
+          },
+          {
+            "id": "database_credential",
+            "name": "Database credential"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "public_repo",
+            "name": "Public code repo"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "secrets-detection",
@@ -720,6 +841,21 @@
           "name": "Financial services"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "service_account_credential",
+            "name": "Service account or machine credential"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "developer_machine",
+            "name": "Developer machine"
+          }
+        ],
+        "note": "This detail comes from The Hacker News's summary of Binance's preliminary report, which could not be fetched directly. Recheck against Binance's final report."
+      },
       "marketCategories": [
         {
           "categoryId": "software-supply-chain",
@@ -792,6 +928,20 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "password",
+            "name": "Password"
+          },
+          {
+            "id": "service_account_credential",
+            "name": "Service account or machine credential"
+          }
+        ],
+        "exposureLocations": [],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "nhi",
@@ -858,6 +1008,29 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "git_platform_token",
+            "name": "Git platform token"
+          },
+          {
+            "id": "api_key",
+            "name": "API key (non-AI)"
+          },
+          {
+            "id": "signing_encryption_key",
+            "name": "Signing or encryption key"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "private_repo",
+            "name": "Private code repo"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "secrets-detection",
@@ -927,6 +1100,29 @@
         "reviewedOn": "2026-11-21"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "cloud_access_key",
+            "name": "Cloud access key"
+          },
+          {
+            "id": "git_platform_token",
+            "name": "Git platform token"
+          },
+          {
+            "id": "package_registry_token",
+            "name": "Package registry token"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "developer_machine",
+            "name": "Developer machine"
+          }
+        ],
+        "note": "No victims are confirmed. These are the stores the payload read in OSV's sandboxed test install."
+      },
       "marketCategories": [
         {
           "categoryId": "secrets-detection",
@@ -1008,6 +1204,29 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "many_types",
+            "name": "Many types"
+          },
+          {
+            "id": "ai_provider_key",
+            "name": "AI provider key"
+          },
+          {
+            "id": "signing_encryption_key",
+            "name": "Signing or encryption key"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "vendor_platform",
+            "name": "Vendor or platform"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "third-party-risk",
@@ -1069,6 +1288,25 @@
         "reviewedOn": "2026-11-18"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "password",
+            "name": "Password"
+          },
+          {
+            "id": "session_sso_token",
+            "name": "Session or SSO token"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "vendor_platform",
+            "name": "Vendor or platform"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -1135,6 +1373,16 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "password",
+            "name": "Password"
+          }
+        ],
+        "exposureLocations": [],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -1204,6 +1452,16 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [
+          {
+            "id": "vendor_platform",
+            "name": "Vendor or platform"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "secrets-detection",
@@ -1284,6 +1542,21 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "password",
+            "name": "Password"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "vendor_platform",
+            "name": "Vendor or platform"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -1339,6 +1612,29 @@
         "reviewedOn": "2026-11-18"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "many_types",
+            "name": "Many types"
+          },
+          {
+            "id": "git_platform_token",
+            "name": "Git platform token"
+          },
+          {
+            "id": "ai_provider_key",
+            "name": "AI provider key"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "vendor_platform",
+            "name": "Vendor or platform"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -1400,6 +1696,25 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "api_key",
+            "name": "API key (non-AI)"
+          },
+          {
+            "id": "git_platform_token",
+            "name": "Git platform token"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "public_repo",
+            "name": "Public code repo"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "secrets-detection",
@@ -1475,6 +1790,11 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -1542,6 +1862,29 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "cloud_access_key",
+            "name": "Cloud access key"
+          },
+          {
+            "id": "service_account_credential",
+            "name": "Service account or machine credential"
+          },
+          {
+            "id": "many_types",
+            "name": "Many types"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "private_repo",
+            "name": "Private code repo"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "secrets-management",
@@ -1603,6 +1946,21 @@
         "reviewedOn": "2026-11-18"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "many_types",
+            "name": "Many types"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "vendor_platform",
+            "name": "Vendor or platform"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -1674,6 +2032,21 @@
         "reviewedOn": "2026-11-21"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "ci_cd_secret",
+            "name": "CI/CD secret"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "ci_cd",
+            "name": "CI/CD pipeline or logs"
+          }
+        ],
+        "note": "Only GitGuardian's summary was checked, not the full post."
+      },
       "marketCategories": [
         {
           "categoryId": "secrets-detection",
@@ -1733,6 +2106,11 @@
           "name": "Healthcare and life sciences"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -1790,6 +2168,11 @@
           "name": "Healthcare and life sciences"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "cyber-recovery",
@@ -1851,6 +2234,16 @@
         "reviewedOn": "2026-11-18"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [
+          {
+            "id": "ci_cd",
+            "name": "CI/CD pipeline or logs"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -1906,6 +2299,25 @@
         "reviewedOn": "2026-11-18"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "package_registry_token",
+            "name": "Package registry token"
+          },
+          {
+            "id": "git_platform_token",
+            "name": "Git platform token"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "developer_machine",
+            "name": "Developer machine"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -1958,6 +2370,11 @@
         "reviewedOn": "2026-11-17"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "software-supply-chain",
@@ -2025,6 +2442,29 @@
         "reviewedOn": "2026-11-17"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "git_platform_token",
+            "name": "Git platform token"
+          },
+          {
+            "id": "package_registry_token",
+            "name": "Package registry token"
+          },
+          {
+            "id": "ssh_key",
+            "name": "SSH key"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "developer_machine",
+            "name": "Developer machine"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "software-supply-chain",
@@ -2091,6 +2531,21 @@
         "reviewedOn": "2026-11-18"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "oauth_integration_token",
+            "name": "OAuth or integration token"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "vendor_platform",
+            "name": "Vendor or platform"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -2144,6 +2599,21 @@
         "reviewedOn": "2026-11-17"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "ci_cd_secret",
+            "name": "CI/CD secret"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "ci_cd",
+            "name": "CI/CD pipeline or logs"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "software-supply-chain",
@@ -2204,6 +2674,21 @@
         "reviewedOn": "2026-11-17"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "cloud_access_key",
+            "name": "Cloud access key"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "exposed_app_config",
+            "name": "Exposed app config"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "secrets-detection",
@@ -2270,6 +2755,21 @@
         "reviewedOn": "2026-11-17"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "git_platform_token",
+            "name": "Git platform token"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "build_artifact",
+            "name": "Build artifact or image"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "secrets-detection",
@@ -2335,6 +2835,21 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "service_account_credential",
+            "name": "Service account or machine credential"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "vendor_platform",
+            "name": "Vendor or platform"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "nhi",
@@ -2395,6 +2910,21 @@
         "reviewedOn": "2026-11-18"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "git_platform_token",
+            "name": "Git platform token"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "public_repo",
+            "name": "Public code repo"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -2404,7 +2934,7 @@
       "kind": "breach",
       "disclosedOn": "2023-10-20",
       "occurredOn": null,
-      "summary": "Okta reported that an actor used a service account stored in its customer support system to view files uploaded by 134 customers between 28 September and 17 October 2023. Some were HAR files containing session tokens, which the actor used to hijack the Okta sessions of 5 customers. The service account's username and password had been saved to an employee's personal Google account.",
+      "summary": "Okta reported that an actor used a service account stored in its customer support system to view files uploaded by 134 customers between 28 September and 17 October 2023. Some were HAR files containing session tokens, which the actor used to hijack the Okta sessions of 5 customers. The service account's username and password had been saved to an employee's personal Google account. A 29 November 2023 update says the actor also obtained the names and email addresses of all Okta customer support system users, and that this report held no user credentials.",
       "epistemicStatus": "reported",
       "affectedEcosystems": [
         "saas"
@@ -2412,9 +2942,10 @@
       "uncertaintyNotes": [
         "Okta says the credential was most likely exposed through the employee's personal Google account or personal device; the exact path is not confirmed.",
         "Downstream incidents at Okta customers, such as Cloudflare's, are separate records; the relationship has not been reviewed.",
+        "Okta's 29 November 2023 update widened the scope from files for 134 customers to contact details for all support system users. It says that report held no credentials or sensitive personal data, and it does not address session tokens.",
         "No ATT&CK technique is asserted until a separate sourced mapping review."
       ],
-      "lastReviewedOn": "2026-11-17",
+      "lastReviewedOn": "2026-11-22",
       "sources": [
         {
           "id": "source:okta-support-root-cause-2023",
@@ -2430,6 +2961,14 @@
           "type": "company_incident_report",
           "url": "https://sec.okta.com/articles/harfiles/",
           "publishedOn": "2024-02-08",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "id": "source:okta-support-update-2023-11-29",
+          "publisher": "Okta Security",
+          "type": "company_incident_report",
+          "url": "https://sec.okta.com/october-security-incident-recommended-actions",
+          "publishedOn": "2023-11-29",
           "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
@@ -2461,6 +3000,25 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "service_account_credential",
+            "name": "Service account or machine credential"
+          },
+          {
+            "id": "session_sso_token",
+            "name": "Session or SSO token"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "personal_account_browser",
+            "name": "Personal account or browser profile"
+          }
+        ],
+        "note": "Okta says the most likely way the credential got out was compromise of that personal account or a personal device; the exact path is not confirmed."
+      },
       "marketCategories": [
         {
           "categoryId": "itdr",
@@ -2533,6 +3091,21 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "cloud_access_key",
+            "name": "Cloud access key"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "public_repo",
+            "name": "Public code repo"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "secrets-detection",
@@ -2598,6 +3171,16 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "signing_encryption_key",
+            "name": "Signing or encryption key"
+          }
+        ],
+        "exposureLocations": [],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -2655,6 +3238,21 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "session_sso_token",
+            "name": "Session or SSO token"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "developer_machine",
+            "name": "Developer machine"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "secrets-management",
@@ -2721,6 +3319,21 @@
           "name": "Automotive"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "api_key",
+            "name": "API key (non-AI)"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "public_repo",
+            "name": "Public code repo"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "secrets-detection",
@@ -2787,6 +3400,11 @@
           "name": "Transportation"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "workforce-identity",
@@ -2857,6 +3475,21 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "ci_cd_secret",
+            "name": "CI/CD secret"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "build_artifact",
+            "name": "Build artifact or image"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "software-supply-chain",
@@ -2909,6 +3542,11 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "software-supply-chain",
@@ -2981,6 +3619,25 @@
           "name": "Transportation"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "cloud_access_key",
+            "name": "Cloud access key"
+          },
+          {
+            "id": "password",
+            "name": "Password"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "private_repo",
+            "name": "Private code repo"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "secrets-detection",
