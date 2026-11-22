@@ -4,7 +4,11 @@ import incidentsSeed from "@/data/security-intelligence/incidents.seed.json";
 import salesNotesSeed from "@/data/security-intelligence/sales-notes.json";
 import sourcesSeed from "@/data/security-intelligence/sources.seed.json";
 import type { SearchHit } from "@/lib/search";
-import { makeSourcedIncident, type PublicIncident, type SourceRef } from "@/lib/security-intelligence-contract";
+import {
+  makeSourcedIncident,
+  type PublicIncident,
+  type SourceRef,
+} from "@/lib/security-intelligence-contract";
 import { SITE_URL } from "@/lib/site";
 
 /**
@@ -16,7 +20,10 @@ import { SITE_URL } from "@/lib/site";
  * only reviewed, sourced links are published; proposed links stay in the data file for review.
  */
 
-export type IncidentSource = SourceRef & { type: string; rightsNote: string | null };
+export type IncidentSource = SourceRef & {
+  type: string;
+  rightsNote: string | null;
+};
 
 export type SalesNote = {
   incidentId: string;
@@ -87,7 +94,10 @@ export function industryLabel(id: string): string {
   return INDUSTRY_LABELS[id] ?? id.replaceAll("_", " ");
 }
 
-export function isPublishableIndustry(tag: IndustryTag, incident: PublicIncident): boolean {
+export function isPublishableIndustry(
+  tag: IndustryTag,
+  incident: PublicIncident,
+): boolean {
   return (
     tag.status === "reviewed" &&
     tag.industry in INDUSTRY_LABELS &&
@@ -111,12 +121,25 @@ export type FeedIncident = {
   industries: string[];
 };
 
-export type IncidentFilters = { kind: string; ecosystem: string; category: string; industry: string };
+export type IncidentFilters = {
+  kind: string;
+  ecosystem: string;
+  category: string;
+  industry: string;
+};
 
-export const NO_INCIDENT_FILTERS: IncidentFilters = { kind: "all", ecosystem: "all", category: "all", industry: "all" };
+export const NO_INCIDENT_FILTERS: IncidentFilters = {
+  kind: "all",
+  ecosystem: "all",
+  category: "all",
+  industry: "all",
+};
 
 /** A link is publishable only when a named reviewer approved it and it cites the incident's own sources. */
-export function isPublishableLink(link: CategoryLink, incident: PublicIncident): boolean {
+export function isPublishableLink(
+  link: CategoryLink,
+  incident: PublicIncident,
+): boolean {
   return (
     link.status === "reviewed" &&
     !!link.reviewedBy?.trim() &&
@@ -149,6 +172,7 @@ const ECOSYSTEM_LABELS: Record<string, string> = {
   microsoft_cloud: "Microsoft cloud",
   ai_agents: "AI agents",
   ide_extensions: "IDE extensions",
+  rubygems: "RubyGems",
 };
 
 export function ecosystemLabel(id: string): string {
@@ -201,22 +225,38 @@ export function buildIncidentFeed(
       incident: sourced.incident,
       sources: sourced.sources.map((source) => sourceById.get(source.id)!),
       salesNote: noteIsGrounded ? note : null,
-      categoryLinks: links.filter((link) => isPublishableLink(link, sourced.incident)),
+      categoryLinks: links.filter((link) =>
+        isPublishableLink(link, sourced.incident),
+      ),
       industries: [
-        ...new Set(industries.filter((tag) => isPublishableIndustry(tag, sourced.incident)).map((tag) => tag.industry)),
+        ...new Set(
+          industries
+            .filter((tag) => isPublishableIndustry(tag, sourced.incident))
+            .map((tag) => tag.industry),
+        ),
       ],
     });
   }
-  return feed.sort((a, b) => b.incident.disclosedOn.localeCompare(a.incident.disclosedOn));
+  return feed.sort((a, b) =>
+    b.incident.disclosedOn.localeCompare(a.incident.disclosedOn),
+  );
 }
 
-export function filterIncidents(feed: readonly FeedIncident[], filters: IncidentFilters): FeedIncident[] {
+export function filterIncidents(
+  feed: readonly FeedIncident[],
+  filters: IncidentFilters,
+): FeedIncident[] {
   return feed.filter(
     (item) =>
       (filters.kind === "all" || item.incident.kind === filters.kind) &&
-      (filters.ecosystem === "all" || item.incident.affectedEcosystems.includes(filters.ecosystem)) &&
-      (filters.category === "all" || item.categoryLinks.some((link) => link.categoryId === filters.category)) &&
-      (filters.industry === "all" || item.industries.includes(filters.industry)),
+      (filters.ecosystem === "all" ||
+        item.incident.affectedEcosystems.includes(filters.ecosystem)) &&
+      (filters.category === "all" ||
+        item.categoryLinks.some(
+          (link) => link.categoryId === filters.category,
+        )) &&
+      (filters.industry === "all" ||
+        item.industries.includes(filters.industry)),
   );
 }
 
@@ -230,9 +270,19 @@ export function readIncidentFilters(
   const industry = params.get("industry") ?? "all";
   return {
     kind: kind in INCIDENT_KIND_LABELS ? kind : "all",
-    ecosystem: feed.some((item) => item.incident.affectedEcosystems.includes(ecosystem)) ? ecosystem : "all",
-    category: feed.some((item) => item.categoryLinks.some((link) => link.categoryId === category)) ? category : "all",
-    industry: feed.some((item) => item.industries.includes(industry)) ? industry : "all",
+    ecosystem: feed.some((item) =>
+      item.incident.affectedEcosystems.includes(ecosystem),
+    )
+      ? ecosystem
+      : "all",
+    category: feed.some((item) =>
+      item.categoryLinks.some((link) => link.categoryId === category),
+    )
+      ? category
+      : "all",
+    industry: feed.some((item) => item.industries.includes(industry))
+      ? industry
+      : "all",
   };
 }
 
@@ -252,8 +302,12 @@ export function talkTrackText(item: FeedIncident): string | null {
   if (!note) return null;
   const cited = item.sources
     .filter((source) => note.basedOnSourceIds.includes(source.id))
-    .map((source) => `${source.publisher}, ${source.publishedOn ?? "date not stated"}, ${source.url}`);
-  const draft = note.status === "draft" ? " (Draft, not editorially reviewed)" : "";
+    .map(
+      (source) =>
+        `${source.publisher}, ${source.publishedOn ?? "date not stated"}, ${source.url}`,
+    );
+  const draft =
+    note.status === "draft" ? " (Draft, not editorially reviewed)" : "";
   const caveat = note.sellerCaveat ? `\nCaveat: ${note.sellerCaveat}` : "";
   // Link back to this site so a pasted talk track (Slack, notes) is self-contained.
   const more = `\nMore: ${SITE_URL}/incidents/${item.slug}`;
@@ -265,7 +319,9 @@ export function talkTracksDocument(items: readonly FeedIncident[]): string {
   return items
     .map((item) => {
       const text = talkTrackText(item);
-      return text ? `${item.incident.title} (disclosed ${item.incident.disclosedOn})\n${text}` : null;
+      return text
+        ? `${item.incident.title} (disclosed ${item.incident.disclosedOn})\n${text}`
+        : null;
     })
     .filter((block): block is string => block !== null)
     .join("\n\n");
@@ -285,14 +341,20 @@ export const incidentFeed: FeedIncident[] = buildIncidentFeed(
 );
 
 /** Every industry tag in the data file, including proposed ones. For review tooling and tests only. */
-export const allIndustryTags: readonly IndustryTag[] = industriesSeed as IndustryTag[];
+export const allIndustryTags: readonly IndustryTag[] =
+  industriesSeed as IndustryTag[];
 
 /** Every link in the data file, including proposed ones. For review tooling and tests, never for public pages. */
-export const allCategoryLinks: readonly CategoryLink[] = categoryLinksSeed as CategoryLink[];
+export const allCategoryLinks: readonly CategoryLink[] =
+  categoryLinksSeed as CategoryLink[];
 
-export function incidentsForCategory(categoryId: string): { item: FeedIncident; link: CategoryLink }[] {
+export function incidentsForCategory(
+  categoryId: string,
+): { item: FeedIncident; link: CategoryLink }[] {
   return incidentFeed.flatMap((item) =>
-    item.categoryLinks.filter((link) => link.categoryId === categoryId).map((link) => ({ item, link })),
+    item.categoryLinks
+      .filter((link) => link.categoryId === categoryId)
+      .map((link) => ({ item, link })),
   );
 }
 
