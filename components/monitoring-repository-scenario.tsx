@@ -23,7 +23,11 @@ const scenarios = [
   },
 ] as const;
 
-export function MonitoringRepositoryScenario({ children }: { children: ReactNode }) {
+export function MonitoringRepositoryScenario({ children, internalEvidence, publicEvidence }: {
+  children: ReactNode;
+  internalEvidence: ReactNode;
+  publicEvidence: ReactNode;
+}) {
   const [selected, setSelected] = useState(0);
   const scenario = scenarios[selected];
   return (
@@ -39,14 +43,27 @@ export function MonitoringRepositoryScenario({ children }: { children: ReactNode
           ))}
         </div>
       </fieldset>
-      <dl aria-live="polite" aria-atomic="true" className="grid gap-4 bg-muted/50 p-4 text-sm leading-6 sm:grid-cols-2">
-        <div><dt className="font-semibold">Internal Monitoring</dt><dd>{scenario.internal}</dd></div>
-        <div><dt className="font-semibold">Public Monitoring</dt><dd className="space-y-2">
-          {scenario.external ?? <>
-            <p><strong>Company match found.</strong> GitGuardian can attach a public finding to your company, for example if it recognizes the contractor as a monitored developer.</p>
-            <p><strong>No company link established.</strong> Public visibility alone gives your team no reason to expect an alert. The key’s owner is still unknown.</p>
-          </>}
-        </dd></div>
+      <dl className="grid gap-4 bg-muted/50 p-4 text-sm leading-6 sm:grid-cols-2">
+        <div>
+          <dt className="font-semibold">Internal Monitoring</dt>
+          <dd className="space-y-2">
+            {internalEvidence}
+            <p aria-live="polite">{scenario.internal}</p>
+          </dd>
+        </div>
+        <div>
+          <dt className="font-semibold">Public Monitoring</dt>
+          <dd className="space-y-2">
+            {publicEvidence}
+            <div aria-live="polite" aria-atomic="true" className="space-y-2">
+              <p><strong>Company link</strong> · {scenario.id === "company-private" ? "Not applicable to this private commit." : "Unknown in this example."}</p>
+              {scenario.external ?? <>
+                <p><strong>If a match is found.</strong> A monitored developer match could associate the finding with your company.</p>
+                <p><strong>If the link stays unknown.</strong> Public visibility alone gives your team no reason to expect an alert.</p>
+              </>}
+            </div>
+          </dd>
+        </div>
       </dl>
       <div className="space-y-2 text-sm leading-6">
         <h5 className="font-semibold">Who should we check with internally?</h5>

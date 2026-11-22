@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { ClaimList } from "@/components/claims";
+import { StatusPill } from "@/components/chrome";
+import type { Claim } from "@/lib/schema";
 import { MonitoringRepositoryScenario } from "@/components/monitoring-repository-scenario";
-import { catalog } from "@/lib/catalog";
+import { catalog, sourceById } from "@/lib/catalog";
 
 const linkStyle = "text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring";
 
@@ -32,15 +34,35 @@ const foragerClaims = catalog.claims.filter((claim) =>
   ["claim-public-forager-sources", "claim-monitoring-mode-forager-editions"].includes(claim.id)
 );
 
+function CoverageEvidence({ claim }: { claim: Claim | undefined }) {
+  return (
+    <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
+      <span>Coverage evidence</span>
+      <StatusPill status={claim?.verificationStatus ?? "unknown"} />
+      {claim && <a href={claim.sourceUrl} className={linkStyle}>Read source<span className="sr-only">: {sourceById(claim.sourceId)?.title}</span></a>}
+    </div>
+  );
+}
+
 export function GitGuardianMonitoringComparison() {
   return (
     <section aria-labelledby="monitoring-scope" className="space-y-5 border-t border-border pt-4 sm:rounded-xl sm:border sm:bg-card sm:p-6">
       <h4 id="monitoring-scope" tabIndex={-1} className="scroll-mt-24 text-2xl focus-visible:outline-2 focus-visible:outline-ring">Would we hear about a key posted in someone else’s GitHub repo?</h4>
       <p className="max-w-3xl leading-7">Compare GitGuardian Internal and Public Monitoring. A contractor posts an API key. Change where they posted it to see what your team could learn.</p>
-      <MonitoringRepositoryScenario>
+      <details className="text-sm leading-6">
+        <summary className="min-h-11 cursor-pointer py-2 font-semibold focus-visible:outline-2 focus-visible:outline-ring">How to read the evidence key</summary>
+        <p><strong>Coverage evidence</strong> tells you who supports the product claim. “Vendor said this” points to a vendor publication. An independent product test would need a recorded result for that capability.</p>
+        <p className="mt-2"><strong>Company link</strong> describes this example. An established link explains why the finding was associated with your company. Unknown means the example supplies no confirmed link. Credential ownership is a separate question.</p>
+      </details>
+      <MonitoringRepositoryScenario
+        internalEvidence={<CoverageEvidence claim={claims.find((c) => c.id === questions[0].internal.claim)} />}
+        publicEvidence={<CoverageEvidence claim={claims.find((c) => c.id === questions[0].external.claim)} />}
+      >
         <details>
           <summary className="min-h-11 cursor-pointer py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-ring">How would Truffle Security Forager handle this contractor’s public commit?</summary>
           <div className="space-y-2 text-sm leading-6">
+            <CoverageEvidence claim={foragerClaims.find((c) => c.id === "claim-public-forager-sources")} />
+            <p><strong>Company link</strong> · Unknown in this example.</p>
             <p>Forager monitors public GitHub commits. Whether your team sees a verified key depends on the link to your organization.</p>
             <p><strong>Community.</strong> The company view groups verified keys by email domain. Which domain, if any, connects this key to your company?</p>
             <p><strong>Enterprise add-on.</strong> Truffle Security also describes matching cloud account IDs and organization membership. Which signal links this particular key to your team?</p>

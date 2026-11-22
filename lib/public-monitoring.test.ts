@@ -94,8 +94,14 @@ it("keeps the GitGuardian mode comparison reachable with an evidence link for ev
   expect(section).toMatch(/aria-live="polite"[\s\S]*Who should we check with internally\?[\s\S]*Where does it look\?/);
   expect(section.match(/type="radio"/g)).toHaveLength(3);
   expect(section).toMatch(/checked=""[^>]*\/>Contractor’s unconnected public repo/);
-  expect(section).toContain("Company match found.");
-  expect(section).toContain("No company link established.");
+  expect(section).toContain("How to read the evidence key");
+  expect(section).toContain("Unknown in this example.");
+  expect(section).toContain("If a match is found.");
+  expect(section).toContain("If the link stays unknown.");
+  for (const id of ["claim-monitoring-mode-gitguardian-visibility", "claim-public-gitguardian-sources", "claim-public-forager-sources"]) {
+    const claim = catalog.claims.find((record) => record.id === id)!;
+    expect(section).toContain(`href="${claim.sourceUrl}"`);
+  }
   expect(section).toContain("internal project sponsor or engineering lead");
   expect(section).toContain("who will keep the case");
   expect(section).toContain("which workloads use it");
