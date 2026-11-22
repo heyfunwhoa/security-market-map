@@ -22,6 +22,7 @@ export const personas: BuyerPersona[] = [
       "Chief Security Officer",
       "CSO",
       "Security executive",
+      "LC-PER-06",
     ],
   },
   {
@@ -63,6 +64,7 @@ export const personas: BuyerPersona[] = [
       "Head of identity",
       "Workforce identity owner",
       "NHI program owner",
+      "LC committee: identity owner",
     ],
   },
   {
@@ -130,6 +132,7 @@ export const personas: BuyerPersona[] = [
       "Secure coding lead",
       "ASPM owner",
       "Application security posture owner",
+      "LC use case: code security",
     ],
   },
   {
@@ -157,6 +160,7 @@ export const personas: BuyerPersona[] = [
       "IDP owner",
       "CI/CD owner",
       "Platform ops",
+      "LC committee: infrastructure owner",
     ],
   },
   {
@@ -181,6 +185,7 @@ export const personas: BuyerPersona[] = [
       "CIEM owner",
       "Cloud posture owner",
       "Public cloud security",
+      "LC use case: cloud security",
     ],
   },
   {
@@ -228,6 +233,7 @@ export const personas: BuyerPersona[] = [
       "Privacy counsel",
       "Privacy engineer",
       "Privacy program owner",
+      "LC committee: privacy",
     ],
   },
   {

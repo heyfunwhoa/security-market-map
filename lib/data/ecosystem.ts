@@ -1834,11 +1834,15 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "EDR owner",
       "Email security owner",
       "SEG owner",
+      "LC use case: email security",
+      "LC use case: EDR / XDR (endpoint seat)",
       "Vulnerability management",
       "VM owner",
       "VulnOps",
       "Patch management owner",
       "Awareness owner",
+      "LC committee: IT / infrastructure owner",
+      "LC use case: vulnerability reporting",
     ],
   },
   {
@@ -1915,19 +1919,22 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "Blue team lead",
       "MDR buyer",
       "XDR program owner",
+      "LC-PER-03",
+      "LC-AUD-03 (ops seat)",
+      "LC use case: EDR / XDR (program seat)",
     ],
   },
   {
     id: "detection-engineer",
     name: "Detection engineer",
-    title: "Builds, tests, and maintains detections and investigation content",
+    title: "Builds, tests, and maintains detections, automation, and investigation content",
     caresAbout: "Expressible rules, testable content, false-positive burden, and versioned change.",
     questions: [
-      "Which detection can you not express cleanly in the current stack?",
+      "Which detection or workflow can you not express cleanly in the current stack?",
       "What telemetry is missing for a representative case?",
       "Who owns exceptions and ongoing tuning?",
     ],
-    categoryIds: ["siem", "soar", "cloud-detection", "itdr", "xdr"],
+    categoryIds: ["siem", "soar", "cloud-detection", "itdr", "xdr", "detection-engineering"],
     aliases: [
       "DetEng",
       "Detection engineering",
@@ -1937,6 +1944,16 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "SIEM engineer",
       "Threat detection engineer",
       "Security content engineer",
+      "Security automation engineer",
+      "SOAR engineer",
+      "Lead SecOps",
+      "SecOps engineer",
+      "SecOps development",
+      "LC-PER-04",
+      "LC use case: SecOps engineering",
+      "LC use case: Claude Code SecOps",
+      "LC use case: SOAR / automation",
+      "LC use case: AI detection engineering",
     ],
   },
   {
@@ -1992,6 +2009,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "Vendor risk owner",
       "Audit liaison",
       "ISO/SOC 2 program owner",
+      "LC committee: compliance",
     ],
   },
   {
@@ -2012,6 +2030,8 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "Security analyst",
       "Blue team analyst",
       "Monitoring analyst",
+      "LC-PER-05 (analyst seat)",
+      "LC use case: AI-assisted investigation",
     ],
   },
   {
@@ -2022,7 +2042,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
     questions: [
       "Who declares an incident, and who can contain?",
       "What evidence must survive for forensics or legal?",
-      "Where do identity and endpoint actions get approved?",
+      "Walk through your last representative investigation, including every tool and handoff.",
     ],
     categoryIds: ["soar", "siem", "xdr", "mdr", "endpoint-security", "itdr", "malware-analysis", "ai-soc-investigation"],
     aliases: [
@@ -2033,6 +2053,8 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "DFIR (response seat)",
       "Cyber incident responder",
       "CSIRT responder",
+      "LC-PER-05 (responder seat)",
+      "LC use case: incident response",
     ],
   },
   {
@@ -2052,6 +2074,8 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "Proactive threat hunter",
       "Hunt lead",
       "Cyber threat hunter",
+      "LC customer: threat hunter seat",
+      "LC use case: threat hunting",
     ],
   },
   {
@@ -2072,6 +2096,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "Threat analysis",
       "Threat intelligence lead",
       "Intel analyst",
+      "LC use case: cyber threat intelligence",
     ],
   },
   {
@@ -2091,6 +2116,8 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "Forensic analyst",
       "Computer forensics",
       "Forensics engineer",
+      "Senior DFIR analyst",
+      "LC customer: DFIR analyst seat",
     ],
   },
   {
@@ -2172,6 +2199,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "SCADA security",
       "OT cybersecurity engineer",
       "Industrial control system security",
+      "LC customer: OT / critical infrastructure",
     ],
   },
   {
@@ -2280,6 +2308,9 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "Service delivery (security)",
       "SOC-as-a-service lead",
       "Provider SecOps lead",
+      "Lead Security Operations",
+      "LC-AUD-01",
+      "LC-AUD-02",
     ],
   },
   {
@@ -2309,10 +2340,10 @@ export const ecosystemPersonas: BuyerPersona[] = [
     caresAbout: "Delivery risk, platform standardization, and not buying tools engineering will not adopt.",
     questions: [
       "Is this an engineering-owned platform buy or a security-owned control?",
-      "What adoption proof would you require from teams?",
+      "What must your team own, and what would you prefer to stop maintaining?",
       "Where does security work show up in engineering KPIs?",
     ],
-    categoryIds: ["aspm", "secrets-management", "container-security", "iac-security", "cnapp"],
+    categoryIds: ["aspm", "secrets-management", "container-security", "iac-security", "cnapp", "security-data-pipelines"],
     aliases: [
       "CTO",
       "Chief Technology Officer",
@@ -2320,6 +2351,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "VP of Engineering",
       "Head of Engineering",
       "Chief Engineer",
+      "LC-PER-02 (engineering seat)",
     ],
   },
 ];

@@ -166,6 +166,19 @@ describe("catalog integrity", () => {
     expect(byId["soc-lead"].id).not.toBe(byId["soc-analyst"].id);
     expect(byId["data-security"].id).not.toBe(byId.privacy.id);
     expect(byId["digital-forensics"].id).not.toBe(byId["incident-response"].id);
+    expect(byId["detection-engineer"].aliases).toEqual(
+      expect.arrayContaining(["Security automation engineer", "LC-PER-04"]),
+    );
+    expect(byId["soc-lead"].aliases).toEqual(expect.arrayContaining(["LC-AUD-03 (ops seat)"]));
+    expect(byId["detection-engineer"].aliases).toEqual(
+      expect.arrayContaining(["Lead SecOps", "LC use case: SecOps engineering"]),
+    );
+    expect(byId.appsec.aliases).toEqual(expect.arrayContaining(["LC use case: code security"]));
+    expect(byId["cloud-sec"].aliases).toEqual(expect.arrayContaining(["LC use case: cloud security"]));
+    expect(byId["incident-response"].aliases).toEqual(
+      expect.arrayContaining(["LC use case: incident response"]),
+    );
+    expect(byId["threat-hunter"].aliases).toEqual(expect.arrayContaining(["LC use case: threat hunting"]));
     expect(new Set(catalog.personas.map((persona) => persona.id)).size).toBe(catalog.personas.length);
   });
 

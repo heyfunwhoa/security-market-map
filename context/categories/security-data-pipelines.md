@@ -19,6 +19,7 @@ Ingest, validate, normalize, enrich and route security telemetry before downstre
 ## Owning seats
 
 - MSSP / MDR operations lead (`mssp-ops`)
+- CTO / VP of engineering (`cto`)
 
 ## Who vendors sell to
 
