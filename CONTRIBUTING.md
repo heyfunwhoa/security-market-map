@@ -2,6 +2,8 @@
 
 Use this checklist for a vendor addition, category change or factual correction. The [competitive intelligence playbook](docs/market-research/competitive-intelligence-playbook.md) owns research methods; [operations and integrity](docs/security-intelligence/operations-and-integrity.md) describes the future ingestion boundary.
 
+Start with the [research intake and template index](docs/product/research-intake.md) to route market/domain, category, vendor/product, decision and evidence changes. Each template retains its own review and maintenance requirements; the router is documentation, not automated enforcement.
+
 ## Minimum submission
 
 - Search existing IDs, aliases and open PRs. Reuse records; distinguish the parent company from its products.
