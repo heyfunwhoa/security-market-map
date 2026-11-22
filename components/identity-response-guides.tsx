@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { BuyerProductOptions } from "@/components/buyer-product-options";
 import { ClaimList } from "@/components/claims";
+import { PaymentKeyCoordination } from "@/components/payment-key-coordination";
 import { catalog, categoryBySlug, sourceById } from "@/lib/catalog";
 import workforce from "@/research/workforce-identity-buyers.json";
 import handoff from "@/research/credential-exposure-handoff.json";
@@ -55,6 +56,7 @@ export function CredentialExposureHandoff() {
     <section className={shell} aria-labelledby="exposure-handoff">
       <h2 id="exposure-handoff" tabIndex={-1} className={heading}>From a public secret alert to a closed exposure</h2>
       <p className="leading-7">Who posted the key, who can invalidate it, and which service still uses it can be three different answers. Use this illustrative handoff to agree on containment, service continuity and what the team knows about use of the credential.</p>
+      <PaymentKeyCoordination />
       <ol className="list-decimal space-y-3 pl-5 text-sm leading-6">{handoff.steps.map((step) => (
         <li key={step.title}><strong>{step.title}</strong><p>{step.owner}. {step.evidence}</p></li>
       ))}</ol>

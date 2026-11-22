@@ -644,3 +644,36 @@ export function registerProductEvidence({ prefix, checked, entries }: {
 export const { sources: publicMonitoringSources, claims: publicMonitoringClaims } = registerProductEvidence({
   prefix: "public", checked: publicMonitoringChecked, entries: evidence,
 });
+
+export const monitoringModeEvidence = registerProductEvidence({
+  prefix: "monitoring-mode", checked: "2026-11-22", entries: [
+    {
+      key: "gitguardian-integration", productId: "gitguardian", publisher: "GitGuardian",
+      title: "Integrate your first repositories", url: "https://docs.gitguardian.com/platform/getting-started/integrate",
+      type: "official_docs", section: "GitHub integration",
+      statement: "Internal Monitoring starts with a source integration. For GitHub, an authorized user installs the GitGuardian app and selects the repositories it can access.",
+      caveat: "Access depends on the installation and monitored repositories.",
+    },
+    {
+      key: "gitguardian-visibility", productId: "gitguardian", publisher: "GitGuardian",
+      title: "Investigate incidents", url: "https://docs.gitguardian.com/internal-monitoring/remediate/investigate-incidents",
+      type: "official_docs", section: "Public exposure types",
+      statement: "An internal incident can come from a publicly visible integrated repository. GitGuardian distinguishes that occurrence from a linked incident discovered through Public Monitoring.",
+      caveat: "A public repository alone does not establish that a second incident exists.",
+    },
+    {
+      key: "gitguardian-public-incident", productId: "gitguardian", publisher: "GitGuardian",
+      title: "Investigate public incidents", url: "https://docs.gitguardian.com/public-monitoring/remediate/understand-incident-properties",
+      type: "official_docs", section: "Attachment reasons",
+      statement: "Public incidents show how a finding was associated with a company. A developer match can involve a personal credential.",
+      caveat: "Confirm which account issued the credential and which team has authority to revoke it.",
+    },
+    {
+      key: "forager-editions", productId: "truffle-security-forager", publisher: "Truffle Security",
+      title: "TruffleHog Forager on AWS Marketplace", url: "https://aws.amazon.com/marketplace/pp/prodview-3wvp2fwzcn6gm",
+      type: "vendor_marketing", section: "Overview and Highlights",
+      statement: "Truffle Security offers Forager Community and an Enterprise add-on. Enterprise can associate a verified public finding with a customer using cloud account IDs and organization membership as well as domains.",
+      caveat: "The seller describes available signals. Which signals exist for a particular exposure and whether a notification reaches the customer require separate evidence.",
+    },
+  ],
+});
