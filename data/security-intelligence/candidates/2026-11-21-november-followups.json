@@ -1,0 +1,388 @@
+{
+  "batch": "2026-11-21-november-followups",
+  "status": "candidate_only",
+  "publishable": false,
+  "framework": "docs/security-intelligence/incident-classification-framework.md",
+  "discoveryContext": "Follow-up on November 21, 2026 for secrets and credential incidents disclosed in November 2026 that the November 20 sweep missed. Cursor, GitBook and Barracuda were checked against their own pages; NEAR AI and NVIDIA Brev are secondary-only. Third-party text was paraphrased.",
+  "excludedFromIncidents": [
+    "Railway preliminary report (1.85% of workspaces; attacker sought AI provider API keys): update to seeded incident:railway-env-vars-2026, not a new incident",
+    "Fireworks Nov 17 bulletin (two separate intrusions): update to seeded incident:fireworks-ai-eval-secrets-2026",
+    "Apify preliminary report (promised by Nov 20): not found yet; recheck the Apify candidate",
+    "Trigger.dev full incident report: not published yet",
+    "Research and campaign reports without a single victim (SOCRadar ArgonHunt, Amazon decoy findings, SpyCloud infostealer token theft, VECERT Ghost-Campus, Arctic Wolf AntiFox): candidates for a research/context record type, not incidents"
+  ],
+  "excludedReason": "Updates to existing records, follow-ups not yet published, or research without a single affected organization.",
+  "candidates": [
+    {
+      "incidentId": "incident:cursor-fireworks-vendor-key-2026",
+      "title": "Cursor: vendor-held access key exposed at Fireworks leads to credential theft and a tampered Claude Code extension",
+      "incidentKind": "supply_chain",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "Cursor",
+          "canonicalUrl": "https://cursor.com/blog/security-incident-update",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-22T01:30:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Dark Reading",
+          "canonicalUrl": "https://darkreading.com/application-security/cursor-malicious-claude-code-extension-third-party-breach",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-22T01:30:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "Downstream of seeded incident:fireworks-ai-eval-secrets-2026, like the Notion candidate in batch 2026-11-20-ai-platform-secrets. Reviewer decides: separate customer-impact record or fold into Fireworks.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:cursor-fireworks-vendor-key-2026:1",
+          "statement": "An attacker obtained an access key Cursor had issued to its AI vendor Fireworks, which Fireworks exposed, and used it to copy a read-only storage bucket Cursor used to share data with Fireworks.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://cursor.com/blog/security-incident-update"
+        },
+        {
+          "id": "claim:cursor-fireworks-vendor-key-2026:2",
+          "statement": "The bucket held limited, mostly 2025 coding-agent traces from non-Privacy Mode sessions; some traces contained unredacted credentials, and fewer than 0.01% of customers had API credentials exposed.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://cursor.com/blog/security-incident-update"
+        },
+        {
+          "id": "claim:cursor-fireworks-vendor-key-2026:3",
+          "statement": "With those credentials the attacker reached some third-party SaaS tools Cursor uses and from there archived non-production repositories, limited support data, usage metrics, some agent conversation summaries and credentials users had sent to Cursor support. Cursor says production systems, customer repositories and its release pipeline were not reached.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://cursor.com/blog/security-incident-update"
+        },
+        {
+          "id": "claim:cursor-fireworks-vendor-key-2026:4",
+          "statement": "On October 29 the attacker used a stolen credential to place tampered Anthropic.claude-code 2.1.312 and 2.1.313 builds in the cache behind Cursor's VS Code marketplace for about 11 hours; at most 5,000 users could have received them. Anthropic did not publish these copies.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://cursor.com/blog/security-incident-update"
+        },
+        {
+          "id": "claim:cursor-fireworks-vendor-key-2026:5",
+          "statement": "Last observed attacker activity was November 1. Cursor deactivated the vendor key, moved all inference off Fireworks, rotated exposed and internal credentials, and added secret scanning across code repositories and internal data sources.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://cursor.com/blog/security-incident-update"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Sales angle caution: Cursor added secret scanning after the incident; do not imply any named product would have prevented it.",
+        "Do not describe this as a vulnerability in Anthropic's or Open VSX's software; Cursor says it was neither."
+      ]
+    },
+    {
+      "incidentId": "incident:gitbook-sso-github-app-2026",
+      "title": "GitBook: SSO flaw and misconfigured GitHub App lead to a Cloudflare API key and full infrastructure access",
+      "incidentKind": "intrusion",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "GitBook",
+          "canonicalUrl": "https://gitbook.com/status/security-incident-2026-11-03",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-22T01:30:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate shares this identity.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:gitbook-sso-github-app-2026:1",
+          "statement": "GitBook says an attacker obtained some infrastructure credentials around 19:00 CET on November 2, 2026; it took the app and authenticated docs offline for about 16 hours.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://gitbook.com/status/security-incident-2026-11-03"
+        },
+        {
+          "id": "claim:gitbook-sso-github-app-2026:2",
+          "statement": "Per GitBook's November 4 postmortem, the attacker used a flaw in GitBook's SSO login flow to create sessions that looked like staff sessions, queried the authentication details of a misconfigured GitHub App, reached internal repositories and eventually a Cloudflare API key, which led to production secrets and full infrastructure access through a service account.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://gitbook.com/status/security-incident-2026-11-03"
+        },
+        {
+          "id": "claim:gitbook-sso-github-app-2026:3",
+          "statement": "Exposed data included GitBook API tokens, integration tokens and secrets, session signing secrets, Assistant questions, authenticated docs, customer content, and GitHub/GitLab connection access limited to repositories customers had granted. Billing information and passwords were not compromised.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://gitbook.com/status/security-incident-2026-11-03"
+        },
+        {
+          "id": "claim:gitbook-sso-github-app-2026:4",
+          "statement": "GitBook rotated all infrastructure and GitBook-managed customer secrets and GitHub App keys, revoked personal API tokens and invalidated older tokens; customers were told to create new API tokens and rotate third-party tokens and integration secrets.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://gitbook.com/status/security-incident-2026-11-03"
+        },
+        {
+          "id": "claim:gitbook-sso-github-app-2026:5",
+          "statement": "GitBook says the attack appeared aimed at one customer but treated all customer data as exposed.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://gitbook.com/status/security-incident-2026-11-03"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "GitBook calls the attack largely automated and AI-driven, but says this is an inference, not a confirmed finding; keep it attributed.",
+        "Unknown: whether the attacker acted inside customer repositories; GitBook could not determine this."
+      ]
+    },
+    {
+      "incidentId": "incident:barracuda-unretired-vendor-key-2026",
+      "title": "Barracuda: unretired cloud key held by a breached AI vendor opens a 44-hour secrets chain",
+      "incidentKind": "intrusion",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "Barracuda",
+          "canonicalUrl": "https://blog.barracuda.com/2026/11/11/anatomy-of-a-machine-speed-intrusion",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-22T01:30:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate shares this identity. The AI vendor is unnamed; do not assume it is Fireworks.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:barracuda-unretired-vendor-key-2026:1",
+          "statement": "Barracuda had given a cloud access key to a third-party AI vendor for a past project and never retired it; after the vendor's development environment was compromised in October, the attacker apparently found the key there.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://blog.barracuda.com/2026/11/11/anatomy-of-a-machine-speed-intrusion"
+        },
+        {
+          "id": "claim:barracuda-unretired-vendor-key-2026:2",
+          "statement": "The attacker first used the key on November 1, 2026 at 04:33 UTC; last activity was November 2 at 23:31 UTC, about 44 hours. Barracuda learned of it on November 4 from an engineer's report and the vendor's notice.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://blog.barracuda.com/2026/11/11/anatomy-of-a-machine-speed-intrusion"
+        },
+        {
+          "id": "claim:barracuda-unretired-vendor-key-2026:3",
+          "statement": "The attacker moved through about 10 cloud accounts via a chain of stolen secrets (a data analytics system, a source-code access token, Kubernetes clusters), pushed branches to make a build workflow print secrets into job logs, and tried to create an admin cloud identity, which was blocked.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://blog.barracuda.com/2026/11/11/anatomy-of-a-machine-speed-intrusion"
+        },
+        {
+          "id": "claim:barracuda-unretired-vendor-key-2026:4",
+          "statement": "One reached system stores the credentials Barracuda XDR uses to collect customer data; Barracuda found no direct evidence they were viewed but could not rule it out, so it asked affected Managed XDR Cloud and Monitored Endpoint customers to revoke and recreate integration credentials.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://blog.barracuda.com/2026/11/11/anatomy-of-a-machine-speed-intrusion"
+        },
+        {
+          "id": "claim:barracuda-unretired-vendor-key-2026:5",
+          "statement": "Barracuda says the tooling matches the ARTEX framework, which many groups use, so the match describes the method, not the attacker.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://blog.barracuda.com/2026/11/11/anatomy-of-a-machine-speed-intrusion"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "The $740,000 unauthorized compute figure in Barracuda's post refers to Railway, not Barracuda; do not attach it to this record.",
+        "Strong secrets-lifecycle example (a standing credential that outlived its project). Avoid implying a specific product would have prevented it."
+      ]
+    },
+    {
+      "incidentId": "incident:near-ai-sglang-rce-2026",
+      "title": "NEAR AI: SGLang remote code execution reaches inference server; two customers' API keys found in logs",
+      "incidentKind": "intrusion",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "The Block",
+          "canonicalUrl": "https://theblock.co/news/defi/2026-11-10-near-ai-security-breach-437002",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-22T01:30:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Let's Data Science",
+          "canonicalUrl": "https://letsdatascience.com/news/sglang-flaw-lets-attacker-breach-near-ai-inference-servers-fa6fb270",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-22T01:30:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate shares this identity.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:near-ai-sglang-rce-2026:1",
+          "statement": "NEAR AI's November 9, 2026 incident report, as summarized by The Block, says an attacker exploited a remote code execution flaw in the open-source SGLang inference engine to run code on one inference server and reach an internal system behind a deprecated Private Chat feature.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://theblock.co/news/defi/2026-11-10-near-ai-security-breach-437002"
+        },
+        {
+          "id": "claim:near-ai-sglang-rce-2026:2",
+          "statement": "Account details for about 100 users and chat history, settings and logs from 18 legacy agents were accessed; two NEAR AI Cloud customers' API keys were exposed in logs and have been revoked.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://letsdatascience.com/news/sglang-flaw-lets-attacker-breach-near-ai-inference-servers-fa6fb270"
+        },
+        {
+          "id": "claim:near-ai-sglang-rce-2026:3",
+          "statement": "On November 8 the attacker could also have observed user requests processed on the accessed server, including confidential-mode requests.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://letsdatascience.com/news/sglang-flaw-lets-attacker-breach-near-ai-inference-servers-fa6fb270"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Primary source needed: NEAR AI's own incident report was not fetched.",
+        "Unknown: which SGLang CVE was exploited; NEAR AI's report reportedly does not name one."
+      ]
+    },
+    {
+      "incidentId": "incident:nvidia-brev-ssh-keys-2026",
+      "title": "NVIDIA Brev: 16 days of unauthorized activity may have exposed SSH keys used to reach customer GPU VMs",
+      "incidentKind": "intrusion",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "Astra Security",
+          "canonicalUrl": "https://www.getastra.com/blog/?p=50030",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-22T01:30:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Compsmag",
+          "canonicalUrl": "https://www.compsmag.com/news/nvidia-replaces-brev-ssh-keys-after-security-incident-affecting-customer-cloud-instances/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-22T01:30:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate shares this identity.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:nvidia-brev-ssh-keys-2026:1",
+          "statement": "NVIDIA told Brev customers that unauthorized activity occurred on the Brev platform between October 4 and October 20, 2026, and that the Brev-provisioned SSH key for each account may have been affected.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.getastra.com/blog/?p=50030"
+        },
+        {
+          "id": "claim:nvidia-brev-ssh-keys-2026:2",
+          "statement": "NVIDIA says the keys were rotated, instances updated with replacements, and it found no evidence of misuse; it has not said how the access began.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.compsmag.com/news/nvidia-replaces-brev-ssh-keys-after-security-incident-affecting-customer-cloud-instances/"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Primary source needed: only NVIDIA's customer notification (quoted by press) exists; no public NVIDIA statement was found.",
+        "Unknown: entry point, number of affected customers, and whether customer workloads or data were accessed."
+      ]
+    }
+  ]
+}
