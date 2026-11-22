@@ -1,4 +1,4 @@
-import { evidenceLabel } from "./evidence-labels";
+import { ANSWER_LABELS, readableStatus, trustLabel } from "./evidence-labels";
 const MONTHS = [
   "Jan",
   "Feb",
@@ -71,28 +71,14 @@ export function sourceTypeLabel(type: string): string {
   }
 }
 
-/** Same wording as the site's evidence badges. */
 export function verificationLabel(status: string): string {
-  return evidenceLabel(status);
+  return trustLabel(status) ?? readableStatus(status);
 }
 
 export function cellStatusLabel(status: string): string {
-  switch (status) {
-    case "evidenced":
-      return "Evidence";
-    case "limited":
-      return "Scoped";
-    case "conflicting":
-      return "Conflict";
-    case "unverified":
-      return "Unverified";
-    case "unknown":
-      return "Unknown";
-    case "not_supported":
-      return "Not supported";
-    default:
-      return status;
-  }
+  const trust = trustLabel(status);
+  if (trust) return trust;
+  return ANSWER_LABELS[status]?.label ?? status;
 }
 
 export function availabilityLabel(status: string): string {

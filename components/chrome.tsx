@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { evidenceLabel } from "@/lib/evidence-labels";
 import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 import { formatDate } from "@/lib/format";
 import { cn } from "@/lib/utils";
+import { ANSWER_LABELS, readableStatus, TRUST_TONES, trustLabel } from "@/lib/evidence-labels";
 import type { SearchHit } from "@/lib/search";
 import { SearchCommand } from "@/components/search-panel";
 import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetClose } from "@/components/ui/sheet";
@@ -112,29 +112,48 @@ export function SiteFooter({ asOf }: { asOf: string }) {
   );
 }
 
+const PILL_LABELS: Record<string, string> = {
+  taxonomy_mapping: "Taxonomy mapping",
+  catalog_structure: "Catalog structure",
+  announced: "Announced",
+  generally_available: "Documented",
+  legacy_name: "Name in transition",
+  official_docs: "Official docs",
+  vendor_marketing: "Vendor marketing",
+  press_release: "Press release",
+  customer_story: "Customer story",
+  analyst: "Analyst",
+  review: "Review",
+  standard: "Standard",
+  internal_note: "Internal note",
+  news: "News coverage",
+  legal_summary: "Legal summary",
+  academic: "Academic research",
+  direct_competitor: "Direct competitor",
+  bundled_alternative: "Bundled alternative",
+  complement: "Complement",
+  adjacent_budget: "Adjacent budget",
+  seed_reviewed: "Seed reviewed",
+  approved: "Reviewed",
+  reported: "Reported",
+  observed: "Observed",
+  draft: "Draft",
+  reviewed: "Reviewed",
+  not_evaluated: "Not evaluated",
+  recheck_due: "Recheck due",
+};
 
-
+/** Trust labels first (lib/evidence-labels.ts), then compare-grid answers, then neutral pills. */
 export function pillLabel(status: string): string {
-  return evidenceLabel(status);
+  return trustLabel(status) ?? ANSWER_LABELS[status]?.label ?? PILL_LABELS[status] ?? readableStatus(status);
 }
 
 export function StatusPill({ status }: { status: string }) {
-  const tone =
-    status === "verified" || status === "evidenced" || status === "generally_available" || status === "independently_verified" || status === "seed_reviewed" || status === "approved" || status === "reviewed"
-      ? "border-emerald-700/20 bg-emerald-50 text-emerald-950 dark:border-emerald-400/30 dark:bg-emerald-950 dark:text-emerald-100"
-      : status === "vendor_published" || status === "limited" || status === "official_docs" || status === "source_referenced" || status === "vendor_reported" || status === "reported" || status === "observed"
-        ? "border-sky-800/15 bg-sky-50 text-sky-950 dark:border-sky-400/30 dark:bg-sky-950 dark:text-sky-100"
-        : status === "needs_review" ||
-            status === "unverified" ||
-            status === "announced" ||
-            status === "internal_note" ||
-            status === "hypothesis" ||
-            status === "draft" ||
-            status === "recheck_due"
-          ? "border-amber-800/20 bg-amber-50 text-amber-950 dark:border-amber-400/30 dark:bg-amber-950 dark:text-amber-100"
-          : status === "conflicting" || status === "not_supported" || status === "disputed"
-            ? "border-rose-800/20 bg-rose-50 text-rose-950 dark:border-rose-400/30 dark:bg-rose-950 dark:text-rose-100"
-            : "border-stone-300 bg-stone-100 text-stone-700 dark:border-stone-600 dark:bg-stone-800 dark:text-stone-200";
+  // Trust statuses share one label and tone (lib/evidence-labels.ts). Everything else is neutral.
+  const trust = trustLabel(status);
+  const answer = ANSWER_LABELS[status];
+  const tone = trust ? TRUST_TONES[trust] : (answer?.tone ?? "border-stone-300 bg-transparent text-stone-700 dark:border-stone-600 dark:text-stone-200");
+  const label = pillLabel(status);
 
   return (
     <span
@@ -143,7 +162,7 @@ export function StatusPill({ status }: { status: string }) {
         tone,
       )}
     >
-      {evidenceLabel(status)}
+      {label}
     </span>
   );
 }

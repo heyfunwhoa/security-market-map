@@ -1,25 +1,23 @@
 import { describe, expect, it } from "vitest";
+import { pillLabel } from "../components/chrome";
 import { catalog } from "./catalog";
 import { claimNeedsRecheck, isSourceStale } from "./coverage";
-import { EVIDENCE_LABELS, evidenceLabel } from "./evidence-labels";
+import { readableStatus, trustLabel } from "./evidence-labels";
 import { verificationLabel } from "./format";
 import { sourceTypeSchema, verificationStatusSchema } from "./schema";
 
-describe("shared evidence vocabulary", () => {
-  it("labels every claim verification status and source type explicitly", () => {
-    for (const status of [...verificationStatusSchema.options, ...sourceTypeSchema.options]) {
-      expect(EVIDENCE_LABELS[status], `missing label for ${status}`).toBeTruthy();
-    }
+describe("evidence badges", () => {
+  it("gives every claim status a trust label and every source type a readable label", () => {
+    for (const status of verificationStatusSchema.options) expect(trustLabel(status), status).toBeTruthy();
+    for (const type of sourceTypeSchema.options) expect(pillLabel(type), type).not.toMatch(/_/);
   });
 
   it("never shows a raw code, even for an unlisted status", () => {
-    expect(evidenceLabel("some_new_state")).toBe("Some new state");
-    expect(evidenceLabel("")).toBe("Unknown");
-    for (const label of Object.values(EVIDENCE_LABELS)) expect(label).not.toMatch(/_/);
-  });
-
-  it("uses one wording for comparison tables and badges", () => {
-    for (const status of verificationStatusSchema.options) expect(verificationLabel(status)).toBe(evidenceLabel(status));
+    expect(readableStatus("some_new_state")).toBe("Some new state");
+    expect(readableStatus("")).toBe("Unknown");
+    expect(pillLabel("some_new_state")).toBe("Some new state");
+    expect(verificationLabel("some_new_state")).toBe("Some new state");
+    expect(pillLabel("recheck_due")).toBe("Recheck due");
   });
 
   it("flags a claim for recheck exactly when its source is past its review window at the snapshot date", () => {
