@@ -53,9 +53,15 @@ it("links the public exposure scenario to the optional, evidence-specific paymen
   expect(disclosure).toBeDefined();
   expect(disclosure).not.toMatch(/^<details[^>]*\bopen\b/);
   expect(disclosure).toContain('id="payment-key-coordination"');
+  expect(disclosure).toContain('<label for="payment-key-evidence"');
+  expect(disclosure).toContain('selected="">Only the old key’s expiry</option>');
+  expect(disclosure).toContain("Only the new key’s use</option>");
+  expect(disclosure).toContain("Both checks confirmed</option>");
+  expect(disclosure).toContain("Neither check confirmed</option>");
   expect(disclosure).toMatch(/Stripe account admin<\/dt><dd[^>]*><strong>Confirmed/);
   expect(disclosure).toMatch(/Payment service owner<\/dt><dd[^>]*><strong>Still open/);
-  expect(disclosure).toContain("Incident owner with the payments team");
+  expect(disclosure).toContain("Incident owner’s next check-in");
+  expect(disclosure).toContain(">Payments team</p>");
   expect(disclosure).toContain("Usage review stays open.");
   expect(disclosure).toContain('href="#exposure-partner-key"');
   expect(guide).toContain('id="exposure-partner-key"');
