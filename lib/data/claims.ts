@@ -483,7 +483,7 @@ export const claims: Claim[] = [
   "effectiveTo": null,
   "confidence": "medium",
   "verificationStatus": "vendor_published",
-  "lastCheckedAt": "2026-10-13",
+  "lastCheckedAt": "2026-11-22",
   "conflictsWith": [],
   "notes": "Product/category positioning only. Not independent testing, feature parity, pricing, corporate-ownership verification or a direct-competitor assertion. Validate edition, connector coverage and availability."
 },
@@ -503,7 +503,7 @@ export const claims: Claim[] = [
   "effectiveTo": null,
   "confidence": "medium",
   "verificationStatus": "vendor_published",
-  "lastCheckedAt": "2026-10-13",
+  "lastCheckedAt": "2026-11-22",
   "conflictsWith": [],
   "notes": "Product/category positioning only. Not independent testing, feature parity, pricing, corporate-ownership verification or a direct-competitor assertion. Validate edition, connector coverage and availability."
 },
@@ -523,7 +523,7 @@ export const claims: Claim[] = [
   "effectiveTo": null,
   "confidence": "medium",
   "verificationStatus": "vendor_published",
-  "lastCheckedAt": "2026-10-13",
+  "lastCheckedAt": "2026-11-22",
   "conflictsWith": [],
   "notes": "Product/category positioning only. Not independent testing, feature parity, pricing, corporate-ownership verification or a direct-competitor assertion. Validate edition, connector coverage and availability."
 },
@@ -543,7 +543,7 @@ export const claims: Claim[] = [
   "effectiveTo": null,
   "confidence": "medium",
   "verificationStatus": "vendor_published",
-  "lastCheckedAt": "2026-10-13",
+  "lastCheckedAt": "2026-11-22",
   "conflictsWith": [],
   "notes": "Product/category positioning only. Not independent testing, feature parity, pricing, corporate-ownership verification or a direct-competitor assertion. Validate edition, connector coverage and availability."
 },
@@ -563,7 +563,7 @@ export const claims: Claim[] = [
   "effectiveTo": null,
   "confidence": "medium",
   "verificationStatus": "vendor_published",
-  "lastCheckedAt": "2026-10-13",
+  "lastCheckedAt": "2026-11-22",
   "conflictsWith": [],
   "notes": "Product/category positioning only. Not independent testing, feature parity, pricing, corporate-ownership verification or a direct-competitor assertion. Validate edition, connector coverage and availability."
 },
@@ -583,7 +583,7 @@ export const claims: Claim[] = [
   "effectiveTo": null,
   "confidence": "medium",
   "verificationStatus": "vendor_published",
-  "lastCheckedAt": "2026-10-13",
+  "lastCheckedAt": "2026-11-22",
   "conflictsWith": [],
   "notes": "Product/category positioning only. Not independent testing, feature parity, pricing, corporate-ownership verification or a direct-competitor assertion. Validate edition, connector coverage and availability."
 },
@@ -623,7 +623,7 @@ export const claims: Claim[] = [
   "effectiveTo": null,
   "confidence": "medium",
   "verificationStatus": "vendor_published",
-  "lastCheckedAt": "2026-10-13",
+  "lastCheckedAt": "2026-11-22",
   "conflictsWith": [],
   "notes": "Official marketing reviewed; not independent validation. Connector coverage, licensing, deployment and effectiveness require evaluation. No direct-competitor or feature-parity assertion."
 },
@@ -650,7 +650,7 @@ export const claims: Claim[] = [
   claim({
     id: "claim-c1-rename",
     statement:
-      "ConductorOne publicly says it is now C1, and that the company can be found at c1.ai. The rebrand post reviewed on 23 Sep 2026 did not state an effective date.",
+      "On 6 Apr 2026 ConductorOne posted \"Today, ConductorOne becomes C1.ai\" and said the company can be found at c1.ai.",
     subjectType: "vendor",
     subjectId: "c1",
     capabilityId: null,
@@ -658,26 +658,26 @@ export const claims: Claim[] = [
     sourceId: "src-c1-rebrand",
     sourceUrl: "https://www.c1.ai/blog/wearec1",
     sourceType: "vendor_marketing",
-    publishedAt: null,
+    publishedAt: "2026-04-06",
     observedAt: checked,
     effectiveFrom: null,
     effectiveTo: null,
     confidence: "high",
     verificationStatus: "vendor_published",
-    lastCheckedAt: checked,
+    lastCheckedAt: "2026-11-22",
     conflictsWith: [],
-    notes: "Use C1 as the current name. Do not invent the day the name changed.",
+    notes: "Use C1 as the current name. The rename date is the post's own date, 6 Apr 2026 (rechecked 22 Nov 2026).",
   }),
   claim({
     id: "claim-c1-jml",
     statement:
-      "C1's automations page describes joiner, mover, leaver, and offboarding workflows, and says the same lifecycle automation includes AI agent provisioning and decommissioning.",
+      "C1's lifecycle page says a join, role change, leave, or departure can trigger the right lifecycle workflow, and describes managing the lifecycle of employees, agents, and enterprise resources.",
     subjectType: "product",
     subjectId: "c1-platform",
     capabilityId: "cap-jml",
     polarity: "asserts",
     sourceId: "src-c1-automations",
-    sourceUrl: "https://www.c1.ai/products/automations",
+    sourceUrl: "https://www.c1.ai/products/lifecycle",
     sourceType: "vendor_marketing",
     publishedAt: null,
     observedAt: checked,
@@ -685,9 +685,9 @@ export const claims: Claim[] = [
     effectiveTo: null,
     confidence: "medium",
     verificationStatus: "vendor_published",
-    lastCheckedAt: checked,
+    lastCheckedAt: "2026-11-22",
     conflictsWith: [],
-    notes: "Vendor marketing. Connector coverage and general availability of each workflow were not independently checked.",
+    notes: "Vendor marketing. Connector coverage and general availability of each workflow were not independently checked. Reworded 22 Nov 2026: the automations page now redirects to Lifecycle, which no longer spells out AI agent provisioning and decommissioning.",
   }),
   claim({
     id: "claim-c1-request",
@@ -1636,7 +1636,7 @@ export const claims: Claim[] = [
   claim({
     id: "claim-cyera-acquiring-oasis",
     statement:
-      "On 28 Jul 2026 Cyera's CEO wrote that Cyera is acquiring Oasis Security to unite data understanding with non-human identity. The post is an argument for one system. It does not demonstrate a shipping workflow.",
+      "On 28 Jul 2026 Cyera's CEO, Yotam Segev, wrote that Cyera is acquiring Oasis Security \"to unify identity and data security into the most comprehensive platform for securing AI.\" The post is an argument for one system. It does not demonstrate a shipping workflow.",
     subjectType: "vendor",
     subjectId: "cyera",
     capabilityId: null,
@@ -1650,9 +1650,9 @@ export const claims: Claim[] = [
     effectiveTo: null,
     confidence: "high",
     verificationStatus: "vendor_published",
-    lastCheckedAt: "2026-09-24",
+    lastCheckedAt: "2026-11-22",
     conflictsWith: [],
-    notes: "Vendor statement. Strategic rationale, not an integration proof.",
+    notes: "Vendor statement. Strategic rationale, not an integration proof. Reworded 22 Nov 2026 to quote the post.",
   }),
   claim({
     id: "claim-oasis-letter",
@@ -2237,7 +2237,7 @@ export const claims: Claim[] = [
   "effectiveTo": null,
   "confidence": "medium",
   "verificationStatus": "vendor_published",
-  "lastCheckedAt": "2026-10-13",
+  "lastCheckedAt": "2026-11-22",
   "conflictsWith": [],
   "notes": "Public source inspected. No ranking, endorsement, feature parity or tested effectiveness is inferred. Full analyst reports are not reproduced; see the analyst discovery brief for access and rights limits."
 },
@@ -2249,7 +2249,7 @@ export const claims: Claim[] = [
   "capabilityId": null,
   "polarity": "asserts",
   "sourceId": "src-arexdata-dspm-20261013",
-  "sourceUrl": "https://www.arexdata.com/en/soluciones/",
+  "sourceUrl": "https://arexdata.com/en/",
   "sourceType": "vendor_marketing",
   "publishedAt": null,
   "observedAt": "2026-10-13",
@@ -2257,9 +2257,9 @@ export const claims: Claim[] = [
   "effectiveTo": null,
   "confidence": "medium",
   "verificationStatus": "vendor_published",
-  "lastCheckedAt": "2026-10-13",
+  "lastCheckedAt": "2026-11-22",
   "conflictsWith": [],
-  "notes": "Public source inspected. No ranking, endorsement, feature parity or tested effectiveness is inferred. Full analyst reports are not reproduced; see the analyst discovery brief for access and rights limits."
+  "notes": "Public source inspected. No ranking, endorsement, feature parity or tested effectiveness is inferred. Full analyst reports are not reproduced; see the analyst discovery brief for access and rights limits. Rechecked 22 Nov 2026: the original solutions page returns 404; the Arexdata homepage lists DSPM, data classification, audit trail and data access governance."
 },
   {
   "id": "claim-trustlogix-dspm-20261013",

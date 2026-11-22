@@ -465,7 +465,7 @@ export const sources: Source[] = [
   "publisher": "Rubrik",
   "sourceType": "customer_story",
   "publishedAt": null,
-  "retrievedAt": "2026-10-13",
+  "retrievedAt": "2026-11-22",
   "volatility": "fast",
   "excerpt": "Rubrik describes its DSPM offering as formerly Laminar in a vendor-published customer story."
 },
@@ -477,7 +477,7 @@ export const sources: Source[] = [
   "publisher": "Tenable",
   "sourceType": "vendor_marketing",
   "publishedAt": null,
-  "retrievedAt": "2026-10-13",
+  "retrievedAt": "2026-11-22",
   "volatility": "fast",
   "excerpt": "Tenable markets integrated DSPM within Tenable One Cloud Exposure."
 },
@@ -489,7 +489,7 @@ export const sources: Source[] = [
   "publisher": "Wiz",
   "sourceType": "vendor_marketing",
   "publishedAt": null,
-  "retrievedAt": "2026-10-13",
+  "retrievedAt": "2026-11-22",
   "volatility": "fast",
   "excerpt": "Wiz markets a DSPM solution for cloud data security."
 },
@@ -501,7 +501,7 @@ export const sources: Source[] = [
   "publisher": "Microsoft Purview",
   "sourceType": "official_docs",
   "publishedAt": null,
-  "retrievedAt": "2026-10-13",
+  "retrievedAt": "2026-11-22",
   "volatility": "fast",
   "excerpt": "Microsoft documents Purview DSPM for discovering, protecting and investigating sensitive-data risks; some non-Microsoft coverage depends on partner integrations."
 },
@@ -513,7 +513,7 @@ export const sources: Source[] = [
   "publisher": "Palo Alto Networks Cortex",
   "sourceType": "vendor_marketing",
   "publishedAt": null,
-  "retrievedAt": "2026-10-13",
+  "retrievedAt": "2026-11-22",
   "volatility": "fast",
   "excerpt": "Palo Alto Networks markets Cortex DSPM for cloud and AI data exposure."
 },
@@ -525,7 +525,7 @@ export const sources: Source[] = [
   "publisher": "Metomic",
   "sourceType": "vendor_marketing",
   "publishedAt": null,
-  "retrievedAt": "2026-10-13",
+  "retrievedAt": "2026-11-22",
   "volatility": "fast",
   "excerpt": "Metomic describes its SaaS DSPM foundation and expansion into AI-agent data security."
 },
@@ -549,7 +549,7 @@ export const sources: Source[] = [
   "publisher": "Concentric AI",
   "sourceType": "vendor_marketing",
   "publishedAt": null,
-  "retrievedAt": "2026-10-13",
+  "retrievedAt": "2026-11-22",
   "volatility": "fast",
   "excerpt": "Concentric AI markets DSPM with semantic discovery of structured and unstructured data, access-aware risk assessment, and remediation."
 },
@@ -572,8 +572,8 @@ export const sources: Source[] = [
     canonicalUrl: "https://www.c1.ai/blog/wearec1",
     publisher: "C1",
     sourceType: "vendor_marketing",
-    publishedAt: null,
-    retrievedAt: "2026-09-23",
+    publishedAt: "2026-04-06",
+    retrievedAt: "2026-11-22",
     volatility: "fast",
     excerpt:
       "C1 says ConductorOne has become C1 and that the company site is c1.ai. The post reviewed did not give an effective date.",
@@ -606,16 +606,16 @@ export const sources: Source[] = [
   },
   {
     id: "src-c1-automations",
-    title: "C1 identity automations",
-    url: "https://www.c1.ai/products/automations",
-    canonicalUrl: "https://www.c1.ai/products/automations",
+    title: "C1 Lifecycle (formerly automations)",
+    url: "https://www.c1.ai/products/lifecycle",
+    canonicalUrl: "https://www.c1.ai/products/lifecycle",
     publisher: "C1",
     sourceType: "vendor_marketing",
     publishedAt: null,
-    retrievedAt: "2026-09-23",
+    retrievedAt: "2026-11-22",
     volatility: "fast",
     excerpt:
-      "Marketing page describing joiner-mover-leaver automation, including AI agent provisioning and decommissioning.",
+      "Lifecycle page: joins, role changes, leaves and departures trigger lifecycle workflows; describes managing the lifecycle of employees, agents, and enterprise resources. The automations URL now redirects here.",
   },
   {
     id: "src-opal-press",
@@ -1048,7 +1048,7 @@ export const sources: Source[] = [
     author: "Yotam Segev",
     sourceType: "press_release",
     publishedAt: "2026-07-28",
-    retrievedAt: "2026-09-24",
+    retrievedAt: "2026-11-22",
     volatility: "fast",
     excerpt:
       "Cyera's CEO writes that the company is acquiring Oasis Security to unite data and identity. The post argues that knowing data and knowing identities are separate problems. It does not show a shipping integration.",
@@ -1260,19 +1260,19 @@ export const sources: Source[] = [
   "publisher": "AvePoint",
   "sourceType": "vendor_marketing",
   "publishedAt": null,
-  "retrievedAt": "2026-10-13",
+  "retrievedAt": "2026-11-22",
   "volatility": "fast",
   "excerpt": "AvePoint markets DSPM through its Confidence Platform, with sensitive-data discovery, access governance and remediation."
 },
   {
   "id": "src-arexdata-dspm-20261013",
   "title": "Arexdata DSPM product positioning",
-  "url": "https://www.arexdata.com/en/soluciones/",
-  "canonicalUrl": "https://www.arexdata.com/en/soluciones/",
+  "url": "https://arexdata.com/en/",
+  "canonicalUrl": "https://arexdata.com/en/",
   "publisher": "Arexdata",
   "sourceType": "vendor_marketing",
   "publishedAt": null,
-  "retrievedAt": "2026-10-13",
+  "retrievedAt": "2026-11-22",
   "volatility": "fast",
   "excerpt": "Arexdata markets DSPM combining data discovery, classification, audit trails and data access governance."
 },

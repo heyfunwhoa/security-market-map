@@ -371,9 +371,9 @@ export const expandedSources: Source[] = [
     "publisher": "Arexdata",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
-    "excerpt": "Arexdata markets DSPM for centralized data, access and permissions visibility across local and cloud repositories."
+    "excerpt": "Arexdata homepage: a DSPM platform that identifies and classifies sensitive data, controls who accesses it and how it is used, with data access governance and an audit trail."
   },
   {
     "id": "src-expanded-avepoint-dspm",
@@ -383,7 +383,7 @@ export const expandedSources: Source[] = [
     "publisher": "AvePoint",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "AvePoint markets DSPM with sensitive-data discovery, access visibility and governance across its platform."
   },
@@ -407,7 +407,7 @@ export const expandedSources: Source[] = [
     "publisher": "Thales",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Thales markets CipherTrust DSPM with discovery, data-risk analytics and integrated data-protection workflows."
   },
@@ -426,12 +426,12 @@ export const expandedSources: Source[] = [
   {
     "id": "src-expanded-forcepoint-dspm",
     "title": "Forcepoint DSPM — official scope",
-    "url": "https://help.forcepoint.com/dspm/en-us/onlinehelp/guid-e9e3ca45-4e27-490c-b6ce-822b57a8eaae.html",
-    "canonicalUrl": "https://help.forcepoint.com/dspm/en-us/onlinehelp/guid-e9e3ca45-4e27-490c-b6ce-822b57a8eaae.html",
+    "url": "https://help.forcepoint.com/dspm/en-us/on-prem_dspm/guid-e9e3ca45-4e27-490c-b6ce-822b57a8eaae.html",
+    "canonicalUrl": "https://help.forcepoint.com/dspm/en-us/on-prem_dspm/guid-e9e3ca45-4e27-490c-b6ce-822b57a8eaae.html",
     "publisher": "Forcepoint",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Forcepoint documents DSPM for sensitive-data discovery, classification and risk assessment."
   },
@@ -455,7 +455,7 @@ export const expandedSources: Source[] = [
     "publisher": "Delinea",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Delinea documents a cloud-based DevOps vault with access controls, CLI/API access and audit logging."
   },
@@ -467,7 +467,7 @@ export const expandedSources: Source[] = [
     "publisher": "BeyondTrust",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "BeyondTrust describes Secrets Safe as a capability within Password Safe for DevOps credential storage and access."
   },
@@ -479,7 +479,7 @@ export const expandedSources: Source[] = [
     "publisher": "Bitwarden",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Bitwarden documents Secrets Manager with machine accounts, access tokens, CLI/SDK access and secret injection."
   },
@@ -491,7 +491,7 @@ export const expandedSources: Source[] = [
     "publisher": "1Password",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "1Password documents Secrets Automation through service accounts or Connect servers."
   },
@@ -512,7 +512,7 @@ export const expandedSources: Source[] = [
 export const expandedClaims: Claim[] = [
   {
     "id": "claim-expanded-arexdata-dspm",
-    "statement": "Arexdata markets DSPM for centralized data, access and permissions visibility across local and cloud repositories.",
+    "statement": "Arexdata markets a DSPM platform with data access governance that controls who accesses sensitive data and how it is used.",
     "subjectType": "product",
     "subjectId": "arexdata-dspm",
     "capabilityId": null,
@@ -526,9 +526,9 @@ export const expandedClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
-    "notes": "Validate connectors, deployment and enforcement scope; the fetched English URL serves Spanish content. Publisher-reported, not independently tested; no direct-competitor or analyst endorsement claim."
+    "notes": "Validate connectors, deployment and enforcement scope; the fetched English URL serves Spanish content. Publisher-reported, not independently tested; no direct-competitor or analyst endorsement claim. Reworded 22 Nov 2026: the homepage no longer describes centralized visibility across local and cloud repositories."
   },
   {
     "id": "claim-expanded-avepoint-dspm",
@@ -546,7 +546,7 @@ export const expandedClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Confirm which Confidence Platform components and licenses implement the required controls. Publisher-reported, not independently tested; no direct-competitor or analyst endorsement claim."
   },
@@ -586,7 +586,7 @@ export const expandedClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Do not adopt the vendor's competitive comparison table as independently established feature parity. Publisher-reported, not independently tested; no direct-competitor or analyst endorsement claim."
   },
@@ -618,7 +618,7 @@ export const expandedClaims: Claim[] = [
     "capabilityId": null,
     "polarity": "asserts",
     "sourceId": "src-expanded-forcepoint-dspm",
-    "sourceUrl": "https://help.forcepoint.com/dspm/en-us/onlinehelp/guid-e9e3ca45-4e27-490c-b6ce-822b57a8eaae.html",
+    "sourceUrl": "https://help.forcepoint.com/dspm/en-us/on-prem_dspm/guid-e9e3ca45-4e27-490c-b6ce-822b57a8eaae.html",
     "sourceType": "official_docs",
     "publishedAt": null,
     "observedAt": "2026-10-13",
@@ -626,9 +626,9 @@ export const expandedClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "low",
     "verificationStatus": "needs_review",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
-    "notes": "The documentation contains a testing-purpose note. Confirm production version and packaging; performance and enforcement claims are not adopted. Publisher-reported, not independently tested; no direct-competitor or analyst endorsement claim."
+    "notes": "The documentation contains a testing-purpose note. Confirm production version and packaging; performance and enforcement claims are not adopted. Publisher-reported, not independently tested; no direct-competitor or analyst endorsement claim. Rechecked 22 Nov 2026: the page (now under an on-prem DSPM path) still supports discovery, classification and risk assessment. Kept as Needs review until production packaging is confirmed."
   },
   {
     "id": "claim-expanded-google-scc-dspm",
@@ -666,7 +666,7 @@ export const expandedClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Separate product from Secret Server. Vaulting does not establish repository secret-scanning coverage. Publisher-reported, not independently tested; no direct-competitor or analyst endorsement claim."
   },
@@ -686,7 +686,7 @@ export const expandedClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Platform capability rather than a separate vendor. Confirm license and rotation support; no code-scanning claim. Publisher-reported, not independently tested; no direct-competitor or analyst endorsement claim."
   },
@@ -706,7 +706,7 @@ export const expandedClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Separate evaluation from its human password manager; rotation and dynamic issuance coverage remain unknown here. Publisher-reported, not independently tested; no direct-competitor or analyst endorsement claim."
   },
@@ -726,7 +726,7 @@ export const expandedClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Service-account and Connect architectures have different rate limits and infrastructure requirements. A self-hosted Connect server does not imply the whole vault service is self-hosted. Publisher-reported, not independently tested; no direct-competitor or analyst endorsement claim."
   },
