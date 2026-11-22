@@ -1,0 +1,43 @@
+{
+  "feedId": "gitguardian-saas",
+  "vendorId": "gitguardian",
+  "feedUrl": "https://docs.gitguardian.com/releases/saas/rss.xml",
+  "checkedAt": "2026-11-22",
+  "candidates": [
+    {
+      "title": "Invalid secrets no longer block your developers and AI coding agents",
+      "date": "2026-11-20",
+      "url": "https://docs.gitguardian.com/releases/saas/2026/11/20/changelog",
+      "firstSeen": "2026-11-22",
+      "status": "new"
+    },
+    {
+      "title": "Endpoint Protection gives you better control over your machines and their secrets",
+      "date": "2026-11-18",
+      "url": "https://docs.gitguardian.com/releases/saas/2026/11/18/changelog",
+      "firstSeen": "2026-11-22",
+      "status": "new"
+    },
+    {
+      "title": "Catch secret theft on your developers' machines with a Kubeconfig honeytoken",
+      "date": "2026-11-12",
+      "url": "https://docs.gitguardian.com/releases/saas/2026/11/12/changelog",
+      "firstSeen": "2026-11-22",
+      "status": "new"
+    },
+    {
+      "title": "Sync your GitHub teams, members, and perimeters automatically",
+      "date": "2026-10-29",
+      "url": "https://docs.gitguardian.com/releases/saas/2026/10/29/changelog",
+      "firstSeen": "2026-11-22",
+      "status": "new"
+    },
+    {
+      "title": "Scan developer machines with less noise, and clean up what you find",
+      "date": "2026-10-27",
+      "url": "https://docs.gitguardian.com/releases/saas/2026/10/27/changelog",
+      "firstSeen": "2026-11-22",
+      "status": "new"
+    }
+  ]
+}
