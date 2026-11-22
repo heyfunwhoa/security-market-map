@@ -1,5 +1,5 @@
 import { catalog } from "@/lib/catalog";
-import { incidentFeed, industryLabel, type FeedIncident } from "@/lib/incident-feed";
+import { exposureLocationLabel, incidentFeed, industryLabel, secretTypeLabel, type FeedIncident } from "@/lib/incident-feed";
 
 /**
  * Consumer export of the reviewed incident feed for this owner's other tools
@@ -25,8 +25,9 @@ export function buildIncidentFeedExport(feed: readonly FeedIncident[] = incident
       "Category links mean related, not that any product would have prevented the incident.",
       "Don't infer that a prospect or customer was affected.",
       "Industry is the industry of the organization the source names, not a list of affected industries.",
+      "Secret types and exposure location are only what the sources state; an empty list means not stated, not none. Location is where the first exposed secret sat.",
     ],
-    incidents: feed.map(({ slug, incident, sources, salesNote, categoryLinks, industries }) => ({
+    incidents: feed.map(({ slug, incident, sources, salesNote, categoryLinks, industries, secretTypes, exposureLocations, exposureNote }) => ({
       id: incident.id,
       slug,
       title: incident.title,
@@ -58,6 +59,12 @@ export function buildIncidentFeedExport(feed: readonly FeedIncident[] = incident
           : null,
       // Industry of the organization the source names, reviewed only; never the industry of a prospect.
       industries: industries.map((id) => ({ id, name: industryLabel(id) })),
+      // Reviewed only; empty means the sources don't say. Location is where the leak started.
+      secretExposure: {
+        secretTypes: secretTypes.map((id) => ({ id, name: secretTypeLabel(id) })),
+        exposureLocations: exposureLocations.map((id) => ({ id, name: exposureLocationLabel(id) })),
+        note: exposureNote,
+      },
       marketCategories: categoryLinks.map((link) => ({
         categoryId: link.categoryId,
         categoryName: categoryName.get(link.categoryId) ?? null,

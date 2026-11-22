@@ -648,5 +648,15 @@
     "lastReviewedOn": "2026-11-21",
     "cadence": "event_driven",
     "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:okta-support-update-2023-11-29",
+    "publisher": "Okta Security",
+    "type": "company_incident_report",
+    "url": "https://sec.okta.com/october-security-incident-recommended-actions",
+    "publishedOn": "2023-11-29",
+    "lastReviewedOn": "2026-11-22",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
   }
 ]
