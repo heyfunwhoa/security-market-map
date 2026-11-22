@@ -1974,7 +1974,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Truffle Security",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Scans for exposed secrets across supported sources."
   },
@@ -1986,7 +1986,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "GitGuardian",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Provides secrets detection through its platform and CLI."
   },
@@ -1998,7 +1998,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "GitGuardian",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: CLI scans content using the GitGuardian API."
   },
@@ -2010,7 +2010,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "GitHub",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Detects leaked credentials in supported GitHub content."
   },
@@ -2022,7 +2022,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "GitLab",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Provides pipeline and other secret detection workflows."
   },
@@ -2034,7 +2034,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Gitleaks",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Scans files and Git history for potential secrets."
   },
@@ -2046,7 +2046,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Aikido Security",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Configurable scanner for exposed secrets."
   },
@@ -2058,7 +2058,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "MongoDB",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Detects exposed credentials and supports live validation."
   },
@@ -2070,7 +2070,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Praetorian",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Finds secrets in textual data and Git history."
   },
@@ -2082,7 +2082,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Praetorian",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Detects credentials in source, binaries, and HTTP traffic."
   },
@@ -2094,7 +2094,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Yelp",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Detects secrets in code with baselines and plugins."
   },
@@ -2106,7 +2106,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Amazon Web Services",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Checks Git content against prohibited credential patterns."
   },
@@ -2118,7 +2118,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Aqua Security",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Finds secrets in plaintext files with built-in and custom rules."
   },
@@ -2130,7 +2130,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Palo Alto Networks",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Scans for hardcoded credentials and secrets."
   },
@@ -2142,7 +2142,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Secretlint project",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Uses pluggable rules to detect credentials before commit."
   },
@@ -2154,7 +2154,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Deepfence",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Scans container images and local directories for secrets."
   },
@@ -2166,7 +2166,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Thoughtworks",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Detects suspicious secret material in Git changesets."
   },
@@ -2178,7 +2178,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "SAP",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Repository documents hardcoded-credential scanning."
   },
@@ -2190,7 +2190,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Skyscanner",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Finds hardcoded secrets in structured text."
   },
@@ -2202,7 +2202,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Semgrep",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Scans code for exposed secrets."
   },
@@ -2214,7 +2214,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Aikido Security",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Detects exposed secrets and describes live-secret checks."
   },
@@ -2226,7 +2226,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Apiiro",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Detects and validates exposed secrets with application context."
   },
@@ -2238,31 +2238,31 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Cycode",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Scans development environments for hardcoded secrets."
   },
   {
     "id": "src-secrets-sweep-legit-secrets",
-    "title": "Legit Secrets Detection — secrets detection scope",
-    "url": "https://www.legitsecurity.com/enterprise-secret-scanning",
-    "canonicalUrl": "https://www.legitsecurity.com/enterprise-secret-scanning",
+    "title": "Legit Security Launches AI-Powered, Enterprise-Grade Secrets Scanning Product",
+    "url": "https://www.legitsecurity.com/press-releases/legit-security-launches-ai-powered-enterprise-grade-secrets-scanning-product",
+    "canonicalUrl": "https://www.legitsecurity.com/press-releases/legit-security-launches-ai-powered-enterprise-grade-secrets-scanning-product",
     "publisher": "Legit Security",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Detects exposed secrets across development and collaboration surfaces."
   },
   {
     "id": "src-secrets-sweep-ox-secrets",
     "title": "OX Secret and PII Scan — secrets detection scope",
-    "url": "https://docs.ox.security/ox-policies/cloud-context-policies-3",
-    "canonicalUrl": "https://docs.ox.security/ox-policies/cloud-context-policies-3",
+    "url": "https://docs.ox.security/ox-policies/code-security/cloud-context-policies-3",
+    "canonicalUrl": "https://docs.ox.security/ox-policies/code-security/cloud-context-policies-3",
     "publisher": "OX Security",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Documents policies for hardcoded-secret findings."
   },
@@ -2286,7 +2286,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Endor Labs",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Scans Git history and describes live-secret validation."
   },
@@ -2298,7 +2298,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Arnica",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Detects hardcoded secrets in repository commits."
   },
@@ -2310,7 +2310,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Xygeni",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Scans code, text, and Docker images for exposed secrets."
   },
@@ -2322,7 +2322,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Checkmarx",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Detects hardcoded credentials in development workflows."
   },
@@ -2334,7 +2334,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Sonar",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Detects secrets in source and language-agnostic configuration files."
   },
@@ -2346,7 +2346,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "JFrog",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Scans source and binary artifacts for exposed secrets."
   },
@@ -2358,7 +2358,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Mend",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Scans source and configuration files for exposed credentials."
   },
@@ -2370,7 +2370,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Snyk",
     "sourceType": "vendor_marketing",
     "publishedAt": "2026-08-04",
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Announces general availability of a dedicated secrets scanner."
   },
@@ -2382,7 +2382,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Datadog",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Scans code for exposed secrets."
   },
@@ -2394,31 +2394,31 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Harness",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Lists secrets detection in its application security platform."
   },
   {
     "id": "src-secrets-sweep-spectral-secrets",
-    "title": "Spectral Secrets Scanning — secrets detection scope",
-    "url": "https://guides.spectralops.io/docs/secrets-scanning",
-    "canonicalUrl": "https://guides.spectralops.io/docs/secrets-scanning",
+    "title": "Assets (Check Point CloudGuard Code Security documentation)",
+    "url": "https://sc1.checkpoint.com/documents/CloudGuard_Dome9/Documentation/Code-Security-Spectral/Assets.htm",
+    "canonicalUrl": "https://sc1.checkpoint.com/documents/CloudGuard_Dome9/Documentation/Code-Security-Spectral/Assets.htm",
     "publisher": "Check Point",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Scans assets for hardcoded secrets."
   },
   {
     "id": "src-secrets-sweep-infisical-scanning",
-    "title": "Infisical Secret Scanning — secrets detection scope",
-    "url": "https://infisical.com/videos/what-is-infisical",
-    "canonicalUrl": "https://infisical.com/videos/what-is-infisical",
+    "title": "Secret Scanning - Infisical",
+    "url": "https://infisical.com/docs/documentation/platform/secret-scanning/overview",
+    "canonicalUrl": "https://infisical.com/docs/documentation/platform/secret-scanning/overview",
     "publisher": "Infisical",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Documents CLI and repository secret scanning."
   },
@@ -2430,7 +2430,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Wiz",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Scans Git history, pull requests, and images for exposed secrets."
   },
@@ -2466,7 +2466,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Orca Security",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Lists secrets detection among application security capabilities."
   },
@@ -2478,7 +2478,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Palo Alto Networks",
     "sourceType": "vendor_marketing",
     "publishedAt": "2023-10-10",
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Documents agentless scanning for secrets on workloads."
   },
@@ -2490,7 +2490,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Microsoft",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Documents multiple types of secrets scanning."
   },
@@ -2502,31 +2502,31 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Fortinet",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Documents secrets scanning in its SCA workflow."
   },
   {
     "id": "src-secrets-sweep-aqua-scanning",
-    "title": "Aqua container scanning — secrets detection scope",
-    "url": "https://www.aquasec.com/products/container-scanning/",
-    "canonicalUrl": "https://www.aquasec.com/products/container-scanning/",
+    "title": "Container Security for Images and Running Containers | Aquasec",
+    "url": "https://www.aquasec.com/products/container-security/",
+    "canonicalUrl": "https://www.aquasec.com/products/container-security/",
     "publisher": "Aqua Security",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Includes secrets in container/build scanning."
   },
   {
     "id": "src-secrets-sweep-singularity-cloud-secrets",
-    "title": "Singularity Cloud Security — secrets detection scope",
-    "url": "https://www.sentinelone.com/cloud/",
-    "canonicalUrl": "https://www.sentinelone.com/cloud/",
+    "title": "Singularity Cloud Native Security | SentinelOne",
+    "url": "https://www.sentinelone.com/platform/singularity-cloud-native-security/",
+    "canonicalUrl": "https://www.sentinelone.com/platform/singularity-cloud-native-security/",
     "publisher": "SentinelOne",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Includes secret scanning in its cloud-security offering."
   },
@@ -2538,7 +2538,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "ArmorCode",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Lists GitGuardian Secrets as an integration."
   },
@@ -2550,7 +2550,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "HashiCorp",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Scans code, chat, and other sources for exposed secrets."
   },
@@ -2562,7 +2562,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Akeyless",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Documents secret discovery across GitHub source and history."
   },
@@ -2574,7 +2574,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Nightfall",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Provides secrets detection through its scanning API."
   },
@@ -2586,19 +2586,19 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Entro Security",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: SailPoint's Entro page includes a customer quotation describing automated secret scanning."
   },
   {
     "id": "src-secrets-sweep-codeant-secrets",
     "title": "CodeAnt AI secrets detection — secrets detection scope",
-    "url": "https://docs.codeant.ai/control_center/secrets",
-    "canonicalUrl": "https://docs.codeant.ai/control_center/secrets",
+    "url": "https://docs.codeant.ai/scan_center/code_security/secrets",
+    "canonicalUrl": "https://docs.codeant.ai/scan_center/code_security/secrets",
     "publisher": "CodeAnt AI",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Identifies API keys, tokens, and other secrets in code."
   },
@@ -2610,7 +2610,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "ripsecrets project",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Detects secret keys in source before commit."
   },
@@ -2622,7 +2622,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "shhgit project",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Finds secrets in code repositories."
   },
@@ -2634,7 +2634,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Harness",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Identifies hardcoded secrets during code analysis."
   },
@@ -2646,7 +2646,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "ReversingLabs",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Detects exposed secrets in software artifacts."
   },
@@ -2658,7 +2658,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Socket",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Runs TruffleHog for secret scanning."
   },
@@ -2670,7 +2670,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Tenable",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Imports secret-detection findings through supported connectors."
   },
@@ -2682,7 +2682,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "CrowdStrike",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Lists a Legit integration with secrets detection in code."
   },
@@ -2694,7 +2694,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Sysdig",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Legacy scanner documentation describes image-secret detection."
   },
@@ -2706,7 +2706,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Postman",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Detects exposed secrets in Postman content."
   },
@@ -2862,7 +2862,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "OSS and commercial scopes differ. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -2882,7 +2882,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "CLI is not a standalone offline detection engine. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -2902,7 +2902,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Open client does not make the hosted engine open source. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -2922,7 +2922,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Coverage and licensing depend on repository and plan. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -2942,7 +2942,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Do not assume all workflows use the same engine or tier. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -2962,7 +2962,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Review maintenance status separately from feature support. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -2982,7 +2982,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Separate project from Gitleaks; not a rename. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3002,7 +3002,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Validation varies by detector; no parity or coverage-count claim. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3022,9 +3022,9 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
-    "notes": "Check repository lifecycle and Titus relationship before adoption. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
+    "notes": "Check repository lifecycle and Titus relationship before adoption. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages. Rechecked 22 Nov 2026: the repository was archived on 24 Apr 2026 and the project says it is officially retired, replaced by praetorian-inc/titus."
   },
   {
     "id": "claim-secrets-sweep-titus",
@@ -3042,7 +3042,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Distinct project from Nosey Parker. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3062,7 +3062,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Baseline workflows are not a managed incident response service. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3082,7 +3082,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "AWS patterns do not establish universal secret coverage. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3102,7 +3102,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Image/filesystem scanning differs from full Git-history scanning. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3122,7 +3122,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Keep OSS features separate from platform services. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3142,7 +3142,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Does not automatically remediate secrets. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3162,7 +3162,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "No general availability or support SLA inferred. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3182,7 +3182,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Local hooks can be bypassed. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3202,9 +3202,9 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
-    "notes": "Archived lineage; not an active-product recommendation. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
+    "notes": "Archived lineage; not an active-product recommendation. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages. Rechecked 22 Nov 2026: the repository was archived by its owner on 16 Jul 2026 and is now read-only, so the tool is no longer maintained."
   },
   {
     "id": "claim-secrets-sweep-whispers",
@@ -3222,9 +3222,9 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
-    "notes": "Structured-file scope; maintenance must be checked. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
+    "notes": "Structured-file scope; maintenance must be checked. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages. Rechecked 22 Nov 2026: the repository was archived on 25 Oct 2023, so the tool is no longer maintained."
   },
   {
     "id": "claim-secrets-sweep-semgrep-secrets",
@@ -3242,7 +3242,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Commercial Secrets features are not implied by OSS Semgrep. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3262,7 +3262,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "No independent accuracy comparison inferred. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3282,7 +3282,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Vendor claims are not performance benchmarks. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3302,19 +3302,19 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Confirm connectors and edition during evaluation. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
   {
     "id": "claim-secrets-sweep-legit-secrets",
-    "statement": "Legit Secrets Detection: Detects exposed secrets across development and collaboration surfaces.",
+    "statement": "Legit Secrets Detection: Legit's March 2024 launch release says it detects exposed secrets across developer tools, including source control, CI, Docker images, artifacts, Confluence and Jira.",
     "subjectType": "product",
     "subjectId": "legit-secrets",
     "capabilityId": "cap-secret-discovery",
     "polarity": "asserts",
     "sourceId": "src-secrets-sweep-legit-secrets",
-    "sourceUrl": "https://www.legitsecurity.com/enterprise-secret-scanning",
+    "sourceUrl": "https://www.legitsecurity.com/press-releases/legit-security-launches-ai-powered-enterprise-grade-secrets-scanning-product",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
     "observedAt": "2026-10-13",
@@ -3322,9 +3322,9 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
-    "notes": "Validate each connector and deployment scope. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
+    "notes": "Validate each connector and deployment scope. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages. Rechecked 22 Nov 2026: the source URL now redirects to the Legit homepage, which mentions secrets scanning only in its title and does not support detection across development and collaboration surfaces. Find a current Legit source. Re-sourced and narrowed on 22 Nov 2026 to what the current first-party page states verbatim: No standalone secrets product page found; the homepage (title 'ASPM, AI Remediation & Secrets Scanning') gave no readable secrets text. This is the vendor's own 2024 press release, still live; it calls the surfaces 'developer tools', so the wording follows that term instead of 'collaboration surfaces'."
   },
   {
     "id": "claim-secrets-sweep-ox-secrets",
@@ -3334,7 +3334,7 @@ export const secretsSweepClaims: Claim[] = [
     "capabilityId": "cap-secret-discovery",
     "polarity": "asserts",
     "sourceId": "src-secrets-sweep-ox-secrets",
-    "sourceUrl": "https://docs.ox.security/ox-policies/cloud-context-policies-3",
+    "sourceUrl": "https://docs.ox.security/ox-policies/code-security/cloud-context-policies-3",
     "sourceType": "official_docs",
     "publishedAt": null,
     "observedAt": "2026-10-13",
@@ -3342,7 +3342,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Native scan and imported scanner findings must be distinguished. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3364,7 +3364,7 @@ export const secretsSweepClaims: Claim[] = [
     "verificationStatus": "needs_review",
     "lastCheckedAt": "2026-10-13",
     "conflictsWith": [],
-    "notes": "Bundled engines; not a separately proven proprietary scanner. Full-page capability evidence unavailable on this pass; search-index evidence only, not a published capability check. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
+    "notes": "Bundled engines; not a separately proven proprietary scanner. Full-page capability evidence unavailable on this pass; search-index evidence only, not a published capability check. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages. Rechecked 22 Nov 2026: jit.io could not be reached (www failed DNS, the bare domain failed TLS), and no first-party page naming Gitleaks or TruffleHog was found. Gartner Peer Insights lists the product as 'Jit (Legacy)'. Treat as unverified; do not state that the company is gone."
   },
   {
     "id": "claim-secrets-sweep-endor-secrets",
@@ -3382,7 +3382,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Validation support is provider-specific. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3402,7 +3402,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Older policy docs disagree with newer PR-scanning announcement; do not assert PR coverage here. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3422,7 +3422,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Validation and historical scanning are separate evaluation dimensions. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3442,7 +3442,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Confirm packaging and IDE support. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3462,7 +3462,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Custom rules and feature breadth vary by edition. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3482,7 +3482,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Advanced Security packaging and validation egress need review. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3502,7 +3502,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "CLI option is disabled when unspecified; documentation says detected secrets are not anonymized. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3522,7 +3522,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "2026-08-04 announcement; older Snyk feature comparisons may be stale. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3542,7 +3542,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Check site availability and Code Security configuration. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3562,19 +3562,19 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Do not equate orchestration integrations with native engines. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
   {
     "id": "claim-secrets-sweep-spectral-secrets",
-    "statement": "Spectral Secrets Scanning: Scans assets for hardcoded secrets.",
+    "statement": "Check Point Code Security (Spectral engine): Finds exposed secrets in scanned assets and tests the validity of keys.",
     "subjectType": "product",
     "subjectId": "spectral-secrets",
     "capabilityId": "cap-secret-discovery",
     "polarity": "asserts",
     "sourceId": "src-secrets-sweep-spectral-secrets",
-    "sourceUrl": "https://guides.spectralops.io/docs/secrets-scanning",
+    "sourceUrl": "https://sc1.checkpoint.com/documents/CloudGuard_Dome9/Documentation/Code-Security-Spectral/Assets.htm",
     "sourceType": "official_docs",
     "publishedAt": null,
     "observedAt": "2026-10-13",
@@ -3582,9 +3582,9 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
-    "notes": "Spectral product lineage; confirm current Check Point packaging. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
+    "notes": "Spectral product lineage; confirm current Check Point packaging. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages. Rechecked 22 Nov 2026: the source page returns 404 (the docs now sit under Check Point CloudGuard Docs). Find a replacement source. Re-sourced and narrowed on 22 Nov 2026 to what the current first-party page states verbatim: spectral-docs.readme.io and guides.spectralops.io both return 404 now; the current docs live on sc1.checkpoint.com. The 'Getting Started' page there says 'Check Point Code Security uses the engine named spectral to scan your environments'. The word 'hardcoded' isn't on the scraped page, so the wording says 'exposed secrets'."
   },
   {
     "id": "claim-secrets-sweep-infisical-scanning",
@@ -3594,7 +3594,7 @@ export const secretsSweepClaims: Claim[] = [
     "capabilityId": "cap-secret-discovery",
     "polarity": "asserts",
     "sourceId": "src-secrets-sweep-infisical-scanning",
-    "sourceUrl": "https://infisical.com/videos/what-is-infisical",
+    "sourceUrl": "https://infisical.com/docs/documentation/platform/secret-scanning/overview",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
     "observedAt": "2026-10-13",
@@ -3602,9 +3602,9 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
-    "notes": "Detection is a separate capability from vault storage. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
+    "notes": "Detection is a separate capability from vault storage. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages. Re-sourced on 22 Nov 2026 to Infisical's secret scanning documentation."
   },
   {
     "id": "claim-secrets-sweep-wiz-secrets",
@@ -3622,7 +3622,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "CNAPP scope is not implied for every CSPM product. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3682,7 +3682,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Use source-code and workload scope as separate evaluation dimensions. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3702,7 +3702,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Historical product documentation; confirm current Cortex/Prisma packaging. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3722,7 +3722,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Repository integrations differ from native VM/deployment scanning. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3742,19 +3742,19 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "low",
     "verificationStatus": "needs_review",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
-    "notes": "Separate code scanning from agentless workload coverage. Full-page capability evidence unavailable on this pass; search-index evidence only, not a published capability check. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
+    "notes": "Separate code scanning from agentless workload coverage. Full-page capability evidence unavailable on this pass; search-index evidence only, not a published capability check. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages. Rechecked 22 Nov 2026 against the full page, which says FortiCNAPP's SCA tool can detect secrets in project files and report compromised tokens or keys. The earlier search-index-only gap is closed; status left as Needs review for an editor to decide, because lib/secrets-sweep.test.ts deliberately holds this claim unverified."
   },
   {
     "id": "claim-secrets-sweep-aqua-scanning",
-    "statement": "Aqua container scanning: Includes secrets in container/build scanning.",
+    "statement": "Aqua container security: Scans container images for embedded secrets, alongside vulnerabilities, malware and misconfigurations, before they reach a cluster.",
     "subjectType": "product",
     "subjectId": "aqua-scanning",
     "capabilityId": "cap-secret-discovery",
     "polarity": "asserts",
     "sourceId": "src-secrets-sweep-aqua-scanning",
-    "sourceUrl": "https://www.aquasec.com/products/container-scanning/",
+    "sourceUrl": "https://www.aquasec.com/products/container-security/",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
     "observedAt": "2026-10-13",
@@ -3762,19 +3762,19 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
-    "notes": "Commercial Aqua and OSS Trivy are separate product records. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
+    "notes": "Commercial Aqua and OSS Trivy are separate product records. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages. Rechecked 22 Nov 2026: the container scanning URL now redirects to a container security page that does not mention secrets scanning. Find a current Aqua source or retire the claim. Re-sourced and narrowed on 22 Nov 2026 to what the current first-party page states verbatim: The current container-security page does mention secrets now (modified 2026-11-19). It covers images, not builds. A search excerpt of the same page also lists registry scanning (ECR, Harbor, Artifactory, Quay) for 'embedded secrets', but the scrape did not return that text verbatim."
   },
   {
     "id": "claim-secrets-sweep-singularity-cloud-secrets",
-    "statement": "Singularity Cloud Security: Includes secret scanning in its cloud-security offering.",
+    "statement": "Singularity Cloud Native Security: Includes secret scanning, covering repositories, IaC templates and container images, in SentinelOne's agentless cloud-security (CNAPP) offering.",
     "subjectType": "product",
     "subjectId": "singularity-cloud-secrets",
     "capabilityId": "cap-secret-discovery",
     "polarity": "asserts",
     "sourceId": "src-secrets-sweep-singularity-cloud-secrets",
-    "sourceUrl": "https://www.sentinelone.com/cloud/",
+    "sourceUrl": "https://www.sentinelone.com/platform/singularity-cloud-native-security/",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
     "observedAt": "2026-10-13",
@@ -3782,9 +3782,9 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "low",
     "verificationStatus": "needs_review",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
-    "notes": "Do not attribute this to Singularity identity protection. Full-page capability evidence unavailable on this pass; search-index evidence only, not a published capability check. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
+    "notes": "Do not attribute this to Singularity identity protection. Full-page capability evidence unavailable on this pass; search-index evidence only, not a published capability check. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages. Rechecked 22 Nov 2026: the page now redirects to SentinelOne's cloud security platform page, which lists CSPM, CWPP, CIEM and DSPM but does not mention secret scanning. Re-sourced 22 Nov 2026 to SentinelOne's Cloud Native Security product page, which names secret scanning for repositories, IaC templates and container images. Left as Needs review because lib/secrets-sweep.test.ts deliberately holds this claim unverified; an editor should decide."
   },
   {
     "id": "claim-secrets-sweep-armorcode-integration",
@@ -3802,7 +3802,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Evidence of ingestion, not proof of a native detector. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3822,7 +3822,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Separate from Vault secret storage and issuance. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3842,7 +3842,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Requires Identity & Secrets Intelligence license and configured gateway; code scanning and inventory metadata are distinct. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3862,7 +3862,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "API detection is not automatically full Git-history scanning. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3882,9 +3882,9 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "low",
     "verificationStatus": "needs_review",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
-    "notes": "Customer quotation on vendor site; older Entro URL redirects here. Broader scanning scope and acquisition close date not established. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
+    "notes": "Customer quotation on vendor site; older Entro URL redirects here. Broader scanning scope and acquisition close date not established. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages. Rechecked 22 Nov 2026: the page now states that SailPoint Entro scans code repositories, cloud environments, CI/CD pipelines and SaaS applications to inventory machine identities, which settles the scanning scope. The acquisition close date is still not established, so the claim stays Needs review."
   },
   {
     "id": "claim-secrets-sweep-codeant-secrets",
@@ -3894,7 +3894,7 @@ export const secretsSweepClaims: Claim[] = [
     "capabilityId": "cap-secret-discovery",
     "polarity": "asserts",
     "sourceId": "src-secrets-sweep-codeant-secrets",
-    "sourceUrl": "https://docs.codeant.ai/control_center/secrets",
+    "sourceUrl": "https://docs.codeant.ai/scan_center/code_security/secrets",
     "sourceType": "official_docs",
     "publishedAt": null,
     "observedAt": "2026-10-13",
@@ -3902,7 +3902,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Confirm scanner engine, retention, and licensing. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3922,7 +3922,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Community project; no commercial support inferred. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3942,7 +3942,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Repository-monitoring scope; maintenance requires review. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3962,9 +3962,9 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
-    "notes": "Docs label this Qwiet AI by Harness; distinct product lineage. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
+    "notes": "Docs label this Qwiet AI by Harness; distinct product lineage. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages. Rechecked 22 Nov 2026: the docs now brand the product as Qwiet AI by Harness."
   },
   {
     "id": "claim-secrets-sweep-reversinglabs-secrets",
@@ -3982,7 +3982,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Current packaging needs validation; no superiority claim adopted. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -4002,7 +4002,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Bundled scanner; Socket SCA alone is not proof of this capability. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -4022,9 +4022,9 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
-    "notes": "This source does not establish native cloud secret-scanner scope. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
+    "notes": "This source does not establish native cloud secret-scanner scope. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages. Rechecked 22 Nov 2026: support comes from connector table rows (GitHub Code Scanning and GitLab list Secret Scanning); no sentence describes how findings are imported."
   },
   {
     "id": "claim-secrets-sweep-crowdstrike-legit-integration",
@@ -4042,7 +4042,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Partner capability; not evidence of a native Falcon detector. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -4062,9 +4062,9 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "low",
     "verificationStatus": "needs_review",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
-    "notes": "Source states legacy engine end of life was 2024-12-31; current replacement capability remains unknown. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
+    "notes": "Source states legacy engine end of life was 2024-12-31; current replacement capability remains unknown. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages. Rechecked 22 Nov 2026: the page still describes image secret scans and carries an end-of-life notice for the legacy scanner dated 31 Dec 2024."
   },
   {
     "id": "claim-secrets-sweep-postman-secret-scanner",
@@ -4082,7 +4082,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Confirm public/private workspace coverage and plan. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },

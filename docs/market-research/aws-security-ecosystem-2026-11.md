@@ -23,6 +23,8 @@ The map places **AWS Security Hub** under cloud-native application protection fo
 | Evaluate a mixed AWS and Azure estate | AWS documents a prioritized view of supported Azure resources through a configured connector. The connector requires Security Hub and CSPM in the same AWS account and Region. | Inventory the connected Azure subscriptions, resource types and permissions. Agree on one representative finding in each cloud. [Azure support announcement](https://aws.amazon.com/about-aws/whats-new/2026/06/aws-security-hub-supports-monitoring-microsoft-azure/) · [Connector prerequisites](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-v2-azure-prereqs.html) |
 | Understand what procurement is buying | Essentials is billed by monitored resource units. Optional add-ons and Extended partner subscriptions have separate charges. | Size the in-scope resources and add-ons, check existing entitlements and validate the partner’s onboarding and data flow. [AWS pricing](https://aws.amazon.com/security-hub/pricing/) · [Extended plan](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-extended-plan.html) |
 
+For product history, packaging, the 2026 release log and open questions, see the [Security Hub product deep dive](aws-security-hub-product-deep-dive-2026-11.md).
+
 For the operational handoff, [compare the seven SecOps buying decisions](secops-pipelines-detection-enrichment.md#secops-and-its-neighboring-markets), from incoming telemetry to a provider acting after hours.
 
 ### Six buyer conversations
@@ -117,7 +119,7 @@ AWS announced the **Extended** plan in February 2026 to simplify selection/procu
 - [AWS: Extended plan general availability, 2026-02-26](https://aws.amazon.com/about-aws/whats-new/2026/02/sec-hub-extended/) — AWS announcement; AWS-published.
 - [AWS: Extended expands to 21 partners / nine categories, 2026-05-20](https://aws.amazon.com/about-aws/whats-new/2026/05/aws-security-hub-extended/) — dated AWS announcement; AWS-published.
 - [AWS: supply-chain 10th category / 23 partners, 2026-08-04](https://aws.amazon.com/about-aws/whats-new/2026/08/aws-security-hub-extended-adds-supply-chain-security/) — dated AWS announcement; AWS-published.
-- [AWS Security Blog: complete 23-partner snapshot, 2026-08-04](https://aws.amazon.com/blogs/security/security-hub-extended-adds-supply-chain-security-as-its-tenth-category/) — confirms partner name list; AWS-published.
+- [AWS Security Blog: complete 23-partner snapshot, 2026-08-18 page date](https://aws.amazon.com/blogs/security/security-hub-extended-adds-supply-chain-security-as-its-tenth-category/) — confirms partner name list; AWS-published.
 
 ## 5. Example security sales plays (hypotheses, not win claims)
 
@@ -175,7 +177,7 @@ AWS announced the **Extended** plan in February 2026 to simplify selection/procu
 | [AWS Security Hub Extended launches](https://aws.amazon.com/about-aws/whats-new/2026/02/sec-hub-extended/) | AWS | 2026-02-26 | 2026-11-16 | AWS commercial/product announcement |
 | [Extended 21 partners](https://aws.amazon.com/about-aws/whats-new/2026/05/aws-security-hub-extended/) | AWS | 2026-05-20 | 2026-11-16 | Historical snapshot superseded by August |
 | [Extended 23 partners](https://aws.amazon.com/about-aws/whats-new/2026/08/aws-security-hub-extended-adds-supply-chain-security/) | AWS | 2026-08-04 | 2026-11-16 | Latest inspected dated snapshot, not continuous monitoring |
-| [Extended complete partner list](https://aws.amazon.com/blogs/security/security-hub-extended-adds-supply-chain-security-as-its-tenth-category/) | AWS | 2026-08-04 | 2026-11-16 | AWS-reported roster, not independently verified integration parity |
+| [Extended complete partner list](https://aws.amazon.com/blogs/security/security-hub-extended-adds-supply-chain-security-as-its-tenth-category/) | AWS | 2026-08-18 | 2026-11-16 | AWS-reported roster, not independently verified integration parity |
 | [AWS Security Specialty service scope](https://docs.aws.amazon.com/aws-certification/latest/security-specialty-03/scs-02-in-scope-services.html) | AWS | undated/live | 2026-11-16 | Exam scope, not a selling or solution architecture requirement |
 
 **Review trigger:** AWS re:Invent launches, changed Extended partner roster/category, Security Hub plan or service renames, updated service capabilities, or materially revised pricing/support/crediting terms. No background monitoring is enabled by this document.
