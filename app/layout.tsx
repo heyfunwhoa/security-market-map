@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Fraunces, Source_Sans_3 } from "next/font/google";
 import { SiteFooter, SiteHeader } from "@/components/chrome";
-import { searchIndex } from "@/lib/catalog";
+import { catalog, searchIndex } from "@/lib/catalog";
+import { incidentSearchHits } from "@/lib/incident-feed";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
+import { SITE_URL } from "@/lib/site";
 
 const sourceSans = Source_Sans_3({
   subsets: ["latin"],
@@ -15,13 +17,28 @@ const fraunces = Fraunces({
   variable: "--font-serif",
 });
 
+const DESCRIPTION =
+  "Identity and secrets security, mapped with cited evidence. Eleven security domains, the buyer behind each category, and the source and date for every claim.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Security Market Map",
     template: "%s · Security Market Map",
   },
-  description:
-    "A cybersecurity analyst's coverage map across identity, corporate IT, application security, product security, and neighboring domains. Identity is the evidenced slice. Unknown stays unknown.",
+  description: DESCRIPTION,
+  openGraph: {
+    type: "website",
+    url: SITE_URL,
+    siteName: "Security Market Map",
+    title: "Security Market Map: identity and secrets, mapped with evidence",
+    description: DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Security Market Map: identity and secrets, mapped with evidence",
+    description: DESCRIPTION,
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -38,9 +55,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           >
             Skip to content
           </a>
-          <SiteHeader hits={searchIndex()} />
+          <SiteHeader hits={[...searchIndex(), ...incidentSearchHits()]} asOf={catalog.asOf} />
           <div id="content" tabIndex={-1}>{children}</div>
-          <SiteFooter />
+          <SiteFooter asOf={catalog.asOf} />
         </TooltipProvider>
       </body>
     </html>

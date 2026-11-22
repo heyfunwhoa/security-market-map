@@ -52,6 +52,12 @@ export default function ConnectionsPage() {
         title="Non-human identity is a discipline, not one product category"
         lede="It overlaps identity governance, secrets management, privileged access, cloud permissions, and agent authorization. An API key is a credential. The identity is the application, workload, service account, or agent that credential represents. This page is a synthesis of that landscape. It is not a Magic Quadrant, a Wave, or a feature comparison."
       />
+      <p className="mt-4 max-w-3xl text-sm leading-6">
+        <Link href="/evidence-graph" className="text-primary underline underline-offset-4">
+          Open the identity, secrets, and non-human identity evidence graph
+        </Link>
+        . It projects catalog relationships and claims. Category membership stays a taxonomy mapping.
+      </p>
 
       <PageJourney steps={[
         { href: "#identity-jobs", title: "Understand the model", description: "See identity types and the jobs they share." },

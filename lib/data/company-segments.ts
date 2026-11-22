@@ -1,0 +1,356 @@
+import type { SegmentOverlayInput } from "../schema";
+
+/**
+ * Company size bands and company-type overlays.
+ * Employee cutoffs (~500 / ~5,000) are working estimates for discovery, not ICP rules; no reviewed
+ * source gives exact cutoffs (IANS segments Fortune 500 / large / midsize, but the breakdown is gated).
+ * Sources support the shape: first security hire around 30–100 employees (practitioner guidance), most
+ * teams under 10 people (IDC/Tines), and specialization rather than headcount growing with size (Osterman).
+ */
+
+export const companySizeBands = {
+  small: {
+    label: "Small / startup",
+    employees: "Under ~500",
+    shape: "Zero to a few security people. CTO, founder, or IT generalist covers most seats; outside firms fill gaps.",
+    sourceIds: ["src-seg-first-hire-rule", "src-seg-firstmark-first-hire"],
+  },
+  "mid-market": {
+    label: "Mid-market",
+    employees: "~500 to ~5,000",
+    shape: "Small team of generalists under a hands-on security leader; MDR and retainers common.",
+    sourceIds: ["src-seg-hitch-2025-summary", "src-seg-idc-tines-team-size", "src-seg-osterman-team-scaling"],
+  },
+  enterprise: {
+    label: "Enterprise",
+    employees: "~5,000+",
+    shape: "Specialized seats exist; procurement, legal, and vendor review in every deal.",
+    sourceIds: ["src-persona-ians-ciso-2026", "src-seg-osterman-team-scaling"],
+  },
+} as const;
+
+const REVIEWED = "2026-11-07";
+const base = { lastReviewedAt: REVIEWED } as const;
+
+export const segmentOverlays: SegmentOverlayInput[] = [
+  // ── Business model ──────────────────────────────────────────────
+  {
+    ...base,
+    id: "software-saas",
+    name: "Software / SaaS company",
+    kind: "business-model",
+    appliesTo: "Companies whose product is software they build and run.",
+    elevatedPersonaIds: ["product-security", "appsec", "platform-security", "cto", "grc-owner"],
+    addedTriggers: ["Enterprise customer security questionnaire", "SOC 2 or ISO 27001 for sales", "Customer-reported vulnerability"],
+    notes: "Security is part of what customers buy, so product trust and customer evidence weigh more than in non-tech firms.",
+    evidence: "hypothesis",
+  },
+  {
+    ...base,
+    id: "non-tech-enterprise",
+    name: "Non-tech enterprise",
+    kind: "business-model",
+    appliesTo: "Retail, manufacturing, logistics, services, and other firms where software is internal.",
+    elevatedPersonaIds: ["cio", "it-security", "identity-security", "grc-owner", "it-operations"],
+    addedTriggers: ["Ransomware in the sector", "Cyber insurance requirements", "M&A integration"],
+    notes: "Fewer product security seats; corporate IT, identity, and third-party risk carry more of the program.",
+    evidence: "hypothesis",
+  },
+
+  // ── Industry and regulation ─────────────────────────────────────
+  {
+    ...base,
+    id: "financial-services-ny",
+    name: "Financial services (NYDFS-regulated)",
+    kind: "industry",
+    appliesTo: "Banks, insurers, and other entities licensed by the New York Department of Financial Services.",
+    mandatedSeats: [
+      { title: "Named CISO", personaId: "ciso", rule: "23 NYCRR 500 requires a qualified CISO responsible for the cybersecurity program.", sourceIds: ["src-seg-nydfs-500"] },
+    ],
+    elevatedPersonaIds: ["ciso", "grc-owner", "board-audit-committee", "identity-security"],
+    addedTriggers: ["Annual Part 500 certification", "DFS examination"],
+    frameworks: ["23 NYCRR 500"],
+    identityRequirements: [
+      {
+        id: "nydfs-mfa",
+        requirement: "Use multi-factor authentication for any individual accessing the covered entity's information systems; entities with a limited exemption must still use it for remote access, third-party apps holding nonpublic information, and privileged accounts.",
+        rule: "23 NYCRR 500.12(a)",
+        categoryIds: ["workforce-identity", "pam"],
+        sourceIds: ["src-reg-nydfs-part500"],
+      },
+      {
+        id: "nydfs-access-review",
+        requirement: "Limit user access to what each job requires, review all user access at least annually, remove access that is no longer needed, and terminate access promptly after departures.",
+        rule: "23 NYCRR 500.7(a)(1), (4), (6)",
+        categoryIds: ["iga"],
+        sourceIds: ["src-reg-nydfs-part500"],
+      },
+      {
+        id: "nydfs-privileged",
+        requirement: "Limit the number and use of privileged accounts to what the job requires; Class A companies must also monitor privileged access activity and implement a privileged access management solution.",
+        rule: "23 NYCRR 500.7(a)(2)-(3), (c)(1)",
+        categoryIds: ["pam"],
+        sourceIds: ["src-reg-nydfs-part500"],
+      },
+    ],
+    evidence: "sourced",
+    sourceIds: ["src-seg-nydfs-500"],
+  },
+  {
+    ...base,
+    id: "financial-services-eu",
+    name: "Financial services (EU, DORA)",
+    kind: "industry",
+    appliesTo: "EU financial entities in scope of the Digital Operational Resilience Act.",
+    mandatedSeats: [
+      { title: "Management body accountable for ICT risk", personaId: "board-audit-committee", rule: "DORA Article 5 gives the management body ultimate responsibility for the ICT risk management framework.", sourceIds: ["src-seg-dora-article-5"] },
+    ],
+    elevatedPersonaIds: ["board-audit-committee", "grc-owner", "procurement", "cyber-recovery"],
+    addedTriggers: ["ICT third-party register", "Resilience testing", "Incident reporting"],
+    frameworks: ["DORA"],
+    identityRequirements: [
+      {
+        id: "dora-identity-management",
+        requirement: "Identity management policies must uniquely identify and authenticate the natural persons and systems that access the financial entity's information, so access rights can be assigned.",
+        rule: "Delegated Regulation (EU) 2024/1774, Art. 20(1)",
+        categoryIds: ["workforce-identity", "nhi"],
+        sourceIds: ["src-reg-dora-rts-2024-1774"],
+      },
+      {
+        id: "dora-least-privilege",
+        requirement: "Assign access rights on need-to-know, need-to-use and least-privilege principles, including for remote and emergency access, with segregation of duties.",
+        rule: "Delegated Regulation (EU) 2024/1774, Art. 21(a)-(b)",
+        categoryIds: ["iga", "pam"],
+        sourceIds: ["src-reg-dora-rts-2024-1774"],
+      },
+      {
+        id: "dora-strong-auth",
+        requirement: "Use strong authentication for remote access to the network, privileged access, access to ICT assets supporting critical or important functions, and publicly accessible ICT assets.",
+        rule: "Delegated Regulation (EU) 2024/1774, Art. 21",
+        categoryIds: ["workforce-identity", "pam"],
+        sourceIds: ["src-reg-dora-rts-2024-1774"],
+      },
+    ],
+    evidence: "sourced",
+    sourceIds: ["src-seg-dora-article-5"],
+  },
+  {
+    ...base,
+    id: "healthcare-hipaa",
+    name: "Healthcare (HIPAA)",
+    kind: "industry",
+    appliesTo: "U.S. covered entities and business associates handling ePHI.",
+    mandatedSeats: [
+      { title: "HIPAA security official", rule: "45 CFR 164.308(a)(2) requires designating a security official for Security Rule policies and procedures.", sourceIds: ["src-seg-hipaa-164308"] },
+    ],
+    elevatedPersonaIds: ["privacy", "grc-owner", "it-security", "identity-security", "legal-counsel"],
+    addedTriggers: ["Business associate agreement", "OCR investigation", "Ransomware affecting care"],
+    frameworks: ["HIPAA Security Rule"],
+    identityRequirements: [
+      {
+        id: "hipaa-access-control",
+        requirement: "Allow access to systems holding ePHI only to persons or software programs granted access rights, with unique user identification and an emergency access procedure.",
+        rule: "45 CFR 164.312(a)(1)-(2)",
+        categoryIds: ["workforce-identity", "iga"],
+        sourceIds: ["src-reg-hipaa-164312"],
+      },
+      {
+        id: "hipaa-authentication",
+        requirement: "Verify that a person or entity seeking access to ePHI is the one claimed.",
+        rule: "45 CFR 164.312(d)",
+        categoryIds: ["workforce-identity"],
+        sourceIds: ["src-reg-hipaa-164312"],
+      },
+    ],
+    notes: "At smaller providers the security official is often an IT or compliance leader, not a CISO.",
+    evidence: "sourced",
+    sourceIds: ["src-seg-hipaa-164308"],
+  },
+  {
+    ...base,
+    id: "defense-industrial-base",
+    name: "Defense industrial base (CMMC)",
+    kind: "industry",
+    appliesTo: "DoD contractors and subcontractors handling FCI or CUI.",
+    mandatedSeats: [
+      { title: "Affirming official", rule: "CMMC requires an affirmation of continuous compliance for in-scope contractor systems.", sourceIds: ["src-seg-cmmc-dfars-rule"] },
+    ],
+    elevatedPersonaIds: ["grc-owner", "it-security", "it-operations", "ceo-founder"],
+    addedTriggers: ["CMMC requirement in a solicitation", "Prime contractor flow-down", "Assessment date"],
+    frameworks: ["CMMC (32 CFR 170)", "DFARS"],
+    identityRequirements: [
+      {
+        id: "cmmc-limit-access",
+        requirement: "Limit system access to authorized users, processes acting on their behalf, and devices.",
+        rule: "NIST SP 800-171 Rev. 2, 3.1.1 (CMMC Level 2)",
+        categoryIds: ["iga", "workforce-identity"],
+        sourceIds: ["src-reg-nist-800-171r2", "src-seg-cmmc-program-rule"],
+      },
+      {
+        id: "cmmc-least-privilege",
+        requirement: "Apply least privilege, including for security functions and privileged accounts.",
+        rule: "NIST SP 800-171 Rev. 2, 3.1.5 (CMMC Level 2)",
+        categoryIds: ["pam", "iga"],
+        sourceIds: ["src-reg-nist-800-171r2", "src-seg-cmmc-program-rule"],
+      },
+      {
+        id: "cmmc-mfa",
+        requirement: "Use multifactor authentication for local and network access to privileged accounts and for network access to non-privileged accounts.",
+        rule: "NIST SP 800-171 Rev. 2, 3.5.3 (CMMC Level 2)",
+        categoryIds: ["workforce-identity", "pam"],
+        sourceIds: ["src-reg-nist-800-171r2", "src-seg-cmmc-program-rule"],
+      },
+    ],
+    notes: "Many in-scope contractors are small; the affirming official may be an executive with no security team.",
+    evidence: "sourced",
+    sourceIds: ["src-seg-cmmc-program-rule", "src-seg-cmmc-dfars-rule"],
+  },
+  {
+    ...base,
+    id: "energy-utilities",
+    name: "Energy and utilities (NERC CIP)",
+    kind: "industry",
+    appliesTo: "North American bulk electric system entities subject to NERC CIP.",
+    mandatedSeats: [
+      { title: "CIP Senior Manager", rule: "CIP-003 requires identifying a CIP Senior Manager by name and documenting changes within 30 days.", sourceIds: ["src-seg-nerc-cip-003"] },
+    ],
+    elevatedPersonaIds: ["ot-security", "grc-owner", "network-security"],
+    addedTriggers: ["CIP audit", "Plant or substation change window"],
+    frameworks: ["NERC CIP", "ISA/IEC 62443"],
+    identityRequirements: [
+      {
+        id: "cip-remote-mfa",
+        requirement: "Require multi-factor authentication for all Interactive Remote Access sessions to applicable BES Cyber Systems.",
+        rule: "NERC CIP-005-7 R2",
+        categoryIds: ["pam", "workforce-identity"],
+        sourceIds: ["src-reg-nerc-cip-005-7"],
+      },
+      {
+        id: "cip-access-program",
+        requirement: "Run documented programs to authorize access based on need and to revoke access.",
+        rule: "NERC CIP-004-7 R4, R5",
+        categoryIds: ["iga"],
+        sourceIds: ["src-reg-nerc-cip-004-7"],
+      },
+      {
+        id: "cip-system-access",
+        requirement: "Enforce authentication of interactive user access where technically feasible, and inventory enabled default and generic account types.",
+        rule: "NERC CIP-007-6 R5.1, R5.2",
+        categoryIds: ["pam"],
+        sourceIds: ["src-reg-nerc-cip-007-6"],
+      },
+    ],
+    notes: "KuppingerCole's 2026 OT/ICS Buyer's Compass names secure remote access and NHI governance among the capabilities OT security buyers need, aligned to NERC CIP and IEC 62443. Identity work here centers on vendor and remote access to plant systems, not workforce SSO.",
+    evidence: "sourced",
+    sourceIds: ["src-seg-nerc-cip-003", "src-persona-isagca-62443-cisa", "src-kc-ot-ics-bc81089"],
+  },
+  {
+    ...base,
+    id: "eu-essential-important",
+    name: "EU essential and important entities (NIS2)",
+    kind: "region",
+    appliesTo: "Entities in scope of NIS2 as transposed by each member state.",
+    mandatedSeats: [
+      { title: "Management body approves and oversees measures", personaId: "board-audit-committee", rule: "NIS2 Article 20: management bodies approve cybersecurity risk measures, oversee them, can be held liable, and must follow training.", sourceIds: ["src-seg-nis2-article-20"] },
+    ],
+    elevatedPersonaIds: ["board-audit-committee", "ciso", "grc-owner", "supply-chain-security"],
+    addedTriggers: ["National transposition deadline", "Management training", "Supply chain security requirements"],
+    frameworks: ["NIS2"],
+    identityRequirements: [
+      {
+        id: "nis2-access-control",
+        requirement: "Include access control policies and asset management, with human resources security, among the minimum cybersecurity risk-management measures.",
+        rule: "Directive (EU) 2022/2555, Art. 21(2)(i)",
+        categoryIds: ["iga", "workforce-identity"],
+        sourceIds: ["src-reg-nis2-directive-2022-2555"],
+      },
+      {
+        id: "nis2-mfa",
+        requirement: "Use multi-factor authentication or continuous authentication solutions where appropriate.",
+        rule: "Directive (EU) 2022/2555, Art. 21(2)(j)",
+        categoryIds: ["workforce-identity"],
+        sourceIds: ["src-reg-nis2-directive-2022-2555"],
+      },
+      {
+        id: "nis2ir-access-rights",
+        requirement: "For entities covered by the implementing regulation: grant, change and remove access rights on need-to-know, least privilege and separation of duties, and document them.",
+        rule: "Implementing Regulation (EU) 2024/2690, Annex 11.2",
+        categoryIds: ["iga"],
+        sourceIds: ["src-reg-nis2-ir-2024-2690"],
+      },
+      {
+        id: "nis2ir-privileged",
+        requirement: "For entities covered by the implementing regulation: keep policies for privileged and system administration accounts with strong identification, authentication such as MFA, and authorisation.",
+        rule: "Implementing Regulation (EU) 2024/2690, Annex 11.3",
+        categoryIds: ["pam"],
+        sourceIds: ["src-reg-nis2-ir-2024-2690"],
+      },
+      {
+        id: "nis2ir-identity-lifecycle",
+        requirement: "For entities covered by the implementing regulation: manage the full life cycle of identities of systems and users, with unique identities, users linked to a single person, oversight and logging.",
+        rule: "Implementing Regulation (EU) 2024/2690, Annex 11.5",
+        categoryIds: ["iga", "nhi"],
+        sourceIds: ["src-reg-nis2-ir-2024-2690"],
+      },
+    ],
+    evidence: "sourced",
+    sourceIds: ["src-seg-nis2-article-20"],
+  },
+
+  // ── Ownership ───────────────────────────────────────────────────
+  {
+    ...base,
+    id: "us-public-company",
+    name: "U.S. public company",
+    kind: "ownership",
+    appliesTo: "SEC registrants filing 10-K and 8-K reports.",
+    mandatedSeats: [
+      { title: "Board oversight of cyber risk (disclosed)", personaId: "board-audit-committee", rule: "Regulation S-K Item 106 requires annual disclosure of cyber risk management and board oversight.", sourceIds: ["src-seg-sec-cyber-rule"] },
+    ],
+    elevatedPersonaIds: ["ciso", "legal-counsel", "board-audit-committee", "incident-response"],
+    addedTriggers: ["Material incident (8-K Item 1.05 within four business days of materiality)", "Annual 10-K cyber disclosure"],
+    frameworks: ["SEC cybersecurity disclosure rules"],
+    evidence: "sourced",
+    sourceIds: ["src-seg-sec-cyber-rule"],
+  },
+  {
+    ...base,
+    id: "private-company",
+    name: "Private or PE/VC-backed company",
+    kind: "ownership",
+    appliesTo: "Privately held companies, including investor-backed ones.",
+    elevatedPersonaIds: ["ceo-founder", "cfo", "cto"],
+    addedTriggers: ["Fundraise or exit diligence", "Enterprise customer requirement", "Investor portfolio security program"],
+    notes: "Fewer disclosure rules; customer and investor diligence drive priorities.",
+    evidence: "hypothesis",
+  },
+
+  // ── Providers ───────────────────────────────────────────────────
+  {
+    ...base,
+    id: "mssp-mdr-provider",
+    name: "MSSP / MDR / MSP provider",
+    kind: "provider",
+    appliesTo: "Firms that run security for many customers.",
+    elevatedPersonaIds: ["mssp-ops", "soc-lead", "detection-engineer"],
+    addedTriggers: ["New customer onboarding cost", "Margin pressure", "Tool consolidation across tenants"],
+    notes: "A buyer of multi-tenant tooling and a channel to small and mid-market customers at the same time.",
+    identityRequirements: [
+      {
+        id: "nis2ir-msp-privileged",
+        requirement: "Managed service and managed security service providers covered by NIS2's implementing regulation must keep policies for privileged and administration accounts with strong authentication such as MFA.",
+        rule: "Implementing Regulation (EU) 2024/2690, Annex 11.3 (EU-covered providers)",
+        categoryIds: ["pam"],
+        sourceIds: ["src-reg-nis2-ir-2024-2690"],
+      },
+      {
+        id: "nis2ir-msp-mfa",
+        requirement: "Those providers must authenticate users with multiple factors or continuous authentication where appropriate to the classification of the asset accessed.",
+        rule: "Implementing Regulation (EU) 2024/2690, Annex 11.7 (EU-covered providers)",
+        categoryIds: ["workforce-identity"],
+        sourceIds: ["src-reg-nis2-ir-2024-2690"],
+      },
+    ],
+    evidence: "hypothesis",
+  },
+];

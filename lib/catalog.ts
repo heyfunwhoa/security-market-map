@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { identityProblems, provenanceProblems } from "./catalog-integrity";
+import { latestClaimDate } from "./as-of";
 import { searchHits as filterSearchHits, type SearchHit } from "./search";
 import {
   AS_OF,
@@ -12,6 +13,16 @@ import {
   eventSchema,
   glossaryTermSchema,
   personaSchema,
+  personaProfileSchema,
+  stakeholderSchema,
+  segmentOverlaySchema,
+  fieldNoteSchema,
+  objectionSchema,
+  alternativeSchema,
+  buyingTriggerSchema,
+  qualificationQuestionSchema,
+  vendorSeatTargetingSchema,
+  useCaseSeatsSchema,
   pricingSignalSchema,
   productSchema,
   relationshipSchema,
@@ -28,6 +39,16 @@ import {
   type Domain,
   type GlossaryTerm,
   type BuyerPersona,
+  type PersonaProfile,
+  type Stakeholder,
+  type SegmentOverlay,
+  type FieldNote,
+  type Objection,
+  type Alternative,
+  type BuyingTrigger,
+  type QualificationQuestion,
+  type VendorSeatTargeting,
+  type UseCaseSeats,
   type PricingSignal,
   type Product,
   type Relationship,
@@ -53,9 +74,30 @@ import { distinctions, glossary, scenarios } from "./data/learn";
 import { developerEndpointProducts, developerEndpointSources, developerEndpointClaims } from "./data/developer-endpoint";
 import { emailSecurityVendors, emailSecurityProducts, emailSecuritySources } from "./data/email-security-candidates";
 import { emailSecurityCapabilities, emailSecurityUseCases } from "./data/email-security-functions";
+import { accessScenarioSources, issuerReferenceSources, workforceGuideProducts, workforceGuideResearch, workforceGuideVendors } from "./data/workforce-guide";
+import { secretsManagementProducts, secretsManagementResearch, secretsManagementVendors } from "./data/secrets-management";
+import { registerProductEvidence, publicMonitoringVendors, publicMonitoringClaims, publicMonitoringProducts, publicMonitoringSources } from "./data/public-monitoring";
 import { developerEndpointCapabilities, developerEndpointUseCases } from "./data/developer-endpoint-comparison";
 import { events, products, vendors } from "./data/market";
 import { personas } from "./data/personas";
+import { personaProfiles } from "./data/persona-profiles";
+import { personaSources } from "./data/persona-sources";
+import { stakeholderProfiles, stakeholders } from "./data/stakeholders";
+import { segmentOverlays } from "./data/company-segments";
+import { fieldNotes } from "./data/field-notes";
+import { objections } from "./data/objections";
+import { alternatives } from "./data/alternatives";
+import { buyingTriggers } from "./data/buying-triggers";
+import { qualificationQuestions } from "./data/qualification-questions";
+import { vendorSeatTargeting } from "./data/vendor-seat-targeting";
+import { orphanCategoryOwners, useCaseSeats } from "./data/persona-connections";
+
+const withOrphanCategories = (persona: BuyerPersona): BuyerPersona => {
+  const added = Object.entries(orphanCategoryOwners)
+    .filter(([categoryId, owners]) => owners.includes(persona.id) && !persona.categoryIds.includes(categoryId))
+    .map(([categoryId]) => categoryId);
+  return added.length ? { ...persona, categoryIds: [...persona.categoryIds, ...added] } : persona;
+};
 import { customerStories, pricingSignals, relationships } from "./data/relationships";
 import { sources } from "./data/sources";
 import { useCases } from "./data/use-cases";
@@ -63,6 +105,14 @@ import { useCases } from "./data/use-cases";
 import { includeSecretsDetection, secretsSweepVendors, secretsSweepProducts, secretsSweepSources, secretsSweepClaims } from "./data/secrets-sweep";
 
 import { expandedVendors, expandedProducts, expandedSources, expandedClaims, includeExpandedDspm } from "./data/analyst-expansion";
+import { categoryFillVendors, categoryFillProducts, categoryFillSources, categoryFillClaims } from "./data/category-fill";
+import { ispmWimVendors, ispmWimProducts, ispmWimSources, ispmWimClaims } from "./data/ispm-wim";
+import { identityAnalystSources, identityAnalystClaims } from "./data/identity-analyst";
+import { cloudCorpAnalystSources, cloudCorpAnalystClaims } from "./data/cloud-corp-analyst";
+import { standardsSources, standardsClaims } from "./data/standards";
+import { appsecAnalystSources, appsecAnalystClaims } from "./data/appsec-analyst";
+import { secopsDataAnalystSources, secopsDataAnalystClaims } from "./data/secops-data-analyst";
+import { industryIdentitySources } from "./data/industry-identity";
 
 const allCategories = [...categories, ...ecosystemCategories];
 
@@ -82,6 +132,16 @@ export type Catalog = {
   capabilities: Capability[];
   useCases: UseCase[];
   personas: BuyerPersona[];
+  personaProfiles: PersonaProfile[];
+  stakeholders: Stakeholder[];
+  segmentOverlays: SegmentOverlay[];
+  useCaseSeats: UseCaseSeats[];
+  fieldNotes: FieldNote[];
+  objections: Objection[];
+  alternatives: Alternative[];
+  buyingTriggers: BuyingTrigger[];
+  qualificationQuestions: QualificationQuestion[];
+  vendorSeatTargeting: VendorSeatTargeting[];
   sources: Source[];
   claims: Claim[];
   relationships: Relationship[];
@@ -94,17 +154,36 @@ export type Catalog = {
 };
 
 function parseCatalog(): Catalog {
+  const workforce = registerProductEvidence(workforceGuideResearch);
+  const management = registerProductEvidence(secretsManagementResearch);
+  const parsedClaims = z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims, ...developerEndpointClaims, ...categoryFillClaims, ...ispmWimClaims, ...identityAnalystClaims, ...publicMonitoringClaims, ...management.claims, ...workforce.claims, ...appsecAnalystClaims, ...secopsDataAnalystClaims, ...cloudCorpAnalystClaims, ...standardsClaims]);
   return {
-    asOf: AS_OF,
+    // Generated from the data so the header matches the newest claim card. AS_OF is only a fallback.
+    asOf: latestClaimDate(parsedClaims) ?? AS_OF,
     domains: z.array(domainSchema).parse(domains),
     categories: z.array(categorySchema).parse(allCategories),
-    vendors: z.array(vendorSchema).parse([...vendors, ...ecosystemVendors, ...secretsSweepVendors, ...expandedVendors, ...emailSecurityVendors].map(includeSecretsDetection).map(includeExpandedDspm)),
-    products: z.array(productSchema).parse([...products, ...ecosystemProducts, ...secretsSweepProducts, ...expandedProducts, ...developerEndpointProducts, ...emailSecurityProducts]),
+    vendors: z.array(vendorSchema).parse([...vendors, ...ecosystemVendors, ...secretsSweepVendors, ...expandedVendors, ...categoryFillVendors, ...ispmWimVendors, ...publicMonitoringVendors, ...secretsManagementVendors, ...workforceGuideVendors, ...emailSecurityVendors].map(includeSecretsDetection).map(includeExpandedDspm)),
+    products: z.array(productSchema).parse([...products, ...ecosystemProducts, ...secretsSweepProducts, ...expandedProducts, ...developerEndpointProducts, ...categoryFillProducts, ...ispmWimProducts, ...publicMonitoringProducts, ...secretsManagementProducts, ...workforceGuideProducts, ...emailSecurityProducts]),
     capabilities: z.array(capabilitySchema).parse([...capabilities, ...ecosystemCapabilities, ...developerEndpointCapabilities, ...emailSecurityCapabilities]),
     useCases: z.array(useCaseSchema).parse([...useCases, ...ecosystemUseCases, ...developerEndpointUseCases, ...emailSecurityUseCases]),
-    personas: z.array(personaSchema).parse([...personas, ...ecosystemPersonas]),
-    sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources, ...developerEndpointSources, ...emailSecuritySources]),
-    claims: z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims, ...developerEndpointClaims]),
+    personas: z.array(personaSchema).parse([...personas, ...ecosystemPersonas]).map(withOrphanCategories),
+    personaProfiles: z.array(personaProfileSchema).parse([...personaProfiles, ...stakeholderProfiles]),
+    // A typed persona with the same id replaces the stakeholder entry (e.g. legal-counsel from the
+    // LimaCharlie persona work); the seat keeps its profile, which is keyed by id.
+    stakeholders: z
+      .array(stakeholderSchema)
+      .parse(stakeholders)
+      .filter((stakeholder) => ![...personas, ...ecosystemPersonas].some((persona) => persona.id === stakeholder.id)),
+    segmentOverlays: z.array(segmentOverlaySchema).parse(segmentOverlays),
+    useCaseSeats: z.array(useCaseSeatsSchema).parse(useCaseSeats),
+    fieldNotes: z.array(fieldNoteSchema).parse(fieldNotes),
+    objections: z.array(objectionSchema).parse(objections),
+    alternatives: z.array(alternativeSchema).parse(alternatives),
+    buyingTriggers: z.array(buyingTriggerSchema).parse(buyingTriggers),
+    qualificationQuestions: z.array(qualificationQuestionSchema).parse(qualificationQuestions),
+    vendorSeatTargeting: z.array(vendorSeatTargetingSchema).parse(vendorSeatTargeting),
+    sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources, ...developerEndpointSources, ...personaSources, ...categoryFillSources, ...ispmWimSources, ...identityAnalystSources, ...industryIdentitySources, ...publicMonitoringSources, ...management.sources, ...workforce.sources, ...issuerReferenceSources, ...accessScenarioSources, ...appsecAnalystSources, ...secopsDataAnalystSources, ...cloudCorpAnalystSources, ...standardsSources, ...emailSecuritySources]),
+    claims: parsedClaims,
     relationships: z.array(relationshipSchema).parse([...relationships, ...ecosystemRelationships]),
     stories: z.array(customerStorySchema).parse(customerStories),
     pricing: z.array(pricingSignalSchema).parse(pricingSignals),
@@ -116,8 +195,17 @@ function parseCatalog(): Catalog {
 }
 
 export function catalogProblems(catalog: Catalog): string[] {
-  const { asOf: _asOf, ...collections } = catalog;
+  // Persona profiles are keyed by personaId and checked below.
+  const { asOf: _asOf, personaProfiles: _personaProfiles, useCaseSeats: _useCaseSeats, fieldNotes: _fieldNotes, objections: _objections, alternatives: _alternatives, buyingTriggers: _buyingTriggers, qualificationQuestions: _qualificationQuestions, vendorSeatTargeting: _vendorSeatTargeting, ...collections } = catalog;
   void _asOf;
+  void _personaProfiles;
+  void _useCaseSeats;
+  void _fieldNotes;
+  void _objections;
+  void _alternatives;
+  void _buyingTriggers;
+  void _qualificationQuestions;
+  void _vendorSeatTargeting;
   const problems = [
     ...identityProblems(collections),
     ...provenanceProblems(catalog.sources, catalog.claims, catalog.capabilities.map((item) => item.id)),
@@ -295,6 +383,158 @@ export function catalogProblems(catalog: Catalog): string[] {
       seenAliases.add(key);
     }
   }
+  // Seats = security personas plus non-security stakeholders. Profiles, edges, and coverage use both.
+  const seatIds = new Set<string>(personaIds);
+  for (const stakeholder of catalog.stakeholders) {
+    if (personaIds.has(stakeholder.id)) problems.push(`Stakeholder ${stakeholder.id} collides with a persona id`);
+    seatIds.add(stakeholder.id);
+  }
+  const profiledIds = new Set<string>();
+  for (const profile of catalog.personaProfiles) {
+    const label = `Persona profile ${profile.personaId}`;
+    if (!seatIds.has(profile.personaId)) problems.push(`${label} has no persona or stakeholder`);
+    for (const [size, presence] of Object.entries(profile.bySize)) {
+      for (const id of presence.coveredBy) {
+        if (!seatIds.has(id)) problems.push(`${label} ${size} coveredBy ${id} missing`);
+        if (id === profile.personaId) problems.push(`${label} ${size} is covered by itself`);
+      }
+    }
+    if (profiledIds.has(profile.personaId)) problems.push(`Duplicate ${label.toLowerCase()}`);
+    profiledIds.add(profile.personaId);
+    if (profile.primaryDomainId && !domainIds.has(profile.primaryDomainId)) {
+      problems.push(`${label} domain ${profile.primaryDomainId} missing`);
+    }
+    if (profile.evidence === "sourced" && profile.sourceIds.length === 0) {
+      problems.push(`${label} is marked sourced without sourceIds`);
+    }
+    for (const pain of profile.pains) {
+      if (pain.evidence === "sourced" && pain.sourceIds.length === 0) problems.push(`${label} pain "${pain.pain}" is marked sourced without sourceIds`);
+      for (const id of pain.sourceIds) if (!sourceIds.has(id)) problems.push(`${label} pain source ${id} missing`);
+      for (const id of pain.relatedCategoryIds) if (!categoryIds.has(id)) problems.push(`${label} pain category ${id} missing`);
+      for (const id of pain.relatedUseCaseIds) if (!useCaseIds.has(id)) problems.push(`${label} pain use case ${id} missing`);
+      for (const id of pain.relatedCapabilityIds) if (!catalog.capabilities.some((cap) => cap.id === id)) problems.push(`${label} pain capability ${id} missing`);
+    }
+    for (const id of profile.sourceIds) {
+      if (!sourceIds.has(id)) problems.push(`${label} source ${id} missing`);
+    }
+    const seenEdges = new Set<string>();
+    for (const edge of profile.edges) {
+      const key = `${edge.type}:${edge.toPersonaId}`;
+      if (edge.toPersonaId === profile.personaId) problems.push(`${label} has a self edge`);
+      if (!seatIds.has(edge.toPersonaId)) problems.push(`${label} edge target ${edge.toPersonaId} missing`);
+      if (seenEdges.has(key)) problems.push(`${label} duplicate edge ${key}`);
+      seenEdges.add(key);
+      if (edge.evidence === "sourced" && edge.sourceIds.length === 0) {
+        problems.push(`${label} edge ${key} is marked sourced without sourceIds`);
+      }
+      for (const id of edge.sourceIds) {
+        if (!sourceIds.has(id)) problems.push(`${label} edge ${key} source ${id} missing`);
+      }
+    }
+  }
+  for (const id of seatIds) {
+    if (!profiledIds.has(id)) problems.push(`Seat ${id} has no profile`);
+  }
+  const linkedUseCases = new Set<string>();
+  for (const link of catalog.useCaseSeats) {
+    const label = `Use case seats ${link.useCaseId}`;
+    if (!useCaseIds.has(link.useCaseId)) problems.push(`${label} use case missing`);
+    if (linkedUseCases.has(link.useCaseId)) problems.push(`Duplicate ${label.toLowerCase()}`);
+    linkedUseCases.add(link.useCaseId);
+    for (const id of [...link.seatIds, ...link.likelyBudgetSeatIds]) {
+      if (!seatIds.has(id)) problems.push(`${label} seat ${id} missing`);
+    }
+  }
+  for (const id of useCaseIds) if (!linkedUseCases.has(id)) problems.push(`Use case ${id} has no seat links`);
+  for (const [categoryId, owners] of Object.entries(orphanCategoryOwners)) {
+    if (!categoryIds.has(categoryId)) problems.push(`Orphan owner category ${categoryId} missing`);
+    for (const id of owners) if (!personaIds.has(id)) problems.push(`Orphan owner ${id} for ${categoryId} missing`);
+  }
+  const seatIdSet = new Set([...catalog.personas.map((item) => item.id), ...catalog.stakeholders.map((item) => item.id)]);
+  const alternativeIds = new Set<string>();
+  for (const alt of catalog.alternatives) {
+    if (alternativeIds.has(alt.id)) problems.push(`Duplicate alternative ${alt.id}`);
+    alternativeIds.add(alt.id);
+    if (!categoryIds.has(alt.categoryId)) problems.push(`Alternative ${alt.id} references missing category ${alt.categoryId}`);
+    if (alt.adjacentCategoryId && !categoryIds.has(alt.adjacentCategoryId)) problems.push(`Alternative ${alt.id} references missing adjacent category ${alt.adjacentCategoryId}`);
+    if (alt.kind === "adjacent-category" && !alt.adjacentCategoryId) problems.push(`Alternative ${alt.id} is adjacent-category without adjacentCategoryId`);
+    if (alt.evidence === "sourced" && alt.sourceIds.length === 0) problems.push(`Alternative ${alt.id} is sourced without sourceIds`);
+    for (const id of alt.sourceIds) if (!sourceIds.has(id)) problems.push(`Alternative ${alt.id} source ${id} missing`);
+  }
+  const conceptIds = new Set<string>();
+  const checkConcept = (kind: string, item: { id: string; seatIds: string[]; categoryIds: string[]; evidence: string; sourceIds: string[] }) => {
+    if (conceptIds.has(item.id)) problems.push(`Duplicate ${kind} ${item.id}`);
+    conceptIds.add(item.id);
+    for (const id of item.seatIds) if (!seatIdSet.has(id)) problems.push(`${kind} ${item.id} references missing seat ${id}`);
+    for (const id of item.categoryIds) if (!categoryIds.has(id)) problems.push(`${kind} ${item.id} references missing category ${id}`);
+    if (item.evidence === "sourced" && item.sourceIds.length === 0) problems.push(`${kind} ${item.id} is sourced without sourceIds`);
+    for (const id of item.sourceIds) if (!sourceIds.has(id)) problems.push(`${kind} ${item.id} source ${id} missing`);
+  };
+  for (const objection of catalog.objections) {
+    checkConcept("Objection", objection);
+    for (const id of objection.alternativeIds) if (!alternativeIds.has(id)) problems.push(`Objection ${objection.id} references missing alternative ${id}`);
+  }
+  for (const trigger of catalog.buyingTriggers) {
+    checkConcept("Trigger", trigger);
+    for (const id of trigger.useCaseIds) if (!useCaseIds.has(id)) problems.push(`Trigger ${trigger.id} references missing use case ${id}`);
+  }
+  const questionIds = new Set<string>();
+  const segmentIds = new Set(catalog.segmentOverlays.map((overlay) => overlay.id));
+  for (const question of catalog.qualificationQuestions) {
+    if (questionIds.has(question.id)) problems.push(`Duplicate qualification question ${question.id}`);
+    questionIds.add(question.id);
+    const target = question.appliesTo;
+    if (target.kind === "seat" && !seatIdSet.has(target.id)) problems.push(`Qualification question ${question.id} references missing seat ${target.id}`);
+    if (target.kind === "segment" && !segmentIds.has(target.id)) problems.push(`Qualification question ${question.id} references missing segment ${target.id}`);
+    for (const id of question.categoryIds) if (!categoryIds.has(id)) problems.push(`Qualification question ${question.id} references missing category ${id}`);
+    if (question.evidence === "sourced" && question.sourceIds.length === 0) problems.push(`Qualification question ${question.id} is sourced without sourceIds`);
+    for (const id of question.sourceIds) if (!sourceIds.has(id)) problems.push(`Qualification question ${question.id} source ${id} missing`);
+  }
+  const targetingKeys = new Set<string>();
+  for (const row of catalog.vendorSeatTargeting) {
+    const key = `${row.vendorId}/${row.categoryId}`;
+    if (targetingKeys.has(key)) problems.push(`Duplicate vendor seat targeting ${key}`);
+    targetingKeys.add(key);
+    const vendor = catalog.vendors.find((item) => item.id === row.vendorId);
+    if (!vendor) problems.push(`Vendor seat targeting ${key} references missing vendor`);
+    else if (!vendor.primaryCategoryIds.includes(row.categoryId) && !vendor.adjacentCategoryIds.includes(row.categoryId)) problems.push(`Vendor seat targeting ${key}: vendor is not mapped to that category`);
+    if (!categoryIds.has(row.categoryId)) problems.push(`Vendor seat targeting ${key} references missing category`);
+    for (const id of [...row.seatIds, ...row.mentionedSeatIds]) if (!seatIdSet.has(id)) problems.push(`Vendor seat targeting ${key} references missing seat ${id}`);
+    for (const id of row.mentionedSeatIds) if (row.seatIds.includes(id)) problems.push(`Vendor seat targeting ${key} lists ${id} as both pitched and mentioned`);
+  }
+  const fieldIds = new Set<string>();
+  for (const note of catalog.fieldNotes) {
+    if (fieldIds.has(note.id)) problems.push(`Duplicate field note ${note.id}`);
+    fieldIds.add(note.id);
+    if (!personaIds.has(note.personaId) && !catalog.stakeholders.some((item) => item.id === note.personaId)) problems.push(`Field note ${note.id} references missing seat ${note.personaId}`);
+  }
+  for (const profile of catalog.personaProfiles) {
+    const usesFieldLabel =
+      profile.evidence === "field_validated" ||
+      profile.pains.some((pain) => pain.evidence === "field_validated") ||
+      profile.edges.some((edge) => edge.evidence === "field_validated");
+    const confirmed = catalog.fieldNotes
+      .filter((note) => note.personaId === profile.personaId && note.stance !== "challenges" && note.reviewedAt)
+      .reduce((total, note) => total + note.conversations, 0);
+    if (usesFieldLabel && confirmed < 3) problems.push(`Seat ${profile.personaId} uses field_validated without 3+ reviewed field conversations`);
+  }
+  for (const overlay of catalog.segmentOverlays) {
+    const label = `Segment ${overlay.id}`;
+    if (overlay.evidence === "sourced" && overlay.sourceIds.length === 0) problems.push(`${label} is marked sourced without sourceIds`);
+    for (const id of overlay.sourceIds) if (!sourceIds.has(id)) problems.push(`${label} source ${id} missing`);
+    for (const id of overlay.elevatedPersonaIds) if (!seatIds.has(id)) problems.push(`${label} elevated seat ${id} missing`);
+    for (const seat of overlay.mandatedSeats) {
+      if (seat.personaId && !seatIds.has(seat.personaId)) problems.push(`${label} mandated seat ${seat.personaId} missing`);
+      for (const id of seat.sourceIds) if (!sourceIds.has(id)) problems.push(`${label} mandated seat source ${id} missing`);
+    }
+    const requirementIds = new Set<string>();
+    for (const req of overlay.identityRequirements) {
+      if (requirementIds.has(req.id)) problems.push(`${label} duplicate identity requirement ${req.id}`);
+      requirementIds.add(req.id);
+      for (const id of req.categoryIds) if (!categoryIds.has(id)) problems.push(`${label} identity requirement ${req.id} category ${id} missing`);
+      for (const id of req.sourceIds) if (!sourceIds.has(id)) problems.push(`${label} identity requirement ${req.id} source ${id} missing`);
+    }
+  }
   return problems;
 }
 
@@ -331,10 +571,23 @@ export function claimsForSubject(subjectType: Claim["subjectType"], subjectId: s
   );
 }
 
+export function profileForPersona(personaId: string): PersonaProfile | undefined {
+  return catalog.personaProfiles.find((profile) => profile.personaId === personaId);
+}
+
 export function relationshipsForProduct(productId: string): Relationship[] {
   return catalog.relationships.filter(
     (relationship) =>
       relationship.fromProductId === productId || relationship.toProductId === productId,
+  );
+}
+
+/** Industry and regulatory identity requirements that name this category. */
+export function identityRequirementsForCategory(categoryId: string) {
+  return catalog.segmentOverlays.flatMap((overlay) =>
+    overlay.identityRequirements
+      .filter((req) => req.categoryIds.includes(categoryId))
+      .map((req) => ({ overlay, req })),
   );
 }
 
@@ -354,6 +607,12 @@ export type { SearchHit };
 
 export function searchIndex(): SearchHit[] {
   return [
+    {
+      href: "/evidence-graph",
+      kind: "Graph",
+      title: "Identity, secrets, and NHI evidence graph",
+      text: "Taxonomy mappings, unknown comparisons, sourced claims, and research-candidate vendors",
+    },
     ...catalog.domains.map((item) => ({
       href: `/domains/${item.slug}`,
       kind: "Domain",
