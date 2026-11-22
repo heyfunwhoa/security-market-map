@@ -395,7 +395,7 @@ export const expandedSources: Source[] = [
     "publisher": "DECE Software",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "DECE Software identifies GEODI DSPM as its platform for sensitive-data visibility across cloud, on-premises and collaboration sources."
   },
@@ -419,7 +419,7 @@ export const expandedSources: Source[] = [
     "publisher": "Proofpoint",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Proofpoint describes DSPM for discovery, classification and data-risk remediation, with Normalyze product lineage."
   },
@@ -443,7 +443,7 @@ export const expandedSources: Source[] = [
     "publisher": "Google",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Google documents Security Command Center DSPM and states that this DSPM offering will shut down on February 1, 2027."
   },
@@ -503,7 +503,7 @@ export const expandedSources: Source[] = [
     "publisher": "Keeper Security",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Keeper documents Secrets Manager as a KeeperPAM component for infrastructure secrets and application or CI/CD access."
   }
@@ -566,7 +566,7 @@ export const expandedClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "GEODI is the product; DECE Software is the vendor. Connector depth and enforcement are untested. Publisher-reported, not independently tested; no direct-competitor or analyst endorsement claim."
   },
@@ -606,7 +606,7 @@ export const expandedClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Normalyze is not counted as another independent vendor. Exact acquisition closing date is not established by this page. Publisher-reported, not independently tested; no direct-competitor or analyst endorsement claim."
   },
@@ -645,10 +645,10 @@ export const expandedClaims: Claim[] = [
     "effectiveFrom": null,
     "effectiveTo": null,
     "confidence": "medium",
-    "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "verificationStatus": "needs_review",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
-    "notes": "Lifecycle warning as observed 2026-10-13. Some controls are preview or detective-only. Review the linked alternative detection capabilities before a new purchase; no general multi-cloud parity inferred. Publisher-reported, not independently tested; no direct-competitor or analyst endorsement claim."
+    "notes": "Lifecycle warning as observed 2026-10-13. Some controls are preview or detective-only. Review the linked alternative detection capabilities before a new purchase; no general multi-cloud parity inferred. Publisher-reported, not independently tested; no direct-competitor or analyst endorsement claim. Rechecked 22 Nov 2026: the overview page no longer contains a shutdown or deprecation notice. Do not repeat the February 1, 2027 date until a current Google source confirms it."
   },
   {
     "id": "claim-expanded-delinea-devops-secrets-vault",
@@ -746,7 +746,7 @@ export const expandedClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Validate target-specific rotation and packaging. Vendor superiority and certification statements are not adopted. Publisher-reported, not independently tested; no direct-competitor or analyst endorsement claim."
   }

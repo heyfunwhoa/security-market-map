@@ -987,10 +987,12 @@ describe("budget and territory", () => {
 });
 
 describe("staleness", () => {
-  it("flags the KuppingerCole NHI note as stale", () => {
+  // Tests the rule with fixed dates, so rechecking the source (which refreshes retrievedAt) cannot break it.
+  it("flags the KuppingerCole NHI note as stale once its review window passes", () => {
     const source = catalog.sources.find((item) => item.id === "src-kc-nhi");
     expect(source).toBeTruthy();
-    expect(isSourceStale(source!, catalog.asOf)).toBe(true);
+    expect(isSourceStale(source!, source!.retrievedAt)).toBe(false);
+    expect(isSourceStale(source!, "2099-01-01")).toBe(true);
   });
 });
 

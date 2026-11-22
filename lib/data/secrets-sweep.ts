@@ -2214,7 +2214,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Aikido Security",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Detects exposed secrets and describes live-secret checks."
   },
@@ -2226,7 +2226,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Apiiro",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Detects and validates exposed secrets with application context."
   },
@@ -2509,12 +2509,12 @@ export const secretsSweepSources: Source[] = [
   {
     "id": "src-secrets-sweep-aqua-scanning",
     "title": "Aqua container scanning — secrets detection scope",
-    "url": "https://www.aquasec.com/products/container-scanning/",
-    "canonicalUrl": "https://www.aquasec.com/products/container-scanning/",
+    "url": "https://www.aquasec.com/products/container-security/",
+    "canonicalUrl": "https://www.aquasec.com/products/container-security/",
     "publisher": "Aqua Security",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Includes secrets in container/build scanning."
   },
@@ -2562,7 +2562,7 @@ export const secretsSweepSources: Source[] = [
     "publisher": "Akeyless",
     "sourceType": "official_docs",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Documents secret discovery across GitHub source and history."
   },
@@ -3262,7 +3262,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "No independent accuracy comparison inferred. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3282,7 +3282,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Vendor claims are not performance benchmarks. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },
@@ -3754,17 +3754,17 @@ export const secretsSweepClaims: Claim[] = [
     "capabilityId": "cap-secret-discovery",
     "polarity": "asserts",
     "sourceId": "src-secrets-sweep-aqua-scanning",
-    "sourceUrl": "https://www.aquasec.com/products/container-scanning/",
+    "sourceUrl": "https://www.aquasec.com/products/container-security/",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
     "observedAt": "2026-10-13",
     "effectiveFrom": null,
     "effectiveTo": null,
     "confidence": "medium",
-    "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "verificationStatus": "needs_review",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
-    "notes": "Commercial Aqua and OSS Trivy are separate product records. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
+    "notes": "Commercial Aqua and OSS Trivy are separate product records. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages. Rechecked 22 Nov 2026: the container scanning URL now redirects to a container security page that does not mention secrets scanning. Find a current Aqua source or retire the claim."
   },
   {
     "id": "claim-secrets-sweep-singularity-cloud-secrets",
@@ -3842,7 +3842,7 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
     "notes": "Requires Identity & Secrets Intelligence license and configured gateway; code scanning and inventory metadata are distinct. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
   },

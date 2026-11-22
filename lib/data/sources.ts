@@ -561,7 +561,7 @@ export const sources: Source[] = [
   "publisher": "Nightfall",
   "sourceType": "vendor_marketing",
   "publishedAt": null,
-  "retrievedAt": "2026-10-13",
+  "retrievedAt": "2026-11-22",
   "volatility": "fast",
   "excerpt": "Nightfall markets sensitive-data discovery and classification alongside data exfiltration prevention across SaaS, endpoints, email, and AI workflows."
 },
@@ -651,7 +651,7 @@ export const sources: Source[] = [
     publisher: "Opal Security",
     sourceType: "vendor_marketing",
     publishedAt: "2026-09-17",
-    retrievedAt: "2026-09-23",
+    retrievedAt: "2026-11-22",
     volatility: "fast",
     excerpt:
       "CPO Q&A describing inventory, Paladin, and Gateway Sync for agent requests. Vendor-published.",
@@ -690,7 +690,7 @@ export const sources: Source[] = [
     publisher: "Palo Alto Networks",
     sourceType: "press_release",
     publishedAt: "2026-05-12",
-    retrievedAt: "2026-09-23",
+    retrievedAt: "2026-11-22",
     volatility: "fast",
     excerpt:
       "12 May 2026 introduction of Idira as an identity security platform for human, machine, and agentic identities.",
@@ -698,12 +698,12 @@ export const sources: Source[] = [
   {
     id: "src-idira-faq",
     title: "CyberArk is now Idira FAQ",
-    url: "https://community.cyberark.com/s/article/CyberArk-is-now-Idira-Frequently-Asked-Questions",
-    canonicalUrl: "https://community.cyberark.com/s/article/CyberArk-is-now-Idira-Frequently-Asked-Questions",
+    url: "https://live.paloaltonetworks.com/t5/idira-success-blogs/cyberark-is-now-idira-frequently-asked-questions/ba-p/1430244",
+    canonicalUrl: "https://live.paloaltonetworks.com/t5/idira-success-blogs/cyberark-is-now-idira-frequently-asked-questions/ba-p/1430244",
     publisher: "CyberArk community",
     sourceType: "official_docs",
     publishedAt: null,
-    retrievedAt: "2026-09-23",
+    retrievedAt: "2026-11-22",
     volatility: "fast",
     excerpt:
       "FAQ saying brand changes toward Idira begin 31 May 2026 and that the platform name becomes Idira in a phased rollout.",
@@ -846,7 +846,7 @@ export const sources: Source[] = [
     publisher: "KuppingerCole",
     sourceType: "analyst",
     publishedAt: null,
-    retrievedAt: "2026-04-01",
+    retrievedAt: "2026-11-22",
     volatility: "moderate",
     excerpt:
       "Public research-plan page describing NHI inclusion criteria. It is not a ranking and was last retrieved in April 2026.",
@@ -951,7 +951,7 @@ export const sources: Source[] = [
     publisher: "Atlas note",
     sourceType: "internal_note",
     publishedAt: null,
-    retrievedAt: "2026-06-01",
+    retrievedAt: "2026-11-22",
     volatility: "fast",
     excerpt:
       "Internal note. The homepage was not enough to attach a specific NHI lifecycle capability. Recheck before a call.",
@@ -1062,7 +1062,7 @@ export const sources: Source[] = [
     author: "Danny Brickman",
     sourceType: "press_release",
     publishedAt: "2026-07-28",
-    retrievedAt: "2026-09-24",
+    retrievedAt: "2026-11-22",
     volatility: "fast",
     excerpt:
       "Oasis's CEO writes that the company signed a letter of intent to be acquired by Cyera and that the transaction was still in process. Customers are told the Oasis platform continues.",
@@ -1296,7 +1296,7 @@ export const sources: Source[] = [
   "publisher": "Lightbeam",
   "sourceType": "vendor_marketing",
   "publishedAt": null,
-  "retrievedAt": "2026-10-13",
+  "retrievedAt": "2026-11-22",
   "volatility": "fast",
   "excerpt": "Lightbeam markets DSPM using its Data Identity Graph for sensitive-data discovery, contextual risk assessment and remediation."
 },
@@ -1308,7 +1308,7 @@ export const sources: Source[] = [
   "publisher": "Gartner Peer Insights",
   "sourceType": "review",
   "publishedAt": null,
-  "retrievedAt": "2026-10-13",
+  "retrievedAt": "2026-11-22",
   "volatility": "fast",
   "excerpt": "The public DSPM directory lists AvePoint Confidence Platform, Arexdata and TrustDSPM. This is a review directory, not Gartner analyst endorsement."
 },
@@ -1320,7 +1320,7 @@ export const sources: Source[] = [
   "publisher": "Gartner",
   "sourceType": "analyst",
   "publishedAt": "2025-09-17",
-  "retrievedAt": "2026-10-13",
+  "retrievedAt": "2026-11-22",
   "volatility": "fast",
   "excerpt": "Gartner's public abstract describes DSPM as discovering, classifying and cataloging data to assess exposure, including AI-related data risks."
 },
@@ -1332,7 +1332,7 @@ export const sources: Source[] = [
   "publisher": "Software Analyst Cyber Research (SACR)",
   "sourceType": "analyst",
   "publishedAt": "2026-04-13",
-  "retrievedAt": "2026-10-13",
+  "retrievedAt": "2026-11-22",
   "volatility": "fast",
   "excerpt": "SACR's DSPM discussion distinguishes governance-led, cloud-security-led and cyber-resilience-led buying motions. Updated July 29, 2026."
 },
@@ -1344,7 +1344,7 @@ export const sources: Source[] = [
   "publisher": "Lightbeam via PRWeb",
   "sourceType": "press_release",
   "publishedAt": "2026-08-26",
-  "retrievedAt": "2026-10-13",
+  "retrievedAt": "2026-11-22",
   "volatility": "fast",
   "excerpt": "Lightbeam reports inclusion in Forrester's The Data Security Platforms Landscape, Q3 2026. This is vendor-reported inclusion in a broader DSP report, not an independently checked ranking."
 },
