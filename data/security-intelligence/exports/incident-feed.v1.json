@@ -209,7 +209,12 @@
         ],
         "reviewedOn": "2026-11-21"
       },
-      "industries": [],
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
       "marketCategories": []
     },
     {
@@ -262,7 +267,20 @@
         "reviewedOn": "2026-11-21"
       },
       "industries": [],
-      "marketCategories": []
+      "marketCategories": [
+        {
+          "categoryId": "secrets-detection",
+          "categoryName": "Secrets detection and remediation",
+          "rationale": "Aikido reports a payload that steals GitHub Actions secrets and cloud credentials from CI.",
+          "doesNotImply": "That any secrets detection product detected or would have prevented this incident."
+        },
+        {
+          "categoryId": "software-supply-chain",
+          "categoryName": "Software supply chain",
+          "rationale": "Aikido reports hijacked GitHub accounts opening pull requests across tens of thousands of other projects' repositories to run the payload.",
+          "doesNotImply": "That any software supply chain product detected or would have prevented this campaign, or attribution to the GhostAction actor."
+        }
+      ]
     },
     {
       "id": "incident:notion-fireworks-ai-chats-2026",
@@ -305,8 +323,20 @@
         ],
         "reviewedOn": "2026-11-21"
       },
-      "industries": [],
-      "marketCategories": []
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
+      "marketCategories": [
+        {
+          "categoryId": "secrets-detection",
+          "categoryName": "Secrets detection and remediation",
+          "rationale": "Notion says credentials users pasted into AI chats were exposed at its vendor, and it revoked Notion keys and reported third-party keys found in those messages.",
+          "doesNotImply": "That any secrets detection product detected or would have prevented this incident. Pasting secrets into chat tools is a behaviour problem a scanner does not fix."
+        }
+      ]
     },
     {
       "id": "incident:barracuda-unretired-vendor-key-2026",
@@ -349,8 +379,26 @@
         ],
         "reviewedOn": "2026-11-21"
       },
-      "industries": [],
-      "marketCategories": []
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
+      "marketCategories": [
+        {
+          "categoryId": "third-party-risk",
+          "categoryName": "Third-party risk",
+          "rationale": "Barracuda says a cloud key it gave a third-party AI vendor was used after the vendor's environment was compromised.",
+          "doesNotImply": "That a third-party risk product would have prevented this. The vendor is unnamed."
+        },
+        {
+          "categoryId": "nhi",
+          "categoryName": "NHI and workload identity",
+          "rationale": "Barracuda says the cloud access key was issued for a past project and never retired.",
+          "doesNotImply": "That any non-human identity product detected or would have prevented this incident."
+        }
+      ]
     },
     {
       "id": "incident:nitori-customer-records-2026",
@@ -396,7 +444,12 @@
         ],
         "reviewedOn": "2026-11-21"
       },
-      "industries": [],
+      "industries": [
+        {
+          "id": "retail",
+          "name": "Retail"
+        }
+      ],
       "marketCategories": []
     },
     {
@@ -448,8 +501,20 @@
         ],
         "reviewedOn": "2026-11-21"
       },
-      "industries": [],
-      "marketCategories": []
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
+      "marketCategories": [
+        {
+          "categoryId": "third-party-risk",
+          "categoryName": "Third-party risk",
+          "rationale": "Wiz reports an attacker used credentials from an AWS account associated with Qubole to assume integration roles customers had created to trust it.",
+          "doesNotImply": "That a third-party risk product would have prevented this, or how the Qubole credentials were obtained, which is unknown."
+        }
+      ]
     },
     {
       "id": "incident:artex-github-secrets-entra-2026",
@@ -502,7 +567,14 @@
         "reviewedOn": "2026-11-21"
       },
       "industries": [],
-      "marketCategories": []
+      "marketCategories": [
+        {
+          "categoryId": "secrets-detection",
+          "categoryName": "Secrets detection and remediation",
+          "rationale": "Microsoft reports automated GitHub searches for exposed credentials and AI API keys, then use of leaked application credentials to sign in to Entra ID tenants.",
+          "doesNotImply": "That any secrets detection product detected or would have prevented this incident. The speed of exploitation is Microsoft's claim."
+        }
+      ]
     },
     {
       "id": "incident:binance-wallet-signing-2026",
@@ -614,8 +686,20 @@
         ],
         "reviewedOn": "2026-11-21"
       },
-      "industries": [],
-      "marketCategories": []
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
+      "marketCategories": [
+        {
+          "categoryId": "nhi",
+          "categoryName": "NHI and workload identity",
+          "rationale": "Chainstack names machine credentials that also worked in production among the steps from a development environment to production secrets.",
+          "doesNotImply": "That any non-human identity product detected or would have prevented this incident. The entry point was default Grafana admin credentials."
+        }
+      ]
     },
     {
       "id": "incident:gitbook-sso-github-app-2026",
@@ -657,8 +741,20 @@
         ],
         "reviewedOn": "2026-11-21"
       },
-      "industries": [],
-      "marketCategories": []
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
+      "marketCategories": [
+        {
+          "categoryId": "secrets-detection",
+          "categoryName": "Secrets detection and remediation",
+          "rationale": "GitBook's postmortem says a Cloudflare API key found in internal repositories led to production secrets and full infrastructure access.",
+          "doesNotImply": "That any secrets detection product detected or would have prevented this incident. The entry point was an SSO login flaw, not the key."
+        }
+      ]
     },
     {
       "id": "incident:strutil-core-rubygems-worm-2026",
@@ -709,7 +805,20 @@
         "reviewedOn": "2026-11-21"
       },
       "industries": [],
-      "marketCategories": []
+      "marketCategories": [
+        {
+          "categoryId": "secrets-detection",
+          "categoryName": "Secrets detection and remediation",
+          "rationale": "Socket reports a gem that reads cloud, Git forge and package registry credential stores at install time.",
+          "doesNotImply": "That any secrets detection product detected or would have prevented this incident. No victims are confirmed."
+        },
+        {
+          "categoryId": "software-supply-chain",
+          "categoryName": "Software supply chain",
+          "rationale": "The payload was delivered as a malicious version of a package published to RubyGems.",
+          "doesNotImply": "That any software supply chain product detected or would have prevented this package. No victims are confirmed."
+        }
+      ]
     },
     {
       "id": "incident:northflank-env-vars-2026",
@@ -760,8 +869,20 @@
         ],
         "reviewedOn": "2026-11-21"
       },
-      "industries": [],
-      "marketCategories": []
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
+      "marketCategories": [
+        {
+          "categoryId": "third-party-risk",
+          "categoryName": "Third-party risk",
+          "rationale": "Northflank says customer secrets stored on its platform were decrypted, and told all users to treat every stored secret as exposed.",
+          "doesNotImply": "That a third-party risk product would have found the flaw, or how the flaw worked beyond Northflank's description."
+        }
+      ]
     },
     {
       "id": "incident:chainalysis-agentic-intrusion-2026",
@@ -864,7 +985,12 @@
         ],
         "reviewedOn": "2026-11-21"
       },
-      "industries": [],
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
       "marketCategories": []
     },
     {
@@ -917,8 +1043,26 @@
         ],
         "reviewedOn": "2026-11-21"
       },
-      "industries": [],
-      "marketCategories": []
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
+      "marketCategories": [
+        {
+          "categoryId": "secrets-detection",
+          "categoryName": "Secrets detection and remediation",
+          "rationale": "Cursor says copied coding-agent traces held unredacted credentials that the attacker then used.",
+          "doesNotImply": "That any secrets detection product detected or would have prevented this incident."
+        },
+        {
+          "categoryId": "third-party-risk",
+          "categoryName": "Third-party risk",
+          "rationale": "Cursor says the attack began with an access key it had issued to its AI vendor, which the vendor exposed.",
+          "doesNotImply": "That a third-party risk product would have found or prevented the vendor's exposure."
+        }
+      ]
     },
     {
       "id": "incident:dreamhost-file-manager-ftp-creds-2026",
@@ -968,7 +1112,12 @@
         ],
         "reviewedOn": "2026-11-21"
       },
-      "industries": [],
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
       "marketCategories": []
     },
     {
@@ -1068,8 +1217,26 @@
         ],
         "reviewedOn": "2026-11-21"
       },
-      "industries": [],
-      "marketCategories": []
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
+      "marketCategories": [
+        {
+          "categoryId": "secrets-detection",
+          "categoryName": "Secrets detection and remediation",
+          "rationale": "LiteLLM says an admin key committed to a public repository stayed in Git history and was never revoked, then was used to start the attack.",
+          "doesNotImply": "That any secrets detection product detected or would have prevented this incident."
+        },
+        {
+          "categoryId": "software-supply-chain",
+          "categoryName": "Software supply chain",
+          "rationale": "LiteLLM says the attacker used harvested maintainer tokens to publish a poisoned release of its package.",
+          "doesNotImply": "That any software supply chain product detected or would have prevented this release."
+        }
+      ]
     },
     {
       "id": "incident:lightning-ai-platform-credentials-2026",
@@ -1119,7 +1286,12 @@
         ],
         "reviewedOn": "2026-11-21"
       },
-      "industries": [],
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
       "marketCategories": []
     },
     {
@@ -1170,8 +1342,20 @@
         ],
         "reviewedOn": "2026-11-21"
       },
-      "industries": [],
-      "marketCategories": []
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
+      "marketCategories": [
+        {
+          "categoryId": "secrets-management",
+          "categoryName": "Secrets management",
+          "rationale": "Zeabur names long-lived admin tokens and internal keys stored in plaintext in a configuration repository as the root cause.",
+          "doesNotImply": "That any secrets management product would have prevented this, or how the attacker reached the repository, which Zeabur only hypothesizes."
+        }
+      ]
     },
     {
       "id": "incident:fireworks-ai-eval-secrets-2026",
@@ -1285,7 +1469,20 @@
         "reviewedOn": "2026-11-21"
       },
       "industries": [],
-      "marketCategories": []
+      "marketCategories": [
+        {
+          "categoryId": "secrets-detection",
+          "categoryName": "Secrets detection and remediation",
+          "rationale": "GitGuardian reports malicious GitHub Actions workflows pushed into repositories to steal repository secrets.",
+          "doesNotImply": "That any secrets detection product detected or would have prevented this incident."
+        },
+        {
+          "categoryId": "software-supply-chain",
+          "categoryName": "Software supply chain",
+          "rationale": "The workflows were pushed through hijacked GitHub accounts into other projects' repositories, a supply chain path.",
+          "doesNotImply": "That any software supply chain product detected or would have prevented this campaign. Only GitGuardian's summary was checked."
+        }
+      ]
     },
     {
       "id": "incident:novo-nordisk-2026",
