@@ -179,7 +179,7 @@ export function IncidentFeed({
           />
         )}
         </div>
-        <p className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
+        <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
           <span role="status">
             {visible.length} of {feed.length} reviewed incident{feed.length === 1 ? "" : "s"}
           </span>
@@ -199,7 +199,7 @@ export function IncidentFeed({
               Clear filters
             </button>
           )}
-        </p>
+        </div>
         {prepVendors && (
           <div className="border-t border-border pt-3 text-sm">
             <p>
