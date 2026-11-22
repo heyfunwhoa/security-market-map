@@ -43,7 +43,17 @@
           "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
-      "salesNote": null,
+      "salesNote": {
+        "headline": "Ipsos says one internal system was breached; it hasn't said which or how.",
+        "discoveryQuestion": "If a vendor disclosed a breach with no details, what would you ask them first?",
+        "avoid": "Don't speculate on what was taken.",
+        "sellerCaveat": "Very thin record with no secrets angle reported; a weak conversation opener.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:ipsos-press-release-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
       "industries": [],
       "marketCategories": []
     },
@@ -76,7 +86,17 @@
           "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
-      "salesNote": null,
+      "salesNote": {
+        "headline": "Google says suspected North Korean actors edited Claude Code settings in victims' repos to plant a backdoor, and made GitHub tokens that looked like Copilot's.",
+        "discoveryQuestion": "Would you notice a new personal access token in your GitHub org named to look like a trusted tool?",
+        "avoid": "Don't call it a Claude Code vulnerability.",
+        "sellerCaveat": "Attribution is suspected; keep that word. The attacker already had repo access and misused a settings file.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:gtig-ai-threat-tracker-nov-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
       "industries": [],
       "marketCategories": []
     },
@@ -178,7 +198,17 @@
           "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
-      "salesNote": null,
+      "salesNote": {
+        "headline": "Apify says one compromised credential let an attacker collect more credentials and reach customer accounts.",
+        "discoveryQuestion": "How quickly could you tell which of your internal credentials can unlock other credentials?",
+        "avoid": "Don't describe the initial credential; Apify hasn't said what it was.",
+        "sellerCaveat": "Apify's fuller report hadn't been found as of 2026-11-21; details may change.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:apify-status-incident-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
       "industries": [],
       "marketCategories": []
     },
@@ -220,7 +250,17 @@
           "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
-      "salesNote": null,
+      "salesNote": {
+        "headline": "Aikido says 4,837 hijacked GitHub accounts pushed a stealer that took CI secrets from at least 1,806 repos.",
+        "discoveryQuestion": "If a contributor's account were hijacked, which secrets could a pull request reach in your CI?",
+        "avoid": "Don't attribute this to the GhostAction actor; Aikido doesn't.",
+        "sellerCaveat": "Repo counts differ by source (1,806, 1,835, 8,093); say \"at least 1,806\" and cite Aikido. The date is approximate.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:aikido-wfx-loot-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
       "industries": [],
       "marketCategories": []
     },
@@ -254,7 +294,17 @@
           "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
-      "salesNote": null,
+      "salesNote": {
+        "headline": "Notion says credentials users pasted into AI chats were exposed through its AI vendor, so it revoked or reported them.",
+        "discoveryQuestion": "Do you know which secrets your people paste into AI tools, and who those tools share data with?",
+        "avoid": "Don't imply Notion's own systems were breached; the dataset was at its vendor.",
+        "sellerCaveat": "Don't pitch secret scanning as the fix for pasting secrets into AI chats; the honest angle is finding and rotating secrets after they spread.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:notion-fireworks-advisory-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
       "industries": [],
       "marketCategories": []
     },
@@ -288,7 +338,17 @@
           "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
-      "salesNote": null,
+      "salesNote": {
+        "headline": "Barracuda says a cloud key it gave a vendor years ago, and never retired, opened a 44-hour chain of stolen secrets.",
+        "discoveryQuestion": "How many credentials have you given vendors for projects that are already over?",
+        "avoid": "Don't name the vendor or attach Railway's $740,000 figure.",
+        "sellerCaveat": "Barracuda's ARTEX match describes method, not actor; don't name an actor.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:barracuda-intrusion-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
       "industries": [],
       "marketCategories": []
     },
@@ -325,7 +385,17 @@
           "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
-      "salesNote": null,
+      "salesNote": {
+        "headline": "Nitori says up to 37.62 million customer records may have leaked after unauthorized access to its systems.",
+        "discoveryQuestion": "When the entry point isn't known yet, how quickly can you tell what a breach could have touched?",
+        "avoid": "Don't suggest a cause; Nitori hasn't named one.",
+        "sellerCaveat": "No credential or secrets angle is reported; use only as general breach context.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:nitori-disclosure-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
       "industries": [],
       "marketCategories": []
     },
@@ -367,7 +437,17 @@
           "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
-      "salesNote": null,
+      "salesNote": {
+        "headline": "Wiz says a vendor's AWS credentials opened customers' old, unused integration roles, and the attacker read the secrets behind them.",
+        "discoveryQuestion": "Which vendor integration roles in your AWS accounts are still trusted but no longer used?",
+        "avoid": "Mention the attacker's use of open-source tools neutrally; don't imply any vendor involvement.",
+        "sellerCaveat": "The attacker used open-source TruffleHog to check which stolen keys were live. If a buyer raises it, say plainly that attackers use open-source tools too; don't spin it. Wiz gives no victim count; \"dozens\" comes from Sentra.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:wiz-qubole-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
       "industries": [],
       "marketCategories": []
     },
@@ -410,7 +490,17 @@
           "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
-      "salesNote": null,
+      "salesNote": {
+        "headline": "Microsoft says AI agents are searching public GitHub for exposed secrets and using them to break into cloud tenants within minutes.",
+        "discoveryQuestion": "If a secret tied to your company landed in a public repo today, would you find it before an automated search did?",
+        "avoid": "Don't tie this to Storm-0940 or any named actor; Microsoft doesn't.",
+        "sellerCaveat": "\"Within minutes\" is Microsoft's claim; attribute it to Microsoft rather than stating it as fact.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:microsoft-artex-secrets-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
       "industries": [],
       "marketCategories": []
     },
@@ -513,7 +603,17 @@
           "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
-      "salesNote": null,
+      "salesNote": {
+        "headline": "Chainstack says default Grafana admin credentials led an attacker, step by step, to production secrets.",
+        "discoveryQuestion": "If one dev tool kept its default password, what else could its machine credentials reach?",
+        "avoid": "Don't call it a software vulnerability; Chainstack says none was exploited.",
+        "sellerCaveat": "The disclosure date is approximate; don't give a specific date.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:chainstack-incident-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
       "industries": [],
       "marketCategories": []
     },
@@ -546,7 +646,17 @@
           "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
-      "salesNote": null,
+      "salesNote": {
+        "headline": "GitBook says one Cloudflare API key, found in internal code, turned a login flaw into full infrastructure access.",
+        "discoveryQuestion": "Which API keys sit in your internal repos, and what would each one unlock?",
+        "avoid": "Don't present the AI-agent detail as confirmed; GitBook calls it an inference.",
+        "sellerCaveat": "GitBook couldn't tell whether the attacker acted inside customer repos; don't say customer code was touched.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:gitbook-incident-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
       "industries": [],
       "marketCategories": []
     },
@@ -587,7 +697,17 @@
           "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
-      "salesNote": null,
+      "salesNote": {
+        "headline": "Socket says a new Ruby gem stole cloud, CI and AI tool credentials the moment it was installed.",
+        "discoveryQuestion": "Which credentials sit on the machines where developers install new packages?",
+        "avoid": "Don't claim known victims; none are confirmed.",
+        "sellerCaveat": null,
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:socket-strutil-core-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
       "industries": [],
       "marketCategories": []
     },
@@ -629,7 +749,17 @@
           "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
-      "salesNote": null,
+      "salesNote": {
+        "headline": "Northflank says an API flaw let an attacker decrypt customer secrets; the misuse reported so far is AI provider keys.",
+        "discoveryQuestion": "If a platform you deploy on told you to treat every stored secret as exposed, how long would rotating them all take?",
+        "avoid": "Don't say how the flaw worked beyond Northflank's description.",
+        "sellerCaveat": "The disclosure date is approximate; don't give a specific date.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:northflank-incident-report-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
       "industries": [],
       "marketCategories": []
     },
@@ -723,7 +853,17 @@
           "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
-      "salesNote": null,
+      "salesNote": {
+        "headline": "WorkOS says a weak development credential that also worked in production let an AI agent into its sales tool.",
+        "discoveryQuestion": "Could a credential meant for local development authenticate against anything in your production?",
+        "avoid": "Don't describe this as a leaked secret; it was a weak, predictable credential.",
+        "sellerCaveat": "A weak, guessable credential isn't something a secret scanner reliably catches; don't claim a scanner would have stopped this.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:workos-bulletin-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
       "industries": [],
       "marketCategories": []
     },
@@ -766,7 +906,17 @@
           "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
-      "salesNote": null,
+      "salesNote": {
+        "headline": "Cursor says a key it gave a vendor was exposed there, and unredacted credentials in old agent traces did the rest.",
+        "discoveryQuestion": "Which keys have you issued to vendors, and do you know where those vendors store them?",
+        "avoid": "Don't call it an Anthropic or Open VSX vulnerability; Cursor says it wasn't.",
+        "sellerCaveat": "Fewer than 0.01% of Cursor customers had credentials exposed; don't overstate the scale.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:cursor-incident-update-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
       "industries": [],
       "marketCategories": []
     },
@@ -807,7 +957,17 @@
           "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
-      "salesNote": null,
+      "salesNote": {
+        "headline": "DreamHost says logins typed into its File Manager for about ten weeks should be treated as compromised.",
+        "discoveryQuestion": "If a hosting provider told you ten weeks of logins were captured, which deploy credentials would you rotate first?",
+        "avoid": "Don't name the vulnerable software; DreamHost hasn't.",
+        "sellerCaveat": "The disclosure date is approximate; don't give a specific date.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:dreamhost-announcement-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
       "industries": [],
       "marketCategories": []
     },
@@ -897,7 +1057,17 @@
           "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
-      "salesNote": null,
+      "salesNote": {
+        "headline": "LiteLLM says a key deleted from a file but left in Git history, and never revoked, led to a poisoned release.",
+        "discoveryQuestion": "When someone deletes a committed key, does your process also revoke it?",
+        "avoid": "Don't imply any specific tool would have prevented it.",
+        "sellerCaveat": null,
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:litellm-attack-chain-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
       "industries": [],
       "marketCategories": []
     },
@@ -938,7 +1108,17 @@
           "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
-      "salesNote": null,
+      "salesNote": {
+        "headline": "Lightning AI says unauthorized access to credentials took its platform offline in October.",
+        "discoveryQuestion": "If an AI platform you use went offline over a credential incident, which of your keys stored there would you rotate?",
+        "avoid": "Don't describe scope; Lightning hasn't published it here.",
+        "sellerCaveat": "Only Lightning's post summary was read; scope and whose credentials were accessed are unknown.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:lightning-ai-incident-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
       "industries": [],
       "marketCategories": []
     },
@@ -979,7 +1159,17 @@
           "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
-      "salesNote": null,
+      "salesNote": {
+        "headline": "Zeabur says plaintext, non-expiring admin tokens in a config repo let an attacker read 3.2 million environment variable records.",
+        "discoveryQuestion": "Where do your long-lived admin tokens live, and when were they last rotated?",
+        "avoid": "Don't state how the attacker got the config repo; Zeabur only hypothesizes.",
+        "sellerCaveat": "The 3,218,965 record figure is from Zeabur's preliminary report, marked confirmed there; the report may be updated.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:zeabur-incident-report-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
       "industries": [],
       "marketCategories": []
     },
@@ -1083,7 +1273,17 @@
           "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
-      "salesNote": null,
+      "salesNote": {
+        "headline": "GitGuardian says hijacked GitHub accounts pushed workflows built to steal repository secrets into hundreds, then thousands, of repos.",
+        "discoveryQuestion": "Which secrets can your GitHub Actions workflows read, and would you notice a new workflow sending them out?",
+        "avoid": "Don't give one total; counts differ by phase and source.",
+        "sellerCaveat": "Only GitGuardian's summary was checked, not the full post; stick to the headline.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:gitguardian-ghostaction-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
       "industries": [],
       "marketCategories": []
     },
