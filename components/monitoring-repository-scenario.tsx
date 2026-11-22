@@ -48,7 +48,23 @@ export function MonitoringRepositoryScenario({ children }: { children: ReactNode
           </>}
         </dd></div>
       </dl>
-      <p className="text-sm leading-6"><strong>Who can rotate the key?</strong> If your company’s cloud account issued it, contact the team that manages that account. If the issuer is unknown, confirm it before assigning rotation.</p>
+      <div className="space-y-2 text-sm leading-6">
+        <h5 className="font-semibold">Who should we check with internally?</h5>
+        <p>Start with whoever triages these findings in your organization, often AppSec or the SOC. Ask who will keep the case and follow up while ownership is unclear.</p>
+        <details>
+          <summary className="min-h-11 cursor-pointer py-2 font-semibold focus-visible:outline-2 focus-visible:outline-ring">Find a contact by the question you need answered</summary>
+          <dl className="space-y-3 pt-1">
+            {scenario.id === "contractor" ? (
+              <div><dt className="font-semibold">Which project was the contractor working on?</dt><dd>Ask the internal project sponsor or engineering lead which team worked with the contractor and whether anyone recognizes the integration.</dd></div>
+            ) : (
+              <div><dt className="font-semibold">What company work does this repo support?</dt><dd>Ask the repository maintainer which application uses it and who maintains that application.</dd></div>
+            )}
+            <div><dt className="font-semibold">Did one of our accounts issue this key?</dt><dd>Ask the cloud or SaaS account administrator to check the credential identifier against account records. If they find a match, ask who has authority to revoke it.</dd></div>
+            <div><dt className="font-semibold">What depends on this key?</dt><dd>Ask the application or service owner which workloads use it and who can confirm they still work after a change.</dd></div>
+            <div><dt className="font-semibold">Could someone have used it?</dt><dd>If misuse is suspected, involve the SOC or incident response lead in parallel. Ask what the logs cover and what remains unknown.</dd></div>
+          </dl>
+        </details>
+      </div>
       {scenario.id === "contractor" && children}
     </div>
   );

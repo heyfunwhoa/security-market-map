@@ -74,7 +74,7 @@ export function GitGuardianMonitoringComparison() {
         <dl className="space-y-3 text-sm leading-6">
           <div><dt className="font-semibold">Close a coverage gap</dt><dd>Which contractor repos and public forks sit outside our integrations? What would an external service see there?</dd></div>
           <div><dt className="font-semibold">Triage a possible company leak</dt><dd>What linked the finding to our business? Can an analyst tell whether the key belongs to a personal or company account?</dd></div>
-          <div><dt className="font-semibold">Route the response</dt><dd>Who owns the issuing account, who can rotate the key, and what evidence lets us close the incident?</dd></div>
+          <div><dt className="font-semibold">Coordinate the response</dt><dd>Who takes the first alert here? Who can confirm the issuing account and affected services? If ownership is disputed, who keeps the case open?</dd></div>
           <div><dt className="font-semibold">Justify an additional monitoring service</dt><dd>In a pilot, which confirmed company exposures did external monitoring add? Which findings duplicated internal alerts or ended up unrelated?</dd></div>
         </dl>
       </details>

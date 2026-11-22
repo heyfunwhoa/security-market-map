@@ -91,12 +91,14 @@ it("keeps the GitGuardian mode comparison reachable with an evidence link for ev
   expect(html).toContain('href="#monitoring-scope"');
   const section = html.match(/<section aria-labelledby="monitoring-scope"[\s\S]*?<\/section>/)?.[0] ?? "";
   expect(section).toContain('id="monitoring-scope"');
-  expect(section).toMatch(/aria-live="polite"[\s\S]*Who can rotate the key\?[\s\S]*Where does it look\?/);
+  expect(section).toMatch(/aria-live="polite"[\s\S]*Who should we check with internally\?[\s\S]*Where does it look\?/);
   expect(section.match(/type="radio"/g)).toHaveLength(3);
   expect(section).toMatch(/checked=""[^>]*\/>Contractor’s unconnected public repo/);
   expect(section).toContain("Company match found.");
   expect(section).toContain("No company link established.");
-  expect(section).toContain("Who can rotate the key?");
+  expect(section).toContain("internal project sponsor or engineering lead");
+  expect(section).toContain("who will keep the case");
+  expect(section).toContain("which workloads use it");
   expect(section).toContain("Questions for a buyer evaluation");
   const edition = catalog.claims.find((claim) => claim.id === "claim-monitoring-mode-forager-editions");
   expect(edition?.subjectId).toBe("truffle-security-forager");
