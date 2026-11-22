@@ -55,7 +55,11 @@ export default function PublicExposurePage() {
                 <p><Link className={linkStyle} href="/categories/workforce-identity#workforce-respond">Follow the employee account investigation</Link></p>
               )}
               {item.id === "public-secrets" && (
-                <p><Link className={linkStyle} href="/categories/secrets-management#exposure-handoff">Trace a public alert through issuer revocation and consumer cutover</Link></p>
+                <p>
+                  {/* Native fragment navigation reveals the target inside a closed details element. */}
+                  {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+                  <a className={linkStyle} href="/categories/secrets-management#payment-key-coordination">See who needs to coordinate after a payment key appears in public</a>
+                </p>
               )}
               <Link className={linkStyle} href={`/categories/${item.categoryId}`}>Explore {categoryBySlug(item.categoryId)!.name}</Link>
             </article>

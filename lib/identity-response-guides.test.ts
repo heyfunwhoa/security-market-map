@@ -1,4 +1,8 @@
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
 import { expect, it } from "vitest";
+import PublicExposurePage from "../app/landscape/public-exposure/page";
+import { CredentialExposureHandoff } from "../components/identity-response-guides";
 import secOps from "../research/secops-buyers.json";
 import awsHub from "../research/aws-security-hub-buyers.json";
 import scenarios from "../research/related-access-scenarios.json";
@@ -39,6 +43,22 @@ it("keeps analyst framing at category level and binds every workforce option to 
     }
     expect(vendors.size).toBeGreaterThanOrEqual(2);
   }
+});
+
+it("links the public exposure scenario to the optional, evidence-specific payment handoff", () => {
+  const landscape = renderToStaticMarkup(createElement(PublicExposurePage));
+  const guide = renderToStaticMarkup(createElement(CredentialExposureHandoff));
+  expect(landscape).toContain('href="/categories/secrets-management#payment-key-coordination"');
+  const disclosure = guide.match(/<details[^>]*><summary[^>]*>See who needs to coordinate<\/summary>[\s\S]*?<\/details>/)?.[0];
+  expect(disclosure).toBeDefined();
+  expect(disclosure).not.toMatch(/^<details[^>]*\bopen\b/);
+  expect(disclosure).toContain('id="payment-key-coordination"');
+  expect(disclosure).toMatch(/Stripe account admin<\/dt><dd[^>]*><strong>Confirmed/);
+  expect(disclosure).toMatch(/Payment service owner<\/dt><dd[^>]*><strong>Still open/);
+  expect(disclosure).toContain("Incident owner with the payments team");
+  expect(disclosure).toContain("Usage review stays open.");
+  expect(disclosure).toContain('href="#exposure-partner-key"');
+  expect(guide).toContain('id="exposure-partner-key"');
 });
 
 it("resolves the incident examples to documented controls and external issuer evidence", () => {

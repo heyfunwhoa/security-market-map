@@ -1,0 +1,75 @@
+.branches {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.branch {
+  position: relative;
+  padding: 0 0.65rem 2rem;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* Each owner's line turns toward the shared check-in below both labels. */
+.branch::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 50%;
+  height: 1.2rem;
+  border-bottom: 3px solid var(--primary);
+}
+
+.branch:first-child::after {
+  left: 50%;
+  border-left: 3px solid var(--primary);
+  border-bottom-left-radius: 0.65rem;
+}
+
+.branch:last-child::after {
+  right: 50%;
+  border-right: 3px dashed var(--muted-foreground);
+  border-bottom: 3px dashed var(--muted-foreground);
+  border-bottom-right-radius: 0.65rem;
+}
+
+.branch::before,
+.interchange::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  width: 0.85rem;
+  height: 0.85rem;
+  transform: translateX(-50%);
+  border: 3px solid var(--primary);
+  border-radius: 50%;
+  background: var(--card);
+}
+
+.branch::before {
+  bottom: 1rem;
+}
+
+.branch:first-child::before {
+  background: var(--primary);
+}
+
+.branch:last-child::before {
+  border-color: var(--muted-foreground);
+}
+
+.interchange {
+  position: relative;
+  max-width: 36rem;
+  margin-inline: auto;
+  padding: 1rem 0 0.25rem;
+  text-align: center;
+}
+
+.interchange::before {
+  top: -0.55rem;
+  width: 1rem;
+  height: 1rem;
+  border: 4px double var(--primary);
+}
