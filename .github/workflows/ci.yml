@@ -6,6 +6,8 @@ on:
     types: [opened, synchronize, reopened, ready_for_review]
   push:
     branches: [main]
+  # Lets bot branches (e.g. bot/market-feed-candidates) get a CI run; bot-token pushes don't trigger pull_request.
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
