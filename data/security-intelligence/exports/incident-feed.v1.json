@@ -3,6 +3,7 @@
   "asOf": "2026-11-21",
   "usageRules": [
     "Every fact comes from the listed sources; cite the source when you use it.",
+    "Each source's rightsNote limits how it may be reused. Keep it with the citation, and check the publisher's terms before reusing any source text.",
     "Sales notes are interpretation, not evidence. Follow each note's 'avoid' line.",
     "Category links mean related, not that any product would have prevented the incident.",
     "Don't infer that a prospect or customer was affected.",
@@ -102,7 +103,8 @@
           "publisher": "Palo Alto Networks Unit 42",
           "type": "security_research",
           "url": "https://unit42.paloaltonetworks.com/cairn-framework-ai-autonomous-attacks/",
-          "publishedOn": "2026-11-12"
+          "publishedOn": "2026-11-12",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": {
@@ -422,14 +424,16 @@
           "publisher": "Binance",
           "type": "company_incident_report",
           "url": "https://www.binance.com/square/post/384314395829022",
-          "publishedOn": "2026-11-03"
+          "publishedOn": "2026-11-03",
+          "rightsNote": "Citation and short paraphrase only; check Binance terms before reuse."
         },
         {
           "id": "source:thehackernews-binance-2026",
           "publisher": "The Hacker News",
           "type": "news",
           "url": "https://thehackernews.com/2026/11/binance-reveals-how-fake-job-interviews.html",
-          "publishedOn": "2026-11-03"
+          "publishedOn": "2026-11-03",
+          "rightsNote": "Secondary coverage summarizing Binance's report. Citation and short paraphrase only."
         }
       ],
       "salesNote": {
@@ -633,7 +637,8 @@
           "publisher": "Chainalysis",
           "type": "company_incident_report",
           "url": "https://www.chainalysis.com/blog/security-incident-october-30/",
-          "publishedOn": "2026-10-30"
+          "publishedOn": "2026-10-30",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": {
@@ -805,7 +810,8 @@
           "publisher": "Railway",
           "type": "company_incident_report",
           "url": "https://blog.railway.com/p/incident-report-october-security-incident",
-          "publishedOn": "2026-11-10"
+          "publishedOn": "2026-11-10",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": {
@@ -970,7 +976,8 @@
           "publisher": "Fireworks AI",
           "type": "company_incident_report",
           "url": "https://fireworks.ai/security/bulletins/october-2026-security-incident",
-          "publishedOn": "2026-10-10"
+          "publishedOn": "2026-10-10",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": {
@@ -1068,7 +1075,8 @@
           "publisher": "Novo Nordisk A/S (via GlobeNewswire)",
           "type": "company_incident_report",
           "url": "https://www.investegate.co.uk/announcement/gnw/novo-nordisk-a-s-class-b--0qiu/novo-nordisk-a-s-it-security-incident-at-nov-/9614494",
-          "publishedOn": "2026-06-11"
+          "publishedOn": "2026-06-11",
+          "rightsNote": "Company announcement as distributed by GlobeNewswire. Citation and short paraphrase only."
         }
       ],
       "salesNote": {
@@ -1113,7 +1121,8 @@
           "publisher": "U.S. SEC EDGAR (West Pharmaceutical Services Form 8-K)",
           "type": "regulator_filing",
           "url": "https://www.sec.gov/Archives/edgar/data/105770/000010577026000068/wst-20260507.htm",
-          "publishedOn": "2026-05-11"
+          "publishedOn": "2026-05-11",
+          "rightsNote": "Public SEC filing; cite and paraphrase."
         }
       ],
       "salesNote": {
@@ -1178,7 +1187,8 @@
           "publisher": "LiteLLM",
           "type": "company_incident_report",
           "url": "https://docs.litellm.ai/blog/security-update-march-2026",
-          "publishedOn": "2026-03-24"
+          "publishedOn": "2026-03-24",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": {
@@ -1232,7 +1242,8 @@
           "publisher": "Koi Security (now Palo Alto Networks)",
           "type": "security_research",
           "url": "https://www.paloaltonetworks.com/blog/security-operations/glassworm-first-self-propagating-worm-using-invisible-code-hits-openvsx-marketplace/",
-          "publishedOn": "2025-10-18"
+          "publishedOn": "2025-10-18",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": {
@@ -1283,7 +1294,8 @@
           "publisher": "CISA",
           "type": "government_alert",
           "url": "https://content.govdelivery.com/accounts/USDHSCISA/bulletins/3f408db",
-          "publishedOn": "2025-09-23"
+          "publishedOn": "2025-09-23",
+          "rightsNote": "Store citations and limited summaries; check CISA/GovDelivery reuse terms."
         }
       ],
       "salesNote": {
@@ -1349,7 +1361,8 @@
           "publisher": "Wiz Research",
           "type": "security_research",
           "url": "https://www.wiz.io/blog/s1ngularity-supply-chain-attack",
-          "publishedOn": "2025-08-27"
+          "publishedOn": "2025-08-27",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": {
@@ -1414,7 +1427,8 @@
           "publisher": "Google Threat Intelligence Group",
           "type": "security_research",
           "url": "https://cloud.google.com/blog/topics/threat-intelligence/data-theft-salesforce-instances-via-salesloft-drift",
-          "publishedOn": "2025-08-26"
+          "publishedOn": "2025-08-26",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": {
@@ -1466,7 +1480,8 @@
           "publisher": "GitHub Advisory Database (via OSV)",
           "type": "vulnerability_advisory",
           "url": "https://osv.dev/vulnerability/GHSA-mrrh-fwg8-r2c3",
-          "publishedOn": "2025-03-15"
+          "publishedOn": "2025-03-15",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": {
@@ -1525,7 +1540,8 @@
           "publisher": "Palo Alto Networks Unit 42",
           "type": "security_research",
           "url": "https://unit42.paloaltonetworks.com/large-scale-cloud-extortion-operation/",
-          "publishedOn": "2024-08-15"
+          "publishedOn": "2024-08-15",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": {
@@ -1590,7 +1606,8 @@
           "publisher": "PyPI",
           "type": "company_incident_report",
           "url": "https://blog.pypi.org/posts/2024-07-08-incident-report-leaked-admin-personal-access-token/",
-          "publishedOn": "2024-07-08"
+          "publishedOn": "2024-07-08",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": {
@@ -1649,7 +1666,8 @@
           "publisher": "Cloudflare",
           "type": "company_incident_report",
           "url": "https://blog.cloudflare.com/thanksgiving-2023-security-incident/",
-          "publishedOn": "2024-02-01"
+          "publishedOn": "2024-02-01",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": {
@@ -1713,7 +1731,8 @@
           "publisher": "RedHunt Labs",
           "type": "security_research",
           "url": "https://redhuntlabs.com/blog/mercedes-benz-source-code-at-risk-github-token-mishap-sparks-major-security-concerns/",
-          "publishedOn": "2024-01-29"
+          "publishedOn": "2024-01-29",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": {
@@ -1765,14 +1784,16 @@
           "publisher": "Okta Security",
           "type": "company_incident_report",
           "url": "https://sec.okta.com/articles/2023/11/unauthorized-access-oktas-support-case-management-system-root-cause/",
-          "publishedOn": "2023-11-03"
+          "publishedOn": "2023-11-03",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         },
         {
           "id": "source:okta-harfiles-closure-2024",
           "publisher": "Okta Security",
           "type": "company_incident_report",
           "url": "https://sec.okta.com/articles/harfiles/",
-          "publishedOn": "2024-02-08"
+          "publishedOn": "2024-02-08",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": {
@@ -1843,7 +1864,8 @@
           "publisher": "Wiz Research",
           "type": "security_research",
           "url": "https://www.wiz.io/blog/38-terabytes-of-private-data-accidentally-exposed-by-microsoft-ai-researchers",
-          "publishedOn": "2023-09-18"
+          "publishedOn": "2023-09-18",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": {
@@ -1907,7 +1929,8 @@
           "publisher": "Microsoft Security Response Center",
           "type": "company_incident_report",
           "url": "https://www.microsoft.com/en-us/msrc/blog/2023/09/results-of-major-technical-investigations-for-storm-0558-key-acquisition",
-          "publishedOn": "2023-09-06"
+          "publishedOn": "2023-09-06",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": {
@@ -1963,7 +1986,8 @@
           "publisher": "CircleCI",
           "type": "company_incident_report",
           "url": "https://circleci.com/blog/jan-4-2023-incident-report/",
-          "publishedOn": "2023-01-12"
+          "publishedOn": "2023-01-12",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": {
@@ -2028,7 +2052,8 @@
           "publisher": "Toyota Motor Corporation",
           "type": "company_incident_report",
           "url": "https://global.toyota/jp/newsroom/corporate/38095972.html",
-          "publishedOn": "2022-10-07"
+          "publishedOn": "2022-10-07",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse. Japanese-language notice; statements are translated paraphrases."
         }
       ],
       "salesNote": {
@@ -2093,7 +2118,8 @@
           "publisher": "Uber",
           "type": "company_incident_report",
           "url": "https://www.uber.com/us/en/newsroom/security-update/",
-          "publishedOn": "2022-09-15"
+          "publishedOn": "2022-09-15",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": {
@@ -2162,7 +2188,8 @@
           "publisher": "Codecov",
           "type": "company_incident_report",
           "url": "https://about.codecov.io/security-update/",
-          "publishedOn": "2021-04-15"
+          "publishedOn": "2021-04-15",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": {
@@ -2224,7 +2251,8 @@
           "publisher": "CISA",
           "type": "government_alert",
           "url": "https://www.cisa.gov/news-events/alerts/2020/12/13/active-exploitation-solarwinds-software",
-          "publishedOn": "2020-12-13"
+          "publishedOn": "2020-12-13",
+          "rightsNote": "Store citations and limited summaries; check CISA reuse terms before redistribution."
         }
       ],
       "salesNote": {
@@ -2284,7 +2312,8 @@
           "publisher": "U.S. Federal Trade Commission",
           "type": "regulator_filing",
           "url": "https://www.ftc.gov/system/files/documents/cases/1523054_uber_technologies_revised_analysis.pdf",
-          "publishedOn": null
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": {

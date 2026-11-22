@@ -1,3 +1,4 @@
+import { ANSWER_LABELS, trustLabel } from "./evidence-labels";
 const MONTHS = [
   "Jan",
   "Feb",
@@ -71,41 +72,13 @@ export function sourceTypeLabel(type: string): string {
 }
 
 export function verificationLabel(status: string): string {
-  switch (status) {
-    case "verified":
-      return "Independent source";
-    case "vendor_published":
-      return "Vendor said this";
-    case "needs_review":
-      return "Needs review";
-    case "conflicting":
-      return "Conflicting";
-    case "superseded":
-      return "Superseded";
-    case "research_candidate":
-      return "Research candidate";
-    default:
-      return status;
-  }
+  return trustLabel(status) ?? status;
 }
 
 export function cellStatusLabel(status: string): string {
-  switch (status) {
-    case "evidenced":
-      return "Evidence";
-    case "limited":
-      return "Scoped";
-    case "conflicting":
-      return "Conflict";
-    case "unverified":
-      return "Unverified";
-    case "unknown":
-      return "Unknown";
-    case "not_supported":
-      return "Not supported";
-    default:
-      return status;
-  }
+  const trust = trustLabel(status);
+  if (trust) return trust;
+  return ANSWER_LABELS[status]?.label ?? status;
 }
 
 export function availabilityLabel(status: string): string {
