@@ -166,6 +166,19 @@ describe("catalog integrity", () => {
     expect(byId["soc-lead"].id).not.toBe(byId["soc-analyst"].id);
     expect(byId["data-security"].id).not.toBe(byId.privacy.id);
     expect(byId["digital-forensics"].id).not.toBe(byId["incident-response"].id);
+    expect(byId["detection-engineer"].aliases).toEqual(
+      expect.arrayContaining(["Security automation engineer", "LC-PER-04"]),
+    );
+    expect(byId["soc-lead"].aliases).toEqual(expect.arrayContaining(["LC-AUD-03 (ops seat)"]));
+    expect(byId["detection-engineer"].aliases).toEqual(
+      expect.arrayContaining(["Lead SecOps", "LC use case: SecOps engineering"]),
+    );
+    expect(byId.appsec.aliases).toEqual(expect.arrayContaining(["LC use case: code security"]));
+    expect(byId["cloud-sec"].aliases).toEqual(expect.arrayContaining(["LC use case: cloud security"]));
+    expect(byId["incident-response"].aliases).toEqual(
+      expect.arrayContaining(["LC use case: incident response"]),
+    );
+    expect(byId["threat-hunter"].aliases).toEqual(expect.arrayContaining(["LC use case: threat hunting"]));
     expect(new Set(catalog.personas.map((persona) => persona.id)).size).toBe(catalog.personas.length);
   });
 
@@ -804,7 +817,10 @@ describe("catalog integrity", () => {
       "claim-forrester-sspm-20220819",
     ];
     expect(catalog.claims.find((claim) => claim.id === "claim-gartner-workforce-am-20250424")?.confidence).toBe("low");
-    expect(catalog.claims.filter((claim) => claim.subjectType === "category" && claim.subjectId === "workforce-identity")).toHaveLength(2);
+    const originalWorkforceIds = catalog.claims
+      .filter((claim) => claim.subjectType === "category" && claim.subjectId === "workforce-identity" && claim.lastCheckedAt === "2026-10-27")
+      .map((claim) => claim.id);
+    expect(new Set(originalWorkforceIds)).toEqual(new Set(ids.slice(0, 2)));
     for (const id of ids) {
       const claim = catalog.claims.find((item) => item.id === id);
       expect(claim, id).toBeDefined();

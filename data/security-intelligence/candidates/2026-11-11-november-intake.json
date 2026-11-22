@@ -1,0 +1,177 @@
+{
+  "batch": "2026-11-11-november-intake",
+  "status": "candidate_only",
+  "publishable": false,
+  "framework": "docs/security-intelligence/incident-classification-framework.md",
+  "discoveryContext": "Converted from the November 2026 intake notes (docs/security-intelligence/candidate-incidents-2026-11.md, agent-assisted research, sources checked 2026-11-11). West Pharmaceutical from the same notes was promoted separately via candidates/2026-11-17-company-disclosures.json. Statements are paraphrased from those notes; no source was re-checked during conversion.",
+  "excludedFromIncidents": [
+    "Halcyon Q2 2026 ransomware report: EDR kill techniques as standard practice (via Infosecurity Magazine)",
+    "ESET research on almost 90 EDR killers in the wild, more than half using BYOVD (March 2026)",
+    "ESET research on GentleKiller, the Gentlemen RaaS EDR-killer suite (June 2026)",
+    "Cyware monthly threat briefing, October 2026: industrialization of EDR evasion"
+  ],
+  "excludedReason": "Threat-landscape reports with no single affected organization; candidates for the source registry, not incidents.",
+  "candidates": [
+    {
+      "incidentId": "incident:credit-mutuel-arkea-2026",
+      "title": "Crédit Mutuel Arkéa fraudulent transfers via a service provider",
+      "incidentKind": "intrusion",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "BleepingComputer (7 Nov 2026)",
+          "canonicalUrl": "https://www.bleepingcomputer.com/news/security/hackers-pull-off-133-million-french-bank-heist-via-service-provider/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-11",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Help Net Security (9 Nov 2026)",
+          "canonicalUrl": "https://www.helpnetsecurity.com/2026/11/09/credit-mutuel-arkea-cyberattack-133-million/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-11",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Leto (citing the bank's 4 Nov 2026 press release)",
+          "canonicalUrl": "https://www.leto.legal/news/credit-mutuel-arkea-fortuneo-cyberattaque-operations-frauduleuses-2026",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-11",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "Not in incidents.seed.json or another candidate batch as of 2026-11-17.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:credit-mutuel-arkea-2026:1",
+          "statement": "Secondary reporting says the bank disclosed an attack that allowed fraudulent transactions, with the attacker reaching its network through a service provider's platform.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.bleepingcomputer.com/news/security/hackers-pull-off-133-million-french-bank-heist-via-service-provider/"
+        },
+        {
+          "id": "claim:credit-mutuel-arkea-2026:2",
+          "statement": "As cited from the bank's 4 November 2026 release, the incident was contained, customer assets were not affected and some transfers were delayed.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.leto.legal/news/credit-mutuel-arkea-fortuneo-cyberattaque-operations-frauduleuses-2026"
+        },
+        {
+          "id": "claim:credit-mutuel-arkea-2026:3",
+          "statement": "A loss of about $133 million comes from an independent on-chain investigator; the bank has not confirmed that figure.",
+          "epistemicStatus": "unknown",
+          "sourceUrl": "https://www.helpnetsecurity.com/2026/11/09/credit-mutuel-arkea-cyberattack-133-million/"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Primary source needed: the bank issued two releases on 4 November 2026 (the second around 17:30 local, acknowledging EUR 118M as the order of magnitude), widely cited but not found on arkea.com as of 2026-11-17.",
+        "Loss figures differ across reports (about EUR 100M per secondary reporting of the bank's statements, a EUR 118M order of magnitude per a second release as reported by press, about $133M per an on-chain investigator); none is confirmed exactly.",
+        "The service provider is not named."
+      ]
+    }
+  ],
+  "promotedToSeed": {
+    "promotedOn": "2026-11-17",
+    "reviewRecord": "docs/security-intelligence/review-2026-11-17.md",
+    "incidentIds": [
+      "incident:binance-wallet-signing-2026",
+      "incident:novo-nordisk-2026"
+    ]
+  },
+  "droppedCandidates": [
+    {
+      "incidentId": "incident:astrazeneca-2026",
+      "droppedOn": "2026-11-17",
+      "reason": "No company disclosure found; the only basis is a threat actor's claim (LAPSUS$) and secondary reports that the company hadn't confirmed details. Re-open if AstraZeneca confirms.",
+      "record": {
+        "incidentId": "incident:astrazeneca-2026",
+        "title": "AstraZeneca reported cyberattack (unconfirmed)",
+        "incidentKind": "breach",
+        "reviewStatus": "candidate",
+        "discovery": [
+          {
+            "publisher": "INCIBE-CERT (21 Apr 2026)",
+            "canonicalUrl": "https://www.incibe.es/en/incibe-cert/publications/cybersecurity-highlights/astrazeneca-strengthening-its-cybersecurity-following-cyberattack",
+            "sourceRole": "secondary",
+            "discoveredAt": "2026-11-11",
+            "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+          },
+          {
+            "publisher": "Bitdefender (late March 2026)",
+            "canonicalUrl": "https://www.bitdefender.com/en-gb/blog/hotforsecurity/lapsus-astrazeneca-breach",
+            "sourceRole": "secondary",
+            "discoveredAt": "2026-11-11",
+            "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+          }
+        ],
+        "dedupeCheck": "Not in incidents.seed.json or another candidate batch as of 2026-11-17.",
+        "veris": {
+          "schemaVersion": null,
+          "actor": null,
+          "action": null,
+          "asset": null,
+          "attribute": null,
+          "sourceClaimIds": []
+        },
+        "claims": [
+          {
+            "id": "claim:astrazeneca-2026:1",
+            "statement": "Reports from March 2026 describe IT disruption and theft of confidential data, claimed by a group calling itself LAPSUS$.",
+            "epistemicStatus": "unknown",
+            "sourceUrl": "https://www.bitdefender.com/en-gb/blog/hotforsecurity/lapsus-astrazeneca-breach"
+          },
+          {
+            "id": "claim:astrazeneca-2026:2",
+            "statement": "INCIBE-CERT noted that the company had not confirmed the details.",
+            "epistemicStatus": "reported",
+            "sourceUrl": "https://www.incibe.es/en/incibe-cert/publications/cybersecurity-highlights/astrazeneca-strengthening-its-cybersecurity-following-cyberattack"
+          }
+        ],
+        "attackMappings": [
+          {
+            "domain": "enterprise-attack",
+            "attackId": null,
+            "stixId": null,
+            "attackDatasetVersion": null,
+            "mappingStatus": "not_evaluated",
+            "evidenceStatus": "unknown",
+            "rationale": null,
+            "sourceClaimIds": [],
+            "reviewer": null,
+            "reviewedAt": null
+          }
+        ],
+        "defensiveMappings": [],
+        "weaknessMappings": [],
+        "unresolvedQuestions": [
+          "Primary source needed: no company disclosure was found as of 2026-11-11.",
+          "Threat-actor claim only. Hold at epistemic status unknown, or drop, until the company confirms.",
+          "Do not record an actor.",
+          "Re-checked 2026-11-17: still no company statement found. Separate, unrelated claim against AstraZeneca Türkiye (N0n, September 2026) should not be merged into this record."
+        ]
+      }
+    }
+  ]
+}

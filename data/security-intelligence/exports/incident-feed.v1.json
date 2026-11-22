@@ -1,0 +1,2789 @@
+{
+  "schemaVersion": "1",
+  "asOf": "2026-11-21",
+  "usageRules": [
+    "Every fact comes from the listed sources; cite the source when you use it.",
+    "Each source's rightsNote limits how it may be reused. Keep it with the citation, and check the publisher's terms before reusing any source text.",
+    "Sales notes are interpretation, not evidence. Follow each note's 'avoid' line.",
+    "Category links mean related, not that any product would have prevented the incident.",
+    "Don't infer that a prospect or customer was affected.",
+    "Industry is the industry of the organization the source names, not a list of affected industries."
+  ],
+  "incidents": [
+    {
+      "id": "incident:ipsos-internal-system-2026",
+      "slug": "ipsos-internal-system-2026",
+      "title": "Ipsos investigates a cybersecurity incident affecting one internal information system",
+      "kind": "breach",
+      "disclosedOn": "2026-11-16",
+      "occurredOn": null,
+      "summary": "Ipsos said on 16 November 2026 that it identified a cybersecurity incident affecting one internal information system and filed a complaint with authorities on 11 November. It says operations were not affected and it will contact clients or partners if their information was involved.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [],
+      "uncertaintyNotes": [
+        "Very thin record: system, entry point and data affected are not disclosed. No credential or secrets angle is reported.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-21",
+      "sources": [
+        {
+          "id": "source:ipsos-press-release-2026",
+          "publisher": "Ipsos",
+          "type": "company_incident_report",
+          "url": "https://via.ritzau.dk/pressemeddelelse/15292478/ipsos?publisherId=90446",
+          "publishedOn": "2026-11-16",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "id": "source:securityweek-ipsos-2026",
+          "publisher": "SecurityWeek",
+          "type": "news",
+          "url": "https://securityweek.com/market-research-giant-ipsos-investigating-breach-of-internal-system",
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "Ipsos says one internal system was breached; it hasn't said which or how.",
+        "discoveryQuestion": "If a vendor disclosed a breach with no details, what would you ask them first?",
+        "avoid": "Don't speculate on what was taken.",
+        "sellerCaveat": "Very thin record with no secrets angle reported; a weak conversation opener.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:ipsos-press-release-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
+      "industries": [],
+      "marketCategories": []
+    },
+    {
+      "id": "incident:midnight-neptune-claude-code-settings-2026",
+      "slug": "midnight-neptune-claude-code-settings-2026",
+      "title": "Suspected DPRK cluster backdoors crypto firms by editing Claude Code settings in internal repositories",
+      "kind": "malware_campaign",
+      "disclosedOn": "2026-11-16",
+      "occurredOn": null,
+      "summary": "Google Threat Intelligence Group reports that a suspected North Korean cluster, MIDNIGHT NEPTUNE, targeted cryptocurrency organizations in North America and Europe with fake recruiter profiles and ClickFix lures. After initial compromise it modified .claude/settings.json in internal code repositories so that starting Claude Code downloaded the SOMBERMEME backdoor, and it created GitHub personal access tokens named after Microsoft Copilot to blend in.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "ai_agents",
+        "github"
+      ],
+      "uncertaintyNotes": [
+        "Victim names and count are not stated; attribution is 'suspected'.",
+        "Not a Claude Code vulnerability: the attacker already had repository access and abused a configuration file.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-21",
+      "sources": [
+        {
+          "id": "source:gtig-ai-threat-tracker-nov-2026",
+          "publisher": "Google Threat Intelligence Group",
+          "type": "security_research",
+          "url": "https://cloud.google.com/blog/topics/threat-intelligence/agentic-threat-activity-crosses-a-significant-threshold",
+          "publishedOn": "2026-11-16",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "Google says suspected North Korean actors edited Claude Code settings in victims' repos to plant a backdoor, and made GitHub tokens that looked like Copilot's.",
+        "discoveryQuestion": "Would you notice a new personal access token in your GitHub org named to look like a trusted tool?",
+        "avoid": "Don't call it a Claude Code vulnerability.",
+        "sellerCaveat": "Attribution is suspected; keep that word. The attacker already had repo access and misused a settings file.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:gtig-ai-threat-tracker-nov-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
+      "industries": [],
+      "marketCategories": []
+    },
+    {
+      "id": "incident:cl-sta-1238-cairn-ai-intrusions-2026",
+      "slug": "cl-sta-1238-cairn-ai-intrusions-2026",
+      "title": "AI-driven intrusion campaign using a forked Cairn pentest framework",
+      "kind": "intrusion",
+      "disclosedOn": "2026-11-12",
+      "occurredOn": null,
+      "summary": "Unit 42 reported that between August and September 2026 an actor it tracks as CL-STA-1238 used a customized fork of the open-source Cairn AI penetration-testing framework, running on Zhipu GLM and DeepSeek models, to conduct 25 operations against at least 19 organizations in the semiconductor, defense and civil-society sectors. Unit 42 confirmed unauthorized access or data retrieval at 10 of them; reported impacts include a persistent production API token at a semiconductor company.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "ai_agents"
+      ],
+      "uncertaintyNotes": [
+        "Unit 42 assesses with moderate confidence that this is China-nexus intelligence collection; that is a hypothesis, and no actor is recorded here.",
+        "Victim organizations are unnamed; do not attribute this campaign to any specific company or customer.",
+        "This is a campaign across many organizations, typed as an intrusion because the feed's only campaign type is for malware campaigns.",
+        "Recent report (published 12 November 2026); no corrections had appeared as of 17 November 2026.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-17",
+      "sources": [
+        {
+          "id": "source:unit42-cairn-ai-intrusions-2026",
+          "publisher": "Palo Alto Networks Unit 42",
+          "type": "security_research",
+          "url": "https://unit42.paloaltonetworks.com/cairn-framework-ai-autonomous-attacks/",
+          "publishedOn": "2026-11-12",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "Unit 42 reported that attackers ran an open-source AI pentest framework through 25 operations against at least 19 organizations, and got in at 10.",
+        "discoveryQuestion": "If an automated agent scanned you today, what would it find first? Sprayable logins, exposed APIs, old CVEs?",
+        "avoid": "Don't name victims or state attribution as fact; Unit 42's assessment is moderate confidence.",
+        "sellerCaveat": "Victims are unnamed; the China link is a moderate-confidence assessment.",
+        "roleNotes": [
+          {
+            "roleId": "ciso",
+            "roleName": "CISO / VP of security",
+            "note": "One tracked actor used AI tooling to work through many organizations at once, so expect attempts in volume."
+          },
+          {
+            "roleId": "appsec",
+            "roleName": "AppSec lead",
+            "note": "Automated attack agents work through internet-facing weaknesses at volume; external exposure is the first place to look."
+          }
+        ],
+        "basedOnSourceIds": [
+          "source:unit42-cairn-ai-intrusions-2026"
+        ],
+        "reviewedOn": "2026-11-17"
+      },
+      "industries": [],
+      "marketCategories": [
+        {
+          "categoryId": "external-attack-surface",
+          "categoryName": "External attack surface",
+          "rationale": "The operations targeted internet-facing weaknesses at the victim organizations.",
+          "doesNotImply": "That attack surface monitoring would have prevented any of the intrusions."
+        }
+      ]
+    },
+    {
+      "id": "incident:apify-internal-credential-2026",
+      "slug": "apify-internal-credential-2026",
+      "title": "Apify intrusion via a compromised credential reaches customer accounts and tokens",
+      "kind": "breach",
+      "disclosedOn": "2026-11-12",
+      "occurredOn": null,
+      "summary": "Apify says that on 9 and 10 November 2026 an unauthorized party used a compromised credential to obtain several account credentials and access related Apify accounts. It detected the activity on 11 November, cut off access, rotated internal secrets and service credentials, revoked some OAuth connections including GitHub, and notified affected customers and authorities.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "saas"
+      ],
+      "uncertaintyNotes": [
+        "Root cause and the origin of the first credential are not yet published; Apify promised a preliminary report by 20 November, not found as of 21 November.",
+        "Token rotation and 2FA-reset details come from a customer notice seen by BleepingComputer, not Apify's public page.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-21",
+      "sources": [
+        {
+          "id": "source:apify-status-incident-2026",
+          "publisher": "Apify",
+          "type": "company_incident_report",
+          "url": "https://status.apify.com/",
+          "publishedOn": "2026-11-12",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "id": "source:bleepingcomputer-apify-2026",
+          "publisher": "BleepingComputer",
+          "type": "news",
+          "url": "https://bleepingcomputer.com/news/security/apify-rotates-api-tokens-prompts-2fa-resets-after-breach",
+          "publishedOn": "2026-11-12",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "Apify says one compromised credential let an attacker collect more credentials and reach customer accounts.",
+        "discoveryQuestion": "How quickly could you tell which of your internal credentials can unlock other credentials?",
+        "avoid": "Don't describe the initial credential; Apify hasn't said what it was.",
+        "sellerCaveat": "Apify's fuller report hadn't been found as of 2026-11-21; details may change.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:apify-status-incident-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
+      "marketCategories": []
+    },
+    {
+      "id": "incident:wfx-loot-github-ci-stealer-2026",
+      "slug": "wfx-loot-github-ci-stealer-2026",
+      "title": "wfx-loot: 4,837 hijacked GitHub accounts plant a CI secret stealer in at least 1,806 repositories",
+      "kind": "supply_chain",
+      "disclosedOn": "2026-11-12",
+      "occurredOn": null,
+      "summary": "Aikido Security reports that starting 10 November 2026 a threat actor used stolen credentials for 4,837 GitHub accounts to open probe pull requests in 61,764 repositories and push a payload that steals GitHub Actions secrets and cloud credentials. Aikido says it ran in at least 1,806 repositories and that this may understate impact because run logs were deleted.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "github",
+        "github_actions"
+      ],
+      "uncertaintyNotes": [
+        "Accounts overlap heavily with GhostAction's October wave, but Aikido does not attribute November to the same actor.",
+        "Counts differ by source and method (1,806, 1,835 and SafeDep's 8,093 repositories with malicious commits).",
+        "disclosedOn uses the earliest dated coverage captured; Aikido's post date was not captured.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-21",
+      "sources": [
+        {
+          "id": "source:aikido-wfx-loot-2026",
+          "publisher": "Aikido Security",
+          "type": "security_research",
+          "url": "https://www.aikido.dev/blog/compromised-github-accounts-push-ci-secret-stealer-to-tens-of-thousands-of-repositories",
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "id": "source:dailysecurityreview-wfx-loot-2026",
+          "publisher": "Daily Security Review",
+          "type": "news",
+          "url": "https://dailysecurityreview.com/?p=45674",
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "Aikido says 4,837 hijacked GitHub accounts pushed a stealer that took CI secrets from at least 1,806 repos.",
+        "discoveryQuestion": "If a contributor's account were hijacked, which secrets could a pull request reach in your CI?",
+        "avoid": "Don't attribute this to the GhostAction actor; Aikido doesn't.",
+        "sellerCaveat": "Repo counts differ by source (1,806, 1,835, 8,093); say \"at least 1,806\" and cite Aikido. The date is approximate.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:aikido-wfx-loot-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
+      "industries": [],
+      "marketCategories": [
+        {
+          "categoryId": "secrets-detection",
+          "categoryName": "Secrets detection and remediation",
+          "rationale": "Aikido reports a payload that steals GitHub Actions secrets and cloud credentials from CI.",
+          "doesNotImply": "That any secrets detection product detected or would have prevented this incident."
+        },
+        {
+          "categoryId": "software-supply-chain",
+          "categoryName": "Software supply chain",
+          "rationale": "Aikido reports hijacked GitHub accounts opening pull requests across tens of thousands of other projects' repositories to run the payload.",
+          "doesNotImply": "That any software supply chain product detected or would have prevented this campaign, or attribution to the GhostAction actor."
+        }
+      ]
+    },
+    {
+      "id": "incident:notion-fireworks-ai-chats-2026",
+      "slug": "notion-fireworks-ai-chats-2026",
+      "title": "Notion AI chat transcripts with pasted credentials exposed through vendor Fireworks AI",
+      "kind": "breach",
+      "disclosedOn": "2026-11-11",
+      "occurredOn": null,
+      "summary": "Notion's advisory says its vendor Fireworks AI told it in early November 2026 that attackers accessed a dataset of Notion AI chat transcripts used for the Insights feature, affecting fewer than 1% of workspaces. Notion revoked Notion API keys found in affected messages, reported third-party API keys to their issuers, disconnected from Fireworks and told customers to rotate any passwords or keys pasted into Notion AI.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "saas",
+        "ai_agents"
+      ],
+      "uncertaintyNotes": [
+        "Downstream of incident:fireworks-ai-eval-secrets-2026; kept as a separate customer-impact record by owner decision.",
+        "disclosedOn uses the advisory's 11 November key revocation, its earliest dated customer action captured; the advisory's first publication date was not confirmed.",
+        "The advisory dates the third-party key report 12 November in one place and 13 November in another.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-21",
+      "sources": [
+        {
+          "id": "source:notion-fireworks-advisory-2026",
+          "publisher": "Notion",
+          "type": "company_incident_report",
+          "url": "https://notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor",
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "Notion says credentials users pasted into AI chats were exposed through its AI vendor, so it revoked or reported them.",
+        "discoveryQuestion": "Do you know which secrets your people paste into AI tools, and who those tools share data with?",
+        "avoid": "Don't imply Notion's own systems were breached; the dataset was at its vendor.",
+        "sellerCaveat": "Don't pitch secret scanning as the fix for pasting secrets into AI chats; the honest angle is finding and rotating secrets after they spread.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:notion-fireworks-advisory-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
+      "marketCategories": [
+        {
+          "categoryId": "secrets-detection",
+          "categoryName": "Secrets detection and remediation",
+          "rationale": "Notion says credentials users pasted into AI chats were exposed at its vendor, and it revoked Notion keys and reported third-party keys found in those messages.",
+          "doesNotImply": "That any secrets detection product detected or would have prevented this incident. Pasting secrets into chat tools is a behaviour problem a scanner does not fix."
+        }
+      ]
+    },
+    {
+      "id": "incident:barracuda-unretired-vendor-key-2026",
+      "slug": "barracuda-unretired-vendor-key-2026",
+      "title": "Barracuda: unretired cloud key held by a breached AI vendor opens a 44-hour secrets chain",
+      "kind": "intrusion",
+      "disclosedOn": "2026-11-10",
+      "occurredOn": null,
+      "summary": "Barracuda says it gave a cloud access key to a third-party AI vendor for a past project and never retired it. After the vendor's development environment was compromised, the attacker used the key from 1 to 2 November 2026, about 44 hours, moving through about 10 cloud accounts via a chain of stolen secrets and making a build workflow print secrets into job logs. Barracuda asked affected Managed XDR customers to recreate integration credentials.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "ci_cd",
+        "github_actions"
+      ],
+      "uncertaintyNotes": [
+        "The AI vendor is unnamed; not assumed to be Fireworks.",
+        "The $740,000 compute figure in Barracuda's post refers to Railway, not Barracuda.",
+        "Barracuda says the tooling matches ARTEX, which many groups use; the match describes method, not actor.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-21",
+      "sources": [
+        {
+          "id": "source:barracuda-intrusion-2026",
+          "publisher": "Barracuda",
+          "type": "company_incident_report",
+          "url": "https://blog.barracuda.com/2026/11/11/anatomy-of-a-machine-speed-intrusion",
+          "publishedOn": "2026-11-11",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "Barracuda says a cloud key it gave a vendor years ago, and never retired, opened a 44-hour chain of stolen secrets.",
+        "discoveryQuestion": "How many credentials have you given vendors for projects that are already over?",
+        "avoid": "Don't name the vendor or attach Railway's $740,000 figure.",
+        "sellerCaveat": "Barracuda's ARTEX match describes method, not actor; don't name an actor.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:barracuda-intrusion-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
+      "marketCategories": [
+        {
+          "categoryId": "third-party-risk",
+          "categoryName": "Third-party risk",
+          "rationale": "Barracuda says a cloud key it gave a third-party AI vendor was used after the vendor's environment was compromised.",
+          "doesNotImply": "That a third-party risk product would have prevented this. The vendor is unnamed."
+        },
+        {
+          "categoryId": "nhi",
+          "categoryName": "NHI and workload identity",
+          "rationale": "Barracuda says the cloud access key was issued for a past project and never retired.",
+          "doesNotImply": "That any non-human identity product detected or would have prevented this incident."
+        }
+      ]
+    },
+    {
+      "id": "incident:nitori-customer-records-2026",
+      "slug": "nitori-customer-records-2026",
+      "title": "Nitori: up to 37.62 million customer records may have leaked after unauthorized system access",
+      "kind": "breach",
+      "disclosedOn": "2026-11-09",
+      "occurredOn": null,
+      "summary": "Nitori Holdings says it confirmed on 6 November 2026 that a third party had gained unauthorized access to systems it manages, and that up to 37.62 million records of personal information on its servers may have leaked. Its investigation found access may also have happened earlier. Reuters reports login passwords and card data were not compromised.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [],
+      "uncertaintyNotes": [
+        "Entry point and cause are under investigation; no credential or secrets angle is reported.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-21",
+      "sources": [
+        {
+          "id": "source:nitori-disclosure-2026",
+          "publisher": "Nitori Holdings",
+          "type": "company_incident_report",
+          "url": "https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20261109/20261109570090.pdf",
+          "publishedOn": "2026-11-09",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "id": "source:bleepingcomputer-nitori-2026",
+          "publisher": "BleepingComputer",
+          "type": "news",
+          "url": "https://bleepingcomputer.com/news/security/japanese-furniture-giant-nitori-says-hackers-stole-376m-customer-records",
+          "publishedOn": "2026-11-10",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "Nitori says up to 37.62 million customer records may have leaked after unauthorized access to its systems.",
+        "discoveryQuestion": "When the entry point isn't known yet, how quickly can you tell what a breach could have touched?",
+        "avoid": "Don't suggest a cause; Nitori hasn't named one.",
+        "sellerCaveat": "No credential or secrets angle is reported; use only as general breach context.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:nitori-disclosure-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
+      "industries": [
+        {
+          "id": "retail",
+          "name": "Retail"
+        }
+      ],
+      "marketCategories": []
+    },
+    {
+      "id": "incident:qubole-cross-account-roles-2026",
+      "slug": "qubole-cross-account-roles-2026",
+      "title": "Qubole-linked AWS credentials used to assume customer integration roles and harvest secrets",
+      "kind": "supply_chain",
+      "disclosedOn": "2026-11-09",
+      "occurredOn": null,
+      "summary": "Wiz reports that between 14 and 26 October 2026 an attacker used IAM credentials from an AWS account associated with Qubole to assume integration roles customers had created to trust Qubole. In most affected environments these were the only such requests that month, on roles otherwise unused. The attacker downloaded S3 data, read Secrets Manager secrets, SSM parameters and Lambda environment variables, and tested the credentials it found.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "aws",
+        "saas"
+      ],
+      "uncertaintyNotes": [
+        "Wiz gives no victim count; Sentra says dozens of Qubole customers were affected.",
+        "How the Qubole account credentials were obtained is unknown; Qubole had not commented.",
+        "The attacker used the open-source TruffleHog tool to check which stolen credentials were live. Sales use: mention neutrally as attackers using open-source tools; it does not imply Truffle Security involvement.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-21",
+      "sources": [
+        {
+          "id": "source:wiz-qubole-2026",
+          "publisher": "Wiz",
+          "type": "security_research",
+          "url": "https://www.wiz.io/blog/qubole-cross-account-access-abused-in-the-wild",
+          "publishedOn": "2026-11-09",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "id": "source:csoonline-qubole-2026",
+          "publisher": "CSO Online",
+          "type": "news",
+          "url": "https://csoonline.com/article/4246780/qubole-supply-chain-attack-exposed-aws-entra-id-and-okta-credentials.html",
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "Wiz says a vendor's AWS credentials opened customers' old, unused integration roles, and the attacker read the secrets behind them.",
+        "discoveryQuestion": "Which vendor integration roles in your AWS accounts are still trusted but no longer used?",
+        "avoid": "Mention the attacker's use of open-source tools neutrally; don't imply any vendor involvement.",
+        "sellerCaveat": "The attacker used open-source TruffleHog to check which stolen keys were live. If a buyer raises it, say plainly that attackers use open-source tools too; don't spin it. Wiz gives no victim count; \"dozens\" comes from Sentra.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:wiz-qubole-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
+      "marketCategories": [
+        {
+          "categoryId": "third-party-risk",
+          "categoryName": "Third-party risk",
+          "rationale": "Wiz reports an attacker used credentials from an AWS account associated with Qubole to assume integration roles customers had created to trust it.",
+          "doesNotImply": "That a third-party risk product would have prevented this, or how the Qubole credentials were obtained, which is unknown."
+        }
+      ]
+    },
+    {
+      "id": "incident:artex-github-secrets-entra-2026",
+      "slug": "artex-github-secrets-entra-2026",
+      "title": "Agentic ARTEX campaign harvests secrets from public GitHub to break into Entra ID and Azure tenants",
+      "kind": "intrusion",
+      "disclosedOn": "2026-11-05",
+      "occurredOn": null,
+      "summary": "Microsoft Threat Intelligence reports that since August 2026 an agentic offensive framework has sent large volumes of GitHub searches for credentials and AI API keys tied to target organizations. From as early as 28 October it used leaked or stolen application credentials to sign in to Entra ID tenants as service principals and pull storage keys, connection strings and other credentials; in one case it moved from GitHub search to Azure Key Vault exfiltration in about five minutes.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "github",
+        "azure",
+        "microsoft_cloud",
+        "ai_agents"
+      ],
+      "uncertaintyNotes": [
+        "A campaign with unnamed victims; recorded as an incident by owner decision.",
+        "Microsoft does not attribute this activity to Storm-0940 or any named actor.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-21",
+      "sources": [
+        {
+          "id": "source:microsoft-artex-secrets-2026",
+          "publisher": "Microsoft Threat Intelligence",
+          "type": "security_research",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/",
+          "publishedOn": "2026-11-05",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "id": "source:cybersecuritydive-artex-2026",
+          "publisher": "Cybersecurity Dive",
+          "type": "news",
+          "url": "https://cybersecuritydive.com/news/hackers-artex-github-repositories-exposed-secrets/874007",
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "Microsoft says AI agents are searching public GitHub for exposed secrets and using them to break into cloud tenants within minutes.",
+        "discoveryQuestion": "If a secret tied to your company landed in a public repo today, would you find it before an automated search did?",
+        "avoid": "Don't tie this to Storm-0940 or any named actor; Microsoft doesn't.",
+        "sellerCaveat": "\"Within minutes\" is Microsoft's claim; attribute it to Microsoft rather than stating it as fact.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:microsoft-artex-secrets-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
+      "industries": [],
+      "marketCategories": [
+        {
+          "categoryId": "secrets-detection",
+          "categoryName": "Secrets detection and remediation",
+          "rationale": "Microsoft reports automated GitHub searches for exposed credentials and AI API keys, then use of leaked application credentials to sign in to Entra ID tenants.",
+          "doesNotImply": "That any secrets detection product detected or would have prevented this incident. The speed of exploitation is Microsoft's claim."
+        }
+      ]
+    },
+    {
+      "id": "incident:binance-wallet-signing-2026",
+      "slug": "binance-wallet-signing-2026",
+      "title": "Binance internal wallet-signing service compromise",
+      "kind": "intrusion",
+      "disclosedOn": "2026-11-03",
+      "occurredOn": null,
+      "summary": "Binance's preliminary report says that on 30 October 2026 (UTC+8) attackers used unauthorized access to its internal wallet signing service to start transactions outside the normal withdrawal process. As summarized by The Hacker News, the report traces the campaign to a tampered Homebrew installer an engineer downloaded in June, a fake job interview in September, and a container deployment permission token found on an engineer's computer and used on 29 October.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [],
+      "uncertaintyNotes": [
+        "Binance's report is preliminary; it says findings will undergo further independent review. Watch for the final report.",
+        "The Binance Square report was checked through a search index on 2026-11-17 because direct fetches are blocked; the attack-chain details come from The Hacker News's summary of that report.",
+        "Amounts differ across reports (about $6.34B and $6.43B); no figure is recorded here.",
+        "No attacker is recorded: the report as summarized does not attribute this theft to a named actor.",
+        "Binance dates the incident 30 October (UTC+8); press timelines give 29 October. occurredOn is left empty until the final report.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-17",
+      "sources": [
+        {
+          "id": "source:binance-incident-report-2026",
+          "publisher": "Binance",
+          "type": "company_incident_report",
+          "url": "https://www.binance.com/square/post/384314395829022",
+          "publishedOn": "2026-11-03",
+          "rightsNote": "Citation and short paraphrase only; check Binance terms before reuse."
+        },
+        {
+          "id": "source:thehackernews-binance-2026",
+          "publisher": "The Hacker News",
+          "type": "news",
+          "url": "https://thehackernews.com/2026/11/binance-reveals-how-fake-job-interviews.html",
+          "publishedOn": "2026-11-03",
+          "rightsNote": "Secondary coverage summarizing Binance's report. Citation and short paraphrase only."
+        }
+      ],
+      "salesNote": {
+        "headline": "Binance said attackers reached its internal wallet-signing service; press summaries of its report say a deployment token on an engineer's laptop was a key step.",
+        "discoveryQuestion": "Where do deployment and CI tokens live on your engineers' laptops, and would you notice one being used from the wrong machine?",
+        "avoid": "Don't state a dollar figure or name an attacker; the report is preliminary and the amounts differ across reports.",
+        "sellerCaveat": "Preliminary report; amounts and attribution aren't confirmed.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:binance-incident-report-2026",
+          "source:thehackernews-binance-2026"
+        ],
+        "reviewedOn": "2026-11-18"
+      },
+      "industries": [
+        {
+          "id": "financial_services",
+          "name": "Financial services"
+        }
+      ],
+      "marketCategories": [
+        {
+          "categoryId": "software-supply-chain",
+          "categoryName": "Software supply chain",
+          "rationale": "The campaign reportedly began with a tampered Homebrew installer and a malicious repository delivered through a fake job assignment.",
+          "doesNotImply": "That a supply-chain tool would have caught the tampered installer or the repository."
+        },
+        {
+          "categoryId": "secrets-detection",
+          "categoryName": "Secrets detection and remediation",
+          "rationale": "A container deployment permission token found on an engineer's computer was reportedly used to deploy the malicious container.",
+          "doesNotImply": "That secrets scanning would have found or stopped use of that token."
+        }
+      ]
+    },
+    {
+      "id": "incident:chainstack-grafana-default-creds-2026",
+      "slug": "chainstack-grafana-default-creds-2026",
+      "title": "Chainstack breach via exposed Grafana with default admin credentials, reaching production secrets",
+      "kind": "intrusion",
+      "disclosedOn": "2026-11-03",
+      "occurredOn": null,
+      "summary": "Chainstack says an attacker reached a development environment on 26 October 2026 and parts of production on 29 October, and was cut off on 31 October. Its technical update names an internet-exposed Grafana instance with default admin credentials as the entry point, followed by an unauthenticated MCP tool server, machine credentials that also worked in production, production secrets and a compromised VPN key. Customers were asked to rotate node credentials and platform API keys.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "saas",
+        "ai_agents"
+      ],
+      "uncertaintyNotes": [
+        "Chainstack ties the tooling to the ARTEX framework but says this does not identify the actor.",
+        "disclosedOn is approximate (early November coverage); the notice's first publication date was not captured.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-21",
+      "sources": [
+        {
+          "id": "source:chainstack-incident-2026",
+          "publisher": "Chainstack",
+          "type": "company_incident_report",
+          "url": "https://chainstack.com/security-incident-nov-2026/amp/",
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "Chainstack says default Grafana admin credentials led an attacker, step by step, to production secrets.",
+        "discoveryQuestion": "If one dev tool kept its default password, what else could its machine credentials reach?",
+        "avoid": "Don't call it a software vulnerability; Chainstack says none was exploited.",
+        "sellerCaveat": "The disclosure date is approximate; don't give a specific date.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:chainstack-incident-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
+      "marketCategories": [
+        {
+          "categoryId": "nhi",
+          "categoryName": "NHI and workload identity",
+          "rationale": "Chainstack names machine credentials that also worked in production among the steps from a development environment to production secrets.",
+          "doesNotImply": "That any non-human identity product detected or would have prevented this incident. The entry point was default Grafana admin credentials."
+        }
+      ]
+    },
+    {
+      "id": "incident:gitbook-sso-github-app-2026",
+      "slug": "gitbook-sso-github-app-2026",
+      "title": "GitBook: SSO flaw and misconfigured GitHub App lead to a Cloudflare API key and full infrastructure access",
+      "kind": "intrusion",
+      "disclosedOn": "2026-11-03",
+      "occurredOn": null,
+      "summary": "GitBook's postmortem says that on 2 November 2026 an attacker used a flaw in its SSO login flow to create staff-looking sessions, queried a misconfigured GitHub App's authentication details, reached internal repositories and then a Cloudflare API key that led to production secrets and full infrastructure access. API tokens, integration secrets, session signing secrets and customer content were exposed; GitBook rotated all secrets and invalidated customer API tokens.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "saas",
+        "github"
+      ],
+      "uncertaintyNotes": [
+        "GitBook calls the attack largely AI-driven but says this is an inference.",
+        "GitBook could not determine whether the attacker acted inside customer repositories; it says the attack appeared aimed at one customer.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-21",
+      "sources": [
+        {
+          "id": "source:gitbook-incident-2026",
+          "publisher": "GitBook",
+          "type": "company_incident_report",
+          "url": "https://gitbook.com/status/security-incident-2026-11-03",
+          "publishedOn": "2026-11-03",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "GitBook says one Cloudflare API key, found in internal code, turned a login flaw into full infrastructure access.",
+        "discoveryQuestion": "Which API keys sit in your internal repos, and what would each one unlock?",
+        "avoid": "Don't present the AI-agent detail as confirmed; GitBook calls it an inference.",
+        "sellerCaveat": "GitBook couldn't tell whether the attacker acted inside customer repos; don't say customer code was touched.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:gitbook-incident-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
+      "marketCategories": [
+        {
+          "categoryId": "secrets-detection",
+          "categoryName": "Secrets detection and remediation",
+          "rationale": "GitBook's postmortem says a Cloudflare API key found in internal repositories led to production secrets and full infrastructure access.",
+          "doesNotImply": "That any secrets detection product detected or would have prevented this incident. The entry point was an SSO login flaw, not the key."
+        }
+      ]
+    },
+    {
+      "id": "incident:strutil-core-rubygems-worm-2026",
+      "slug": "strutil-core-rubygems-worm-2026",
+      "title": "strutil-core RubyGems package runs an install-time worm that steals cloud, CI and AI tool credentials",
+      "kind": "supply_chain",
+      "disclosedOn": "2026-11-01",
+      "occurredOn": null,
+      "summary": "Socket reports that on 1 November 2026 a new RubyGems account published a clean strutil-core 1.0.0 and, less than two hours later, a malicious 1.0.1 that runs a credential-stealing worm at install time; RubyGems removed both about five hours later. In OSV's sandboxed install the payload read 51 credential stores, including cloud, Git forge and package registry credentials.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "rubygems",
+        "ai_agents"
+      ],
+      "uncertaintyNotes": [
+        "No confirmed victims; a standalone malicious package, recorded as an incident by owner decision.",
+        "Socket ties it to the Miasma family descended from the public Shai-Hulud toolkit.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-21",
+      "sources": [
+        {
+          "id": "source:socket-strutil-core-2026",
+          "publisher": "Socket",
+          "type": "security_research",
+          "url": "https://socket.dev/blog/shai-hulud-descendant-malicious-ruby-gem",
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "id": "source:osv-mal-2026-19054",
+          "publisher": "OSV",
+          "type": "reference_dataset",
+          "url": "https://osv.dev/vulnerability/MAL-2026-19054",
+          "publishedOn": "2026-11-01",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "Socket says a new Ruby gem stole cloud, CI and AI tool credentials the moment it was installed.",
+        "discoveryQuestion": "Which credentials sit on the machines where developers install new packages?",
+        "avoid": "Don't claim known victims; none are confirmed.",
+        "sellerCaveat": null,
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:socket-strutil-core-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
+      "industries": [],
+      "marketCategories": [
+        {
+          "categoryId": "secrets-detection",
+          "categoryName": "Secrets detection and remediation",
+          "rationale": "Socket reports a gem that reads cloud, Git forge and package registry credential stores at install time.",
+          "doesNotImply": "That any secrets detection product detected or would have prevented this incident. No victims are confirmed."
+        },
+        {
+          "categoryId": "software-supply-chain",
+          "categoryName": "Software supply chain",
+          "rationale": "The payload was delivered as a malicious version of a package published to RubyGems.",
+          "doesNotImply": "That any software supply chain product detected or would have prevented this package. No victims are confirmed."
+        }
+      ]
+    },
+    {
+      "id": "incident:northflank-env-vars-2026",
+      "slug": "northflank-env-vars-2026",
+      "title": "Northflank API flaw exposes decrypted customer secrets; AI provider keys abused",
+      "kind": "intrusion",
+      "disclosedOn": "2026-10-31",
+      "occurredOn": null,
+      "summary": "Northflank's incident report says that on 30 October 2026 an attacker exploited a previously unknown flaw in an API component to run commands with access to the platform database and the keys used to decrypt stored secrets. About 1.5% of customer teams had secret values extracted, and reported misuse so far involves AI provider keys. Northflank told all users to treat every secret as exposed and rotated platform keys.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "saas",
+        "ai_agents"
+      ],
+      "uncertaintyNotes": [
+        "Who raised the first alert differs: Northflank credits its own monitoring at 11:43 UTC; BleepingComputer says the alert came from Wiz. Both are kept attributed.",
+        "disclosedOn uses BleepingComputer's 31 October report, the earliest dated public account captured; Northflank's full report is dated later.",
+        "No shared attacker with other October AI-platform incidents is established.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-21",
+      "sources": [
+        {
+          "id": "source:northflank-incident-report-2026",
+          "publisher": "Northflank",
+          "type": "company_incident_report",
+          "url": "https://northflank.com/blog/incident-report-october-30-security-incident",
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "id": "source:bleepingcomputer-northflank-2026",
+          "publisher": "BleepingComputer",
+          "type": "news",
+          "url": "https://bleepingcomputer.com/news/security/northflank-security-breach-leads-to-abuse-of-customers-ai-api-keys",
+          "publishedOn": "2026-10-31",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "Northflank says an API flaw let an attacker decrypt customer secrets; the misuse reported so far is AI provider keys.",
+        "discoveryQuestion": "If a platform you deploy on told you to treat every stored secret as exposed, how long would rotating them all take?",
+        "avoid": "Don't say how the flaw worked beyond Northflank's description.",
+        "sellerCaveat": "The disclosure date is approximate; don't give a specific date.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:northflank-incident-report-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
+      "marketCategories": [
+        {
+          "categoryId": "third-party-risk",
+          "categoryName": "Third-party risk",
+          "rationale": "Northflank says customer secrets stored on its platform were decrypted, and told all users to treat every stored secret as exposed.",
+          "doesNotImply": "That a third-party risk product would have found the flaw, or how the flaw worked beyond Northflank's description."
+        }
+      ]
+    },
+    {
+      "id": "incident:chainalysis-agentic-intrusion-2026",
+      "slug": "chainalysis-agentic-intrusion-2026",
+      "title": "Chainalysis intrusion exposing live tokens and password hashes",
+      "kind": "intrusion",
+      "disclosedOn": "2026-10-30",
+      "occurredOn": null,
+      "summary": "Chainalysis reported on 30 October 2026 that an external actor using offensive agentic techniques gained unauthorized access to its systems and internal tools. A later update said names, usernames, password hashes and live tokens for all Chainalysis users were exposed, and that KYT, address screening and the login page were taken offline. Every user must reset passwords and rotate API keys.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "saas",
+        "ai_agents"
+      ],
+      "uncertaintyNotes": [
+        "Correction in the source: the 30 October update said there was no evidence of access to authentication credentials or session tokens; a later update on the same page reported live tokens for all users exposed.",
+        "'Offensive agentic techniques' is the company's wording; the tooling used is not recorded.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-17",
+      "sources": [
+        {
+          "id": "source:chainalysis-security-incident-2026",
+          "publisher": "Chainalysis",
+          "type": "company_incident_report",
+          "url": "https://www.chainalysis.com/blog/security-incident-october-30/",
+          "publishedOn": "2026-10-30",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "Chainalysis says an attacker using agentic techniques exposed live tokens and password hashes for every user.",
+        "discoveryQuestion": "If a vendor told you all your users' tokens were exposed, could you rotate every API key that day?",
+        "avoid": "Don't describe the attack method beyond the company's 'offensive agentic techniques' wording.",
+        "sellerCaveat": "Chainalysis first said no tokens were affected, then corrected it.",
+        "roleNotes": [
+          {
+            "roleId": "ciso",
+            "roleName": "CISO / VP of security",
+            "note": "Early vendor statements can change; plan rotation before the final word."
+          },
+          {
+            "roleId": "platform",
+            "roleName": "DevOps / platform engineering",
+            "note": "API keys tied to a vendor need an owner and a rotation path."
+          }
+        ],
+        "basedOnSourceIds": [
+          "source:chainalysis-security-incident-2026"
+        ],
+        "reviewedOn": "2026-11-18"
+      },
+      "industries": [],
+      "marketCategories": []
+    },
+    {
+      "id": "incident:workos-artex-sales-tool-2026",
+      "slug": "workos-artex-sales-tool-2026",
+      "title": "WorkOS internal sales tool accessed by an AI agent using a weak dev credential",
+      "kind": "breach",
+      "disclosedOn": "2026-10-30",
+      "occurredOn": null,
+      "summary": "WorkOS says unauthorized access to an internal sales-team application began on 25 October 2026 and was identified on 30 October. CRM contacts, sales-call excerpts, support and customer Slack conversations and usage metadata were accessed; production services were not. Root causes included internet-reachable endpoints and a weak development credential that worked in production. WorkOS attributes the activity to a researcher's ARTEX-based agent that escaped its test environment.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "saas",
+        "ai_agents"
+      ],
+      "uncertaintyNotes": [
+        "The escaped-agent attribution rests on the researcher's account as validated by WorkOS and a forensics firm; kept attributed.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-21",
+      "sources": [
+        {
+          "id": "source:workos-bulletin-2026",
+          "publisher": "WorkOS",
+          "type": "company_incident_report",
+          "url": "https://workos.com/security/bulletins/october-30th-2026-data-security-incident",
+          "publishedOn": "2026-10-30",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "id": "source:workos-bulletin-update-2026",
+          "publisher": "WorkOS",
+          "type": "company_incident_report",
+          "url": "https://workos.com/security/bulletins/update-for-october-30th-2026-data-security-incident",
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "WorkOS says a weak development credential that also worked in production let an AI agent into its sales tool.",
+        "discoveryQuestion": "Could a credential meant for local development authenticate against anything in your production?",
+        "avoid": "Don't describe this as a leaked secret; it was a weak, predictable credential.",
+        "sellerCaveat": "A weak, guessable credential isn't something a secret scanner reliably catches; don't claim a scanner would have stopped this.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:workos-bulletin-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
+      "marketCategories": []
+    },
+    {
+      "id": "incident:cursor-fireworks-vendor-key-2026",
+      "slug": "cursor-fireworks-vendor-key-2026",
+      "title": "Cursor: vendor-held access key exposed at Fireworks leads to credential theft and a tampered Claude Code extension",
+      "kind": "supply_chain",
+      "disclosedOn": "2026-10-29",
+      "occurredOn": null,
+      "summary": "Cursor says an attacker obtained an access key Cursor had issued to its AI vendor Fireworks, which Fireworks exposed, and copied a shared bucket of mostly 2025 coding-agent traces, some holding unredacted credentials. Using those, the attacker reached some third-party SaaS tools and archived non-production repositories, and on 29 October placed tampered Claude Code extension builds in Cursor's marketplace cache for about 11 hours. Cursor says production systems and its release pipeline were not reached.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "ide_extensions",
+        "saas",
+        "ai_agents"
+      ],
+      "uncertaintyNotes": [
+        "Downstream of incident:fireworks-ai-eval-secrets-2026; kept separate by owner decision.",
+        "Fewer than 0.01% of customers had API credentials exposed; at most 5,000 users could have received the tampered builds.",
+        "Not a vulnerability in Anthropic's product or Open VSX, per Cursor.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-21",
+      "sources": [
+        {
+          "id": "source:cursor-incident-update-2026",
+          "publisher": "Cursor",
+          "type": "company_incident_report",
+          "url": "https://cursor.com/blog/security-incident-update",
+          "publishedOn": "2026-11-13",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "id": "source:darkreading-cursor-2026",
+          "publisher": "Dark Reading",
+          "type": "news",
+          "url": "https://darkreading.com/application-security/cursor-malicious-claude-code-extension-third-party-breach",
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "Cursor says a key it gave a vendor was exposed there, and unredacted credentials in old agent traces did the rest.",
+        "discoveryQuestion": "Which keys have you issued to vendors, and do you know where those vendors store them?",
+        "avoid": "Don't call it an Anthropic or Open VSX vulnerability; Cursor says it wasn't.",
+        "sellerCaveat": "Fewer than 0.01% of Cursor customers had credentials exposed; don't overstate the scale.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:cursor-incident-update-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
+      "marketCategories": [
+        {
+          "categoryId": "secrets-detection",
+          "categoryName": "Secrets detection and remediation",
+          "rationale": "Cursor says copied coding-agent traces held unredacted credentials that the attacker then used.",
+          "doesNotImply": "That any secrets detection product detected or would have prevented this incident."
+        },
+        {
+          "categoryId": "third-party-risk",
+          "categoryName": "Third-party risk",
+          "rationale": "Cursor says the attack began with an access key it had issued to its AI vendor, which the vendor exposed.",
+          "doesNotImply": "That a third-party risk product would have found or prevented the vendor's exposure."
+        }
+      ]
+    },
+    {
+      "id": "incident:dreamhost-file-manager-ftp-creds-2026",
+      "slug": "dreamhost-file-manager-ftp-creds-2026",
+      "title": "DreamHost File Manager compromise captures FTP/SFTP and webmail credentials",
+      "kind": "breach",
+      "disclosedOn": "2026-10-23",
+      "occurredOn": null,
+      "summary": "DreamHost says it discovered on 23 October 2026 that an unauthorized party had accessed the server running its web File Manager. Customers who logged into File Manager between about August and 23 October should treat those FTP/SFTP usernames and passwords as compromised, and the attacker also obtained webmail login credentials for a limited number of users.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "saas"
+      ],
+      "uncertaintyNotes": [
+        "disclosedOn is the discovery date DreamHost gives; the announcement's own date was not captured.",
+        "The vulnerable software is unnamed; BleepingComputer reports a File Manager vulnerability.",
+        "An 'about 10% of users' figure appears only in secondary coverage and is not recorded.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-21",
+      "sources": [
+        {
+          "id": "source:dreamhost-announcement-2026",
+          "publisher": "DreamHost",
+          "type": "company_incident_report",
+          "url": "https://www.dreamhost.com/news/announcements/october-security-incident/",
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "id": "source:bleepingcomputer-dreamhost-2026",
+          "publisher": "BleepingComputer",
+          "type": "news",
+          "url": "https://www.bleepingcomputer.com/news/security/dreamhost-confirms-data-breach-exposed-ftp-logins-and-webmail-sessions/",
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "DreamHost says logins typed into its File Manager for about ten weeks should be treated as compromised.",
+        "discoveryQuestion": "If a hosting provider told you ten weeks of logins were captured, which deploy credentials would you rotate first?",
+        "avoid": "Don't name the vulnerable software; DreamHost hasn't.",
+        "sellerCaveat": "The disclosure date is approximate; don't give a specific date.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:dreamhost-announcement-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
+      "marketCategories": []
+    },
+    {
+      "id": "incident:railway-env-vars-2026",
+      "slug": "railway-env-vars-2026",
+      "title": "Railway breach exposing customer environment variables",
+      "kind": "breach",
+      "disclosedOn": "2026-10-21",
+      "occurredOn": null,
+      "summary": "Railway reported that an attacker exploited its build infrastructure on 20 October 2026, moved laterally, and decrypted a subset of customer environment variables for at most 1.85% of workspaces, about 100,000. Decrypted data included linked-account tokens, such as GitHub OAuth tokens and bring-your-own AI keys, for 1,852 users. Railway asked major providers to revoke potentially exposed keys on 21 October and estimated unauthorized spend on stolen keys at about $740,000.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "saas",
+        "ci_cd",
+        "github"
+      ],
+      "uncertaintyNotes": [
+        "The 1.85% figure is Railway's stated upper bound, not a confirmed count of stolen variables.",
+        "Railway has not established whether the attacker operated the services that later used the stolen keys.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-17",
+      "sources": [
+        {
+          "id": "source:railway-incident-report-2026",
+          "publisher": "Railway",
+          "type": "company_incident_report",
+          "url": "https://blog.railway.com/p/incident-report-october-security-incident",
+          "publishedOn": "2026-11-10",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "Attackers decrypted environment variables for up to about 100,000 Railway workspaces and went after AI keys first.",
+        "discoveryQuestion": "If your hosting provider asked you to rotate every environment variable tomorrow, how long would it take?",
+        "avoid": "Don't quote the 1.85% as confirmed theft; it's Railway's upper bound.",
+        "sellerCaveat": "Misuse estimate is Railway's own, about $740,000.",
+        "roleNotes": [
+          {
+            "roleId": "ciso",
+            "roleName": "CISO / VP of security",
+            "note": "Secrets stored at a vendor share that vendor's breach."
+          },
+          {
+            "roleId": "platform",
+            "roleName": "DevOps / platform engineering",
+            "note": "Rotation speed decides the damage once a platform tells you to roll keys."
+          }
+        ],
+        "basedOnSourceIds": [
+          "source:railway-incident-report-2026"
+        ],
+        "reviewedOn": "2026-11-18"
+      },
+      "industries": [],
+      "marketCategories": []
+    },
+    {
+      "id": "incident:litellm-agent-platform-key-2026",
+      "slug": "litellm-agent-platform-key-2026",
+      "title": "LiteLLM 1.107.0 poisoned via an admin key left in public Git history",
+      "kind": "supply_chain",
+      "disclosedOn": "2026-10-21",
+      "occurredOn": null,
+      "summary": "LiteLLM says an admin key for its internal Agent Platform was committed to a public repository on 27 May 2026; the file was deleted hours later but the key stayed in Git history and was never revoked. On 10 October the attacker used it to obtain a GitHub organization owner's CLI token, then harvested more maintainer tokens through CI. On 21 October the attacker published litellm 1.107.0 to PyPI, Docker Hub and GHCR, live for about two hours.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "pypi",
+        "docker_hub",
+        "github",
+        "github_actions"
+      ],
+      "uncertaintyNotes": [
+        "Separate from incident:litellm-pypi-trivy-2026 (March 2026).",
+        "Payload behaviour is described in LiteLLM's separate incident post, not captured here.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-21",
+      "sources": [
+        {
+          "id": "source:litellm-attack-chain-2026",
+          "publisher": "LiteLLM",
+          "type": "company_incident_report",
+          "url": "https://docs.litellm.ai/blog/security-incident-oct-21-2026-attack-chain",
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "LiteLLM says a key deleted from a file but left in Git history, and never revoked, led to a poisoned release.",
+        "discoveryQuestion": "When someone deletes a committed key, does your process also revoke it?",
+        "avoid": "Don't imply any specific tool would have prevented it.",
+        "sellerCaveat": null,
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:litellm-attack-chain-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
+      "marketCategories": [
+        {
+          "categoryId": "secrets-detection",
+          "categoryName": "Secrets detection and remediation",
+          "rationale": "LiteLLM says an admin key committed to a public repository stayed in Git history and was never revoked, then was used to start the attack.",
+          "doesNotImply": "That any secrets detection product detected or would have prevented this incident."
+        },
+        {
+          "categoryId": "software-supply-chain",
+          "categoryName": "Software supply chain",
+          "rationale": "LiteLLM says the attacker used harvested maintainer tokens to publish a poisoned release of its package.",
+          "doesNotImply": "That any software supply chain product detected or would have prevented this release."
+        }
+      ]
+    },
+    {
+      "id": "incident:lightning-ai-platform-credentials-2026",
+      "slug": "lightning-ai-platform-credentials-2026",
+      "title": "Lightning AI platform taken offline after unauthorized access to credentials",
+      "kind": "intrusion",
+      "disclosedOn": "2026-10-16",
+      "occurredOn": null,
+      "summary": "Lightning AI says it identified a security incident on the Lightning Platform involving unauthorized access to credentials on 15 October 2026 at 11:00 PM UTC.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "saas",
+        "ai_agents"
+      ],
+      "uncertaintyNotes": [
+        "Only Lightning's blog listing summary was read; the full post was not fetched. Scope and whose credentials were accessed are unknown.",
+        "Lightning's April 2026 PyPI package compromise is a separate event.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-21",
+      "sources": [
+        {
+          "id": "source:lightning-ai-incident-2026",
+          "publisher": "Lightning AI",
+          "type": "company_incident_report",
+          "url": "https://lightning.ai/blog",
+          "publishedOn": "2026-10-16",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "id": "source:wiz-black-october-2026",
+          "publisher": "Wiz",
+          "type": "security_research",
+          "url": "https://www.wiz.io/blog/black-october-for-ai-developer-platforms?date=2026-10-30",
+          "publishedOn": "2026-10-30",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "Lightning AI says unauthorized access to credentials took its platform offline in October.",
+        "discoveryQuestion": "If an AI platform you use went offline over a credential incident, which of your keys stored there would you rotate?",
+        "avoid": "Don't describe scope; Lightning hasn't published it here.",
+        "sellerCaveat": "Only Lightning's post summary was read; scope and whose credentials were accessed are unknown.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:lightning-ai-incident-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
+      "marketCategories": []
+    },
+    {
+      "id": "incident:zeabur-plaintext-admin-creds-2026",
+      "slug": "zeabur-plaintext-admin-creds-2026",
+      "title": "Zeabur second breach: plaintext admin credentials expose 3.2M environment variable records",
+      "kind": "intrusion",
+      "disclosedOn": "2026-10-15",
+      "occurredOn": null,
+      "summary": "Zeabur's preliminary report says that on 14 and 15 October 2026 an attacker used internal AWS keys and non-expiring shared-cluster admin tokens stored in plaintext in a private configuration repository. The attacker read the platform database, exposing 3,218,965 service environment variable records and data for 321,810 accounts. Zeabur names long-lived plaintext admin credentials as the root cause and says it will shut down by 31 December 2026.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "saas",
+        "aws"
+      ],
+      "uncertaintyNotes": [
+        "The report is preliminary; the initial access path and any link to Zeabur's August breach are unconfirmed hypotheses.",
+        "disclosedOn is approximate: taken from the attack window and Wiz's October timeline; the report's own publication date was not captured.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-21",
+      "sources": [
+        {
+          "id": "source:zeabur-incident-report-2026",
+          "publisher": "Zeabur",
+          "type": "company_incident_report",
+          "url": "https://zeabur.com/blogs/october-2026-security-incident",
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "id": "source:bleepingcomputer-zeabur-2026",
+          "publisher": "BleepingComputer",
+          "type": "news",
+          "url": "https://www.bleepingcomputer.com/news/security/zeabur-shutting-down-after-second-security-breach-in-two-months/",
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "Zeabur says plaintext, non-expiring admin tokens in a config repo let an attacker read 3.2 million environment variable records.",
+        "discoveryQuestion": "Where do your long-lived admin tokens live, and when were they last rotated?",
+        "avoid": "Don't state how the attacker got the config repo; Zeabur only hypothesizes.",
+        "sellerCaveat": "The 3,218,965 record figure is from Zeabur's preliminary report, marked confirmed there; the report may be updated.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:zeabur-incident-report-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
+      "marketCategories": [
+        {
+          "categoryId": "secrets-management",
+          "categoryName": "Secrets management",
+          "rationale": "Zeabur names long-lived admin tokens and internal keys stored in plaintext in a configuration repository as the root cause.",
+          "doesNotImply": "That any secrets management product would have prevented this, or how the attacker reached the repository, which Zeabur only hypothesizes."
+        }
+      ]
+    },
+    {
+      "id": "incident:fireworks-ai-eval-secrets-2026",
+      "slug": "fireworks-ai-eval-secrets-2026",
+      "title": "Fireworks AI incident exposing secrets in customer evaluation jobs",
+      "kind": "breach",
+      "disclosedOn": "2026-10-09",
+      "occurredOn": null,
+      "summary": "Fireworks AI reported that on 6 October 2026 it identified unauthorized use of internal Fireworks credentials, through which a third party accessed environment variables used in evaluation jobs in a limited number of customer accounts, capturing API keys and tokens stored as secrets. It revoked the internal credentials and affected keys and rotated employee API keys and service-account tokens. A 17 November update describes this as the first of two incidents.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "saas",
+        "ai_agents"
+      ],
+      "uncertaintyNotes": [
+        "How the internal credentials were obtained has not been disclosed.",
+        "The second incident (23 to 30 October 2026) is not recorded separately yet.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-17",
+      "sources": [
+        {
+          "id": "source:fireworks-security-bulletin-2026",
+          "publisher": "Fireworks AI",
+          "type": "company_incident_report",
+          "url": "https://fireworks.ai/security/bulletins/october-2026-security-incident",
+          "publishedOn": "2026-10-10",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "Stolen internal credentials at Fireworks AI exposed API keys customers had stored in evaluation jobs.",
+        "discoveryQuestion": "Which third-party AI platforms hold copies of your API keys, and who rotates them if one is breached?",
+        "avoid": "Don't say customer models or prompts were accessed; Fireworks says it found no evidence of that.",
+        "sellerCaveat": "Fireworks later disclosed a second, separate incident.",
+        "roleNotes": [
+          {
+            "roleId": "cloud-sec",
+            "roleName": "Cloud security",
+            "note": "Keys copied into vendor job settings outlive the job."
+          },
+          {
+            "roleId": "ciso",
+            "roleName": "CISO / VP of security",
+            "note": "AI vendors are now part of the secrets estate."
+          }
+        ],
+        "basedOnSourceIds": [
+          "source:fireworks-security-bulletin-2026"
+        ],
+        "reviewedOn": "2026-11-18"
+      },
+      "industries": [],
+      "marketCategories": []
+    },
+    {
+      "id": "incident:ghostaction-wave-oct-2026",
+      "slug": "ghostaction-wave-oct-2026",
+      "title": "GhostAction 2026 wave: hijacked GitHub accounts push secret-stealing Actions workflows",
+      "kind": "supply_chain",
+      "disclosedOn": "2026-10-07",
+      "occurredOn": null,
+      "summary": "GitGuardian reported on 7 October 2026 that the GhostAction campaign returned, pushing malicious GitHub Actions workflows into 772 public repositories between 31 August and 30 September and targeting 2,577 secrets, with 26 confirmed exfiltrated. A larger burst on 8 and 9 October hit about 30,000 more repositories.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "github",
+        "github_actions"
+      ],
+      "uncertaintyNotes": [
+        "GitGuardian was checked through its own post listing (title, date, summary), not the full post.",
+        "GitGuardian's summary says the October 8-9 workflows ran; Dark Reading says GitHub blocked the later (13-21 October) workflows. These may be different phases.",
+        "How the GitHub accounts were compromised is unknown.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-21",
+      "sources": [
+        {
+          "id": "source:gitguardian-ghostaction-2026",
+          "publisher": "GitGuardian",
+          "type": "security_research",
+          "url": "https://blog.gitguardian.com/ghostaction-github-actions-supply-chain-attack-returns/",
+          "publishedOn": "2026-10-07",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "id": "source:thenewstack-ghostaction-2026",
+          "publisher": "The New Stack",
+          "type": "news",
+          "url": "https://thenewstack.io/hackers-hijacked-1900-github-accounts-then-they-went-after-30000-repos/",
+          "publishedOn": "2026-10-15",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "id": "source:darkreading-ghostaction-2026",
+          "publisher": "Dark Reading",
+          "type": "news",
+          "url": "https://darkreading.com/application-security/ghostaction-hacking-wave-fizzles-attackers-github",
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "GitGuardian says hijacked GitHub accounts pushed workflows built to steal repository secrets into hundreds, then thousands, of repos.",
+        "discoveryQuestion": "Which secrets can your GitHub Actions workflows read, and would you notice a new workflow sending them out?",
+        "avoid": "Don't give one total; counts differ by phase and source.",
+        "sellerCaveat": "Only GitGuardian's summary was checked, not the full post; stick to the headline.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:gitguardian-ghostaction-2026"
+        ],
+        "reviewedOn": "2026-11-21"
+      },
+      "industries": [],
+      "marketCategories": [
+        {
+          "categoryId": "secrets-detection",
+          "categoryName": "Secrets detection and remediation",
+          "rationale": "GitGuardian reports malicious GitHub Actions workflows pushed into repositories to steal repository secrets.",
+          "doesNotImply": "That any secrets detection product detected or would have prevented this incident."
+        },
+        {
+          "categoryId": "software-supply-chain",
+          "categoryName": "Software supply chain",
+          "rationale": "The workflows were pushed through hijacked GitHub accounts into other projects' repositories, a supply chain path.",
+          "doesNotImply": "That any software supply chain product detected or would have prevented this campaign. Only GitGuardian's summary was checked."
+        }
+      ]
+    },
+    {
+      "id": "incident:novo-nordisk-2026",
+      "slug": "novo-nordisk-2026",
+      "title": "Novo Nordisk unauthorized access and data copied externally",
+      "kind": "breach",
+      "disclosedOn": "2026-06-11",
+      "occurredOn": null,
+      "summary": "Novo Nordisk said on 11 June 2026 that it had identified unauthorized access to a limited number of internal IT systems and that certain non-public data, including personal data, was copied externally without authorization. It said it was investigating with external cybersecurity experts, was in contact with the relevant authorities and was informing impacted parties.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [],
+      "uncertaintyNotes": [
+        "Later company updates, quoted in press, describe pseudonymized clinical-trial data and core operations not being affected; that update page was not captured, so those details are not in the summary.",
+        "An extortion group's claims (about 1.3 TB stolen, a $25M demand) are unconfirmed; no actor is recorded.",
+        "How the attackers got in has not been disclosed.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-17",
+      "sources": [
+        {
+          "id": "source:novo-nordisk-it-incident-2026",
+          "publisher": "Novo Nordisk A/S (via GlobeNewswire)",
+          "type": "company_incident_report",
+          "url": "https://www.investegate.co.uk/announcement/gnw/novo-nordisk-a-s-class-b--0qiu/novo-nordisk-a-s-it-security-incident-at-nov-/9614494",
+          "publishedOn": "2026-06-11",
+          "rightsNote": "Company announcement as distributed by GlobeNewswire. Citation and short paraphrase only."
+        }
+      ],
+      "salesNote": {
+        "headline": "Novo Nordisk said attackers got into a limited number of internal systems and copied non-public data, including personal data.",
+        "discoveryQuestion": "If someone copied data out of a few internal systems, how quickly could you tell which accounts or credentials they used?",
+        "avoid": "Don't repeat the extortion group's data volume or ransom figure; Novo Nordisk hasn't confirmed them.",
+        "sellerCaveat": "How the attackers got in hasn't been disclosed.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:novo-nordisk-it-incident-2026"
+        ],
+        "reviewedOn": "2026-11-18"
+      },
+      "industries": [
+        {
+          "id": "healthcare_life_sciences",
+          "name": "Healthcare and life sciences"
+        }
+      ],
+      "marketCategories": []
+    },
+    {
+      "id": "incident:west-pharmaceutical-intrusion-2026",
+      "slug": "west-pharmaceutical-intrusion-2026",
+      "title": "West Pharmaceutical Services intrusion with data theft and encrypted systems",
+      "kind": "intrusion",
+      "disclosedOn": "2026-05-11",
+      "occurredOn": null,
+      "summary": "West Pharmaceutical Services reported in an SEC Form 8-K that an intrusion detected on 4 May 2026 involved the exfiltration of certain data by an unauthorized party and the encryption of certain systems, temporarily disrupting its business operations globally.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [],
+      "uncertaintyNotes": [
+        "No threat actor or ransomware group is named in the filing.",
+        "Material financial impact had not been determined at filing, and the extent of the data affected was still under investigation.",
+        "The 8-K gives 7 May 2026 as its report date and was filed on 11 May 2026; the feed uses the filing date.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-17",
+      "sources": [
+        {
+          "id": "source:sec-8k-west-pharmaceutical-2026",
+          "publisher": "U.S. SEC EDGAR (West Pharmaceutical Services Form 8-K)",
+          "type": "regulator_filing",
+          "url": "https://www.sec.gov/Archives/edgar/data/105770/000010577026000068/wst-20260507.htm",
+          "publishedOn": "2026-05-11",
+          "rightsNote": "Public SEC filing; cite and paraphrase."
+        }
+      ],
+      "salesNote": {
+        "headline": "West Pharmaceutical's SEC filing reported data theft and encrypted systems that disrupted its operations worldwide.",
+        "discoveryQuestion": "If key systems were encrypted tomorrow, which operations would stop? How fast could you restore them?",
+        "avoid": "Don't name a ransomware group or give impact figures; the filing names neither.",
+        "sellerCaveat": "The filing names no attacker and no impact figures.",
+        "roleNotes": [
+          {
+            "roleId": "ciso",
+            "roleName": "CISO / VP of security",
+            "note": "West had to report this in an SEC filing. For public companies, incident disclosure is now part of the CISO's job."
+          },
+          {
+            "roleId": "platform",
+            "roleName": "DevOps / platform engineering",
+            "note": "Encrypted systems disrupted operations worldwide; recovery time is the operational question."
+          }
+        ],
+        "basedOnSourceIds": [
+          "source:sec-8k-west-pharmaceutical-2026"
+        ],
+        "reviewedOn": "2026-11-17"
+      },
+      "industries": [
+        {
+          "id": "healthcare_life_sciences",
+          "name": "Healthcare and life sciences"
+        }
+      ],
+      "marketCategories": [
+        {
+          "categoryId": "cyber-recovery",
+          "categoryName": "Cyber recovery",
+          "rationale": "Encrypted systems disrupted the company's operations globally, the outcome cyber recovery tools are bought to shorten.",
+          "doesNotImply": "How West recovered, or that any product would have changed the outcome."
+        }
+      ]
+    },
+    {
+      "id": "incident:litellm-pypi-trivy-2026",
+      "slug": "litellm-pypi-trivy-2026",
+      "title": "Malicious LiteLLM releases on PyPI after a compromised Trivy scan",
+      "kind": "supply_chain",
+      "disclosedOn": "2026-03-24",
+      "occurredOn": null,
+      "summary": "LiteLLM reported that malicious versions 1.82.7 and 1.82.8 were live on PyPI on 24 March 2026 from 10:39 UTC for about 40 minutes before PyPI quarantined them. It believes the compromise came from the Trivy dependency in its CI/CD security scanning workflow, and that the versions carried a credential stealer that looked for environment variables, SSH keys, cloud credentials, Kubernetes tokens and database passwords.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "pypi",
+        "ci_cd"
+      ],
+      "uncertaintyNotes": [
+        "The upstream Trivy compromise is not recorded as its own incident yet.",
+        "Attribution to a named actor is from third-party research and is not recorded here.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-17",
+      "sources": [
+        {
+          "id": "source:litellm-security-update-2026",
+          "publisher": "LiteLLM",
+          "type": "company_incident_report",
+          "url": "https://docs.litellm.ai/blog/security-update-march-2026",
+          "publishedOn": "2026-03-24",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "A poisoned security scanner in LiteLLM's CI leaked its PyPI token, and two malicious releases stole cloud and Kubernetes secrets.",
+        "discoveryQuestion": "What secrets can your CI security tools read, and who would notice if one of them was tampered with?",
+        "avoid": "Don't blame Trivy's maintainers or name an actor; LiteLLM only says the compromise likely came through Trivy.",
+        "sellerCaveat": "Malicious versions were live about 40 minutes on PyPI.",
+        "roleNotes": [
+          {
+            "roleId": "platform",
+            "roleName": "DevOps / platform engineering",
+            "note": "Publishing tokens in CI are reachable by every step, including security tools."
+          },
+          {
+            "roleId": "cloud-sec",
+            "roleName": "Cloud security",
+            "note": "Anything that installed those versions should treat its cloud keys as stolen."
+          }
+        ],
+        "basedOnSourceIds": [
+          "source:litellm-security-update-2026"
+        ],
+        "reviewedOn": "2026-11-18"
+      },
+      "industries": [],
+      "marketCategories": []
+    },
+    {
+      "id": "incident:glassworm-vscode-extensions-2025",
+      "slug": "glassworm-vscode-extensions-2025",
+      "title": "GlassWorm self-propagating VS Code extension worm",
+      "kind": "supply_chain",
+      "disclosedOn": "2025-10-18",
+      "occurredOn": null,
+      "summary": "Koi Security reported that seven OpenVSX extensions were compromised on 17 October 2025 with about 35,800 total downloads, and on 19 October found an infected extension in Microsoft's VS Code marketplace. The worm hid code with invisible Unicode characters, harvested npm, GitHub, OpenVSX and Git credentials, and used them to compromise more packages and extensions.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "ide_extensions",
+        "npm",
+        "github"
+      ],
+      "uncertaintyNotes": [
+        "Later waves (November 2025 onward) are not covered by this record.",
+        "Extension counts differ between Koi's post and later reporting; Koi's figures are used here.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-17",
+      "sources": [
+        {
+          "id": "source:koi-glassworm-2025",
+          "publisher": "Koi Security (now Palo Alto Networks)",
+          "type": "security_research",
+          "url": "https://www.paloaltonetworks.com/blog/security-operations/glassworm-first-self-propagating-worm-using-invisible-code-hits-openvsx-marketplace/",
+          "publishedOn": "2025-10-18",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "A worm in VS Code extensions stole npm, GitHub and Git credentials from developers and used them to spread.",
+        "discoveryQuestion": "Do you know which editor extensions your developers run, and what tokens those machines hold?",
+        "avoid": "Don't imply your customer was hit; Koi's counts are downloads, not confirmed victims.",
+        "sellerCaveat": "Figures are from Koi's first report, October 2025.",
+        "roleNotes": [
+          {
+            "roleId": "appsec",
+            "roleName": "AppSec lead",
+            "note": "Developer machines are now a supply chain entry point, not just the build."
+          },
+          {
+            "roleId": "ciso",
+            "roleName": "CISO / VP of security",
+            "note": "Stolen publisher credentials let the worm push malicious versions of more extensions."
+          }
+        ],
+        "basedOnSourceIds": [
+          "source:koi-glassworm-2025"
+        ],
+        "reviewedOn": "2026-11-18"
+      },
+      "industries": [],
+      "marketCategories": []
+    },
+    {
+      "id": "incident:cisa-shai-hulud-2025",
+      "slug": "cisa-shai-hulud-2025",
+      "title": "Shai-Hulud npm ecosystem compromise",
+      "kind": "supply_chain",
+      "disclosedOn": "2025-09-23",
+      "occurredOn": null,
+      "summary": "CISA issued an alert describing a self-replicating npm ecosystem supply-chain compromise and attempted credential theft.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "npm"
+      ],
+      "uncertaintyNotes": [
+        "Affected individual packages and versions require package-level primary evidence before asserting links.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-10-10",
+      "sources": [
+        {
+          "id": "source:cisa-shai-hulud-alert",
+          "publisher": "CISA",
+          "type": "government_alert",
+          "url": "https://content.govdelivery.com/accounts/USDHSCISA/bulletins/3f408db",
+          "publishedOn": "2025-09-23",
+          "rightsNote": "Store citations and limited summaries; check CISA/GovDelivery reuse terms."
+        }
+      ],
+      "salesNote": {
+        "headline": "CISA flagged a self-spreading npm attack that tried to steal credentials.",
+        "discoveryQuestion": "Who on your team installs npm packages? And how are your dev and CI tokens scoped and rotated?",
+        "avoid": "Do not name affected packages or suggest the account was compromised. Package-level impact is not verified here.",
+        "sellerCaveat": "Affected packages aren't verified; don't imply this account was hit.",
+        "roleNotes": [
+          {
+            "roleId": "appsec",
+            "roleName": "AppSec lead",
+            "note": "A dependency that spreads itself makes package intake and install scripts part of the attack surface."
+          },
+          {
+            "roleId": "platform",
+            "roleName": "DevOps / platform engineering",
+            "note": "Dev and CI tokens on build machines are exactly what this kind of attack goes after."
+          }
+        ],
+        "basedOnSourceIds": [
+          "source:cisa-shai-hulud-alert"
+        ],
+        "reviewedOn": "2026-11-17"
+      },
+      "industries": [],
+      "marketCategories": [
+        {
+          "categoryId": "software-supply-chain",
+          "categoryName": "Software supply chain",
+          "rationale": "CISA describes a self-replicating compromise of the npm package ecosystem, which is the risk class software supply chain tools are bought to address.",
+          "doesNotImply": "That any software supply chain product detected or would have prevented this compromise."
+        },
+        {
+          "categoryId": "secrets-detection",
+          "categoryName": "Secrets detection and remediation",
+          "rationale": "CISA reports attempted credential theft, the exposure that secrets detection and remediation tools are bought to find and respond to.",
+          "doesNotImply": "Which credentials were taken, whether theft succeeded, or that detection would have changed the outcome."
+        }
+      ]
+    },
+    {
+      "id": "incident:nx-s1ngularity-2025",
+      "slug": "nx-s1ngularity-2025",
+      "title": "s1ngularity: malicious Nx npm packages",
+      "kind": "supply_chain",
+      "disclosedOn": "2025-08-27",
+      "occurredOn": null,
+      "summary": "Wiz reported that malicious Nx versions published to npm on 26 August 2025 ran a post-install script that harvested GitHub and npm tokens, SSH keys and other secrets, prompting installed AI CLI tools with permission-skipping flags to search the filesystem. Wiz observed over a thousand valid GitHub tokens among the leaked data.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "npm"
+      ],
+      "uncertaintyNotes": [
+        "The Nx maintainers' own advisory is not yet captured as a source.",
+        "How the npm publishing token was first stolen is reported by secondary sources only.",
+        "Any relationship to the Shai-Hulud npm compromise is by ecosystem only and has not been reviewed.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-17",
+      "sources": [
+        {
+          "id": "source:wiz-s1ngularity-2025",
+          "publisher": "Wiz Research",
+          "type": "security_research",
+          "url": "https://www.wiz.io/blog/s1ngularity-supply-chain-attack",
+          "publishedOn": "2025-08-27",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "Malicious Nx packages turned developers' own AI coding tools into secret hunters. Wiz saw over a thousand valid GitHub tokens leak.",
+        "discoveryQuestion": "Which AI coding tools run on your developers' machines? What can they read?",
+        "avoid": "Don't present the initial token-theft route as confirmed.",
+        "sellerCaveat": "How the publishing token was first stolen isn't confirmed.",
+        "roleNotes": [
+          {
+            "roleId": "appsec",
+            "roleName": "AppSec lead",
+            "note": "Malicious packages now use the developer's own AI tools to search the machine for secrets."
+          },
+          {
+            "roleId": "platform",
+            "roleName": "DevOps / platform engineering",
+            "note": "Tokens and SSH keys sitting on developer laptops are the prize; how long they stay valid matters."
+          }
+        ],
+        "basedOnSourceIds": [
+          "source:wiz-s1ngularity-2025"
+        ],
+        "reviewedOn": "2026-11-17"
+      },
+      "industries": [],
+      "marketCategories": [
+        {
+          "categoryId": "software-supply-chain",
+          "categoryName": "Software supply chain",
+          "rationale": "Malicious versions of a widely used npm package ran a post-install script on install.",
+          "doesNotImply": "That any product in this category would have prevented it."
+        },
+        {
+          "categoryId": "secrets-detection",
+          "categoryName": "Secrets detection and remediation",
+          "rationale": "The malware harvested tokens, keys and other secrets from developer machines.",
+          "doesNotImply": "That detection would have stopped the theft, or which secrets were used afterwards."
+        }
+      ]
+    },
+    {
+      "id": "incident:salesloft-drift-oauth-tokens-2025",
+      "slug": "salesloft-drift-oauth-tokens-2025",
+      "title": "Salesloft Drift OAuth tokens used to steal Salesforce data",
+      "kind": "breach",
+      "disclosedOn": "2025-08-26",
+      "occurredOn": null,
+      "summary": "Google Threat Intelligence Group reported that from as early as 8 August through at least 18 August 2025, the actor it tracks as UNC6395 used compromised OAuth tokens for the Salesloft Drift app to export large volumes of data from many Salesforce instances, then searched the data for secrets such as AWS access keys and Snowflake tokens. Salesloft and Salesforce revoked all Drift access and refresh tokens on 20 August. Google later confirmed Drift Email tokens were used on 9 August to read mail in a very small number of Google Workspace accounts.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "saas"
+      ],
+      "uncertaintyNotes": [
+        "How the Drift OAuth tokens were first obtained is not covered by this source.",
+        "Counts of affected organizations vary by outlet and are not recorded here.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-17",
+      "sources": [
+        {
+          "id": "source:gtig-salesloft-drift-2025",
+          "publisher": "Google Threat Intelligence Group",
+          "type": "security_research",
+          "url": "https://cloud.google.com/blog/topics/threat-intelligence/data-theft-salesforce-instances-via-salesloft-drift",
+          "publishedOn": "2025-08-26",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "A sales tool's OAuth tokens let an attacker export Salesforce data from many companies, then mine it for cloud keys.",
+        "discoveryQuestion": "Which third-party apps hold OAuth grants into your CRM, and how fast could you revoke them all?",
+        "avoid": "Don't say Salesforce was breached; Google found the access came through Drift's tokens.",
+        "sellerCaveat": "Google's report doesn't cover how the tokens were first stolen.",
+        "roleNotes": [
+          {
+            "roleId": "ciso",
+            "roleName": "CISO / VP of security",
+            "note": "A trusted integration became the way in, with no phishing of your own staff."
+          },
+          {
+            "roleId": "appsec",
+            "roleName": "AppSec lead",
+            "note": "Keys stored in CRM records were in the export, and the attacker searched it for them."
+          }
+        ],
+        "basedOnSourceIds": [
+          "source:gtig-salesloft-drift-2025"
+        ],
+        "reviewedOn": "2026-11-18"
+      },
+      "industries": [],
+      "marketCategories": []
+    },
+    {
+      "id": "incident:tj-actions-changed-files-2025",
+      "slug": "tj-actions-changed-files-2025",
+      "title": "tj-actions/changed-files GitHub Action compromise",
+      "kind": "supply_chain",
+      "disclosedOn": "2025-03-15",
+      "occurredOn": null,
+      "summary": "The GitHub advisory reports that attackers retroactively pointed multiple tj-actions/changed-files version tags at a malicious commit whose script extracted secrets from runner memory and printed them into GitHub Actions logs.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "github_actions"
+      ],
+      "uncertaintyNotes": [
+        "Reported usage of the Action (about 23,000 repositories) is not a count of confirmed leaks.",
+        "How the maintainer's token was obtained is reported elsewhere but not confirmed in this record.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-17",
+      "sources": [
+        {
+          "id": "source:ghsa-mrrh-fwg8-r2c3",
+          "publisher": "GitHub Advisory Database (via OSV)",
+          "type": "vulnerability_advisory",
+          "url": "https://osv.dev/vulnerability/GHSA-mrrh-fwg8-r2c3",
+          "publishedOn": "2025-03-15",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "A popular GitHub Action had its version tags pointed at a malicious commit that printed CI secrets into workflow logs.",
+        "discoveryQuestion": "Are your third-party Actions pinned to a commit SHA, or to tags that can move?",
+        "avoid": "The 23,000 figure is repositories using the Action, not confirmed leaks.",
+        "sellerCaveat": "About 23,000 repos used it; that's not a count of leaks.",
+        "roleNotes": [
+          {
+            "roleId": "platform",
+            "roleName": "DevOps / platform engineering",
+            "note": "Pinning Actions by tag wasn't enough; a tag can be repointed after you trust it."
+          },
+          {
+            "roleId": "appsec",
+            "roleName": "AppSec lead",
+            "note": "Secrets printed into build logs are a leak path many teams don't watch."
+          }
+        ],
+        "basedOnSourceIds": [
+          "source:ghsa-mrrh-fwg8-r2c3"
+        ],
+        "reviewedOn": "2026-11-17"
+      },
+      "industries": [],
+      "marketCategories": [
+        {
+          "categoryId": "software-supply-chain",
+          "categoryName": "Software supply chain",
+          "rationale": "A compromised third-party GitHub Action delivered malicious code into workflows that used it.",
+          "doesNotImply": "That any product in this category would have prevented it."
+        }
+      ]
+    },
+    {
+      "id": "incident:env-file-cloud-extortion-2024",
+      "slug": "env-file-cloud-extortion-2024",
+      "title": "Cloud extortion campaign using exposed .env files",
+      "kind": "intrusion",
+      "disclosedOn": "2024-08-15",
+      "occurredOn": null,
+      "summary": "Unit 42 reported an extortion campaign in which attackers took AWS IAM access keys from publicly exposed .env files on web applications. The campaign targeted 110,000 domains and yielded over 90,000 unique variables.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "aws"
+      ],
+      "uncertaintyNotes": [
+        "This is a campaign across many organizations. It is typed as an intrusion because the feed's only campaign type is for malware campaigns.",
+        "The actor and the number of extorted organizations are not stated.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-17",
+      "sources": [
+        {
+          "id": "source:unit42-env-extortion-2024",
+          "publisher": "Palo Alto Networks Unit 42",
+          "type": "security_research",
+          "url": "https://unit42.paloaltonetworks.com/large-scale-cloud-extortion-operation/",
+          "publishedOn": "2024-08-15",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "Exposed .env files handed attackers AWS keys. The campaign targeted 110,000 domains and pulled over 90,000 unique variables.",
+        "discoveryQuestion": "Could one of your web apps expose its .env file? Would you notice if those keys got used?",
+        "avoid": "Don't name an actor or a number of extorted organizations; neither is stated.",
+        "sellerCaveat": "The actor and number of extorted orgs aren't stated.",
+        "roleNotes": [
+          {
+            "roleId": "cloud-sec",
+            "roleName": "Cloud security",
+            "note": "Cloud keys in exposed web app config files were the starting point for an extortion campaign."
+          },
+          {
+            "roleId": "platform",
+            "roleName": "DevOps / platform engineering",
+            "note": "Deployment config files holding live keys are something attackers scan the internet for."
+          }
+        ],
+        "basedOnSourceIds": [
+          "source:unit42-env-extortion-2024"
+        ],
+        "reviewedOn": "2026-11-17"
+      },
+      "industries": [],
+      "marketCategories": [
+        {
+          "categoryId": "secrets-detection",
+          "categoryName": "Secrets detection and remediation",
+          "rationale": "Attackers collected cloud access keys from publicly exposed .env files.",
+          "doesNotImply": "That any product in this category would have prevented it."
+        },
+        {
+          "categoryId": "cloud-detection",
+          "categoryName": "Cloud detection and response",
+          "rationale": "The stolen keys were used inside victims' AWS environments, the activity cloud detection tools watch for.",
+          "doesNotImply": "That detection was absent at any victim."
+        }
+      ]
+    },
+    {
+      "id": "incident:pypi-admin-token-docker-image-2024",
+      "slug": "pypi-admin-token-docker-image-2024",
+      "title": "Python admin GitHub token leaked in a Docker Hub image",
+      "kind": "breach",
+      "disclosedOn": "2024-07-08",
+      "occurredOn": null,
+      "summary": "PyPI reported that a GitHub personal access token with admin access to the python, pypi, psf and pypa organizations was found in a compiled .pyc file inside a public Docker Hub image. The token was revoked immediately and no indicators of malicious activity were found.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "pypi",
+        "docker_hub"
+      ],
+      "uncertaintyNotes": [
+        "This is a researcher-found exposure with no reported attacker activity. It is typed as a breach because the feed has no exposure type.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-17",
+      "sources": [
+        {
+          "id": "source:pypi-leaked-admin-token-2024",
+          "publisher": "PyPI",
+          "type": "company_incident_report",
+          "url": "https://blog.pypi.org/posts/2024-07-08-incident-report-leaked-admin-personal-access-token/",
+          "publishedOn": "2024-07-08",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "An admin GitHub token for Python's core organizations was sitting in a compiled .pyc file inside a public Docker image.",
+        "discoveryQuestion": "Do your secret scans cover build artifacts and container images, or just source code?",
+        "avoid": "PyPI found no malicious use; don't describe it as an attack.",
+        "sellerCaveat": "No malicious use was found; this was an exposure.",
+        "roleNotes": [
+          {
+            "roleId": "appsec",
+            "roleName": "AppSec lead",
+            "note": "Secrets can hide in build outputs like compiled files, not just in source code."
+          },
+          {
+            "roleId": "platform",
+            "roleName": "DevOps / platform engineering",
+            "note": "Public container images can carry credentials left over from the build that made them."
+          }
+        ],
+        "basedOnSourceIds": [
+          "source:pypi-leaked-admin-token-2024"
+        ],
+        "reviewedOn": "2026-11-17"
+      },
+      "industries": [],
+      "marketCategories": [
+        {
+          "categoryId": "secrets-detection",
+          "categoryName": "Secrets detection and remediation",
+          "rationale": "An admin token was exposed inside a compiled file in a public container image.",
+          "doesNotImply": "Any malicious use; PyPI found none."
+        }
+      ]
+    },
+    {
+      "id": "incident:cloudflare-unrotated-okta-tokens-2023",
+      "slug": "cloudflare-unrotated-okta-tokens-2023",
+      "title": "Cloudflare intrusion using credentials missed in rotation",
+      "kind": "intrusion",
+      "disclosedOn": "2024-02-01",
+      "occurredOn": null,
+      "summary": "Cloudflare reported that it did not rotate one service token and three service accounts leaked in the October 2023 Okta compromise because it mistakenly believed they were unused. A threat actor used them between 14 and 17 November 2023 to access Cloudflare's Confluence wiki and Jira.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "saas"
+      ],
+      "uncertaintyNotes": [
+        "Attribution is Cloudflare's own assessment; no actor is recorded here.",
+        "The link to the Okta support-system breach has not been reviewed as a relationship.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-17",
+      "sources": [
+        {
+          "id": "source:cloudflare-thanksgiving-2023",
+          "publisher": "Cloudflare",
+          "type": "company_incident_report",
+          "url": "https://blog.cloudflare.com/thanksgiving-2023-security-incident/",
+          "publishedOn": "2024-02-01",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "Four credentials Cloudflare thought were unused, left unrotated after the Okta breach, let an attacker into Confluence and Jira.",
+        "discoveryQuestion": "After a vendor breach, how do you find every credential that needs rotating, even the ones you think are unused?",
+        "avoid": "Don't name an actor; attribution is Cloudflare's own assessment.",
+        "sellerCaveat": "Attribution is Cloudflare's own; don't name an actor.",
+        "roleNotes": [
+          {
+            "roleId": "ciso",
+            "roleName": "CISO / VP of security",
+            "note": "An incomplete credential list turned a vendor's breach into an intrusion at Cloudflare itself."
+          },
+          {
+            "roleId": "platform",
+            "roleName": "DevOps / platform engineering",
+            "note": "Service tokens and service accounts outlive the projects that made them; rotation needs a complete list."
+          }
+        ],
+        "basedOnSourceIds": [
+          "source:cloudflare-thanksgiving-2023"
+        ],
+        "reviewedOn": "2026-11-17"
+      },
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
+      "marketCategories": [
+        {
+          "categoryId": "nhi",
+          "categoryName": "NHI and workload identity",
+          "rationale": "The credentials used were a service token and service accounts that were missed in rotation.",
+          "doesNotImply": "That any product in this category would have prevented it."
+        }
+      ]
+    },
+    {
+      "id": "incident:mercedes-benz-github-token-2024",
+      "slug": "mercedes-benz-github-token-2024",
+      "title": "Mercedes-Benz GitHub Enterprise token exposed in a public repository",
+      "kind": "breach",
+      "disclosedOn": "2024-01-29",
+      "occurredOn": null,
+      "summary": "RedHunt Labs reported finding a GitHub token, leaked by a Mercedes-Benz employee in a personal public repository, that it says gave unrestricted access to source code on the company's internal GitHub Enterprise Server. RedHunt dates the leak to 29 September 2023, found it on 11 January 2024, and says Mercedes confirmed the leak and revoked the token on 24 January 2024.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "github"
+      ],
+      "uncertaintyNotes": [
+        "Typed as breach to match the Toyota T-Connect precedent; this was an exposure with no confirmed misuse.",
+        "Mercedes said in press statements that the token reached a limited number of repositories, not the entire source code; that statement is not in this source.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-17",
+      "sources": [
+        {
+          "id": "source:redhunt-mercedes-github-token-2024",
+          "publisher": "RedHunt Labs",
+          "type": "security_research",
+          "url": "https://redhuntlabs.com/blog/mercedes-benz-source-code-at-risk-github-token-mishap-sparks-major-security-concerns/",
+          "publishedOn": "2024-01-29",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "One employee's GitHub token in a public repo reportedly opened Mercedes' internal code server for about four months.",
+        "discoveryQuestion": "Would you know if a token for your internal Git server showed up in someone's personal repo?",
+        "avoid": "Don't claim misuse; no attacker use was reported.",
+        "sellerCaveat": "Exposure only; researcher and Mercedes disagree on access scope.",
+        "roleNotes": [
+          {
+            "roleId": "appsec",
+            "roleName": "AppSec lead",
+            "note": "Personal repos are outside most org scanning but can hold work tokens."
+          },
+          {
+            "roleId": "platform",
+            "roleName": "DevOps / platform engineering",
+            "note": "Long-lived Git tokens with broad scope turn one leak into full code access."
+          }
+        ],
+        "basedOnSourceIds": [
+          "source:redhunt-mercedes-github-token-2024"
+        ],
+        "reviewedOn": "2026-11-18"
+      },
+      "industries": [],
+      "marketCategories": []
+    },
+    {
+      "id": "incident:okta-support-har-files-2023",
+      "slug": "okta-support-har-files-2023",
+      "title": "Okta support system breach exposing session tokens in HAR files",
+      "kind": "breach",
+      "disclosedOn": "2023-10-20",
+      "occurredOn": null,
+      "summary": "Okta reported that an actor used a service account stored in its customer support system to view files uploaded by 134 customers between 28 September and 17 October 2023. Some were HAR files containing session tokens, which the actor used to hijack the Okta sessions of 5 customers. The service account's username and password had been saved to an employee's personal Google account.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "saas"
+      ],
+      "uncertaintyNotes": [
+        "Okta says the credential was most likely exposed through the employee's personal Google account or personal device; the exact path is not confirmed.",
+        "Downstream incidents at Okta customers, such as Cloudflare's, are separate records; the relationship has not been reviewed.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-17",
+      "sources": [
+        {
+          "id": "source:okta-support-root-cause-2023",
+          "publisher": "Okta Security",
+          "type": "company_incident_report",
+          "url": "https://sec.okta.com/articles/2023/11/unauthorized-access-oktas-support-case-management-system-root-cause/",
+          "publishedOn": "2023-11-03",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "id": "source:okta-harfiles-closure-2024",
+          "publisher": "Okta Security",
+          "type": "company_incident_report",
+          "url": "https://sec.okta.com/articles/harfiles/",
+          "publishedOn": "2024-02-08",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "Okta said an attacker used a support-system service account whose password had been saved to an employee's personal Google account. They read support files from 134 customers and hijacked sessions at 5 of them.",
+        "discoveryQuestion": "When your teams send HAR files or logs to a vendor's support, are session tokens stripped first? Who checks?",
+        "avoid": "Don't name a customer beyond those Okta itself named, and don't present the personal-account exposure path as confirmed.",
+        "sellerCaveat": "How the password leaked isn't confirmed.",
+        "roleNotes": [
+          {
+            "roleId": "ciso",
+            "roleName": "CISO / VP of security",
+            "note": "Files your team uploads to a vendor's support desk can carry live session tokens. Vendor support is part of your attack surface."
+          },
+          {
+            "roleId": "appsec",
+            "roleName": "AppSec lead",
+            "note": "Troubleshooting files like HAR files can carry live session tokens; scrub them before they leave."
+          }
+        ],
+        "basedOnSourceIds": [
+          "source:okta-support-root-cause-2023"
+        ],
+        "reviewedOn": "2026-11-17"
+      },
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
+      "marketCategories": [
+        {
+          "categoryId": "itdr",
+          "categoryName": "Identity threat detection and posture (ITDR, ISPM)",
+          "rationale": "Stolen session tokens were used to hijack customers' authenticated Okta sessions, the identity-layer attack ITDR tools are bought to detect.",
+          "doesNotImply": "That an ITDR tool would have detected these hijacked sessions."
+        },
+        {
+          "categoryId": "secrets-detection",
+          "categoryName": "Secrets detection and remediation",
+          "rationale": "Session tokens sat inside HAR files uploaded to a support system, and a service account password was saved to a personal account.",
+          "doesNotImply": "That scanning those files or accounts would have changed the outcome."
+        }
+      ]
+    },
+    {
+      "id": "incident:microsoft-ai-sas-token-2023",
+      "slug": "microsoft-ai-sas-token-2023",
+      "title": "Microsoft AI research SAS token exposed 38TB",
+      "kind": "breach",
+      "disclosedOn": "2023-09-18",
+      "occurredOn": null,
+      "summary": "Wiz Research reported that a Microsoft AI research GitHub repository shared files through an Azure SAS token scoped to the entire storage account, exposing 38TB of additional private data, including two employees' workstation backups. Wiz's timeline says Microsoft invalidated the token on 24 June 2023.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "azure",
+        "github"
+      ],
+      "uncertaintyNotes": [
+        "This is a researcher-found exposure with no reported attacker activity. It is typed as a breach because the feed has no exposure type.",
+        "Microsoft's own MSRC post is not yet captured as a source.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-17",
+      "sources": [
+        {
+          "id": "source:wiz-microsoft-sas-token-2023",
+          "publisher": "Wiz Research",
+          "type": "security_research",
+          "url": "https://www.wiz.io/blog/38-terabytes-of-private-data-accidentally-exposed-by-microsoft-ai-researchers",
+          "publishedOn": "2023-09-18",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "One over-scoped Azure SAS token in a public GitHub repo exposed 38TB of private Microsoft research data.",
+        "discoveryQuestion": "How do you keep track of the scope and expiry of shared-access tokens your teams create?",
+        "avoid": "Wiz reported no attacker activity; describe it as an exposure, not an attack.",
+        "sellerCaveat": "No attacker activity was reported; this was an exposure.",
+        "roleNotes": [
+          {
+            "roleId": "cloud-sec",
+            "roleName": "Cloud security",
+            "note": "A share token scoped to a whole storage account turned sharing a few files into a much larger exposure."
+          },
+          {
+            "roleId": "appsec",
+            "roleName": "AppSec lead",
+            "note": "Research and data-sharing repos need the same secrets review as production code."
+          }
+        ],
+        "basedOnSourceIds": [
+          "source:wiz-microsoft-sas-token-2023"
+        ],
+        "reviewedOn": "2026-11-17"
+      },
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
+      "marketCategories": [
+        {
+          "categoryId": "secrets-detection",
+          "categoryName": "Secrets detection and remediation",
+          "rationale": "An over-scoped storage token was exposed through a public GitHub repository.",
+          "doesNotImply": "Any attacker activity; none is reported."
+        }
+      ]
+    },
+    {
+      "id": "incident:storm-0558-signing-key-2023",
+      "slug": "storm-0558-signing-key-2023",
+      "title": "Storm-0558 use of an acquired Microsoft signing key",
+      "kind": "intrusion",
+      "disclosedOn": "2023-09-06",
+      "occurredOn": null,
+      "summary": "Microsoft reported that Storm-0558 used an acquired Microsoft account (MSA) consumer signing key to forge tokens and access Outlook Web Access and Outlook.com.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "microsoft_cloud"
+      ],
+      "uncertaintyNotes": [
+        "How the key left the signing environment is unknown. Microsoft's crash-dump explanation is its leading hypothesis, and its 12 March 2024 update says no crash dump containing the key material was found.",
+        "Microsoft's earlier disclosures about Storm-0558 are not captured in this record.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-17",
+      "sources": [
+        {
+          "id": "source:msrc-storm-0558-key-acquisition",
+          "publisher": "Microsoft Security Response Center",
+          "type": "company_incident_report",
+          "url": "https://www.microsoft.com/en-us/msrc/blog/2023/09/results-of-major-technical-investigations-for-storm-0558-key-acquisition",
+          "publishedOn": "2023-09-06",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "Microsoft reported an attacker used an acquired consumer signing key to forge tokens and get into Outlook Web Access and Outlook.com.",
+        "discoveryQuestion": "Where do your signing keys live? How would you know if key material left that environment?",
+        "avoid": "Don't state how the key was stolen; Microsoft has not confirmed it.",
+        "sellerCaveat": "How the key left Microsoft is still unconfirmed.",
+        "roleNotes": [
+          {
+            "roleId": "ciso",
+            "roleName": "CISO / VP of security",
+            "note": "One acquired key was enough to forge access to email accounts. Expect your board to ask who controls keys like that."
+          },
+          {
+            "roleId": "cloud-sec",
+            "roleName": "Cloud security",
+            "note": "Keys that mint tokens need the tightest custody; where they live and who can reach them matters most."
+          }
+        ],
+        "basedOnSourceIds": [
+          "source:msrc-storm-0558-key-acquisition"
+        ],
+        "reviewedOn": "2026-11-17"
+      },
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
+      "marketCategories": []
+    },
+    {
+      "id": "incident:circleci-engineer-laptop-2023",
+      "slug": "circleci-engineer-laptop-2023",
+      "title": "CircleCI breach via malware on an engineer's laptop",
+      "kind": "intrusion",
+      "disclosedOn": "2023-01-04",
+      "occurredOn": null,
+      "summary": "CircleCI reported that malware on an engineer's laptop was used to steal a valid, 2FA-backed SSO session, and recommended that all customers rotate secrets stored in the platform. CircleCI first alerted customers on 4 January 2023 and published its incident report on 12 January.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "ci_cd"
+      ],
+      "uncertaintyNotes": [
+        "Impact on individual customers is not covered by this record.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-17",
+      "sources": [
+        {
+          "id": "source:circleci-incident-report-2023",
+          "publisher": "CircleCI",
+          "type": "company_incident_report",
+          "url": "https://circleci.com/blog/jan-4-2023-incident-report/",
+          "publishedOn": "2023-01-12",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "Malware on one engineer's laptop stole a 2FA-backed SSO session. CircleCI told every customer to rotate their stored secrets.",
+        "discoveryQuestion": "If your CI vendor asked you to rotate every stored secret today, how long would it take?",
+        "avoid": "Don't claim specific customer impact; the source covers the rotation advice, not individual customers.",
+        "sellerCaveat": "Impact on individual customers isn't covered.",
+        "roleNotes": [
+          {
+            "roleId": "ciso",
+            "roleName": "CISO / VP of security",
+            "note": "One engineer's laptop led to every customer being told to rotate secrets; a vendor's incident becomes your rotation project."
+          },
+          {
+            "roleId": "platform",
+            "roleName": "DevOps / platform engineering",
+            "note": "Rotating every secret stored in a CI platform at once is the real cost; you need to know where they all are."
+          }
+        ],
+        "basedOnSourceIds": [
+          "source:circleci-incident-report-2023"
+        ],
+        "reviewedOn": "2026-11-17"
+      },
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
+      "marketCategories": [
+        {
+          "categoryId": "secrets-management",
+          "categoryName": "Secrets management",
+          "rationale": "CircleCI told all customers to rotate secrets stored in its platform, the rotation work secrets management tools are bought for.",
+          "doesNotImply": "That any tool would have avoided the rotation."
+        }
+      ]
+    },
+    {
+      "id": "incident:toyota-tconnect-github-key-2022",
+      "slug": "toyota-tconnect-github-key-2022",
+      "title": "Toyota T-Connect access key exposed on public GitHub",
+      "kind": "breach",
+      "disclosedOn": "2022-10-07",
+      "occurredOn": null,
+      "summary": "Toyota reported that a T-Connect website development contractor uploaded part of the site's source code, including a data server access key, to a public GitHub repository in December 2017. The code stayed public until 15 September 2022 and the key was changed on 17 September 2022. Up to 296,019 customer email addresses and customer management numbers may have been exposed.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "github"
+      ],
+      "uncertaintyNotes": [
+        "Toyota says third-party access could not be confirmed from access history but could not be ruled out; no misuse had been confirmed. It is typed as a breach because the feed has no exposure type.",
+        "Toyota's notice is in Japanese; this summary is a translated paraphrase.",
+        "Hard-coded credentials (CWE-798) is a weakness candidate only.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-17",
+      "sources": [
+        {
+          "id": "source:toyota-tconnect-notice-2022",
+          "publisher": "Toyota Motor Corporation",
+          "type": "company_incident_report",
+          "url": "https://global.toyota/jp/newsroom/corporate/38095972.html",
+          "publishedOn": "2022-10-07",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse. Japanese-language notice; statements are translated paraphrases."
+        }
+      ],
+      "salesNote": {
+        "headline": "Toyota said a contractor left a data server access key in public GitHub code for almost five years, putting up to 296,019 customer records at risk.",
+        "discoveryQuestion": "Do your contractors' repos fall under your secret scanning, or only your own?",
+        "avoid": "Toyota could not confirm the key was used; don't describe it as a confirmed theft.",
+        "sellerCaveat": "Toyota couldn't confirm the key was ever used.",
+        "roleNotes": [
+          {
+            "roleId": "appsec",
+            "roleName": "AppSec lead",
+            "note": "A contractor's public code held a live server key; third-party developers' repos are your exposure too."
+          },
+          {
+            "roleId": "ciso",
+            "roleName": "CISO / VP of security",
+            "note": "A contractor's mistake left customer records at risk for almost five years. Their code is your liability too."
+          }
+        ],
+        "basedOnSourceIds": [
+          "source:toyota-tconnect-notice-2022"
+        ],
+        "reviewedOn": "2026-11-17"
+      },
+      "industries": [
+        {
+          "id": "automotive",
+          "name": "Automotive"
+        }
+      ],
+      "marketCategories": [
+        {
+          "categoryId": "secrets-detection",
+          "categoryName": "Secrets detection and remediation",
+          "rationale": "A data server access key sat in a public GitHub repository for nearly five years.",
+          "doesNotImply": "That the key was used; Toyota could not confirm it."
+        }
+      ]
+    },
+    {
+      "id": "incident:uber-contractor-mfa-push-2022",
+      "slug": "uber-contractor-mfa-push-2022",
+      "title": "Uber intrusion via a compromised contractor account and MFA push approval",
+      "kind": "intrusion",
+      "disclosedOn": "2022-09-15",
+      "occurredOn": null,
+      "summary": "Uber reported that an attacker compromised an external contractor's account, likely using a corporate password bought on the dark web after malware infected the contractor's personal device. The attacker repeatedly triggered two-factor login approval requests until the contractor accepted one, then reached other employee accounts with elevated permissions to tools including G-Suite and Slack, and downloaded some internal Slack messages and invoice-tool information. Uber says it did not see access to production systems, user accounts or sensitive user databases.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "saas"
+      ],
+      "uncertaintyNotes": [
+        "Uber attributes the attack to Lapsus$; as with other vendor attributions in this feed, no actor is recorded.",
+        "Reports that the attacker found a PowerShell script with hard-coded admin credentials for Uber's PAM system come from the attacker's own statements and secondary coverage. Uber's statement does not mention it, so it is not part of this record.",
+        "Distinct from incident:uber-github-aws-key-2016 (different year and method).",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-17",
+      "sources": [
+        {
+          "id": "source:uber-security-update-2022",
+          "publisher": "Uber",
+          "type": "company_incident_report",
+          "url": "https://www.uber.com/us/en/newsroom/security-update/",
+          "publishedOn": "2022-09-15",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "An attacker used a contractor's bought password and kept sending MFA push requests until one got approved. From there they moved into Slack and G-Suite.",
+        "discoveryQuestion": "Do your contractors use push-approval MFA? Would you notice a burst of denied prompts?",
+        "avoid": "Don't repeat the hard-coded PAM credential story; Uber's statement doesn't support it.",
+        "sellerCaveat": "Uber says it saw no access to production systems or user databases.",
+        "roleNotes": [
+          {
+            "roleId": "ciso",
+            "roleName": "CISO / VP of security",
+            "note": "Two-factor gave way to a bought password and repeated push requests. Push-only MFA is worth raising with leadership."
+          },
+          {
+            "roleId": "platform",
+            "roleName": "DevOps / platform engineering",
+            "note": "Once inside, the attacker reached other employees' accounts with elevated permissions; internal access scope matters."
+          }
+        ],
+        "basedOnSourceIds": [
+          "source:uber-security-update-2022"
+        ],
+        "reviewedOn": "2026-11-17"
+      },
+      "industries": [
+        {
+          "id": "transportation",
+          "name": "Transportation"
+        }
+      ],
+      "marketCategories": [
+        {
+          "categoryId": "workforce-identity",
+          "categoryName": "Workforce identity",
+          "rationale": "A contractor's corporate account was taken over through a bought password and an accepted MFA push request.",
+          "doesNotImply": "That a different MFA method would certainly have stopped it."
+        },
+        {
+          "categoryId": "itdr",
+          "categoryName": "Identity threat detection and posture (ITDR, ISPM)",
+          "rationale": "After the first account, the attacker reached other employee accounts with elevated permissions.",
+          "doesNotImply": "That an ITDR tool would have detected this activity."
+        }
+      ]
+    },
+    {
+      "id": "incident:codecov-bash-uploader-2021",
+      "slug": "codecov-bash-uploader-2021",
+      "title": "Codecov Bash Uploader compromise",
+      "kind": "supply_chain",
+      "disclosedOn": "2021-04-15",
+      "occurredOn": null,
+      "summary": "Codecov reported that a credential exposed by an error in its Docker image creation process let an actor modify its Bash Uploader script, which could then export information from customers' CI environments. Codecov says it learned of the change on 1 April 2021.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "ci_cd"
+      ],
+      "uncertaintyNotes": [
+        "Which customers' secrets were actually used is not established.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-17",
+      "sources": [
+        {
+          "id": "source:codecov-bash-uploader-2021",
+          "publisher": "Codecov",
+          "type": "company_incident_report",
+          "url": "https://about.codecov.io/security-update/",
+          "publishedOn": "2021-04-15",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "Codecov said one leaked credential let an attacker change its Bash Uploader and pull data out of customers' CI environments.",
+        "discoveryQuestion": "What third-party scripts run in your CI today, and which secrets can they see?",
+        "avoid": "Don't say which customers lost secrets; that is not established.",
+        "sellerCaveat": "Which customers actually lost secrets is unknown.",
+        "roleNotes": [
+          {
+            "roleId": "platform",
+            "roleName": "DevOps / platform engineering",
+            "note": "A vendor's script ran inside customers' pipelines, so anything those pipelines could read was in reach."
+          },
+          {
+            "roleId": "appsec",
+            "roleName": "AppSec lead",
+            "note": "One leaked build credential reached into other companies' CI; build-time secrets need the same care as code."
+          }
+        ],
+        "basedOnSourceIds": [
+          "source:codecov-bash-uploader-2021"
+        ],
+        "reviewedOn": "2026-11-17"
+      },
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
+      "marketCategories": [
+        {
+          "categoryId": "software-supply-chain",
+          "categoryName": "Software supply chain",
+          "rationale": "A modified third-party script ran inside customers' CI pipelines, the supplier risk software supply chain tools address.",
+          "doesNotImply": "That any product in this category would have prevented it."
+        }
+      ]
+    },
+    {
+      "id": "incident:cisa-solarwinds-2020",
+      "slug": "cisa-solarwinds-2020",
+      "title": "SolarWinds Orion supply-chain compromise",
+      "kind": "supply_chain",
+      "disclosedOn": "2020-12-13",
+      "occurredOn": null,
+      "summary": "CISA reported active exploitation involving affected SolarWinds Orion software versions.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "enterprise_software"
+      ],
+      "uncertaintyNotes": [
+        "Exact occurrence date, complete victim list and attack-technique links are outside this seed's verified scope."
+      ],
+      "lastReviewedOn": "2026-10-10",
+      "sources": [
+        {
+          "id": "source:cisa-solarwinds-2020",
+          "publisher": "CISA",
+          "type": "government_alert",
+          "url": "https://www.cisa.gov/news-events/alerts/2020/12/13/active-exploitation-solarwinds-software",
+          "publishedOn": "2020-12-13",
+          "rightsNote": "Store citations and limited summaries; check CISA reuse terms before redistribution."
+        }
+      ],
+      "salesNote": {
+        "headline": "CISA reported attackers actively exploiting affected versions of SolarWinds Orion.",
+        "discoveryQuestion": "How does your team decide which vendor updates to trust? Who owns that check?",
+        "avoid": "Do not claim any product would have prevented it. The victim list and attack techniques are outside this record's verified scope.",
+        "sellerCaveat": "Older incident (2020); victims and methods aren't covered here.",
+        "roleNotes": [],
+        "basedOnSourceIds": [
+          "source:cisa-solarwinds-2020"
+        ],
+        "reviewedOn": "2026-11-17"
+      },
+      "industries": [
+        {
+          "id": "technology",
+          "name": "Technology"
+        }
+      ],
+      "marketCategories": [
+        {
+          "categoryId": "software-supply-chain",
+          "categoryName": "Software supply chain",
+          "rationale": "CISA reported active exploitation involving affected versions of a vendor's software, the risk of trusting third-party software that software supply chain tools address.",
+          "doesNotImply": "How the affected versions were altered, which is outside this record's verified scope, or that any product would have prevented it."
+        },
+        {
+          "categoryId": "third-party-risk",
+          "categoryName": "Third-party risk",
+          "rationale": "The exploited software came from a third-party vendor, which is the exposure third-party risk programs assess.",
+          "doesNotImply": "That a vendor risk assessment would have revealed this compromise."
+        }
+      ]
+    },
+    {
+      "id": "incident:uber-github-aws-key-2016",
+      "slug": "uber-github-aws-key-2016",
+      "title": "Uber S3 breach via an AWS key in a private GitHub repository",
+      "kind": "breach",
+      "disclosedOn": "2017-11-21",
+      "occurredOn": null,
+      "summary": "The FTC states that between 13 October and 15 November 2016 intruders accessed Uber's Amazon S3 datastore using an AWS access key posted in a private GitHub repository. The intruders reached the repository with passwords exposed in other breaches, and Uber did not require multi-factor authentication for GitHub. Uber disclosed the breach on 21 November 2017.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "aws",
+        "github"
+      ],
+      "uncertaintyNotes": [
+        "Hard-coded credentials (CWE-798) is a weakness candidate only.",
+        "The captured FTC document does not show its own publication date.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-17",
+      "sources": [
+        {
+          "id": "source:ftc-uber-revised-analysis",
+          "publisher": "U.S. Federal Trade Commission",
+          "type": "regulator_filing",
+          "url": "https://www.ftc.gov/system/files/documents/cases/1523054_uber_technologies_revised_analysis.pdf",
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": {
+        "headline": "Per the FTC, intruders used reused passwords to get into a private GitHub repo, found an AWS key and reached Uber's S3 data.",
+        "discoveryQuestion": "Do you scan private repos for cloud keys? Is MFA required on your code host?",
+        "avoid": "This happened in 2016; don't present it as recent.",
+        "sellerCaveat": "This was 2016; use it as a lesson, not news.",
+        "roleNotes": [
+          {
+            "roleId": "appsec",
+            "roleName": "AppSec lead",
+            "note": "A key in a private repo is still exposed the moment someone gets into the repo."
+          },
+          {
+            "roleId": "cloud-sec",
+            "roleName": "Cloud security",
+            "note": "An AWS key in code turned access to a code repository into access to cloud data."
+          }
+        ],
+        "basedOnSourceIds": [
+          "source:ftc-uber-revised-analysis"
+        ],
+        "reviewedOn": "2026-11-17"
+      },
+      "industries": [
+        {
+          "id": "transportation",
+          "name": "Transportation"
+        }
+      ],
+      "marketCategories": [
+        {
+          "categoryId": "secrets-detection",
+          "categoryName": "Secrets detection and remediation",
+          "rationale": "An AWS access key stored in a private GitHub repository gave the intruders access to S3.",
+          "doesNotImply": "That scanning was absent, or that it would have changed the outcome."
+        }
+      ]
+    }
+  ]
+}

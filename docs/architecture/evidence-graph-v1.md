@@ -7,7 +7,9 @@ Owner: repository maintainer. Next review: 2027-02-08, or sooner if the identity
 
 `lib/evidence-graph` projects the validated Zod catalog into one read-only graph. The first slice is Identity, secrets, and non-human identity. Node and edge ids are deterministic functions of catalog ids. The graph is not a second fact store, a Neo4j database, or a background job.
 
-Contract version: `1.2.0`.
+Contract version: `1.3.0`.
+
+1.3.0 (additive): `question` node kind with `qualifies` and `probes` predicates, in the market-map slice only. See `docs/buyer-context-graph.md`.
 
 1.2.0 (additive): buyer-context node kinds (`pain`, `objection`, `alternative`, `trigger`, `segment`), their predicates, the `practitioner_published` basis, and a `market-map` slice (`?slice=market-map`). See `docs/buyer-context-graph.md`. The identity slice is unchanged.
 

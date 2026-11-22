@@ -74,11 +74,23 @@ describe("gap report and context search on the evidence graph", () => {
     expect(gaps.filter((gap) => gap.kind === "graph-problem")).toEqual([]);
   });
 
-  it("flags core categories without alternatives and leaves covered ones alone", () => {
-    const missing = new Set(gaps.filter((gap) => gap.kind === "category-no-alternatives").map((gap) => gap.subjectId));
-    expect(missing.has("secrets-detection")).toBe(false);
-    expect(missing.size).toBeGreaterThan(0);
+  it("has alternatives for every core category, objections for every seat, and a sourced pain for every seat", () => {
+    expect(gaps.filter((gap) => gap.kind === "category-no-alternatives")).toEqual([]);
+    expect(gaps.filter((gap) => gap.kind === "seat-no-objections")).toEqual([]);
+    expect(gaps.filter((gap) => gap.kind === "seat-no-sourced-pain")).toEqual([]);
     expect(gapSummary(gaps).reduce((total, group) => total + group.count, 0)).toBe(gaps.length);
+  });
+
+  it("has qualification questions for every seat and segment, with good- and bad-fit framing", () => {
+    const seatIds = marketMapGraph.nodes.filter((node) => node.kind === "persona").map((node) => node.catalogId);
+    for (const id of seatIds) {
+      const questions = catalog.qualificationQuestions.filter((q) => q.appliesTo.kind === "seat" && q.appliesTo.id === id);
+      expect(questions.length, id).toBeGreaterThanOrEqual(3);
+    }
+    for (const overlay of catalog.segmentOverlays) {
+      expect(catalog.qualificationQuestions.some((q) => q.appliesTo.kind === "segment" && q.appliesTo.id === overlay.id), overlay.id).toBe(true);
+    }
+    expect(catalog.qualificationQuestions.some((q) => q.fit === "bad")).toBe(true);
   });
 
   it("finds concepts with their evidence-labeled neighborhood", () => {
@@ -87,5 +99,27 @@ describe("gap report and context search on the evidence graph", () => {
     expect(hits[0].related.every((item) => typeof item.evidenceBasis === "string")).toBe(true);
     expect(contextSearch("platform", { types: ["objection"] }).every((hit) => hit.node.kind === "objection")).toBe(true);
     expect(contextSearch("   ")).toEqual([]);
+  });
+
+  it("has at least one vendor for every category, without product cells in gated categories", () => {
+    expect(gapReport().filter((gap) => gap.kind === "category-no-vendors")).toEqual([]);
+    for (const id of ["digital-risk-protection", "runtime-validated-application-security", "ctem"]) {
+      expect(catalog.products.some((product) => product.primaryCategoryIds.includes(id)), id).toBe(false);
+    }
+  });
+
+  it("puts qualification questions in the market-map slice and context search", () => {
+    const questions = marketMapGraph.nodes.filter((node) => node.kind === "question");
+    expect(questions.length).toBeGreaterThan(100);
+    const qualifies = marketMapGraph.edges.filter((edge) => edge.predicate === "qualifies");
+    expect(qualifies.some((edge) => edge.toId === graphNodeId("persona", "cloud-sec"))).toBe(true);
+    expect(qualifies.some((edge) => edge.toId.startsWith("segment:"))).toBe(true);
+    expect(qualifies.every((edge) => edge.assertsProductCapability === false)).toBe(true);
+    expect(qualifies.every((edge) => edge.evidenceBasis === "hypothesis" ? edge.sourceIds.length === 0 : true)).toBe(true);
+
+    const hits = contextSearch("cloud security", { types: ["question"], limit: 5 });
+    expect(hits.length).toBeGreaterThan(0);
+    expect(hits.every((hit) => hit.node.kind === "question")).toBe(true);
+    expect(hits[0].related.some((rel) => rel.predicate === "qualifies")).toBe(true);
   });
 });

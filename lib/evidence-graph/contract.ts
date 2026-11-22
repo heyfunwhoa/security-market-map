@@ -5,7 +5,7 @@ import { sourceTypeSchema } from "../schema";
  * Read-only evidence graph contract v1.
  * A projection of the validated catalog. It does not store a second set of facts.
  */
-export const EVIDENCE_GRAPH_VERSION = "1.2.0" as const;
+export const EVIDENCE_GRAPH_VERSION = "1.3.0" as const;
 
 export const EXPANSION_LIMITS = {
   defaultDepth: 1,
@@ -34,6 +34,8 @@ export const nodeKindSchema = z.enum([
   "alternative",
   "trigger",
   "segment",
+  // 1.3.0 qualification questions for a seat or segment
+  "question",
 ]);
 
 export const edgePredicateSchema = z.enum([
@@ -63,6 +65,9 @@ export const edgePredicateSchema = z.enum([
   "involves",
   "requires",
   "elevates",
+  // 1.3.0
+  "qualifies",
+  "probes",
 ]);
 
 export const evidenceBasisSchema = z.enum([
@@ -97,6 +102,7 @@ export const nodeKindLabels: Record<z.infer<typeof nodeKindSchema>, string> = {
   alternative: "Alternative",
   trigger: "Buying trigger",
   segment: "Segment",
+  question: "Qualification question",
 };
 
 export const predicateLabels: Record<z.infer<typeof edgePredicateSchema>, string> = {
@@ -125,6 +131,8 @@ export const predicateLabels: Record<z.infer<typeof edgePredicateSchema>, string
   involves: "Involves",
   requires: "Requires",
   elevates: "Elevates",
+  qualifies: "Qualifies",
+  probes: "Probes category",
 };
 
 export const evidenceBasisLabels: Record<z.infer<typeof evidenceBasisSchema>, string> = {

@@ -401,6 +401,19 @@ export const mandatedSeatSchema = z.object({
 });
 
 /** How a company type changes the map: which seats a rule requires, which seats gain weight, what triggers appear. */
+/**
+ * An identity control a law or standard requires for a segment, linked to the identity categories
+ * that address it. `rule` is the citation; `requirement` paraphrases the rule text. A requirement
+ * names a control, not a product: no vendor or category is "compliant" because it is linked here.
+ */
+export const identityRequirementSchema = z.object({
+  id: z.string().min(1),
+  requirement: z.string().min(1).max(320),
+  rule: z.string().min(1),
+  categoryIds: z.array(z.string().min(1)).min(1),
+  sourceIds: z.array(z.string().min(1)).min(1),
+});
+
 export const segmentOverlaySchema = z.object({
   id: z.string().min(1),
   name: z.string().min(1),
@@ -410,6 +423,7 @@ export const segmentOverlaySchema = z.object({
   elevatedPersonaIds: z.array(z.string().min(1)).default([]),
   addedTriggers: z.array(z.string().min(1)).default([]),
   frameworks: z.array(z.string().min(1)).default([]),
+  identityRequirements: z.array(identityRequirementSchema).default([]),
   notes: z.string().min(1).optional(),
   evidence: personaEvidenceSchema,
   sourceIds: z.array(z.string().min(1)).default([]),
@@ -711,3 +725,48 @@ export const buyingTriggerSchema = z.object({
 });
 export type BuyingTrigger = z.infer<typeof buyingTriggerSchema>;
 export type BuyingTriggerInput = z.input<typeof buyingTriggerSchema>;
+
+/**
+ * Weighted yes/no questions that help decide whether a seat or segment is a good fit for a
+ * conversation. Vendor-neutral: they qualify the buyer's problem, never a product.
+ * A "yes" answer means what `fit` says: good fit or bad fit.
+ */
+export const qualificationQuestionSchema = z.object({
+  id: z.string().regex(/^qq-[a-z0-9-]+$/),
+  appliesTo: z.object({ kind: z.enum(["seat", "segment"]), id: z.string().min(1) }),
+  question: z.string().min(1).max(200),
+  weight: z.enum(["high", "medium", "low"]),
+  fit: z.enum(["good", "bad"]),
+  /** What a "yes" usually looks like in conversation or public signals. */
+  lookFor: z.string().min(1).max(240),
+  categoryIds: z.array(z.string().min(1)).default([]),
+  evidence: personaEvidenceSchema,
+  sourceIds: z.array(z.string().min(1)).default([]),
+});
+export type QualificationQuestion = z.infer<typeof qualificationQuestionSchema>;
+export type QualificationQuestionInput = z.input<typeof qualificationQuestionSchema>;
+
+/**
+ * Which seats a vendor says it sells to in one category. Built from the vendor's own pages
+ * (or its own press or marketplace listing), mapped editorially to seat ids. This is the
+ * vendor's audience, not proof of who buys.
+ */
+export const vendorSeatTargetingSchema = z.object({
+  vendorId: z.string().min(1),
+  categoryId: z.string().min(1),
+  /** Seats the page is written for. These are counted. */
+  seatIds: z.array(z.string().min(1)).min(1),
+  /** Seats the page only mentions in passing. Shown, never counted. */
+  mentionedSeatIds: z.array(z.string().min(1)).default([]),
+  /** Why this vendor was picked for the sample: leader, specialist, challenger or open-source-led. */
+  selectionReason: z.enum(["leader", "specialist", "challenger", "open-source-led"]).optional(),
+  /** The audience as the vendor words it, paraphrased. */
+  audience: z.string().min(1).max(200),
+  urls: z.array(z.string().url()).min(1),
+  basis: z.enum(["vendor-page", "vendor-docs", "vendor-press", "vendor-marketplace-listing"]),
+  /** How the page was checked: a search result excerpt, or the full page. */
+  inspection: z.enum(["search-excerpt", "page-read"]),
+  checkedAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+});
+export type VendorSeatTargeting = z.infer<typeof vendorSeatTargetingSchema>;
+export type VendorSeatTargetingInput = z.input<typeof vendorSeatTargetingSchema>;

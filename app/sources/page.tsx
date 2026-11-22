@@ -66,8 +66,9 @@ export default async function SourcesPage() {
       <section className="mt-10">
         <h2 className="text-2xl">Stale evidence</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          Fast sources go stale after 30 days, moderate after 120, stable after 365. Today is{" "}
-          {formatDate(catalog.asOf)}.
+          Fast sources go stale 30 days after they were retrieved, moderate after 120, stable after 365. Ages are
+          measured against the catalog date, {formatDate(catalog.asOf)}, not today&apos;s date: this page is built
+          ahead of time and does not re-check sources.
         </p>
         <ul className="mt-3 space-y-2 text-sm">
           {stale.map((source) => (

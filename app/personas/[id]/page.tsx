@@ -66,6 +66,7 @@ export default async function PersonaPage({ params }: { params: Promise<{ id: st
   const sourceById = new Map(catalog.sources.map((source) => [source.id, source]));
   const seatObjections = catalog.objections.filter((objection) => objection.seatIds.includes(seat.id));
   const seatTriggers = catalog.buyingTriggers.filter((trigger) => trigger.seatIds.includes(seat.id));
+  const seatQuestions = catalog.qualificationQuestions.filter((question) => question.appliesTo.kind === "seat" && question.appliesTo.id === seat.id);
   const sourceIds = [...new Set([...profile.sourceIds, ...profile.pains.flatMap((pain) => pain.sourceIds)])];
 
   return (
@@ -142,6 +143,25 @@ export default async function PersonaPage({ params }: { params: Promise<{ id: st
                     <p className="mt-1">Reframe to test: {objection.reframe}</p>
                     <p className="mt-1">Ask: {objection.qualifyingQuestions.join(" ")}</p>
                     <p className="mt-1 text-muted-foreground">{EVIDENCE_LABEL[objection.evidence]}</p>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
+
+          {seatQuestions.length > 0 ? (
+            <section aria-labelledby="qualification">
+              <h2 id="qualification" className="text-2xl">Qualification questions</h2>
+              <ul className="mt-2 space-y-3">
+                {seatQuestions.map((question) => (
+                  <li key={question.id} className="rounded-lg border border-border p-3">
+                    <p className="font-medium">{question.question}</p>
+                    <p className="mt-1">
+                      {question.fit === "good" ? "Good fit if" : "Poor fit if"}: {question.lookFor}
+                    </p>
+                    <p className="mt-1 text-muted-foreground">
+                      {humanize(question.weight)} weight · {EVIDENCE_LABEL[question.evidence]}
+                    </p>
                   </li>
                 ))}
               </ul>

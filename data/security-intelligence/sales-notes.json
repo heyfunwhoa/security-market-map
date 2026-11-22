@@ -1,0 +1,881 @@
+[
+  {
+    "incidentId": "incident:cisa-shai-hulud-2025",
+    "status": "reviewed",
+    "headline": "CISA flagged a self-spreading npm attack that tried to steal credentials.",
+    "discoveryQuestion": "Who on your team installs npm packages? And how are your dev and CI tokens scoped and rotated?",
+    "avoid": "Do not name affected packages or suggest the account was compromised. Package-level impact is not verified here.",
+    "sellerCaveat": "Affected packages aren't verified; don't imply this account was hit.",
+    "roleNotes": [
+      {
+        "roleId": "appsec",
+        "note": "A dependency that spreads itself makes package intake and install scripts part of the attack surface."
+      },
+      {
+        "roleId": "platform",
+        "note": "Dev and CI tokens on build machines are exactly what this kind of attack goes after."
+      }
+    ],
+    "basedOnSourceIds": [
+      "source:cisa-shai-hulud-alert"
+    ],
+    "draftedOn": "2026-11-14",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "incidentId": "incident:cisa-solarwinds-2020",
+    "status": "reviewed",
+    "headline": "CISA reported attackers actively exploiting affected versions of SolarWinds Orion.",
+    "discoveryQuestion": "How does your team decide which vendor updates to trust? Who owns that check?",
+    "avoid": "Do not claim any product would have prevented it. The victim list and attack techniques are outside this record's verified scope.",
+    "sellerCaveat": "Older incident (2020); victims and methods aren't covered here.",
+    "basedOnSourceIds": [
+      "source:cisa-solarwinds-2020"
+    ],
+    "draftedOn": "2026-11-14",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "incidentId": "incident:codecov-bash-uploader-2021",
+    "status": "reviewed",
+    "headline": "Codecov said one leaked credential let an attacker change its Bash Uploader and pull data out of customers' CI environments.",
+    "discoveryQuestion": "What third-party scripts run in your CI today, and which secrets can they see?",
+    "avoid": "Don't say which customers lost secrets; that is not established.",
+    "sellerCaveat": "Which customers actually lost secrets is unknown.",
+    "roleNotes": [
+      {
+        "roleId": "platform",
+        "note": "A vendor's script ran inside customers' pipelines, so anything those pipelines could read was in reach."
+      },
+      {
+        "roleId": "appsec",
+        "note": "One leaked build credential reached into other companies' CI; build-time secrets need the same care as code."
+      }
+    ],
+    "basedOnSourceIds": [
+      "source:codecov-bash-uploader-2021"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "incidentId": "incident:tj-actions-changed-files-2025",
+    "status": "reviewed",
+    "headline": "A popular GitHub Action had its version tags pointed at a malicious commit that printed CI secrets into workflow logs.",
+    "discoveryQuestion": "Are your third-party Actions pinned to a commit SHA, or to tags that can move?",
+    "avoid": "The 23,000 figure is repositories using the Action, not confirmed leaks.",
+    "sellerCaveat": "About 23,000 repos used it; that's not a count of leaks.",
+    "roleNotes": [
+      {
+        "roleId": "platform",
+        "note": "Pinning Actions by tag wasn't enough; a tag can be repointed after you trust it."
+      },
+      {
+        "roleId": "appsec",
+        "note": "Secrets printed into build logs are a leak path many teams don't watch."
+      }
+    ],
+    "basedOnSourceIds": [
+      "source:ghsa-mrrh-fwg8-r2c3"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "incidentId": "incident:nx-s1ngularity-2025",
+    "status": "reviewed",
+    "headline": "Malicious Nx packages turned developers' own AI coding tools into secret hunters. Wiz saw over a thousand valid GitHub tokens leak.",
+    "discoveryQuestion": "Which AI coding tools run on your developers' machines? What can they read?",
+    "avoid": "Don't present the initial token-theft route as confirmed.",
+    "sellerCaveat": "How the publishing token was first stolen isn't confirmed.",
+    "roleNotes": [
+      {
+        "roleId": "appsec",
+        "note": "Malicious packages now use the developer's own AI tools to search the machine for secrets."
+      },
+      {
+        "roleId": "platform",
+        "note": "Tokens and SSH keys sitting on developer laptops are the prize; how long they stay valid matters."
+      }
+    ],
+    "basedOnSourceIds": [
+      "source:wiz-s1ngularity-2025"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "incidentId": "incident:circleci-engineer-laptop-2023",
+    "status": "reviewed",
+    "headline": "Malware on one engineer's laptop stole a 2FA-backed SSO session. CircleCI told every customer to rotate their stored secrets.",
+    "discoveryQuestion": "If your CI vendor asked you to rotate every stored secret today, how long would it take?",
+    "avoid": "Don't claim specific customer impact; the source covers the rotation advice, not individual customers.",
+    "sellerCaveat": "Impact on individual customers isn't covered.",
+    "roleNotes": [
+      {
+        "roleId": "ciso",
+        "note": "One engineer's laptop led to every customer being told to rotate secrets; a vendor's incident becomes your rotation project."
+      },
+      {
+        "roleId": "platform",
+        "note": "Rotating every secret stored in a CI platform at once is the real cost; you need to know where they all are."
+      }
+    ],
+    "basedOnSourceIds": [
+      "source:circleci-incident-report-2023"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "incidentId": "incident:cloudflare-unrotated-okta-tokens-2023",
+    "status": "reviewed",
+    "headline": "Four credentials Cloudflare thought were unused, left unrotated after the Okta breach, let an attacker into Confluence and Jira.",
+    "discoveryQuestion": "After a vendor breach, how do you find every credential that needs rotating, even the ones you think are unused?",
+    "avoid": "Don't name an actor; attribution is Cloudflare's own assessment.",
+    "sellerCaveat": "Attribution is Cloudflare's own; don't name an actor.",
+    "roleNotes": [
+      {
+        "roleId": "ciso",
+        "note": "An incomplete credential list turned a vendor's breach into an intrusion at Cloudflare itself."
+      },
+      {
+        "roleId": "platform",
+        "note": "Service tokens and service accounts outlive the projects that made them; rotation needs a complete list."
+      }
+    ],
+    "basedOnSourceIds": [
+      "source:cloudflare-thanksgiving-2023"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "incidentId": "incident:uber-github-aws-key-2016",
+    "status": "reviewed",
+    "headline": "Per the FTC, intruders used reused passwords to get into a private GitHub repo, found an AWS key and reached Uber's S3 data.",
+    "discoveryQuestion": "Do you scan private repos for cloud keys? Is MFA required on your code host?",
+    "avoid": "This happened in 2016; don't present it as recent.",
+    "sellerCaveat": "This was 2016; use it as a lesson, not news.",
+    "roleNotes": [
+      {
+        "roleId": "appsec",
+        "note": "A key in a private repo is still exposed the moment someone gets into the repo."
+      },
+      {
+        "roleId": "cloud-sec",
+        "note": "An AWS key in code turned access to a code repository into access to cloud data."
+      }
+    ],
+    "basedOnSourceIds": [
+      "source:ftc-uber-revised-analysis"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "incidentId": "incident:storm-0558-signing-key-2023",
+    "status": "reviewed",
+    "headline": "Microsoft reported an attacker used an acquired consumer signing key to forge tokens and get into Outlook Web Access and Outlook.com.",
+    "discoveryQuestion": "Where do your signing keys live? How would you know if key material left that environment?",
+    "avoid": "Don't state how the key was stolen; Microsoft has not confirmed it.",
+    "sellerCaveat": "How the key left Microsoft is still unconfirmed.",
+    "roleNotes": [
+      {
+        "roleId": "ciso",
+        "note": "One acquired key was enough to forge access to email accounts. Expect your board to ask who controls keys like that."
+      },
+      {
+        "roleId": "cloud-sec",
+        "note": "Keys that mint tokens need the tightest custody; where they live and who can reach them matters most."
+      }
+    ],
+    "basedOnSourceIds": [
+      "source:msrc-storm-0558-key-acquisition"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "incidentId": "incident:pypi-admin-token-docker-image-2024",
+    "status": "reviewed",
+    "headline": "An admin GitHub token for Python's core organizations was sitting in a compiled .pyc file inside a public Docker image.",
+    "discoveryQuestion": "Do your secret scans cover build artifacts and container images, or just source code?",
+    "avoid": "PyPI found no malicious use; don't describe it as an attack.",
+    "sellerCaveat": "No malicious use was found; this was an exposure.",
+    "roleNotes": [
+      {
+        "roleId": "appsec",
+        "note": "Secrets can hide in build outputs like compiled files, not just in source code."
+      },
+      {
+        "roleId": "platform",
+        "note": "Public container images can carry credentials left over from the build that made them."
+      }
+    ],
+    "basedOnSourceIds": [
+      "source:pypi-leaked-admin-token-2024"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "incidentId": "incident:microsoft-ai-sas-token-2023",
+    "status": "reviewed",
+    "headline": "One over-scoped Azure SAS token in a public GitHub repo exposed 38TB of private Microsoft research data.",
+    "discoveryQuestion": "How do you keep track of the scope and expiry of shared-access tokens your teams create?",
+    "avoid": "Wiz reported no attacker activity; describe it as an exposure, not an attack.",
+    "sellerCaveat": "No attacker activity was reported; this was an exposure.",
+    "roleNotes": [
+      {
+        "roleId": "cloud-sec",
+        "note": "A share token scoped to a whole storage account turned sharing a few files into a much larger exposure."
+      },
+      {
+        "roleId": "appsec",
+        "note": "Research and data-sharing repos need the same secrets review as production code."
+      }
+    ],
+    "basedOnSourceIds": [
+      "source:wiz-microsoft-sas-token-2023"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "incidentId": "incident:env-file-cloud-extortion-2024",
+    "status": "reviewed",
+    "headline": "Exposed .env files handed attackers AWS keys. The campaign targeted 110,000 domains and pulled over 90,000 unique variables.",
+    "discoveryQuestion": "Could one of your web apps expose its .env file? Would you notice if those keys got used?",
+    "avoid": "Don't name an actor or a number of extorted organizations; neither is stated.",
+    "sellerCaveat": "The actor and number of extorted orgs aren't stated.",
+    "roleNotes": [
+      {
+        "roleId": "cloud-sec",
+        "note": "Cloud keys in exposed web app config files were the starting point for an extortion campaign."
+      },
+      {
+        "roleId": "platform",
+        "note": "Deployment config files holding live keys are something attackers scan the internet for."
+      }
+    ],
+    "basedOnSourceIds": [
+      "source:unit42-env-extortion-2024"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "incidentId": "incident:okta-support-har-files-2023",
+    "status": "reviewed",
+    "headline": "Okta said an attacker used a support-system service account whose password had been saved to an employee's personal Google account. They read support files from 134 customers and hijacked sessions at 5 of them.",
+    "discoveryQuestion": "When your teams send HAR files or logs to a vendor's support, are session tokens stripped first? Who checks?",
+    "avoid": "Don't name a customer beyond those Okta itself named, and don't present the personal-account exposure path as confirmed.",
+    "sellerCaveat": "How the password leaked isn't confirmed.",
+    "roleNotes": [
+      {
+        "roleId": "ciso",
+        "note": "Files your team uploads to a vendor's support desk can carry live session tokens. Vendor support is part of your attack surface."
+      },
+      {
+        "roleId": "appsec",
+        "note": "Troubleshooting files like HAR files can carry live session tokens; scrub them before they leave."
+      }
+    ],
+    "basedOnSourceIds": [
+      "source:okta-support-root-cause-2023"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "incidentId": "incident:toyota-tconnect-github-key-2022",
+    "status": "reviewed",
+    "headline": "Toyota said a contractor left a data server access key in public GitHub code for almost five years, putting up to 296,019 customer records at risk.",
+    "discoveryQuestion": "Do your contractors' repos fall under your secret scanning, or only your own?",
+    "avoid": "Toyota could not confirm the key was used; don't describe it as a confirmed theft.",
+    "sellerCaveat": "Toyota couldn't confirm the key was ever used.",
+    "roleNotes": [
+      {
+        "roleId": "appsec",
+        "note": "A contractor's public code held a live server key; third-party developers' repos are your exposure too."
+      },
+      {
+        "roleId": "ciso",
+        "note": "A contractor's mistake left customer records at risk for almost five years. Their code is your liability too."
+      }
+    ],
+    "basedOnSourceIds": [
+      "source:toyota-tconnect-notice-2022"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "incidentId": "incident:uber-contractor-mfa-push-2022",
+    "status": "reviewed",
+    "headline": "An attacker used a contractor's bought password and kept sending MFA push requests until one got approved. From there they moved into Slack and G-Suite.",
+    "discoveryQuestion": "Do your contractors use push-approval MFA? Would you notice a burst of denied prompts?",
+    "avoid": "Don't repeat the hard-coded PAM credential story; Uber's statement doesn't support it.",
+    "sellerCaveat": "Uber says it saw no access to production systems or user databases.",
+    "roleNotes": [
+      {
+        "roleId": "ciso",
+        "note": "Two-factor gave way to a bought password and repeated push requests. Push-only MFA is worth raising with leadership."
+      },
+      {
+        "roleId": "platform",
+        "note": "Once inside, the attacker reached other employees' accounts with elevated permissions; internal access scope matters."
+      }
+    ],
+    "basedOnSourceIds": [
+      "source:uber-security-update-2022"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "incidentId": "incident:cl-sta-1238-cairn-ai-intrusions-2026",
+    "status": "reviewed",
+    "headline": "Unit 42 reported that attackers ran an open-source AI pentest framework through 25 operations against at least 19 organizations, and got in at 10.",
+    "discoveryQuestion": "If an automated agent scanned you today, what would it find first? Sprayable logins, exposed APIs, old CVEs?",
+    "avoid": "Don't name victims or state attribution as fact; Unit 42's assessment is moderate confidence.",
+    "sellerCaveat": "Victims are unnamed; the China link is a moderate-confidence assessment.",
+    "roleNotes": [
+      {
+        "roleId": "ciso",
+        "note": "One tracked actor used AI tooling to work through many organizations at once, so expect attempts in volume."
+      },
+      {
+        "roleId": "appsec",
+        "note": "Automated attack agents work through internet-facing weaknesses at volume; external exposure is the first place to look."
+      }
+    ],
+    "basedOnSourceIds": [
+      "source:unit42-cairn-ai-intrusions-2026"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "incidentId": "incident:west-pharmaceutical-intrusion-2026",
+    "status": "reviewed",
+    "headline": "West Pharmaceutical's SEC filing reported data theft and encrypted systems that disrupted its operations worldwide.",
+    "discoveryQuestion": "If key systems were encrypted tomorrow, which operations would stop? How fast could you restore them?",
+    "avoid": "Don't name a ransomware group or give impact figures; the filing names neither.",
+    "sellerCaveat": "The filing names no attacker and no impact figures.",
+    "roleNotes": [
+      {
+        "roleId": "ciso",
+        "note": "West had to report this in an SEC filing. For public companies, incident disclosure is now part of the CISO's job."
+      },
+      {
+        "roleId": "platform",
+        "note": "Encrypted systems disrupted operations worldwide; recovery time is the operational question."
+      }
+    ],
+    "basedOnSourceIds": [
+      "source:sec-8k-west-pharmaceutical-2026"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "incidentId": "incident:binance-wallet-signing-2026",
+    "status": "reviewed",
+    "headline": "Binance said attackers reached its internal wallet-signing service; press summaries of its report say a deployment token on an engineer's laptop was a key step.",
+    "discoveryQuestion": "Where do deployment and CI tokens live on your engineers' laptops, and would you notice one being used from the wrong machine?",
+    "avoid": "Don't state a dollar figure or name an attacker; the report is preliminary and the amounts differ across reports.",
+    "sellerCaveat": "Preliminary report; amounts and attribution aren't confirmed.",
+    "basedOnSourceIds": [
+      "source:binance-incident-report-2026",
+      "source:thehackernews-binance-2026"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-18"
+  },
+  {
+    "incidentId": "incident:novo-nordisk-2026",
+    "status": "reviewed",
+    "headline": "Novo Nordisk said attackers got into a limited number of internal systems and copied non-public data, including personal data.",
+    "discoveryQuestion": "If someone copied data out of a few internal systems, how quickly could you tell which accounts or credentials they used?",
+    "avoid": "Don't repeat the extortion group's data volume or ransom figure; Novo Nordisk hasn't confirmed them.",
+    "sellerCaveat": "How the attackers got in hasn't been disclosed.",
+    "basedOnSourceIds": [
+      "source:novo-nordisk-it-incident-2026"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-18"
+  },
+  {
+    "incidentId": "incident:salesloft-drift-oauth-tokens-2025",
+    "status": "reviewed",
+    "headline": "A sales tool's OAuth tokens let an attacker export Salesforce data from many companies, then mine it for cloud keys.",
+    "discoveryQuestion": "Which third-party apps hold OAuth grants into your CRM, and how fast could you revoke them all?",
+    "avoid": "Don't say Salesforce was breached; Google found the access came through Drift's tokens.",
+    "sellerCaveat": "Google's report doesn't cover how the tokens were first stolen.",
+    "roleNotes": [
+      {
+        "roleId": "ciso",
+        "note": "A trusted integration became the way in, with no phishing of your own staff."
+      },
+      {
+        "roleId": "appsec",
+        "note": "Keys stored in CRM records were in the export, and the attacker searched it for them."
+      }
+    ],
+    "basedOnSourceIds": [
+      "source:gtig-salesloft-drift-2025"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-18"
+  },
+  {
+    "incidentId": "incident:mercedes-benz-github-token-2024",
+    "status": "reviewed",
+    "headline": "One employee's GitHub token in a public repo reportedly opened Mercedes' internal code server for about four months.",
+    "discoveryQuestion": "Would you know if a token for your internal Git server showed up in someone's personal repo?",
+    "avoid": "Don't claim misuse; no attacker use was reported.",
+    "sellerCaveat": "Exposure only; researcher and Mercedes disagree on access scope.",
+    "roleNotes": [
+      {
+        "roleId": "appsec",
+        "note": "Personal repos are outside most org scanning but can hold work tokens."
+      },
+      {
+        "roleId": "platform",
+        "note": "Long-lived Git tokens with broad scope turn one leak into full code access."
+      }
+    ],
+    "basedOnSourceIds": [
+      "source:redhunt-mercedes-github-token-2024"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-18"
+  },
+  {
+    "incidentId": "incident:glassworm-vscode-extensions-2025",
+    "status": "reviewed",
+    "headline": "A worm in VS Code extensions stole npm, GitHub and Git credentials from developers and used them to spread.",
+    "discoveryQuestion": "Do you know which editor extensions your developers run, and what tokens those machines hold?",
+    "avoid": "Don't imply your customer was hit; Koi's counts are downloads, not confirmed victims.",
+    "sellerCaveat": "Figures are from Koi's first report, October 2025.",
+    "roleNotes": [
+      {
+        "roleId": "appsec",
+        "note": "Developer machines are now a supply chain entry point, not just the build."
+      },
+      {
+        "roleId": "ciso",
+        "note": "Stolen publisher credentials let the worm push malicious versions of more extensions."
+      }
+    ],
+    "basedOnSourceIds": [
+      "source:koi-glassworm-2025"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-18"
+  },
+  {
+    "incidentId": "incident:litellm-pypi-trivy-2026",
+    "status": "reviewed",
+    "headline": "A poisoned security scanner in LiteLLM's CI leaked its PyPI token, and two malicious releases stole cloud and Kubernetes secrets.",
+    "discoveryQuestion": "What secrets can your CI security tools read, and who would notice if one of them was tampered with?",
+    "avoid": "Don't blame Trivy's maintainers or name an actor; LiteLLM only says the compromise likely came through Trivy.",
+    "sellerCaveat": "Malicious versions were live about 40 minutes on PyPI.",
+    "roleNotes": [
+      {
+        "roleId": "platform",
+        "note": "Publishing tokens in CI are reachable by every step, including security tools."
+      },
+      {
+        "roleId": "cloud-sec",
+        "note": "Anything that installed those versions should treat its cloud keys as stolen."
+      }
+    ],
+    "basedOnSourceIds": [
+      "source:litellm-security-update-2026"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-18"
+  },
+  {
+    "incidentId": "incident:railway-env-vars-2026",
+    "status": "reviewed",
+    "headline": "Attackers decrypted environment variables for up to about 100,000 Railway workspaces and went after AI keys first.",
+    "discoveryQuestion": "If your hosting provider asked you to rotate every environment variable tomorrow, how long would it take?",
+    "avoid": "Don't quote the 1.85% as confirmed theft; it's Railway's upper bound.",
+    "sellerCaveat": "Misuse estimate is Railway's own, about $740,000.",
+    "roleNotes": [
+      {
+        "roleId": "ciso",
+        "note": "Secrets stored at a vendor share that vendor's breach."
+      },
+      {
+        "roleId": "platform",
+        "note": "Rotation speed decides the damage once a platform tells you to roll keys."
+      }
+    ],
+    "basedOnSourceIds": [
+      "source:railway-incident-report-2026"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-18"
+  },
+  {
+    "incidentId": "incident:fireworks-ai-eval-secrets-2026",
+    "status": "reviewed",
+    "headline": "Stolen internal credentials at Fireworks AI exposed API keys customers had stored in evaluation jobs.",
+    "discoveryQuestion": "Which third-party AI platforms hold copies of your API keys, and who rotates them if one is breached?",
+    "avoid": "Don't say customer models or prompts were accessed; Fireworks says it found no evidence of that.",
+    "sellerCaveat": "Fireworks later disclosed a second, separate incident.",
+    "roleNotes": [
+      {
+        "roleId": "cloud-sec",
+        "note": "Keys copied into vendor job settings outlive the job."
+      },
+      {
+        "roleId": "ciso",
+        "note": "AI vendors are now part of the secrets estate."
+      }
+    ],
+    "basedOnSourceIds": [
+      "source:fireworks-security-bulletin-2026"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-18"
+  },
+  {
+    "incidentId": "incident:chainalysis-agentic-intrusion-2026",
+    "status": "reviewed",
+    "headline": "Chainalysis says an attacker using agentic techniques exposed live tokens and password hashes for every user.",
+    "discoveryQuestion": "If a vendor told you all your users' tokens were exposed, could you rotate every API key that day?",
+    "avoid": "Don't describe the attack method beyond the company's 'offensive agentic techniques' wording.",
+    "sellerCaveat": "Chainalysis first said no tokens were affected, then corrected it.",
+    "roleNotes": [
+      {
+        "roleId": "ciso",
+        "note": "Early vendor statements can change; plan rotation before the final word."
+      },
+      {
+        "roleId": "platform",
+        "note": "API keys tied to a vendor need an owner and a rotation path."
+      }
+    ],
+    "basedOnSourceIds": [
+      "source:chainalysis-security-incident-2026"
+    ],
+    "draftedOn": "2026-11-17",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-18"
+  },
+  {
+    "incidentId": "incident:northflank-env-vars-2026",
+    "status": "reviewed",
+    "headline": "Northflank says an API flaw let an attacker decrypt customer secrets; the misuse reported so far is AI provider keys.",
+    "discoveryQuestion": "If a platform you deploy on told you to treat every stored secret as exposed, how long would rotating them all take?",
+    "avoid": "Don't say how the flaw worked beyond Northflank's description.",
+    "sellerCaveat": "The disclosure date is approximate; don't give a specific date.",
+    "basedOnSourceIds": ["source:northflank-incident-report-2026"],
+    "draftedOn": "2026-11-21",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "incidentId": "incident:apify-internal-credential-2026",
+    "status": "reviewed",
+    "headline": "Apify says one compromised credential let an attacker collect more credentials and reach customer accounts.",
+    "discoveryQuestion": "How quickly could you tell which of your internal credentials can unlock other credentials?",
+    "avoid": "Don't describe the initial credential; Apify hasn't said what it was.",
+    "sellerCaveat": "Apify's fuller report hadn't been found as of 2026-11-21; details may change.",
+    "basedOnSourceIds": ["source:apify-status-incident-2026"],
+    "draftedOn": "2026-11-21",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "incidentId": "incident:notion-fireworks-ai-chats-2026",
+    "status": "reviewed",
+    "headline": "Notion says credentials users pasted into AI chats were exposed through its AI vendor, so it revoked or reported them.",
+    "discoveryQuestion": "Do you know which secrets your people paste into AI tools, and who those tools share data with?",
+    "avoid": "Don't imply Notion's own systems were breached; the dataset was at its vendor.",
+    "sellerCaveat": "Don't pitch secret scanning as the fix for pasting secrets into AI chats; the honest angle is finding and rotating secrets after they spread.",
+    "basedOnSourceIds": ["source:notion-fireworks-advisory-2026"],
+    "draftedOn": "2026-11-21",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "incidentId": "incident:zeabur-plaintext-admin-creds-2026",
+    "status": "reviewed",
+    "headline": "Zeabur says plaintext, non-expiring admin tokens in a config repo let an attacker read 3.2 million environment variable records.",
+    "discoveryQuestion": "Where do your long-lived admin tokens live, and when were they last rotated?",
+    "avoid": "Don't state how the attacker got the config repo; Zeabur only hypothesizes.",
+    "sellerCaveat": "The 3,218,965 record figure is from Zeabur's preliminary report, marked confirmed there; the report may be updated.",
+    "basedOnSourceIds": ["source:zeabur-incident-report-2026"],
+    "draftedOn": "2026-11-21",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "incidentId": "incident:workos-artex-sales-tool-2026",
+    "status": "reviewed",
+    "headline": "WorkOS says a weak development credential that also worked in production let an AI agent into its sales tool.",
+    "discoveryQuestion": "Could a credential meant for local development authenticate against anything in your production?",
+    "avoid": "Don't describe this as a leaked secret; it was a weak, predictable credential.",
+    "sellerCaveat": "A weak, guessable credential isn't something a secret scanner reliably catches; don't claim a scanner would have stopped this.",
+    "basedOnSourceIds": ["source:workos-bulletin-2026"],
+    "draftedOn": "2026-11-21",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "incidentId": "incident:chainstack-grafana-default-creds-2026",
+    "status": "reviewed",
+    "headline": "Chainstack says default Grafana admin credentials led an attacker, step by step, to production secrets.",
+    "discoveryQuestion": "If one dev tool kept its default password, what else could its machine credentials reach?",
+    "avoid": "Don't call it a software vulnerability; Chainstack says none was exploited.",
+    "sellerCaveat": "The disclosure date is approximate; don't give a specific date.",
+    "basedOnSourceIds": ["source:chainstack-incident-2026"],
+    "draftedOn": "2026-11-21",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "incidentId": "incident:dreamhost-file-manager-ftp-creds-2026",
+    "status": "reviewed",
+    "headline": "DreamHost says logins typed into its File Manager for about ten weeks should be treated as compromised.",
+    "discoveryQuestion": "If a hosting provider told you ten weeks of logins were captured, which deploy credentials would you rotate first?",
+    "avoid": "Don't name the vulnerable software; DreamHost hasn't.",
+    "sellerCaveat": "The disclosure date is approximate; don't give a specific date.",
+    "basedOnSourceIds": ["source:dreamhost-announcement-2026"],
+    "draftedOn": "2026-11-21",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "incidentId": "incident:litellm-agent-platform-key-2026",
+    "status": "reviewed",
+    "headline": "LiteLLM says a key deleted from a file but left in Git history, and never revoked, led to a poisoned release.",
+    "discoveryQuestion": "When someone deletes a committed key, does your process also revoke it?",
+    "avoid": "Don't imply any specific tool would have prevented it.",
+    "basedOnSourceIds": ["source:litellm-attack-chain-2026"],
+    "draftedOn": "2026-11-21",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "incidentId": "incident:ghostaction-wave-oct-2026",
+    "status": "reviewed",
+    "headline": "GitGuardian says hijacked GitHub accounts pushed workflows built to steal repository secrets into hundreds, then thousands, of repos.",
+    "discoveryQuestion": "Which secrets can your GitHub Actions workflows read, and would you notice a new workflow sending them out?",
+    "avoid": "Don't give one total; counts differ by phase and source.",
+    "sellerCaveat": "Only GitGuardian's summary was checked, not the full post; stick to the headline.",
+    "basedOnSourceIds": ["source:gitguardian-ghostaction-2026"],
+    "draftedOn": "2026-11-21",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "incidentId": "incident:artex-github-secrets-entra-2026",
+    "status": "reviewed",
+    "headline": "Microsoft says AI agents are searching public GitHub for exposed secrets and using them to break into cloud tenants within minutes.",
+    "discoveryQuestion": "If a secret tied to your company landed in a public repo today, would you find it before an automated search did?",
+    "avoid": "Don't tie this to Storm-0940 or any named actor; Microsoft doesn't.",
+    "sellerCaveat": "\"Within minutes\" is Microsoft's claim; attribute it to Microsoft rather than stating it as fact.",
+    "basedOnSourceIds": ["source:microsoft-artex-secrets-2026"],
+    "draftedOn": "2026-11-21",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "incidentId": "incident:lightning-ai-platform-credentials-2026",
+    "status": "reviewed",
+    "headline": "Lightning AI says unauthorized access to credentials took its platform offline in October.",
+    "discoveryQuestion": "If an AI platform you use went offline over a credential incident, which of your keys stored there would you rotate?",
+    "avoid": "Don't describe scope; Lightning hasn't published it here.",
+    "sellerCaveat": "Only Lightning's post summary was read; scope and whose credentials were accessed are unknown.",
+    "basedOnSourceIds": ["source:lightning-ai-incident-2026"],
+    "draftedOn": "2026-11-21",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "incidentId": "incident:nitori-customer-records-2026",
+    "status": "reviewed",
+    "headline": "Nitori says up to 37.62 million customer records may have leaked after unauthorized access to its systems.",
+    "discoveryQuestion": "When the entry point isn't known yet, how quickly can you tell what a breach could have touched?",
+    "avoid": "Don't suggest a cause; Nitori hasn't named one.",
+    "sellerCaveat": "No credential or secrets angle is reported; use only as general breach context.",
+    "basedOnSourceIds": ["source:nitori-disclosure-2026"],
+    "draftedOn": "2026-11-21",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "incidentId": "incident:ipsos-internal-system-2026",
+    "status": "reviewed",
+    "headline": "Ipsos says one internal system was breached; it hasn't said which or how.",
+    "discoveryQuestion": "If a vendor disclosed a breach with no details, what would you ask them first?",
+    "avoid": "Don't speculate on what was taken.",
+    "sellerCaveat": "Very thin record with no secrets angle reported; a weak conversation opener.",
+    "basedOnSourceIds": ["source:ipsos-press-release-2026"],
+    "draftedOn": "2026-11-21",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "incidentId": "incident:cursor-fireworks-vendor-key-2026",
+    "status": "reviewed",
+    "headline": "Cursor says a key it gave a vendor was exposed there, and unredacted credentials in old agent traces did the rest.",
+    "discoveryQuestion": "Which keys have you issued to vendors, and do you know where those vendors store them?",
+    "avoid": "Don't call it an Anthropic or Open VSX vulnerability; Cursor says it wasn't.",
+    "sellerCaveat": "Fewer than 0.01% of Cursor customers had credentials exposed; don't overstate the scale.",
+    "basedOnSourceIds": ["source:cursor-incident-update-2026"],
+    "draftedOn": "2026-11-21",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "incidentId": "incident:gitbook-sso-github-app-2026",
+    "status": "reviewed",
+    "headline": "GitBook says one Cloudflare API key, found in internal code, turned a login flaw into full infrastructure access.",
+    "discoveryQuestion": "Which API keys sit in your internal repos, and what would each one unlock?",
+    "avoid": "Don't present the AI-agent detail as confirmed; GitBook calls it an inference.",
+    "sellerCaveat": "GitBook couldn't tell whether the attacker acted inside customer repos; don't say customer code was touched.",
+    "basedOnSourceIds": ["source:gitbook-incident-2026"],
+    "draftedOn": "2026-11-21",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "incidentId": "incident:barracuda-unretired-vendor-key-2026",
+    "status": "reviewed",
+    "headline": "Barracuda says a cloud key it gave a vendor years ago, and never retired, opened a 44-hour chain of stolen secrets.",
+    "discoveryQuestion": "How many credentials have you given vendors for projects that are already over?",
+    "avoid": "Don't name the vendor or attach Railway's $740,000 figure.",
+    "sellerCaveat": "Barracuda's ARTEX match describes method, not actor; don't name an actor.",
+    "basedOnSourceIds": ["source:barracuda-intrusion-2026"],
+    "draftedOn": "2026-11-21",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "incidentId": "incident:qubole-cross-account-roles-2026",
+    "status": "reviewed",
+    "headline": "Wiz says a vendor's AWS credentials opened customers' old, unused integration roles, and the attacker read the secrets behind them.",
+    "discoveryQuestion": "Which vendor integration roles in your AWS accounts are still trusted but no longer used?",
+    "avoid": "Mention the attacker's use of open-source tools neutrally; don't imply any vendor involvement.",
+    "sellerCaveat": "The attacker used open-source TruffleHog to check which stolen keys were live. If a buyer raises it, say plainly that attackers use open-source tools too; don't spin it. Wiz gives no victim count; \"dozens\" comes from Sentra.",
+    "basedOnSourceIds": ["source:wiz-qubole-2026"],
+    "draftedOn": "2026-11-21",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "incidentId": "incident:wfx-loot-github-ci-stealer-2026",
+    "status": "reviewed",
+    "headline": "Aikido says 4,837 hijacked GitHub accounts pushed a stealer that took CI secrets from at least 1,806 repos.",
+    "discoveryQuestion": "If a contributor's account were hijacked, which secrets could a pull request reach in your CI?",
+    "avoid": "Don't attribute this to the GhostAction actor; Aikido doesn't.",
+    "sellerCaveat": "Repo counts differ by source (1,806, 1,835, 8,093); say \"at least 1,806\" and cite Aikido. The date is approximate.",
+    "basedOnSourceIds": ["source:aikido-wfx-loot-2026"],
+    "draftedOn": "2026-11-21",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "incidentId": "incident:strutil-core-rubygems-worm-2026",
+    "status": "reviewed",
+    "headline": "Socket says a new Ruby gem stole cloud, CI and AI tool credentials the moment it was installed.",
+    "discoveryQuestion": "Which credentials sit on the machines where developers install new packages?",
+    "avoid": "Don't claim known victims; none are confirmed.",
+    "basedOnSourceIds": ["source:socket-strutil-core-2026"],
+    "draftedOn": "2026-11-21",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "incidentId": "incident:midnight-neptune-claude-code-settings-2026",
+    "status": "reviewed",
+    "headline": "Google says suspected North Korean actors edited Claude Code settings in victims' repos to plant a backdoor, and made GitHub tokens that looked like Copilot's.",
+    "discoveryQuestion": "Would you notice a new personal access token in your GitHub org named to look like a trusted tool?",
+    "avoid": "Don't call it a Claude Code vulnerability.",
+    "sellerCaveat": "Attribution is suspected; keep that word. The attacker already had repo access and misused a settings file.",
+    "basedOnSourceIds": ["source:gtig-ai-threat-tracker-nov-2026"],
+    "draftedOn": "2026-11-21",
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  }
+]

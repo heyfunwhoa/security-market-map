@@ -22,6 +22,7 @@ export const personas: BuyerPersona[] = [
       "Chief Security Officer",
       "CSO",
       "Security executive",
+      "LC-PER-06",
     ],
   },
   {
@@ -54,7 +55,7 @@ export const personas: BuyerPersona[] = [
       "Who certifies cloud entitlements today?",
       "Are agents and workloads in the same program as people?",
     ],
-    categoryIds: ["workforce-identity", "iga", "pam", "nhi", "ciem", "itdr", "agent-identity"],
+    categoryIds: ["workforce-identity", "iga", "pam", "nhi", "ciem", "itdr", "agent-identity", "wim"],
     aliases: [
       "IdSec",
       "IAM lead",
@@ -63,6 +64,7 @@ export const personas: BuyerPersona[] = [
       "Head of identity",
       "Workforce identity owner",
       "NHI program owner",
+      "LC committee: identity owner",
     ],
   },
   {
@@ -130,6 +132,7 @@ export const personas: BuyerPersona[] = [
       "Secure coding lead",
       "ASPM owner",
       "Application security posture owner",
+      "LC use case: code security",
     ],
   },
   {
@@ -143,7 +146,7 @@ export const personas: BuyerPersona[] = [
       "Which clouds and data stores must the platform support first?",
       "Who changes the shared CI template when security raises the bar?",
     ],
-    categoryIds: ["secrets-management", "nhi", "container-security", "iac-security"],
+    categoryIds: ["secrets-management", "nhi", "container-security", "iac-security", "wim"],
     aliases: [
       "Platform engineering",
       "Platform eng",
@@ -157,6 +160,7 @@ export const personas: BuyerPersona[] = [
       "IDP owner",
       "CI/CD owner",
       "Platform ops",
+      "LC committee: infrastructure owner",
     ],
   },
   {
@@ -181,6 +185,7 @@ export const personas: BuyerPersona[] = [
       "CIEM owner",
       "Cloud posture owner",
       "Public cloud security",
+      "LC use case: cloud security",
     ],
   },
   {
@@ -228,6 +233,7 @@ export const personas: BuyerPersona[] = [
       "Privacy counsel",
       "Privacy engineer",
       "Privacy program owner",
+      "LC committee: privacy",
     ],
   },
   {

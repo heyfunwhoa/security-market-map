@@ -1,0 +1,380 @@
+[
+  {
+    "id": "industry:cisa-solarwinds-2020:technology",
+    "incidentId": "incident:cisa-solarwinds-2020",
+    "industry": "technology",
+    "rationale": "SolarWinds, the software vendor whose Orion product the CISA alert covers, is a technology company. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:cisa-solarwinds-2020"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "industry:codecov-bash-uploader-2021:technology",
+    "incidentId": "incident:codecov-bash-uploader-2021",
+    "industry": "technology",
+    "rationale": "Codecov, the company whose Bash Uploader was modified, is a software company. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:codecov-bash-uploader-2021"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "industry:circleci-engineer-laptop-2023:technology",
+    "incidentId": "incident:circleci-engineer-laptop-2023",
+    "industry": "technology",
+    "rationale": "CircleCI, the company that reported the incident, is a software company. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:circleci-incident-report-2023"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "industry:cloudflare-unrotated-okta-tokens-2023:technology",
+    "incidentId": "incident:cloudflare-unrotated-okta-tokens-2023",
+    "industry": "technology",
+    "rationale": "Cloudflare, the company that reported the intrusion, is a technology company. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:cloudflare-thanksgiving-2023"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "industry:uber-github-aws-key-2016:transportation",
+    "incidentId": "incident:uber-github-aws-key-2016",
+    "industry": "transportation",
+    "rationale": "Uber, the company named in the FTC analysis, is a ride-hailing and delivery company. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:ftc-uber-revised-analysis"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "industry:uber-contractor-mfa-push-2022:transportation",
+    "incidentId": "incident:uber-contractor-mfa-push-2022",
+    "industry": "transportation",
+    "rationale": "Uber, the company that published the security update, is a ride-hailing and delivery company. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:uber-security-update-2022"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "industry:storm-0558-signing-key-2023:technology",
+    "incidentId": "incident:storm-0558-signing-key-2023",
+    "industry": "technology",
+    "rationale": "Microsoft, the company that reported the key acquisition, is a technology company. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:msrc-storm-0558-key-acquisition"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "industry:microsoft-ai-sas-token-2023:technology",
+    "incidentId": "incident:microsoft-ai-sas-token-2023",
+    "industry": "technology",
+    "rationale": "Microsoft, whose research data was exposed, is a technology company. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:wiz-microsoft-sas-token-2023"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "industry:okta-support-har-files-2023:technology",
+    "incidentId": "incident:okta-support-har-files-2023",
+    "industry": "technology",
+    "rationale": "Okta, the company that published the root-cause report, is a software company. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:okta-support-root-cause-2023"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "industry:toyota-tconnect-github-key-2022:automotive",
+    "incidentId": "incident:toyota-tconnect-github-key-2022",
+    "industry": "automotive",
+    "rationale": "Toyota, the company that issued the notice, is a vehicle manufacturer. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:toyota-tconnect-notice-2022"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "industry:west-pharmaceutical-intrusion-2026:healthcare_life_sciences",
+    "incidentId": "incident:west-pharmaceutical-intrusion-2026",
+    "industry": "healthcare_life_sciences",
+    "rationale": "West Pharmaceutical Services, the company that filed with the SEC, makes components for injectable medicines. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:sec-8k-west-pharmaceutical-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-17"
+  },
+  {
+    "id": "industry:binance-wallet-signing-2026:financial_services",
+    "incidentId": "incident:binance-wallet-signing-2026",
+    "industry": "financial_services",
+    "rationale": "Binance, the company that published the report, runs a cryptocurrency exchange. Industry describes the organization the source names.",
+    "basedOnSourceIds": [
+      "source:binance-incident-report-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-18"
+  },
+  {
+    "id": "industry:novo-nordisk-2026:healthcare_life_sciences",
+    "incidentId": "incident:novo-nordisk-2026",
+    "industry": "healthcare_life_sciences",
+    "rationale": "Novo Nordisk, the company that made the announcement, is a pharmaceutical company. Industry describes the organization the source names.",
+    "basedOnSourceIds": [
+      "source:novo-nordisk-it-incident-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-17",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-18"
+  },
+  {
+    "id": "industry:northflank-env-vars-2026:technology",
+    "incidentId": "incident:northflank-env-vars-2026",
+    "industry": "technology",
+    "rationale": "Northflank, the deployment platform that reported the incident, is a software company. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:northflank-incident-report-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "industry:apify-internal-credential-2026:technology",
+    "incidentId": "incident:apify-internal-credential-2026",
+    "industry": "technology",
+    "rationale": "Apify, the web scraping and automation platform that reported the incident, is a software company. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:apify-status-incident-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "industry:notion-fireworks-ai-chats-2026:technology",
+    "incidentId": "incident:notion-fireworks-ai-chats-2026",
+    "industry": "technology",
+    "rationale": "Notion, the workspace software company that issued the advisory, is a technology company. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:notion-fireworks-advisory-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "industry:zeabur-plaintext-admin-creds-2026:technology",
+    "incidentId": "incident:zeabur-plaintext-admin-creds-2026",
+    "industry": "technology",
+    "rationale": "Zeabur, the deployment platform that reported the incident, is a software company. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:zeabur-incident-report-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "industry:workos-artex-sales-tool-2026:technology",
+    "incidentId": "incident:workos-artex-sales-tool-2026",
+    "industry": "technology",
+    "rationale": "WorkOS, the identity platform that reported the incident, is a software company. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:workos-bulletin-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "industry:chainstack-grafana-default-creds-2026:technology",
+    "incidentId": "incident:chainstack-grafana-default-creds-2026",
+    "industry": "technology",
+    "rationale": "Chainstack, the blockchain infrastructure provider that reported the incident, is a technology company. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:chainstack-incident-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "industry:dreamhost-file-manager-ftp-creds-2026:technology",
+    "incidentId": "incident:dreamhost-file-manager-ftp-creds-2026",
+    "industry": "technology",
+    "rationale": "DreamHost, the web hosting provider that reported the incident, is a technology company. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:dreamhost-announcement-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "industry:litellm-agent-platform-key-2026:technology",
+    "incidentId": "incident:litellm-agent-platform-key-2026",
+    "industry": "technology",
+    "rationale": "LiteLLM, the AI gateway project and company that reported the incident, is a software company. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:litellm-attack-chain-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "industry:lightning-ai-platform-credentials-2026:technology",
+    "incidentId": "incident:lightning-ai-platform-credentials-2026",
+    "industry": "technology",
+    "rationale": "Lightning AI, the AI development platform that reported the incident, is a software company. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:lightning-ai-incident-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "industry:cursor-fireworks-vendor-key-2026:technology",
+    "incidentId": "incident:cursor-fireworks-vendor-key-2026",
+    "industry": "technology",
+    "rationale": "Cursor, the code editor company that reported the incident, is a software company. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:cursor-incident-update-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "industry:gitbook-sso-github-app-2026:technology",
+    "incidentId": "incident:gitbook-sso-github-app-2026",
+    "industry": "technology",
+    "rationale": "GitBook, the documentation platform that published the postmortem, is a software company. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:gitbook-incident-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "industry:barracuda-unretired-vendor-key-2026:technology",
+    "incidentId": "incident:barracuda-unretired-vendor-key-2026",
+    "industry": "technology",
+    "rationale": "Barracuda, the security vendor that reported the intrusion, is a technology company. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:barracuda-intrusion-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "industry:qubole-cross-account-roles-2026:technology",
+    "incidentId": "incident:qubole-cross-account-roles-2026",
+    "industry": "technology",
+    "rationale": "Qubole, the data platform vendor whose AWS account Wiz names, is a software company. Its affected customers are not named and are not tagged. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:wiz-qubole-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "industry:nitori-customer-records-2026:retail",
+    "incidentId": "incident:nitori-customer-records-2026",
+    "industry": "retail",
+    "rationale": "Nitori Holdings, the company that made the disclosure, is a home furnishings retailer. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:nitori-disclosure-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  }
+]
