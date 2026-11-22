@@ -1,0 +1,10 @@
+[
+  {
+    "id": "gitguardian-saas",
+    "vendorId": "gitguardian",
+    "label": "GitGuardian SaaS platform release notes",
+    "url": "https://docs.gitguardian.com/releases/saas/rss.xml",
+    "format": "rss",
+    "note": "Product and feature announcements, about one a week (13 from 2026-09-07 to 2026-11-20). Self-Hosted mostly repeats these monthly and ggshield posts are CLI version bumps, so neither is watched. Detector releases are tracked in Detector Atlas, not here."
+  }
+]
