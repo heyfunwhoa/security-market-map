@@ -31,14 +31,16 @@
           "publisher": "Ipsos",
           "type": "company_incident_report",
           "url": "https://via.ritzau.dk/pressemeddelelse/15292478/ipsos?publisherId=90446",
-          "publishedOn": "2026-11-16"
+          "publishedOn": "2026-11-16",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         },
         {
           "id": "source:securityweek-ipsos-2026",
           "publisher": "SecurityWeek",
           "type": "news",
           "url": "https://securityweek.com/market-research-giant-ipsos-investigating-breach-of-internal-system",
-          "publishedOn": null
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": null,
@@ -70,7 +72,8 @@
           "publisher": "Google Threat Intelligence Group",
           "type": "security_research",
           "url": "https://cloud.google.com/blog/topics/threat-intelligence/agentic-threat-activity-crosses-a-significant-threshold",
-          "publishedOn": "2026-11-16"
+          "publishedOn": "2026-11-16",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": null,
@@ -163,14 +166,16 @@
           "publisher": "Apify",
           "type": "company_incident_report",
           "url": "https://status.apify.com/",
-          "publishedOn": "2026-11-12"
+          "publishedOn": "2026-11-12",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         },
         {
           "id": "source:bleepingcomputer-apify-2026",
           "publisher": "BleepingComputer",
           "type": "news",
           "url": "https://bleepingcomputer.com/news/security/apify-rotates-api-tokens-prompts-2fa-resets-after-breach",
-          "publishedOn": "2026-11-12"
+          "publishedOn": "2026-11-12",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": null,
@@ -203,14 +208,16 @@
           "publisher": "Aikido Security",
           "type": "security_research",
           "url": "https://www.aikido.dev/blog/compromised-github-accounts-push-ci-secret-stealer-to-tens-of-thousands-of-repositories",
-          "publishedOn": null
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         },
         {
           "id": "source:dailysecurityreview-wfx-loot-2026",
           "publisher": "Daily Security Review",
           "type": "news",
           "url": "https://dailysecurityreview.com/?p=45674",
-          "publishedOn": null
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": null,
@@ -243,7 +250,8 @@
           "publisher": "Notion",
           "type": "company_incident_report",
           "url": "https://notion.com/en-gb/security/advisories/security-incident-involving-a-third-party-ai-vendor",
-          "publishedOn": null
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": null,
@@ -276,7 +284,8 @@
           "publisher": "Barracuda",
           "type": "company_incident_report",
           "url": "https://blog.barracuda.com/2026/11/11/anatomy-of-a-machine-speed-intrusion",
-          "publishedOn": "2026-11-11"
+          "publishedOn": "2026-11-11",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": null,
@@ -304,14 +313,16 @@
           "publisher": "Nitori Holdings",
           "type": "company_incident_report",
           "url": "https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20261109/20261109570090.pdf",
-          "publishedOn": "2026-11-09"
+          "publishedOn": "2026-11-09",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         },
         {
           "id": "source:bleepingcomputer-nitori-2026",
           "publisher": "BleepingComputer",
           "type": "news",
           "url": "https://bleepingcomputer.com/news/security/japanese-furniture-giant-nitori-says-hackers-stole-376m-customer-records",
-          "publishedOn": "2026-11-10"
+          "publishedOn": "2026-11-10",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": null,
@@ -344,14 +355,16 @@
           "publisher": "Wiz",
           "type": "security_research",
           "url": "https://www.wiz.io/blog/qubole-cross-account-access-abused-in-the-wild",
-          "publishedOn": "2026-11-09"
+          "publishedOn": "2026-11-09",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         },
         {
           "id": "source:csoonline-qubole-2026",
           "publisher": "CSO Online",
           "type": "news",
           "url": "https://csoonline.com/article/4246780/qubole-supply-chain-attack-exposed-aws-entra-id-and-okta-credentials.html",
-          "publishedOn": null
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": null,
@@ -385,14 +398,16 @@
           "publisher": "Microsoft Threat Intelligence",
           "type": "security_research",
           "url": "https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/",
-          "publishedOn": "2026-11-05"
+          "publishedOn": "2026-11-05",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         },
         {
           "id": "source:cybersecuritydive-artex-2026",
           "publisher": "Cybersecurity Dive",
           "type": "news",
           "url": "https://cybersecuritydive.com/news/hackers-artex-github-repositories-exposed-secrets/874007",
-          "publishedOn": null
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": null,
@@ -494,7 +509,8 @@
           "publisher": "Chainstack",
           "type": "company_incident_report",
           "url": "https://chainstack.com/security-incident-nov-2026/amp/",
-          "publishedOn": null
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": null,
@@ -526,7 +542,8 @@
           "publisher": "GitBook",
           "type": "company_incident_report",
           "url": "https://gitbook.com/status/security-incident-2026-11-03",
-          "publishedOn": "2026-11-03"
+          "publishedOn": "2026-11-03",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": null,
@@ -558,14 +575,16 @@
           "publisher": "Socket",
           "type": "security_research",
           "url": "https://socket.dev/blog/shai-hulud-descendant-malicious-ruby-gem",
-          "publishedOn": null
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         },
         {
           "id": "source:osv-mal-2026-19054",
           "publisher": "OSV",
           "type": "reference_dataset",
           "url": "https://osv.dev/vulnerability/MAL-2026-19054",
-          "publishedOn": "2026-11-01"
+          "publishedOn": "2026-11-01",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": null,
@@ -598,14 +617,16 @@
           "publisher": "Northflank",
           "type": "company_incident_report",
           "url": "https://northflank.com/blog/incident-report-october-30-security-incident",
-          "publishedOn": null
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         },
         {
           "id": "source:bleepingcomputer-northflank-2026",
           "publisher": "BleepingComputer",
           "type": "news",
           "url": "https://bleepingcomputer.com/news/security/northflank-security-breach-leads-to-abuse-of-customers-ai-api-keys",
-          "publishedOn": "2026-10-31"
+          "publishedOn": "2026-10-31",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": null,
@@ -690,14 +711,16 @@
           "publisher": "WorkOS",
           "type": "company_incident_report",
           "url": "https://workos.com/security/bulletins/october-30th-2026-data-security-incident",
-          "publishedOn": "2026-10-30"
+          "publishedOn": "2026-10-30",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         },
         {
           "id": "source:workos-bulletin-update-2026",
           "publisher": "WorkOS",
           "type": "company_incident_report",
           "url": "https://workos.com/security/bulletins/update-for-october-30th-2026-data-security-incident",
-          "publishedOn": null
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": null,
@@ -731,14 +754,16 @@
           "publisher": "Cursor",
           "type": "company_incident_report",
           "url": "https://cursor.com/blog/security-incident-update",
-          "publishedOn": "2026-11-13"
+          "publishedOn": "2026-11-13",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         },
         {
           "id": "source:darkreading-cursor-2026",
           "publisher": "Dark Reading",
           "type": "news",
           "url": "https://darkreading.com/application-security/cursor-malicious-claude-code-extension-third-party-breach",
-          "publishedOn": null
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": null,
@@ -770,14 +795,16 @@
           "publisher": "DreamHost",
           "type": "company_incident_report",
           "url": "https://www.dreamhost.com/news/announcements/october-security-incident/",
-          "publishedOn": null
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         },
         {
           "id": "source:bleepingcomputer-dreamhost-2026",
           "publisher": "BleepingComputer",
           "type": "news",
           "url": "https://www.bleepingcomputer.com/news/security/dreamhost-confirms-data-breach-exposed-ftp-logins-and-webmail-sessions/",
-          "publishedOn": null
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": null,
@@ -866,7 +893,8 @@
           "publisher": "LiteLLM",
           "type": "company_incident_report",
           "url": "https://docs.litellm.ai/blog/security-incident-oct-21-2026-attack-chain",
-          "publishedOn": null
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": null,
@@ -898,14 +926,16 @@
           "publisher": "Lightning AI",
           "type": "company_incident_report",
           "url": "https://lightning.ai/blog",
-          "publishedOn": "2026-10-16"
+          "publishedOn": "2026-10-16",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         },
         {
           "id": "source:wiz-black-october-2026",
           "publisher": "Wiz",
           "type": "security_research",
           "url": "https://www.wiz.io/blog/black-october-for-ai-developer-platforms?date=2026-10-30",
-          "publishedOn": "2026-10-30"
+          "publishedOn": "2026-10-30",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": null,
@@ -937,14 +967,16 @@
           "publisher": "Zeabur",
           "type": "company_incident_report",
           "url": "https://zeabur.com/blogs/october-2026-security-incident",
-          "publishedOn": null
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         },
         {
           "id": "source:bleepingcomputer-zeabur-2026",
           "publisher": "BleepingComputer",
           "type": "news",
           "url": "https://www.bleepingcomputer.com/news/security/zeabur-shutting-down-after-second-security-breach-in-two-months/",
-          "publishedOn": null
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": null,
@@ -1031,21 +1063,24 @@
           "publisher": "GitGuardian",
           "type": "security_research",
           "url": "https://blog.gitguardian.com/ghostaction-github-actions-supply-chain-attack-returns/",
-          "publishedOn": "2026-10-07"
+          "publishedOn": "2026-10-07",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         },
         {
           "id": "source:thenewstack-ghostaction-2026",
           "publisher": "The New Stack",
           "type": "news",
           "url": "https://thenewstack.io/hackers-hijacked-1900-github-accounts-then-they-went-after-30000-repos/",
-          "publishedOn": "2026-10-15"
+          "publishedOn": "2026-10-15",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         },
         {
           "id": "source:darkreading-ghostaction-2026",
           "publisher": "Dark Reading",
           "type": "news",
           "url": "https://darkreading.com/application-security/ghostaction-hacking-wave-fizzles-attackers-github",
-          "publishedOn": null
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
       "salesNote": null,
