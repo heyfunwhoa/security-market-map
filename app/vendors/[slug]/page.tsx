@@ -83,7 +83,7 @@ export default async function VendorPage({ params }: { params: Promise<{ slug: s
               <div className="mt-3">
                 <ProductBuyerContext categories={catalog.categories} primaryIds={product.primaryCategoryIds} adjacentIds={product.adjacentCategoryIds} />
                 <h4 className="mb-3 mt-4 font-semibold">Product evidence and research gaps</h4>
-                <ClaimList claims={claimsForSubject("product", product.id)} />
+                <ClaimList claims={claimsForSubject("product", product.id)} linkable />
               </div>
             </li>
           ))}
