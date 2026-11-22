@@ -27,7 +27,7 @@ export function MonitoringRepositoryScenario() {
     <div className="space-y-3">
       <fieldset>
         <legend className="font-semibold">Where did the example commit appear?</legend>
-        <div className="mt-2 flex flex-wrap gap-2">
+        <div className="mt-2 grid gap-2 sm:flex sm:flex-wrap">
           {scenarios.map((option, index) => (
             <label key={option.label} className="flex min-h-11 cursor-pointer items-center gap-2 rounded-md border border-border px-3 py-2 text-sm has-checked:border-primary has-checked:bg-muted">
               <input type="radio" name="monitoring-repository" checked={index === selected} onChange={() => setSelected(index)} className="accent-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring" />

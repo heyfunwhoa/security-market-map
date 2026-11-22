@@ -29,10 +29,13 @@ const claims = catalog.claims.filter((claim) => claim.subjectId === "gitguardian
 
 export function GitGuardianMonitoringComparison() {
   return (
-    <section aria-labelledby="monitoring-scope" className="space-y-5 rounded-xl border border-border bg-card p-4 sm:p-6">
+    <section aria-labelledby="monitoring-scope" className="space-y-5 border-t border-border pt-4 sm:rounded-xl sm:border sm:bg-card sm:p-6">
       <h4 id="monitoring-scope" tabIndex={-1} className="scroll-mt-24 text-2xl focus-visible:outline-2 focus-visible:outline-ring">GitGuardian Internal vs. Public Monitoring</h4>
-      <p className="max-w-3xl leading-7">A public repository can appear in both modes. Change the example to see how connecting the repository and linking a finding to the company affect coverage.</p>
-      <MonitoringRepositoryScenario />
+      <p className="max-w-3xl leading-7">A public repo can appear in both modes. Choose an example to see what could trigger an alert for your team.</p>
+      <div className="space-y-3">
+        <MonitoringRepositoryScenario />
+        <p className="text-sm leading-6"><strong>Who can rotate the key?</strong> Check which account issued it and who manages that account. The person who posted the key may not own the account.</p>
+      </div>
       {questions.map(({ question, internal, external }) => (
         <div key={question} className="space-y-2 border-t border-border pt-4">
           <h5 className="font-semibold">{question}</h5>
@@ -49,7 +52,6 @@ export function GitGuardianMonitoringComparison() {
           </dl>
         </div>
       ))}
-      <p className="text-sm leading-6"><strong>Before assigning an alert.</strong> Check what associated it with the company, which account issued the credential, and who can rotate it. The repository owner and the credential owner may be different people.</p>
       <details>
         <summary className="min-h-11 cursor-pointer py-2 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-ring">GitGuardian documentation, review dates and limits</summary>
         <ClaimList claims={claims} />

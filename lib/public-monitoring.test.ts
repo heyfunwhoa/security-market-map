@@ -91,6 +91,7 @@ it("keeps the GitGuardian mode comparison reachable with an evidence link for ev
   expect(html).toContain('href="#monitoring-scope"');
   const section = html.match(/<section aria-labelledby="monitoring-scope"[\s\S]*?<\/section>/)?.[0] ?? "";
   expect(section).toContain('id="monitoring-scope"');
+  expect(section).toMatch(/aria-live="polite"[\s\S]*Who can rotate the key\?[\s\S]*Where does it look\?/);
   expect(section.match(/type="radio"/g)).toHaveLength(3);
   expect(section).toMatch(/checked=""[^>]*\/>Connected public company repo/);
   for (const question of ["Where does it look?", "What does my team set up?", "Why would we receive the alert?"]) {
