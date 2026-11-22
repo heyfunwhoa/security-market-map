@@ -393,7 +393,7 @@ export const sources: Source[] = [
   "publisher": "Cyera",
   "sourceType": "vendor_marketing",
   "publishedAt": null,
-  "retrievedAt": "2026-10-13",
+  "retrievedAt": "2026-11-21",
   "volatility": "fast",
   "excerpt": "Cyera markets DSPM for data discovery, classification and data-risk visibility."
 },
@@ -405,19 +405,19 @@ export const sources: Source[] = [
   "publisher": "BigID",
   "sourceType": "vendor_marketing",
   "publishedAt": null,
-  "retrievedAt": "2026-10-13",
+  "retrievedAt": "2026-11-21",
   "volatility": "fast",
   "excerpt": "BigID markets DSPM alongside data discovery, classification and AI data security."
 },
 {
   "id": "src-dspm-expansion-varonis-20261013",
   "title": "Varonis DSPM reference",
-  "url": "https://www.varonis.com/platform/dspm",
-  "canonicalUrl": "https://www.varonis.com/platform/dspm",
+  "url": "https://www.varonis.com/platform/data-security-platform",
+  "canonicalUrl": "https://www.varonis.com/platform/data-security-platform",
   "publisher": "Varonis",
   "sourceType": "vendor_marketing",
   "publishedAt": null,
-  "retrievedAt": "2026-10-13",
+  "retrievedAt": "2026-11-21",
   "volatility": "fast",
   "excerpt": "Varonis markets DSPM with data discovery, access intelligence and automated risk remediation."
 },
@@ -429,7 +429,7 @@ export const sources: Source[] = [
   "publisher": "Sentra",
   "sourceType": "vendor_marketing",
   "publishedAt": null,
-  "retrievedAt": "2026-10-13",
+  "retrievedAt": "2026-11-21",
   "volatility": "fast",
   "excerpt": "Sentra markets a data security platform spanning DSPM and AI data readiness."
 },
@@ -441,7 +441,7 @@ export const sources: Source[] = [
   "publisher": "Securiti",
   "sourceType": "vendor_marketing",
   "publishedAt": null,
-  "retrievedAt": "2026-10-13",
+  "retrievedAt": "2026-11-21",
   "volatility": "fast",
   "excerpt": "Securiti markets a data security posture management solution."
 },
@@ -453,7 +453,7 @@ export const sources: Source[] = [
   "publisher": "Symmetry Systems",
   "sourceType": "vendor_marketing",
   "publishedAt": null,
-  "retrievedAt": "2026-10-13",
+  "retrievedAt": "2026-11-21",
   "volatility": "fast",
   "excerpt": "Symmetry Systems markets DataGuard with data security posture management."
 },
@@ -586,10 +586,10 @@ export const sources: Source[] = [
     publisher: "C1",
     sourceType: "vendor_marketing",
     publishedAt: null,
-    retrievedAt: "2026-09-23",
+    retrievedAt: "2026-11-21",
     volatility: "fast",
     excerpt:
-      "Marketing page describing governance of human, non-human, and agent identities, including reviews and separation of duties.",
+      "Marketing page describing governance of every human, workload, and agent, with user access reviews and separation-of-duties conflict detection. Rechecked 21 Nov 2026: it no longer states that low-risk reviews are processed automatically or mentions audit-ready reporting.",
   },
   {
     id: "src-c1-jit",
@@ -599,10 +599,10 @@ export const sources: Source[] = [
     publisher: "C1",
     sourceType: "vendor_marketing",
     publishedAt: null,
-    retrievedAt: "2026-09-23",
+    retrievedAt: "2026-11-21",
     volatility: "fast",
     excerpt:
-      "Marketing page describing requests from Slack, Teams, MCP, CLI, or web, with time-bound grants and automatic revocation.",
+      "Marketing page describing requests from Slack, Microsoft Teams, web, CLI, or API for humans and agents, with time-bound grants that deprovision on expiry. Rechecked 21 Nov 2026: MCP is no longer listed as a request channel.",
   },
   {
     id: "src-c1-automations",
@@ -625,7 +625,7 @@ export const sources: Source[] = [
     publisher: "Opal Security",
     sourceType: "press_release",
     publishedAt: "2026-09-17",
-    retrievedAt: "2026-09-23",
+    retrievedAt: "2026-11-21",
     volatility: "fast",
     excerpt:
       "17 Sep 2026 press release for Opal Zero. It says general availability is at the end of September and describes gateway enforcement.",
@@ -885,10 +885,23 @@ export const sources: Source[] = [
     publisher: "Truffle Security",
     sourceType: "official_docs",
     publishedAt: null,
-    retrievedAt: "2026-09-23",
+    retrievedAt: "2026-11-21",
     volatility: "fast",
     excerpt:
       "Project README describing discovery and credential verification, including a live check against the suspected API.",
+  },
+  {
+    id: "src-oasis-product",
+    title: "Oasis Security product page",
+    url: "https://www.oasis.security/product",
+    canonicalUrl: "https://www.oasis.security/product",
+    publisher: "Oasis Security",
+    sourceType: "vendor_marketing",
+    publishedAt: null,
+    retrievedAt: "2026-11-21",
+    volatility: "fast",
+    excerpt:
+      "Product page for the Oasis non-human identity platform: automatic discovery and inventory, posture ranking, owner suggestions with certification campaigns, and lifecycle actions from provisioning to decommissioning. The company was acquired by Cyera; the page does not say which actions are generally available.",
   },
   {
     id: "src-oasis-about",
@@ -898,10 +911,10 @@ export const sources: Source[] = [
     publisher: "Oasis Security",
     sourceType: "vendor_marketing",
     publishedAt: null,
-    retrievedAt: "2026-09-23",
+    retrievedAt: "2026-11-21",
     volatility: "fast",
     excerpt:
-      "Vendor about page describing NHI discovery, owner identification, and lifecycle orchestration.",
+      "Rechecked 21 Nov 2026, after Cyera's acquisition of Oasis: the page lists leadership, awards and customers only and no longer describes product capabilities.",
   },
   {
     id: "src-astrix-home",
