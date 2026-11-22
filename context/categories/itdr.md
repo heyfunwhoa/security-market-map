@@ -3,7 +3,7 @@ id: "itdr"
 type: "category"
 name: "Identity threat detection and posture (ITDR, ISPM)"
 layer: "core"
-vendors: 19
+vendors: 20
 ---
 
 # Identity threat detection and posture (ITDR, ISPM)
@@ -58,6 +58,7 @@ From 7 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - Orchid Security
 - Push Security
 - Searchlight Cyber
+- Material Security
 
 ## What buyers do instead
 

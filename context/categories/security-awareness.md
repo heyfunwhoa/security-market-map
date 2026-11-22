@@ -3,7 +3,7 @@ id: "security-awareness"
 type: "category"
 name: "Security awareness"
 layer: "core"
-vendors: 3
+vendors: 4
 ---
 
 # Security awareness
@@ -33,6 +33,7 @@ Training and simulated phishing for people. It changes behavior. It does not rep
 
 - Proofpoint
 - Mimecast
+- Sublime Security
 
 ## What buyers do instead
 

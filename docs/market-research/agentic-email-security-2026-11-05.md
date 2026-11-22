@@ -64,7 +64,7 @@ These **12 evaluation functions** are a buyer-oriented **research checklist**, n
 ### Commercial signals worth capturing, not assumed contract value
 
 - **Material [M3]:** publisher lists Essentials **$4/user/month**, Advanced **$6/user/month**, each billed annually **plus Shared Drive fee**; ATO Resilience **+$3/user/month** add-on or **$5/user/month** standalone. Treat per-user/low-volume/shared-account rules, storage, support and discounts as quote-dependent. Do not turn public list pricing into a customer's actual annual contract.
-- **Sublime [S4,S5,S12]:** first 100 Cloud mailboxes free; Enterprise requires a quote; tailored simulations are an **additional Enterprise product**. The free offer is not evidence that ASA, ADÉ, DLP or inline enforcement is included at no cost.
+- **Sublime [S4,S5,S12]:** first 100 Cloud mailboxes free; Enterprise price is not published (the plans page does not say how it is priced); tailored simulations are an **additional Enterprise product**. The free offer is not evidence that ASA, ADÉ, DLP or inline enforcement is included at no cost.
 - **AegisAI, Ocean, StrongestLayer, Abnormal:** no reliable comparable public per-mailbox price in this research as of 2026-11-05; StrongestLayer promotes custom mailbox-based quoting [L2].
 - **Provider economics:** advertised billing models are recorded below; actual annual contract value, reseller rights, applicable minimums, SOC service-margin and inference charges remain **Unknown** until an authorized commercial review. Do not derive MSSP gross margins from vendor marketing.
 
@@ -98,7 +98,7 @@ Unknown must not erase available evidence. The original draft understated provid
 - **Vendor-published:** MQL detections and rule/audit visibility; ASA has inactive, passive (alerts, no mail changes or auto-review) and active configured-action modes; unknown verdicts require human review. ADÉ recommends backtested rules for approval by default; optional auto-activation can enable remediation, including quarantine. A backtest score is not measured production efficacy [S1–S3].
 - **Architecture:** API-based managed or customer AWS deployment, no MX change; self-hosted availability requires authorization. Default delivery is post-delivery; optional Enterprise inline quarantine uses transport/routing configuration, with fallback and uncovered-mailbox exceptions [S10]. ASA/ADÉ are Enterprise offerings; ADÉ documents possible per-report self-hosted processing costs. Confirm regional data flow and permissions [S2–S4].
 - **As-of launches:** Email DLP announced GA 2026-09-30; tailored phishing simulations/training GA 2026-10-06; official documentation describes an email prompt-injection detection flow tied to ASA [S6–S8]. Check actual SKU, rollout, enforcement and model/provider details in a tenant.
-- **Commercial:** Core first 100 mailboxes free; Enterprise quoted. Vendor announced a channel program in Apr 2026 [S9]. Current docs describe Enterprise multi-tenancy and provider onboarding [S13, S14]; partner marketing advertises deal registration, monthly usage billing and discounts [S15]. Actual rates, margin and contractual resale rights remain Unknown.
+- **Commercial:** Core first 100 mailboxes free; Enterprise price not published on the plans page. Vendor announced a channel program in Apr 2026 [S9]. Current docs describe Enterprise multi-tenancy and provider onboarding [S13, S14]; partner marketing advertises deal registration, monthly usage billing and discounts [S15]. Actual rates, margin and contractual resale rights remain Unknown.
 - **Likely wedge (hypothesis):** team that wants to own and explain detections, automate triage without surrendering change control, or self-host where approved. Disconfirm if staff cannot operate MQL/agent governance or if agent precision and total operating burden are poor in pilot.
 
 ### Ocean — investigation-led specialist
@@ -158,7 +158,7 @@ Every entry is an original public URL. **Originally observed 2026-11-05; recheck
 | S2 | [ASA docs](https://docs.sublime.security/docs/asa-autonomous-security-analyst) | Unknown | vendor official docs; triage scope and modes |
 | S3 | [ADÉ docs](https://docs.sublime.security/docs/ade-autonomous-detection-engineer) | Unknown | vendor official docs; backtest and activation |
 | S4 | [Sublime installation options](https://docs.sublime.security/docs/installation-options) | Unknown | vendor official docs; SaaS, self-host and MX |
-| S5 | [Sublime plans](https://sublime.security/plans-detail/) | Unknown | vendor marketing; 100 mailbox Core offer, Enterprise quote |
+| S5 | [Sublime plans](https://sublime.security/plans-detail/) | Unknown | vendor marketing; 100 mailbox Core offer; Enterprise price not published |
 | S6 | [Email DLP GA release](https://www.prnewswire.com/news-releases/sublime-security-launches-email-dlp-becoming-the-first-platform-to-deliver-agentic-email-security-for-both-inbound-threat-detection-and-outbound-data-protection-302893893.html) (Sublime via PR Newswire; originally discovered through news index) | 2026-09-30 | vendor announcement; product release |
 | S7 | [Tailored simulation GA](https://sublime.security/blog/tailored-phishing-simulations-and-training-generally-available/) | 2026-10-06 | vendor announcement; product release |
 | S8 | [Email prompt injection docs](https://docs.sublime.security/docs/prompt-injection-detection) | Unknown | vendor official docs; scope and Enterprise ASA requirement |
@@ -214,3 +214,7 @@ Existing source IDs and original observation dates are preserved. These addition
 - [ ] `npm run test:research-integrity` and `npm test` on the **new** PR head after this expansion.
 - [ ] `npx next typegen`, `npm run typecheck`, `npm run lint`, `npm run build` on the **new** PR head after this expansion.
 - [ ] Merge approval; publication/deployment URL and page-level verification.
+
+## Source recheck — 2026-11-22
+
+Rechecked against the live pages: AegisAI after-delivery API removal, no MX change, sandboxed link/QR/attachment detonation and early-access ATO [A1, A2]; Proteus release date 2026-10-08 and its >99% of 3,020 benchmark claim [A3]; $36M Series A led by Battery Ventures, $49M total, 2026-07-23 [A4]; Sublime Core 100 free mailboxes [S5], Email DLP GA 2026-09-30 [S6], tailored simulations GA 2026-10-06 as an add-on [S7], Enterprise inline protection with fallback delivery on failure [S10]; Ocean $28M launch 2026-05-19 [O2]; StrongestLayer per-mailbox custom quotes and 14-day POC [L2]; Material $4/$6 per user/month plus Shared Drive fee, ATO +$3 or $5 standalone [M3]. Corrected: Sublime's plans page does not state that Enterprise is quote-based. Not rechecked: Abnormal [B1, B2], Material [M1, M2, M4], Sublime [S1–S4, S8, S9, S11–S15], Ocean [O1, O3], StrongestLayer [L1, L3]. All remain vendor claims, not independent testing.

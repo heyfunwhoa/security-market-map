@@ -351,7 +351,7 @@ export const emailSecuritySources: Source[] = [
     publishedAt: null,
     retrievedAt: observed,
     volatility: "fast",
-    excerpt: "Vendor lists Core with first 100 mailboxes free, with Enterprise pricing available by quote; scope varies.",
+    excerpt: "Vendor lists Core with first 100 mailboxes free; Enterprise price is not published; scope varies.",
   },
   {
     id: "src-ocean-email-20261105",
