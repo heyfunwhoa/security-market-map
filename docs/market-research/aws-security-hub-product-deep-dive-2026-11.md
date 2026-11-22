@@ -52,18 +52,16 @@ All product behavior below is **AWS-published**. Nothing here was hands-on teste
 | --- | --- | --- | --- | --- |
 | Exposure findings | Decide which cloud risks to fix first | Correlates supported signals for the same resource; needs sufficient signals | Essentials | [Docs](https://docs.aws.amazon.com/securityhub/latest/userguide/exposure-findings.html) |
 | Resource criticality | Rank exposures by business importance | Automation rules; inferred from tags, names, installed software and usage | Essentials | [Oct](https://aws.amazon.com/about-aws/whats-new/2026/10/security-hub-resource-criticality/) · [Nov](https://aws.amazon.com/about-aws/whats-new/2026/11/security-hub-resource-criticality/) |
-| Remediation plans | Fix one root cause instead of many findings | Groups exposures that share a root cause; priority, impact and steps; API access | Not stated in the announcement | [AWS](https://aws.amazon.com/about-aws/whats-new/2026/10/aws-security-hub-remediation-plans/) |
+| Remediation plans | Fix one root cause instead of many findings | Groups exposures that share a root cause; priority, impact and steps; API access | Essentials, no additional cost | [AWS](https://aws.amazon.com/about-aws/whats-new/2026/10/aws-security-hub-remediation-plans/) |
 | Network Scanning | Confirm what is actually reachable from the internet | Probes public IPs, VMs and load balancers; finds open ports and services | Listed on the pricing page among Essentials capabilities | [AWS](https://aws.amazon.com/about-aws/whats-new/2026/07/aws-security-hub-network-scanning/) |
 | Unused access | Reduce identity risk | Detects unused IAM permissions, roles and credentials across the organization | Essentials, no additional cost | [AWS](https://aws.amazon.com/about-aws/whats-new/2026/05/aws-security-hub-unused-access/) |
 | AI inventory | Know which AI assets exist and their posture | Discovers Bedrock, AgentCore and other AI workloads; links to findings | Essentials, no additional cost | [AWS](https://aws.amazon.com/about-aws/whats-new/2026/07/aws-security-hub-ai/) |
-| SBOM inventory | Find where a vulnerable package is installed | Built from Inspector SBOMs | Not stated in the announcement | [AWS](https://aws.amazon.com/about-aws/whats-new/2026/11/security-hub-sbom-inventory/) |
+| SBOM inventory | Find where a vulnerable package is installed | Built from Inspector SBOMs where Inspector is enabled | Essentials, no additional cost | [AWS](https://aws.amazon.com/about-aws/whats-new/2026/11/security-hub-sbom-inventory/) |
 | Posture checks | Prove controls are configured | CSPM controls and standards; CIS benchmarks for Azure and GCP | Essentials (or CSPM standalone) | [CSPM docs](https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html) |
 | Coverage findings | Catch accounts that are quiet because they are unmonitored | Flags accounts without a qualifying standard | Essentials | [Docs](https://docs.aws.amazon.com/securityhub/latest/userguide/coverage-findings.html) |
 | Response routing | Get the finding to the person who can fix it | EventBridge rules; Jira Cloud and ServiceNow integrations | Essentials | [EventBridge](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-v2-cwe-event-rules.html) · [Ticketing](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-v2-integrations.html) |
 | Multicloud | One prioritized view across AWS, Azure and GCP | Per-cloud integration; same finding format and workflows | Billed like equivalent AWS resources after a 30-day trial (GCP announcement) | [Azure](https://aws.amazon.com/about-aws/whats-new/2026/06/aws-security-hub-supports-monitoring-microsoft-azure/) · [GCP](https://aws.amazon.com/about-aws/whats-new/2026/11/security-hub-gcp/) |
 | Extended partners | Buy and connect non-AWS security tools in one place | Curated partners emit OCSF findings into Security Hub; AWS bills | Extended, per-partner pricing | [Docs](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-extended-plan.html) |
-
-"Not stated" means the announcement does not say; check the pricing page before quoting.
 
 ## 4. Packaging and pricing
 
@@ -114,10 +112,9 @@ No ROI, displacement or parity claims. Use the customer's own baseline.
 ## 9. Open questions
 
 1. Is $3.75 per resource unit the list rate in US Regions, and are there volume tiers?
-2. Are remediation plans and SBOM inventory included in Essentials or billed separately?
-3. Why did the Extended roster change between July and August 2026 (Idira/CyberArk vs. Palo Alto Networks)?
-4. Which resource types in Azure and GCP are not yet covered?
-5. What will re:Invent 2026 (December) change in packaging or roster?
+2. Why did the Extended roster change between July and August 2026 (Idira/CyberArk vs. Palo Alto Networks)?
+3. Which resource types in Azure and GCP are not yet covered?
+4. What will re:Invent 2026 (December) change in packaging or roster?
 
 ## 10. Source register
 
