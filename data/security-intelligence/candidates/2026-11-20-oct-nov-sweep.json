@@ -1,0 +1,409 @@
+{
+  "batch": "2026-11-20-oct-nov-sweep",
+  "status": "candidate_only",
+  "publishable": false,
+  "framework": "docs/security-intelligence/incident-classification-framework.md",
+  "discoveryContext": "Sweep on November 20, 2026 for incidents disclosed October 1 to November 20, 2026, focused on stolen or exposed credentials, secrets and supply-chain compromise. Zeabur, WorkOS, Chainstack, DreamHost, LiteLLM and the Microsoft ARTEX report were checked against the original pages; GhostAction against GitGuardian's own post listing; the rest are secondary-only and flagged. Third-party text was paraphrased.",
+  "excludedFromIncidents": [
+    "Fireworks AI second intrusion (Oct 23-30): Fireworks' Nov 17 bulletin now describes two separate incidents; treat as an update to seeded incident:fireworks-ai-eval-secrets-2026",
+    "ChainDrop npm worm (August 4, 2026): outside this batch's date range",
+    "Eurofiber France breach: happened November 13, 2025, outside this batch's date range",
+    "CommandCode (October 28, 2026): only an X post cited by Wiz so far",
+    "Nitori, Iris Ohyama, Ipsos: moved to batch 2026-11-20-broader-breaches; Mr. Cooper (2023) and Logitech (2025) are outside the date range"
+  ],
+  "excludedReason": "Update to an existing record, too thin, outside the date range, or not yet checked. Good next-batch leads.",
+  "candidates": [
+    {
+      "incidentId": "incident:opencode-console-provider-keys-2026",
+      "title": "OpenCode Console intrusion exposes saved AI provider keys",
+      "incidentKind": "breach",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "BleepingComputer",
+          "canonicalUrl": "https://bleepingcomputer.com/news/security/opencode-hack-exposes-api-keys-amid-ai-distillation-attacks",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-21T02:00:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Cloud Security Alliance",
+          "canonicalUrl": "https://labs.cloudsecurityalliance.org/research/csa-research-note-opencode-console-provider-key-breach-20261/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-21T02:00:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Wiz",
+          "canonicalUrl": "https://www.wiz.io/blog/black-october-for-ai-developer-platforms?date=2026-10-30",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-21T02:00:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate shares this identity. Part of the Wiz 'Black October' cluster (see batch 2026-11-20-ai-platform-secrets); no shared attacker is established.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:opencode-console-provider-keys-2026:1",
+          "statement": "OpenCode disclosed on October 17, 2026 that an intruder reached a legacy system behind its hosted Console on the night of October 16, affecting 1.4% of Console users who had linked an outside AI provider.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://labs.cloudsecurityalliance.org/research/csa-research-note-opencode-console-provider-key-breach-20261/"
+        },
+        {
+          "id": "claim:opencode-console-provider-keys-2026:2",
+          "statement": "OpenCode's notice to affected users said the earliest possible key exposure was October 17, 00:30 UTC.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://bleepingcomputer.com/news/security/opencode-hack-exposes-api-keys-amid-ai-distillation-attacks"
+        },
+        {
+          "id": "claim:opencode-console-provider-keys-2026:3",
+          "statement": "Wiz reports OpenCode attributed the incident to a distillation attempt and reported signs of an agent swarm attack.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.wiz.io/blog/black-october-for-ai-developer-platforms?date=2026-10-30"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Primary source needed: OpenCode's own disclosure (X post and user email) was not fetched.",
+        "User reports of unauthorized provider charges are anecdotal; do not quantify."
+      ]
+    },
+    {
+      "incidentId": "incident:warp-vendor-agent-logs-2026",
+      "title": "Warp breach via third-party vendor exposes AI agent logs and telemetry",
+      "incidentKind": "breach",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "BleepingComputer",
+          "canonicalUrl": "https://bleepingcomputer.com/news/security/warp-discloses-breach-exposing-ai-agent-logs-user-telemetry-data",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-21T02:00:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "AICybr",
+          "canonicalUrl": "https://aicybr.com/blog/warp-vendor-breach-agent-traces-telemetry-privacy-response-2026",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-21T02:00:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate shares this identity. Part of the Wiz 'Black October' cluster (see batch 2026-11-20-ai-platform-secrets); no shared attacker is established.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:warp-vendor-agent-logs-2026:1",
+          "statement": "Warp disclosed that an attack on a third-party vendor in its infrastructure exposed users' AI agent decision logs and telemetry data.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://bleepingcomputer.com/news/security/warp-discloses-breach-exposing-ai-agent-logs-user-telemetry-data"
+        },
+        {
+          "id": "claim:warp-vendor-agent-logs-2026:2",
+          "statement": "Warp became aware on October 23, 2026, contained the activity within hours, and CEO Zach Lloyd estimated at most about 1% of users may be affected pending investigation.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://aicybr.com/blog/warp-vendor-breach-agent-traces-telemetry-privacy-response-2026"
+        },
+        {
+          "id": "claim:warp-vendor-agent-logs-2026:3",
+          "statement": "Preliminary analysis cited by Warp described an agent swarm using a sophisticated penetration and escalation technique.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://bleepingcomputer.com/news/security/warp-discloses-breach-exposing-ai-agent-logs-user-telemetry-data"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Primary source needed: CEO Zach Lloyd's X statement was not fetched.",
+        "Unknown: vendor identity and whether any secrets were in the exposed logs."
+      ]
+    },
+    {
+      "incidentId": "incident:andromeda-credential-exposure-2026",
+      "title": "Andromeda AI platform reports exposure of internal and customer credentials",
+      "incidentKind": "intrusion",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "DeepInspect",
+          "canonicalUrl": "https://www.deepinspect.ai/ai-security-incidents/andromeda-reports-exposure-of-internal-and-customer-credentials",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-21T02:00:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Wiz",
+          "canonicalUrl": "https://www.wiz.io/blog/black-october-for-ai-developer-platforms?date=2026-10-30",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-21T02:00:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate shares this identity. Part of the Wiz 'Black October' cluster (see batch 2026-11-20-ai-platform-secrets); no shared attacker is established.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:andromeda-credential-exposure-2026:1",
+          "statement": "Andromeda detected unauthorized credential access on October 13, 2026 and believes activity began around October 9; it disabled compromised accounts and rotated keys.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.deepinspect.ai/ai-security-incidents/andromeda-reports-exposure-of-internal-and-customer-credentials"
+        },
+        {
+          "id": "claim:andromeda-credential-exposure-2026:2",
+          "statement": "Andromeda reported no detected access to customer models, datasets or training data, and its October 20 notice left root cause open.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.deepinspect.ai/ai-security-incidents/andromeda-reports-exposure-of-internal-and-customer-credentials"
+        },
+        {
+          "id": "claim:andromeda-credential-exposure-2026:3",
+          "statement": "Wiz reports Andromeda's incident report calls it part of an industry-wide attack.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.wiz.io/blog/black-october-for-ai-developer-platforms?date=2026-10-30"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Primary source needed: Andromeda's own security update page could not be fetched.",
+        "Unknown: entry point and number of customers affected."
+      ]
+    },
+    {
+      "incidentId": "incident:wellington-it-credit-unions-2026",
+      "title": "Wellington IT platform abused to pull payee records across about 40 Irish credit unions",
+      "incidentKind": "breach",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "BleepingComputer",
+          "canonicalUrl": "https://www.bleepingcomputer.com/news/security/data-breach-impacts-40-irish-credit-unions-in-reported-it-provider-hack/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-21T02:00:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Irish Examiner",
+          "canonicalUrl": "https://www.irishexaminer.com/news/courtandcrime/arid-41938989.html",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-21T02:00:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "The Irish Times",
+          "canonicalUrl": "https://www.irishtimes.com/crime-law/2026/11/18/credit-union-data-breach-minister-concerned-over-delay-in-disclosing-cyberattack/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-21T02:00:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate shares this identity.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:wellington-it-credit-unions-2026:1",
+          "statement": "Wellington IT, a Belfast provider of software to 50 credit unions (43 in Ireland), notified customers of a potential breach in November 2026.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.irishexaminer.com/news/courtandcrime/arid-41938989.html"
+        },
+        {
+          "id": "claim:wellington-it-credit-unions-2026:2",
+          "statement": "Wellington IT said malicious requests came from an automated client using a valid member login and accessed saved payee records.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.irishexaminer.com/news/courtandcrime/arid-41938989.html"
+        },
+        {
+          "id": "claim:wellington-it-credit-unions-2026:3",
+          "statement": "BleepingComputer reports the activity ran October 2-4, 2026; The Irish Times reports a weakness in the online banking platform exploited on October 6.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.bleepingcomputer.com/news/security/data-breach-impacts-40-irish-credit-unions-in-reported-it-provider-hack/"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Primary source needed: Wellington IT has not published a public statement; facts come from its letters as quoted by press.",
+        "Dates conflict (Oct 2-4 vs Oct 6); keep both attributed.",
+        "Sales angle caution: a valid member login plus an authorization weakness, not a leaked secret."
+      ]
+    },
+    {
+      "incidentId": "incident:opsshield-cpguard-update-channel-2026",
+      "title": "OpsShield cPGuard update channel hijacked with compromised credentials to push a root-level stealer",
+      "incidentKind": "supply_chain",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "BleepingComputer",
+          "canonicalUrl": "https://bleepingcomputer.com/news/security/hackers-hijack-cpguard-autoupdate-to-deploy-backdoor-steal-data",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-21T03:05:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Help Net Security",
+          "canonicalUrl": "https://www.helpnetsecurity.com/?p=390287",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-21T03:05:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "eSecurity Planet",
+          "canonicalUrl": "https://www.esecurityplanet.com/news/news-cpguard-supply-chain-attack-servers/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-21T03:05:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate shares this identity.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:opsshield-cpguard-update-channel-2026:1",
+          "statement": "OpsShield's advisory, as quoted by BleepingComputer, says an attacker used compromised credentials on November 2, 2026 at 02:06 UTC to reach its update distribution infrastructure and push a malicious script through the cPGuard update channel; versions 5.88.12 to 5.88.19 were affected.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://bleepingcomputer.com/news/security/hackers-hijack-cpguard-autoupdate-to-deploy-backdoor-steal-data"
+        },
+        {
+          "id": "claim:opsshield-cpguard-update-channel-2026:2",
+          "statement": "Help Net Security reports OpsShield's account that the attacker probed its billing portal the day before the update infrastructure was compromised.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.helpnetsecurity.com/?p=390287"
+        },
+        {
+          "id": "claim:opsshield-cpguard-update-channel-2026:3",
+          "statement": "About 2,950 servers ran the poisoned update, which collected sensitive files and installed a hidden root shell; OpsShield revoked the compromised credentials and shipped corrective versions.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.esecurityplanet.com/news/news-cpguard-supply-chain-attack-servers/"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Primary source needed: OpsShield's own advisory was not fetched; facts come from coverage that quotes it.",
+        "OpsShield's account changed as its investigation went on (per CSA); recheck the latest advisory before review.",
+        "Unknown: how the initial credentials were obtained."
+      ]
+    }
+  ],
+  "promotedToSeed": {
+    "promotedOn": "2026-11-21",
+    "reviewRecord": "docs/security-intelligence/review-2026-11-21.md",
+    "incidentIds": [
+      "incident:zeabur-plaintext-admin-creds-2026",
+      "incident:workos-artex-sales-tool-2026",
+      "incident:chainstack-grafana-default-creds-2026",
+      "incident:dreamhost-file-manager-ftp-creds-2026",
+      "incident:litellm-agent-platform-key-2026",
+      "incident:ghostaction-wave-oct-2026",
+      "incident:artex-github-secrets-entra-2026",
+      "incident:lightning-ai-platform-credentials-2026"
+    ]
+  }
+}

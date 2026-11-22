@@ -1,0 +1,162 @@
+{
+  "batch": "2026-11-21-november-followups",
+  "status": "candidate_only",
+  "publishable": false,
+  "framework": "docs/security-intelligence/incident-classification-framework.md",
+  "discoveryContext": "Follow-up on November 21, 2026 for secrets and credential incidents disclosed in November 2026 that the November 20 sweep missed. Cursor, GitBook and Barracuda were checked against their own pages; NEAR AI and NVIDIA Brev are secondary-only. Third-party text was paraphrased.",
+  "excludedFromIncidents": [
+    "Railway preliminary report (1.85% of workspaces; attacker sought AI provider API keys): update to seeded incident:railway-env-vars-2026, not a new incident",
+    "Fireworks Nov 17 bulletin (two separate intrusions): update to seeded incident:fireworks-ai-eval-secrets-2026",
+    "Apify preliminary report (promised by Nov 20): not found yet; recheck the Apify candidate",
+    "Trigger.dev full incident report: not published yet",
+    "Research and campaign reports without a single victim (SOCRadar ArgonHunt, Amazon decoy findings, SpyCloud infostealer token theft, VECERT Ghost-Campus, Arctic Wolf AntiFox): candidates for a research/context record type, not incidents"
+  ],
+  "excludedReason": "Updates to existing records, follow-ups not yet published, or research without a single affected organization.",
+  "candidates": [
+    {
+      "incidentId": "incident:near-ai-sglang-rce-2026",
+      "title": "NEAR AI: SGLang remote code execution reaches inference server; two customers' API keys found in logs",
+      "incidentKind": "intrusion",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "The Block",
+          "canonicalUrl": "https://theblock.co/news/defi/2026-11-10-near-ai-security-breach-437002",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-22T01:30:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Let's Data Science",
+          "canonicalUrl": "https://letsdatascience.com/news/sglang-flaw-lets-attacker-breach-near-ai-inference-servers-fa6fb270",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-22T01:30:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate shares this identity.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:near-ai-sglang-rce-2026:1",
+          "statement": "NEAR AI's November 9, 2026 incident report, as summarized by The Block, says an attacker exploited a remote code execution flaw in the open-source SGLang inference engine to run code on one inference server and reach an internal system behind a deprecated Private Chat feature.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://theblock.co/news/defi/2026-11-10-near-ai-security-breach-437002"
+        },
+        {
+          "id": "claim:near-ai-sglang-rce-2026:2",
+          "statement": "Account details for about 100 users and chat history, settings and logs from 18 legacy agents were accessed; two NEAR AI Cloud customers' API keys were exposed in logs and have been revoked.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://letsdatascience.com/news/sglang-flaw-lets-attacker-breach-near-ai-inference-servers-fa6fb270"
+        },
+        {
+          "id": "claim:near-ai-sglang-rce-2026:3",
+          "statement": "On November 8 the attacker could also have observed user requests processed on the accessed server, including confidential-mode requests.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://letsdatascience.com/news/sglang-flaw-lets-attacker-breach-near-ai-inference-servers-fa6fb270"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Primary source needed: NEAR AI's own incident report was not fetched.",
+        "Unknown: which SGLang CVE was exploited; NEAR AI's report reportedly does not name one."
+      ]
+    },
+    {
+      "incidentId": "incident:nvidia-brev-ssh-keys-2026",
+      "title": "NVIDIA Brev: 16 days of unauthorized activity may have exposed SSH keys used to reach customer GPU VMs",
+      "incidentKind": "intrusion",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "Astra Security",
+          "canonicalUrl": "https://www.getastra.com/blog/?p=50030",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-22T01:30:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Compsmag",
+          "canonicalUrl": "https://www.compsmag.com/news/nvidia-replaces-brev-ssh-keys-after-security-incident-affecting-customer-cloud-instances/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-22T01:30:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate shares this identity.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:nvidia-brev-ssh-keys-2026:1",
+          "statement": "NVIDIA told Brev customers that unauthorized activity occurred on the Brev platform between October 4 and October 20, 2026, and that the Brev-provisioned SSH key for each account may have been affected.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.getastra.com/blog/?p=50030"
+        },
+        {
+          "id": "claim:nvidia-brev-ssh-keys-2026:2",
+          "statement": "NVIDIA says the keys were rotated, instances updated with replacements, and it found no evidence of misuse; it has not said how the access began.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.compsmag.com/news/nvidia-replaces-brev-ssh-keys-after-security-incident-affecting-customer-cloud-instances/"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Primary source needed: only NVIDIA's customer notification (quoted by press) exists; no public NVIDIA statement was found.",
+        "Unknown: entry point, number of affected customers, and whether customer workloads or data were accessed."
+      ]
+    }
+  ],
+  "promotedToSeed": {
+    "promotedOn": "2026-11-21",
+    "reviewRecord": "docs/security-intelligence/review-2026-11-21.md",
+    "incidentIds": [
+      "incident:cursor-fireworks-vendor-key-2026",
+      "incident:gitbook-sso-github-app-2026",
+      "incident:barracuda-unretired-vendor-key-2026"
+    ]
+  }
+}
