@@ -7,6 +7,11 @@ import type { UseCaseSeatsInput } from "../schema";
  */
 export const useCaseSeats: UseCaseSeatsInput[] = [
   {
+    useCaseId: "uc-email-fraud-response",
+    seatIds: ["it-security", "soc-analyst", "incident-response", "it-operations", "security-architect", "procurement"],
+    likelyBudgetSeatIds: ["it-security", "soc-lead"],
+  },
+  {
     useCaseId: "uc-jml",
     seatIds: ["iga-owner", "security-architect", "grc-owner", "hr-people"],
     likelyBudgetSeatIds: ["iga-owner", "grc-owner"],

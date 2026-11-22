@@ -3,7 +3,7 @@ id: "email-security"
 type: "category"
 name: "Email security"
 layer: "core"
-vendors: 7
+vendors: 12
 ---
 
 # Email security
@@ -32,6 +32,11 @@ Inbound and outbound mail controls: phishing, impersonation, and data leaving by
 - Abnormal Security: Homepage retrieved 26 Oct 2026 describes a behavioral platform for email, identity, and AI security. An identity graph lists humans, service accounts, and AI agents and is not an NHI inventory cell. The page does not say whether mail is held at a gateway or read by API.
 - Mimecast: Homepage retrieved 26 Oct 2026 names email threat protection and says email security is where the company started. The page does not describe a quarantine or a block.
 - dmarcian: dmarcian helps domain owners interpret mail authentication reports and investigate sending sources.
+- Material Security: Vendor positions cloud-workspace email threat detection alongside account-takeover and sensitive-message protection for Microsoft 365 and Google Workspace. Mailbox and account controls are distinct from inline message enforcement; product tier and actual outcomes require buyer-specific review. Researched 2026-11-05.
+- AegisAI: Vendor describes purpose-built investigation models and AI agents for targeted phishing and BEC on Microsoft 365 / Google Workspace via API. The vendor's technical FAQ says remediation follows delivery; no proven inline pre-delivery guarantee. Researched 2026-11-05.
+- Sublime Security: Vendor documents programmable MQL email detection, ASA/ADE agents, default post-delivery API processing and optional Enterprise inline protection, plus managed and authorized AWS self-hosting. Research candidate; source recheck 2026-11-06, outcomes untested.
+- Ocean: Vendor describes agent-based investigation of targeted email attacks, SOC user-report triage and employee guidance. Delivery/remediation timing, independent efficacy and commercial terms are not established in this map. Researched 2026-11-05.
+- StrongestLayer: Vendor describes TRACE reasoning across email intent and organizational context, with an API connection and structured SOC evidence. Claimed ~30-second verdict is not independently measured. Researched 2026-11-05.
 
 ## Vendors (adjacent)
 

@@ -1,13 +1,14 @@
 {
   "schemaVersion": "1",
-  "asOf": "2026-11-21",
+  "asOf": "2026-11-22",
   "usageRules": [
     "Every fact comes from the listed sources; cite the source when you use it.",
     "Each source's rightsNote limits how it may be reused. Keep it with the citation, and check the publisher's terms before reusing any source text.",
     "Sales notes are interpretation, not evidence. Follow each note's 'avoid' line.",
     "Category links mean related, not that any product would have prevented the incident.",
     "Don't infer that a prospect or customer was affected.",
-    "Industry is the industry of the organization the source names, not a list of affected industries."
+    "Industry is the industry of the organization the source names, not a list of affected industries.",
+    "Secret types and exposure location are only what the sources state; an empty list means not stated, not none. Location is where the first exposed secret sat."
   ],
   "incidents": [
     {
@@ -48,13 +49,24 @@
         "discoveryQuestion": "If a vendor disclosed a breach with no details, what would you ask them first?",
         "avoid": "Don't speculate on what was taken.",
         "sellerCaveat": "Very thin record with no secrets angle reported; a weak conversation opener.",
-        "roleNotes": [],
+        "roleNotes": [
+          {
+            "roleId": "ciso",
+            "roleName": "CISO / VP of security",
+            "note": "Ipsos disclosed a breach of one internal system with no other details. Vendor contracts should say what you'll be told, and when."
+          }
+        ],
         "basedOnSourceIds": [
           "source:ipsos-press-release-2026"
         ],
         "reviewedOn": "2026-11-21"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -91,13 +103,29 @@
         "discoveryQuestion": "Would you notice a new personal access token in your GitHub org named to look like a trusted tool?",
         "avoid": "Don't call it a Claude Code vulnerability.",
         "sellerCaveat": "Attribution is suspected; keep that word. The attacker already had repo access and misused a settings file.",
-        "roleNotes": [],
+        "roleNotes": [
+          {
+            "roleId": "appsec",
+            "roleName": "AppSec lead",
+            "note": "Editing an AI tool's settings file in a repo was enough to plant a backdoor. Config files for developer tools need review like code."
+          },
+          {
+            "roleId": "platform",
+            "roleName": "DevOps / platform engineering",
+            "note": "The attacker made GitHub tokens named after Copilot to blend in. Review new tokens by owner and scope, not by name."
+          }
+        ],
         "basedOnSourceIds": [
           "source:gtig-ai-threat-tracker-nov-2026"
         ],
         "reviewedOn": "2026-11-21"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -153,6 +181,11 @@
         "reviewedOn": "2026-11-17"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "external-attack-surface",
@@ -203,7 +236,18 @@
         "discoveryQuestion": "How quickly could you tell which of your internal credentials can unlock other credentials?",
         "avoid": "Don't describe the initial credential; Apify hasn't said what it was.",
         "sellerCaveat": "Apify's fuller report hadn't been found as of 2026-11-21; details may change.",
-        "roleNotes": [],
+        "roleNotes": [
+          {
+            "roleId": "ciso",
+            "roleName": "CISO / VP of security",
+            "note": "One compromised credential led to more credentials and then into customer accounts. Ask vendors how they stop that kind of chain."
+          },
+          {
+            "roleId": "platform",
+            "roleName": "DevOps / platform engineering",
+            "note": "Apify had to revoke OAuth connections, including GitHub. Every integration you've authorized to a vendor needs an owner who can cut it off."
+          }
+        ],
         "basedOnSourceIds": [
           "source:apify-status-incident-2026"
         ],
@@ -215,6 +259,11 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -260,13 +309,43 @@
         "discoveryQuestion": "If a contributor's account were hijacked, which secrets could a pull request reach in your CI?",
         "avoid": "Don't attribute this to the GhostAction actor; Aikido doesn't.",
         "sellerCaveat": "Repo counts differ by source (1,806, 1,835, 8,093); say \"at least 1,806\" and cite Aikido. The date is approximate.",
-        "roleNotes": [],
+        "roleNotes": [
+          {
+            "roleId": "platform",
+            "roleName": "DevOps / platform engineering",
+            "note": "Pull requests from hijacked accounts ran a payload that stole Actions secrets and cloud credentials. Limit what CI exposes to outside contributions."
+          },
+          {
+            "roleId": "appsec",
+            "roleName": "AppSec lead",
+            "note": "Aikido says the count of at least 1,806 repos may be low because run logs were deleted. Keep CI logs long enough to investigate."
+          }
+        ],
         "basedOnSourceIds": [
           "source:aikido-wfx-loot-2026"
         ],
         "reviewedOn": "2026-11-21"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "ci_cd_secret",
+            "name": "CI/CD secret"
+          },
+          {
+            "id": "cloud_access_key",
+            "name": "Cloud access key"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "ci_cd",
+            "name": "CI/CD pipeline or logs"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "secrets-detection",
@@ -317,7 +396,18 @@
         "discoveryQuestion": "Do you know which secrets your people paste into AI tools, and who those tools share data with?",
         "avoid": "Don't imply Notion's own systems were breached; the dataset was at its vendor.",
         "sellerCaveat": "Don't pitch secret scanning as the fix for pasting secrets into AI chats; the honest angle is finding and rotating secrets after they spread.",
-        "roleNotes": [],
+        "roleNotes": [
+          {
+            "roleId": "ciso",
+            "roleName": "CISO / VP of security",
+            "note": "Secrets your people paste into AI tools can end up with the AI tool's own vendor."
+          },
+          {
+            "roleId": "appsec",
+            "roleName": "AppSec lead",
+            "note": "Chat transcripts are a place secrets leak that code scanning doesn't reach."
+          }
+        ],
         "basedOnSourceIds": [
           "source:notion-fireworks-advisory-2026"
         ],
@@ -329,6 +419,25 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "api_key",
+            "name": "API key (non-AI)"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "support_chat_work_files",
+            "name": "Support, chat or work files"
+          },
+          {
+            "id": "vendor_platform",
+            "name": "Vendor or platform"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "secrets-detection",
@@ -373,7 +482,18 @@
         "discoveryQuestion": "How many credentials have you given vendors for projects that are already over?",
         "avoid": "Don't name the vendor or attach Railway's $740,000 figure.",
         "sellerCaveat": "Barracuda's ARTEX match describes method, not actor; don't name an actor.",
-        "roleNotes": [],
+        "roleNotes": [
+          {
+            "roleId": "cloud-sec",
+            "roleName": "Cloud security",
+            "note": "A key given to a vendor for a past project was never retired. In about 44 hours it led through roughly 10 cloud accounts."
+          },
+          {
+            "roleId": "platform",
+            "roleName": "DevOps / platform engineering",
+            "note": "The attacker made a build workflow print secrets into job logs. Logs are a leak path to watch."
+          }
+        ],
         "basedOnSourceIds": [
           "source:barracuda-intrusion-2026"
         ],
@@ -385,6 +505,21 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "cloud_access_key",
+            "name": "Cloud access key"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "vendor_platform",
+            "name": "Vendor or platform"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "third-party-risk",
@@ -438,7 +573,13 @@
         "discoveryQuestion": "When the entry point isn't known yet, how quickly can you tell what a breach could have touched?",
         "avoid": "Don't suggest a cause; Nitori hasn't named one.",
         "sellerCaveat": "No credential or secrets angle is reported; use only as general breach context.",
-        "roleNotes": [],
+        "roleNotes": [
+          {
+            "roleId": "ciso",
+            "roleName": "CISO / VP of security",
+            "note": "Up to 37.62 million records may have leaked, and the cause isn't known yet. Early disclosures often lack the details you'd need to act."
+          }
+        ],
         "basedOnSourceIds": [
           "source:nitori-disclosure-2026"
         ],
@@ -450,6 +591,11 @@
           "name": "Retail"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -495,7 +641,18 @@
         "discoveryQuestion": "Which vendor integration roles in your AWS accounts are still trusted but no longer used?",
         "avoid": "Mention the attacker's use of open-source tools neutrally; don't imply any vendor involvement.",
         "sellerCaveat": "The attacker used open-source TruffleHog to check which stolen keys were live. If a buyer raises it, say plainly that attackers use open-source tools too; don't spin it. Wiz gives no victim count; \"dozens\" comes from Sentra.",
-        "roleNotes": [],
+        "roleNotes": [
+          {
+            "roleId": "cloud-sec",
+            "roleName": "Cloud security",
+            "note": "Customers had roles in their AWS accounts that still trusted Qubole but sat unused, and the attacker used them. Old trust relationships need a review date."
+          },
+          {
+            "roleId": "ciso",
+            "roleName": "CISO / VP of security",
+            "note": "One vendor's credentials opened many customers' accounts at once. Ask which vendors can still reach into yours."
+          }
+        ],
         "basedOnSourceIds": [
           "source:wiz-qubole-2026"
         ],
@@ -507,6 +664,21 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "cloud_access_key",
+            "name": "Cloud access key"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "vendor_platform",
+            "name": "Vendor or platform"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "third-party-risk",
@@ -560,13 +732,51 @@
         "discoveryQuestion": "If a secret tied to your company landed in a public repo today, would you find it before an automated search did?",
         "avoid": "Don't tie this to Storm-0940 or any named actor; Microsoft doesn't.",
         "sellerCaveat": "\"Within minutes\" is Microsoft's claim; attribute it to Microsoft rather than stating it as fact.",
-        "roleNotes": [],
+        "roleNotes": [
+          {
+            "roleId": "appsec",
+            "roleName": "AppSec lead",
+            "note": "Automated searches comb public GitHub for credentials and AI keys tied to specific companies. Attackers may find your leak before you do."
+          },
+          {
+            "roleId": "cloud-sec",
+            "roleName": "Cloud security",
+            "note": "Leaked app credentials were used to sign in as service principals and pull more secrets from Key Vault. Microsoft says one case took about five minutes."
+          }
+        ],
         "basedOnSourceIds": [
           "source:microsoft-artex-secrets-2026"
         ],
         "reviewedOn": "2026-11-21"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "ai_provider_key",
+            "name": "AI provider key"
+          },
+          {
+            "id": "service_account_credential",
+            "name": "Service account or machine credential"
+          },
+          {
+            "id": "cloud_access_key",
+            "name": "Cloud access key"
+          },
+          {
+            "id": "database_credential",
+            "name": "Database credential"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "public_repo",
+            "name": "Public code repo"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "secrets-detection",
@@ -631,6 +841,21 @@
           "name": "Financial services"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "service_account_credential",
+            "name": "Service account or machine credential"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "developer_machine",
+            "name": "Developer machine"
+          }
+        ],
+        "note": "This detail comes from The Hacker News's summary of Binance's preliminary report, which could not be fetched directly. Recheck against Binance's final report."
+      },
       "marketCategories": [
         {
           "categoryId": "software-supply-chain",
@@ -680,7 +905,18 @@
         "discoveryQuestion": "If one dev tool kept its default password, what else could its machine credentials reach?",
         "avoid": "Don't call it a software vulnerability; Chainstack says none was exploited.",
         "sellerCaveat": "The disclosure date is approximate; don't give a specific date.",
-        "roleNotes": [],
+        "roleNotes": [
+          {
+            "roleId": "platform",
+            "roleName": "DevOps / platform engineering",
+            "note": "Default admin credentials on an internet-facing Grafana started the chain. Internal tools you expose need the same credential checks as production."
+          },
+          {
+            "roleId": "cloud-sec",
+            "roleName": "Cloud security",
+            "note": "Machine credentials that worked in both dev and production let the attacker get from one to the other in three days."
+          }
+        ],
         "basedOnSourceIds": [
           "source:chainstack-incident-2026"
         ],
@@ -692,6 +928,20 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "password",
+            "name": "Password"
+          },
+          {
+            "id": "service_account_credential",
+            "name": "Service account or machine credential"
+          }
+        ],
+        "exposureLocations": [],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "nhi",
@@ -735,7 +985,18 @@
         "discoveryQuestion": "Which API keys sit in your internal repos, and what would each one unlock?",
         "avoid": "Don't present the AI-agent detail as confirmed; GitBook calls it an inference.",
         "sellerCaveat": "GitBook couldn't tell whether the attacker acted inside customer repos; don't say customer code was touched.",
-        "roleNotes": [],
+        "roleNotes": [
+          {
+            "roleId": "appsec",
+            "roleName": "AppSec lead",
+            "note": "A Cloudflare API key in internal repos turned a login flaw into full infrastructure access."
+          },
+          {
+            "roleId": "platform",
+            "roleName": "DevOps / platform engineering",
+            "note": "GitBook rotated every secret and invalidated customer API tokens. One key in a repo can mean a full rotation for you and your customers."
+          }
+        ],
         "basedOnSourceIds": [
           "source:gitbook-incident-2026"
         ],
@@ -747,6 +1008,29 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "git_platform_token",
+            "name": "Git platform token"
+          },
+          {
+            "id": "api_key",
+            "name": "API key (non-AI)"
+          },
+          {
+            "id": "signing_encryption_key",
+            "name": "Signing or encryption key"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "private_repo",
+            "name": "Private code repo"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "secrets-detection",
@@ -798,13 +1082,47 @@
         "discoveryQuestion": "Which credentials sit on the machines where developers install new packages?",
         "avoid": "Don't claim known victims; none are confirmed.",
         "sellerCaveat": null,
-        "roleNotes": [],
+        "roleNotes": [
+          {
+            "roleId": "appsec",
+            "roleName": "AppSec lead",
+            "note": "A clean first version, then a malicious one two hours later. Trust in a new package can't come from its first release."
+          },
+          {
+            "roleId": "platform",
+            "roleName": "DevOps / platform engineering",
+            "note": "The payload read 51 credential stores in one install. Developer machines hold far more keys than most teams think."
+          }
+        ],
         "basedOnSourceIds": [
           "source:socket-strutil-core-2026"
         ],
         "reviewedOn": "2026-11-21"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "cloud_access_key",
+            "name": "Cloud access key"
+          },
+          {
+            "id": "git_platform_token",
+            "name": "Git platform token"
+          },
+          {
+            "id": "package_registry_token",
+            "name": "Package registry token"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "developer_machine",
+            "name": "Developer machine"
+          }
+        ],
+        "note": "No victims are confirmed. These are the stores the payload read in OSV's sandboxed test install."
+      },
       "marketCategories": [
         {
           "categoryId": "secrets-detection",
@@ -863,7 +1181,18 @@
         "discoveryQuestion": "If a platform you deploy on told you to treat every stored secret as exposed, how long would rotating them all take?",
         "avoid": "Don't say how the flaw worked beyond Northflank's description.",
         "sellerCaveat": "The disclosure date is approximate; don't give a specific date.",
-        "roleNotes": [],
+        "roleNotes": [
+          {
+            "roleId": "platform",
+            "roleName": "DevOps / platform engineering",
+            "note": "Northflank told every customer to treat every stored secret as exposed. You need a list of what you keep on platforms like it and how fast you can rotate it."
+          },
+          {
+            "roleId": "ciso",
+            "roleName": "CISO / VP of security",
+            "note": "A deployment vendor's flaw exposed secrets for about 1.5% of its customer teams. Secrets you keep at a vendor are your exposure too."
+          }
+        ],
         "basedOnSourceIds": [
           "source:northflank-incident-report-2026"
         ],
@@ -875,6 +1204,29 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "many_types",
+            "name": "Many types"
+          },
+          {
+            "id": "ai_provider_key",
+            "name": "AI provider key"
+          },
+          {
+            "id": "signing_encryption_key",
+            "name": "Signing or encryption key"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "vendor_platform",
+            "name": "Vendor or platform"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "third-party-risk",
@@ -936,6 +1288,25 @@
         "reviewedOn": "2026-11-18"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "password",
+            "name": "Password"
+          },
+          {
+            "id": "session_sso_token",
+            "name": "Session or SSO token"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "vendor_platform",
+            "name": "Vendor or platform"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -979,7 +1350,18 @@
         "discoveryQuestion": "Could a credential meant for local development authenticate against anything in your production?",
         "avoid": "Don't describe this as a leaked secret; it was a weak, predictable credential.",
         "sellerCaveat": "A weak, guessable credential isn't something a secret scanner reliably catches; don't claim a scanner would have stopped this.",
-        "roleNotes": [],
+        "roleNotes": [
+          {
+            "roleId": "appsec",
+            "roleName": "AppSec lead",
+            "note": "A development credential that also worked in production let the attacker skip the line between them."
+          },
+          {
+            "roleId": "ciso",
+            "roleName": "CISO / VP of security",
+            "note": "WorkOS says a researcher's AI agent escaped its test environment and got in. Agent experiments need the same access limits as people."
+          }
+        ],
         "basedOnSourceIds": [
           "source:workos-bulletin-2026"
         ],
@@ -991,6 +1373,16 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "password",
+            "name": "Password"
+          }
+        ],
+        "exposureLocations": [],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -1037,7 +1429,18 @@
         "discoveryQuestion": "Which keys have you issued to vendors, and do you know where those vendors store them?",
         "avoid": "Don't call it an Anthropic or Open VSX vulnerability; Cursor says it wasn't.",
         "sellerCaveat": "Fewer than 0.01% of Cursor customers had credentials exposed; don't overstate the scale.",
-        "roleNotes": [],
+        "roleNotes": [
+          {
+            "roleId": "ciso",
+            "roleName": "CISO / VP of security",
+            "note": "A key Cursor issued to its AI vendor was exposed at the vendor. Keys you give vendors are still your keys."
+          },
+          {
+            "roleId": "appsec",
+            "roleName": "AppSec lead",
+            "note": "Old coding-agent traces held unredacted credentials, and the attacker reused them. Agent logs need the same secrets hygiene as code."
+          }
+        ],
         "basedOnSourceIds": [
           "source:cursor-incident-update-2026"
         ],
@@ -1049,6 +1452,16 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [
+          {
+            "id": "vendor_platform",
+            "name": "Vendor or platform"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "secrets-detection",
@@ -1106,7 +1519,18 @@
         "discoveryQuestion": "If a hosting provider told you ten weeks of logins were captured, which deploy credentials would you rotate first?",
         "avoid": "Don't name the vulnerable software; DreamHost hasn't.",
         "sellerCaveat": "The disclosure date is approximate; don't give a specific date.",
-        "roleNotes": [],
+        "roleNotes": [
+          {
+            "roleId": "platform",
+            "roleName": "DevOps / platform engineering",
+            "note": "About ten weeks of FTP and SFTP logins were captured. Deploy credentials typed into a host's web tools are only as safe as that host."
+          },
+          {
+            "roleId": "ciso",
+            "roleName": "CISO / VP of security",
+            "note": "DreamHost found the access weeks after it began. Ask vendors how quickly they'd know."
+          }
+        ],
         "basedOnSourceIds": [
           "source:dreamhost-announcement-2026"
         ],
@@ -1118,6 +1542,21 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "password",
+            "name": "Password"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "vendor_platform",
+            "name": "Vendor or platform"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -1173,6 +1612,29 @@
         "reviewedOn": "2026-11-18"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "many_types",
+            "name": "Many types"
+          },
+          {
+            "id": "git_platform_token",
+            "name": "Git platform token"
+          },
+          {
+            "id": "ai_provider_key",
+            "name": "AI provider key"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "vendor_platform",
+            "name": "Vendor or platform"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -1211,7 +1673,18 @@
         "discoveryQuestion": "When someone deletes a committed key, does your process also revoke it?",
         "avoid": "Don't imply any specific tool would have prevented it.",
         "sellerCaveat": null,
-        "roleNotes": [],
+        "roleNotes": [
+          {
+            "roleId": "appsec",
+            "roleName": "AppSec lead",
+            "note": "Deleting a committed key doesn't remove it from Git history. This one stayed usable for over four months because nobody revoked it."
+          },
+          {
+            "roleId": "platform",
+            "roleName": "DevOps / platform engineering",
+            "note": "One admin key led to maintainer tokens taken through CI, then a poisoned release on PyPI, Docker Hub and GHCR."
+          }
+        ],
         "basedOnSourceIds": [
           "source:litellm-attack-chain-2026"
         ],
@@ -1223,6 +1696,25 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "api_key",
+            "name": "API key (non-AI)"
+          },
+          {
+            "id": "git_platform_token",
+            "name": "Git platform token"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "public_repo",
+            "name": "Public code repo"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "secrets-detection",
@@ -1280,7 +1772,13 @@
         "discoveryQuestion": "If an AI platform you use went offline over a credential incident, which of your keys stored there would you rotate?",
         "avoid": "Don't describe scope; Lightning hasn't published it here.",
         "sellerCaveat": "Only Lightning's post summary was read; scope and whose credentials were accessed are unknown.",
-        "roleNotes": [],
+        "roleNotes": [
+          {
+            "roleId": "ciso",
+            "roleName": "CISO / VP of security",
+            "note": "An AI development platform went offline over a credential incident. Know which of your keys live on platforms like it."
+          }
+        ],
         "basedOnSourceIds": [
           "source:lightning-ai-incident-2026"
         ],
@@ -1292,6 +1790,11 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -1336,7 +1839,18 @@
         "discoveryQuestion": "Where do your long-lived admin tokens live, and when were they last rotated?",
         "avoid": "Don't state how the attacker got the config repo; Zeabur only hypothesizes.",
         "sellerCaveat": "The 3,218,965 record figure is from Zeabur's preliminary report, marked confirmed there; the report may be updated.",
-        "roleNotes": [],
+        "roleNotes": [
+          {
+            "roleId": "platform",
+            "roleName": "DevOps / platform engineering",
+            "note": "Admin tokens that never expired, kept in a config repo, were the root cause. A token with no expiry turns one leak into lasting access."
+          },
+          {
+            "roleId": "ciso",
+            "roleName": "CISO / VP of security",
+            "note": "Zeabur is shutting down after its second breach in two months. A vendor's incident can end the vendor, not just cost you a rotation."
+          }
+        ],
         "basedOnSourceIds": [
           "source:zeabur-incident-report-2026"
         ],
@@ -1348,6 +1862,29 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "cloud_access_key",
+            "name": "Cloud access key"
+          },
+          {
+            "id": "service_account_credential",
+            "name": "Service account or machine credential"
+          },
+          {
+            "id": "many_types",
+            "name": "Many types"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "private_repo",
+            "name": "Private code repo"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "secrets-management",
@@ -1409,6 +1946,21 @@
         "reviewedOn": "2026-11-18"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "many_types",
+            "name": "Many types"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "vendor_platform",
+            "name": "Vendor or platform"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -1462,13 +2014,39 @@
         "discoveryQuestion": "Which secrets can your GitHub Actions workflows read, and would you notice a new workflow sending them out?",
         "avoid": "Don't give one total; counts differ by phase and source.",
         "sellerCaveat": "Only GitGuardian's summary was checked, not the full post; stick to the headline.",
-        "roleNotes": [],
+        "roleNotes": [
+          {
+            "roleId": "platform",
+            "roleName": "DevOps / platform engineering",
+            "note": "Hijacked accounts pushed workflows that read whatever secrets the repo's Actions could read. Workflow changes need review like code."
+          },
+          {
+            "roleId": "appsec",
+            "roleName": "AppSec lead",
+            "note": "Secrets exposed to Actions are only as safe as every account that can push a workflow."
+          }
+        ],
         "basedOnSourceIds": [
           "source:gitguardian-ghostaction-2026"
         ],
         "reviewedOn": "2026-11-21"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "ci_cd_secret",
+            "name": "CI/CD secret"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "ci_cd",
+            "name": "CI/CD pipeline or logs"
+          }
+        ],
+        "note": "Only GitGuardian's summary was checked, not the full post."
+      },
       "marketCategories": [
         {
           "categoryId": "secrets-detection",
@@ -1528,6 +2106,11 @@
           "name": "Healthcare and life sciences"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -1585,6 +2168,11 @@
           "name": "Healthcare and life sciences"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "cyber-recovery",
@@ -1646,6 +2234,16 @@
         "reviewedOn": "2026-11-18"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [
+          {
+            "id": "ci_cd",
+            "name": "CI/CD pipeline or logs"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -1701,6 +2299,25 @@
         "reviewedOn": "2026-11-18"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "package_registry_token",
+            "name": "Package registry token"
+          },
+          {
+            "id": "git_platform_token",
+            "name": "Git platform token"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "developer_machine",
+            "name": "Developer machine"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -1753,6 +2370,11 @@
         "reviewedOn": "2026-11-17"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "software-supply-chain",
@@ -1820,6 +2442,29 @@
         "reviewedOn": "2026-11-17"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "git_platform_token",
+            "name": "Git platform token"
+          },
+          {
+            "id": "package_registry_token",
+            "name": "Package registry token"
+          },
+          {
+            "id": "ssh_key",
+            "name": "SSH key"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "developer_machine",
+            "name": "Developer machine"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "software-supply-chain",
@@ -1886,6 +2531,21 @@
         "reviewedOn": "2026-11-18"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "oauth_integration_token",
+            "name": "OAuth or integration token"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "vendor_platform",
+            "name": "Vendor or platform"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -1939,6 +2599,21 @@
         "reviewedOn": "2026-11-17"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "ci_cd_secret",
+            "name": "CI/CD secret"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "ci_cd",
+            "name": "CI/CD pipeline or logs"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "software-supply-chain",
@@ -1999,6 +2674,21 @@
         "reviewedOn": "2026-11-17"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "cloud_access_key",
+            "name": "Cloud access key"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "exposed_app_config",
+            "name": "Exposed app config"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "secrets-detection",
@@ -2065,6 +2755,21 @@
         "reviewedOn": "2026-11-17"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "git_platform_token",
+            "name": "Git platform token"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "build_artifact",
+            "name": "Build artifact or image"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "secrets-detection",
@@ -2130,6 +2835,21 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "service_account_credential",
+            "name": "Service account or machine credential"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "vendor_platform",
+            "name": "Vendor or platform"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "nhi",
@@ -2190,6 +2910,21 @@
         "reviewedOn": "2026-11-18"
       },
       "industries": [],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "git_platform_token",
+            "name": "Git platform token"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "public_repo",
+            "name": "Public code repo"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -2199,7 +2934,7 @@
       "kind": "breach",
       "disclosedOn": "2023-10-20",
       "occurredOn": null,
-      "summary": "Okta reported that an actor used a service account stored in its customer support system to view files uploaded by 134 customers between 28 September and 17 October 2023. Some were HAR files containing session tokens, which the actor used to hijack the Okta sessions of 5 customers. The service account's username and password had been saved to an employee's personal Google account.",
+      "summary": "Okta reported that an actor used a service account stored in its customer support system to view files uploaded by 134 customers between 28 September and 17 October 2023. Some were HAR files containing session tokens, which the actor used to hijack the Okta sessions of 5 customers. The service account's username and password had been saved to an employee's personal Google account. A 29 November 2023 update says the actor also obtained the names and email addresses of all Okta customer support system users, and that this report held no user credentials.",
       "epistemicStatus": "reported",
       "affectedEcosystems": [
         "saas"
@@ -2207,9 +2942,10 @@
       "uncertaintyNotes": [
         "Okta says the credential was most likely exposed through the employee's personal Google account or personal device; the exact path is not confirmed.",
         "Downstream incidents at Okta customers, such as Cloudflare's, are separate records; the relationship has not been reviewed.",
+        "Okta's 29 November 2023 update widened the scope from files for 134 customers to contact details for all support system users. It says that report held no credentials or sensitive personal data, and it does not address session tokens.",
         "No ATT&CK technique is asserted until a separate sourced mapping review."
       ],
-      "lastReviewedOn": "2026-11-17",
+      "lastReviewedOn": "2026-11-22",
       "sources": [
         {
           "id": "source:okta-support-root-cause-2023",
@@ -2225,6 +2961,14 @@
           "type": "company_incident_report",
           "url": "https://sec.okta.com/articles/harfiles/",
           "publishedOn": "2024-02-08",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "id": "source:okta-support-update-2023-11-29",
+          "publisher": "Okta Security",
+          "type": "company_incident_report",
+          "url": "https://sec.okta.com/october-security-incident-recommended-actions",
+          "publishedOn": "2023-11-29",
           "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
@@ -2256,6 +3000,25 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "service_account_credential",
+            "name": "Service account or machine credential"
+          },
+          {
+            "id": "session_sso_token",
+            "name": "Session or SSO token"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "personal_account_browser",
+            "name": "Personal account or browser profile"
+          }
+        ],
+        "note": "Okta says the most likely way the credential got out was compromise of that personal account or a personal device; the exact path is not confirmed."
+      },
       "marketCategories": [
         {
           "categoryId": "itdr",
@@ -2328,6 +3091,21 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "cloud_access_key",
+            "name": "Cloud access key"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "public_repo",
+            "name": "Public code repo"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "secrets-detection",
@@ -2393,6 +3171,16 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "signing_encryption_key",
+            "name": "Signing or encryption key"
+          }
+        ],
+        "exposureLocations": [],
+        "note": null
+      },
       "marketCategories": []
     },
     {
@@ -2450,6 +3238,21 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "session_sso_token",
+            "name": "Session or SSO token"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "developer_machine",
+            "name": "Developer machine"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "secrets-management",
@@ -2516,6 +3319,21 @@
           "name": "Automotive"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "api_key",
+            "name": "API key (non-AI)"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "public_repo",
+            "name": "Public code repo"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "secrets-detection",
@@ -2582,6 +3400,11 @@
           "name": "Transportation"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "workforce-identity",
@@ -2652,6 +3475,21 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "ci_cd_secret",
+            "name": "CI/CD secret"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "build_artifact",
+            "name": "Build artifact or image"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "software-supply-chain",
@@ -2704,6 +3542,11 @@
           "name": "Technology"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "software-supply-chain",
@@ -2776,6 +3619,25 @@
           "name": "Transportation"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [
+          {
+            "id": "cloud_access_key",
+            "name": "Cloud access key"
+          },
+          {
+            "id": "password",
+            "name": "Password"
+          }
+        ],
+        "exposureLocations": [
+          {
+            "id": "private_repo",
+            "name": "Private code repo"
+          }
+        ],
+        "note": null
+      },
       "marketCategories": [
         {
           "categoryId": "secrets-detection",

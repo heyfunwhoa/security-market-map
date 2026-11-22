@@ -269,3 +269,62 @@ describe("industry tags", () => {
     }
   });
 });
+
+describe("secret exposure fields", () => {
+  const entry = {
+    id: "exposure:example",
+    incidentId: "incident:example",
+    secretTypes: ["cloud_access_key"],
+    exposureLocations: ["public_repo"],
+    rationale: "Source says an AWS key was posted in a public repository.",
+    basedOnSourceIds: ["source:a"],
+    status: "reviewed" as const,
+    proposedBy: "agent-draft",
+    proposedOn: "2026-11-22",
+    reviewedBy: "Reviewer",
+    reviewedOn: "2026-11-22",
+  };
+
+  it("publishes only reviewed entries with known values, a named reviewer and the incident's own sources", async () => {
+    const { isPublishableExposure } = await import("./incident-feed");
+    expect(isPublishableExposure(entry, base)).toBe(true);
+    expect(isPublishableExposure({ ...entry, status: "proposed" }, base)).toBe(false);
+    expect(isPublishableExposure({ ...entry, secretTypes: ["guessed_type"] }, base)).toBe(false);
+    expect(isPublishableExposure({ ...entry, exposureLocations: ["somewhere"] }, base)).toBe(false);
+    expect(isPublishableExposure({ ...entry, secretTypes: [], exposureLocations: [] }, base)).toBe(false);
+    expect(isPublishableExposure({ ...entry, reviewedBy: " " }, base)).toBe(false);
+    expect(isPublishableExposure({ ...entry, basedOnSourceIds: ["source:other"] }, base)).toBe(false);
+  });
+
+  it("filters by secret type and location, and leaves unstated fields empty", () => {
+    const feed = buildIncidentFeed([base], [source], [], [], [], [entry, { ...entry, id: "x", secretTypes: ["password"], status: "proposed" }]);
+    expect(feed[0].secretTypes).toEqual(["cloud_access_key"]);
+    expect(feed[0].exposureLocations).toEqual(["public_repo"]);
+    expect(feed[0].exposureNote).toBeNull();
+    expect(filterIncidents(feed, { ...NO_INCIDENT_FILTERS, secret: "cloud_access_key" })).toHaveLength(1);
+    expect(filterIncidents(feed, { ...NO_INCIDENT_FILTERS, secret: "password" })).toHaveLength(0);
+    expect(filterIncidents(feed, { ...NO_INCIDENT_FILTERS, location: "public_repo" })).toHaveLength(1);
+    expect(readIncidentFilters(new URLSearchParams("secret=password&location=ci_cd"), feed)).toMatchObject({ secret: "all", location: "all" });
+    expect(incidentFilterUrl({ ...NO_INCIDENT_FILTERS, secret: "cloud_access_key", location: "public_repo" })).toBe(
+      "/incidents?secret=cloud_access_key&location=public_repo",
+    );
+    const bare = buildIncidentFeed([base], [source], []);
+    expect(bare[0].secretTypes).toEqual([]);
+    expect(bare[0].exposureLocations).toEqual([]);
+  });
+
+  it("every entry in the data file is well formed, reviewed against its incident's sources, and one per incident", async () => {
+    const { allSecretExposures, SECRET_TYPE_LABELS, EXPOSURE_LOCATION_LABELS, isPublishableExposure } = await import("./incident-feed");
+    const incidents = new Set<string>();
+    for (const e of allSecretExposures) {
+      expect(e.id).toBe(`exposure:${e.incidentId.replace(/^incident:/, "")}`);
+      expect(incidents.has(e.incidentId), `duplicate entry for ${e.incidentId}`).toBe(false);
+      incidents.add(e.incidentId);
+      for (const id of e.secretTypes) expect(id in SECRET_TYPE_LABELS, `unknown secret type ${id}`).toBe(true);
+      for (const id of e.exposureLocations) expect(id in EXPOSURE_LOCATION_LABELS, `unknown location ${id}`).toBe(true);
+      const item = incidentFeed.find((feedItem) => feedItem.incident.id === e.incidentId);
+      expect(item, `${e.incidentId} is not a published incident`).toBeDefined();
+      if (e.status === "reviewed") expect(isPublishableExposure(e, item!.incident), `${e.id} fails the publication gate`).toBe(true);
+    }
+  });
+});

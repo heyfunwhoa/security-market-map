@@ -2,7 +2,15 @@ import Link from "next/link";
 import { StatusPill } from "@/components/chrome";
 import { CopyTalkTrack } from "@/components/copy-talk-track";
 import { formatDate } from "@/lib/format";
-import { ecosystemLabel, INCIDENT_KIND_LABELS, industryLabel, talkTrackText, type FeedIncident } from "@/lib/incident-feed";
+import {
+  ecosystemLabel,
+  exposureLocationLabel,
+  INCIDENT_KIND_LABELS,
+  industryLabel,
+  secretTypeLabel,
+  talkTrackText,
+  type FeedIncident,
+} from "@/lib/incident-feed";
 
 /** Card order: what/when/status → title → summary → talk track → evidence footer. */
 export function IncidentCard({ item }: { item: FeedIncident }) {
@@ -74,6 +82,18 @@ export function IncidentCard({ item }: { item: FeedIncident }) {
           <div>
             <dt className="sr-only">Industry</dt>
             <dd>{item.industries.map(industryLabel).join(", ")}</dd>
+          </div>
+        )}
+        {item.secretTypes.length > 0 && (
+          <div>
+            <dt className="inline text-muted-foreground">Secret: </dt>
+            <dd className="inline">{item.secretTypes.map(secretTypeLabel).join(", ")}</dd>
+          </div>
+        )}
+        {item.exposureLocations.length > 0 && (
+          <div>
+            <dt className="inline text-muted-foreground">Exposed in: </dt>
+            <dd className="inline">{item.exposureLocations.map(exposureLocationLabel).join(", ")}</dd>
           </div>
         )}
         <div>

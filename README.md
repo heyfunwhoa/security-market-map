@@ -53,6 +53,8 @@ The Cyera–Oasis case study separates the companies' strategic rationale and th
 
 ## Research standards
 
+**API-native and agentic email security (November 2026):** [Source-linked comparison and twelve buyer functions](docs/market-research/agentic-email-security-2026-11-05.md) with [vendor research dossiers](research/vendors/) for AegisAI, Sublime Security, Ocean, StrongestLayer and Material Security; existing Abnormal remains the reference. The **existing** email-security category now has one source-neutral buyer use case (`uc-email-fraud-response`) and eight distinct control questions available through the current category/use-case/compare routes. All product capability comparison cells remain **Unknown** until independently reviewed, source-bound `Claim` records are approved. No new category, parallel registry, competitor ranking, live scraper or cross-repo sync was introduced. A provider API/no MX change is not proof of pre-delivery enforcement.
+
 **Agentic SecOps / MSSP industry research:** [October 2026 competitive landscape](docs/market-research/agentic-secops-competitive-landscape.md) groups vendors by buyer job, original source and unverified comparison hypotheses. This is editorial research, not yet published as typed catalog claims.
 
 **Reusable method:** [Competitive Intelligence Playbook](docs/market-research/competitive-intelligence-playbook.md) covers buyer-led comparison, source quality, case studies, interview preparation, win/loss privacy and downstream GTM reuse.

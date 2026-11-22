@@ -24,6 +24,7 @@ Engineering strategy; co-sponsors platform and developer-security buys.
 - Container and Kubernetes security (`container-security`)
 - Infrastructure-as-code security (`iac-security`)
 - Cloud-native application protection (`cnapp`)
+- Security data pipeline platforms (SDPP) (`security-data-pipelines`)
 
 ## Pains
 
