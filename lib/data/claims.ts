@@ -605,7 +605,7 @@ export const claims: Claim[] = [
   "verificationStatus": "vendor_published",
   "lastCheckedAt": "2026-10-13",
   "conflictsWith": [],
-  "notes": "Official marketing reviewed; not independent validation. Connector coverage, licensing, deployment and effectiveness require evaluation. No direct-competitor or feature-parity assertion."
+  "notes": "Official marketing reviewed; not independent validation. Connector coverage, licensing, deployment and effectiveness require evaluation. No direct-competitor or feature-parity assertion. Recheck attempted 22 Nov 2026: teleskope.ai pages timed out repeatedly, so the claim was not rechecked. Retry later."
 },
 {
   "id": "claim-concentric-ai-data-security-20261013",

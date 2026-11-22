@@ -2244,9 +2244,9 @@ export const secretsSweepSources: Source[] = [
   },
   {
     "id": "src-secrets-sweep-legit-secrets",
-    "title": "Legit Secrets Detection — secrets detection scope",
-    "url": "https://www.legitsecurity.com/enterprise-secret-scanning",
-    "canonicalUrl": "https://www.legitsecurity.com/enterprise-secret-scanning",
+    "title": "Legit Security Launches AI-Powered, Enterprise-Grade Secrets Scanning Product",
+    "url": "https://www.legitsecurity.com/press-releases/legit-security-launches-ai-powered-enterprise-grade-secrets-scanning-product",
+    "canonicalUrl": "https://www.legitsecurity.com/press-releases/legit-security-launches-ai-powered-enterprise-grade-secrets-scanning-product",
     "publisher": "Legit Security",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
@@ -2400,9 +2400,9 @@ export const secretsSweepSources: Source[] = [
   },
   {
     "id": "src-secrets-sweep-spectral-secrets",
-    "title": "Spectral Secrets Scanning — secrets detection scope",
-    "url": "https://guides.spectralops.io/docs/secrets-scanning",
-    "canonicalUrl": "https://guides.spectralops.io/docs/secrets-scanning",
+    "title": "Assets (Check Point CloudGuard Code Security documentation)",
+    "url": "https://sc1.checkpoint.com/documents/CloudGuard_Dome9/Documentation/Code-Security-Spectral/Assets.htm",
+    "canonicalUrl": "https://sc1.checkpoint.com/documents/CloudGuard_Dome9/Documentation/Code-Security-Spectral/Assets.htm",
     "publisher": "Check Point",
     "sourceType": "official_docs",
     "publishedAt": null,
@@ -2412,13 +2412,13 @@ export const secretsSweepSources: Source[] = [
   },
   {
     "id": "src-secrets-sweep-infisical-scanning",
-    "title": "Infisical Secret Scanning — secrets detection scope",
-    "url": "https://infisical.com/videos/what-is-infisical",
-    "canonicalUrl": "https://infisical.com/videos/what-is-infisical",
+    "title": "Secret Scanning - Infisical",
+    "url": "https://infisical.com/docs/documentation/platform/secret-scanning/overview",
+    "canonicalUrl": "https://infisical.com/docs/documentation/platform/secret-scanning/overview",
     "publisher": "Infisical",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
-    "retrievedAt": "2026-10-13",
+    "retrievedAt": "2026-11-22",
     "volatility": "fast",
     "excerpt": "Research paraphrase: Documents CLI and repository secret scanning."
   },
@@ -2508,7 +2508,7 @@ export const secretsSweepSources: Source[] = [
   },
   {
     "id": "src-secrets-sweep-aqua-scanning",
-    "title": "Aqua container scanning — secrets detection scope",
+    "title": "Container Security for Images and Running Containers | Aquasec",
     "url": "https://www.aquasec.com/products/container-security/",
     "canonicalUrl": "https://www.aquasec.com/products/container-security/",
     "publisher": "Aqua Security",
@@ -2520,9 +2520,9 @@ export const secretsSweepSources: Source[] = [
   },
   {
     "id": "src-secrets-sweep-singularity-cloud-secrets",
-    "title": "Singularity Cloud Security — secrets detection scope",
-    "url": "https://www.sentinelone.com/cloud/",
-    "canonicalUrl": "https://www.sentinelone.com/cloud/",
+    "title": "Singularity Cloud Native Security | SentinelOne",
+    "url": "https://www.sentinelone.com/platform/singularity-cloud-native-security/",
+    "canonicalUrl": "https://www.sentinelone.com/platform/singularity-cloud-native-security/",
     "publisher": "SentinelOne",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
@@ -3308,23 +3308,23 @@ export const secretsSweepClaims: Claim[] = [
   },
   {
     "id": "claim-secrets-sweep-legit-secrets",
-    "statement": "Legit Secrets Detection: Detects exposed secrets across development and collaboration surfaces.",
+    "statement": "Legit Secrets Detection: Legit's March 2024 launch release says it detects exposed secrets across developer tools, including source control, CI, Docker images, artifacts, Confluence and Jira.",
     "subjectType": "product",
     "subjectId": "legit-secrets",
     "capabilityId": "cap-secret-discovery",
     "polarity": "asserts",
     "sourceId": "src-secrets-sweep-legit-secrets",
-    "sourceUrl": "https://www.legitsecurity.com/enterprise-secret-scanning",
+    "sourceUrl": "https://www.legitsecurity.com/press-releases/legit-security-launches-ai-powered-enterprise-grade-secrets-scanning-product",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
     "observedAt": "2026-10-13",
     "effectiveFrom": null,
     "effectiveTo": null,
     "confidence": "medium",
-    "verificationStatus": "needs_review",
+    "verificationStatus": "vendor_published",
     "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
-    "notes": "Validate each connector and deployment scope. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages. Rechecked 22 Nov 2026: the source URL now redirects to the Legit homepage, which mentions secrets scanning only in its title and does not support detection across development and collaboration surfaces. Find a current Legit source."
+    "notes": "Validate each connector and deployment scope. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages. Rechecked 22 Nov 2026: the source URL now redirects to the Legit homepage, which mentions secrets scanning only in its title and does not support detection across development and collaboration surfaces. Find a current Legit source. Re-sourced and narrowed on 22 Nov 2026 to what the current first-party page states verbatim: No standalone secrets product page found; the homepage (title 'ASPM, AI Remediation & Secrets Scanning') gave no readable secrets text. This is the vendor's own 2024 press release, still live; it calls the surfaces 'developer tools', so the wording follows that term instead of 'collaboration surfaces'."
   },
   {
     "id": "claim-secrets-sweep-ox-secrets",
@@ -3364,7 +3364,7 @@ export const secretsSweepClaims: Claim[] = [
     "verificationStatus": "needs_review",
     "lastCheckedAt": "2026-10-13",
     "conflictsWith": [],
-    "notes": "Bundled engines; not a separately proven proprietary scanner. Full-page capability evidence unavailable on this pass; search-index evidence only, not a published capability check. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
+    "notes": "Bundled engines; not a separately proven proprietary scanner. Full-page capability evidence unavailable on this pass; search-index evidence only, not a published capability check. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages. Rechecked 22 Nov 2026: jit.io could not be reached (www failed DNS, the bare domain failed TLS), and no first-party page naming Gitleaks or TruffleHog was found. Gartner Peer Insights lists the product as 'Jit (Legacy)'. Treat as unverified; do not state that the company is gone."
   },
   {
     "id": "claim-secrets-sweep-endor-secrets",
@@ -3568,23 +3568,23 @@ export const secretsSweepClaims: Claim[] = [
   },
   {
     "id": "claim-secrets-sweep-spectral-secrets",
-    "statement": "Spectral Secrets Scanning: Scans assets for hardcoded secrets.",
+    "statement": "Check Point Code Security (Spectral engine): Finds exposed secrets in scanned assets and tests the validity of keys.",
     "subjectType": "product",
     "subjectId": "spectral-secrets",
     "capabilityId": "cap-secret-discovery",
     "polarity": "asserts",
     "sourceId": "src-secrets-sweep-spectral-secrets",
-    "sourceUrl": "https://guides.spectralops.io/docs/secrets-scanning",
+    "sourceUrl": "https://sc1.checkpoint.com/documents/CloudGuard_Dome9/Documentation/Code-Security-Spectral/Assets.htm",
     "sourceType": "official_docs",
     "publishedAt": null,
     "observedAt": "2026-10-13",
     "effectiveFrom": null,
     "effectiveTo": null,
     "confidence": "medium",
-    "verificationStatus": "needs_review",
+    "verificationStatus": "vendor_published",
     "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
-    "notes": "Spectral product lineage; confirm current Check Point packaging. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages. Rechecked 22 Nov 2026: the source page returns 404 (the docs now sit under Check Point CloudGuard Docs). Find a replacement source."
+    "notes": "Spectral product lineage; confirm current Check Point packaging. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages. Rechecked 22 Nov 2026: the source page returns 404 (the docs now sit under Check Point CloudGuard Docs). Find a replacement source. Re-sourced and narrowed on 22 Nov 2026 to what the current first-party page states verbatim: spectral-docs.readme.io and guides.spectralops.io both return 404 now; the current docs live on sc1.checkpoint.com. The 'Getting Started' page there says 'Check Point Code Security uses the engine named spectral to scan your environments'. The word 'hardcoded' isn't on the scraped page, so the wording says 'exposed secrets'."
   },
   {
     "id": "claim-secrets-sweep-infisical-scanning",
@@ -3594,7 +3594,7 @@ export const secretsSweepClaims: Claim[] = [
     "capabilityId": "cap-secret-discovery",
     "polarity": "asserts",
     "sourceId": "src-secrets-sweep-infisical-scanning",
-    "sourceUrl": "https://infisical.com/videos/what-is-infisical",
+    "sourceUrl": "https://infisical.com/docs/documentation/platform/secret-scanning/overview",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
     "observedAt": "2026-10-13",
@@ -3602,9 +3602,9 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveTo": null,
     "confidence": "medium",
     "verificationStatus": "vendor_published",
-    "lastCheckedAt": "2026-10-13",
+    "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
-    "notes": "Detection is a separate capability from vault storage. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages."
+    "notes": "Detection is a separate capability from vault storage. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages. Re-sourced on 22 Nov 2026 to Infisical's secret scanning documentation."
   },
   {
     "id": "claim-secrets-sweep-wiz-secrets",
@@ -3748,7 +3748,7 @@ export const secretsSweepClaims: Claim[] = [
   },
   {
     "id": "claim-secrets-sweep-aqua-scanning",
-    "statement": "Aqua container scanning: Includes secrets in container/build scanning.",
+    "statement": "Aqua container security: Scans container images for embedded secrets, alongside vulnerabilities, malware and misconfigurations, before they reach a cluster.",
     "subjectType": "product",
     "subjectId": "aqua-scanning",
     "capabilityId": "cap-secret-discovery",
@@ -3761,20 +3761,20 @@ export const secretsSweepClaims: Claim[] = [
     "effectiveFrom": null,
     "effectiveTo": null,
     "confidence": "medium",
-    "verificationStatus": "needs_review",
+    "verificationStatus": "vendor_published",
     "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
-    "notes": "Commercial Aqua and OSS Trivy are separate product records. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages. Rechecked 22 Nov 2026: the container scanning URL now redirects to a container security page that does not mention secrets scanning. Find a current Aqua source or retire the claim."
+    "notes": "Commercial Aqua and OSS Trivy are separate product records. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages. Rechecked 22 Nov 2026: the container scanning URL now redirects to a container security page that does not mention secrets scanning. Find a current Aqua source or retire the claim. Re-sourced and narrowed on 22 Nov 2026 to what the current first-party page states verbatim: The current container-security page does mention secrets now (modified 2026-11-19). It covers images, not builds. A search excerpt of the same page also lists registry scanning (ECR, Harbor, Artifactory, Quay) for 'embedded secrets', but the scrape did not return that text verbatim."
   },
   {
     "id": "claim-secrets-sweep-singularity-cloud-secrets",
-    "statement": "Singularity Cloud Security: Includes secret scanning in its cloud-security offering.",
+    "statement": "Singularity Cloud Native Security: Includes secret scanning, covering repositories, IaC templates and container images, in SentinelOne's agentless cloud-security (CNAPP) offering.",
     "subjectType": "product",
     "subjectId": "singularity-cloud-secrets",
     "capabilityId": "cap-secret-discovery",
     "polarity": "asserts",
     "sourceId": "src-secrets-sweep-singularity-cloud-secrets",
-    "sourceUrl": "https://www.sentinelone.com/cloud/",
+    "sourceUrl": "https://www.sentinelone.com/platform/singularity-cloud-native-security/",
     "sourceType": "vendor_marketing",
     "publishedAt": null,
     "observedAt": "2026-10-13",
@@ -3784,7 +3784,7 @@ export const secretsSweepClaims: Claim[] = [
     "verificationStatus": "needs_review",
     "lastCheckedAt": "2026-11-22",
     "conflictsWith": [],
-    "notes": "Do not attribute this to Singularity identity protection. Full-page capability evidence unavailable on this pass; search-index evidence only, not a published capability check. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages. Rechecked 22 Nov 2026: the page now redirects to SentinelOne's cloud security platform page, which lists CSPM, CWPP, CIEM and DSPM but does not mention secret scanning."
+    "notes": "Do not attribute this to Singularity identity protection. Full-page capability evidence unavailable on this pass; search-index evidence only, not a published capability check. Public documentation review only; no scanner benchmark or tenant test. Original sources retained as links and short paraphrases; no redistribution of full source pages. Rechecked 22 Nov 2026: the page now redirects to SentinelOne's cloud security platform page, which lists CSPM, CWPP, CIEM and DSPM but does not mention secret scanning. Re-sourced 22 Nov 2026 to SentinelOne's Cloud Native Security product page, which names secret scanning for repositories, IaC templates and container images. Left as Needs review because lib/secrets-sweep.test.ts deliberately holds this claim unverified; an editor should decide."
   },
   {
     "id": "claim-secrets-sweep-armorcode-integration",
