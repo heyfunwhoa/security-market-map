@@ -1,0 +1,405 @@
+{
+  "batch": "2026-11-21-supply-chain-and-campaigns",
+  "status": "candidate_only",
+  "publishable": false,
+  "framework": "docs/security-intelligence/incident-classification-framework.md",
+  "discoveryContext": "Follow-up on November 21, 2026 from November incident trackers (AgentBeam, ExplainX) for supply-chain compromises and campaigns disclosed October-November 2026. Qubole (Wiz), wfx-loot (Aikido), strutil-core (Socket, OSV) and MIDNIGHT NEPTUNE (Google GTIG) were checked against the original research; the South Korean bank wave is secondary-only. Third-party text was paraphrased.",
+  "excludedFromIncidents": [
+    "Optimizely Web 'OptimJack' skimmer (Nov 16): reported by researchers, not confirmed by Optimizely; card skimming, no secrets angle",
+    "Arctic Wolf AntiFox, Kaspersky CyberStrikeAI, VECERT Ghost-Campus, Apiiro settings.local.json, SpyCloud infostealer tokens: research or campaigns without a named victim",
+    "Primcloud probe by Railway engineer's agents (Nov 3): one-sided account, no logs",
+    "Grok Build apps exposed (Nov 10): researcher-reported exposure counts, not an intrusion"
+  ],
+  "excludedReason": "Unconfirmed, research without a named victim, or not an intrusion.",
+  "candidates": [
+    {
+      "incidentId": "incident:qubole-cross-account-roles-2026",
+      "title": "Qubole-linked AWS credentials used to assume customer integration roles and harvest secrets",
+      "incidentKind": "supply_chain",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "Wiz",
+          "canonicalUrl": "https://www.wiz.io/blog/qubole-cross-account-access-abused-in-the-wild",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-22T02:10:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "BleepingComputer",
+          "canonicalUrl": "https://www.bleepingcomputer.com/news/security/hackers-exploit-trusted-aws-access-to-breach-multiple-cloud-environments/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-22T02:10:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "CSO Online",
+          "canonicalUrl": "https://csoonline.com/article/4246780/qubole-supply-chain-attack-exposed-aws-entra-id-and-okta-credentials.html",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-22T02:10:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate shares this identity. Qubole is the trusted vendor; victims are its customers.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:qubole-cross-account-roles-2026:1",
+          "statement": "Between October 14 and 26, 2026 an attacker used IAM credentials from an AWS account associated with Qubole to call AssumeRole against roles customers had created to trust Qubole; every request included the External ID and succeeded.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.wiz.io/blog/qubole-cross-account-access-abused-in-the-wild"
+        },
+        {
+          "id": "claim:qubole-cross-account-roles-2026:2",
+          "statement": "In most affected environments these were the only role-assumption requests from the vendor account that month, and the trust policies were still active.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.wiz.io/blog/qubole-cross-account-access-abused-in-the-wild"
+        },
+        {
+          "id": "claim:qubole-cross-account-roles-2026:3",
+          "statement": "The attacker downloaded S3 data and read Secrets Manager secrets, SSM parameters and Lambda environment variables, and used Entra ID client secrets and Okta client credentials found there.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.wiz.io/blog/qubole-cross-account-access-abused-in-the-wild"
+        },
+        {
+          "id": "claim:qubole-cross-account-roles-2026:4",
+          "statement": "The attacker ran TruffleHog against the credentials it found to check which were live; the credentials belonged to the victim organizations, not to Qubole.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.wiz.io/blog/qubole-cross-account-access-abused-in-the-wild"
+        },
+        {
+          "id": "claim:qubole-cross-account-roles-2026:5",
+          "statement": "Wiz gives no victim count; Sentra, which first spotted the activity, says dozens of Qubole customers were affected.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://csoonline.com/article/4246780/qubole-supply-chain-attack-exposed-aws-entra-id-and-okta-credentials.html"
+        },
+        {
+          "id": "claim:qubole-cross-account-roles-2026:6",
+          "statement": "Wiz also saw separate October 8-11 activity testing customer-owned AWS keys created for Qubole integrations, not linked to the role-assumption campaign.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.wiz.io/blog/qubole-cross-account-access-abused-in-the-wild"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Unknown: how the Qubole account credentials were obtained. Qubole had not commented as of Wiz's post and BleepingComputer's report.",
+        "Sales angle caution: the attacker used TruffleHog (open source) to validate stolen keys. Handle carefully; do not imply Truffle Security involvement or fault.",
+        "An actor calling itself 'n0n' claimed responsibility per a Wiz update citing Risky Business; unverified."
+      ]
+    },
+    {
+      "incidentId": "incident:wfx-loot-github-ci-stealer-2026",
+      "title": "wfx-loot: 4,837 hijacked GitHub accounts plant a CI secret stealer that ran in at least 1,806 repositories",
+      "incidentKind": "supply_chain",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "Aikido Security",
+          "canonicalUrl": "https://www.aikido.dev/blog/compromised-github-accounts-push-ci-secret-stealer-to-tens-of-thousands-of-repositories",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-22T02:10:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Daily Security Review",
+          "canonicalUrl": "https://dailysecurityreview.com/?p=45674",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-22T02:10:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "Related to candidate incident:ghostaction-wave-oct-2026 (account overlap), but Aikido does not attribute it to the same actor. Keep separate unless the reviewer decides otherwise.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:wfx-loot-github-ci-stealer-2026:1",
+          "statement": "Starting November 10, 2026 a threat actor used stolen GitHub credentials to push a malicious workflow payload that steals GitHub Actions secrets and cloud credentials; 4,837 compromised accounts opened probe pull requests in 61,764 repositories.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.aikido.dev/blog/compromised-github-accounts-push-ci-secret-stealer-to-tens-of-thousands-of-repositories"
+        },
+        {
+          "id": "claim:wfx-loot-github-ci-stealer-2026:2",
+          "statement": "Aikido says the payload ran in at least 1,806 repositories and that this may understate impact because run logs were deleted.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.aikido.dev/blog/compromised-github-accounts-push-ci-secret-stealer-to-tens-of-thousands-of-repositories"
+        },
+        {
+          "id": "claim:wfx-loot-github-ci-stealer-2026:3",
+          "statement": "Accounts hit in GhostAction's October wave were about a thousand times more likely to be used in November, but Aikido does not attribute November to the same actor.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.aikido.dev/blog/compromised-github-accounts-push-ci-secret-stealer-to-tens-of-thousands-of-repositories"
+        },
+        {
+          "id": "claim:wfx-loot-github-ci-stealer-2026:4",
+          "statement": "SafeDep counted 8,093 repositories receiving malicious commits under a different counting method; Aikido and SafeDep advise treating every secret reachable by workflows in affected repositories as compromised.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://dailysecurityreview.com/?p=45674"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Counts differ by source and method (1,806 vs 1,835 vs 8,093); keep each attributed.",
+        "Unknown: how the GitHub account credentials were stolen."
+      ]
+    },
+    {
+      "incidentId": "incident:strutil-core-rubygems-worm-2026",
+      "title": "strutil-core RubyGems package runs an install-time worm that steals cloud, CI and AI tool credentials",
+      "incidentKind": "supply_chain",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "Socket",
+          "canonicalUrl": "https://socket.dev/blog/shai-hulud-descendant-malicious-ruby-gem",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-22T02:10:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "OSV (MAL-2026-19054)",
+          "canonicalUrl": "https://osv.dev/vulnerability/MAL-2026-19054",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-22T02:10:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate shares this identity. Socket ties it to the Miasma family descended from the Shai-Hulud toolkit; seeded Shai-Hulud records are separate events.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:strutil-core-rubygems-worm-2026:1",
+          "statement": "On November 1, 2026 the RubyGems account jamnajiea published a clean strutil-core 1.0.0 and, less than two hours later, a malicious 1.0.1 that runs a credential-stealing worm at install time; RubyGems removed both about five hours later.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://socket.dev/blog/shai-hulud-descendant-malicious-ruby-gem"
+        },
+        {
+          "id": "claim:strutil-core-rubygems-worm-2026:2",
+          "statement": "strutil-core was a standalone new gem, not a compromised existing package.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://socket.dev/blog/shai-hulud-descendant-malicious-ruby-gem"
+        },
+        {
+          "id": "claim:strutil-core-rubygems-worm-2026:3",
+          "statement": "In OSV's sandboxed install, the payload read 51 credential stores belonging to other tools, including cloud (AWS, Azure, Google Cloud, Vault), forges (GitHub CLI, GitLab CLI, git credentials, SSH keys) and package registries.",
+          "epistemicStatus": "observed",
+          "sourceUrl": "https://osv.dev/vulnerability/MAL-2026-19054"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "No confirmed victims; this is a malicious-package incident, not a known breach of an organization.",
+        "Reviewer decides whether standalone malicious packages belong as incidents or as research/context records."
+      ]
+    },
+    {
+      "incidentId": "incident:midnight-neptune-claude-code-settings-2026",
+      "title": "Suspected DPRK cluster backdoors crypto firms by editing Claude Code settings in internal repositories",
+      "incidentKind": "malware_campaign",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "Google Threat Intelligence Group",
+          "canonicalUrl": "https://cloud.google.com/blog/topics/threat-intelligence/agentic-threat-activity-crosses-a-significant-threshold",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-22T02:10:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate shares this identity.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:midnight-neptune-claude-code-settings-2026:1",
+          "statement": "GTIG's November 16, 2026 AI Threat Tracker reports a suspected DPRK cluster, MIDNIGHT NEPTUNE, targeting cryptocurrency organizations in North America and Europe through fake recruiter profiles and ClickFix-style 'diagnostic fix' lures.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://cloud.google.com/blog/topics/threat-intelligence/agentic-threat-activity-crosses-a-significant-threshold"
+        },
+        {
+          "id": "claim:midnight-neptune-claude-code-settings-2026:2",
+          "statement": "After initial compromise, the actor modified .claude/settings.json in internal code repositories so that starting Claude Code automatically downloaded the SOMBERMEME backdoor.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://cloud.google.com/blog/topics/threat-intelligence/agentic-threat-activity-crosses-a-significant-threshold"
+        },
+        {
+          "id": "claim:midnight-neptune-claude-code-settings-2026:3",
+          "statement": "The actor created GitHub personal access tokens named after Microsoft Copilot to blend in during lateral movement.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://cloud.google.com/blog/topics/threat-intelligence/agentic-threat-activity-crosses-a-significant-threshold"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Unknown: victim names and count; GTIG does not state them.",
+        "Attribution is 'suspected'; GTIG gives no explicit confidence level.",
+        "Do not describe this as a Claude Code vulnerability; it is abuse of a configuration file after the attacker already had repository access."
+      ]
+    },
+    {
+      "incidentId": "incident:south-korea-banks-artex-2026",
+      "title": "AI-assisted intrusion wave hits South Korean banks and financial firms, exposing customer data",
+      "incidentKind": "breach",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "BleepingComputer",
+          "canonicalUrl": "https://bleepingcomputer.com/news/security/south-korea-probes-bank-breaches-amid-suspected-ai-powered-attacks",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-22T02:10:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "BleepingComputer",
+          "canonicalUrl": "https://www.bleepingcomputer.com/news/security/hacker-used-artex-ai-and-claude-agents-to-target-south-korean-banks/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-22T02:10:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "IBTimes Singapore",
+          "canonicalUrl": "https://www.ibtimes.sg/A000Okk",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-22T02:10:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate shares this identity. Multi-victim wave; reviewer decides whether one campaign record or per-bank records.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:south-korea-banks-artex-2026:1",
+          "statement": "South Korean officials confirmed a data breach at Shinhan Bank and other incidents affecting banks including KB Kookmin in early October 2026; the president ordered an investigation.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://bleepingcomputer.com/news/security/south-korea-probes-bank-breaches-amid-suspected-ai-powered-attacks"
+        },
+        {
+          "id": "claim:south-korea-banks-artex-2026:2",
+          "statement": "BleepingComputer reports a Chinese-speaking actor used the ARTEX framework and Claude agents against banks including Shinhan, KB Kookmin and Hana, exposing customer personal and card data; researchers found open directories with Claude Code session histories and ARTEX configuration files.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.bleepingcomputer.com/news/security/hacker-used-artex-ai-and-claude-agents-to-target-south-korean-banks/"
+        },
+        {
+          "id": "claim:south-korea-banks-artex-2026:3",
+          "statement": "Later reporting says the wave reached 16 South Korean financial firms and about 100,000 personal records; CrowdStrike linked a China-based attacker using a Chinese-developed AI agent and Claude Code.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.ibtimes.sg/A000Okk"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Primary source needed: no bank, regulator or CrowdStrike primary statement was fetched.",
+        "Victim and record counts vary widely across reports (7 vs 16 firms; 68,000 to 146,000 records); do not state one figure without its source.",
+        "No credential or secrets angle reported so far; entry method per bank is unknown."
+      ]
+    }
+  ]
+}
