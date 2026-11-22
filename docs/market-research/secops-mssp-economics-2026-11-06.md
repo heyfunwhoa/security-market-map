@@ -99,7 +99,7 @@ Do not compare a raw infrastructure rate with a fully managed MDR rate without p
 
 ### Conifers AI: tenant-aware investigations on an existing stack
 
-**Evidence [V4]:** CognitiveSOC's MSSP page describes nested tenancy, tenant-specific context and existing-tool/portal support; it advertises 3× throughput and 2–4-hour tenant onboarding.
+**Evidence [V4]:** CognitiveSOC's MSSP page describes nested tenancy, tenant-specific context and existing-tool/portal support; it advertises 2–4-hour tenant onboarding. Its throughput multiplier is an animated counter that rendered as different values on each fetch (2026-11-22), so no figure is recorded here.
 
 **Buyer scenario:** an established provider wants more investigative capacity without replacing its stack. **Comparison hypothesis:** relevant to teams purchasing AI investigation capacity; broader infrastructure scope needs separate evidence. **Unknown:** pricing meter, production accuracy by alert type, response controls, supported integrations and cost of exceptions. Marketing accuracy figures require a defined denominator and independent testing.
 
@@ -111,7 +111,7 @@ Do not compare a raw infrastructure rate with a fully managed MDR rate without p
 
 ### Huntress: managed security products with SOC coverage
 
-**Evidence [V6]:** the pricing page ties products to endpoints, identities, data sources and learners, with SOC management included. Public examples at 100 units include $7.99 per endpoint/month for Managed EDR and $3.50 per source/month for Managed SIEM. These are published examples, **not a negotiated MSP wholesale quote**. The page separately notes that partners can own deployment, integration and ongoing management.
+**Evidence [V6]:** the pricing page ties products to endpoints, identities, data sources and learners, with SOC management included. On 2026-11-22 the page listed MSRP $8.99 per endpoint/month for Managed EDR and $4.00 per source/month for Managed SIEM, with volume pricing on request. These are list prices, **not a negotiated MSP wholesale quote**. The page separately notes that partners can own deployment, integration and ongoing management.
 
 **Buyer scenario:** attach managed security without staffing every SOC function internally. **Comparison hypothesis:** a different ownership model can be the strongest commercial alternative even where technical architecture differs. **Unknown:** the provider's actual discount, minimum commitments, response handoffs and contract-specific scope.
 
@@ -181,3 +181,7 @@ All observed and last checked **2026-11-06**. Publication dates are **Unknown** 
 - Acquisition/renaming: no new corporate-history claims; Sekoia's current domain does not establish a legal entity change.
 - Downstream: Market Map research update; typed claims defer to human review; private career material, account intent and revenue forecasts unchanged.
 - Correction: amend attributed evidence through a reviewed PR; preserve the dated prior landscape and explain supersession.
+
+## Source recheck — 2026-11-22
+
+Rechecked against live pages: Todyl Exceed case (53% lower costs, 50% fewer products; onboarding metric still renders as `41$`) [V1]; Torq RSM case (75+ monthly onboarding hours, 200+ customers in three weeks, 82% of cases automated; SentinelOne, Stellar Cyber, Intezer named) [V3]; Conifers nested multi-tenancy and 2–4-hour onboarding [V4]; Blumira per-user MSP pricing with volume discounts, no device or per-GB fees, rates not published [V5]; Huntress pricing units and included SOC [V6]; LimaCharlie bring-your-own AI subscription [V10]; SACR coverage areas including General Cybersecurity [S1]. Corrected: Huntress prices (now MSRP $8.99 and $4.00) and the Conifers throughput figure (removed). Not rechecked: V2, V7, V8, V9, V11, S2, S3.
