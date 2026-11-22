@@ -107,6 +107,7 @@ import { categoryFillVendors, categoryFillProducts, categoryFillSources, categor
 import { ispmWimVendors, ispmWimProducts, ispmWimSources, ispmWimClaims } from "./data/ispm-wim";
 import { identityAnalystSources, identityAnalystClaims } from "./data/identity-analyst";
 import { standardsSources, standardsClaims } from "./data/standards";
+import { appsecAnalystSources, appsecAnalystClaims } from "./data/appsec-analyst";
 import { industryIdentitySources } from "./data/industry-identity";
 
 const allCategories = [...categories, ...ecosystemCategories];
@@ -151,7 +152,7 @@ export type Catalog = {
 function parseCatalog(): Catalog {
   const workforce = registerProductEvidence(workforceGuideResearch);
   const management = registerProductEvidence(secretsManagementResearch);
-  const parsedClaims = z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims, ...developerEndpointClaims, ...categoryFillClaims, ...ispmWimClaims, ...identityAnalystClaims, ...publicMonitoringClaims, ...management.claims, ...workforce.claims, ...standardsClaims]);
+  const parsedClaims = z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims, ...developerEndpointClaims, ...categoryFillClaims, ...ispmWimClaims, ...identityAnalystClaims, ...publicMonitoringClaims, ...management.claims, ...workforce.claims, ...appsecAnalystClaims, ...standardsClaims]);
   return {
     // Generated from the data so the header matches the newest claim card. AS_OF is only a fallback.
     asOf: latestClaimDate(parsedClaims) ?? AS_OF,
@@ -177,7 +178,7 @@ function parseCatalog(): Catalog {
     buyingTriggers: z.array(buyingTriggerSchema).parse(buyingTriggers),
     qualificationQuestions: z.array(qualificationQuestionSchema).parse(qualificationQuestions),
     vendorSeatTargeting: z.array(vendorSeatTargetingSchema).parse(vendorSeatTargeting),
-    sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources, ...developerEndpointSources, ...personaSources, ...categoryFillSources, ...ispmWimSources, ...identityAnalystSources, ...industryIdentitySources, ...publicMonitoringSources, ...management.sources, ...workforce.sources, ...issuerReferenceSources, ...accessScenarioSources, ...standardsSources]),
+    sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources, ...developerEndpointSources, ...personaSources, ...categoryFillSources, ...ispmWimSources, ...identityAnalystSources, ...industryIdentitySources, ...publicMonitoringSources, ...management.sources, ...workforce.sources, ...issuerReferenceSources, ...accessScenarioSources, ...appsecAnalystSources, ...standardsSources]),
     claims: parsedClaims,
     relationships: z.array(relationshipSchema).parse([...relationships, ...ecosystemRelationships]),
     stories: z.array(customerStorySchema).parse(customerStories),

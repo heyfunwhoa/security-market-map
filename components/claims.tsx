@@ -1,6 +1,8 @@
 import Link from "next/link";
+import { RecheckBadge } from "@/components/recheck-badge";
 import { SourceBadge } from "@/components/source-badge";
-import { sourceById } from "@/lib/catalog";
+import { catalog, sourceById } from "@/lib/catalog";
+import { claimNeedsRecheck } from "@/lib/coverage";
 import { noteWithoutCaveat } from "@/lib/claim-basis";
 import { formatDate, sourceTypeLabel } from "@/lib/format";
 import type { Claim, Distinction } from "@/lib/schema";
@@ -20,6 +22,7 @@ export function ClaimList({ claims, labels }: { claims: Claim[]; labels?: Record
         <li key={claim.id} className="rounded-xl border border-border bg-card p-4">
           <div className="flex flex-wrap items-center gap-2">
             <SourceBadge claim={claim} />
+            {claimNeedsRecheck(claim, catalog.sources, catalog.asOf) ? <RecheckBadge asOf={catalog.asOf} /> : null}
             {labels?.[claim.id] ? (
               <span className="rounded-full border border-border px-2 py-0.5 text-xs font-medium">{labels[claim.id]}</span>
             ) : null}

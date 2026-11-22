@@ -276,7 +276,7 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
           <div className="mt-3 max-w-3xl rounded-xl border border-border bg-card p-4 text-sm leading-6">
             <p>
               Claims in this domain carry a source, a date, and a label. Vendor said this means the
-              company page. Independent source means a public standard. A blank cell is Unknown.
+              company published it. Verified means an independent or primary public source. A blank cell is Unknown.
             </p>
             <p className="mt-3">
               <Link href="/learn" className="text-primary hover:underline">

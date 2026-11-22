@@ -17,7 +17,8 @@
     "context:md": "UPDATE_CONTEXT_MD=1 vitest run lib/context-md.test.ts",
     "context:mcp": "node scripts/context-mcp-server.mjs",
     "export:stix": "node --experimental-strip-types scripts/export-stix.ts",
-    "export:feed": "UPDATE_INCIDENT_FEED_EXPORT=1 vitest run lib/incident-feed-export.test.ts"
+    "export:feed": "UPDATE_INCIDENT_FEED_EXPORT=1 vitest run lib/incident-feed-export.test.ts",
+    "feeds:watch": "node --experimental-strip-types scripts/watch-market-feeds.ts"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
