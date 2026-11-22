@@ -70,3 +70,9 @@ export const ANSWER_LABELS: Record<string, { label: string; tone: string }> = {
   limited: { label: "Scoped", tone: "border-stone-600 bg-white text-stone-900 dark:border-stone-400 dark:bg-stone-900 dark:text-stone-100" },
   not_supported: { label: "Not supported", tone: "border-stone-700 bg-stone-700 text-white dark:border-stone-300 dark:bg-stone-200 dark:text-stone-900" },
 };
+
+/** Fallback for a status with no label yet: readable words, never a raw snake_case code on screen. */
+export function readableStatus(status: string): string {
+  const words = status.replaceAll("_", " ").trim();
+  return words ? words[0].toUpperCase() + words.slice(1) : "Unknown";
+}

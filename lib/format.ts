@@ -1,4 +1,4 @@
-import { ANSWER_LABELS, trustLabel } from "./evidence-labels";
+import { ANSWER_LABELS, readableStatus, trustLabel } from "./evidence-labels";
 const MONTHS = [
   "Jan",
   "Feb",
@@ -72,7 +72,7 @@ export function sourceTypeLabel(type: string): string {
 }
 
 export function verificationLabel(status: string): string {
-  return trustLabel(status) ?? status;
+  return trustLabel(status) ?? readableStatus(status);
 }
 
 export function cellStatusLabel(status: string): string {
