@@ -1,0 +1,73 @@
+name: Watch vendor release feeds
+
+on:
+  schedule:
+    # Weekly, Monday. GitGuardian's SaaS feed posts about once a week; daily would only add PRs.
+    - cron: "41 11 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: market-feeds
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      # Pushes bot/market-feed-candidates only; main changes through the reviewed PR.
+      contents: write
+      pull-requests: write
+      # Bot-token pushes don't trigger pull_request workflows, so CI is dispatched on the branch.
+      actions: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+      - name: Read feeds
+        id: watch
+        run: |
+          set -o pipefail
+          node --experimental-strip-types scripts/watch-market-feeds.ts 2>&1 | tee watch.log
+          echo "added=$(sed -n 's/^FEED_CANDIDATES_ADDED=//p' watch.log)" >> "$GITHUB_OUTPUT"
+      - name: Open or update the candidates pull request
+        if: github.ref == 'refs/heads/main' && steps.watch.outputs.added != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          BRANCH: bot/market-feed-candidates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/market-feeds/candidates
+          if git diff --staged --quiet; then
+            echo "No candidate changes"
+            exit 0
+          fi
+          git checkout -B "$BRANCH"
+          git commit -m "Add vendor release-feed candidates"
+          git push --force origin "HEAD:refs/heads/$BRANCH"
+          {
+            echo "New items from watched vendor release feeds (\`data/market-feeds/feeds.json\`). Only title, date and link are stored."
+            echo
+            echo '```'
+            grep -v '^FEED_CANDIDATES_ADDED=' watch.log | head -n 60
+            echo '```'
+            echo
+            echo "**These are candidates, not published claims.** For each one, set \`status\` to \`dismissed\` or \`promoted\`. For a notable item, add an event in \`lib/data/market.ts\` with a registered source and a summary in your own words (see \`data/market-feeds/README.md\`)."
+            echo
+            echo "Run: $RUN_URL"
+          } > "$RUNNER_TEMP/pr.md"
+          pr=$(gh pr list --head "$BRANCH" --base main --state open --json number --jq '.[0].number // empty')
+          if [ -n "$pr" ]; then
+            gh pr edit "$pr" --body-file "$RUNNER_TEMP/pr.md"
+          else
+            gh pr create --head "$BRANCH" --base main --title "Vendor release-feed candidates" --body-file "$RUNNER_TEMP/pr.md"
+          fi
+          gh workflow run ci.yml --ref "$BRANCH" || echo "::warning::Could not start CI on $BRANCH"
