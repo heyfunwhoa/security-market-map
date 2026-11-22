@@ -29,7 +29,10 @@ describe("incident feed consumer export", () => {
   it("keeps sources on every incident and names every linked category", () => {
     for (const i of exported.incidents) {
       expect(i.sources.length).toBeGreaterThan(0);
-      for (const s of i.sources) expect(new URL(s.url).protocol).toBe("https:");
+      for (const s of i.sources) {
+        expect(new URL(s.url).protocol).toBe("https:");
+        expect(s.rightsNote?.trim(), `${i.id} ${s.id} rightsNote`).toBeTruthy();
+      }
       for (const c of i.marketCategories) {
         expect(c.categoryName).toBeTruthy();
         expect(c.doesNotImply.trim()).not.toBe("");

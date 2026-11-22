@@ -20,6 +20,7 @@ export function buildIncidentFeedExport(feed: readonly FeedIncident[] = incident
     asOf,
     usageRules: [
       "Every fact comes from the listed sources; cite the source when you use it.",
+      "Each source's rightsNote limits how it may be reused. Keep it with the citation, and check the publisher's terms before reusing any source text.",
       "Sales notes are interpretation, not evidence. Follow each note's 'avoid' line.",
       "Category links mean related, not that any product would have prevented the incident.",
       "Don't infer that a prospect or customer was affected.",
@@ -37,7 +38,8 @@ export function buildIncidentFeedExport(feed: readonly FeedIncident[] = incident
       affectedEcosystems: incident.affectedEcosystems,
       uncertaintyNotes: incident.uncertaintyNotes,
       lastReviewedOn: incident.lastReviewedOn,
-      sources: sources.map((s) => ({ id: s.id, publisher: s.publisher, type: s.type, url: s.url, publishedOn: s.publishedOn })),
+      // rightsNote carries each source's reuse limits; consumers must keep it with the citation.
+      sources: sources.map((s) => ({ id: s.id, publisher: s.publisher, type: s.type, url: s.url, publishedOn: s.publishedOn, rightsNote: s.rightsNote })),
       salesNote:
         salesNote?.status === "reviewed"
           ? {

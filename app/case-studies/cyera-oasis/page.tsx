@@ -1,6 +1,10 @@
 import Link from "next/link";
 import { PageIntro, StatusPill } from "@/components/chrome";
+import { RecheckBadge } from "@/components/recheck-badge";
+import { SourceBadge } from "@/components/source-badge";
 import { catalog } from "@/lib/catalog";
+import { claimNeedsRecheck } from "@/lib/coverage";
+import { formatDate } from "@/lib/format";
 import { caseStudy, REVIEWED } from "@/lib/data/brief";
 
 const SOURCE_IDS = [
@@ -56,10 +60,13 @@ export default function CyeraOasisPage() {
         <ul className="mt-3 space-y-3 text-sm leading-6">
           {claims.map((claim) => (
             <li key={claim.id} className="rounded-xl border border-border p-4">
-              <p>{claim.statement}</p>
-              <p className="mt-2 text-muted-foreground">
-                {claim.verificationStatus}, reviewed {claim.lastCheckedAt}. {claim.notes}
-              </p>
+              <div className="flex flex-wrap items-center gap-2">
+                <SourceBadge claim={claim} />
+                {claimNeedsRecheck(claim, catalog.sources, catalog.asOf) ? <RecheckBadge asOf={catalog.asOf} /> : null}
+                <span className="text-xs text-muted-foreground">Checked {formatDate(claim.lastCheckedAt)}</span>
+              </div>
+              <p className="mt-2">{claim.statement}</p>
+              {claim.notes ? <p className="mt-2 text-muted-foreground">{claim.notes}</p> : null}
             </li>
           ))}
         </ul>
