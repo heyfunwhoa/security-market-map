@@ -164,36 +164,36 @@ Review owner should compare current originals, preserve this date's interpretati
 
 ## Typed catalog mapping (2026-10-30)
 
-Public typed buyer personas now exist in `lib/data` and are summarized in [security-org-personas.md](security-org-personas.md) wave 4. Mapping is many-to-one where LC combined seats (for example LC-PER-05 → `soc-analyst` + `incident-response`). Catalog aliases may include `LC-PER-*` / `LC-AUD-*` IDs for traceability. This does **not** publish LimaCharlie revenue mix, ICP cutoffs, or deal champions.
+Existing typed buyer personas in `lib/data` carry these LimaCharlie aliases; seats marked "not typed yet" are candidates that need sourced profiles first and are summarized in [security-org-personas.md](security-org-personas.md) wave 4. Mapping is many-to-one where LC combined seats (for example LC-PER-05 → `soc-analyst` + `incident-response`). Catalog aliases may include `LC-PER-*` / `LC-AUD-*` IDs for traceability. This does **not** publish LimaCharlie revenue mix, ICP cutoffs, or deal champions.
 
 | LimaCharlie ID | Catalog ID(s) |
 | --- | --- |
-| LC-PER-01 | `provider-founder` |
-| LC-PER-02 | `cto`, `secops-platform-architect` |
+| LC-PER-01 | _not typed yet_ |
+| LC-PER-02 | `cto`, _not typed yet_ |
 | LC-PER-03 | `soc-lead` |
 | LC-PER-04 | `detection-engineer` |
 | LC-PER-05 | `soc-analyst`, `incident-response` |
 | LC-PER-06 | `ciso` |
-| LC-PER-07 | `security-product-leader` |
-| LC-AUD-01/02 | `mssp-ops`, `provider-founder` |
-| LC-AUD-03 | `soc-lead`, `secops-platform-architect`, `ciso` |
-| LC-AUD-04 | `security-product-leader` |
-| LC-AUD-05 | `ir-services-lead` |
-| LC committee: finance/procurement | `procurement` |
-| LC committee: service delivery / CS | `service-delivery` |
-| LC committee: legal / privacy / compliance | `legal-counsel`, `privacy`, `grc-owner` |
+| LC-PER-07 | _not typed yet_ |
+| LC-AUD-01/02 | `mssp-ops`, _not typed yet_ |
+| LC-AUD-03 | `soc-lead`, `ciso`, _not typed yet_ |
+| LC-AUD-04 | _not typed yet_ |
+| LC-AUD-05 | _not typed yet_ |
+| LC committee: finance/procurement | _not typed yet_ |
+| LC committee: service delivery / CS | _not typed yet_ |
+| LC committee: legal / privacy / compliance | `privacy`, `grc-owner`, _not typed yet_ |
 | LC committee: IT / infrastructure / identity | `it-security`, `platform`, `identity-security` |
-| LC use case: email security (adjacent) | `email-security` |
+| LC use case: email security (adjacent) | _not typed yet_ |
 | LC use case: code / cloud security | `appsec`, `cloud-sec` |
-| LC use case: SecOps engineering / Claude Code | `detection-engineer`, `ai-operator-owner` |
-| LC use case: SecOps development (builders) | `security-product-leader` |
+| LC use case: SecOps engineering / Claude Code | `detection-engineer`, _not typed yet_ |
+| LC use case: SecOps development (builders) | _not typed yet_ |
 | LC use case: vulnerability reporting | `it-security` |
 | LC customer testimony titles (hunter/DFIR/OT) | `threat-hunter`, `digital-forensics`, `ot-security` |
 | LC use case: EDR / XDR | `it-security`, `soc-lead` |
-| LC use case: SIEM / log analytics | `siem-owner`, `secops-platform-architect` |
-| LC use case: IR | `incident-response`, `ir-services-lead` |
+| LC use case: SIEM / log analytics | _not typed yet_ |
+| LC use case: IR | `incident-response`, _not typed yet_ |
 | LC use case: SOAR / AI detection eng | `detection-engineer` |
-| LC use case: AI-assisted investigation | `soc-analyst`, `ai-operator-owner` |
+| LC use case: AI-assisted investigation | `soc-analyst`, _not typed yet_ |
 | LC use case: threat hunting / CTI | `threat-hunter`, `threat-intel` |
 
 ## Cross-repository disposition

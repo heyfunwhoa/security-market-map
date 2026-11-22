@@ -19,7 +19,7 @@ Run the privacy program: lawful processing, subject rights, DPIAs, and customer 
 - manager: Privacy Manager, Data Protection Manager
 - director: Director of Privacy, Head of Privacy
 - vp: VP of Privacy
-- c-level: CPO, Chief Privacy Officer
+- c-level: CPO, Chief Privacy Officer, LC committee: privacy
 
 ## Owns categories
 
