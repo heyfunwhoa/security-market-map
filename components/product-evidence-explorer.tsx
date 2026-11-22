@@ -1,11 +1,21 @@
 "use client";
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { RecheckBadge } from "@/components/recheck-badge";
 import { SourceBadge } from "@/components/source-badge";
 import { evidenceBasis, noteWithoutCaveat } from "@/lib/claim-basis";
 import type { Claim } from "@/lib/schema";
 
-export function ProductEvidenceExplorer({ claims }: { claims: Claim[] }) {
+export function ProductEvidenceExplorer({
+  claims,
+  recheckClaimIds = [],
+  asOf,
+}: {
+  claims: Claim[];
+  /** Claims whose source is past its review window as of the catalog snapshot (computed on the server). */
+  recheckClaimIds?: string[];
+  asOf?: string;
+}) {
   if (claims.length === 0) {
     return (
       <div className="rounded-lg border border-dashed border-border p-4">
@@ -28,6 +38,7 @@ export function ProductEvidenceExplorer({ claims }: { claims: Claim[] }) {
           <AccordionItem key={claim.id} value={claim.id} className="min-w-0 rounded-xl border border-border bg-card px-4">
             <div className="flex flex-wrap items-center gap-2 pt-3">
               <SourceBadge claim={claim} />
+              {asOf && recheckClaimIds.includes(claim.id) ? <RecheckBadge asOf={asOf} /> : null}
               <span className="text-xs text-muted-foreground">Checked {claim.lastCheckedAt}</span>
               <span className="text-xs text-muted-foreground">Publication date {claim.publishedAt ?? "Unknown"}</span>
             </div>

@@ -414,5 +414,309 @@
     "proposedOn": "2026-11-17",
     "reviewedBy": "Kristen Aing",
     "reviewedOn": "2026-11-18"
+  },
+  {
+    "id": "link:notion-fireworks-ai-chats-2026:secrets-detection",
+    "incidentId": "incident:notion-fireworks-ai-chats-2026",
+    "categoryId": "secrets-detection",
+    "predicate": "related_to",
+    "rationale": "Notion says credentials users pasted into AI chats were exposed at its vendor, and it revoked Notion keys and reported third-party keys found in those messages.",
+    "doesNotImply": "That any secrets detection product detected or would have prevented this incident. Pasting secrets into chat tools is a behaviour problem a scanner does not fix.",
+    "basedOnSourceIds": [
+      "source:notion-fireworks-advisory-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "link:litellm-agent-platform-key-2026:secrets-detection",
+    "incidentId": "incident:litellm-agent-platform-key-2026",
+    "categoryId": "secrets-detection",
+    "predicate": "related_to",
+    "rationale": "LiteLLM says an admin key committed to a public repository stayed in Git history and was never revoked, then was used to start the attack.",
+    "doesNotImply": "That any secrets detection product detected or would have prevented this incident.",
+    "basedOnSourceIds": [
+      "source:litellm-attack-chain-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "link:litellm-agent-platform-key-2026:software-supply-chain",
+    "incidentId": "incident:litellm-agent-platform-key-2026",
+    "categoryId": "software-supply-chain",
+    "predicate": "related_to",
+    "rationale": "LiteLLM says the attacker used harvested maintainer tokens to publish a poisoned release of its package.",
+    "doesNotImply": "That any software supply chain product detected or would have prevented this release.",
+    "basedOnSourceIds": [
+      "source:litellm-attack-chain-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "link:ghostaction-wave-oct-2026:secrets-detection",
+    "incidentId": "incident:ghostaction-wave-oct-2026",
+    "categoryId": "secrets-detection",
+    "predicate": "related_to",
+    "rationale": "GitGuardian reports malicious GitHub Actions workflows pushed into repositories to steal repository secrets.",
+    "doesNotImply": "That any secrets detection product detected or would have prevented this incident.",
+    "basedOnSourceIds": [
+      "source:gitguardian-ghostaction-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "link:ghostaction-wave-oct-2026:software-supply-chain",
+    "incidentId": "incident:ghostaction-wave-oct-2026",
+    "categoryId": "software-supply-chain",
+    "predicate": "related_to",
+    "rationale": "The workflows were pushed through hijacked GitHub accounts into other projects' repositories, a supply chain path.",
+    "doesNotImply": "That any software supply chain product detected or would have prevented this campaign. Only GitGuardian's summary was checked.",
+    "basedOnSourceIds": [
+      "source:gitguardian-ghostaction-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "link:artex-github-secrets-entra-2026:secrets-detection",
+    "incidentId": "incident:artex-github-secrets-entra-2026",
+    "categoryId": "secrets-detection",
+    "predicate": "related_to",
+    "rationale": "Microsoft reports automated GitHub searches for exposed credentials and AI API keys, then use of leaked application credentials to sign in to Entra ID tenants.",
+    "doesNotImply": "That any secrets detection product detected or would have prevented this incident. The speed of exploitation is Microsoft's claim.",
+    "basedOnSourceIds": [
+      "source:microsoft-artex-secrets-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "link:gitbook-sso-github-app-2026:secrets-detection",
+    "incidentId": "incident:gitbook-sso-github-app-2026",
+    "categoryId": "secrets-detection",
+    "predicate": "related_to",
+    "rationale": "GitBook's postmortem says a Cloudflare API key found in internal repositories led to production secrets and full infrastructure access.",
+    "doesNotImply": "That any secrets detection product detected or would have prevented this incident. The entry point was an SSO login flaw, not the key.",
+    "basedOnSourceIds": [
+      "source:gitbook-incident-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "link:cursor-fireworks-vendor-key-2026:secrets-detection",
+    "incidentId": "incident:cursor-fireworks-vendor-key-2026",
+    "categoryId": "secrets-detection",
+    "predicate": "related_to",
+    "rationale": "Cursor says copied coding-agent traces held unredacted credentials that the attacker then used.",
+    "doesNotImply": "That any secrets detection product detected or would have prevented this incident.",
+    "basedOnSourceIds": [
+      "source:cursor-incident-update-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "link:cursor-fireworks-vendor-key-2026:third-party-risk",
+    "incidentId": "incident:cursor-fireworks-vendor-key-2026",
+    "categoryId": "third-party-risk",
+    "predicate": "related_to",
+    "rationale": "Cursor says the attack began with an access key it had issued to its AI vendor, which the vendor exposed.",
+    "doesNotImply": "That a third-party risk product would have found or prevented the vendor's exposure.",
+    "basedOnSourceIds": [
+      "source:cursor-incident-update-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "link:wfx-loot-github-ci-stealer-2026:secrets-detection",
+    "incidentId": "incident:wfx-loot-github-ci-stealer-2026",
+    "categoryId": "secrets-detection",
+    "predicate": "related_to",
+    "rationale": "Aikido reports a payload that steals GitHub Actions secrets and cloud credentials from CI.",
+    "doesNotImply": "That any secrets detection product detected or would have prevented this incident.",
+    "basedOnSourceIds": [
+      "source:aikido-wfx-loot-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "link:wfx-loot-github-ci-stealer-2026:software-supply-chain",
+    "incidentId": "incident:wfx-loot-github-ci-stealer-2026",
+    "categoryId": "software-supply-chain",
+    "predicate": "related_to",
+    "rationale": "Aikido reports hijacked GitHub accounts opening pull requests across tens of thousands of other projects' repositories to run the payload.",
+    "doesNotImply": "That any software supply chain product detected or would have prevented this campaign, or attribution to the GhostAction actor.",
+    "basedOnSourceIds": [
+      "source:aikido-wfx-loot-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "link:strutil-core-rubygems-worm-2026:secrets-detection",
+    "incidentId": "incident:strutil-core-rubygems-worm-2026",
+    "categoryId": "secrets-detection",
+    "predicate": "related_to",
+    "rationale": "Socket reports a gem that reads cloud, Git forge and package registry credential stores at install time.",
+    "doesNotImply": "That any secrets detection product detected or would have prevented this incident. No victims are confirmed.",
+    "basedOnSourceIds": [
+      "source:socket-strutil-core-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "link:strutil-core-rubygems-worm-2026:software-supply-chain",
+    "incidentId": "incident:strutil-core-rubygems-worm-2026",
+    "categoryId": "software-supply-chain",
+    "predicate": "related_to",
+    "rationale": "The payload was delivered as a malicious version of a package published to RubyGems.",
+    "doesNotImply": "That any software supply chain product detected or would have prevented this package. No victims are confirmed.",
+    "basedOnSourceIds": [
+      "source:socket-strutil-core-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "link:zeabur-plaintext-admin-creds-2026:secrets-management",
+    "incidentId": "incident:zeabur-plaintext-admin-creds-2026",
+    "categoryId": "secrets-management",
+    "predicate": "related_to",
+    "rationale": "Zeabur names long-lived admin tokens and internal keys stored in plaintext in a configuration repository as the root cause.",
+    "doesNotImply": "That any secrets management product would have prevented this, or how the attacker reached the repository, which Zeabur only hypothesizes.",
+    "basedOnSourceIds": [
+      "source:zeabur-incident-report-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "link:northflank-env-vars-2026:third-party-risk",
+    "incidentId": "incident:northflank-env-vars-2026",
+    "categoryId": "third-party-risk",
+    "predicate": "related_to",
+    "rationale": "Northflank says customer secrets stored on its platform were decrypted, and told all users to treat every stored secret as exposed.",
+    "doesNotImply": "That a third-party risk product would have found the flaw, or how the flaw worked beyond Northflank's description.",
+    "basedOnSourceIds": [
+      "source:northflank-incident-report-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "link:barracuda-unretired-vendor-key-2026:third-party-risk",
+    "incidentId": "incident:barracuda-unretired-vendor-key-2026",
+    "categoryId": "third-party-risk",
+    "predicate": "related_to",
+    "rationale": "Barracuda says a cloud key it gave a third-party AI vendor was used after the vendor's environment was compromised.",
+    "doesNotImply": "That a third-party risk product would have prevented this. The vendor is unnamed.",
+    "basedOnSourceIds": [
+      "source:barracuda-intrusion-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "link:barracuda-unretired-vendor-key-2026:nhi",
+    "incidentId": "incident:barracuda-unretired-vendor-key-2026",
+    "categoryId": "nhi",
+    "predicate": "related_to",
+    "rationale": "Barracuda says the cloud access key was issued for a past project and never retired.",
+    "doesNotImply": "That any non-human identity product detected or would have prevented this incident.",
+    "basedOnSourceIds": [
+      "source:barracuda-intrusion-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "link:qubole-cross-account-roles-2026:third-party-risk",
+    "incidentId": "incident:qubole-cross-account-roles-2026",
+    "categoryId": "third-party-risk",
+    "predicate": "related_to",
+    "rationale": "Wiz reports an attacker used credentials from an AWS account associated with Qubole to assume integration roles customers had created to trust it.",
+    "doesNotImply": "That a third-party risk product would have prevented this, or how the Qubole credentials were obtained, which is unknown.",
+    "basedOnSourceIds": [
+      "source:wiz-qubole-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "link:chainstack-grafana-default-creds-2026:nhi",
+    "incidentId": "incident:chainstack-grafana-default-creds-2026",
+    "categoryId": "nhi",
+    "predicate": "related_to",
+    "rationale": "Chainstack names machine credentials that also worked in production among the steps from a development environment to production secrets.",
+    "doesNotImply": "That any non-human identity product detected or would have prevented this incident. The entry point was default Grafana admin credentials.",
+    "basedOnSourceIds": [
+      "source:chainstack-incident-2026"
+    ],
+    "status": "reviewed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-21",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-21"
   }
 ]
