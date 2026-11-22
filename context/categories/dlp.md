@@ -3,7 +3,7 @@ id: "dlp"
 type: "category"
 name: "Data loss prevention"
 layer: "core"
-vendors: 22
+vendors: 24
 ---
 
 # Data loss prevention
@@ -61,6 +61,8 @@ From 3 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - Eureka
 - Virtru
 - PKWARE
+- Material Security
+- Sublime Security
 
 ## What buyers do instead
 
