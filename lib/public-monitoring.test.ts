@@ -93,7 +93,14 @@ it("keeps the GitGuardian mode comparison reachable with an evidence link for ev
   expect(section).toContain('id="monitoring-scope"');
   expect(section).toMatch(/aria-live="polite"[\s\S]*Who can rotate the key\?[\s\S]*Where does it look\?/);
   expect(section.match(/type="radio"/g)).toHaveLength(3);
-  expect(section).toMatch(/checked=""[^>]*\/>Connected public company repo/);
+  expect(section).toMatch(/checked=""[^>]*\/>Contractor’s unconnected public repo/);
+  expect(section).toContain("Company match found.");
+  expect(section).toContain("No company link established.");
+  expect(section).toContain("Who can rotate the key?");
+  expect(section).toContain("Questions for a buyer evaluation");
+  const edition = catalog.claims.find((claim) => claim.id === "claim-monitoring-mode-forager-editions");
+  expect(edition?.subjectId).toBe("truffle-security-forager");
+  expect(section).toContain(`href="${edition!.sourceUrl}"`);
   for (const question of ["Where does it look?", "What does my team set up?", "Why would we receive the alert?"]) {
     for (const mode of ["Internal Monitoring", "Public Monitoring"]) {
       const label = `Source<span class="sr-only"> for ${mode}: ${question}</span>`;

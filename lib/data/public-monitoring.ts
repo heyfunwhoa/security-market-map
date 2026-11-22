@@ -645,7 +645,7 @@ export const { sources: publicMonitoringSources, claims: publicMonitoringClaims 
   prefix: "public", checked: publicMonitoringChecked, entries: evidence,
 });
 
-export const gitGuardianModeEvidence = registerProductEvidence({
+export const monitoringModeEvidence = registerProductEvidence({
   prefix: "monitoring-mode", checked: "2026-11-22", entries: [
     {
       key: "gitguardian-integration", productId: "gitguardian", publisher: "GitGuardian",
@@ -667,6 +667,13 @@ export const gitGuardianModeEvidence = registerProductEvidence({
       type: "official_docs", section: "Attachment reasons",
       statement: "Public incidents show how a finding was associated with a company. A developer match can involve a personal credential.",
       caveat: "Confirm which account issued the credential and which team has authority to revoke it.",
+    },
+    {
+      key: "forager-editions", productId: "truffle-security-forager", publisher: "Truffle Security",
+      title: "TruffleHog Forager on AWS Marketplace", url: "https://aws.amazon.com/marketplace/pp/prodview-3wvp2fwzcn6gm",
+      type: "vendor_marketing", section: "Overview and Highlights",
+      statement: "Truffle Security offers Forager Community and an Enterprise add-on. Enterprise can associate a verified public finding with a customer using cloud account IDs and organization membership as well as domains.",
+      caveat: "The seller describes available signals. Which signals exist for a particular exposure and whether a notification reaches the customer require separate evidence.",
     },
   ],
 });
