@@ -55,3 +55,10 @@ Standing owner direction (2026-11-06): repository knowledge must start with a re
 For each research addition, verify that the foundational section remains useful if all vendor names are removed. Keep public market knowledge separate from private account, employer and interview information. Apply this direction to future repository work; this local rule does not claim other repositories have already been edited.
 
 Clarification (2026-11-06): prioritize industry/category depth and standalone vendor profiles. Do not automatically turn vendor enrichment into competitor comparisons, battlecards or a LimaCharlie-relative matrix. Brief differences or overlap notes may be added when useful; deeper comparisons require a specific buyer decision or user request. Use [the industry/category foundation](docs/market-research/industry-category-foundation.md) as the reusable starting point.
+
+## Working rules for AI coding assistants
+
+- **Open pull requests as drafts** while you're still working. CI skips drafts; mark the PR ready for review when the work is done and the local checks pass. Don't push a stream of small commits to a ready PR — each push to a ready PR bills CI minutes.
+- **Let the git hooks run.** Never use `--no-verify` (or `-n`) on `git commit` or `git push`. If a hook fails, fix the cause. If the secret scan blocks a commit, remove the secret; don't work around the scan.
+- **Never put a secret in the repo, a commit, a chat message, a ticket, a log, or agent settings** (such as `.mcp.json` or `.env` files that get committed). Read keys from the secret manager or environment variables. If a real key was ever written somewhere it shouldn't be, say so — it has to be rotated, not just deleted.
+- **Run the repo's local checks before pushing**, since draft PRs get no CI run.

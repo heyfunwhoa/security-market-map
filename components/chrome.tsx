@@ -3,39 +3,54 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
-import { AS_OF } from "@/lib/schema";
 import { formatDate } from "@/lib/format";
 import { cn } from "@/lib/utils";
+import { ANSWER_LABELS, readableStatus, TRUST_TONES, trustLabel } from "@/lib/evidence-labels";
 import type { SearchHit } from "@/lib/search";
 import { SearchCommand } from "@/components/search-panel";
 import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetClose } from "@/components/ui/sheet";
 
+/**
+ * Menu groups are named for what a visitor is trying to do (UX audit item 1).
+ * Every page keeps its address; only the grouping and order changed.
+ */
 const NAV_GROUPS = [
-  { title: "Explore", links: [
+  { title: "Prep for an account", links: [
+    { href: "/incidents", label: "Incidents", description: "Reviewed, sourced security incidents with talk tracks." },
+    { href: "/use-cases", label: "Buyer use cases", description: "Start with the problem you need to solve." },
+    { href: "/personas", label: "Buyer seats", description: "Who buys, uses, approves, and blocks, with pains and titles." },
+    { href: "/territory", label: "Territory planning", description: "Organize account and territory research." },
+    { href: "/budget", label: "Budget worksheet", description: "Work through price signals and budget assumptions." },
+  ] },
+  { title: "Explore the market", links: [
     { href: "/domains", label: "Explore domains", description: "Start with broad security areas and their categories." },
     { href: "/landscape", label: "Browse products", description: "Filter vendors and products, inspect details, and build a shortlist." },
-    { href: "/compare", label: "Compare", description: "Compare product evidence for a specific use case." },
-    { href: "/use-cases", label: "Buyer use cases", description: "Start with the problem you need to solve." },
+    { href: "/compare", label: "Compare evidence", description: "Compare product evidence for a specific use case." },
   ] },
-  { title: "Learn", links: [
-    { href: "/learn", label: "Concepts & glossary", description: "Understand terminology and practical scenarios." },
+  { title: "Understand how it works", links: [
+    { href: "/learn", label: "Concepts & scenarios", description: "Understand terminology and practical scenarios." },
     { href: "/connections", label: "How tools connect", description: "Explore identity, secrets, and adjacent security jobs." },
+    { href: "/evidence-graph", label: "Evidence graph", description: "Inspect sourced identity, secrets, and non-human identity relationships." },
     { href: "/attack-path", label: "Attack paths", description: "Follow how an exposure can lead to an attack." },
     { href: "/control-map", label: "Security controls", description: "Explore the controls that address security problems." },
     { href: "/frameworks", label: "Frameworks", description: "Connect security concepts to framework guidance." },
   ] },
-  { title: "Plan", links: [
-    { href: "/budget", label: "Budget worksheet", description: "Work through price signals and budget assumptions." },
-    { href: "/territory", label: "Territory planning", description: "Organize account and territory research." },
-  ] },
-  { title: "Research", links: [
+  { title: "About the evidence", links: [
+    { href: "/methodology", label: "Methodology", description: "How evidence, status labels, and Unknown work on this map." },
     { href: "/sources", label: "Sources & references", description: "Inspect the references behind the research." },
+    { href: "/about", label: "About", description: "Who maintains the map and what it is for." },
   ] },
 ];
 
+/** The four pages shown in the desktop header: the account-prep entry point plus the three market views. */
+const HEADER_HREFS = ["/incidents", "/domains", "/landscape", "/compare"];
+export const HEADER_LINKS = HEADER_HREFS.map((href) => NAV_GROUPS.flatMap((group) => group.links).find((link) => link.href === href)!);
+export const NAV_GROUP_TITLES = NAV_GROUPS.map((group) => group.title);
+export const NAV_HREFS = NAV_GROUPS.flatMap((group) => group.links.map((link) => link.href));
+
 const navLinkClass = "inline-flex min-h-11 items-center rounded-md px-3 text-sm hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring";
 
-export function SiteHeader({ hits }: { hits: SearchHit[] }) {
+export function SiteHeader({ hits, asOf }: { hits: SearchHit[]; asOf: string }) {
   const pathname = usePathname();
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
   return (
@@ -43,10 +58,10 @@ export function SiteHeader({ hits }: { hits: SearchHit[] }) {
       <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-4 gap-y-2 px-4 py-3">
         <Link href="/" aria-label="Security Market Map home" className="min-w-0 flex-1 rounded-sm py-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring">
           <span className="block font-heading text-lg leading-snug tracking-tight">Security Market Map</span>
-          <span className="block text-xs text-muted-foreground">Research notes · as of {formatDate(AS_OF)}</span>
+          <span className="block text-xs text-muted-foreground">Research notes · as of {formatDate(asOf)}</span>
         </Link>
         <nav aria-label="Primary" className="hidden items-center gap-1 xl:flex">
-          {NAV_GROUPS[0].links.slice(0, 3).map((link) => <Link key={link.href} href={link.href} aria-current={pathname === link.href ? "page" : undefined} className={cn(navLinkClass, isActive(link.href) ? "bg-muted font-semibold" : "text-muted-foreground")}>{link.label}</Link>)}
+          {HEADER_LINKS.map((link) => <Link key={link.href} href={link.href} aria-current={pathname === link.href ? "page" : undefined} className={cn(navLinkClass, isActive(link.href) ? "bg-muted font-semibold" : "text-muted-foreground")}>{link.label}</Link>)}
         </nav>
         <div className="flex shrink-0 items-center gap-2">
           <SearchCommand hits={hits} />
@@ -57,7 +72,7 @@ export function SiteHeader({ hits }: { hits: SearchHit[] }) {
             <SheetContent showCloseButton={false} className="data-[side=right]:w-full data-[side=right]:sm:max-w-lg overflow-y-auto overscroll-contain motion-reduce:animate-none motion-reduce:transition-none">
               <SheetHeader className="border-b border-border p-5">
                 <div className="flex items-center justify-between gap-3"><SheetTitle className="text-xl">Explore the map</SheetTitle><SheetClose className={`${navLinkClass} border border-border`}>Close</SheetClose></div>
-                <SheetDescription>Browse tools, understand the concepts, or inspect the research.</SheetDescription>
+                <SheetDescription>Prep for an account, explore the market, or check how the evidence works.</SheetDescription>
               </SheetHeader>
               <nav aria-label="All pages" className="space-y-6 px-5 pb-6">
                 <SheetClose asChild><Link href="/" aria-current={pathname === "/" ? "page" : undefined} className={`${navLinkClass} border border-border`}>Home overview</Link></SheetClose>
@@ -79,7 +94,7 @@ export function SiteHeader({ hits }: { hits: SearchHit[] }) {
   );
 }
 
-export function SiteFooter() {
+export function SiteFooter({ asOf }: { asOf: string }) {
   return (
     <footer className="mt-16 border-t border-border">
       <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-8 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
@@ -87,24 +102,19 @@ export function SiteFooter() {
           Independent research notes. Not an official Gartner, Forrester, IDC, SACR, or vendor classification,
           and not a ranking.
         </p>
-        <p>As of {formatDate(AS_OF)}</p>
+        <p className="flex flex-wrap gap-x-4 gap-y-1">
+          <Link href="/methodology" className="underline underline-offset-4 hover:text-foreground">Methodology</Link>
+          <Link href="/about" className="underline underline-offset-4 hover:text-foreground">About</Link>
+          <span>As of {formatDate(asOf)}</span>
+        </p>
       </div>
     </footer>
   );
 }
 
 const PILL_LABELS: Record<string, string> = {
-  verified: "Independent source",
-  vendor_published: "Vendor said this",
-  needs_review: "Needs review",
-  conflicting: "Conflicting",
-  superseded: "Superseded",
-  research_candidate: "Research candidate",
-  evidenced: "Evidence",
-  limited: "Scoped",
-  unverified: "Unverified",
-  unknown: "Unknown",
-  not_supported: "Not supported",
+  taxonomy_mapping: "Taxonomy mapping",
+  catalog_structure: "Catalog structure",
   announced: "Announced",
   generally_available: "Documented",
   legacy_name: "Name in transition",
@@ -116,26 +126,34 @@ const PILL_LABELS: Record<string, string> = {
   review: "Review",
   standard: "Standard",
   internal_note: "Internal note",
+  news: "News coverage",
+  legal_summary: "Legal summary",
+  academic: "Academic research",
   direct_competitor: "Direct competitor",
   bundled_alternative: "Bundled alternative",
   complement: "Complement",
   adjacent_budget: "Adjacent budget",
+  seed_reviewed: "Seed reviewed",
+  approved: "Reviewed",
+  reported: "Reported",
+  observed: "Observed",
+  draft: "Draft",
+  reviewed: "Reviewed",
+  not_evaluated: "Not evaluated",
+  recheck_due: "Recheck due",
 };
 
+/** Trust labels first (lib/evidence-labels.ts), then compare-grid answers, then neutral pills. */
+export function pillLabel(status: string): string {
+  return trustLabel(status) ?? ANSWER_LABELS[status]?.label ?? PILL_LABELS[status] ?? readableStatus(status);
+}
+
 export function StatusPill({ status }: { status: string }) {
-  const tone =
-    status === "verified" || status === "evidenced" || status === "generally_available"
-      ? "border-emerald-700/20 bg-emerald-50 text-emerald-950"
-      : status === "vendor_published" || status === "limited" || status === "official_docs"
-        ? "border-sky-800/15 bg-sky-50 text-sky-950"
-        : status === "needs_review" ||
-            status === "unverified" ||
-            status === "announced" ||
-            status === "internal_note"
-          ? "border-amber-800/20 bg-amber-50 text-amber-950"
-          : status === "conflicting" || status === "not_supported"
-            ? "border-rose-800/20 bg-rose-50 text-rose-950"
-            : "border-stone-300 bg-stone-100 text-stone-700";
+  // Trust statuses share one label and tone (lib/evidence-labels.ts). Everything else is neutral.
+  const trust = trustLabel(status);
+  const answer = ANSWER_LABELS[status];
+  const tone = trust ? TRUST_TONES[trust] : (answer?.tone ?? "border-stone-300 bg-transparent text-stone-700 dark:border-stone-600 dark:text-stone-200");
+  const label = pillLabel(status);
 
   return (
     <span
@@ -144,7 +162,7 @@ export function StatusPill({ status }: { status: string }) {
         tone,
       )}
     >
-      {PILL_LABELS[status] ?? status}
+      {label}
     </span>
   );
 }

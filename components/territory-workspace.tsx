@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useSyncExternalStore } from "react";
+import { useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { accountBrief, DEFAULT_WEIGHTS, scoreAccount } from "@/lib/territory";
 import type { Account, FitWeights, UseCase } from "@/lib/schema";
 import { Button } from "@/components/ui/button";
@@ -11,10 +11,11 @@ import { Textarea } from "@/components/ui/textarea";
 const STORAGE_KEY = "atlas-territory-v1";
 
 type TerritoryStore = { accounts: Account[]; weights: FitWeights };
+type TerritorySnapshot = TerritoryStore & { saveState?: "saved" | "error" };
 
 const EMPTY_STORE: TerritoryStore = { accounts: [], weights: DEFAULT_WEIGHTS };
 
-let memory: TerritoryStore = EMPTY_STORE;
+let memory: TerritorySnapshot = EMPTY_STORE;
 const listeners = new Set<() => void>();
 
 function emit() {
@@ -48,14 +49,21 @@ function getSnapshot() {
   return memory;
 }
 
-function getServerSnapshot() {
+function getServerSnapshot(): TerritorySnapshot {
   return EMPTY_STORE;
 }
 
 function writeStore(next: TerritoryStore) {
-  memory = next;
-  window.localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+  // Keep edits usable in memory even when storage is unavailable or full.
+  const data = { accounts: next.accounts, weights: next.weights };
+  try {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    memory = { ...data, saveState: "saved" };
+  } catch {
+    memory = { ...data, saveState: "error" };
+  }
   emit();
+  return memory.saveState === "saved";
 }
 
 function blankAccount(): Account {
@@ -88,7 +96,8 @@ export function TerritoryWorkspace({ useCases }: { useCases: UseCase[] }) {
   const weights = store.weights;
   const [activeId, setActiveId] = useState<string>("");
   const [linkError, setLinkError] = useState("");
-  const [copied, setCopied] = useState(false);
+  const [exportStatus, setExportStatus] = useState("");
+  const saveStatusRef = useRef<HTMLParagraphElement>(null);
 
   const account = accounts.find((item) => item.id === activeId) ?? accounts[0] ?? null;
   const score = useMemo(
@@ -99,7 +108,7 @@ export function TerritoryWorkspace({ useCases }: { useCases: UseCase[] }) {
   function update(next: Account) {
     writeStore({
       weights,
-      accounts: accounts.map((item) => (item.id === next.id ? next : item)),
+      accounts: accounts.map((item) => (item.id === next.id ? { ...next, updatedAt: new Date().toISOString() } : item)),
     });
   }
 
@@ -110,7 +119,28 @@ export function TerritoryWorkspace({ useCases }: { useCases: UseCase[] }) {
   }
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[16rem_1fr]">
+    <div className="grid min-w-0 gap-6 lg:grid-cols-[16rem_1fr]">
+      <div className="min-w-0 text-sm lg:col-span-2">
+        <p className="text-muted-foreground">Accounts are saved only in this browser. They do not sync across devices.</p>
+        <p ref={saveStatusRef} role="status" aria-live="polite" tabIndex={-1}>
+          {store.saveState === "saved" ? "Saved in this browser." : null}
+        </p>
+        {store.saveState === "error" ? (
+          <div role="alert" className="mt-2 rounded-md border border-destructive p-3">
+            <p>Could not save in this browser. Your edits are still here, but may be lost if you refresh or leave. Retry saving or export a brief before leaving.</p>
+            <Button
+              type="button"
+              variant="outline"
+              className="mt-2 min-h-11 motion-reduce:transition-none motion-reduce:transform-none"
+              onClick={() => {
+                if (writeStore(store)) saveStatusRef.current?.focus();
+              }}
+            >
+              Retry saving
+            </Button>
+          </div>
+        ) : null}
+      </div>
       <aside>
         <Button type="button" onClick={addAccount}>
           New account
@@ -126,7 +156,7 @@ export function TerritoryWorkspace({ useCases }: { useCases: UseCase[] }) {
                 <button
                   type="button"
                   onClick={() => setActiveId(item.id)}
-                  aria-current={item.id === activeId}
+                  aria-current={item.id === account?.id}
                   className="w-full rounded-md px-2 py-1.5 text-left text-sm aria-current:bg-muted"
                 >
                   {item.name || "Untitled account"}
@@ -138,11 +168,12 @@ export function TerritoryWorkspace({ useCases }: { useCases: UseCase[] }) {
       </aside>
       {account && score ? (
         <form
-          className="space-y-4"
+          className="min-w-0 space-y-4"
           onSubmit={(event) => {
             event.preventDefault();
           }}
         >
+          <p className="text-sm text-muted-foreground">Last edited: <time dateTime={account.updatedAt}>{account.updatedAt}</time></p>
           <div className="grid gap-3 sm:grid-cols-2">
             <Field label="Account name" value={account.name} onChange={(name) => update({ ...account, name })} />
             <Field label="Industry" value={account.industry} onChange={(industry) => update({ ...account, industry })} />
@@ -335,7 +366,6 @@ export function TerritoryWorkspace({ useCases }: { useCases: UseCase[] }) {
               variant="outline"
               onClick={async () => {
                 const markdown = accountBrief({ account, weights, useCases });
-                await navigator.clipboard.writeText(markdown);
                 const blob = new Blob([markdown], { type: "text/markdown" });
                 const url = URL.createObjectURL(blob);
                 const anchor = document.createElement("a");
@@ -343,11 +373,17 @@ export function TerritoryWorkspace({ useCases }: { useCases: UseCase[] }) {
                 anchor.download = `${account.name || "account"}-brief.md`;
                 anchor.click();
                 URL.revokeObjectURL(url);
-                setCopied(true);
+                try {
+                  await navigator.clipboard.writeText(markdown);
+                  setExportStatus("Brief copied and downloaded.");
+                } catch {
+                  setExportStatus("Brief downloaded. Clipboard access was unavailable.");
+                }
               }}
             >
-              {copied ? "Brief copied and downloaded" : "Export Markdown brief"}
+              Export Markdown brief
             </Button>
+            <p role="status" className="mt-2 text-sm text-muted-foreground">{exportStatus}</p>
           </section>
         </form>
       ) : (

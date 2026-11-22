@@ -1,28 +1,13 @@
 import Link from "next/link";
-import { StatusPill } from "@/components/chrome";
-import { formatDate } from "@/lib/format";
+import { RecheckBadge } from "@/components/recheck-badge";
+import { SourceBadge } from "@/components/source-badge";
+import { catalog, sourceById } from "@/lib/catalog";
+import { claimNeedsRecheck } from "@/lib/coverage";
+import { noteWithoutCaveat } from "@/lib/claim-basis";
+import { formatDate, sourceTypeLabel } from "@/lib/format";
 import type { Claim, Distinction } from "@/lib/schema";
 
-function evidenceBasis(claim: Claim): string {
-  if (claim.verificationStatus === "verified" && claim.sourceType === "standard") {
-    return "Checked against an independent public source. This is not a test of a product.";
-  }
-  if (claim.verificationStatus === "vendor_published") {
-    return "This is what the vendor published. It is not an independent test.";
-  }
-  if (claim.sourceType === "analyst") {
-    return "Taken from a public analyst page. Paid report text and rankings are not copied here.";
-  }
-  if (claim.verificationStatus === "conflicting") {
-    return "Two sources disagree. Both stay on the page.";
-  }
-  if (claim.verificationStatus === "needs_review") {
-    return "Saved for a person to check. It is not treated as fact.";
-  }
-  return "Tied to the source linked below.";
-}
-
-export function ClaimList({ claims }: { claims: Claim[] }) {
+export function ClaimList({ claims, labels }: { claims: Claim[]; labels?: Record<string, string> }) {
   if (claims.length === 0) {
     return (
       <p className="rounded-lg border border-dashed border-border px-4 py-6 text-sm text-muted-foreground">
@@ -36,25 +21,82 @@ export function ClaimList({ claims }: { claims: Claim[] }) {
       {claims.map((claim) => (
         <li key={claim.id} className="rounded-xl border border-border bg-card p-4">
           <div className="flex flex-wrap items-center gap-2">
-            <StatusPill status={claim.verificationStatus} />
-            <StatusPill status={claim.sourceType} />
+            <SourceBadge claim={claim} />
+            {claimNeedsRecheck(claim, catalog.sources, catalog.asOf) ? <RecheckBadge asOf={catalog.asOf} /> : null}
+            {labels?.[claim.id] ? (
+              <span className="rounded-full border border-border px-2 py-0.5 text-xs font-medium">{labels[claim.id]}</span>
+            ) : null}
             <span className="text-xs text-muted-foreground">
               {claim.publishedAt ? `Published ${formatDate(claim.publishedAt)} · ` : ""}
               Checked {formatDate(claim.lastCheckedAt)}
             </span>
           </div>
           <p className="mt-3 text-sm leading-6">{claim.statement}</p>
-          <p className="mt-2 text-sm leading-6 text-muted-foreground">{evidenceBasis(claim)}</p>
-          {claim.notes ? <p className="mt-2 text-sm leading-6 text-muted-foreground">{claim.notes}</p> : null}
-          <a
-            href={claim.sourceUrl}
-            className="mt-3 inline-block text-sm font-medium text-primary underline-offset-4 hover:underline"
-          >
-            Open source
-          </a>
+          {noteWithoutCaveat(claim.notes) ? (
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">{noteWithoutCaveat(claim.notes)}</p>
+          ) : null}
+          <ClaimSource claim={claim} />
         </li>
       ))}
     </ul>
+  );
+}
+
+/**
+ * Names the source in the link instead of a bare "Open source", and keeps the registry details
+ * (publisher, type, dates, excerpt) one native disclosure away. Works with keyboard and touch;
+ * nothing depends on hover. Adapted from the evidence block in components/comparison-evidence.tsx.
+ */
+// Registry titles keep the publisher's punctuation; visible copy avoids em dashes.
+function displayTitle(title: string): string {
+  return title.replace(/\s*\u2014\s*/g, ": ");
+}
+
+function ClaimSource({ claim }: { claim: Claim }) {
+  const source = sourceById(claim.sourceId);
+  return (
+    <div className="mt-3 text-sm">
+      <a
+        href={claim.sourceUrl}
+        className="inline-block font-medium text-primary underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+      >
+        {source ? `${source.publisher}: ${displayTitle(source.title)}` : "Open source"}
+        <span className="sr-only"> (original source for this claim)</span>
+      </a>
+      {source ? (
+        <details className="mt-2 rounded-md border border-border px-3 py-2">
+          <summary className="cursor-pointer text-xs font-medium text-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring">
+            Source details
+          </summary>
+          <dl className="mt-2 space-y-1 text-xs text-muted-foreground">
+            <div>
+              <dt className="inline font-medium">Type: </dt>
+              <dd className="inline">{sourceTypeLabel(source.sourceType)}</dd>
+            </div>
+            {source.author ? (
+              <div>
+                <dt className="inline font-medium">Author: </dt>
+                <dd className="inline">{source.author}</dd>
+              </div>
+            ) : null}
+            <div>
+              <dt className="inline font-medium">Published: </dt>
+              <dd className="inline">{source.publishedAt ? formatDate(source.publishedAt) : "Not stated"}</dd>
+            </div>
+            <div>
+              <dt className="inline font-medium">Retrieved: </dt>
+              <dd className="inline">{formatDate(source.retrievedAt)}</dd>
+            </div>
+          </dl>
+          {source.excerpt ? (
+            <figure className="mt-2 border-l-2 border-border pl-2">
+              <figcaption className="text-xs font-medium">Registry summary of this source (paraphrased; the claim above may cite a different passage)</figcaption>
+              <blockquote className="text-sm leading-6 text-muted-foreground">{source.excerpt}</blockquote>
+            </figure>
+          ) : null}
+        </details>
+      ) : null}
+    </div>
   );
 }
 

@@ -45,6 +45,28 @@ describe("catalog integrity", () => {
     );
   });
 
+  it("requires reviewed field notes before a field_validated label", () => {
+    const relabeled = catalog.personaProfiles.map((profile) =>
+      profile.personaId === "ciso"
+        ? { ...profile, pains: profile.pains.map((pain, index) => (index === 0 ? { ...pain, evidence: "field_validated" as const } : pain)) }
+        : profile,
+    );
+    const without = catalogProblems({ ...catalog, personaProfiles: relabeled });
+    expect(without.some((problem) => problem.includes("ciso") && problem.includes("field_validated"))).toBe(true);
+    const note = {
+      id: "fn-test-budget",
+      personaId: "ciso",
+      pattern: "Budget pressure",
+      kind: "pain" as const,
+      stance: "confirms" as const,
+      conversations: 3,
+      observedMonth: "2026-10",
+      reviewedAt: "2026-11-01",
+    };
+    const withNotes = catalogProblems({ ...catalog, personaProfiles: relabeled, fieldNotes: [note] });
+    expect(withNotes.some((problem) => problem.includes("field_validated"))).toBe(false);
+  });
+
   it("meets the seed minimums", () => {
     const identityCategories = catalog.categories.filter((category) =>
       category.domainIds.includes("identity"),
@@ -144,7 +166,79 @@ describe("catalog integrity", () => {
     expect(byId["soc-lead"].id).not.toBe(byId["soc-analyst"].id);
     expect(byId["data-security"].id).not.toBe(byId.privacy.id);
     expect(byId["digital-forensics"].id).not.toBe(byId["incident-response"].id);
+    expect(byId["detection-engineer"].aliases).toEqual(
+      expect.arrayContaining(["Security automation engineer", "LC-PER-04"]),
+    );
+    expect(byId["soc-lead"].aliases).toEqual(expect.arrayContaining(["LC-AUD-03 (ops seat)"]));
+    expect(byId["detection-engineer"].aliases).toEqual(
+      expect.arrayContaining(["Lead SecOps", "LC use case: SecOps engineering"]),
+    );
+    expect(byId.appsec.aliases).toEqual(expect.arrayContaining(["LC use case: code security"]));
+    expect(byId["cloud-sec"].aliases).toEqual(expect.arrayContaining(["LC use case: cloud security"]));
+    expect(byId["incident-response"].aliases).toEqual(
+      expect.arrayContaining(["LC use case: incident response"]),
+    );
+    expect(byId["threat-hunter"].aliases).toEqual(expect.arrayContaining(["LC use case: threat hunting"]));
     expect(new Set(catalog.personas.map((persona) => persona.id)).size).toBe(catalog.personas.length);
+  });
+
+  it("gives every persona a profile with valid links and honest evidence labels", () => {
+    const personaIds = new Set([
+      ...catalog.personas.map((persona) => persona.id),
+      ...catalog.stakeholders.map((stakeholder) => stakeholder.id),
+    ]);
+    const profiles = catalog.personaProfiles;
+    expect(new Set(profiles.map((profile) => profile.personaId))).toEqual(personaIds);
+    const sourceIds = new Set(catalog.sources.map((source) => source.id));
+    for (const profile of profiles) {
+      if (profile.evidence === "sourced") expect(profile.sourceIds.length).toBeGreaterThan(0);
+      for (const id of profile.sourceIds) expect(sourceIds.has(id)).toBe(true);
+      for (const edge of profile.edges) {
+        expect(personaIds.has(edge.toPersonaId)).toBe(true);
+        expect(edge.toPersonaId).not.toBe(profile.personaId);
+        if (edge.evidence === "sourced") expect(edge.sourceIds.length).toBeGreaterThan(0);
+      }
+    }
+    const appsec = profiles.find((profile) => profile.personaId === "appsec");
+    expect(appsec?.cluster).toBe("build");
+    expect(appsec?.edges.some((edge) => edge.toPersonaId === "developer" && edge.type === "hands-off-to")).toBe(true);
+    expect(profiles.find((profile) => profile.personaId === "ciso")?.primaryDomainId).toBeNull();
+    expect(profiles.find((profile) => profile.personaId === "mssp-ops")?.orgPlacement).toBe("external");
+  });
+
+  it("models non-security stakeholders without adding them to the buyer filter", () => {
+    const ids = catalog.stakeholders.map((stakeholder) => stakeholder.id);
+    expect(ids).toEqual(expect.arrayContaining(["cio", "procurement", "legal-counsel", "cfo", "board-audit-committee"]));
+    const personaIds = new Set(catalog.personas.map((persona) => persona.id));
+    for (const id of ids) expect(personaIds.has(id)).toBe(false);
+    const ciso = catalog.personaProfiles.find((profile) => profile.personaId === "ciso");
+    expect(ciso?.edges.some((edge) => edge.toPersonaId === "cio" && edge.type === "reports-to")).toBe(true);
+  });
+
+  it("covers every seat at every company size and names who covers absent seats", () => {
+    for (const profile of catalog.personaProfiles) {
+      for (const size of ["small", "mid-market", "enterprise"] as const) {
+        expect(profile.bySize[size].presence).toBeTruthy();
+      }
+    }
+    const ciso = catalog.personaProfiles.find((profile) => profile.personaId === "ciso");
+    expect(ciso?.bySize.small.presence).toBe("usually-absent");
+    expect(ciso?.bySize.small.coveredBy).toEqual(expect.arrayContaining(["ceo-founder", "cto"]));
+    expect(ciso?.bySize.enterprise.presence).toBe("dedicated");
+  });
+
+  it("links company-type overlays to real seats and sources regulated ones", async () => {
+    const { companySizeBands } = await import("./data/company-segments");
+    const sourceIds = new Set(catalog.sources.map((source) => source.id));
+    for (const band of Object.values(companySizeBands)) {
+      for (const id of band.sourceIds) expect(sourceIds.has(id)).toBe(true);
+    }
+    const kinds = new Set(catalog.segmentOverlays.map((overlay) => overlay.kind));
+    expect(kinds).toEqual(new Set(["business-model", "industry", "ownership", "region", "provider"]));
+    for (const overlay of catalog.segmentOverlays) {
+      for (const seat of overlay.mandatedSeats) expect(seat.sourceIds.length).toBeGreaterThan(0);
+      if (overlay.mandatedSeats.length > 0) expect(overlay.evidence).toBe("sourced");
+    }
   });
 
   it("formats persona filter labels with acronym samples", async () => {
@@ -723,7 +817,10 @@ describe("catalog integrity", () => {
       "claim-forrester-sspm-20220819",
     ];
     expect(catalog.claims.find((claim) => claim.id === "claim-gartner-workforce-am-20250424")?.confidence).toBe("low");
-    expect(catalog.claims.filter((claim) => claim.subjectType === "category" && claim.subjectId === "workforce-identity")).toHaveLength(2);
+    const originalWorkforceIds = catalog.claims
+      .filter((claim) => claim.subjectType === "category" && claim.subjectId === "workforce-identity" && claim.lastCheckedAt === "2026-10-27")
+      .map((claim) => claim.id);
+    expect(new Set(originalWorkforceIds)).toEqual(new Set(ids.slice(0, 2)));
     for (const id of ids) {
       const claim = catalog.claims.find((item) => item.id === id);
       expect(claim, id).toBeDefined();

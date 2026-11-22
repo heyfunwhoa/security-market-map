@@ -6,6 +6,7 @@ import { ProductEvidenceExplorer } from "@/components/product-evidence-explorer"
 import { ProductFocus } from "@/components/product-focus";
 import { ProductSectionNav } from "@/components/product-section-nav";
 import { catalog, claimsForSubject, vendorById } from "@/lib/catalog";
+import { claimNeedsRecheck } from "@/lib/coverage";
 import { availabilityLabel } from "@/lib/format";
 import { DEVELOPER_ENDPOINT_COMPARISON_URL } from "@/lib/comparison-selection";
 import {
@@ -140,7 +141,11 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             </ul>
           </div>
         ) : null}
-        <ProductEvidenceExplorer claims={claims} />
+        <ProductEvidenceExplorer
+          claims={claims}
+          asOf={catalog.asOf}
+          recheckClaimIds={claims.filter((claim) => claimNeedsRecheck(claim, catalog.sources, catalog.asOf)).map((claim) => claim.id)}
+        />
       </section>
 
       <section aria-labelledby="investigate" className="mt-9">

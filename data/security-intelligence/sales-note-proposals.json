@@ -1,0 +1,375 @@
+{
+  "status": "decided",
+  "proposedBy": "agent-draft",
+  "proposedOn": "2026-11-17",
+  "note": "Owner decisions recorded 2026-11-17 and applied to sales-notes.json. proposedHeadline is kept for history; headlineDecision says whether it was applied. Round 3 decided 2026-11-17: 7 caveats for newly promoted incidents approved as written.",
+  "proposals": [
+    {
+      "incidentId": "incident:cisa-solarwinds-2020",
+      "sellerCaveat": "Older incident (2020); victims and methods aren't covered here.",
+      "approvedSellerCaveat": "Older incident (2020); victims and methods aren't covered here.",
+      "proposedHeadline": null,
+      "headlineDecision": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:cisa-solarwinds-2020"
+      ],
+      "decision": "approved",
+      "decisionSummary": "caveat approved",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:cisa-shai-hulud-2025",
+      "sellerCaveat": "Affected packages aren't verified; don't imply this account was hit.",
+      "approvedSellerCaveat": "Affected packages aren't verified; don't imply this account was hit.",
+      "proposedHeadline": null,
+      "headlineDecision": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:cisa-shai-hulud-alert"
+      ],
+      "decision": "approved",
+      "decisionSummary": "caveat approved",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:codecov-bash-uploader-2021",
+      "sellerCaveat": "Which customers actually lost secrets is unknown.",
+      "approvedSellerCaveat": "Which customers actually lost secrets is unknown.",
+      "proposedHeadline": "One leaked credential let an attacker change Codecov's Bash Uploader and pull data out of customers' CI environments.",
+      "headlineDecision": "edited",
+      "approvedHeadline": "Codecov said one leaked credential let an attacker change its Bash Uploader and pull data out of customers' CI environments.",
+      "headlineNote": "Edited by the owner to keep the publisher attribution.",
+      "reason": "Leads with the cause (one leaked credential), which is the secrets lesson.",
+      "basedOnSourceIds": [
+        "source:codecov-bash-uploader-2021"
+      ],
+      "decision": "edited",
+      "decisionSummary": "caveat approved, headline edited",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:tj-actions-changed-files-2025",
+      "sellerCaveat": "About 23,000 repos used it; that's not a count of leaks.",
+      "approvedSellerCaveat": "About 23,000 repos used it; that's not a count of leaks.",
+      "proposedHeadline": null,
+      "headlineDecision": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:ghsa-mrrh-fwg8-r2c3"
+      ],
+      "decision": "approved",
+      "decisionSummary": "caveat approved",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:nx-s1ngularity-2025",
+      "sellerCaveat": "How the publishing token was first stolen isn't confirmed.",
+      "approvedSellerCaveat": "How the publishing token was first stolen isn't confirmed.",
+      "proposedHeadline": "Malicious Nx packages turned developers' own AI coding tools into secret hunters. Wiz saw over a thousand valid GitHub tokens leak.",
+      "headlineDecision": "approved",
+      "reason": "Leads with the new twist (AI tools used against their owners) and adds the scale figure from the summary.",
+      "basedOnSourceIds": [
+        "source:wiz-s1ngularity-2025"
+      ],
+      "decision": "approved",
+      "decisionSummary": "caveat approved, headline approved",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:circleci-engineer-laptop-2023",
+      "sellerCaveat": "Impact on individual customers isn't covered.",
+      "approvedSellerCaveat": "Impact on individual customers isn't covered.",
+      "proposedHeadline": null,
+      "headlineDecision": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:circleci-incident-report-2023"
+      ],
+      "decision": "approved",
+      "decisionSummary": "caveat approved",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:cloudflare-unrotated-okta-tokens-2023",
+      "sellerCaveat": "Attribution is Cloudflare's own; don't name an actor.",
+      "approvedSellerCaveat": "Attribution is Cloudflare's own; don't name an actor.",
+      "proposedHeadline": "Four credentials Cloudflare thought were unused, left unrotated after the Okta breach, let an attacker into Confluence and Jira.",
+      "headlineDecision": "approved",
+      "reason": "Leads with the rotation gap, the part a buyer can act on. Four is the one token plus three accounts in the summary.",
+      "basedOnSourceIds": [
+        "source:cloudflare-thanksgiving-2023"
+      ],
+      "decision": "approved",
+      "decisionSummary": "caveat approved, headline approved",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:uber-github-aws-key-2016",
+      "sellerCaveat": "This was 2016; use it as a lesson, not news.",
+      "approvedSellerCaveat": "This was 2016; use it as a lesson, not news.",
+      "proposedHeadline": "One AWS key in a private GitHub repo, reached with reused passwords, gave intruders Uber's S3 data.",
+      "headlineDecision": "rejected",
+      "headlineNote": "Rejected: dropped the FTC attribution.",
+      "reason": "Puts the single key up front.",
+      "basedOnSourceIds": [
+        "source:ftc-uber-revised-analysis"
+      ],
+      "decision": "approved",
+      "decisionSummary": "caveat approved, headline rejected",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:storm-0558-signing-key-2023",
+      "sellerCaveat": "How the key left Microsoft is still unconfirmed.",
+      "approvedSellerCaveat": "How the key left Microsoft is still unconfirmed.",
+      "proposedHeadline": "With one acquired signing key, an attacker forged tokens to get into Outlook Web Access and Outlook.com.",
+      "headlineDecision": "rejected",
+      "headlineNote": "Rejected: too close to the current headline to be worth the change.",
+      "reason": "Puts the single key up front; keeps 'acquired', not 'stolen'.",
+      "basedOnSourceIds": [
+        "source:msrc-storm-0558-key-acquisition"
+      ],
+      "decision": "approved",
+      "decisionSummary": "caveat approved, headline rejected",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:pypi-admin-token-docker-image-2024",
+      "sellerCaveat": "No malicious use was found; this was an exposure.",
+      "approvedSellerCaveat": "No malicious use was found; this was an exposure.",
+      "proposedHeadline": null,
+      "headlineDecision": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:pypi-leaked-admin-token-2024"
+      ],
+      "decision": "approved",
+      "decisionSummary": "caveat approved",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:microsoft-ai-sas-token-2023",
+      "sellerCaveat": "No attacker activity was reported; this was an exposure.",
+      "approvedSellerCaveat": "No attacker activity was reported; this was an exposure.",
+      "proposedHeadline": null,
+      "headlineDecision": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:wiz-microsoft-sas-token-2023"
+      ],
+      "decision": "approved",
+      "decisionSummary": "caveat approved",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:env-file-cloud-extortion-2024",
+      "sellerCaveat": "The actor and number of extorted orgs aren't stated.",
+      "approvedSellerCaveat": "The actor and number of extorted orgs aren't stated.",
+      "proposedHeadline": "Exposed .env files handed attackers AWS keys. The campaign targeted 110,000 domains and pulled over 90,000 unique variables.",
+      "headlineDecision": "approved",
+      "reason": "Adds the second figure from the summary to show scale.",
+      "basedOnSourceIds": [
+        "source:unit42-env-extortion-2024"
+      ],
+      "decision": "approved",
+      "decisionSummary": "caveat approved, headline approved",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:okta-support-har-files-2023",
+      "sellerCaveat": "The exact path the password leaked by isn't confirmed.",
+      "approvedSellerCaveat": "How the password leaked isn't confirmed.",
+      "proposedHeadline": null,
+      "headlineDecision": null,
+      "reason": "No hook proposed: a causal hook would present the unconfirmed exposure path as fact.",
+      "basedOnSourceIds": [
+        "source:okta-support-root-cause-2023",
+        "source:okta-harfiles-closure-2024"
+      ],
+      "decision": "edited",
+      "decisionSummary": "caveat edited",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:toyota-tconnect-github-key-2022",
+      "sellerCaveat": "Toyota couldn't confirm the key was ever used.",
+      "approvedSellerCaveat": "Toyota couldn't confirm the key was ever used.",
+      "proposedHeadline": null,
+      "headlineDecision": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:toyota-tconnect-notice-2022"
+      ],
+      "decision": "approved",
+      "decisionSummary": "caveat approved",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:uber-contractor-mfa-push-2022",
+      "sellerCaveat": "Uber saw no access to production systems or user databases.",
+      "approvedSellerCaveat": "Uber says it saw no access to production systems or user databases.",
+      "proposedHeadline": null,
+      "headlineDecision": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:uber-security-update-2022"
+      ],
+      "decision": "edited",
+      "decisionSummary": "caveat edited",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:cl-sta-1238-cairn-ai-intrusions-2026",
+      "sellerCaveat": "Victims are unnamed; the China link is a moderate-confidence assessment.",
+      "approvedSellerCaveat": "Victims are unnamed; the China link is a moderate-confidence assessment.",
+      "proposedHeadline": "Attackers ran an open-source AI pentest framework through 25 operations against at least 19 organizations, and got in at 10.",
+      "headlineDecision": "edited",
+      "approvedHeadline": "Unit 42 reported that attackers ran an open-source AI pentest framework through 25 operations against at least 19 organizations, and got in at 10.",
+      "headlineNote": "Edited by the owner to keep the publisher attribution.",
+      "reason": "Adds the 'at least 19' denominator so 10 reads as a hit rate, not a raw count.",
+      "basedOnSourceIds": [
+        "source:unit42-cairn-ai-intrusions-2026"
+      ],
+      "decision": "edited",
+      "decisionSummary": "caveat approved, headline edited",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:west-pharmaceutical-intrusion-2026",
+      "sellerCaveat": "The filing names no attacker and no impact figures.",
+      "approvedSellerCaveat": "The filing names no attacker and no impact figures.",
+      "proposedHeadline": null,
+      "headlineDecision": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:sec-8k-west-pharmaceutical-2026"
+      ],
+      "decision": "approved",
+      "decisionSummary": "caveat approved",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:salesloft-drift-oauth-tokens-2025",
+      "sellerCaveat": "Google's report doesn't cover how the tokens were first stolen.",
+      "approvedSellerCaveat": "Google's report doesn't cover how the tokens were first stolen.",
+      "proposedHeadline": null,
+      "headlineDecision": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:gtig-salesloft-drift-2025"
+      ],
+      "decision": "approved",
+      "decisionSummary": "caveat approved",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:mercedes-benz-github-token-2024",
+      "sellerCaveat": "Exposure only; researcher and Mercedes disagree on access scope.",
+      "approvedSellerCaveat": "Exposure only; researcher and Mercedes disagree on access scope.",
+      "proposedHeadline": null,
+      "headlineDecision": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:redhunt-mercedes-github-token-2024"
+      ],
+      "decision": "approved",
+      "decisionSummary": "caveat approved",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:glassworm-vscode-extensions-2025",
+      "sellerCaveat": "Figures are from Koi's first report, October 2025.",
+      "approvedSellerCaveat": "Figures are from Koi's first report, October 2025.",
+      "proposedHeadline": null,
+      "headlineDecision": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:koi-glassworm-2025"
+      ],
+      "decision": "approved",
+      "decisionSummary": "caveat approved",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:litellm-pypi-trivy-2026",
+      "sellerCaveat": "Malicious versions were live about 40 minutes on PyPI.",
+      "approvedSellerCaveat": "Malicious versions were live about 40 minutes on PyPI.",
+      "proposedHeadline": null,
+      "headlineDecision": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:litellm-security-update-2026"
+      ],
+      "decision": "approved",
+      "decisionSummary": "caveat approved",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:railway-env-vars-2026",
+      "sellerCaveat": "Misuse estimate is Railway's own, about $740,000.",
+      "approvedSellerCaveat": "Misuse estimate is Railway's own, about $740,000.",
+      "proposedHeadline": null,
+      "headlineDecision": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:railway-incident-report-2026"
+      ],
+      "decision": "approved",
+      "decisionSummary": "caveat approved",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:fireworks-ai-eval-secrets-2026",
+      "sellerCaveat": "Fireworks later disclosed a second, separate incident.",
+      "approvedSellerCaveat": "Fireworks later disclosed a second, separate incident.",
+      "proposedHeadline": null,
+      "headlineDecision": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:fireworks-security-bulletin-2026"
+      ],
+      "decision": "approved",
+      "decisionSummary": "caveat approved",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    },
+    {
+      "incidentId": "incident:chainalysis-agentic-intrusion-2026",
+      "sellerCaveat": "Chainalysis first said no tokens were affected, then corrected it.",
+      "approvedSellerCaveat": "Chainalysis first said no tokens were affected, then corrected it.",
+      "proposedHeadline": null,
+      "headlineDecision": null,
+      "reason": null,
+      "basedOnSourceIds": [
+        "source:chainalysis-security-incident-2026"
+      ],
+      "decision": "approved",
+      "decisionSummary": "caveat approved",
+      "reviewedBy": "Kristen Aing",
+      "reviewedOn": "2026-11-17"
+    }
+  ]
+}

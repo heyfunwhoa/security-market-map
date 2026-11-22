@@ -39,8 +39,8 @@ export function CategoryMap({ categories }: { categories: Category[] }) {
     <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
       {GROUPS.map((group) => (
         <section key={group.id} className="rounded-xl border border-border bg-card p-4" aria-label={group.label}>
-          <h3 className="text-lg">{group.label}</h3>
-          <p className="mt-1 text-sm text-muted-foreground">{group.note}</p>
+          <p className="text-xs font-semibold tracking-wide text-primary uppercase">{group.label}</p>
+          <h3 className="mt-1 text-lg leading-snug text-balance">{group.note}</h3>
           <ul className="mt-3 space-y-2">
             {categories
               .filter((category) => category.group === group.id)

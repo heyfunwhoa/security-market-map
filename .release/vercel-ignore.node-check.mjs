@@ -28,6 +28,11 @@ test('real git history covers cumulative changes, renames, missing history and n
     put('RELEASE.md', 'internal'); const second = commit();
     const env = (a,b) => ({VERCEL_GIT_PREVIOUS_SHA:a,VERCEL_GIT_COMMIT_SHA:b});
     assert.equal(decide(env(first,second),root).code,0);
+    // Vercel may omit current SHA metadata even though the checked-out Git HEAD is valid.
+    assert.equal(decide({VERCEL_GIT_PREVIOUS_SHA:first},root).code,0,'missing current metadata still skips operational diff');
+    assert.equal(decide({VERCEL_GIT_PREVIOUS_SHA:first,VERCEL_GIT_COMMIT_SHA:'f'.repeat(40)},root).code,1,'conflicting provided current SHA fails open');
+    assert.equal(decide({VERCEL_GIT_COMMIT_SHA:second},root).code,1,'missing previous successful deployment SHA fails open');
+
     assert.equal(decide({...env(first,second),RELEASE_FORCE_BUILD:'1'},root).code,1);
     put('app/page.tsx','app'); const third=commit();
     put('RELEASE.md','later internal'); const fourth=commit();

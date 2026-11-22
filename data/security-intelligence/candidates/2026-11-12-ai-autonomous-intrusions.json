@@ -1,0 +1,19 @@
+{
+  "batch": "2026-11-12-ai-autonomous-intrusions",
+  "status": "candidate_only",
+  "publishable": false,
+  "framework": "docs/security-intelligence/incident-classification-framework.md",
+  "discoveryContext": "Lead from an r/blueteamsec post (reddit.com/r/blueteamsec/s/kDSEpktbXS, not retrievable from the research session); the linked Unit 42 report is the source used. Third-party text was paraphrased, not copied. IOCs from the report are intentionally not stored here.",
+  "excludedFromIncidents": [
+    "Cairn open-source penetration testing framework itself (github.com/oritera/Cairn)"
+  ],
+  "excludedReason": "The tool is dual-use software, not an incident; only its reported misuse is a candidate.",
+  "candidates": [],
+  "promotedToSeed": {
+    "promotedOn": "2026-11-17",
+    "reviewRecord": "docs/security-intelligence/review-2026-11-17.md",
+    "incidentIds": [
+      "incident:cl-sta-1238-cairn-ai-intrusions-2026"
+    ]
+  }
+}

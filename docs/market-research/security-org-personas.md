@@ -1,6 +1,6 @@
 # Security organization personas — core five plus adjacent seats
 
-As of: 2026-10-27 (America/Chicago). Owner: Security Market Map editorial maintainer.
+As of: 2026-10-27 (America/Chicago). Operational-role clarification added 2026-11-08; other profiles and sources were not reverified. Owner: Security Market Map editorial maintainer.
 Status: source-linked research candidate; human review pending. Builds on domain seeds and typed buyer personas; does **not** invent ICP cutoffs, budget authority, or deal champions from titles alone.
 Next manual review: 2026-11-27, or sooner after a material domain/persona catalog change.
 
@@ -16,6 +16,7 @@ Next manual review: 2026-11-27, or sooner after a material domain/persona catalo
 Related local artifacts:
 
 - Typed catalog personas: `lib/data/personas.ts` and `ecosystemPersonas` in `lib/data/ecosystem.ts` (`aliases` field)
+- [Persona data model and reuse](../persona-data-model.md): canonical typed fields, generated views, revision references and correction workflow; implementation merged in PR #148
 - Domain charters: `domainSeeds` in `lib/data/ecosystem.ts`
 - Separation of role / persona / ICP: [research atlas vision](../product/research-atlas-vision.md)
 - Method: [Competitive Intelligence Playbook](competitive-intelligence-playbook.md)
@@ -23,9 +24,9 @@ Related local artifacts:
 
 ## Acronyms and same-seat aliases
 
-Canonical catalog `name` is the display label. `aliases` hold acronyms and alternate titles for the **same seat**. Landscape buyer filters show a short sample (`Name · Alias / Alias`).
+Canonical catalog `name` is the display label. `aliases` supply lookup terms and alternate titles for a modeled seat; a broad alias match does not prove identical responsibilities. In particular, DevOps, SRE and platform engineering can map to the current broad `platform` record while requiring different follow-up questions. Landscape buyer filters show a short sample (`Name · Alias / Alias`).
 
-| Catalog ID | Common short names | Also heard as (same seat) |
+| Catalog ID | Common short names | Also heard as (qualify responsibilities) |
 | --- | --- | --- |
 | `appsec` | AppSec, ASE | Application security, software security, ASPM owner, Director of AppSec |
 | `product-security` | ProdSec | Product security, PSIRT lead, SSDLC / secure SDLC program owner |
@@ -61,9 +62,9 @@ Canonical catalog `name` is the display label. `aliases` hold acronyms and alter
 | `cyber-recovery` | Cyber resilience | Backup/restore, ransomware recovery |
 | `supply-chain-security` | C-SCRM (software) | SBOM / dependency / artifact integrity |
 | `security-awareness` | SATE | People security, human risk, phishing sims |
-| `mssp-ops` | MSSP, MDR provider | Managed SOC / service delivery SecOps |
+| `mssp-ops` | MSSP, MDR provider | Managed SOC / service delivery SecOps; LC-AUD-01/02 |
 | `developer` | SWE | Software engineer, application developer |
-| `cto` | CTO | VP Engineering, Head of Engineering |
+| `cto` | CTO | VP Engineering, Head of Engineering; LC-PER-02 eng seat |
 
 ### Overloaded labels (do **not** treat as one exclusive persona)
 
@@ -82,6 +83,42 @@ These titles are common and ambiguous. Qualify which seat is meant before mappin
 | DFIR | Incident response **or** digital forensics (or both) | Containment now vs evidence for later? |
 | CASB vs SSPM | Access/data path control vs SaaS app posture | User-to-SaaS traffic/policy vs SaaS misconfig/grants? |
 | Analyst | SOC Tier 1, detection eng, CTI, or GRC | Which queue and which output artifact? |
+
+
+## Platform, reliability and recovery responsibilities
+
+Use the current IDs before proposing a new persona. This section explains how to interpret the broad `platform` record; it does not create an SRE ID, modify title-matcher behavior, or add runtime profile fields. The [typed model](../persona-data-model.md) remains the authority for application profiles and questions.
+
+CNCF's platform white paper emphasizes reusable interfaces, self-service and user experience, and explains that a platform team may consume services operated by other teams. Google's SRE introduction describes responsibility for service availability, monitoring, change management and incident response in Google's operating model. These scopes can overlap without making the functions interchangeable.[^OPS-PLATFORM][^OPS-SRE]
+
+The following is editorial guidance to test in discovery, not a universal org chart or confirmed buying committee:
+
+| Function to distinguish | Existing seat reference | Responsibility to investigate | Handoff or evidence to ask about |
+| --- | --- | --- | --- |
+| Platform engineering | `platform` | Reusable paths for teams to provision, deploy and observe services | Who maintains the interface, and who operates the backing service? |
+| Reliability / SRE | `platform`, with actual function recorded in the consumer's context | Reliability expectations, failure detection, operational load and incident response for a named service | Who responds to a failed job, and what proves the business operation completed? |
+| Platform security | `platform-security` | Security requirements for shared delivery/runtime infrastructure | Who operates the control, who approves an exception, and how is the access decision checked? |
+| IT operations | Stakeholder `it-operations` (merged in PR #148) | Host/service administration and routine operational recovery | Who owns startup, maintenance and the backup job? Preserve its stakeholder kind; do not map it to `it-security` solely because it administers access |
+| Cyber recovery | `cyber-recovery` | Recovery after a destructive or security event, including dependencies and restoration evidence | Who authorizes restoration, who executes it, and what demonstrates the agreed recovery outcome? |
+
+A routine backup task alone does not establish a cyber-recovery buying project. General integration/automation engineering remains broader technical learning unless a specific security use case establishes a relevant seat. Record the actual service owner separately from a title match.
+
+Split the broad `platform` seat only when distinct responsibilities, evaluation needs and consumer use cases justify it. Such a change needs typed profiles, category/use-case review, title-match tests and an explicit migration for existing references; this editorial clarification does not perform that migration.
+
+### Evidence for this clarification
+
+Owner: Security Market Map maintainer. Source inspection: Codex, direct primary-page section review, 2026-11-08 UTC. Next review: before publication or a material source/persona-model change, otherwise 2026-12-08. Publication dates are not established here. Human editorial review is pending.
+
+| Claim ID / kind | Precise support and inspected section | Status / confidence | Limit |
+| --- | --- | --- | --- |
+| SEC-OPS-C01 / fact about publisher guidance | CNCF, “What is a platform” and “Attributes of platform teams”: platforms offer consistent capability interfaces; underlying services may be operated elsewhere | Claim support verified 2026-11-08 / high | Primary project guidance, not a universal team structure or outcome measurement |
+| SEC-OPS-C02 / fact about publisher guidance | Google, “Tenets of SRE”: its service responsibilities include availability, monitoring, change management and emergency response | Claim support verified 2026-11-08 / high | Google's model, not evidence of another organization's responsibilities or buying authority |
+| SEC-OPS-H01 / derived recommendation | Role distinctions, handoff questions and split criteria in this section, informed by C01/C02 and existing persona records | Proposed hypothesis / moderate | No customer interviews, title-matcher tests or implementation validation performed for this guidance |
+
+Shared evidence fields: `source_type: primary` for C01/C02; `verified_by: Codex direct section inspection`; `adoption_status: reference` for publisher guidance and `proposed` for H01; `evidence_artifact: this section and its owning PR`. `license_rights: unknown_review_required`; `rights_url: null`. Rights handling checked 2026-11-08: links and brief original paraphrases only; no source text, screenshots or code reproduced. Source support does not establish redistribution permission, human acceptance or a tested runtime.
+
+[^OPS-PLATFORM]: CNCF TAG App Delivery, Platforms white paper: https://tag-app-delivery.cncf.io/whitepapers/platforms/
+[^OPS-SRE]: Google, Site Reliability Engineering, Introduction: https://sre.google/sre-book/introduction/
 
 ## Why these five first
 
@@ -385,6 +422,44 @@ NICE work roles are **not job titles**; a single job may cover multiple roles.[^
 
 - **Hypothesis** engineering economic/technical sponsor for platform and developer-security tooling.
 - **Discovery:** “Engineering-owned platform buy or security-owned control—and what adoption proof is required?”
+- **Also maps:** LimaCharlie LC-PER-02 engineering seat (build-versus-buy for security infrastructure).[^LC-AUD]
+
+## Wave 4 — LimaCharlie audience personas mapped into the catalog
+
+Source research: [LimaCharlie audience and buyer personas](limacharlie-audience-personas.md) (2026-10-13). Those profiles remain hypotheses; this table only maps them to typed catalog IDs so landscape filters and discovery reuse one set of seats. Vendor homepage prominence is **not** ICP proof.
+
+_Seats marked "not typed yet" (provider founder, SecOps platform architect, security product builder, IR firm lead, service delivery, procurement, legal counsel, email security, SIEM owner, AI operator governance) are candidates only. They need sourced profiles before they become typed personas in `lib/data`._
+
+| LimaCharlie ID | Catalog persona ID(s) | Notes |
+| --- | --- | --- |
+| LC-AUD-01 MSSP / LC-AUD-02 MDR | `mssp-ops`, _not typed yet_ | Ops vs economic buyer |
+| LC-AUD-03 Enterprise SOC | `soc-lead`, `ciso`, _not typed yet_ | Ops champion, platform architect, executive |
+| LC-AUD-04 Security product / AI SOC builder | `cto`, _not typed yet_ | Product founder vs eng sponsor |
+| LC-AUD-05 IR firm | `incident-response`, _not typed yet_ | Firm lead vs individual responder |
+| LC-PER-01 Provider founder/CEO | _not typed yet_ | Candidate seat; needs a sourced profile |
+| LC-PER-02 CTO / security platform architect | `cto`, _not typed yet_ | Split eng sponsor vs SecOps platform architect |
+| LC-PER-03 Head of SOC | `soc-lead` | Existing; alias `LC-PER-03` |
+| LC-PER-04 Detection / security automation | `detection-engineer` | Alias includes Security automation engineer |
+| LC-PER-05 SOC analyst / IR | `soc-analyst`, `incident-response` | Split triage vs response |
+| LC-PER-06 Enterprise CISO | `ciso` | Existing; alias `LC-PER-06` |
+| LC-PER-07 Security startup / product eng leader | _not typed yet_ | Candidate seat; needs a sourced profile |
+| LC committee: finance/procurement | _not typed yet_ | Buying-committee blocker seat |
+| LC committee: service delivery / CS | _not typed yet_ | Provider onboarding/support seat |
+| LC committee: legal/privacy/compliance | `privacy`, `grc-owner`, _not typed yet_ | Split legal paper from privacy/GRC veto |
+| LC committee: IT / infrastructure / identity | `it-security`, `platform`, `identity-security` | Deployment permission seats (aliases noted) |
+| LC use case: email security | _not typed yet_ | Split from broad `it-security` when SEG/API mail is the job |
+| LC use case: code security | `appsec` | Alias only; not a second AppSec catalog |
+| LC use case: cloud security | `cloud-sec` | Alias only |
+| LC use case: SecOps engineering / Claude Code | `detection-engineer`, _not typed yet_ | Build content vs govern agent operators |
+| LC use case: SecOps development (builders) | _not typed yet_ | Product/platform builders on API infrastructure |
+| LC use case: vulnerability reporting | `it-security` | Fleet/CVE exposure reporting; not AppSec PSIRT by default |
+| LC use case: EDR / XDR | `it-security`, `soc-lead` | Endpoint owner vs D&R program owner |
+| LC use case: SIEM / log analytics | _not typed yet_ | Telemetry platform vs architect rails |
+| LC use case: IR | `incident-response`, _not typed yet_ | Standing responder vs IR firm |
+| LC use case: SOAR / AI detection eng | `detection-engineer` | Content + automation authorship |
+| LC use case: AI-assisted investigation | `soc-analyst`, _not typed yet_ | Analyst consumer vs agent charter owner |
+| LC use case: threat hunting / CTI | `threat-hunter`, `threat-intel` | Hunt vs intel production |
+| LC customer: threat hunter / DFIR / OT | `threat-hunter`, `digital-forensics`, `ot-security` | Testimony titles noted as aliases; not ICP |
 
 ## Buying-committee collisions to qualify
 
@@ -407,6 +482,19 @@ NICE work roles are **not job titles**; a single job may cover multiple roles.[^
 | OT vs IT corporate | Plant safety vs laptop estate | Which change board can approve the control? |
 | Awareness vs email security | Training vs gateway | Behavior program or SEG/API mail control? |
 | MSSP ops vs enterprise SOC | Multi-tenant margin vs internal queue | Selling a service or operating one org’s SOC? |
+| Provider founder vs MSSP ops | Signature vs delivery reality | Who owns margin math vs who owns the queue? |
+| SecOps platform architect vs detection eng | Infrastructure vs content | Building the rails or writing detections on them? |
+| Security product builder vs enterprise SOC | Embed dependency vs operate defense | Shipping a product or defending one company? |
+| IR firm vs enterprise IR | Engagement tooling vs standing SOC | Retainer/breach response or full-time SOC seat? |
+| vCISO vs CISO | Advisory vs employed authority | Can they approve spend and name an operator? |
+| Legal vs privacy vs GRC | Contract stall vs DPIA vs questionnaire | Which veto is active on this deal? |
+| EmailSec vs ITSec vs awareness | Gateway vs estate owner vs training | SEG/API mail control or people program? |
+| IT / infra / identity committee | Deployment blocked after security says yes | Who must grant integrate/change permission? |
+| AI operator governance vs AI SOC builder | Run agents vs ship a product | Governing operators you run, or embedding agents you sell? |
+| AI operator vs detection eng | Charter/audit vs content authorship | Who sets agent limits vs who writes the detection? |
+| Vuln reporting vs AppSec / ProdSec | Fleet CVE inventory vs code/disclosure program | Endpoint package exposure or repository/PSIRT workflow? |
+| SIEM owner vs detection eng vs SOC lead | Platform cost vs content vs queue | Who pays for retention, who writes rules, who owns SLAs? |
+| EDR endpoint owner vs SOC XDR program | IT estate vs D&R stack | Laptop/server sensor buy or SOC detection program? |
 
 ## Fit worksheet (do not score leads from titles alone)
 
@@ -427,13 +515,14 @@ NICE work roles are **not job titles**; a single job may cover multiple roles.[^
 | SEC-ORG-C04 | NICE Framework defines work roles (IR, Threat Analysis, OT, Insider Threat, Forensics, C-SCRM, Secure Software Development, etc.) that are not job titles | [^NICE-ROLES][^NICE-IR][^NICE-TA] | Employer titles and budgets still require discovery |
 | SEC-ORG-C05 | SOC literature commonly separates Tier-1 triage, Tier-2 IR, Tier-3 hunt, and SOC manager | [^PAN-SOC] | Vendor encyclopedia; not a universal org chart |
 | SEC-ORG-C06 | SSPM and CASB are often complementary but different jobs (posture vs access/data path) | [^SSPM-CASB] | Vendor/practitioner framing; product editions vary |
-| SEC-ORG-H01 | Core-five, wave-two, and wave-three pains, triggers, measures in this note | Hypothesis | Validate in discovery |
+| SEC-ORG-C07 | LimaCharlie research defines LC-AUD-01–05 and LC-PER-01–07 as working hypotheses for SecOps/platform buyers | [^LC-AUD] | Not revenue mix, ICP thresholds, or proven champions |
+| SEC-ORG-H01 | Core-five through wave-four pains, triggers, measures in this note | Hypothesis | Validate in discovery |
 | SEC-ORG-U01 | Typical budget split, headcount ratios, and win rates across these seats | Unknown | Needs authorized deal/cohort evidence |
 
 ## Cross-repository disposition
 
-- **Security Market Map — update:** this research note; typed personas with `aliases` across core five, adjacent, and wave-three seats; landscape filter labels sample aliases. No fabricated capability cells.
-- **Builder Academy Roles DB — update:** enrich/add matching role rows (SecOps depth, SaaS, OT, exposure, recovery, supply chain, awareness, MSSP, developer, CTO) with also-known-as text.
+- **Security Market Map — update:** this research note; typed personas with `aliases` across core five, adjacent, wave-three, and LimaCharlie-mapped wave-four seats; landscape filter labels sample aliases. No fabricated capability cells.
+- **Builder Academy Roles DB — update:** enrich/add matching role rows (including provider founder, SecOps platform architect, security product builder, IR firm, procurement, legal counsel, email security, vCISO) with also-known-as text.
 - **Private career preparation — update only by explicit request:** may reference this version for interview questions; no private answers belong here.
 - **GTM Revenue OS / Account Signal Engine — no automatic change:** role hypotheses are not account intent or enrichment facts.
 

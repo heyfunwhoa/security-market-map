@@ -8,6 +8,15 @@ export function isSourceStale(source: Source, asOf: string): boolean {
   return due < asOf;
 }
 
+/**
+ * A claim needs a recheck when its source is past its review window as of the catalog
+ * snapshot date (not today), so pages render the same on every build of the same data.
+ */
+export function claimNeedsRecheck(claim: Pick<Claim, "sourceId">, sources: readonly Source[], asOf: string): boolean {
+  const source = sources.find((item) => item.id === claim.sourceId);
+  return source ? isSourceStale(source, asOf) : false;
+}
+
 export function staleSources(sources: Source[], asOf: string): Source[] {
   return sources.filter((source) => isSourceStale(source, asOf));
 }

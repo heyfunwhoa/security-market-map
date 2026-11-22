@@ -1,0 +1,69 @@
+{
+  "digital-risk-protection": {
+    "title": "Brand impersonation and takedowns",
+    "summary": "Someone sets up a fake sign-in page using your company’s name. The team needs to confirm the impersonation, get the right person to authorize a removal request, and check whether the page comes down.",
+    "owner": "Brand protection or the security operations team investigates. Legal or the trademark owner may need to authorize the request.",
+    "question": "Walk me through the last fake site. Who confirmed it was yours to report, and who checked that customers could no longer reach it?",
+    "measure": "Track time to confirm an impersonation, time to submit an authorized request, and time to independently confirm removal.",
+    "options": [
+      {
+        "claimId": "claim-public-group-ib-brand",
+        "ask": "What proof of trademark authority do we need before you can act?"
+      },
+      {
+        "claimId": "claim-public-recorded-future-response",
+        "ask": "Which kinds of brand abuse qualify for a takedown under our agreement?"
+      },
+      {
+        "claimId": "claim-public-socradar-brand-plans",
+        "ask": "How do we distinguish a submitted request from a confirmed removal?"
+      },
+      {
+        "claimId": "claim-public-netcraft-phishing",
+        "ask": "How do you distinguish a submitted takedown request from a site that is confirmed offline?"
+      }
+    ]
+  },
+  "itdr": {
+    "title": "Stolen employee credentials",
+    "summary": "An employee’s work email shows up in breach data or a report of stolen credentials. The first decision is whether the finding involves a current work account and what the identity team should do about it.",
+    "owner": "Threat intelligence or the SOC triages the finding. Identity operations checks account status and recent activity, then records the response.",
+    "question": "When a vendor reports an employee login, what evidence lets you distinguish a current work account from an old account at another service?",
+    "measure": "Track time to an account match and the percentage of confirmed matches with a documented response. Count evidence of actual account use separately.",
+    "options": [
+      {
+        "claimId": "claim-public-flare-breaches",
+        "ask": "Can we see which breached service and customer identifier produced the match?"
+      },
+      {
+        "claimId": "claim-public-searchlight-credentials",
+        "ask": "What source context accompanies the alert, and where does the identity team confirm whether the account was used?"
+      },
+      {
+        "claimId": "claim-public-spycloud-watchlist",
+        "ask": "Which verified identifier matched the record, and how do we connect it to a current identity or device?"
+      }
+    ]
+  },
+  "cspm": {
+    "title": "Public cloud storage exposure",
+    "summary": "A storage bucket or container appears to be public. Cloud security needs to determine who can read it, whether sharing was intentional, and which team owns the setting.",
+    "owner": "Cloud security reviews the access finding. The application or data owner confirms the intended audience and approves any permission change.",
+    "question": "Can you show the permission that allowed access, identify who approved the sharing, and show that the corrected policy took effect?",
+    "measure": "Track time to identify the owner and verify the intended access. Use separate evidence when investigating whether anyone actually downloaded data.",
+    "options": [
+      {
+        "claimId": "claim-public-aws-external-storage",
+        "ask": "Which policy grants access to anyone, and which grants access only to a named AWS account?"
+      },
+      {
+        "claimId": "claim-public-microsoft-public-storage",
+        "ask": "Can we distinguish an internet-reachable Azure storage account from a container that allows anonymous reads?"
+      },
+      {
+        "claimId": "claim-public-google-storage-findings",
+        "ask": "Which bucket was identified, and who can authorize a playbook to change its access?"
+      }
+    ]
+  }
+}

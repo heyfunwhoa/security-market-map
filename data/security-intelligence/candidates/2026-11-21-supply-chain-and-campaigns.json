@@ -1,0 +1,105 @@
+{
+  "batch": "2026-11-21-supply-chain-and-campaigns",
+  "status": "candidate_only",
+  "publishable": false,
+  "framework": "docs/security-intelligence/incident-classification-framework.md",
+  "discoveryContext": "Follow-up on November 21, 2026 from November incident trackers (AgentBeam, ExplainX) for supply-chain compromises and campaigns disclosed October-November 2026. Qubole (Wiz), wfx-loot (Aikido), strutil-core (Socket, OSV) and MIDNIGHT NEPTUNE (Google GTIG) were checked against the original research; the South Korean bank wave is secondary-only. Third-party text was paraphrased.",
+  "excludedFromIncidents": [
+    "Optimizely Web 'OptimJack' skimmer (Nov 16): reported by researchers, not confirmed by Optimizely; card skimming, no secrets angle",
+    "Arctic Wolf AntiFox, Kaspersky CyberStrikeAI, VECERT Ghost-Campus, Apiiro settings.local.json, SpyCloud infostealer tokens: research or campaigns without a named victim",
+    "Primcloud probe by Railway engineer's agents (Nov 3): one-sided account, no logs",
+    "Grok Build apps exposed (Nov 10): researcher-reported exposure counts, not an intrusion"
+  ],
+  "excludedReason": "Unconfirmed, research without a named victim, or not an intrusion.",
+  "candidates": [
+    {
+      "incidentId": "incident:south-korea-banks-artex-2026",
+      "title": "AI-assisted intrusion wave hits South Korean banks and financial firms, exposing customer data",
+      "incidentKind": "breach",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "BleepingComputer",
+          "canonicalUrl": "https://bleepingcomputer.com/news/security/south-korea-probes-bank-breaches-amid-suspected-ai-powered-attacks",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-22T02:10:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "BleepingComputer",
+          "canonicalUrl": "https://www.bleepingcomputer.com/news/security/hacker-used-artex-ai-and-claude-agents-to-target-south-korean-banks/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-22T02:10:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "IBTimes Singapore",
+          "canonicalUrl": "https://www.ibtimes.sg/A000Okk",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-22T02:10:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate shares this identity. Multi-victim wave; reviewer decides whether one campaign record or per-bank records.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:south-korea-banks-artex-2026:1",
+          "statement": "South Korean officials confirmed a data breach at Shinhan Bank and other incidents affecting banks including KB Kookmin in early October 2026; the president ordered an investigation.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://bleepingcomputer.com/news/security/south-korea-probes-bank-breaches-amid-suspected-ai-powered-attacks"
+        },
+        {
+          "id": "claim:south-korea-banks-artex-2026:2",
+          "statement": "BleepingComputer reports a Chinese-speaking actor used the ARTEX framework and Claude agents against banks including Shinhan, KB Kookmin and Hana, exposing customer personal and card data; researchers found open directories with Claude Code session histories and ARTEX configuration files.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.bleepingcomputer.com/news/security/hacker-used-artex-ai-and-claude-agents-to-target-south-korean-banks/"
+        },
+        {
+          "id": "claim:south-korea-banks-artex-2026:3",
+          "statement": "Later reporting says the wave reached 16 South Korean financial firms and about 100,000 personal records; CrowdStrike linked a China-based attacker using a Chinese-developed AI agent and Claude Code.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.ibtimes.sg/A000Okk"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Primary source needed: no bank, regulator or CrowdStrike primary statement was fetched.",
+        "Victim and record counts vary widely across reports (7 vs 16 firms; 68,000 to 146,000 records); do not state one figure without its source.",
+        "No credential or secrets angle reported so far; entry method per bank is unknown."
+      ]
+    }
+  ],
+  "promotedToSeed": {
+    "promotedOn": "2026-11-21",
+    "reviewRecord": "docs/security-intelligence/review-2026-11-21.md",
+    "incidentIds": [
+      "incident:qubole-cross-account-roles-2026",
+      "incident:wfx-loot-github-ci-stealer-2026",
+      "incident:strutil-core-rubygems-worm-2026",
+      "incident:midnight-neptune-claude-code-settings-2026"
+    ]
+  }
+}

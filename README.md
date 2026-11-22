@@ -61,6 +61,8 @@ The Cyera–Oasis case study separates the companies' strategic rationale and th
 
 **EDR / SecOps / MSSP expansion (6 Nov 2026):** [Buyer-led competitor and economics research](docs/market-research/secops-mssp-economics-2026-11-06.md) and [SACR category crosswalk](docs/market-research/sacr-category-crosswalk-2026-11-06.md). Includes current source checks, detection-content distinctions and a review queue; candidate research, not deployed capability claims.
 
+**API-native and agentic email security (November 2026):** [Source-linked comparison and twelve buyer functions](docs/market-research/agentic-email-security-2026-11-05.md) with [vendor research dossiers](research/vendors/) for AegisAI, Sublime Security, Ocean, StrongestLayer and Material Security; existing Abnormal remains the reference. The **existing** email-security category now has one source-neutral buyer use case (`uc-email-fraud-response`) and eight distinct control questions available through the current category/use-case/compare routes. All product capability comparison cells remain **Unknown** until independently reviewed, source-bound `Claim` records are approved. No new category, parallel registry, competitor ranking, live scraper or cross-repo sync was introduced. A provider API/no MX change is not proof of pre-delivery enforcement.
+
 **Agentic SecOps / MSSP industry research:** [October 2026 competitive landscape](docs/market-research/agentic-secops-competitive-landscape.md) groups vendors by buyer job, original source and unverified comparison hypotheses. This is editorial research, not yet published as typed catalog claims.
 
 **Reusable method:** [Competitive Intelligence Playbook](docs/market-research/competitive-intelligence-playbook.md) covers buyer-led comparison, source quality, case studies, interview preparation, win/loss privacy and downstream GTM reuse.
@@ -92,6 +94,12 @@ npm run typecheck
 npm run lint
 npm run build
 ```
+
+`npm install` also installs two local git hooks from `scripts/` (re-run with `node scripts/install-hooks.mjs`).
+Pre-commit scans the staged changes for secrets with TruffleHog (`scripts/secret-scan.sh`); pre-push runs the
+research integrity tests, unit tests, typecheck, lint and the release policy tests (about 45s; no build).
+Install TruffleHog with `brew install trufflehog` (or see the [install options](https://github.com/trufflesecurity/trufflehog#floppy_disk-installation)); without it the scan only warns.
+`git commit --no-verify` / `git push --no-verify` skip the hooks; CI still checks ready PRs.
 
 Copy `.env.example` to `.env.local` if you want the optional flags. Leave `FIRECRAWL_API_KEY` and `EXA_API_KEY` empty. The app runs on the local seed and does not call those adapters at startup.
 

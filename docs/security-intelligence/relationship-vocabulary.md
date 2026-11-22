@@ -35,3 +35,12 @@ Relationships are **directed, typed, temporal, and supported by a claim**. Not e
 - **Organization resolution:** distinguish legal entity, product, domain, parent/subsidiary and reported victim. Protect nonpublic victim information.
 
 No edge should be added for the two seed incidents until its documentary support and review notes exist.
+
+## Incident industry tags (account prep)
+
+`data/security-intelligence/incident-industries.json` records the industry of the **organization a source names** (for example, the company that filed the notice). It is a reviewed annotation, like incident→category links, so `PublicIncident` and the database schema are unchanged.
+
+- Values come from the fixed list `INDUSTRY_LABELS` in `lib/incident-feed.ts`. Add a value there before using it.
+- Only `reviewed` tags with a named reviewer, a date and one of the incident's own sources are published.
+- Ecosystem-wide campaigns (npm, GitHub Actions, mass scanning) and incidents whose source names no single organization get **no tag**. Do not tag the victims of a wider campaign, and do not infer industry from ecosystems.
+- An industry tag says who reported or was named. It does not say the industry is especially targeted.
