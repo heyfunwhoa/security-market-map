@@ -2276,10 +2276,10 @@ export const claims: Claim[] = [
   "effectiveFrom": null,
   "effectiveTo": null,
   "confidence": "medium",
-  "verificationStatus": "vendor_published",
-  "lastCheckedAt": "2026-10-13",
+  "verificationStatus": "needs_review",
+  "lastCheckedAt": "2026-11-22",
   "conflictsWith": [],
-  "notes": "Public source inspected. No ranking, endorsement, feature parity or tested effectiveness is inferred. Full analyst reports are not reproduced; see the analyst discovery brief for access and rights limits."
+  "notes": "Public source inspected. No ranking, endorsement, feature parity or tested effectiveness is inferred. Full analyst reports are not reproduced; see the analyst discovery brief for access and rights limits. Rechecked 22 Nov 2026: the page supports data-access visibility and excessive-permission analysis; remediation recommendations appear only in a customer testimonial, not as a product statement."
 },
   {
   "id": "claim-lightbeam-dspm-20261013",

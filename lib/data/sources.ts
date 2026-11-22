@@ -1284,7 +1284,7 @@ export const sources: Source[] = [
   "publisher": "TrustLogix",
   "sourceType": "vendor_marketing",
   "publishedAt": null,
-  "retrievedAt": "2026-10-13",
+  "retrievedAt": "2026-11-22",
   "volatility": "fast",
   "excerpt": "TrustLogix markets TrustDSPM for data-access visibility, excessive-permission analysis and remediation recommendations."
 },
