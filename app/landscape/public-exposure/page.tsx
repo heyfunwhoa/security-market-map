@@ -1,6 +1,7 @@
 import { RelatedAccessScenarios } from "@/components/related-access-scenarios";
 import Link from "next/link";
 import { BuyerProductOptions } from "@/components/buyer-product-options";
+import { GitGuardianMonitoringComparison } from "@/components/gitguardian-monitoring-comparison";
 import { PageIntro } from "@/components/chrome";
 import { categoryBySlug } from "@/lib/catalog";
 import groups from "@/research/public-exposure-options.json";
@@ -18,7 +19,10 @@ export default function PublicExposurePage() {
         title="Public monitoring and external exposure"
         lede="Start with what surfaced. An unknown host, a leaked key and a stolen employee login each call for different evidence and a different person to act."
       />
-      <p className="text-sm"><a className={linkStyle} href="#related-access-scenarios">Explore eight related identity and credential scenarios</a></p>
+      <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+        <a className={linkStyle} href="#related-access-scenarios">Explore eight related identity and credential scenarios</a>
+        <a className={linkStyle} href="#monitoring-scope">Compare GitGuardian Internal and Public Monitoring</a>
+      </div>
       <nav aria-label="Find a buyer scenario" className="grid gap-5 rounded-xl border border-border bg-card p-5 md:grid-cols-3">
         {groups.map((group) => (
           <div key={group.id}>
@@ -43,6 +47,7 @@ export default function PublicExposurePage() {
                 <div><dt className="font-semibold">Who acts?</dt><dd>{item.owner}</dd></div>
               </dl>
               <BuyerProductOptions options={item.options} />
+              {item.id === "public-secrets" && <GitGuardianMonitoringComparison />}
               {item.id === "public-secrets" && (
                 <p><Link className={linkStyle} href="/categories/secrets-management#secrets-management-guide">Compare ways to manage or replace an exposed credential</Link></p>
               )}

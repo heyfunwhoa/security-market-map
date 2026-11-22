@@ -45,8 +45,8 @@ test("checks the current merged vendor, product, source and claim records", asyn
   const collections = {
     vendors: [...market.vendors, ...ecosystem.ecosystemVendors, ...sweep.secretsSweepVendors, ...expanded.expandedVendors, ...monitoring.publicMonitoringVendors, ...management.secretsManagementVendors, ...workforce.workforceGuideVendors],
     products: [...market.products, ...ecosystem.ecosystemProducts, ...sweep.secretsSweepProducts, ...expanded.expandedProducts, ...endpoint.developerEndpointProducts, ...monitoring.publicMonitoringProducts, ...management.secretsManagementProducts, ...workforce.workforceGuideProducts],
-    sources: [...sources, ...sweep.secretsSweepSources, ...expanded.expandedSources, ...endpoint.developerEndpointSources, ...monitoring.publicMonitoringSources, ...managementEvidence.sources, ...workforceEvidence.sources, ...workforce.issuerReferenceSources, ...workforce.accessScenarioSources],
-    claims: [...claims, ...sweep.secretsSweepClaims, ...expanded.expandedClaims, ...endpoint.developerEndpointClaims, ...monitoring.publicMonitoringClaims, ...managementEvidence.claims, ...workforceEvidence.claims],
+    sources: [...sources, ...sweep.secretsSweepSources, ...expanded.expandedSources, ...endpoint.developerEndpointSources, ...monitoring.publicMonitoringSources, ...monitoring.gitGuardianModeEvidence.sources, ...managementEvidence.sources, ...workforceEvidence.sources, ...workforce.issuerReferenceSources, ...workforce.accessScenarioSources],
+    claims: [...claims, ...sweep.secretsSweepClaims, ...expanded.expandedClaims, ...endpoint.developerEndpointClaims, ...monitoring.publicMonitoringClaims, ...monitoring.gitGuardianModeEvidence.claims, ...managementEvidence.claims, ...workforceEvidence.claims],
   };
   assert.deepEqual(identityProblems(collections), []);
   assert.equal(collections.products.filter((product) => product.id === "kingfisher").length, 1);
