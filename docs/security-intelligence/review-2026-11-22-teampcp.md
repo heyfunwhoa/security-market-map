@@ -27,3 +27,15 @@
 - **Not recorded as fact:** attacker attribution (TeamPCP), the attacker's claim to hold Mistral repositories, and researchers' package counts. Each appears in the incident's uncertainty notes. No ATT&CK technique is asserted.
 - **Not added in this pass:** sales notes, role notes, industry tags, secret-exposure tags and category links. Those are separate reviews.
 - **Consumer disposition:** the 5 incidents appear on the site and in `exports/incident-feed.v1.json` (regenerated). Each STIX `created` date is pinned to 2026-11-22.
+
+## Notes and tags for the 5 incidents (PR #232)
+
+Kristen Aing reviewed and approved all of the agent's drafts for the 5 incidents above as written ("Good to go"), on 2026-11-22. They are now `reviewed`, with `reviewedBy: "Kristen Aing"` and `reviewedOn: "2026-11-22"`.
+
+- **Sales notes:** 5, each with a headline, a discovery question, an "avoid" line, a seller caveat and 2 role notes.
+- **Industry tags:** 4, all `technology`. keyv has none, because its source is a government advisory about a campaign and names no single organization.
+- **Secret-exposure tags:** 5. A type is recorded only for TanStack (`ci_cd_secret`, the OIDC token read from the runner). Locations:
+  - CI/CD for TanStack and Grafana
+  - developer machine for Mistral and GitHub
+  - both for keyv
+- **Category links:** 6, all `related_to` with a `doesNotImply` line. Software supply chain for all 5, plus `nhi` for Grafana's leaked bot identity.

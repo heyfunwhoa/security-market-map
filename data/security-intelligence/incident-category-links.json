@@ -729,9 +729,11 @@
     "basedOnSourceIds": [
       "source:tanstack-npm-postmortem-2026"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
-    "proposedOn": "2026-11-22"
+    "proposedOn": "2026-11-22",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-22"
   },
   {
     "id": "link:grafana-github-tanstack-2026:software-supply-chain",
@@ -744,9 +746,11 @@
       "source:grafana-tanstack-incident-update-2026",
       "source:grafana-tanstack-post-incident-review-2026"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
-    "proposedOn": "2026-11-22"
+    "proposedOn": "2026-11-22",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-22"
   },
   {
     "id": "link:grafana-github-tanstack-2026:nhi",
@@ -759,9 +763,11 @@
       "source:grafana-tanstack-incident-update-2026",
       "source:grafana-tanstack-post-incident-review-2026"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
-    "proposedOn": "2026-11-22"
+    "proposedOn": "2026-11-22",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-22"
   },
   {
     "id": "link:mistral-sdk-tanstack-2026:software-supply-chain",
@@ -773,9 +779,11 @@
     "basedOnSourceIds": [
       "source:mistral-advisory-mai-2026-002"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
-    "proposedOn": "2026-11-22"
+    "proposedOn": "2026-11-22",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-22"
   },
   {
     "id": "link:github-internal-repos-nx-console-2026:software-supply-chain",
@@ -788,9 +796,11 @@
       "source:github-internal-repositories-investigation-2026",
       "source:nx-console-advisory-ghsa-c9j4-9m59-847w"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
-    "proposedOn": "2026-11-22"
+    "proposedOn": "2026-11-22",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-22"
   },
   {
     "id": "link:keyv-shai-hulud-npm-2026:software-supply-chain",
@@ -802,8 +812,10 @@
     "basedOnSourceIds": [
       "source:csa-sg-ad-2026-009"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
-    "proposedOn": "2026-11-22"
+    "proposedOn": "2026-11-22",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-22"
   }
 ]

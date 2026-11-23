@@ -385,9 +385,11 @@
     "basedOnSourceIds": [
       "source:tanstack-npm-postmortem-2026"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
-    "proposedOn": "2026-11-22"
+    "proposedOn": "2026-11-22",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-22"
   },
   {
     "id": "industry:grafana-github-tanstack-2026:technology",
@@ -398,9 +400,11 @@
       "source:grafana-tanstack-incident-update-2026",
       "source:grafana-tanstack-post-incident-review-2026"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
-    "proposedOn": "2026-11-22"
+    "proposedOn": "2026-11-22",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-22"
   },
   {
     "id": "industry:mistral-sdk-tanstack-2026:technology",
@@ -410,9 +414,11 @@
     "basedOnSourceIds": [
       "source:mistral-advisory-mai-2026-002"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
-    "proposedOn": "2026-11-22"
+    "proposedOn": "2026-11-22",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-22"
   },
   {
     "id": "industry:github-internal-repos-nx-console-2026:technology",
@@ -423,8 +429,10 @@
       "source:github-internal-repositories-investigation-2026",
       "source:nx-console-advisory-ghsa-c9j4-9m59-847w"
     ],
-    "status": "proposed",
+    "status": "reviewed",
     "proposedBy": "agent-draft",
-    "proposedOn": "2026-11-22"
+    "proposedOn": "2026-11-22",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-22"
   }
 ]

@@ -1068,7 +1068,7 @@
   },
   {
     "incidentId": "incident:tanstack-mini-shai-hulud-2026",
-    "status": "draft",
+    "status": "reviewed",
     "headline": "An attacker used TanStack's own GitHub Actions setup to publish 84 malicious versions of 42 npm packages in six minutes, with a payload that stole cloud, Kubernetes, Vault, npm and GitHub credentials.",
     "discoveryQuestion": "Could code from a fork reach the cache or tokens your release workflow uses?",
     "avoid": "Don't name an actor; TanStack doesn't attribute the attack.",
@@ -1087,11 +1087,13 @@
       "source:tanstack-npm-postmortem-2026"
     ],
     "draftedOn": "2026-11-22",
-    "draftedBy": "agent-draft"
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-22"
   },
   {
     "incidentId": "incident:grafana-github-tanstack-2026",
-    "status": "draft",
+    "status": "reviewed",
     "headline": "After the TanStack worm leaked credentials from Grafana's CI runners, Grafana rotated them but missed one, and the attacker used it three days later to copy its GitHub repositories and demand a ransom.",
     "discoveryQuestion": "After a leak, how would you prove every credential a compromised runner could reach was rotated?",
     "avoid": "Don't say customer data or Grafana Cloud was affected; Grafana says they weren't.",
@@ -1111,11 +1113,13 @@
       "source:grafana-tanstack-post-incident-review-2026"
     ],
     "draftedOn": "2026-11-22",
-    "draftedBy": "agent-draft"
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-22"
   },
   {
     "incidentId": "incident:mistral-sdk-tanstack-2026",
-    "status": "draft",
+    "status": "reviewed",
     "headline": "The TanStack worm pushed trojaned Mistral SDK releases to npm and PyPI for about three hours; only the PyPI release could run its credential stealer.",
     "discoveryQuestion": "If a dependency release was malicious for three hours, could you tell which builds and laptops installed it?",
     "avoid": "Don't repeat the attacker's claim about stolen Mistral repositories; Mistral doesn't confirm it.",
@@ -1134,11 +1138,13 @@
       "source:mistral-advisory-mai-2026-002"
     ],
     "draftedOn": "2026-11-22",
-    "draftedBy": "agent-draft"
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-22"
   },
   {
     "incidentId": "incident:github-internal-repos-nx-console-2026",
-    "status": "draft",
+    "status": "reviewed",
     "headline": "A poisoned version of the Nx Console VS Code extension on one GitHub employee's laptop led to about 3,800 of GitHub's internal repositories being copied.",
     "discoveryQuestion": "Which IDE extensions run on the machines that hold your most powerful tokens, and who would notice a bad update?",
     "avoid": "Don't say customer repositories were taken; GitHub says only its internal repositories were.",
@@ -1158,11 +1164,13 @@
       "source:nx-console-advisory-ghsa-c9j4-9m59-847w"
     ],
     "draftedOn": "2026-11-22",
-    "draftedBy": "agent-draft"
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-22"
   },
   {
     "incidentId": "incident:keyv-shai-hulud-npm-2026",
-    "status": "draft",
+    "status": "reviewed",
     "headline": "Singapore's cyber agency warned that a self-spreading Shai-Hulud worm had reached keyv and related npm packages, stealing developer credentials and using them to infect more packages.",
     "discoveryQuestion": "If a popular npm dependency started stealing credentials, which developer and CI secrets would you have to rotate?",
     "avoid": "Don't quote package counts or a variant name as fact; those come from researchers, not the advisory.",
@@ -1181,6 +1189,8 @@
       "source:csa-sg-ad-2026-009"
     ],
     "draftedOn": "2026-11-22",
-    "draftedBy": "agent-draft"
+    "draftedBy": "agent-draft",
+    "reviewedBy": "Kristen Aing",
+    "reviewedOn": "2026-11-22"
   }
 ]
