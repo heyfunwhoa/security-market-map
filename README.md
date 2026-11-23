@@ -19,6 +19,12 @@ The aspiration is to empower better security decisions with less research fricti
 
 Security categories are difficult to navigate. A product may be described as identity security, secrets management, cloud security, or application security depending on its capabilities and buyer. This project makes those relationships easier to explore without treating every vendor as a direct competitor.
 
+## Industry learning foundation
+
+Start with the [vendor-agnostic industry and category guide](docs/market-research/industry-category-foundation.md): industry participants, domain atlas, category boundaries, SecOps workflows and a reusable category research template. Learn each market first, then explore individual vendor profiles. Company-specific context is optional; formal comparisons require a specific buyer question.
+
+The [6 Nov category audit](docs/market-research/category-audit-2026-11-06.md) inventories all 77 categories (refreshed 22 Nov) and separates structural coverage from reviewed evidence. The [adjacent guide](docs/market-research/adjacent-category-guide.md) and [explanation system](docs/product/category-explanation-system.md) extend the neutral foundation beyond SecOps with authoritative reading anchors and worked workflows. These are research documents; the proposed presentation changes are not deployed.
+
 ## What the map covers
 
 - **Identity:** access management, IGA, PAM, CIEM, and nonhuman identities
@@ -52,6 +58,8 @@ AI security is its own domain: application testing, agent identity, runtime enfo
 The Cyera–Oasis case study separates the companies' strategic rationale and the 3 Sep 2026 completion statement from any claim that a joint enforcement workflow has been reviewed.
 
 ## Research standards
+
+**EDR / SecOps / MSSP expansion (6 Nov 2026):** [Buyer-led competitor and economics research](docs/market-research/secops-mssp-economics-2026-11-06.md) and [SACR category crosswalk](docs/market-research/sacr-category-crosswalk-2026-11-06.md). Includes current source checks, detection-content distinctions and a review queue; candidate research, not deployed capability claims.
 
 **API-native and agentic email security (November 2026):** [Source-linked comparison and twelve buyer functions](docs/market-research/agentic-email-security-2026-11-05.md) with [vendor research dossiers](research/vendors/) for AegisAI, Sublime Security, Ocean, StrongestLayer and Material Security; existing Abnormal remains the reference. The **existing** email-security category now has one source-neutral buyer use case (`uc-email-fraud-response`) and eight distinct control questions available through the current category/use-case/compare routes. All product capability comparison cells remain **Unknown** until independently reviewed, source-bound `Claim` records are approved. No new category, parallel registry, competitor ranking, live scraper or cross-repo sync was introduced. A provider API/no MX change is not proof of pre-delivery enforcement.
 
