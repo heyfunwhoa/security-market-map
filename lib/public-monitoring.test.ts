@@ -1,3 +1,6 @@
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import PublicExposurePage from "../app/landscape/public-exposure/page";
 import { expect, it } from "vitest";
 import guide from "../research/public-secret-monitoring.json";
 import exposureGroups from "../research/public-exposure-options.json";
@@ -80,5 +83,38 @@ it("links each secrets management decision to publisher evidence for distinct pr
   }
   for (const claim of catalog.claims.filter((record) => record.id.startsWith("claim-management-"))) {
     expect(guideClaims.has(claim.id), claim.id).toBe(true);
+  }
+});
+
+it("keeps the GitGuardian mode comparison reachable with an evidence link for every answer", () => {
+  const html = renderToStaticMarkup(createElement(PublicExposurePage));
+  expect(html).toContain('href="#monitoring-scope"');
+  const section = html.match(/<section aria-labelledby="monitoring-scope"[\s\S]*?<\/section>/)?.[0] ?? "";
+  expect(section).toContain('id="monitoring-scope"');
+  expect(section).toMatch(/aria-live="polite"[\s\S]*Who should we check with internally\?[\s\S]*Where does it look\?/);
+  expect(section.match(/type="radio"/g)).toHaveLength(3);
+  expect(section).toMatch(/checked=""[^>]*\/>Contractor’s unconnected public repo/);
+  expect(section).toContain("How to read the evidence key");
+  expect(section).toContain("Unknown in this example.");
+  expect(section).toContain("If a match is found.");
+  expect(section).toContain("If the link stays unknown.");
+  for (const id of ["claim-monitoring-mode-gitguardian-visibility", "claim-public-gitguardian-sources", "claim-public-forager-sources"]) {
+    const claim = catalog.claims.find((record) => record.id === id)!;
+    expect(section).toContain(`href="${claim.sourceUrl}"`);
+  }
+  expect(section).toContain("internal project sponsor or engineering lead");
+  expect(section).toContain("who will keep the case");
+  expect(section).toContain("which workloads use it");
+  expect(section).toContain("Questions for a buyer evaluation");
+  const edition = catalog.claims.find((claim) => claim.id === "claim-monitoring-mode-forager-editions");
+  expect(edition?.subjectId).toBe("truffle-security-forager");
+  expect(section).toContain(`href="${edition!.sourceUrl}"`);
+  for (const question of ["Where does it look?", "What does my team set up?", "Why would we receive the alert?"]) {
+    for (const mode of ["Internal Monitoring", "Public Monitoring"]) {
+      const label = `Source<span class="sr-only"> for ${mode}: ${question}</span>`;
+      const link = section.slice(0, section.indexOf(label)).split("<a ").at(-1);
+      expect(section).toContain(label);
+      expect(link).toMatch(/^href="https:\/\/docs\.gitguardian\.com\//);
+    }
   }
 });

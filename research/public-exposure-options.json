@@ -161,7 +161,7 @@
         "scenario": "An employee accidentally publishes a company API key from a personal account. Who can identify the key and revoke it?",
         "visibility": "A public commit, Gist or package can be visible outside the company. Supported sources, history and access to company-specific alerts vary by product.",
         "attribution": "Separate the identity of the person who posted it from ownership of the key. Check the vendor’s attribution evidence and verification for that credential type.",
-        "owner": "AppSec identifies the credential owner, who revokes or rotates the key and checks usage.",
+        "owner": "Ask who owns triage while the issuer is unknown. The account administrator can help confirm ownership, and the service team can identify what depends on the key.",
         "options": [
           {
             "label": "GitGuardian Public Monitoring",

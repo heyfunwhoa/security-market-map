@@ -1,5 +1,6 @@
 import categoryLinksSeed from "@/data/security-intelligence/incident-category-links.json";
 import industriesSeed from "@/data/security-intelligence/incident-industries.json";
+import exposuresSeed from "@/data/security-intelligence/incident-secret-exposures.json";
 import incidentsSeed from "@/data/security-intelligence/incidents.seed.json";
 import salesNotesSeed from "@/data/security-intelligence/sales-notes.json";
 import sourcesSeed from "@/data/security-intelligence/sources.seed.json";
@@ -100,6 +101,81 @@ export function isPublishableIndustry(tag: IndustryTag, incident: PublicIncident
   );
 }
 
+/**
+ * What kind of secret an incident involved and where the first exposed secret sat, as the
+ * sources state it. Kept in its own reviewed file, like industries. A field the sources don't
+ * state is left empty, never guessed; "many_types" means a source reports a whole set of
+ * secrets without breaking it down. Location records only where the leak started, not every
+ * store the attacker reached afterwards. See docs/security-intelligence/review-2026-11-22.md.
+ */
+export type SecretExposure = {
+  id: string;
+  incidentId: string;
+  secretTypes: string[];
+  exposureLocations: string[];
+  rationale: string;
+  /** Plain note on a weaker point, e.g. a detail known only from a secondary summary. */
+  note?: string;
+  basedOnSourceIds: string[];
+  status: "proposed" | "reviewed" | "rejected";
+  proposedBy: string;
+  proposedOn: string;
+  reviewedBy: string | null;
+  reviewedOn: string | null;
+};
+
+export const SECRET_TYPE_LABELS: Record<string, string> = {
+  cloud_access_key: "Cloud access key",
+  git_platform_token: "Git platform token",
+  ci_cd_secret: "CI/CD secret",
+  ai_provider_key: "AI provider key",
+  api_key: "API key (non-AI)",
+  oauth_integration_token: "OAuth or integration token",
+  session_sso_token: "Session or SSO token",
+  service_account_credential: "Service account or machine credential",
+  password: "Password",
+  package_registry_token: "Package registry token",
+  ssh_key: "SSH key",
+  database_credential: "Database credential",
+  signing_encryption_key: "Signing or encryption key",
+  many_types: "Many types",
+};
+
+export const EXPOSURE_LOCATION_LABELS: Record<string, string> = {
+  public_repo: "Public code repo",
+  private_repo: "Private code repo",
+  ci_cd: "CI/CD pipeline or logs",
+  build_artifact: "Build artifact or image",
+  developer_machine: "Developer machine",
+  exposed_app_config: "Exposed app config",
+  vendor_platform: "Vendor or platform",
+  support_chat_work_files: "Support, chat or work files",
+  personal_account_browser: "Personal account or browser profile",
+};
+
+export function secretTypeLabel(id: string): string {
+  return SECRET_TYPE_LABELS[id] ?? id.replaceAll("_", " ");
+}
+
+export function exposureLocationLabel(id: string): string {
+  return EXPOSURE_LOCATION_LABELS[id] ?? id.replaceAll("_", " ");
+}
+
+export function isPublishableExposure(entry: SecretExposure, incident: PublicIncident): boolean {
+  return (
+    entry.status === "reviewed" &&
+    !!entry.reviewedBy?.trim() &&
+    !!entry.reviewedOn &&
+    entry.incidentId === incident.id &&
+    entry.secretTypes.length + entry.exposureLocations.length > 0 &&
+    entry.secretTypes.every((id) => id in SECRET_TYPE_LABELS) &&
+    entry.exposureLocations.every((id) => id in EXPOSURE_LOCATION_LABELS) &&
+    entry.rationale.trim().length > 0 &&
+    entry.basedOnSourceIds.length > 0 &&
+    entry.basedOnSourceIds.every((id) => incident.sourceIds.includes(id))
+  );
+}
+
 export type FeedIncident = {
   slug: string;
   incident: PublicIncident;
@@ -109,11 +185,31 @@ export type FeedIncident = {
   categoryLinks: CategoryLink[];
   /** Reviewed industry ids only. */
   industries: string[];
+  /** Reviewed secret types; empty when the sources don't say. */
+  secretTypes: string[];
+  /** Reviewed location of the first exposed secret; empty when the sources don't say. */
+  exposureLocations: string[];
+  /** Note on the reviewed exposure entry, if any. */
+  exposureNote: string | null;
 };
 
-export type IncidentFilters = { kind: string; ecosystem: string; category: string; industry: string };
+export type IncidentFilters = {
+  kind: string;
+  ecosystem: string;
+  category: string;
+  industry: string;
+  secret: string;
+  location: string;
+};
 
-export const NO_INCIDENT_FILTERS: IncidentFilters = { kind: "all", ecosystem: "all", category: "all", industry: "all" };
+export const NO_INCIDENT_FILTERS: IncidentFilters = {
+  kind: "all",
+  ecosystem: "all",
+  category: "all",
+  industry: "all",
+  secret: "all",
+  location: "all",
+};
 
 /** A link is publishable only when a named reviewer approved it and it cites the incident's own sources. */
 export function isPublishableLink(link: CategoryLink, incident: PublicIncident): boolean {
@@ -182,6 +278,7 @@ export function buildIncidentFeed(
   notes: readonly SalesNote[],
   links: readonly CategoryLink[] = [],
   industries: readonly IndustryTag[] = [],
+  exposures: readonly SecretExposure[] = [],
 ): FeedIncident[] {
   const sourceById = new Map(sources.map((source) => [source.id, source]));
   const feed: FeedIncident[] = [];
@@ -206,9 +303,18 @@ export function buildIncidentFeed(
       industries: [
         ...new Set(industries.filter((tag) => isPublishableIndustry(tag, sourced.incident)).map((tag) => tag.industry)),
       ],
+      ...exposureFields(exposures.filter((entry) => isPublishableExposure(entry, sourced.incident))),
     });
   }
   return feed.sort((a, b) => b.incident.disclosedOn.localeCompare(a.incident.disclosedOn));
+}
+
+function exposureFields(entries: readonly SecretExposure[]) {
+  return {
+    secretTypes: [...new Set(entries.flatMap((entry) => entry.secretTypes))],
+    exposureLocations: [...new Set(entries.flatMap((entry) => entry.exposureLocations))],
+    exposureNote: entries.map((entry) => entry.note).find((note) => !!note?.trim()) ?? null,
+  };
 }
 
 export function filterIncidents(feed: readonly FeedIncident[], filters: IncidentFilters): FeedIncident[] {
@@ -217,7 +323,9 @@ export function filterIncidents(feed: readonly FeedIncident[], filters: Incident
       (filters.kind === "all" || item.incident.kind === filters.kind) &&
       (filters.ecosystem === "all" || item.incident.affectedEcosystems.includes(filters.ecosystem)) &&
       (filters.category === "all" || item.categoryLinks.some((link) => link.categoryId === filters.category)) &&
-      (filters.industry === "all" || item.industries.includes(filters.industry)),
+      (filters.industry === "all" || item.industries.includes(filters.industry)) &&
+      (filters.secret === "all" || item.secretTypes.includes(filters.secret)) &&
+      (filters.location === "all" || item.exposureLocations.includes(filters.location)),
   );
 }
 
@@ -229,11 +337,15 @@ export function readIncidentFilters(
   const ecosystem = params.get("ecosystem") ?? "all";
   const category = params.get("category") ?? "all";
   const industry = params.get("industry") ?? "all";
+  const secret = params.get("secret") ?? "all";
+  const location = params.get("location") ?? "all";
   return {
     kind: kind in INCIDENT_KIND_LABELS ? kind : "all",
     ecosystem: feed.some((item) => item.incident.affectedEcosystems.includes(ecosystem)) ? ecosystem : "all",
     category: feed.some((item) => item.categoryLinks.some((link) => link.categoryId === category)) ? category : "all",
     industry: feed.some((item) => item.industries.includes(industry)) ? industry : "all",
+    secret: feed.some((item) => item.secretTypes.includes(secret)) ? secret : "all",
+    location: feed.some((item) => item.exposureLocations.includes(location)) ? location : "all",
   };
 }
 
@@ -243,6 +355,8 @@ export function incidentFilterUrl(filters: IncidentFilters): string {
   if (filters.ecosystem !== "all") params.set("ecosystem", filters.ecosystem);
   if (filters.category !== "all") params.set("category", filters.category);
   if (filters.industry !== "all") params.set("industry", filters.industry);
+  if (filters.secret !== "all") params.set("secret", filters.secret);
+  if (filters.location !== "all") params.set("location", filters.location);
   const query = params.toString();
   return query ? `/incidents?${query}` : "/incidents";
 }
@@ -283,7 +397,11 @@ export const incidentFeed: FeedIncident[] = buildIncidentFeed(
   salesNotesSeed as SalesNote[],
   categoryLinksSeed as CategoryLink[],
   industriesSeed as IndustryTag[],
+  exposuresSeed as SecretExposure[],
 );
+
+/** Every secret-exposure entry in the data file, including proposed ones. For review tooling and tests only. */
+export const allSecretExposures: readonly SecretExposure[] = exposuresSeed as SecretExposure[];
 
 /** Every industry tag in the data file, including proposed ones. For review tooling and tests only. */
 export const allIndustryTags: readonly IndustryTag[] = industriesSeed as IndustryTag[];
@@ -306,6 +424,6 @@ export function incidentSearchHits(): SearchHit[] {
     href: `/incidents/${item.slug}`,
     kind: "Incident",
     title: item.incident.title,
-    text: `${item.incident.summary} ${item.incident.affectedEcosystems.map(ecosystemLabel).join(" ")} ${INCIDENT_KIND_LABELS[item.incident.kind]} ${item.industries.map(industryLabel).join(" ")} ${item.incident.techniqueIds.join(" ")}`,
+    text: `${item.incident.summary} ${item.incident.affectedEcosystems.map(ecosystemLabel).join(" ")} ${INCIDENT_KIND_LABELS[item.incident.kind]} ${item.industries.map(industryLabel).join(" ")} ${item.secretTypes.map(secretTypeLabel).join(" ")} ${item.exposureLocations.map(exposureLocationLabel).join(" ")} ${item.incident.techniqueIds.join(" ")}`,
   }));
 }

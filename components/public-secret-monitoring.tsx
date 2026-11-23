@@ -33,6 +33,7 @@ export function PublicSecretMonitoring({ categoryId }: { categoryId: string }) {
         Start here when the exposure happens on a public service the organization does not control.
       </p>
       <p className="text-sm text-muted-foreground">Candidate research · Sources checked {formatDate(publicMonitoringChecked)} (UTC). Product claims link to vendor publications. Buyer roles and evaluation questions are the map’s interpretation.</p>
+      <p><Link className={link} href="/landscape/public-exposure#monitoring-scope">Compare internal and public monitoring on the same GitHub commit</Link></p>
       {research.groups.map((group) => (
         <div key={group.need} className="space-y-2">
           <h3 className="text-lg">{group.need}</h3>

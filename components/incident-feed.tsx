@@ -9,7 +9,9 @@ import { cn } from "@/lib/utils";
 import {
   ecosystemLabel,
   filterIncidents,
+  exposureLocationLabel,
   industryLabel,
+  secretTypeLabel,
   INCIDENT_KIND_LABELS,
   incidentFilterUrl,
   NO_INCIDENT_FILTERS,
@@ -110,7 +112,15 @@ export function IncidentFeed({
   const industries = [...new Set(feed.flatMap((item) => item.industries))]
     .sort()
     .map((id) => ({ id, label: industryLabel(id) }));
-  const activeCount = [filters.kind, filters.ecosystem, filters.category, filters.industry].filter((value) => value !== "all").length;
+  const secretTypes = [...new Set(feed.flatMap((item) => item.secretTypes))]
+    .map((id) => ({ id, label: secretTypeLabel(id) }))
+    .sort((a, b) => a.label.localeCompare(b.label));
+  const locations = [...new Set(feed.flatMap((item) => item.exposureLocations))]
+    .map((id) => ({ id, label: exposureLocationLabel(id) }))
+    .sort((a, b) => a.label.localeCompare(b.label));
+  const activeCount = [filters.kind, filters.ecosystem, filters.category, filters.industry, filters.secret, filters.location].filter(
+    (value) => value !== "all",
+  ).length;
   const active = activeCount > 0;
   const prepVendors = filters.category !== "all" ? vendorsByCategory[filters.category] : undefined;
 
@@ -152,8 +162,24 @@ export function IncidentFeed({
             onChange={(industry) => navigate({ ...filters, industry })}
           />
         )}
+        {secretTypes.length > 0 && (
+          <FilterGroup
+            legend="Secret type"
+            value={filters.secret}
+            options={secretTypes}
+            onChange={(secret) => navigate({ ...filters, secret })}
+          />
+        )}
+        {locations.length > 0 && (
+          <FilterGroup
+            legend="Where it was exposed"
+            value={filters.location}
+            options={locations}
+            onChange={(location) => navigate({ ...filters, location })}
+          />
+        )}
         </div>
-        <p className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
+        <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
           <span role="status">
             {visible.length} of {feed.length} reviewed incident{feed.length === 1 ? "" : "s"}
           </span>
@@ -173,7 +199,7 @@ export function IncidentFeed({
               Clear filters
             </button>
           )}
-        </p>
+        </div>
         {prepVendors && (
           <div className="border-t border-border pt-3 text-sm">
             <p>
