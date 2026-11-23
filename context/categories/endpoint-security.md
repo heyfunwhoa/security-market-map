@@ -3,7 +3,7 @@ id: "endpoint-security"
 type: "category"
 name: "Endpoint security"
 layer: "core"
-vendors: 9
+vendors: 10
 ---
 
 # Endpoint security
@@ -49,6 +49,7 @@ From 3 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - Axonius
 - Neo Security
 - Fortra
+- Binalyze
 
 ## What buyers do instead
 

@@ -3,7 +3,7 @@ id: "dfir-collection"
 type: "category"
 name: "Digital forensics and IR collection"
 layer: "core"
-vendors: 1
+vendors: 2
 ---
 
 # Digital forensics and IR collection
@@ -27,7 +27,7 @@ Remotely collecting and preserving forensic evidence (disk and memory artifacts,
 
 ## Vendors (primary)
 
-_None recorded._
+- Binalyze: Binalyze describes AIR as a platform that automates digital forensics and incident response: remote evidence collection and analysis across operating systems, integration with existing security tools, and automated analysis.
 
 ## Vendors (adjacent)
 

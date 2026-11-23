@@ -3,7 +3,7 @@ id: "ot-security"
 type: "category"
 name: "OT and IoT security"
 layer: "core"
-vendors: 5
+vendors: 6
 ---
 
 # OT and IoT security
@@ -34,6 +34,7 @@ Visibility and detection for operational technology and unmanaged devices. This 
 ## Vendors (adjacent)
 
 - OPSWAT
+- Acalvio
 
 ## What buyers do instead
 

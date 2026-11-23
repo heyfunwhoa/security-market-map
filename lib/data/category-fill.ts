@@ -147,6 +147,76 @@ export const categoryFillVendors: Vendor[] = [
     ]
   },
   {
+    "id": "binalyze",
+    "slug": "binalyze",
+    "name": "Binalyze",
+    "formerNames": [],
+    "website": "https://www.binalyze.com/",
+    "positioning": "Binalyze describes AIR as a platform that automates digital forensics and incident response: remote evidence collection and analysis across operating systems, integration with existing security tools, and automated analysis.",
+    "primaryCategoryIds": [
+      "dfir-collection"
+    ],
+    "adjacentCategoryIds": [
+      "endpoint-security",
+      "soar"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Collection depth, OS coverage and automated-analysis quality are vendor-reported and untested here.",
+      "Bought directly, or through an MSSP or IR retainer?"
+    ]
+  },
+  {
+    "id": "acalvio",
+    "slug": "acalvio",
+    "name": "Acalvio",
+    "formerNames": [],
+    "website": "https://www.acalvio.com/",
+    "positioning": "Acalvio markets ShadowPlex as an agentless deception platform that deploys decoys and honeytokens across identity, cloud, network, endpoints and OT.",
+    "primaryCategoryIds": [
+      "deception"
+    ],
+    "adjacentCategoryIds": [
+      "itdr",
+      "cloud-detection",
+      "ot-security"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Coverage and automation claims are vendor-reported and untested here.",
+      "Bought as a standalone deception platform or for identity protection?"
+    ]
+  },
+  {
+    "id": "votiro",
+    "slug": "votiro",
+    "name": "Votiro",
+    "formerNames": [],
+    "website": "https://votiro.com/",
+    "positioning": "Votiro says its content disarm and reconstruction technology disarms incoming files and rebuilds them while keeping them usable, across email, downloads, file sharing and removable media.",
+    "primaryCategoryIds": [
+      "cdr-file-sanitization"
+    ],
+    "adjacentCategoryIds": [
+      "email-security",
+      "enterprise-browser"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "votiro.com now shows Menlo Security branding ('Menlo File Security'); ownership and current product name are unverified here.",
+      "Channel coverage and file-type support are vendor-reported and untested here."
+    ]
+  },
+  {
     "id": "cribl",
     "slug": "cribl",
     "name": "Cribl",
@@ -776,6 +846,76 @@ export const categoryFillProducts: Product[] = [
     "useCaseIds": []
   },
   {
+    "id": "binalyze-air",
+    "slug": "binalyze-air",
+    "vendorId": "binalyze",
+    "name": "Binalyze AIR",
+    "positioning": "Binalyze describes AIR as a platform that automates digital forensics and incident response: remote evidence collection and analysis across operating systems, integration with existing security tools, and automated analysis.",
+    "primaryCategoryIds": [
+      "dfir-collection"
+    ],
+    "adjacentCategoryIds": [
+      "endpoint-security"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Deployment and pricing not verified here.",
+    "officialUrl": "https://www.binalyze.com/",
+    "useCaseIds": []
+  },
+  {
+    "id": "acalvio-shadowplex",
+    "slug": "acalvio-shadowplex",
+    "vendorId": "acalvio",
+    "name": "Acalvio ShadowPlex",
+    "positioning": "Acalvio markets ShadowPlex as an agentless deception platform that deploys decoys and honeytokens across identity, cloud, network, endpoints and OT.",
+    "primaryCategoryIds": [
+      "deception"
+    ],
+    "adjacentCategoryIds": [
+      "itdr",
+      "cloud-detection"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Module packaging (threat defense, identity, cloud) and deployment not verified here.",
+    "officialUrl": "https://www.acalvio.com/shadowplex-platform/",
+    "useCaseIds": []
+  },
+  {
+    "id": "votiro-cdr",
+    "slug": "votiro-cdr",
+    "vendorId": "votiro",
+    "name": "Votiro CDR",
+    "positioning": "Votiro says its content disarm and reconstruction technology disarms incoming files and rebuilds them while keeping them usable, across email, downloads, file sharing and removable media.",
+    "primaryCategoryIds": [
+      "cdr-file-sanitization"
+    ],
+    "adjacentCategoryIds": [
+      "email-security"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "Site now shows Menlo Security branding; current product name and packaging not verified.",
+    "officialUrl": "https://votiro.com/",
+    "useCaseIds": []
+  },
+  {
     "id": "cribl-stream",
     "slug": "cribl-stream",
     "vendorId": "cribl",
@@ -1331,6 +1471,42 @@ export const categoryFillSources: Source[] = [
     "excerpt": "OPSWAT says Deep CDR disarms and regenerates each file so only sanitized, usable content reaches the user, and lists 200+ supported file types."
   },
   {
+    "id": "src-fill-binalyze-home",
+    "title": "Binalyze \u2014 homepage (AIR)",
+    "url": "https://www.binalyze.com/",
+    "canonicalUrl": "https://www.binalyze.com/",
+    "publisher": "Binalyze",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-23",
+    "volatility": "moderate",
+    "excerpt": "Binalyze describes AIR as automating DFIR, with remote evidence collection and analysis across operating systems and integrations with existing tools."
+  },
+  {
+    "id": "src-fill-acalvio-home",
+    "title": "Acalvio \u2014 homepage (ShadowPlex)",
+    "url": "https://www.acalvio.com/",
+    "canonicalUrl": "https://www.acalvio.com/",
+    "publisher": "Acalvio",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-23",
+    "volatility": "moderate",
+    "excerpt": "Acalvio describes ShadowPlex as a deception platform with agentless deployment across identity, cloud, network, endpoints and OT/ICS."
+  },
+  {
+    "id": "src-fill-votiro-cdr-support",
+    "title": "Votiro \u2014 Content Disarm and Reconstruction (support article)",
+    "url": "https://support.votiro.com/hc/en-us/articles/360014301677-Content-Disarm-and-Reconstruction-CDR",
+    "canonicalUrl": "https://support.votiro.com/hc/en-us/articles/360014301677-Content-Disarm-and-Reconstruction-CDR",
+    "publisher": "Votiro",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-23",
+    "volatility": "moderate",
+    "excerpt": "Votiro says its CDR disarms malware from incoming files and reconstructs them while preserving functionality, covering email attachments, downloads, file sharing and removable devices."
+  },
+  {
     "id": "src-fill-cribl-stream",
     "title": "Cribl Stream — product page",
     "url": "https://www.cribl.io/stream",
@@ -1763,11 +1939,11 @@ export const categoryFillClaims: Claim[] = [
     "observedAt": "2026-11-23",
     "effectiveFrom": null,
     "effectiveTo": null,
-    "confidence": "low",
+    "confidence": "medium",
     "verificationStatus": "vendor_published",
     "lastCheckedAt": "2026-11-23",
     "conflictsWith": [],
-    "notes": "Observed from the official page's search-index text on 2026-11-23; the full page was not opened in this pass. Publisher-reported, not tested; no competitor or parity claim. See docs/market-research/adjacent-file-evidence-categories-2026-11-23.md."
+    "notes": "Official page opened and checked 2026-11-23. Publisher-reported, not tested; no competitor or parity claim. See docs/market-research/adjacent-file-evidence-categories-2026-11-23.md."
   },
   {
     "id": "claim-fill-thinkst-canarytokens",
@@ -1783,11 +1959,11 @@ export const categoryFillClaims: Claim[] = [
     "observedAt": "2026-11-23",
     "effectiveFrom": null,
     "effectiveTo": null,
-    "confidence": "low",
+    "confidence": "medium",
     "verificationStatus": "vendor_published",
     "lastCheckedAt": "2026-11-23",
     "conflictsWith": [],
-    "notes": "Observed from the official page's search-index text on 2026-11-23; the full page was not opened in this pass. Publisher-reported, not tested; no competitor or parity claim. See docs/market-research/adjacent-file-evidence-categories-2026-11-23.md."
+    "notes": "Official page opened and checked 2026-11-23. Publisher-reported, not tested; no competitor or parity claim. See docs/market-research/adjacent-file-evidence-categories-2026-11-23.md."
   },
   {
     "id": "claim-fill-opswat-deep-cdr",
@@ -1803,11 +1979,71 @@ export const categoryFillClaims: Claim[] = [
     "observedAt": "2026-11-23",
     "effectiveFrom": null,
     "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-23",
+    "conflictsWith": [],
+    "notes": "Official page opened and checked 2026-11-23. Publisher-reported, not tested; no competitor or parity claim. See docs/market-research/adjacent-file-evidence-categories-2026-11-23.md."
+  },
+  {
+    "id": "claim-fill-binalyze-home",
+    "statement": "Binalyze says AIR automates digital forensics and incident response, collecting and analysing evidence remotely across operating systems.",
+    "subjectType": "product",
+    "subjectId": "binalyze-air",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-binalyze-home",
+    "sourceUrl": "https://www.binalyze.com/",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-23",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-23",
+    "conflictsWith": [],
+    "notes": "Official page opened and checked 2026-11-23. Publisher-reported, not tested; no competitor or parity claim. See docs/market-research/adjacent-file-evidence-categories-2026-11-23.md."
+  },
+  {
+    "id": "claim-fill-acalvio-home",
+    "statement": "Acalvio says ShadowPlex deploys deception agentlessly across identity, cloud, network, endpoint and OT/ICS environments.",
+    "subjectType": "product",
+    "subjectId": "acalvio-shadowplex",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-acalvio-home",
+    "sourceUrl": "https://www.acalvio.com/",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-23",
+    "effectiveFrom": null,
+    "effectiveTo": null,
     "confidence": "low",
     "verificationStatus": "vendor_published",
     "lastCheckedAt": "2026-11-23",
     "conflictsWith": [],
-    "notes": "Observed from the official page's search-index text on 2026-11-23; the full page was not opened in this pass. Publisher-reported, not tested; no competitor or parity claim. See docs/market-research/adjacent-file-evidence-categories-2026-11-23.md."
+    "notes": "Observed from the official page's search-index text on 2026-11-23; the full page was not opened. Publisher-reported, not tested; no competitor or parity claim. See docs/market-research/adjacent-file-evidence-categories-2026-11-23.md."
+  },
+  {
+    "id": "claim-fill-votiro-cdr-support",
+    "statement": "Votiro says its CDR disarms incoming files and rebuilds them with their functionality intact, for email attachments, downloads, file sharing and removable devices.",
+    "subjectType": "product",
+    "subjectId": "votiro-cdr",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-votiro-cdr-support",
+    "sourceUrl": "https://support.votiro.com/hc/en-us/articles/360014301677-Content-Disarm-and-Reconstruction-CDR",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-11-23",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "low",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-23",
+    "conflictsWith": [],
+    "notes": "Observed from the official page's search-index text on 2026-11-23; the full page was not opened. The support article may predate the Menlo Security branding now on votiro.com. Publisher-reported, not tested; no competitor or parity claim. See docs/market-research/adjacent-file-evidence-categories-2026-11-23.md."
   },
   {
     "id": "claim-fill-cribl-stream",

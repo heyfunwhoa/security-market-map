@@ -3,7 +3,7 @@ id: "deception"
 type: "category"
 name: "Deception and decoys"
 layer: "core"
-vendors: 1
+vendors: 2
 ---
 
 # Deception and decoys
@@ -28,6 +28,7 @@ Decoy hosts, services, credentials, files and cloud keys placed where legitimate
 ## Vendors (primary)
 
 - Thinkst Applied Research: Thinkst sells Canary decoy devices and services and offers Canarytokens, free tripwires such as fake documents, API keys and DNS names that alert when touched.
+- Acalvio: Acalvio markets ShadowPlex as an agentless deception platform that deploys decoys and honeytokens across identity, cloud, network, endpoints and OT.
 
 ## Vendors (adjacent)
 

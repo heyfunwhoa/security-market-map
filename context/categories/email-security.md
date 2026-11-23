@@ -3,7 +3,7 @@ id: "email-security"
 type: "category"
 name: "Email security"
 layer: "core"
-vendors: 13
+vendors: 14
 ---
 
 # Email security
@@ -44,6 +44,7 @@ Inbound and outbound mail controls: phishing, impersonation, and data leaving by
 - Forcepoint
 - Virtru
 - OPSWAT
+- Votiro
 
 ## What buyers do instead
 

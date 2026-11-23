@@ -1,8 +1,8 @@
 # Adjacent file and evidence categories — November 2026
 
-**Scope:** public industry research. **Status:** research note; the three categories are now typed (`lib/data/ecosystem.ts`), each with one research-candidate vendor/product and one low-confidence vendor-published claim. Not benchmarked, not a feature-parity table, not a competitor list for any one vendor. **Prepared:** 2026-11-23. **Next editorial check:** 2027-01-23. **Method:** [Competitive Intelligence Playbook](competitive-intelligence-playbook.md).
+**Scope:** public industry research. **Status:** research note; the three categories are now typed (`lib/data/ecosystem.ts`), each with two research-candidate vendors/products and vendor-published claims. Not benchmarked, not a feature-parity table, not a competitor list for any one vendor. **Prepared:** 2026-11-23. **Next editorial check:** 2027-01-23. **Method:** [Competitive Intelligence Playbook](competitive-intelligence-playbook.md).
 
-**Evidence limit for this pass:** official pages could not be opened directly. The three typed vendor records (Velociraptor under existing `rapid7`; new `thinkst`; new `opswat`) rest on the vendors' own pages as shown in search-index text, observed 2026-11-23, and their claims are marked `low` confidence. Every other vendor row below is secondary. Several roundups are written by a vendor in the same category (noted per source). Re-inspect the full official pages before raising confidence.
+**Evidence status (2026-11-23):** typed records: Velociraptor (existing `rapid7`), Binalyze AIR, Thinkst Canary and OPSWAT Deep CDR. Their official pages were opened and checked (claims at `medium`). Acalvio ShadowPlex and Votiro CDR rest on the vendors' own pages as shown in search-index text (claims at `low`). Every other vendor row below is secondary. Several roundups are written by a vendor in the same category (noted per source).
 
 ## Why these three
 
@@ -36,8 +36,8 @@ These fill a gap the repo already records: the `digital-forensics` seat has an u
 
 | Vendor / product | Public context | Evidence status |
 | --- | --- | --- |
-| Velociraptor (open source; Rapid7-backed) | Open-source endpoint monitoring, forensic collection and hunting: an agent on each host plus a central server [DF1, DF2] | Secondary; official docs not inspected |
-| Binalyze AIR | Described as a DFIR / investigation platform for enterprise and MSSP SOCs, with forensic evidence collection at scale; brochure mentions an agentic investigator [DF3, DF4] | Secondary plus vendor brochure (search snippet only) |
+| Velociraptor (open source; Rapid7-backed) | Open-source endpoint monitoring, forensic collection and hunting: an agent on each host plus a central server [OF6, DF1] | **Typed** (`velociraptor`); official docs opened 2026-11-23 |
+| Binalyze AIR | Says AIR automates DFIR with remote evidence collection and analysis across operating systems [OF9]; brochure mentions an agentic investigator [DF4] | **Typed** (`binalyze-air`); official homepage opened 2026-11-23 |
 | Magnet Forensics (AXIOM Cyber) | Digital investigation platform for acquiring and analysing forensic data; also strong in law-enforcement and corporate investigations [DF5, DF6] | Secondary |
 | CrowdStrike Falcon Forensics; Cyber Triage; OpenText Endpoint Investigator; F-Response; Volexity; Darktrace (forensic acquisition, ex-Cado) | Named in DFIR tool roundups [DF5, DF6, DF7] | Candidates only |
 
@@ -51,8 +51,8 @@ These fill a gap the repo already records: the `digital-forensics` seat has an u
 
 | Vendor / product | Public context | Evidence status |
 | --- | --- | --- |
-| Thinkst Canary / Canarytokens | Hardware and virtual honeypots plus free Canarytokens; widely cited as the benchmark for easy deployment [DC1, DC2, DC3] | Secondary; one source is a competitor-authored roundup |
-| Acalvio ShadowPlex | Enterprise deception platform spanning IT and OT, with identity-focused honeytokens; GigaOm Radar reprint distributed by Acalvio [DC4, DC5] | Secondary / analyst reprint |
+| Thinkst Canary / Canarytokens | Canary decoys plus free Canarytokens in document, credential, VPN-profile and QR formats [OF7]; widely cited as the easy-deployment benchmark [DC2, DC3] | **Typed** (`thinkst-canary`); official help page opened 2026-11-23 |
+| Acalvio ShadowPlex | Says ShadowPlex deploys deception agentlessly across identity, cloud, network, endpoints and OT/ICS [OF10]; GigaOm Radar reprint distributed by Acalvio [DC4] | **Typed** (`acalvio-shadowplex`); official page via search-index text |
 | Tracebit | Cloud and CI/CD canary deployment [DC1] | Vendor-authored roundup ranks itself first; treat with caution |
 | CounterCraft, Lupovis, Labyrinth, Zscaler (deception), SentinelOne (ex-Attivo), Proofpoint (ex-Illusive), Fortinet, Rapid7 | Named in GigaOm vendor list and roundups [DC4, DC2] | Candidates only |
 
@@ -66,8 +66,8 @@ These fill a gap the repo already records: the `digital-forensics` seat has an u
 
 | Vendor / product | Public context | Evidence status |
 | --- | --- | --- |
-| OPSWAT MetaDefender (Deep CDR) | CDR plus multi-engine scanning across email, web, file transfer and removable media [CD1, CD2] | Vendor-authored blog (category roundup); official product page not inspected |
-| Votiro | Named CDR vendor across email and other channels [CD2, CD3] | Secondary |
+| OPSWAT MetaDefender (Deep CDR) | Says Deep CDR disarms and regenerates files and covers 200+ file types [OF8]; also bundles multi-engine scanning [CD2] | **Typed** (`opswat-deep-cdr`); official page opened 2026-11-23 |
+| Votiro | Says its CDR disarms and rebuilds incoming files for email, downloads, file sharing and removable media [OF11]. **votiro.com now shows Menlo Security branding; ownership unverified** | **Typed** (`votiro-cdr`); official pages via search-index text |
 | Glasswall | Named CDR vendor [CD3] | Secondary |
 | Check Point (Threat Extraction), Sasa Software (GateScanner), odix, SoftCamp, YazamTech | Named in market reports and directories [CD2, CD3, CD4] | Candidates only |
 
@@ -103,14 +103,17 @@ Budget ownership for each proposed category; how far EDR and XDR suites bundle e
 | CD1 | OPSWAT — CDR: 8 best vendors in 2026 | https://www.opswat.com/blog/content-disarm-reconstruction-cdr-8-best-vendors-in-2026 | Vendor-authored roundup | 2026-11-23 |
 | CD2 | iThome — CDR vendor overview | https://www.ithome.com.tw/tech/122771 | Secondary | 2026-11-23 |
 | CD3 | MarketResearch.com — Global CDR market report listing | https://www.marketresearch.com/Deep-Insights-Research-Co-DIR-v4285/Global-Content-Disarm-Reconstruction-CDR-41705778 | Market report listing | 2026-11-23 |
-| OF6 | Velociraptor — What is Velociraptor? | https://docs.velociraptor.app/docs/overview/ | Official docs (search-index text) | 2026-11-23 |
-| OF7 | Thinkst — Canarytoken overview and use cases | https://help.canary.tools/hc/en-gb/articles/10905485310109-Canarytoken-Overview-and-Use-Cases | Official docs (search-index text) | 2026-11-23 |
-| OF8 | OPSWAT — Deep CDR technology | https://www.opswat.com/technologies/deep-cdr | Vendor (search-index text) | 2026-11-23 |
+| OF6 | Velociraptor — What is Velociraptor? | https://docs.velociraptor.app/docs/overview/ | Official docs (opened) | 2026-11-23 |
+| OF7 | Thinkst — Canarytoken overview and use cases | https://help.canary.tools/hc/en-gb/articles/10905485310109-Canarytoken-Overview-and-Use-Cases | Official docs (opened) | 2026-11-23 |
+| OF8 | OPSWAT — Deep CDR technology | https://www.opswat.com/technologies/deep-cdr | Vendor (opened) | 2026-11-23 |
+| OF9 | Binalyze — homepage | https://www.binalyze.com/ | Vendor (opened) | 2026-11-23 |
+| OF10 | Acalvio — homepage / ShadowPlex | https://www.acalvio.com/ · https://www.acalvio.com/shadowplex-platform/ | Vendor (search-index text) | 2026-11-23 |
+| OF11 | Votiro — CDR support article; homepage | https://support.votiro.com/hc/en-us/articles/360014301677-Content-Disarm-and-Reconstruction-CDR · https://votiro.com/ | Vendor (search-index text) | 2026-11-23 |
 | CD4 | Slashdot — CDR software directory | https://slashdot.org/software/content-disarm-reconstruction-cdr/ | Directory | 2026-11-23 |
 
 Rights: short paraphrase only; no reproduced vendor copy.
 
 ## Consumer disposition
 
-- **Security Market Map catalog:** three typed categories added with one vendor each (Velociraptor, Thinkst Canary, OPSWAT Deep CDR). Next: open the official pages in full, then add Binalyze, Acalvio and Votiro or Glasswall as research candidates.
+- **Security Market Map catalog:** three typed categories added with two vendors each. Next: open the Acalvio and Votiro pages in full, confirm Votiro's ownership, then consider Magnet Forensics, Tracebit and Glasswall.
 - **Other projects:** no change proposed.

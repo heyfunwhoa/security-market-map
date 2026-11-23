@@ -3,7 +3,7 @@ id: "cdr-file-sanitization"
 type: "category"
 name: "Content disarm and reconstruction"
 layer: "core"
-vendors: 1
+vendors: 2
 ---
 
 # Content disarm and reconstruction
@@ -27,6 +27,7 @@ Prevention-first file sanitization: strip active or risky content (macros, scrip
 ## Vendors (primary)
 
 - OPSWAT: OPSWAT markets Deep CDR as file sanitization that disarms and regenerates files, inside its MetaDefender products for email, storage and other entry points.
+- Votiro: Votiro says its content disarm and reconstruction technology disarms incoming files and rebuilds them while keeping them usable, across email, downloads, file sharing and removable media.
 
 ## Vendors (adjacent)
 
