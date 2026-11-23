@@ -3,106 +3,12 @@
   "status": "candidate_only",
   "publishable": false,
   "framework": "docs/security-intelligence/incident-classification-framework.md",
-  "discoveryContext": "Found on 2026-11-23 while researching EDR evasion and AI-assisted attacks. The Sophos Counter Threat Unit blog post (primary, original research) was fetched and paraphrased; it states no publication date. Dark Reading's write-up and a ThaiCERT summary dated 2026-06-05 were seen in search results only, not fetched. IOCs and tool names beyond what is needed to describe the behavior are intentionally not stored.",
+  "discoveryContext": "Found on 2026-11-23 while researching EDR evasion and AI-assisted attacks. The Sophos Counter Threat Unit post (primary research) was fetched and paraphrased. Owner reviewed the placement the same day: research, not an incident. The finding is recorded as buyer-problem context in docs/market-research/file-analysis-ai-investigation-landscape-2026-11.md.",
   "excludedFromIncidents": [
+    "Sophos CTU, Pointing a Cursor at evading detection: AI-assisted EDR-evasion lab found on one endpoint in an unnamed customer tenant",
     "SpecterOps, Accelerating EDR Evasion with LLM-Driven Analysis (2026-06-29)",
     "CrowdStrike 2026 Global Threat Report and Mandiant M-Trends 2026 statistics"
   ],
-  "excludedReason": "Red-team research and annual threat-landscape reports with no single observed intrusion; candidates for the source registry, not incidents (same rule as the 2026-11-11 batch).",
-  "candidates": [
-    {
-      "incidentId": "incident:sophos-ai-assisted-edr-evasion-lab-2026",
-      "title": "Threat actor used AI coding agents to build and test EDR-evasion tooling, found in a Sophos customer tenant",
-      "incidentKind": "intrusion",
-      "reviewStatus": "candidate",
-      "discovery": [
-        {
-          "publisher": "Sophos (Counter Threat Unit / X-Ops)",
-          "canonicalUrl": "https://www.sophos.com/en-us/blog/pointing-a-cursor-at-evading-detection",
-          "sourceRole": "primary",
-          "discoveredAt": "2026-11-23T23:10:00Z",
-          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
-        },
-        {
-          "publisher": "Dark Reading",
-          "canonicalUrl": "https://www.darkreading.com/endpoint-security/attackers-automate-edr-evasion-testing",
-          "sourceRole": "secondary",
-          "discoveredAt": "2026-11-23T23:10:00Z",
-          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
-        }
-      ],
-      "dedupeCheck": "No seed incident or candidate shares this identity. The 2026-11-11 batch excluded EDR-killer and EDR-evasion landscape reports (Halcyon, ESET, Cyware); this one differs because Sophos describes a specific framework found on an endpoint in a customer tenant.",
-      "veris": {
-        "schemaVersion": null,
-        "actor": null,
-        "action": null,
-        "asset": null,
-        "attribute": null,
-        "sourceClaimIds": []
-      },
-      "claims": [
-        {
-          "id": "claim:sophos-ai-assisted-edr-evasion-lab-2026:1",
-          "statement": "Sophos says the activity surfaced when an anomalous endpoint in a customer tenant raised alerts for payloads in a test folder under a user's Documents directory, and several files there pointed to a wider framework built to evade detection.",
-          "epistemicStatus": "observed",
-          "sourceUrl": "https://www.sophos.com/en-us/blog/pointing-a-cursor-at-evading-detection"
-        },
-        {
-          "id": "claim:sophos-ai-assisted-edr-evasion-lab-2026:2",
-          "statement": "Sophos describes a lab of virtual machines: Windows Server 2022 hosts for testing against the Sophos agent and the CrowdStrike agent, a control host with no EDR, and an Ubuntu host running a Sliver C2 server; Windows Defender is also named as a target.",
-          "epistemicStatus": "reported",
-          "sourceUrl": "https://www.sophos.com/en-us/blog/pointing-a-cursor-at-evading-detection"
-        },
-        {
-          "id": "claim:sophos-ai-assisted-edr-evasion-lab-2026:3",
-          "statement": "Sophos says the actor used the Cursor IDE and Claude Opus agents to write, test and revise EDR-bypass tools, with MCP passing code issues and commits to a Git repository, and that some scripts were partly AI-generated.",
-          "epistemicStatus": "reported",
-          "sourceUrl": "https://www.sophos.com/en-us/blog/pointing-a-cursor-at-evading-detection"
-        },
-        {
-          "id": "claim:sophos-ai-assisted-edr-evasion-lab-2026:4",
-          "statement": "Sophos assesses that AI mainly coordinated workflows and supported experimentation, while the evasion work was a structured engineering cycle with human review; its automated Active Directory discovery panel chose from predefined actions and is not described as an autonomous LLM.",
-          "epistemicStatus": "reported",
-          "sourceUrl": "https://www.sophos.com/en-us/blog/pointing-a-cursor-at-evading-detection"
-        },
-        {
-          "id": "claim:sophos-ai-assisted-edr-evasion-lab-2026:5",
-          "statement": "Agent reports claimed near-universal success against EDR agents after iteration, but Sophos says the documented output does not necessarily support that conclusion.",
-          "epistemicStatus": "disputed",
-          "sourceUrl": "https://www.sophos.com/en-us/blog/pointing-a-cursor-at-evading-detection"
-        },
-        {
-          "id": "claim:sophos-ai-assisted-edr-evasion-lab-2026:6",
-          "statement": "Sophos researchers link this development activity to known ransomware deployment and data theft operations, and say the red-team framing was likely used to get around model guardrails.",
-          "epistemicStatus": "hypothesis",
-          "sourceUrl": "https://www.sophos.com/en-us/blog/pointing-a-cursor-at-evading-detection"
-        }
-      ],
-      "attackMappings": [
-        {
-          "domain": "enterprise-attack",
-          "attackId": null,
-          "stixId": null,
-          "attackDatasetVersion": null,
-          "mappingStatus": "not_evaluated",
-          "evidenceStatus": "unknown",
-          "rationale": null,
-          "sourceClaimIds": [],
-          "reviewer": null,
-          "reviewedAt": null
-        }
-      ],
-      "defensiveMappings": [],
-      "weaknessMappings": [],
-      "unresolvedQuestions": [
-        "Owner decision: is this an incident or a source-registry item? Sophos describes one observed endpoint in an unnamed customer tenant (closer to the reviewed Cairn intrusion than to the landscape reports excluded on 2026-11-11), but no victim impact is reported.",
-        "Unknown: the Sophos post states no publication date; a ThaiCERT summary seen in search was dated 2026-06-05. Confirm before promotion.",
-        "Unknown: whether the actor's tooling ran against the customer's environment beyond the test folder, or whether the endpoint was the actor's own registered device. Sophos describes it only as anomalous.",
-        "No actor is named; the ransomware and data-theft link is Sophos's assessment and must not be recorded as attribution.",
-        "Disputed: the agents' claimed EDR-bypass success rate is not supported by the documented output, per Sophos. Do not cite it as fact.",
-        "Proposed category link after promotion: endpoint-security (related_to). Does not imply that any EDR product, including the ones tested, was or was not bypassed in production.",
-        "Dark Reading secondary was not fetched; only the Sophos primary was read."
-      ]
-    }
-  ]
+  "excludedReason": "Threat research and landscape reports with no confirmed affected organization or reported impact; Sophos does not say whether the endpoint was a victim's or the actor's own device. Recorded as research context, not incidents (same rule as the 2026-11-11 batch).",
+  "candidates": []
 }
