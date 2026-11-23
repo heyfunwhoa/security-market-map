@@ -28,7 +28,7 @@ Joiner-mover-leaver, access requests, certifications, role mining, separation of
 
 ## Vendors (primary)
 
-- C1: Formerly ConductorOne. Public pages describe an identity governance platform for human, non-human, and agent identities, including requests, reviews, and just-in-time grants. Treat detailed breadth as vendor-published until a design review.
+- C1: Formerly ConductorOne. Public pages describe an identity governance platform for human, non-human, and agent identities, including requests, reviews, and just-in-time grants. Treat detailed breadth as vendor-published until a design review. Workday signed a definitive agreement to acquire C1 on 12 Oct 2026 (announced 13 Oct 2026), expected to close by 31 Jan 2027; until a close is announced, treat C1 as an independent vendor.
 - Opal Security: Access governance company. Opal Zero, announced 17 Sep 2026, is described as just-in-time governance for AI agents, with a decision per request and enforcement in an existing MCP gateway. The core Opal platform's human JIT depth is not separately sourced in this seed.
 - SailPoint: Long-standing IGA vendor. Buyers will put Identity Security Cloud on a governance shortlist. This seed does not assert non-human or agent parity.
 - Saviynt: IGA vendor associated with application access governance. Capability cells in this seed are unknown until a current page is cited.

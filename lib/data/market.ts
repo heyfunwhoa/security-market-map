@@ -18,7 +18,7 @@ export const vendors: Vendor[] = [
     formerNames: ["ConductorOne"],
     website: "https://www.c1.ai/",
     positioning:
-      "Formerly ConductorOne. Public pages describe an identity governance platform for human, non-human, and agent identities, including requests, reviews, and just-in-time grants. Treat detailed breadth as vendor-published until a design review.",
+      "Formerly ConductorOne. Public pages describe an identity governance platform for human, non-human, and agent identities, including requests, reviews, and just-in-time grants. Treat detailed breadth as vendor-published until a design review. Workday signed a definitive agreement to acquire C1 on 12 Oct 2026 (announced 13 Oct 2026), expected to close by 31 Jan 2027; until a close is announced, treat C1 as an independent vendor.",
     primaryCategoryIds: ["iga", "agent-identity", "agentic-runtime"],
     adjacentCategoryIds: ["pam", "nhi"],
     identityScopes: ["human", "nhi", "agent"],
@@ -27,6 +27,7 @@ export const vendors: Vendor[] = [
       "Does MCP on the just-in-time page mean a request channel, or enforcement inside the customer's existing gateway?",
       "Which connectors provision and revoke without a ticket?",
       "What is generally available versus described on the marketing site?",
+      "After the Workday deal closes, what happens to the C1 brand, pricing, and connectors for customers who do not run Workday?",
     ],
   }),
   vendor({
@@ -1589,10 +1590,10 @@ export const events: CatalogEvent[] = [
   {
     id: "evt-c1-rename",
     vendorId: "c1",
-    date: null,
+    date: "2026-04-06",
     kind: "rename",
     title: "ConductorOne says it is now C1",
-    summary: "The rebrand post says the company is C1 and lives at c1.ai. It does not give a date. Do not invent one.",
+    summary: "The rebrand post, dated 6 Apr 2026, says \"Today, ConductorOne becomes C1.ai\" and that the company lives at c1.ai.",
     sourceId: "src-c1-rebrand",
   },
   {
@@ -1603,6 +1604,15 @@ export const events: CatalogEvent[] = [
     title: "Opal Zero announced",
     summary: "Press release dated 17 Sep 2026. Vendor says general availability is at the end of September. A launch price is a separate pricing signal.",
     sourceId: "src-opal-press",
+  },
+  {
+    id: "evt-c1-workday-agree",
+    vendorId: "c1",
+    date: "2026-10-12",
+    kind: "acquisition",
+    title: "Workday agrees to acquire C1",
+    summary: "Workday signed a definitive agreement to acquire C1.ai (ConductorOne, Inc.) on 12 Oct 2026 and announced it on 13 Oct 2026. Expected to close by 31 Jan 2027, subject to customary closing conditions. Not the close; price not disclosed.",
+    sourceId: "src-workday-c1-agree",
   },
   {
     id: "evt-panw-agree",
@@ -1728,33 +1738,6 @@ export const events: CatalogEvent[] = [
     summary:
       "The post says deployment and support do not change for existing customers, and that integration into Cyera's platform was still underway. Cyera Identity is a separate product record.",
     sourceId: "src-cyera-oasis-customers",
-  },
-  {
-    id: "evt-gitguardian-machine-scan-validity-501",
-    vendorId: "gitguardian",
-    date: "2026-10-27",
-    kind: "launch",
-    title: "GitGuardian widens validity checks in its developer-machine scan",
-    summary: "GitGuardian says Endpoint Protection's machine scan now checks validity for 501 secret types, up from 432, and adds a background mode for scheduled scans and a cleanup view. Vendor-reported. The machine scan is a separate ggshield plugin whose code is not in ggshield's public repository.",
-    sourceId: "src-gitguardian-saas-20261027",
-  },
-  {
-    id: "evt-gitguardian-kubeconfig-honeytoken",
-    vendorId: "gitguardian",
-    date: "2026-11-12",
-    kind: "launch",
-    title: "GitGuardian adds a decoy kubeconfig honeytoken for developer machines",
-    summary: "Honeytoken can now plant a fake kubeconfig next to real ones on an endpoint, as well as the existing fake AWS key. Any use of the stolen file raises an alert that names the machine. The kubeconfig option is in ggshield 1.56's open-source code (src-ggshield-v1561-source). Growth or Enterprise plans with Endpoint Protection.",
-    sourceId: "src-gitguardian-saas-20261112",
-  },
-  {
-    id: "evt-gitguardian-endpoint-precommit-coverage",
-    vendorId: "gitguardian",
-    date: "2026-11-18",
-    kind: "launch",
-    title: "GitGuardian Endpoint Protection reports pre-commit coverage per machine",
-    summary: "Endpoint Protection now shows which developer machines have the ggshield pre-commit hook, alongside AI hooks and honeytokens, and adds an API that lists machines and their users. One ggshield command (machine setup) installs all three protections; that command is in ggshield's open-source code.",
-    sourceId: "src-gitguardian-saas-20261118",
   },
   {
     id: "evt-gitguardian-skip-invalid-secrets",

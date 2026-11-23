@@ -27,7 +27,7 @@ A check on a live agent action before it completes. Directory, governance, privi
 
 ## Vendors (primary)
 
-- C1: Formerly ConductorOne. Public pages describe an identity governance platform for human, non-human, and agent identities, including requests, reviews, and just-in-time grants. Treat detailed breadth as vendor-published until a design review.
+- C1: Formerly ConductorOne. Public pages describe an identity governance platform for human, non-human, and agent identities, including requests, reviews, and just-in-time grants. Treat detailed breadth as vendor-published until a design review. Workday signed a definitive agreement to acquire C1 on 12 Oct 2026 (announced 13 Oct 2026), expected to close by 31 Jan 2027; until a close is announced, treat C1 as an independent vendor.
 - Opal Security: Access governance company. Opal Zero, announced 17 Sep 2026, is described as just-in-time governance for AI agents, with a decision per request and enforcement in an existing MCP gateway. The core Opal platform's human JIT depth is not separately sourced in this seed.
 - Descope: Customer and developer authentication. SACR's March 2026 runtime note also discusses an agent identity hub. That is not checked here, and it is not an IGA suite.
 - Entro Security: SailPoint said on 29 Jun 2026 that it completed the Entro acquisition and that Entro's solutions are available to SailPoint customers as standalone offerings while native integration continues. entro.security presents SailPoint Entro: discovery, a human owner, lifecycle language, a Slack DLP description, and NHIDR. The product page does not restate the close date. Customer quotations and credential counts are not adopted.
