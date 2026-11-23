@@ -4,7 +4,7 @@
 
 ## Expanded research and explanation system
 
-- [Current-state audit](category-audit-2026-11-06.md): all 74 categories, evidence counts, source gaps and implementation priorities.
+- [Current-state audit](category-audit-2026-11-06.md): all 77 categories, evidence counts, source gaps and implementation priorities.
 - [Adjacent category guide](adjacent-category-guide.md): 12 worked explanations spanning identity, AppSec, cloud, data, network, exposure, governance, supply chain, AI, recovery, OT and validation.
 - [Category explanation system](../product/category-explanation-system.md): a consistent orientation, workflow and evaluation structure with scoped source references.
 

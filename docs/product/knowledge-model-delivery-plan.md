@@ -11,7 +11,7 @@ Linear owns delivery status and dependencies. This repository owns durable publi
 
 ## Audit and reconciliation
 
-The November 6 audit identified 11 domains, 74 categories, 221 vendors, 294 products, 234 sources and 14 use cases. Forty-four categories lack linked use cases; 18 lack a direct category claim, which does not imply absence of related product evidence. Recompute at implementation baseline.
+The audit, refreshed 22 Nov, counts 11 domains, 77 categories, 271 vendors, 373 products, 643 sources and 17 use cases. Forty-four categories lack linked use cases; 9 lack a direct category claim, which does not imply absence of related product evidence. Recompute at implementation baseline.
 PR #137 provides editorial category foundations and explanations. [PR #138](https://github.com/heyfunwhoa/security-market-map/pull/138) adds executive-priority research and independent workflow design. Reconcile these before typed migration; neither establishes deployed schemas.
 Reuse KRU-54 offline import, KRU-105 Latio, KRU-106 Gartner metadata and KRU-78 learning handoff. KRU-106 is Done but its checkpoint describes a documentation seed, not completed typed intake. Preserve that distinction.
 The canonical Notion PRD was unresolved in the prior Gartner checkpoint. K1 must locate/reconcile its current identity, or explicitly document the unresolved dependency before implementing conflicting requirements.
@@ -124,7 +124,7 @@ Acceptance:
 - SOC capacity example: analyst time per qualifying case, queue age, escalation/error quality. Secrets example: exposure-to-revocation time and verified closure, not finding count alone. Recovery example: service restoration test against agreed objective and restore completeness.
 - Use illustrative examples explicitly; no invented customer baselines, ROI or result claims.
 - Distinguish category/practice/service/architecture/program kinds. Preserve service-delivery model (MSSP/MDR) as a separate dimension from product category.
-- Each path remains useful with vendor names removed. Product capabilities require independent scoped records; no automatic comparison or LimaCharlie framing.
+- Each path remains useful with vendor names removed. Product capabilities require independent scoped records; no automatic comparison or single-vendor framing.
 - Optional requirement connections carry exact version, applicability and limitations; category relevance is not compliance proof.
 Evidence: three worked paths, source-linked mappings and metric definitions, reviewed by owner before typed publication.
 

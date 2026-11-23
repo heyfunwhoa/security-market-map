@@ -23,7 +23,7 @@ Security categories are difficult to navigate. A product may be described as ide
 
 Start with the [vendor-agnostic industry and category guide](docs/market-research/industry-category-foundation.md): industry participants, domain atlas, category boundaries, SecOps workflows and a reusable category research template. Learn each market first, then explore individual vendor profiles. Company-specific context is optional; formal comparisons require a specific buyer question.
 
-The [6 Nov category audit](docs/market-research/category-audit-2026-11-06.md) inventories all 74 categories and separates structural coverage from reviewed evidence. The [adjacent guide](docs/market-research/adjacent-category-guide.md) and [explanation system](docs/product/category-explanation-system.md) extend the neutral foundation beyond SecOps with authoritative reading anchors and worked workflows. These are research documents; the proposed presentation changes are not deployed.
+The [6 Nov category audit](docs/market-research/category-audit-2026-11-06.md) inventories all 77 categories (refreshed 22 Nov) and separates structural coverage from reviewed evidence. The [adjacent guide](docs/market-research/adjacent-category-guide.md) and [explanation system](docs/product/category-explanation-system.md) extend the neutral foundation beyond SecOps with authoritative reading anchors and worked workflows. These are research documents; the proposed presentation changes are not deployed.
 
 ## What the map covers
 

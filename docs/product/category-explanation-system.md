@@ -4,7 +4,7 @@
 
 ## Reader promise
 
-A reader should understand what a category does, how it works, what it leaves unresolved, who operates it and how to evaluate it before encountering vendor names. The explanation must work without knowledge of LimaCharlie or another company.
+A reader should understand what a category does, how it works, what it leaves unresolved, who operates it and how to evaluate it before encountering vendor names. The explanation must work without knowledge of any particular company.
 
 ## Three reading depths, one canonical explanation
 

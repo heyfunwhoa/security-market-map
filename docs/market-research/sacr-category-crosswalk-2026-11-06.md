@@ -38,12 +38,12 @@ The [SACR glossary](https://softwareanalyst.io/glossary) provides useful referen
 
 ## Identity expansion without category inflation
 
-| Concept | Question to teach | Treatment in LimaCharlie research |
+| Concept | Question to teach | Evidence rule for any vendor profile |
 | --- | --- | --- |
 | ITDR | Can we detect and respond to identity misuse? | Entity pivots and log ingestion alone are insufficient evidence |
 | ISPM | Are identity configurations and permissions risky? | Keep separate from live attack detection |
 | NHI | Who owns machine accounts, credentials and their lifecycle? | Not established merely by observing API tokens in logs |
-| Agent runtime identity controls | Is this agent action authorized now? | Attribute SACR's ARISE framing; do not imply a shipped LimaCharlie capability |
+| Agent runtime identity controls | Is this agent action authorized now? | Attribute SACR's ARISE framing; do not imply a shipped capability for any vendor |
 
 These explanations are original paraphrases. They do not equate the presence of an identity integration with a complete identity-security product.
 

@@ -141,12 +141,12 @@ Do not compare a raw infrastructure rate with a fully managed MDR rate without p
 
 | Priority | Research question | Candidates | Completion evidence | Estimated effort |
 | --- | --- | --- | --- | --- |
-| 1 | Which provider operating model fits? | Six requested vendors plus Sekoia/LimaCharlie | Comparable scope and responsibility matrix | 1–2 human review days with AI-assisted document extraction |
+| 1 | Which provider operating model fits? | The vendors profiled in section 5 | Comparable scope and responsibility matrix | 1–2 human review days with AI-assisted document extraction |
 | 1 | What is the actual all-in price? | Same set | Written partner quotes and workload model | 2–4 analyst hours after quotes; vendor response time unknown |
 | 2 | How strong is incumbent expansion? | Microsoft, CrowdStrike, SentinelOne, Palo Alto Networks, Sophos | Current product/partner evidence and migration assumptions | 1–2 research days; no new parity assertions yet |
 | 2 | Where do AI specialists differ? | Tines, D3, Swimlane, Dropzone, Intezer, 7AI, Exaforce | Update existing research using tenant and governed-action criteria | 1–2 research days |
 | 3 | What infrastructure can coexist? | Panther, Tenzir, Cribl, Elastic, Wazuh, Security Onion | Data-flow architecture and realistic operating costs | 1–2 research days plus engineering validation |
-| 3 | Which identity services could be added? | ITDR, ISPM, NHI and identity response products | Provider support, actions and economics; no inferred LimaCharlie product | 1–2 research days |
+| 3 | Which identity services could be added? | ITDR, ISPM, NHI and identity response products | Provider support, actions and economics; no inferred product for any profiled vendor | 1–2 research days |
 
 Estimates are planning assumptions, not commitments. AI can accelerate source extraction and comparison drafts; a person must validate contracts, production behavior and publication decisions.
 
