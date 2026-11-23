@@ -71,6 +71,35 @@ describe("mergeCandidates", () => {
   });
 });
 
+describe("mergeCandidates backfill", () => {
+  it("doesn't re-add items older than the first run's cutoff on later runs", () => {
+    const first = mergeCandidates(feed, null, [{ title: "Recent", date: "2026-11-20", url: "https://example.com/r" }], "2026-11-22");
+    expect(first.file.since).toBe("2026-10-23");
+    const later = mergeCandidates(
+      feed,
+      first.file,
+      [
+        { title: "Newer", date: "2026-11-27", url: "https://example.com/n" },
+        { title: "Recent", date: "2026-11-20", url: "https://example.com/r" },
+        { title: "Old", date: "2026-08-10", url: "https://example.com/o" },
+      ],
+      "2026-11-30",
+    );
+    expect(later.added.map((c) => c.url)).toEqual(["https://example.com/n"]);
+    expect(later.file.since).toBe("2026-10-23");
+  });
+
+  it("uses the oldest stored item as the cutoff for files written before `since` existed", () => {
+    const stored: FeedCandidatesFile = {
+      feedId: feed.id, vendorId: feed.vendorId, feedUrl: feed.url, checkedAt: "2026-11-22",
+      candidates: [{ title: "Kept", date: "2026-10-27", url: "https://example.com/k", firstSeen: "2026-11-22", status: "promoted" }],
+    };
+    const { added, file } = mergeCandidates(feed, stored, [{ title: "Old", date: "2026-10-21", url: "https://example.com/o" }], "2026-11-23");
+    expect(added).toEqual([]);
+    expect(file.since).toBe("2026-10-27");
+  });
+});
+
 describe("watched feeds", () => {
   const dir = join(process.cwd(), "data/market-feeds");
   const feeds = JSON.parse(readFileSync(join(dir, "feeds.json"), "utf8")) as MarketFeed[];
