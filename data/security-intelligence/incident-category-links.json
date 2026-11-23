@@ -718,5 +718,92 @@
     "proposedOn": "2026-11-21",
     "reviewedBy": "Kristen Aing",
     "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "link:tanstack-mini-shai-hulud-2026:software-supply-chain",
+    "incidentId": "incident:tanstack-mini-shai-hulud-2026",
+    "categoryId": "software-supply-chain",
+    "predicate": "related_to",
+    "rationale": "Malicious versions of TanStack's npm packages were published through its own release workflow.",
+    "doesNotImply": "That any software supply chain security product detected or would have prevented this incident.",
+    "basedOnSourceIds": [
+      "source:tanstack-npm-postmortem-2026"
+    ],
+    "status": "proposed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-22"
+  },
+  {
+    "id": "link:grafana-github-tanstack-2026:software-supply-chain",
+    "incidentId": "incident:grafana-github-tanstack-2026",
+    "categoryId": "software-supply-chain",
+    "predicate": "related_to",
+    "rationale": "Grafana was compromised through the TanStack npm supply chain attack running on its CI runners.",
+    "doesNotImply": "That any software supply chain security product detected or would have prevented this incident.",
+    "basedOnSourceIds": [
+      "source:grafana-tanstack-incident-update-2026",
+      "source:grafana-tanstack-post-incident-review-2026"
+    ],
+    "status": "proposed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-22"
+  },
+  {
+    "id": "link:grafana-github-tanstack-2026:nhi",
+    "incidentId": "incident:grafana-github-tanstack-2026",
+    "categoryId": "nhi",
+    "predicate": "related_to",
+    "rationale": "Grafana says the attacker used a leaked bot identity, grafana-delivery-bot, that was missed during rotation.",
+    "doesNotImply": "That any non-human identity product detected or would have prevented this incident.",
+    "basedOnSourceIds": [
+      "source:grafana-tanstack-incident-update-2026",
+      "source:grafana-tanstack-post-incident-review-2026"
+    ],
+    "status": "proposed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-22"
+  },
+  {
+    "id": "link:mistral-sdk-tanstack-2026:software-supply-chain",
+    "incidentId": "incident:mistral-sdk-tanstack-2026",
+    "categoryId": "software-supply-chain",
+    "predicate": "related_to",
+    "rationale": "Trojaned Mistral SDK releases were published to npm and PyPI by the TanStack worm.",
+    "doesNotImply": "That any software supply chain security product detected or would have prevented this incident.",
+    "basedOnSourceIds": [
+      "source:mistral-advisory-mai-2026-002"
+    ],
+    "status": "proposed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-22"
+  },
+  {
+    "id": "link:github-internal-repos-nx-console-2026:software-supply-chain",
+    "incidentId": "incident:github-internal-repos-nx-console-2026",
+    "categoryId": "software-supply-chain",
+    "predicate": "related_to",
+    "rationale": "The entry point was a poisoned release of a third-party VS Code extension, Nx Console 18.95.0.",
+    "doesNotImply": "That any software supply chain security product detected or would have prevented this incident.",
+    "basedOnSourceIds": [
+      "source:github-internal-repositories-investigation-2026",
+      "source:nx-console-advisory-ghsa-c9j4-9m59-847w"
+    ],
+    "status": "proposed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-22"
+  },
+  {
+    "id": "link:keyv-shai-hulud-npm-2026:software-supply-chain",
+    "incidentId": "incident:keyv-shai-hulud-npm-2026",
+    "categoryId": "software-supply-chain",
+    "predicate": "related_to",
+    "rationale": "The advisory covers a worm spreading through compromised npm packages.",
+    "doesNotImply": "That any software supply chain security product detected or would have prevented this incident.",
+    "basedOnSourceIds": [
+      "source:csa-sg-ad-2026-009"
+    ],
+    "status": "proposed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-22"
   }
 ]

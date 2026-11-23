@@ -376,5 +376,55 @@
     "proposedOn": "2026-11-21",
     "reviewedBy": "Kristen Aing",
     "reviewedOn": "2026-11-21"
+  },
+  {
+    "id": "industry:tanstack-mini-shai-hulud-2026:technology",
+    "incidentId": "incident:tanstack-mini-shai-hulud-2026",
+    "industry": "technology",
+    "rationale": "TanStack, which published the postmortem, maintains open-source web development libraries. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:tanstack-npm-postmortem-2026"
+    ],
+    "status": "proposed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-22"
+  },
+  {
+    "id": "industry:grafana-github-tanstack-2026:technology",
+    "incidentId": "incident:grafana-github-tanstack-2026",
+    "industry": "technology",
+    "rationale": "Grafana Labs, which reported the incident, is an observability software company. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:grafana-tanstack-incident-update-2026",
+      "source:grafana-tanstack-post-incident-review-2026"
+    ],
+    "status": "proposed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-22"
+  },
+  {
+    "id": "industry:mistral-sdk-tanstack-2026:technology",
+    "incidentId": "incident:mistral-sdk-tanstack-2026",
+    "industry": "technology",
+    "rationale": "Mistral AI, which issued the advisory, is an AI model and software company. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:mistral-advisory-mai-2026-002"
+    ],
+    "status": "proposed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-22"
+  },
+  {
+    "id": "industry:github-internal-repos-nx-console-2026:technology",
+    "incidentId": "incident:github-internal-repos-nx-console-2026",
+    "industry": "technology",
+    "rationale": "GitHub, which reported the incident, is a software development platform company. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:github-internal-repositories-investigation-2026",
+      "source:nx-console-advisory-ghsa-c9j4-9m59-847w"
+    ],
+    "status": "proposed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-22"
   }
 ]
