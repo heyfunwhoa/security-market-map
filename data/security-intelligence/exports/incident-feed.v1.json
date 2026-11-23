@@ -2063,6 +2063,43 @@
       ]
     },
     {
+      "id": "incident:keyv-shai-hulud-npm-2026",
+      "slug": "keyv-shai-hulud-npm-2026",
+      "title": "Keyv and related npm packages hit by a self-spreading Shai-Hulud worm",
+      "kind": "supply_chain",
+      "disclosedOn": "2026-08-06",
+      "occurredOn": null,
+      "summary": "Singapore's Cyber Security Agency warned on 6 August 2026 (advisory AD-2026-009) of an ongoing npm supply chain attack affecting keyv and related packages, including flat-cache, file-entry-cache, cacheable-request, cache-manager and ecto. It said the Shai-Hulud malware steals developer credentials and spreads by compromising more packages, and advised treating affected systems as compromised and rotating cloud credentials, GitHub tokens, SSH keys, Kubernetes configurations and other developer secrets.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "npm"
+      ],
+      "uncertaintyNotes": [
+        "Researchers name this variant ChainDrop and report several hundred affected packages; names and counts come from third-party research and are not recorded here.",
+        "How the keyv maintainer's publishing access was obtained is reported by researchers, not by the advisory.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-22",
+      "sources": [
+        {
+          "id": "source:csa-sg-ad-2026-009",
+          "publisher": "Cyber Security Agency of Singapore",
+          "type": "government_alert",
+          "url": "https://www.csa.gov.sg/alerts-and-advisories/advisories/ad-2026-009/",
+          "publishedOn": "2026-08-06",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": null,
+      "industries": [],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
+      "marketCategories": []
+    },
+    {
       "id": "incident:novo-nordisk-2026",
       "slug": "novo-nordisk-2026",
       "title": "Novo Nordisk unauthorized access and data copied externally",
@@ -2106,6 +2143,137 @@
           "name": "Healthcare and life sciences"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
+      "marketCategories": []
+    },
+    {
+      "id": "incident:github-internal-repos-nx-console-2026",
+      "slug": "github-internal-repos-nx-console-2026",
+      "title": "GitHub: poisoned Nx Console VS Code extension on an employee device leads to theft of internal repositories",
+      "kind": "breach",
+      "disclosedOn": "2026-05-20",
+      "occurredOn": null,
+      "summary": "GitHub said that on 18 May 2026 it detected and contained a compromise of an employee device involving a poisoned third-party VS Code extension, then rotated critical secrets. It assessed that only GitHub-internal repositories were exfiltrated and that the attacker's claim of about 3,800 repositories was directionally consistent with its findings. The extension's maintainers say Nx Console 18.95.0 was compromised and harvested credentials from disk and memory. GitHub later rotated keys, including the GitHub Enterprise Server signing key, and asked GHES administrators to update the key on their instances.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "ide_extensions",
+        "github"
+      ],
+      "uncertaintyNotes": [
+        "GitHub said some internal repositories hold customer information such as support excerpts; customer impact is not confirmed either way.",
+        "GitHub promised a fuller report after its investigation; none was found as of review.",
+        "Attribution to a named group rests on the group's claims and third-party reporting and is not recorded.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-22",
+      "sources": [
+        {
+          "id": "source:github-internal-repositories-investigation-2026",
+          "publisher": "GitHub",
+          "type": "company_incident_report",
+          "url": "https://github.blog/security/investigating-unauthorized-access-to-githubs-internal-repositories/",
+          "publishedOn": "2026-05-20",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "id": "source:nx-console-advisory-ghsa-c9j4-9m59-847w",
+          "publisher": "Nrwl (Nx Console)",
+          "type": "vulnerability_advisory",
+          "url": "https://github.com/nrwl/nx-console/security/advisories/GHSA-c9j4-9m59-847w",
+          "publishedOn": "2026-05-18",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": null,
+      "industries": [],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
+      "marketCategories": []
+    },
+    {
+      "id": "incident:grafana-github-tanstack-2026",
+      "slug": "grafana-github-tanstack-2026",
+      "title": "Grafana Labs: credential missed after the TanStack worm lets attackers copy its GitHub repositories and demand a ransom",
+      "kind": "breach",
+      "disclosedOn": "2026-05-16",
+      "occurredOn": null,
+      "summary": "Grafana Labs said malicious code from the TanStack attack ran on its self-hosted CI runners on 11 May 2026 and leaked credentials. It rotated them, but one was overlooked: from 14 May the attacker used the leaked grafana-delivery-bot identity to commit and then copy its GitHub repositories, including private code and internal repositories holding business contact names and email addresses. A ransom was demanded on 15 May and not paid. Grafana says customer production systems and Grafana Cloud were not affected.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "github",
+        "ci_cd"
+      ],
+      "uncertaintyNotes": [
+        "The exact type of the overlooked credential is described only as the grafana-delivery-bot identity; no secret type is recorded.",
+        "Grafana says Mandiant's investigation corroborated its findings; Mandiant's report is not public.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-22",
+      "sources": [
+        {
+          "id": "source:grafana-tanstack-incident-update-2026",
+          "publisher": "Grafana Labs",
+          "type": "company_incident_report",
+          "url": "https://grafana.com/blog/grafana-labs-security-update-latest-on-tanstack-npm-supply-chain-ransomware-incident/",
+          "publishedOn": "2026-05-19",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "id": "source:grafana-tanstack-post-incident-review-2026",
+          "publisher": "Grafana Labs",
+          "type": "company_incident_report",
+          "url": "https://grafana.com/blog/post-incident-review-for-tanstack-npm-supply-chain-ransom-incident/",
+          "publishedOn": "2026-06-23",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": null,
+      "industries": [],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
+      "marketCategories": []
+    },
+    {
+      "id": "incident:mistral-sdk-tanstack-2026",
+      "slug": "mistral-sdk-tanstack-2026",
+      "title": "Mistral AI SDK releases on npm and PyPI trojaned by the TanStack worm",
+      "kind": "supply_chain",
+      "disclosedOn": "2026-05-12",
+      "occurredOn": null,
+      "summary": "Mistral AI's advisory MAI-2026-002 says the Mini Shai-Hulud worm, spread through the TanStack compromise, published malicious SDK versions: @mistralai/mistralai, -azure and -gcp on npm from about 22:00 UTC on 11 May to 01:00 UTC on 12 May, and mistralai 2.4.6 on PyPI from about 00:00 to 03:00 UTC on 12 May. Mistral says the npm versions could not run their payload, while the PyPI version harvested credentials on import. It traced the cause to an affected developer device, with no impact on its global infrastructure.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "npm",
+        "pypi"
+      ],
+      "uncertaintyNotes": [
+        "An attacker group claimed to hold hundreds of Mistral internal repositories; Mistral's advisory does not confirm repository theft, so the claim is not recorded as fact.",
+        "A separate later takeover of the mistralai PyPI project is not part of this record.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-22",
+      "sources": [
+        {
+          "id": "source:mistral-advisory-mai-2026-002",
+          "publisher": "Mistral AI",
+          "type": "company_incident_report",
+          "url": "https://docs.mistral.ai/resources/security-advisories/MAI-2026-002",
+          "publishedOn": "2026-05-12",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": null,
+      "industries": [],
       "secretExposure": {
         "secretTypes": [],
         "exposureLocations": [],
@@ -2181,6 +2349,46 @@
           "doesNotImply": "How West recovered, or that any product would have changed the outcome."
         }
       ]
+    },
+    {
+      "id": "incident:tanstack-mini-shai-hulud-2026",
+      "slug": "tanstack-mini-shai-hulud-2026",
+      "title": "Mini Shai-Hulud worm publishes malicious TanStack releases from TanStack's own CI",
+      "kind": "supply_chain",
+      "disclosedOn": "2026-05-11",
+      "occurredOn": null,
+      "summary": "TanStack reported that on 11 May 2026, between 19:20 and 19:26 UTC, an attacker published 84 malicious versions across 42 @tanstack/* npm packages. The attacker combined a pull_request_target workflow, GitHub Actions cache poisoning from a fork and an OIDC token read from runner memory to publish directly to npm. The payload harvested cloud metadata and Secrets Manager credentials, Kubernetes and Vault tokens, npm and GitHub tokens and SSH keys.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "npm",
+        "github_actions",
+        "ci_cd"
+      ],
+      "uncertaintyNotes": [
+        "Researchers report the worm spread to well over 100 more npm and PyPI packages; counts vary by researcher and date, and that spread is not recorded here.",
+        "TanStack does not attribute the attack; attribution to TeamPCP is from third-party research and the group's own claims, and is not recorded.",
+        "Downstream victims with their own reports (Grafana Labs, Mistral AI) are separate incidents.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-22",
+      "sources": [
+        {
+          "id": "source:tanstack-npm-postmortem-2026",
+          "publisher": "TanStack",
+          "type": "company_incident_report",
+          "url": "https://tanstack.com/blog/npm-supply-chain-compromise-postmortem",
+          "publishedOn": "2026-05-11",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": null,
+      "industries": [],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
+      "marketCategories": []
     },
     {
       "id": "incident:litellm-pypi-trivy-2026",
