@@ -7,7 +7,7 @@ import { noteWithoutCaveat } from "@/lib/claim-basis";
 import { formatDate, sourceTypeLabel } from "@/lib/format";
 import type { Claim, Distinction } from "@/lib/schema";
 
-export function ClaimList({ claims, labels }: { claims: Claim[]; labels?: Record<string, string> }) {
+export function ClaimList({ claims, labels, linkable = false }: { claims: Claim[]; labels?: Record<string, string>; linkable?: boolean }) {
   if (claims.length === 0) {
     return (
       <p className="rounded-lg border border-dashed border-border px-4 py-6 text-sm text-muted-foreground">
@@ -19,7 +19,7 @@ export function ClaimList({ claims, labels }: { claims: Claim[]; labels?: Record
   return (
     <ul className="space-y-3">
       {claims.map((claim) => (
-        <li key={claim.id} className="rounded-xl border border-border bg-card p-4">
+        <li key={claim.id} id={linkable ? claim.id : undefined} tabIndex={linkable ? -1 : undefined} className="scroll-mt-24 rounded-xl border border-border bg-card p-4 target:ring-2 target:ring-ring">
           <div className="flex flex-wrap items-center gap-2">
             <SourceBadge claim={claim} />
             {claimNeedsRecheck(claim, catalog.sources, catalog.asOf) ? <RecheckBadge asOf={catalog.asOf} /> : null}
