@@ -41,4 +41,7 @@ for (const feed of feeds) {
 }
 
 console.log(`FEED_CANDIDATES_ADDED=${total}`);
-if (failed > 0) process.exitCode = 1;
+console.log(`FEED_FAILURES=${failed}`);
+// One unreachable vendor site shouldn't block every other feed's candidates.
+// Fail the run only when nothing could be read; otherwise the workflow warns.
+if (failed > 0 && failed === feeds.length) process.exitCode = 1;
