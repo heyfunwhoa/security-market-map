@@ -3,7 +3,7 @@ id: "ot-security"
 type: "category"
 name: "OT and IoT security"
 layer: "core"
-vendors: 4
+vendors: 5
 ---
 
 # OT and IoT security
@@ -33,7 +33,7 @@ Visibility and detection for operational technology and unmanaged devices. This 
 
 ## Vendors (adjacent)
 
-_None recorded._
+- OPSWAT
 
 ## What buyers do instead
 

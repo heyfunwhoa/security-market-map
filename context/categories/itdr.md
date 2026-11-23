@@ -3,7 +3,7 @@ id: "itdr"
 type: "category"
 name: "Identity threat detection and posture (ITDR, ISPM)"
 layer: "core"
-vendors: 20
+vendors: 21
 ---
 
 # Identity threat detection and posture (ITDR, ISPM)
@@ -55,6 +55,7 @@ From 7 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - Vectra AI
 - DTEX Systems
 - Obsidian Security
+- Thinkst Applied Research
 - Orchid Security
 - Push Security
 - Searchlight Cyber

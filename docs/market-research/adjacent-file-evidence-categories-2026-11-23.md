@@ -1,8 +1,8 @@
 # Adjacent file and evidence categories — November 2026
 
-**Scope:** public industry research. **Status:** candidate research note. No typed categories, vendors or claims are added. Not benchmarked, not a feature-parity table, not a competitor list for any one vendor. **Prepared:** 2026-11-23. **Next editorial check:** 2027-01-23. **Method:** [Competitive Intelligence Playbook](competitive-intelligence-playbook.md).
+**Scope:** public industry research. **Status:** research note; the three categories are now typed (`lib/data/ecosystem.ts`), each with one research-candidate vendor/product and one low-confidence vendor-published claim. Not benchmarked, not a feature-parity table, not a competitor list for any one vendor. **Prepared:** 2026-11-23. **Next editorial check:** 2027-01-23. **Method:** [Competitive Intelligence Playbook](competitive-intelligence-playbook.md).
 
-**Evidence limit for this pass:** vendor official pages were **not** inspected; every vendor row below comes from secondary roundups or directories found by web search. Several roundups are written by a vendor in the same category (noted per source). Promotion to typed records needs official-page inspection first.
+**Evidence limit for this pass:** official pages could not be opened directly. The three typed vendor records (Velociraptor under existing `rapid7`; new `thinkst`; new `opswat`) rest on the vendors' own pages as shown in search-index text, observed 2026-11-23, and their claims are marked `low` confidence. Every other vendor row below is secondary. Several roundups are written by a vendor in the same category (noted per source). Re-inspect the full official pages before raising confidence.
 
 ## Why these three
 
@@ -24,7 +24,8 @@ These fill a gap the repo already records: the `digital-forensics` seat has an u
   - Deception: "Can we get alerts that are almost never false positives, without adding agents everywhere?"
   - CDR: "Can we let people open files from outside without detonating or scanning every one?"
 - **Reused IDs:** seats `digital-forensics`, `incident-response`, `threat-hunter`, `soc-lead`; categories `malware-analysis`, `endpoint-security`, `email-security`, `mdr`, `itdr`. Rapid7 and Google may already exist as vendors; check before adding product records.
-- **Navigation change:** none proposed. If promoted, each appears through existing category and seat pages.
+- **Typed links added:** `dfir-collection` → seats `digital-forensics`, `incident-response`; `deception` → `threat-hunter`, `soc-lead`; `cdr-file-sanitization` → `ot-security`. `malware-analysis` now lists `dfir-collection` and `cdr-file-sanitization` as adjacent. Two hypothesis alternatives per category in `lib/data/alternatives.ts`.
+- **Navigation change:** none. Each appears through existing category and seat pages.
 - **Back out:** each links back to `malware-analysis` and `xdr` as complementary layers in the same incident.
 
 ## 1. Digital forensics and IR collection (`dfir-collection`, proposed)
@@ -102,11 +103,14 @@ Budget ownership for each proposed category; how far EDR and XDR suites bundle e
 | CD1 | OPSWAT — CDR: 8 best vendors in 2026 | https://www.opswat.com/blog/content-disarm-reconstruction-cdr-8-best-vendors-in-2026 | Vendor-authored roundup | 2026-11-23 |
 | CD2 | iThome — CDR vendor overview | https://www.ithome.com.tw/tech/122771 | Secondary | 2026-11-23 |
 | CD3 | MarketResearch.com — Global CDR market report listing | https://www.marketresearch.com/Deep-Insights-Research-Co-DIR-v4285/Global-Content-Disarm-Reconstruction-CDR-41705778 | Market report listing | 2026-11-23 |
+| OF6 | Velociraptor — What is Velociraptor? | https://docs.velociraptor.app/docs/overview/ | Official docs (search-index text) | 2026-11-23 |
+| OF7 | Thinkst — Canarytoken overview and use cases | https://help.canary.tools/hc/en-gb/articles/10905485310109-Canarytoken-Overview-and-Use-Cases | Official docs (search-index text) | 2026-11-23 |
+| OF8 | OPSWAT — Deep CDR technology | https://www.opswat.com/technologies/deep-cdr | Vendor (search-index text) | 2026-11-23 |
 | CD4 | Slashdot — CDR software directory | https://slashdot.org/software/content-disarm-reconstruction-cdr/ | Directory | 2026-11-23 |
 
 Rights: short paraphrase only; no reproduced vendor copy.
 
 ## Consumer disposition
 
-- **Security Market Map catalog:** no typed changes from this note. Promotion candidates, in suggested order: `dfir-collection` (fills the `digital-forensics` seat gap), then `deception`, then `cdr-file-sanitization`. Each needs official-page inspection and owner approval.
+- **Security Market Map catalog:** three typed categories added with one vendor each (Velociraptor, Thinkst Canary, OPSWAT Deep CDR). Next: open the official pages in full, then add Binalyze, Acalvio and Votiro or Glasswall as research candidates.
 - **Other projects:** no change proposed.
