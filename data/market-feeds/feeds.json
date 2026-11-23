@@ -6,5 +6,85 @@
     "url": "https://docs.gitguardian.com/releases/saas/rss.xml",
     "format": "rss",
     "note": "Product and feature announcements, about one a week (13 from 2026-09-07 to 2026-11-20). Self-Hosted mostly repeats these monthly and ggshield posts are CLI version bumps, so neither is watched. Detector releases are tracked in Detector Atlas, not here."
+  },
+  {
+    "id": "github-appsec-changelog",
+    "vendorId": "github",
+    "label": "GitHub Changelog: application security label",
+    "url": "https://github.blog/changelog/label/application-security/feed/",
+    "format": "rss",
+    "note": "Security-scoped slice of GitHub's changelog: secret scanning, code scanning, CodeQL and Advanced Security. About 10 posts in three weeks (2026-11-04 to 2026-11-23). The full changelog is not watched because it covers every GitHub product."
+  },
+  {
+    "id": "gitlab-releases",
+    "vendorId": "gitlab",
+    "label": "GitLab release notes and patch releases",
+    "url": "https://about.gitlab.com/all-releases.xml",
+    "format": "atom",
+    "note": "Monthly release notes plus roughly weekly patch releases (8 posts from 2026-10-15 to 2026-11-20). Patch releases are usually dismissed; the monthly notes cover secret detection and other security features. Large feed (about 4 MB)."
+  },
+  {
+    "id": "hashicorp-vault-blog",
+    "vendorId": "hashicorp",
+    "label": "HashiCorp blog: Vault",
+    "url": "https://www.hashicorp.com/blog/products/vault/feed.xml",
+    "format": "atom",
+    "note": "Vault-only slice of HashiCorp's blog, where Vault, Vault Radar and HCP launches are announced. About 8 posts from 2026-10-22 to 2026-11-17."
+  },
+  {
+    "id": "doppler-changelog",
+    "vendorId": "doppler",
+    "label": "Doppler changelog",
+    "url": "https://docs.doppler.com/changelog.rss",
+    "format": "rss",
+    "note": "One roll-up post per month listing that month's product changes."
+  },
+  {
+    "id": "aikido-blog",
+    "vendorId": "aikido",
+    "label": "Aikido Security blog",
+    "url": "https://www.aikido.dev/blog/rss.xml",
+    "format": "rss",
+    "note": "Aikido announces launches on its blog, which also carries vulnerability write-ups and articles. High volume (several posts a week); most items will be dismissed."
+  },
+  {
+    "id": "snyk-blog",
+    "vendorId": "snyk",
+    "label": "Snyk blog",
+    "url": "https://snyk.io/blog/feed/",
+    "format": "rss",
+    "note": "Product announcements, analyst news and articles. About one to three posts a week."
+  },
+  {
+    "id": "wiz-blog",
+    "vendorId": "wiz",
+    "label": "Wiz blog",
+    "url": "https://www.wiz.io/feed/rss.xml",
+    "format": "rss",
+    "note": "Product announcements, research and articles; linked from wiz.io as its RSS feed. Several posts a week; most items will be dismissed."
+  },
+  {
+    "id": "aembit-blog",
+    "vendorId": "aembit",
+    "label": "Aembit blog",
+    "url": "https://aembit.io/feed/",
+    "format": "rss",
+    "note": "Workload and agent identity vendor. The feed lists only the newest few posts, so a busy week could drop items between weekly runs."
+  },
+  {
+    "id": "cycode-blog",
+    "vendorId": "cycode",
+    "label": "Cycode blog",
+    "url": "https://cycode.com/feed/",
+    "format": "rss",
+    "note": "Product announcements, vulnerability write-ups and research. Several posts a week."
+  },
+  {
+    "id": "ox-security-blog",
+    "vendorId": "ox-security",
+    "label": "OX Security blog",
+    "url": "https://www.ox.security/feed/",
+    "format": "rss",
+    "note": "The feed lists only the newest post, so weekly runs can miss posts in busy weeks. Watched anyway as the only official feed OX publishes."
   }
 ]

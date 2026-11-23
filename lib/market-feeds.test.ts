@@ -1,7 +1,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { vendors } from "./data/market";
+import { catalog } from "./catalog";
 import {
   FIRST_RUN_LOOKBACK_DAYS,
   mergeCandidates,
@@ -74,7 +74,7 @@ describe("mergeCandidates", () => {
 describe("watched feeds", () => {
   const dir = join(process.cwd(), "data/market-feeds");
   const feeds = JSON.parse(readFileSync(join(dir, "feeds.json"), "utf8")) as MarketFeed[];
-  const vendorIds = new Set(vendors.map((v) => v.id));
+  const vendorIds = new Set(catalog.vendors.map((v) => v.id));
 
   it("point at catalog vendors over https, with unique ids", () => {
     expect(new Set(feeds.map((f) => f.id)).size).toBe(feeds.length);

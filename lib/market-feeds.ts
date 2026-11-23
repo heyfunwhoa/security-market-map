@@ -10,7 +10,7 @@
 export type MarketFeed = {
   /** Stable id, also the candidates file name. */
   id: string;
-  /** Vendor id in lib/data/market.ts. */
+  /** Vendor id in the composed catalog (lib/catalog.ts). */
   vendorId: string;
   label: string;
   url: string;
