@@ -658,5 +658,75 @@
     "lastReviewedOn": "2026-11-22",
     "cadence": "event_driven",
     "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:tanstack-npm-postmortem-2026",
+    "publisher": "TanStack",
+    "type": "company_incident_report",
+    "url": "https://tanstack.com/blog/npm-supply-chain-compromise-postmortem",
+    "publishedOn": "2026-05-11",
+    "lastReviewedOn": "2026-11-22",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:grafana-tanstack-incident-update-2026",
+    "publisher": "Grafana Labs",
+    "type": "company_incident_report",
+    "url": "https://grafana.com/blog/grafana-labs-security-update-latest-on-tanstack-npm-supply-chain-ransomware-incident/",
+    "publishedOn": "2026-05-19",
+    "lastReviewedOn": "2026-11-22",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:grafana-tanstack-post-incident-review-2026",
+    "publisher": "Grafana Labs",
+    "type": "company_incident_report",
+    "url": "https://grafana.com/blog/post-incident-review-for-tanstack-npm-supply-chain-ransom-incident/",
+    "publishedOn": "2026-06-23",
+    "lastReviewedOn": "2026-11-22",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:mistral-advisory-mai-2026-002",
+    "publisher": "Mistral AI",
+    "type": "company_incident_report",
+    "url": "https://docs.mistral.ai/resources/security-advisories/MAI-2026-002",
+    "publishedOn": "2026-05-12",
+    "lastReviewedOn": "2026-11-22",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:github-internal-repositories-investigation-2026",
+    "publisher": "GitHub",
+    "type": "company_incident_report",
+    "url": "https://github.blog/security/investigating-unauthorized-access-to-githubs-internal-repositories/",
+    "publishedOn": "2026-05-20",
+    "lastReviewedOn": "2026-11-22",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:nx-console-advisory-ghsa-c9j4-9m59-847w",
+    "publisher": "Nrwl (Nx Console)",
+    "type": "vulnerability_advisory",
+    "url": "https://github.com/nrwl/nx-console/security/advisories/GHSA-c9j4-9m59-847w",
+    "publishedOn": "2026-05-18",
+    "lastReviewedOn": "2026-11-22",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:csa-sg-ad-2026-009",
+    "publisher": "Cyber Security Agency of Singapore",
+    "type": "government_alert",
+    "url": "https://www.csa.gov.sg/alerts-and-advisories/advisories/ad-2026-009/",
+    "publishedOn": "2026-08-06",
+    "lastReviewedOn": "2026-11-22",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
   }
 ]
