@@ -234,6 +234,20 @@
       "reviewStatus": "candidate",
       "discovery": [
         {
+          "publisher": "GitHub",
+          "canonicalUrl": "https://github.blog/security/investigating-unauthorized-access-to-githubs-internal-repositories/",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-23T01:55:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Nrwl (Nx Console maintainers)",
+          "canonicalUrl": "https://github.com/nrwl/nx-console/security/advisories/GHSA-c9j4-9m59-847w",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-23T01:55:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
           "publisher": "CSO Online",
           "canonicalUrl": "https://www.csoonline.com/article/4174747/github-admits-major-source-code-leak-after-3800-internal-repositories-breached-2.html",
           "sourceRole": "secondary",
@@ -248,7 +262,7 @@
           "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
-      "dedupeCheck": "No seed incident or candidate covers this. Reported as part of the same TeamPCP activity; the VS Code extension vector differs from the npm worm, so keep as its own record.",
+      "dedupeCheck": "No seed incident or candidate covers this. Reported as part of the same TeamPCP activity; the VS Code extension vector differs from the npm worm, so keep as its own record. Primary sources (GitHub's blog and the Nx Console advisory) added 2026-11-22.",
       "veris": {
         "schemaVersion": null,
         "actor": null,
@@ -260,13 +274,31 @@
       "claims": [
         {
           "id": "claim:github-internal-repos-vscode-extension-2026:1",
-          "statement": "GitHub said on May 20, 2026 that it had detected and contained a compromise of an employee device involving a poisoned VS Code extension, and that the activity involved exfiltration of GitHub-internal repositories only.",
+          "statement": "GitHub's CISO wrote on May 20, 2026 that on May 18 GitHub detected and contained a compromise of an employee device involving a poisoned third-party VS Code extension, removed the malicious version, isolated the device and rotated critical secrets over the next day.",
           "epistemicStatus": "reported",
-          "sourceUrl": "https://www.csoonline.com/article/4174747/github-admits-major-source-code-leak-after-3800-internal-repositories-breached-2.html"
+          "sourceUrl": "https://github.blog/security/investigating-unauthorized-access-to-githubs-internal-repositories/"
         },
         {
           "id": "claim:github-internal-repos-vscode-extension-2026:2",
-          "statement": "Reporting identifies the extension as Nx Console version 18.95.0 and says about 3,800 internal repositories were cloned; TeamPCP claimed the theft and offered the data for sale.",
+          "statement": "GitHub said the activity involved exfiltration of GitHub-internal repositories only, that the attacker's claim of about 3,800 repositories was directionally consistent with its investigation, and that it had no evidence of impact to customer data outside those repositories, though some internal repositories hold customer support excerpts.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://github.blog/security/investigating-unauthorized-access-to-githubs-internal-repositories/"
+        },
+        {
+          "id": "claim:github-internal-repos-vscode-extension-2026:3",
+          "statement": "GitHub's May 26 update says it is rotating keys as a precaution, including the GitHub Enterprise Server binary signing key, and GHES administrators must rotate the GPG public key on their instances before installing future updates.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://github.blog/security/investigating-unauthorized-access-to-githubs-internal-repositories/"
+        },
+        {
+          "id": "claim:github-internal-repos-vscode-extension-2026:4",
+          "statement": "The extension GitHub links to is Nx Console: its maintainers' advisory GHSA-c9j4-9m59-847w (published May 18, 2026) says version 18.95.0 was compromised, fetched an obfuscated payload that harvested credentials from disk and memory, and was fixed in 18.100.0.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://github.com/nrwl/nx-console/security/advisories/GHSA-c9j4-9m59-847w"
+        },
+        {
+          "id": "claim:github-internal-repos-vscode-extension-2026:5",
+          "statement": "TeamPCP claimed the theft and offered the data for sale.",
           "epistemicStatus": "reported",
           "sourceUrl": "https://www.sophos.com/en-us/blog/github-internal-repositories-breached"
         }
@@ -288,9 +320,9 @@
       "defensiveMappings": [],
       "weaknessMappings": [],
       "unresolvedQuestions": [
-        "Primary source needed: GitHub's statements were seen only as quoted in news and on X; its blog post was not fetched.",
-        "GitHub has not named the extension itself in the quoted statements; the Nx Console identification comes from researchers.",
-        "GitHub noted some internal repositories contain customer support excerpts; customer impact is not confirmed."
+        "GitHub promised a fuller report when the investigation completes; none was found as of 2026-11-22.",
+        "Customer impact from the support excerpts in internal repositories is not confirmed either way.",
+        "Attribution to TeamPCP rests on the group's claim and researchers, not on GitHub's post."
       ]
     },
     {
