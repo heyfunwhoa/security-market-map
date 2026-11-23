@@ -1164,6 +1164,18 @@ export const categoryFillSources: Source[] = [
     "excerpt": "Stairwell says it preserves every executable from enrolled endpoints in a dedicated environment with no arbitrary retention window."
   },
   {
+    "id": "src-fill-stairwell-backstory-launch",
+    "title": "Stairwell — Backstory launch press release (GlobeNewswire)",
+    "url": "https://www.globenewswire.com/news-release/2026/07/29/3335300/0/en/stairwell-launches-backstory-the-first-agentic-investigation-platform-for-malware-blast-radius.html",
+    "canonicalUrl": "https://www.globenewswire.com/news-release/2026/07/29/3335300/0/en/stairwell-launches-backstory-the-first-agentic-investigation-platform-for-malware-blast-radius.html",
+    "publisher": "Stairwell",
+    "sourceType": "vendor_marketing",
+    "publishedAt": "2026-07-29",
+    "retrievedAt": "2026-11-22",
+    "volatility": "stable",
+    "excerpt": "Stairwell announced Backstory as an agentic investigation product that traces related malware variants, identifies affected systems and maps an incident's scope."
+  },
+  {
     "id": "src-fill-cribl-stream",
     "title": "Cribl Stream — product page",
     "url": "https://www.cribl.io/stream",
@@ -1561,6 +1573,26 @@ export const categoryFillClaims: Claim[] = [
     "lastCheckedAt": "2026-11-11",
     "conflictsWith": [],
     "notes": "Publisher-reported, not independently tested; no direct-competitor claim. See docs/market-research/file-analysis-ai-investigation-landscape-2026-11.md."
+  },
+  {
+    "id": "claim-fill-stairwell-backstory-launch",
+    "statement": "Stairwell says Backstory, announced July 29, 2026, traces related malware variants, identifies affected systems and maps an incident's scope by reasoning over preserved executable files rather than alerts.",
+    "subjectType": "product",
+    "subjectId": "stairwell-platform",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-stairwell-backstory-launch",
+    "sourceUrl": "https://www.globenewswire.com/news-release/2026/07/29/3335300/0/en/stairwell-launches-backstory-the-first-agentic-investigation-platform-for-malware-blast-radius.html",
+    "sourceType": "vendor_marketing",
+    "publishedAt": "2026-07-29",
+    "observedAt": "2026-11-22",
+    "effectiveFrom": "2026-07-29",
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-22",
+    "conflictsWith": [],
+    "notes": "Vendor press release; investigation quality not independently tested. 'First agentic investigation platform' is the vendor's own label and is not adopted here. See docs/market-research/file-analysis-ai-investigation-landscape-2026-11.md (2026-11-23 update)."
   },
   {
     "id": "claim-fill-cribl-stream",
