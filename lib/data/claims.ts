@@ -1693,6 +1693,27 @@ export const claims: Claim[] = [
     notes: "Historical. The close is a separate event on 11 Feb 2026.",
   }),
   claim({
+    id: "claim-c1-workday-agreement",
+    statement:
+      "On 13 Oct 2026 Workday announced a definitive agreement to acquire C1.ai (formerly ConductorOne), signed on 12 Oct 2026 according to its Form 8-K. Workday said the deal is expected to close in the fourth quarter of its fiscal 2027, ending 31 Jan 2027, subject to customary closing conditions, and that \"With C1.ai, Workday will become the identity governance layer for people, money, and agents.\"",
+    subjectType: "vendor",
+    subjectId: "c1",
+    capabilityId: null,
+    polarity: "asserts",
+    sourceId: "src-workday-c1-agree",
+    sourceUrl: "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-to-Acquire-C1-ai-a-Leading-Agentic-Identity-Platform-for-People-and-Agents/default.aspx",
+    sourceType: "press_release",
+    publishedAt: "2026-10-13",
+    observedAt: "2026-11-23",
+    effectiveFrom: "2026-10-12",
+    effectiveTo: null,
+    confidence: "high",
+    verificationStatus: "vendor_published",
+    lastCheckedAt: "2026-11-23",
+    conflictsWith: [],
+    notes: "Agreement, not a closed deal; record the close as a separate event when Workday or C1 announces it. Price, C1 brand after closing, and continuity for customers who do not use Workday are not stated in the release. Cross-checked against Workday's Form 8-K: https://www.sec.gov/Archives/edgar/data/1327811/000132781126000051/wday-20261012.htm",
+  }),
+  claim({
     id: "claim-owasp-nhi-top10",
     statement:
       "OWASP's Non-Human Identities Top 10 for 2025 names improper offboarding, secret leakage, vulnerable third-party NHIs, insecure authentication, overprivileged NHIs, insecure cloud deployment configurations, long-lived secrets, environment isolation, NHI reuse, and human use of an NHI. The list ranks risks. It does not rank vendors.",

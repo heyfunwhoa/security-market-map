@@ -705,6 +705,19 @@ export const sources: Source[] = [
       "CPO Q&A describing inventory, Paladin, and Gateway Sync for agent requests. Vendor-published.",
   },
   {
+    id: "src-workday-c1-agree",
+    title: "Workday to acquire C1.ai",
+    url: "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-to-Acquire-C1-ai-a-Leading-Agentic-Identity-Platform-for-People-and-Agents/default.aspx",
+    canonicalUrl: "https://investor.workday.com/news-and-events/press-releases/news-details/2026/Workday-to-Acquire-C1-ai-a-Leading-Agentic-Identity-Platform-for-People-and-Agents/default.aspx",
+    publisher: "Workday",
+    sourceType: "press_release",
+    publishedAt: "2026-10-13",
+    retrievedAt: "2026-11-23",
+    volatility: "stable",
+    excerpt:
+      "13 Oct 2026 announcement of a definitive agreement to acquire C1.ai, expected to close in Workday's fiscal Q4 2027 (ending 31 Jan 2027), subject to customary closing conditions. Workday's Form 8-K dates the agreement 12 Oct 2026. An agreement, not a closed deal; no price disclosed.",
+  },
+  {
     id: "src-panw-agree",
     title: "Palo Alto Networks agreement to acquire CyberArk",
     url: "https://www.paloaltonetworks.com/company/press/2025/palo-alto-networks-announces-agreement-to-acquire-cyberark--the-identity-security-leader",

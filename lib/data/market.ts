@@ -18,7 +18,7 @@ export const vendors: Vendor[] = [
     formerNames: ["ConductorOne"],
     website: "https://www.c1.ai/",
     positioning:
-      "Formerly ConductorOne. Public pages describe an identity governance platform for human, non-human, and agent identities, including requests, reviews, and just-in-time grants. Treat detailed breadth as vendor-published until a design review.",
+      "Formerly ConductorOne. Public pages describe an identity governance platform for human, non-human, and agent identities, including requests, reviews, and just-in-time grants. Treat detailed breadth as vendor-published until a design review. Workday signed a definitive agreement to acquire C1 on 12 Oct 2026 (announced 13 Oct 2026), expected to close by 31 Jan 2027; until a close is announced, treat C1 as an independent vendor.",
     primaryCategoryIds: ["iga", "agent-identity", "agentic-runtime"],
     adjacentCategoryIds: ["pam", "nhi"],
     identityScopes: ["human", "nhi", "agent"],
@@ -27,6 +27,7 @@ export const vendors: Vendor[] = [
       "Does MCP on the just-in-time page mean a request channel, or enforcement inside the customer's existing gateway?",
       "Which connectors provision and revoke without a ticket?",
       "What is generally available versus described on the marketing site?",
+      "After the Workday deal closes, what happens to the C1 brand, pricing, and connectors for customers who do not run Workday?",
     ],
   }),
   vendor({
@@ -1589,10 +1590,10 @@ export const events: CatalogEvent[] = [
   {
     id: "evt-c1-rename",
     vendorId: "c1",
-    date: null,
+    date: "2026-04-06",
     kind: "rename",
     title: "ConductorOne says it is now C1",
-    summary: "The rebrand post says the company is C1 and lives at c1.ai. It does not give a date. Do not invent one.",
+    summary: "The rebrand post, dated 6 Apr 2026, says \"Today, ConductorOne becomes C1.ai\" and that the company lives at c1.ai.",
     sourceId: "src-c1-rebrand",
   },
   {
@@ -1603,6 +1604,15 @@ export const events: CatalogEvent[] = [
     title: "Opal Zero announced",
     summary: "Press release dated 17 Sep 2026. Vendor says general availability is at the end of September. A launch price is a separate pricing signal.",
     sourceId: "src-opal-press",
+  },
+  {
+    id: "evt-c1-workday-agree",
+    vendorId: "c1",
+    date: "2026-10-12",
+    kind: "acquisition",
+    title: "Workday agrees to acquire C1",
+    summary: "Workday signed a definitive agreement to acquire C1.ai (ConductorOne, Inc.) on 12 Oct 2026 and announced it on 13 Oct 2026. Expected to close by 31 Jan 2027, subject to customary closing conditions. Not the close; price not disclosed.",
+    sourceId: "src-workday-c1-agree",
   },
   {
     id: "evt-panw-agree",
