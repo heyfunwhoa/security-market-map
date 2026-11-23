@@ -41,6 +41,8 @@ export type FeedCandidatesFile = {
   feedUrl: string;
   /** Last time the feed was read successfully. */
   checkedAt: string;
+  /** Items dated before this are never added (set on the first run to the lookback cutoff). */
+  since?: string;
   /** Newest first. */
   candidates: FeedCandidate[];
 };
@@ -124,15 +126,18 @@ export function mergeCandidates(
   today: string,
 ): { file: FeedCandidatesFile; added: FeedCandidate[] } {
   const known = new Set((stored?.candidates ?? []).map((c) => c.url));
-  const cutoff = stored ? null : daysBefore(today, FIRST_RUN_LOOKBACK_DAYS);
+  // Never backfill: the first run keeps the last FIRST_RUN_LOOKBACK_DAYS, and later runs keep the same
+  // starting point, so a feed that still lists older items doesn't re-add them as new.
+  const oldestStored = stored?.candidates.reduce<string | null>((min, c) => (min === null || c.date < min ? c.date : min), null) ?? null;
+  const since = stored?.since ?? (stored ? (oldestStored ?? today) : daysBefore(today, FIRST_RUN_LOOKBACK_DAYS));
   const added: FeedCandidate[] = fetched
-    .filter((item) => !known.has(item.url) && (cutoff === null || item.date >= cutoff))
+    .filter((item) => !known.has(item.url) && item.date >= since)
     .map((item) => ({ ...item, firstSeen: today, status: "new" }));
   const candidates = [...added, ...(stored?.candidates ?? [])].sort(
     (a, b) => b.date.localeCompare(a.date) || a.url.localeCompare(b.url),
   );
   return {
-    file: { feedId: feed.id, vendorId: feed.vendorId, feedUrl: feed.url, checkedAt: today, candidates },
+    file: { feedId: feed.id, vendorId: feed.vendorId, feedUrl: feed.url, checkedAt: today, since, candidates },
     added,
   };
 }
