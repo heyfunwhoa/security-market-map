@@ -2,7 +2,7 @@
   "feedId": "gitguardian-saas",
   "vendorId": "gitguardian",
   "feedUrl": "https://docs.gitguardian.com/releases/saas/rss.xml",
-  "checkedAt": "2026-11-22",
+  "checkedAt": "2026-11-23",
   "candidates": [
     {
       "title": "Invalid secrets no longer block your developers and AI coding agents",
@@ -38,6 +38,111 @@
       "url": "https://docs.gitguardian.com/releases/saas/2026/10/27/changelog",
       "firstSeen": "2026-11-22",
       "status": "dismissed"
+    },
+    {
+      "title": "Catch secrets leaked in public Docker Hub images",
+      "date": "2026-10-21",
+      "url": "https://docs.gitguardian.com/releases/saas/2026/10/21/changelog",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "Check validity and permissions of your vaulted secrets, from inside your network",
+      "date": "2026-10-15",
+      "url": "https://docs.gitguardian.com/releases/saas/2026/10/15/changelog",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "Scan your Harbor container registry for secrets",
+      "date": "2026-10-09",
+      "url": "https://docs.gitguardian.com/releases/saas/2026/10/09/changelog",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "Environments, Classified at the Secret Level For You",
+      "date": "2026-10-07",
+      "url": "https://docs.gitguardian.com/releases/saas/2026/10/07/changelog",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "Push your secret incidents to Wiz",
+      "date": "2026-09-30",
+      "url": "https://docs.gitguardian.com/releases/saas/2026/09/30/changelog",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "Spot your uncovered assets. Close your blindspot in one click!",
+      "date": "2026-09-28",
+      "url": "https://docs.gitguardian.com/releases/saas/2026/09/28/changelog",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "AI Hooks keep leaked tool output away from the model",
+      "date": "2026-09-25",
+      "url": "https://docs.gitguardian.com/releases/saas/2026/09/25/changelog",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "See all your AI agents across the fleet. Stop them leaking your secrets.",
+      "date": "2026-09-07",
+      "url": "https://docs.gitguardian.com/releases/saas/2026/09/07/changelog",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "Vaulted Secrets Now Classified by Value",
+      "date": "2026-09-04",
+      "url": "https://docs.gitguardian.com/releases/saas/2026/09/04/changelog",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "GitGuardian agents tell you which Public Monitoring incidents are actually yours",
+      "date": "2026-08-27",
+      "url": "https://docs.gitguardian.com/releases/saas/2026/08/27/changelog",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "Scan your AWS S3 buckets for secrets",
+      "date": "2026-08-25",
+      "url": "https://docs.gitguardian.com/releases/saas/2026/08/25/changelog",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "Set your own validity status on a secret",
+      "date": "2026-08-14",
+      "url": "https://docs.gitguardian.com/releases/saas/2026/08/14/changelog",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "Catch credential stealers on your endpoint fleet",
+      "date": "2026-08-10",
+      "url": "https://docs.gitguardian.com/releases/saas/2026/08/10/changelog",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "Track your GitHub check runs from the dashboard",
+      "date": "2026-07-28",
+      "url": "https://docs.gitguardian.com/releases/saas/2026/07/28/changelog",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "Mention members and teams in incident notes",
+      "date": "2026-07-20",
+      "url": "https://docs.gitguardian.com/releases/saas/2026/07/20/changelog",
+      "firstSeen": "2026-11-23",
+      "status": "new"
     }
   ]
 }

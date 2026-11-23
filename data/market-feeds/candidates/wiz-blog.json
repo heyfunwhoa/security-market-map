@@ -1,0 +1,155 @@
+{
+  "feedId": "wiz-blog",
+  "vendorId": "wiz",
+  "feedUrl": "https://www.wiz.io/feed/rss.xml",
+  "checkedAt": "2026-11-23",
+  "candidates": [
+    {
+      "title": "Agentic Attacks: In The Wild",
+      "date": "2026-11-23",
+      "url": "https://www.wiz.io/blog/agentic-attacks-artex-offensive-ai-frameworks",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "phpAfterShell and Critical PHP RCE Vulnerabilities: Everything You Need To Know",
+      "date": "2026-11-19",
+      "url": "https://www.wiz.io/blog/phpaftershell-critical-php-rce-vulnerabilities-cve-2026-126714",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "Unauthenticated Remote Code Execution in NGINX: CVE-2026-123633 and CVE-2026-123007",
+      "date": "2026-11-18",
+      "url": "https://www.wiz.io/blog/nginx-http2-rce-vulnerabilities",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "CVE-2026-114938 OpenJDK RCE (Java4Shell): Everything You Need to Know",
+      "date": "2026-11-17",
+      "url": "https://www.wiz.io/blog/cve-2026-114938-rce-java4shell-openjdk",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "Microsoft agent-framework Compromised: Credential Stealer Targets Azure and CI Pipelines",
+      "date": "2026-11-17",
+      "url": "https://www.wiz.io/blog/malicious-version-of-microsofts-agent-framework-published-to-pypi",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "Introducing the Wiz AI Security Agent",
+      "date": "2026-11-16",
+      "url": "https://www.wiz.io/blog/introducing-wiz-ai-security-agent",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "The Green Agent POV: Formulating the Fix for an Exposed Container with Sensitive Data Access",
+      "date": "2026-11-13",
+      "url": "https://www.wiz.io/blog/inside-green-agent-investigation",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "ASPM in the AI Era Part 3: Fixing Risk at the Speed of Code",
+      "date": "2026-11-12",
+      "url": "https://www.wiz.io/blog/aspm-ai-era-pt-3-fixing-risk-code-speed",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "Critical RCE Vulnerability in Apache HTTP Server: Everything You Need To Know",
+      "date": "2026-11-11",
+      "url": "https://www.wiz.io/blog/cve-2026-119618-rce-apache-http-server-vulnerability",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "How to Evaluate AI Agent Cybersecurity Capabilities",
+      "date": "2026-11-10",
+      "url": "https://www.wiz.io/blog/cyber-model-arena-ai-benchmark",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "Wiz and ISMAP: Building the Foundation for Japan's Public Sector",
+      "date": "2026-11-10",
+      "url": "https://www.wiz.io/blog/wiz-and-ismap-for-japan-public-sector",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "Trusted by Default: Qubole Cross-Account Access Abused in the Wild",
+      "date": "2026-11-09",
+      "url": "https://www.wiz.io/blog/qubole-cross-account-access-abused-in-the-wild",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "The ROI of Agentic Remediation: Real-World Results with Wiz Green Agent",
+      "date": "2026-11-03",
+      "url": "https://www.wiz.io/blog/green-agent-agentic-remediation",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "From Reactive to Proactive: Empowering SOC Teams with the Wiz Red and Blue Agents",
+      "date": "2026-11-02",
+      "url": "https://www.wiz.io/blog/soc-alerts-red-and-blue-agents",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "Key Takeaways: AI Threat Readiness Survey Report 2026",
+      "date": "2026-10-30",
+      "url": "https://www.wiz.io/blog/ai-threat-readiness-survey-report-2026",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "“Black October” for AI Developer Platforms",
+      "date": "2026-10-30",
+      "url": "https://www.wiz.io/blog/black-october-for-ai-developer-platforms",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "The Rise of Agentic Attacks: What They Look Like, and Where They're Headed",
+      "date": "2026-10-29",
+      "url": "https://www.wiz.io/blog/the-rise-of-agentic-attacks",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "PHP2Shell: Exploitation Attempts and Remediation Trends",
+      "date": "2026-10-27",
+      "url": "https://www.wiz.io/blog/php2shell-exploitation-so-far",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "The Pwn Request Reckoning: What Still Works Against GitHub Actions",
+      "date": "2026-10-26",
+      "url": "https://www.wiz.io/blog/github-actions-security-pwn-request-reckoning",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "Broccoli2shell: Everything You Need To Know About The Critical Brotli Decoder Vulnerability",
+      "date": "2026-10-25",
+      "url": "https://www.wiz.io/blog/cve-2026-111497-brotli-rce-node-js",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "Gheist: Attempted Scaled Abuse of Stolen GitHub Tokens Stumbles",
+      "date": "2026-10-25",
+      "url": "https://www.wiz.io/blog/gheist-attempted-scaled-abuse-of-stolen-github-tokens-stumbles",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    }
+  ]
+}

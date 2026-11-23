@@ -1,0 +1,78 @@
+{
+  "feedId": "github-appsec-changelog",
+  "vendorId": "github",
+  "feedUrl": "https://github.blog/changelog/label/application-security/feed/",
+  "checkedAt": "2026-11-23",
+  "candidates": [
+    {
+      "title": "Code coverage uploads now flag invalid report formats",
+      "date": "2026-11-23",
+      "url": "https://github.blog/changelog/2026-11-23-code-coverage-uploads-now-flag-invalid-report-formats",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "Secret scanning reduces false positives for Slack",
+      "date": "2026-11-23",
+      "url": "https://github.blog/changelog/2026-11-23-secret-scanning-reduces-false-positives-for-slack",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "Security risk assessments run automatically on GitHub Team",
+      "date": "2026-11-18",
+      "url": "https://github.blog/changelog/2026-11-18-security-risk-assessments-run-automatically-on-github-team",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "Secret scanning on demand for developers and agents",
+      "date": "2026-11-17",
+      "url": "https://github.blog/changelog/2026-11-17-secret-scanning-on-demand-for-developers-and-agents",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "Bulk start AI Scan for repositories",
+      "date": "2026-11-16",
+      "url": "https://github.blog/changelog/2026-11-16-bulk-start-ai-scan-for-repositories",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "Manage AI Scan for repositories using the REST API",
+      "date": "2026-11-13",
+      "url": "https://github.blog/changelog/2026-11-13-manage-ai-scan-for-repositories-using-the-rest-api",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "Public monitoring alerts now have direct links",
+      "date": "2026-11-12",
+      "url": "https://github.blog/changelog/2026-11-12-public-monitoring-alerts-now-have-direct-links",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "Secret scanning detects Cloudflare service tokens",
+      "date": "2026-11-12",
+      "url": "https://github.blog/changelog/2026-11-12-secret-scanning-adds-a-detector-for-cloudflare",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "Secret scanning detects secrets in GitHub Actions workflow logs",
+      "date": "2026-11-09",
+      "url": "https://github.blog/changelog/2026-11-09-secret-scanning-detects-secrets-in-github-actions-workflow-logs",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    },
+    {
+      "title": "Secret scanning upgrades detectors, adds SpaceX as partner",
+      "date": "2026-11-05",
+      "url": "https://github.blog/changelog/2026-11-05-secret-scanning-upgrades-detectors-adds-spacex-as-partner",
+      "firstSeen": "2026-11-23",
+      "status": "new"
+    }
+  ]
+}
