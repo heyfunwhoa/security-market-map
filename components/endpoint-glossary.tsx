@@ -18,12 +18,19 @@ export function EndpointGlossary() {
         {groups.map((group) => (
           <div key={group.question}>
             <h3 className="font-semibold">{group.question}</h3>
-            <ul className="mt-2 space-y-1 text-sm">
+            <dl className="mt-3 space-y-4 text-sm">
               {group.ids.map((id) => {
                 const term = catalog.glossary.find((entry) => entry.id === id)!;
-                return <li key={id}><Link className={linkStyle} href={`/learn#${id}`}>{term.term}</Link></li>;
+                return (
+                  <div key={id}>
+                    <dt className="font-semibold">
+                      <Link className={linkStyle} href={`/learn#${id}`}>{term.term}</Link>
+                    </dt>
+                    <dd className="mt-1 leading-6">{term.definition}</dd>
+                  </div>
+                );
               })}
-            </ul>
+            </dl>
           </div>
         ))}
       </div>

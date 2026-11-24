@@ -1,4 +1,7 @@
 import { describe, expect, it } from "vitest";
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import { EndpointGlossary } from "../components/endpoint-glossary";
 import { catalog, searchHits } from "./catalog";
 import { DEFINED_TERMS, splitTerms, termDefinition } from "./terms";
 
@@ -22,11 +25,16 @@ describe("hover definitions", () => {
     expect(sacr?.definition).toMatch(/^An analyst publisher this map cites\. \d+ of its pages are on the source ledger\./);
   });
 
-  it("finds each endpoint glossary definition ahead of incidental mentions", () => {
+  it("shows each definition on the endpoint page and finds it ahead of incidental search mentions", () => {
+    const markup = renderToStaticMarkup(createElement(EndpointGlossary));
     const acronyms = ["EPP", "EDR", "ECP", "AI-EDR", "ECPP", "XDR", "NDR", "ITDR", "CDR", "MDR", "SDPP", "SIEM", "SOAR", "AISOC"];
     for (const acronym of acronyms) {
       const id = acronym.toLowerCase();
-      expect(catalog.glossary.filter((term) => term.id === id)).toHaveLength(1);
+      const entries = catalog.glossary.filter((term) => term.id === id);
+      expect(entries).toHaveLength(1);
+      const [entry] = entries;
+      expect(markup).toContain(`href="/learn#${id}">${renderToStaticMarkup(entry.term)}</a>`);
+      expect(markup).toContain(`>${renderToStaticMarkup(entry.definition)}</dd>`);
       expect(searchHits(acronym)[0]?.href).toBe(`/learn#${id}`);
     }
     const parts = splitTerms("AI-EDR, EDR, ECPP and ECP", new Set());
