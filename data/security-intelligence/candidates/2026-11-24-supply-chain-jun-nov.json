@@ -1,0 +1,669 @@
+{
+  "batch": "2026-11-24-supply-chain-jun-nov",
+  "status": "candidate_only",
+  "publishable": false,
+  "framework": "docs/security-intelligence/incident-classification-framework.md",
+  "discoveryContext": "November 23-24, 2026 review of supply-chain incidents from roughly late May to November 2026, gathered while researching developer-workstation and supply-chain incident response. Checked against original research where fetched: Kaspersky (DAEMON Tools), ReversingLabs and Sonatype (binding.gyp wave), Microsoft (AsyncAPI). Netskope reviewed from search excerpts only. Third-party text was paraphrased.",
+  "excludedFromIncidents": [
+    "cPGuard / OPSSHIELD update channel (Nov 2): already candidate incident:opsshield-cpguard-update-channel-2026",
+    "ChainDrop / Keyv npm worm (Aug 4): already in seed as incident:keyv-shai-hulud-npm-2026",
+    "LiteLLM releases tied to the Trivy hack (Aug 12 reporting): already in seed as incident:litellm-pypi-trivy-2026",
+    "Unnamed Russian software developer code-signing server compromise: no named victim or confirmed date",
+    "North Korea Mastra npm compromise: not verified against a source in this session"
+  ],
+  "excludedReason": "Already in the seed or another batch, no named victim, or not verified.",
+  "candidates": [
+    {
+      "incidentId": "incident:aomei-backupper-update-servers-2026",
+      "title": "AOMEI Backupper update servers tampered with to push a downloader and backdoor",
+      "incidentKind": "supply_chain",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "BleepingComputer",
+          "canonicalUrl": "https://www.bleepingcomputer.com/news/security/hackers-hijack-aomei-update-servers-to-secretly-spread-malware/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-24T04:50:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "SC World",
+          "canonicalUrl": "https://www.scworld.com/brief/attackers-exploited-aomei-backupper-update-servers-for-supply-chain-compromise",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-24T04:50:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate mentions AOMEI.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:aomei-backupper-update-servers-2026:1",
+          "statement": "Attackers repeatedly tampered with files AOMEI Backupper fetched from the vendor's update servers between April and July 2026 to distribute a backdoor, without exploiting a software vulnerability.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.scworld.com/brief/attackers-exploited-aomei-backupper-update-servers-for-supply-chain-compromise"
+        },
+        {
+          "id": "claim:aomei-backupper-update-servers-2026:2",
+          "statement": "ManageEngine's Threat Analysis Lab, working with Google GTIG and Mandiant, uncovered the campaign; ManageEngine first flagged AOMEI Backupper installing Radmin at two unrelated companies on May 28 and notified AOMEI on June 7.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.bleepingcomputer.com/news/security/hackers-hijack-aomei-update-servers-to-secretly-spread-malware/"
+        },
+        {
+          "id": "claim:aomei-backupper-update-servers-2026:3",
+          "statement": "Attackers briefly modified two update and notification config files and changed the expected checksum so the malicious archive passed verification; the files were restored within minutes.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.bleepingcomputer.com/news/security/hackers-hijack-aomei-update-servers-to-secretly-spread-malware/"
+        },
+        {
+          "id": "claim:aomei-backupper-update-servers-2026:4",
+          "statement": "Payloads included a previously unknown downloader (CROSSROAD) and a backdoor (SHINYROAD) that abuses legitimate Radmin components; on July 20 Google observed an attempt to steal Windows NTLM hashes.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.bleepingcomputer.com/news/security/hackers-hijack-aomei-update-servers-to-secretly-spread-malware/"
+        },
+        {
+          "id": "claim:aomei-backupper-update-servers-2026:5",
+          "statement": "Named affected organizations were in the US, Australia, India, Singapore, Spain and Switzerland across IT services, telecom and higher education; no total victim count was given.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.bleepingcomputer.com/news/security/hackers-hijack-aomei-update-servers-to-secretly-spread-malware/"
+        },
+        {
+          "id": "claim:aomei-backupper-update-servers-2026:6",
+          "statement": "AOMEI initially suggested in-transit interception, which ManageEngine disputed; AOMEI later said it patched its servers and has not confirmed how attackers got in.",
+          "epistemicStatus": "disputed",
+          "sourceUrl": "https://www.bleepingcomputer.com/news/security/hackers-hijack-aomei-update-servers-to-secretly-spread-malware/"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Primary source needed: the ManageEngine and Google GTIG reports were not fetched.",
+        "Cause is disputed between AOMEI (possible interception, no breach found initially) and ManageEngine (altered on AOMEI's side).",
+        "Attribution to UNC7017 is from reporting; do not add actor links per the ATT&CK rules.",
+        "Credential angle limited to an NTLM hash theft attempt; no secrets exposure reported."
+      ]
+    },
+    {
+      "incidentId": "incident:daemon-tools-trojanized-installers-2026",
+      "title": "DAEMON Tools Lite installers trojanized and served signed from the official site",
+      "incidentKind": "supply_chain",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "Kaspersky Securelist",
+          "canonicalUrl": "https://securelist.com/daemon-tools-backdoor/119654/",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-24T04:50:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Neowin",
+          "canonicalUrl": "https://www.neowin.net/amp/daemon-tools-supply-chain-attack-ongoing-since-april-thousands-affected/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-24T04:50:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate mentions DAEMON Tools.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:daemon-tools-trojanized-installers-2026:1",
+          "statement": "Trojanized DAEMON Tools Lite installers signed with the developer's certificates were distributed from the official website; versions 12.5.0.2421 to 12.5.0.2434 were affected starting April 8, 2026.",
+          "epistemicStatus": "observed",
+          "sourceUrl": "https://securelist.com/daemon-tools-backdoor/119654/"
+        },
+        {
+          "id": "claim:daemon-tools-trojanized-installers-2026:2",
+          "statement": "Three binaries were trojanized (DTHelper.exe, DiscSoftBusServiceLite.exe, DTShellHlp.exe), with a backdoor that runs whenever they launch and can download and run executables on command.",
+          "epistemicStatus": "observed",
+          "sourceUrl": "https://securelist.com/daemon-tools-backdoor/119654/"
+        },
+        {
+          "id": "claim:daemon-tools-trojanized-installers-2026:3",
+          "statement": "Kaspersky saw several thousand infection attempts in more than 100 countries and territories; further-stage payloads reached only about a dozen machines, suggesting targeted intent.",
+          "epistemicStatus": "observed",
+          "sourceUrl": "https://securelist.com/daemon-tools-backdoor/119654/"
+        },
+        {
+          "id": "claim:daemon-tools-trojanized-installers-2026:4",
+          "statement": "The vendor released clean version 12.6.0.2445; the developer said unauthorized interference in its build environment caused the compromised packages.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.neowin.net/amp/daemon-tools-supply-chain-attack-ongoing-since-april-thousands-affected/"
+        },
+        {
+          "id": "claim:daemon-tools-trojanized-installers-2026:5",
+          "statement": "Researchers noted Chinese-language strings in the collector but did not attribute the compromise to a specific actor.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://securelist.com/daemon-tools-backdoor/119654/"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Exposure window started April 8, before the six-month window of this batch; included because it ran into May 2026.",
+        "Vendor confirmation is via news coverage; the vendor's own statement was not fetched.",
+        "No credential or secrets theft reported; payloads were a collector, backdoor and RAT."
+      ]
+    },
+    {
+      "incidentId": "incident:redhat-cloud-services-npm-miasma-2026",
+      "title": "Red Hat Cloud Services npm namespace hit with Miasma credential-stealing packages",
+      "incidentKind": "supply_chain",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "Palo Alto Networks Unit 42",
+          "canonicalUrl": "https://unit42.paloaltonetworks.com/monitoring-npm-supply-chain-attacks/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-24T04:50:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident covers @redhat-cloud-services; Miasma appears in the seed only in other incidents.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:redhat-cloud-services-npm-miasma-2026:1",
+          "statement": "On June 1, 2026, at least 32 packages under the @redhat-cloud-services npm namespace were compromised; the malicious versions averaged about 80,000 combined weekly downloads.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://unit42.paloaltonetworks.com/monitoring-npm-supply-chain-attacks/"
+        },
+        {
+          "id": "claim:redhat-cloud-services-npm-miasma-2026:2",
+          "statement": "A compromised Red Hat employee GitHub account pushed malicious orphan commits to RedHatInsights repositories, bypassing code review; workflows then published packages with valid SLSA provenance.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://unit42.paloaltonetworks.com/monitoring-npm-supply-chain-attacks/"
+        },
+        {
+          "id": "claim:redhat-cloud-services-npm-miasma-2026:3",
+          "statement": "The payload, Miasma, derives from the Mini Shai-Hulud source released publicly in May and targets GitHub and npm tokens, SSH keys, AWS/GCP/Azure credentials, Kubernetes tokens, Vault secrets and CI/CD secrets.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://unit42.paloaltonetworks.com/monitoring-npm-supply-chain-attacks/"
+        },
+        {
+          "id": "claim:redhat-cloud-services-npm-miasma-2026:4",
+          "statement": "Unit 42 says attribution is uncertain because the public Mini Shai-Hulud source lets other actors copy the attack.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://unit42.paloaltonetworks.com/monitoring-npm-supply-chain-attacks/"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Primary source needed: no Red Hat statement or original discoverer write-up was fetched.",
+        "Unit 42 describes what the payload targets; confirmed theft from specific victims is not reported."
+      ]
+    },
+    {
+      "incidentId": "incident:npm-bindinggyp-miasma-wave-2026",
+      "title": "Miasma wave abuses binding.gyp to steal developer and CI secrets across dozens of npm packages",
+      "incidentKind": "supply_chain",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "ReversingLabs",
+          "canonicalUrl": "https://reversinglabs.com/blog/npm-bindinggyp-cicd-secrets",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-24T04:50:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Sonatype",
+          "canonicalUrl": "https://www.sonatype.com/blog/new-shai-hulud-miasma-wave-hits-hundreds-of-npm-packages",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-24T04:50:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "StepSecurity",
+          "canonicalUrl": "https://www.stepsecurity.io/blog/miasma-and-hades-are-spreading-now-detect-them-on-developer-machines-with-suspicious-files",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-24T04:50:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate covers the June 3-4 binding.gyp wave; distinct from incident:redhat-cloud-services-npm-miasma-2026 (June 1) though the payload family overlaps.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:npm-bindinggyp-miasma-wave-2026:1",
+          "statement": "Over a 10-hour window on June 3-4, 2026, an attacker published 286 malicious versions of 56 npm packages, including 24 autotel-* packages, without using a lifecycle hook.",
+          "epistemicStatus": "observed",
+          "sourceUrl": "https://reversinglabs.com/blog/npm-bindinggyp-cicd-secrets"
+        },
+        {
+          "id": "claim:npm-bindinggyp-miasma-wave-2026:2",
+          "statement": "The attacker added binding.gyp to pure JavaScript packages so npm's node-gyp step silently ran a loader during install.",
+          "epistemicStatus": "observed",
+          "sourceUrl": "https://reversinglabs.com/blog/npm-bindinggyp-cicd-secrets"
+        },
+        {
+          "id": "claim:npm-bindinggyp-miasma-wave-2026:3",
+          "statement": "The payload collected CI/CD variables from 30+ CI platforms, AWS/Azure/GCP credentials, GitHub OIDC tokens, and local files such as ~/.aws/credentials, ~/.kube/config, SSH keys, .npmrc and .env, then committed them to attacker-controlled GitHub repos.",
+          "epistemicStatus": "observed",
+          "sourceUrl": "https://reversinglabs.com/blog/npm-bindinggyp-cicd-secrets"
+        },
+        {
+          "id": "claim:npm-bindinggyp-miasma-wave-2026:4",
+          "statement": "It could republish trojanized packages with stolen tokens, inject hooks into AI coding assistant configs, and run a destructive dead-man's switch if its GitHub token was revoked.",
+          "epistemicStatus": "observed",
+          "sourceUrl": "https://reversinglabs.com/blog/npm-bindinggyp-cicd-secrets"
+        },
+        {
+          "id": "claim:npm-bindinggyp-miasma-wave-2026:5",
+          "statement": "Sonatype tracked the wave as 281 malicious package versions that abuse binding.gyp and steal credentials and self-propagate.",
+          "epistemicStatus": "observed",
+          "sourceUrl": "https://www.sonatype.com/blog/new-shai-hulud-miasma-wave-hits-hundreds-of-npm-packages"
+        },
+        {
+          "id": "claim:npm-bindinggyp-miasma-wave-2026:6",
+          "statement": "StepSecurity counted 57 packages across more than 286 versions in under two hours, with @vapi-ai/server-sdk the largest victim at more than 408,000 monthly downloads.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.stepsecurity.io/blog/miasma-and-hades-are-spreading-now-detect-them-on-developer-machines-with-suspicious-files"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Counts differ by source: ReversingLabs 56 packages / 286 versions; Sonatype 281 versions; StepSecurity 57 packages / 286+ versions.",
+        "How the npm publish tokens were obtained is not established by ReversingLabs.",
+        "Reviewer decides whether this and the Red Hat incident should be one campaign record."
+      ]
+    },
+    {
+      "incidentId": "incident:asyncapi-npm-miasma-2026",
+      "title": "AsyncAPI npm releases poisoned through a GitHub Actions pwn request",
+      "incidentKind": "supply_chain",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "Microsoft Threat Intelligence",
+          "canonicalUrl": "https://microsoft.com/en-us/security/blog/2026/07/15/unpacking-asyncapi-npm-supply-chain-compromise-import-time-payload-delivery",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-24T04:50:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Palo Alto Networks Unit 42",
+          "canonicalUrl": "https://unit42.paloaltonetworks.com/monitoring-npm-supply-chain-attacks/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-24T04:50:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate mentions AsyncAPI.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:asyncapi-npm-miasma-2026:1",
+          "statement": "Microsoft Threat Intelligence identified a compromise of the @asyncapi npm organization on July 14, 2026; five package versions were republished within about ninety minutes.",
+          "epistemicStatus": "observed",
+          "sourceUrl": "https://microsoft.com/en-us/security/blog/2026/07/15/unpacking-asyncapi-npm-supply-chain-compromise-import-time-payload-delivery"
+        },
+        {
+          "id": "claim:asyncapi-npm-miasma-2026:2",
+          "statement": "A pull_request_target workflow ran attacker-controlled PR code, exposing the asyncapi-bot token; legitimate release workflows then published the packages with valid provenance. Microsoft says its records do not establish how the credential was obtained.",
+          "epistemicStatus": "observed",
+          "sourceUrl": "https://microsoft.com/en-us/security/blog/2026/07/15/unpacking-asyncapi-npm-supply-chain-compromise-import-time-payload-delivery"
+        },
+        {
+          "id": "claim:asyncapi-npm-miasma-2026:3",
+          "statement": "Affected versions were @asyncapi/specs 6.11.2-alpha.1 and 6.11.2, @asyncapi/generator 3.3.1, @asyncapi/generator-components 0.7.1 and @asyncapi/generator-helpers 1.1.1.",
+          "epistemicStatus": "observed",
+          "sourceUrl": "https://microsoft.com/en-us/security/blog/2026/07/15/unpacking-asyncapi-npm-supply-chain-compromise-import-time-payload-delivery"
+        },
+        {
+          "id": "claim:asyncapi-npm-miasma-2026:4",
+          "statement": "The payload runs at import time, so --ignore-scripts does not stop it; it loads the Miasma runtime for C2, remote access and persistence on Windows, Linux and macOS.",
+          "epistemicStatus": "observed",
+          "sourceUrl": "https://microsoft.com/en-us/security/blog/2026/07/15/unpacking-asyncapi-npm-supply-chain-compromise-import-time-payload-delivery"
+        },
+        {
+          "id": "claim:asyncapi-npm-miasma-2026:5",
+          "statement": "Credential-harvesting modules for npm, AWS, GitHub and cloud tokens were present but disabled in the analyzed build; Microsoft still recommends rotating credentials from a clean host.",
+          "epistemicStatus": "observed",
+          "sourceUrl": "https://microsoft.com/en-us/security/blog/2026/07/15/unpacking-asyncapi-npm-supply-chain-compromise-import-time-payload-delivery"
+        },
+        {
+          "id": "claim:asyncapi-npm-miasma-2026:6",
+          "statement": "Unit 42 calls the campaign miasma-train-p1 and says the payload descends from the Miasma RAT used in the June Red Hat operation, with different initial access.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://unit42.paloaltonetworks.com/monitoring-npm-supply-chain-attacks/"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "No confirmed credential theft in the analyzed build; modules could be enabled later.",
+        "Number of affected organizations not quantified."
+      ]
+    },
+    {
+      "incidentId": "incident:npm-ethereum-c2-stealer-enterprise-scopes-2026",
+      "title": "npm stealer published under four enterprise namespaces reads its C2 from an Ethereum contract",
+      "incidentKind": "malware_campaign",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "Netskope Threat Labs",
+          "canonicalUrl": "https://www.netskope.com/blog/npm-stealer-reads-its-c2-from-an-ethereum-contract",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-24T04:50:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate mentions these namespaces.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:npm-ethereum-c2-stealer-enterprise-scopes-2026:1",
+          "statement": "Netskope Threat Labs analyzed 28 malicious npm package versions published on 2026-08-04 across four unrelated enterprise namespaces: @servicetitan, @or-sdk, @onereach and @umacloud.",
+          "epistemicStatus": "observed",
+          "sourceUrl": "https://www.netskope.com/blog/npm-stealer-reads-its-c2-from-an-ethereum-contract"
+        },
+        {
+          "id": "claim:npm-ethereum-c2-stealer-enterprise-scopes-2026:2",
+          "statement": "The package's CI/CD collection paths pay off on build agents, but it also runs on developer machines and the operator collects from both.",
+          "epistemicStatus": "observed",
+          "sourceUrl": "https://www.netskope.com/blog/npm-stealer-reads-its-c2-from-an-ethereum-contract"
+        },
+        {
+          "id": "claim:npm-ethereum-c2-stealer-enterprise-scopes-2026:3",
+          "statement": "The exfiltration endpoint domain was resolved at runtime from Ethereum contract state, so Netskope treats it as perishable.",
+          "epistemicStatus": "observed",
+          "sourceUrl": "https://www.netskope.com/blog/npm-stealer-reads-its-c2-from-an-ethereum-contract"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Only search-result excerpts of the Netskope post were reviewed; the full post was not fetched in this session.",
+        "Whether the namespaces were legitimately owned and hijacked, or attacker-registered look-alikes, is not established here.",
+        "Specific credentials collected need confirming from the full post."
+      ]
+    },
+    {
+      "incidentId": "incident:indexed-btree-npm-runtime-loader-2026",
+      "title": "indexed-btree npm package hides a loader in runtime code to evade install-script defenses",
+      "incidentKind": "malware_campaign",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "CSO Online",
+          "canonicalUrl": "https://www.csoonline.com/article/4224400/new-npm-malware-finds-a-way-around-install-script-defenses-2.html",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-24T04:50:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "BleepingComputer",
+          "canonicalUrl": "https://www.bleepingcomputer.com/news/security/malicious-npm-packages-evade-install-script-defenses-at-runtime/amp/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-24T04:50:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate mentions indexed-btree.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:indexed-btree-npm-runtime-loader-2026:1",
+          "statement": "Checkmarx researchers found indexed-btree impersonating the legitimate sorted-btree library; it reached nearly 2 million weekly downloads before removal on September 3, 2026, about 11 weeks after the first malicious version.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.csoonline.com/article/4224400/new-npm-malware-finds-a-way-around-install-script-defenses-2.html"
+        },
+        {
+          "id": "claim:indexed-btree-npm-runtime-loader-2026:2",
+          "statement": "The malicious code sat in the runtime method BTree.prototype.set rather than an install script, launching an obfuscated loader when called with a specific key.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.csoonline.com/article/4224400/new-npm-malware-finds-a-way-around-install-script-defenses-2.html"
+        },
+        {
+          "id": "claim:indexed-btree-npm-runtime-loader-2026:3",
+          "statement": "The loader fingerprints the host and exfiltrates via Slack and Telegram; its C2 address is stored in a Sepolia Ethereum testnet smart contract.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.csoonline.com/article/4224400/new-npm-malware-finds-a-way-around-install-script-defenses-2.html"
+        },
+        {
+          "id": "claim:indexed-btree-npm-runtime-loader-2026:4",
+          "statement": "The campaign bypasses the npm security measures GitHub announced in June 2026 by avoiding installation scripts, and can delete its files and remove the trigger code.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.bleepingcomputer.com/news/security/malicious-npm-packages-evade-install-script-defenses-at-runtime/amp/"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Primary source needed: the Checkmarx write-up was not fetched.",
+        "No credential theft reported; the second-stage payload is undescribed.",
+        "Download figures for a typosquat may include automated installs; treat as reported, not as victims."
+      ]
+    },
+    {
+      "incidentId": "incident:openapi-react-query-codegen-npm-mini-shai-hulud-2026",
+      "title": "@7nohe/openapi-react-query-codegen npm releases compromised in a Mini Shai-Hulud wave",
+      "incidentKind": "supply_chain",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "Cyber Security News",
+          "canonicalUrl": "https://cybersecuritynews.com/popular-npm-package-2/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-24T04:50:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "StepSecurity",
+          "canonicalUrl": "https://www.stepsecurity.io/blog/7nohe-openapi-react-query-codegen-compromised-npm-publishing-workflow",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-24T04:50:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate mentions this package; related to but distinct from incident:tanstack-mini-shai-hulud-2026.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:openapi-react-query-codegen-npm-mini-shai-hulud-2026:1",
+          "statement": "Ten malicious releases of @7nohe/openapi-react-query-codegen, a package with about 150,000 weekly downloads, were published on August 28, 2026 across every maintained version line.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://cybersecuritynews.com/popular-npm-package-2/"
+        },
+        {
+          "id": "claim:openapi-react-query-codegen-npm-mini-shai-hulud-2026:2",
+          "statement": "Socket analysts identified the activity as an ongoing Mini Shai-Hulud compromise.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://cybersecuritynews.com/popular-npm-package-2/"
+        },
+        {
+          "id": "claim:openapi-react-query-codegen-npm-mini-shai-hulud-2026:3",
+          "statement": "The install-time payload, triggered via binding.gyp and in some releases a pre-install command, searched project files, process memory, cloud metadata and CI variables for tokens, validated them, and stored encrypted results in attacker-created public GitHub repos.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://cybersecuritynews.com/popular-npm-package-2/"
+        },
+        {
+          "id": "claim:openapi-react-query-codegen-npm-mini-shai-hulud-2026:4",
+          "statement": "StepSecurity reproduced the installation behavior under Harden-Runner and warned not to install the latest version.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.stepsecurity.io/blog/7nohe-openapi-react-query-codegen-compromised-npm-publishing-workflow"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Primary source needed: the Socket write-up (socket.dev/blog/openapi-react-query-codegen-npm-compromise) was not fetched.",
+        "Earlier chat summary dated this October 11; the source says August 28, 2026, with the article published September 1.",
+        "How the publishing workflow was compromised needs confirming from StepSecurity or Socket."
+      ]
+    }
+  ]
+}
