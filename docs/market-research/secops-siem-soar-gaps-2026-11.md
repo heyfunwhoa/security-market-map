@@ -23,6 +23,18 @@ The SIEM and SOAR categories were missing commonly named platforms. SOAR had no 
 
 All three statements are vendor-reported and untested here.
 
+## Who they say they sell to (seat targeting)
+
+Added to `lib/data/vendor-seat-targeting.ts` from search excerpts, not full page reads. This shows each vendor's own audience wording, not proof of who buys.
+
+| Vendor | Category | Seats | Wording basis |
+| --- | --- | --- | --- |
+| Palo Alto Networks (Cortex XSOAR) | SOAR | SOC lead, SOC analyst, MSSP ops | Docs: SOC teams; the MSSP page is designed with security analysts in mind |
+| Tines | SOAR | SOC lead, IT operations, MSSP ops | Security and IT teams; a dedicated MSSP page |
+| Google (SecOps) | SOAR, SIEM | SOC lead | Security teams that detect, investigate and respond |
+
+**Gap worth noting:** no vendor pitches detection engineers or incident responders by name, even though the map lists both as SOAR owners.
+
 ## Other change
 
 - **Stairwell:** removed `soar` from its adjacent categories. No Stairwell source in the catalog describes playbook orchestration or response automation; it integrates with SOAR tools rather than being one. Reverse this if a source shows otherwise.

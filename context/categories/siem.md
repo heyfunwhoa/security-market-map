@@ -30,11 +30,11 @@ The place logs are collected, detections are written, and investigations start. 
 
 ## Who vendors sell to
 
-From 3 vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.
+From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.
 
-- Detection engineer (`detection-engineer`): 2 of 3 vendors
-- SOC analyst (`soc-analyst`): 2 of 3 vendors
-- SOC manager (`soc-lead`): 2 of 3 vendors
+- SOC manager (`soc-lead`): 3 of 4 vendors
+- Detection engineer (`detection-engineer`): 2 of 4 vendors
+- SOC analyst (`soc-analyst`): 2 of 4 vendors
 
 ## Vendors (primary)
 

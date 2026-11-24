@@ -15,11 +15,14 @@ import type { VendorSeatTargetingInput } from "@/lib/schema";
 // Rows added 2026-11-18 (ISPM, WIM): "security teams" means identity security for ITDR posture
 // pages (formerly ISPM) and cloud security for WIM; "identity" or "IAM" teams map to identity security; "operations
 // teams" running production applications map to platform; "application teams" map to developer.
+// Rows added 2026-11-24 (SOAR): "security teams" and "SOC teams" map to SOC lead, "security
+// analysts" to SOC analyst, "IT teams" to IT operations, and MSSP pages to mssp-ops.
 
 const CHECKED = "2026-11-09";
 const REREAD = "2026-11-10";
 const SEARCHED = "2026-11-10";
 const ISPM_WIM_READ = "2026-11-18";
+const SOAR_SEARCHED = "2026-11-24";
 
 export const vendorSeatTargeting: VendorSeatTargetingInput[] = [
   // Secrets detection and remediation
@@ -580,6 +583,51 @@ export const vendorSeatTargeting: VendorSeatTargetingInput[] = [
     basis: "vendor-page",
     inspection: "search-excerpt",
     checkedAt: SEARCHED,
+  },
+  // SOAR (and Google SecOps for SIEM), added 2026-11-24 from search excerpts
+  {
+    vendorId: "palo-alto-networks",
+    categoryId: "soar",
+    seatIds: ["soc-lead", "soc-analyst", "mssp-ops"],
+    selectionReason: "leader",
+    audience: "SOC teams automating incident response; an MSSP edition is described as designed with security analysts in mind.",
+    urls: ["https://cortex-docs.paloaltonetworks.com/cortex-xsoar-8-on-prem/8.8/learn-about-cortex-xsoar/get-started-with-cortex-xsoar/what-is-cortex-xsoar", "https://www.paloaltonetworks.com/cortex/cortex-xsoar-mssp"],
+    basis: "vendor-docs",
+    inspection: "search-excerpt",
+    checkedAt: SOAR_SEARCHED,
+  },
+  {
+    vendorId: "tines",
+    categoryId: "soar",
+    seatIds: ["soc-lead", "it-operations", "mssp-ops"],
+    selectionReason: "challenger",
+    audience: "Security and IT teams; a separate solutions page targets MSSPs automating workflows across clients.",
+    urls: ["https://www.tines.com/", "https://www.tines.com/mssps/"],
+    basis: "vendor-page",
+    inspection: "search-excerpt",
+    checkedAt: SOAR_SEARCHED,
+  },
+  {
+    vendorId: "google",
+    categoryId: "soar",
+    seatIds: ["soc-lead"],
+    selectionReason: "leader",
+    audience: "Security teams that detect, investigate and respond; SOAR playbooks and a shared case wall for team collaboration.",
+    urls: ["https://cloud.google.com/security/products/security-operations"],
+    basis: "vendor-page",
+    inspection: "search-excerpt",
+    checkedAt: SOAR_SEARCHED,
+  },
+  {
+    vendorId: "google",
+    categoryId: "siem",
+    seatIds: ["soc-lead"],
+    selectionReason: "leader",
+    audience: "Security teams that detect, investigate and respond to threats with Google's scale and intelligence.",
+    urls: ["https://cloud.google.com/security/products/security-operations"],
+    basis: "vendor-page",
+    inspection: "search-excerpt",
+    checkedAt: SOAR_SEARCHED,
   },
   // ITDR posture pages (ISPM, folded into ITDR on 2026-11-18)
   {

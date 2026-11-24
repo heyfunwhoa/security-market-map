@@ -26,7 +26,12 @@ Playbooks that enrich and sometimes contain an incident. Automation that disable
 
 ## Who vendors sell to
 
-- None recorded.
+From 3 vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.
+
+- SOC manager (`soc-lead`): 3 of 3 vendors
+- MSSP / MDR operations lead (`mssp-ops`): 2 of 3 vendors
+- IT operations / systems administrator (`it-operations`): 1 of 3 vendors
+- SOC analyst (`soc-analyst`): 1 of 3 vendors
 
 ## Vendors (primary)
 
