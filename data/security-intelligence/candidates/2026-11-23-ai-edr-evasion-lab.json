@@ -1,0 +1,14 @@
+{
+  "batch": "2026-11-23-ai-edr-evasion-lab",
+  "status": "candidate_only",
+  "publishable": false,
+  "framework": "docs/security-intelligence/incident-classification-framework.md",
+  "discoveryContext": "Found on 2026-11-23 while researching EDR evasion and AI-assisted attacks. The Sophos Counter Threat Unit post (primary research) was fetched and paraphrased. Owner reviewed the placement the same day: research, not an incident. The finding is recorded as buyer-problem context in docs/market-research/file-analysis-ai-investigation-landscape-2026-11.md.",
+  "excludedFromIncidents": [
+    "Sophos CTU, Pointing a Cursor at evading detection: AI-assisted EDR-evasion lab found on one endpoint in an unnamed customer tenant",
+    "SpecterOps, Accelerating EDR Evasion with LLM-Driven Analysis (2026-06-29)",
+    "CrowdStrike 2026 Global Threat Report and Mandiant M-Trends 2026 statistics"
+  ],
+  "excludedReason": "Threat research and landscape reports with no confirmed affected organization or reported impact; Sophos does not say whether the endpoint was a victim's or the actor's own device. Recorded as research context, not incidents (same rule as the 2026-11-11 batch).",
+  "candidates": []
+}
