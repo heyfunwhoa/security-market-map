@@ -48,7 +48,9 @@ Recorded as four sourced claims on the existing Stairwell product, from Stairwel
 - **SOAR:** Palo Alto Cortex and Tines.
 - **Splunk:** an app that enriches Splunk logs.
 
-**Not added as relationship edges.** Relationships need a use case, and the catalog has no SecOps one (the closest, `uc-finding-route`, is about AppSec and cloud findings). Per AGENTS.md, I didn't create a use case just to hold these. A proposed placement for later: an "alert enrichment and file investigation" use case covering `siem`, `soar`, `malware-analysis`, `threat-intelligence` and `ai-soc-investigation`, with `complement` edges from `stairwell-platform` to `google-secops`, `cortex-xsoar` and `tines-platform`. Splunk has a vendor record but no product record, so an edge to it would also need a product.
+**Use case and edges (added after review):** the new use case `uc-alert-investigation` ("Alert enrichment and file investigation") covers `endpoint-security`, `siem`, `soar`, `malware-analysis`, `threat-intelligence` and `ai-soc-investigation`. Its seats are SOC lead (budget), SOC analyst, incident response, threat intel and detection engineering. It's linked from the SOC analyst's alert-fatigue pain. Six `complement` edges run from `stairwell-platform` to CrowdStrike, SentinelOne, Google SecOps, Splunk Enterprise Security (a new product record under the existing Splunk vendor), Cortex XSOAR and Tines. Each edge cites a Stairwell source and says integration depth is not verified.
+
+**Malware analysis listing:** Google was added as adjacent to `malware-analysis` and `threat-intelligence`, so VirusTotal's parent now appears on those category pages.
 
 ## Unknowns
 

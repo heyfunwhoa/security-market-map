@@ -23,6 +23,11 @@ export const useCaseSeats: UseCaseSeatsInput[] = [
     likelyBudgetSeatIds: ["pam-owner", "identity-security"],
   },
   {
+    useCaseId: "uc-alert-investigation",
+    seatIds: ["soc-lead", "soc-analyst", "incident-response", "threat-intel", "detection-engineer"],
+    likelyBudgetSeatIds: ["soc-lead"],
+  },
+  {
     useCaseId: "uc-detect",
     seatIds: ["appsec", "developer", "platform", "cloud-sec"],
     likelyBudgetSeatIds: ["appsec"],

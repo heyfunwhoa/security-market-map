@@ -456,10 +456,10 @@ export const vendors: Vendor[] = [
     positioning:
       "Google Secret Manager is the cloud secret store on GCP. Same boundary as the other cloud secret stores: issuance and storage, not governance of every identity.",
     primaryCategoryIds: ["secrets-management"],
-    adjacentCategoryIds: ["nhi", "wim", "siem", "soar"],
+    adjacentCategoryIds: ["nhi", "wim", "siem", "soar", "malware-analysis", "threat-intelligence"],
     identityScopes: ["nhi"],
     verificationStatus: "research_candidate",
-    openQuestions: ["Is GCP the only place secrets need to live?", "Google SecOps (SIEM/SOAR) is a separate buyer and budget from Secret Manager."],
+    openQuestions: ["Is GCP the only place secrets need to live?", "Google SecOps (SIEM/SOAR) and VirusTotal (file analysis) are separate buyers and budgets from Secret Manager."],
   }),
   vendor({
     id: "doppler",

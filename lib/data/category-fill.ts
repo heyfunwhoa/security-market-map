@@ -1177,6 +1177,29 @@ export const categoryFillProducts: Product[] = [
     "availabilityNote": "SaaS and on-prem documentation sets exist for XSOAR 8; confirm which the buyer runs.",
     "officialUrl": "https://www.paloaltonetworks.com/cortex/cortex-xsoar",
     "useCaseIds": []
+  },
+  {
+    "id": "splunk-enterprise-security",
+    "slug": "splunk-enterprise-security",
+    "vendorId": "splunk",
+    "name": "Splunk Enterprise Security",
+    "positioning": "Splunk's SIEM product. Splunk documents findings and investigations in Enterprise Security; detection depth is not checked here.",
+    "primaryCategoryIds": [
+      "siem"
+    ],
+    "adjacentCategoryIds": [
+      "soar"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Cloud and on-prem editions exist; which one a buyer runs is not recorded.",
+    "officialUrl": "https://www.splunk.com/en_us/products/enterprise-security.html",
+    "useCaseIds": []
   }
 ];
 

@@ -1410,6 +1410,7 @@ export const personaProfiles: PersonaProfileInput[] = [
         evidence: "practitioner_published",
         sourceIds: ["src-pain-sans-dr-2025"],
         relatedCategoryIds: ["soar", "xdr", "mdr"],
+        relatedUseCaseIds: ["uc-alert-investigation"],
       },
       {
         pain: "Burnout and limited career path",
