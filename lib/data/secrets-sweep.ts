@@ -295,11 +295,11 @@ export const secretsSweepVendors: Vendor[] = [
     "name": "ReversingLabs",
     "formerNames": [],
     "website": "https://www.reversinglabs.com/detect-prioritize-manage-exposed-secrets-in-software",
-    "positioning": "Publisher or maintainer of ReversingLabs secrets detection. Research candidate; see product-level evidence and scope.",
+    "positioning": "ReversingLabs provides secrets detection in software artifacts and Spectra Analyze for malware analysis and retrospective file hunting.",
     "primaryCategoryIds": [
       "secrets-detection"
     ],
-    "adjacentCategoryIds": [],
+    "adjacentCategoryIds": ["malware-analysis"],
     "identityScopes": [
       "not_an_identity_control"
     ],

@@ -606,7 +606,7 @@ export const categoryFillProducts: Product[] = [
     "availability": "generally_available",
     "availabilityNote": "Deployment options not verified here.",
     "officialUrl": "https://www.reversinglabs.com/products/spectra-analyze",
-    "useCaseIds": []
+    "useCaseIds": ["uc-developer-endpoint"]
   },
   {
     "id": "virustotal",
@@ -635,7 +635,7 @@ export const categoryFillProducts: Product[] = [
     "id": "stairwell-platform",
     "slug": "stairwell-platform",
     "vendorId": "stairwell",
-    "name": "Stairwell platform (Backstory)",
+    "name": "Stairwell platform (Rehunt and Backstory)",
     "positioning": "Stairwell says it preserves executables from enrolled endpoints in a private environment, re-checks them as new intelligence arrives, and investigates related variants and affected hosts with its Backstory agent.",
     "primaryCategoryIds": [
       "malware-analysis"
@@ -654,7 +654,7 @@ export const categoryFillProducts: Product[] = [
     "availability": "generally_available",
     "availabilityNote": "Per-asset annual pricing with all capabilities included, per Stairwell's pricing page; rates are quoted, not published.",
     "officialUrl": "https://stairwell.com/store/",
-    "useCaseIds": []
+    "useCaseIds": ["uc-developer-endpoint"]
   },
   {
     "id": "cribl-stream",

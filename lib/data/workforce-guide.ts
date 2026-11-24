@@ -3,8 +3,8 @@ import type { ProductEvidence } from "./public-monitoring";
 
 export const workforceGuideVendors: Vendor[] = [{
   id: "cisco", slug: "cisco", name: "Cisco", formerNames: [], website: "https://www.cisco.com/",
-  positioning: "Cisco provides Duo for workforce authentication, including passwordless sign-in.",
-  primaryCategoryIds: ["workforce-identity"], adjacentCategoryIds: [], identityScopes: ["human"],
+  positioning: "Cisco provides Duo for workforce authentication and Secure Endpoint for endpoint investigation.",
+  primaryCategoryIds: ["workforce-identity"], adjacentCategoryIds: ["endpoint-security"], identityScopes: ["human"],
   verificationStatus: "research_candidate", openQuestions: ["Which applications, devices and recovery paths does the buyer need to support?"],
 }];
 

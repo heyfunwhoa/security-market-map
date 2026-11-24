@@ -37,7 +37,7 @@ export const secopsJourneys: Journey[] = [
     stakeholders: ["Incident responder", "Forensics analyst", "Threat hunter"], budgetOwner: "Usually the security operations or incident response lead.",
     triggers: ["A historical file needs a second review", "Analysts receive verdicts without supporting evidence"],
     successMetrics: ["Time to retrieve an approved artifact", "Verdicts with evidence the next analyst can inspect"],
-    categoryIds: ["malware-analysis"], capabilityIds: ["cap-retain-endpoint-files", "cap-inspect-file"],
+    categoryIds: ["malware-analysis"], capabilityIds: ["cap-retain-endpoint-files", "cap-inspect-file", "cap-file-retrieval", "cap-file-retrohunt", "cap-file-device-history"],
     discoveryQuestions: ["Who may retain or submit the original file, and under what sharing terms?", "What will a second analyst be able to retrieve after the case closes?"],
     pilot: "Use an approved benign file with a recorded hash. Trace its retention and analysis report, then ask another analyst to retrieve the same evidence.",
     productIds: ["stairwell-platform", "reversinglabs-spectra-analyze"], seatIds: ["soc-lead", "incident-response", "digital-forensics", "threat-hunter"],
