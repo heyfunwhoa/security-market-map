@@ -39,6 +39,13 @@ export const developerEndpointUseCases: UseCase[] = [
       "Which AI assistant and MCP interactions are supported at the specific hook point?",
       "Does the pilot keep full secret values local and how is the device CA managed?",
       "If a developer tool is declared malicious after removal, can responders recover the file, hunt related samples and identify the devices that saw each one?",
+      "Think of the last package advisory. What decision took longest, and what evidence were you waiting for?",
+      "The advisory names a package and version. How do you connect that version to the exact file, device and time when it appeared?",
+      "What shows the file ran? Can you distinguish a download, an installation, and execution on the same machine?",
+      "If a search returns no matches, which laptops and build runners had working collection, and which were offline, excluded or already gone?",
+      "If the advisory arrives 90 days later, can you still retrieve the original file and the device history for the same period?",
+      "If a modified copy has a different hash, what finds it, and how would an analyst rule out a benign lookalike?",
+      "What finding would justify isolating a laptop, rebuilding a runner or rotating a credential? Who owns that decision and what evidence do they need?",
       "Who owns exception approvals, finding triage and credential revocation?",
     ],
     buyerQuestion: "Which developer actions can we prevent, and what evidence can responders recover after a package advisory?"
