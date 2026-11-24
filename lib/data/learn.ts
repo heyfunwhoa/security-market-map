@@ -71,7 +71,7 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Enforces protection policies on devices. It can check an installer as it arrives, block it from running or quarantine it. The prevention verdict records what the control decided. Modern suites can also include EDR.",
     categoryId: "endpoint-security",
-    relatedTermIds: ["edr"],
+    relatedTermIds: ["edr", "ecp"],
   },
   {
     id: "edr",
@@ -79,7 +79,95 @@ export const glossary: GlossaryTerm[] = [
     definition:
       "Records device activity such as which process started another, which files changed and where a connection went. An analyst uses that history to investigate an alert and can isolate a host if authorized. Event retention and access to original files are separate evaluation questions.",
     categoryId: "endpoint-security",
-    relatedTermIds: ["epp", "itdr"],
+    relatedTermIds: ["epp", "xdr", "itdr"],
+  },
+  {
+    id: "ecp",
+    term: "Endpoint control and prevention (ECP)",
+    definition:
+      "Software Analyst Cyber Research (SACR) proposes ECP for controls inside browsers, developer tools and AI assistants on a device. A buyer might ask whether a coding assistant can be stopped before it sends source code to an unapproved service.",
+    categoryId: "endpoint-control",
+    relatedTermIds: ["edr", "ai-edr", "ecpp"],
+  },
+  {
+    id: "ai-edr",
+    term: "AI-EDR (agent runtime visibility)",
+    definition:
+      "SACR uses AI-EDR for one part of ECP. It describes observing an AI agent as it works. Which agent called a tool, what data did it access, and can the investigator reconstruct the sequence?",
+    categoryId: "endpoint-control",
+    relatedTermIds: ["ecp", "edr", "aisoc"],
+  },
+  {
+    id: "ecpp",
+    term: "Endpoint control and prevention platform (ECPP)",
+    definition:
+      "SACR uses ECPP for products that span several parts of its ECP framework. Ask a provider to demonstrate which actions it can observe and where it can enforce a policy across applications.",
+    categoryId: "endpoint-control",
+    relatedTermIds: ["ecp", "ai-edr", "epp"],
+  },
+  {
+    id: "ndr",
+    term: "Network detection and response (NDR)",
+    definition:
+      "Uses network traffic to identify and investigate suspicious connections. If an installer ran, which destinations did the laptop contact and did other devices reach them too?",
+    categoryId: "ndr",
+    relatedTermIds: ["edr", "xdr"],
+  },
+  {
+    id: "cdr",
+    term: "Cloud detection and response (CDR)",
+    definition:
+      "Monitors activity in running cloud environments. An investigator can ask whether a workload used an API or accessed data after the suspicious activity on a laptop.",
+    categoryId: "cloud-detection",
+    relatedTermIds: ["edr", "itdr", "xdr"],
+  },
+  {
+    id: "xdr",
+    term: "Extended detection and response (XDR)",
+    definition:
+      "Connects signals from multiple security tools into an incident. Ask whether the analyst can follow one event from email to a laptop to a sign-in, and which integrations provide the evidence.",
+    categoryId: "xdr",
+    relatedTermIds: ["edr", "itdr", "cdr", "ndr"],
+  },
+  {
+    id: "sdpp",
+    term: "Security data pipeline platform (SDPP)",
+    definition:
+      "Collects, normalizes, filters and routes security events to destinations such as a SIEM. If an analyst cannot find an event, which fields and records reached the destination?",
+    categoryId: "security-data-pipelines",
+    relatedTermIds: ["siem", "xdr"],
+  },
+  {
+    id: "siem",
+    term: "Security information and event management (SIEM)",
+    definition:
+      "Makes security events from multiple sources searchable and correlates them for detection. An analyst can look up what a device and account did during the same time window.",
+    categoryId: "siem",
+    relatedTermIds: ["sdpp", "xdr", "soar"],
+  },
+  {
+    id: "soar",
+    term: "Security orchestration, automation and response (SOAR)",
+    definition:
+      "Runs response playbooks across connected tools. A playbook might open a case, request approval and tell the endpoint tool to isolate a device.",
+    categoryId: "soar",
+    relatedTermIds: ["siem", "edr", "mdr"],
+  },
+  {
+    id: "aisoc",
+    term: "AI-driven security operations center (AISOC)",
+    definition:
+      "Uses AI to carry out parts of the security operations workflow. Ask which triage or investigation steps the system can perform, what evidence it presents and who authorizes containment.",
+    categoryId: "ai-soc-investigation",
+    relatedTermIds: ["soar", "mdr", "ai-edr"],
+  },
+  {
+    id: "mdr",
+    term: "Managed detection and response (MDR)",
+    definition:
+      "An external provider performs agreed monitoring, investigation and response work for a customer. If an alert arrives overnight, who investigates, calls the customer and has permission to isolate the laptop?",
+    categoryId: "mdr",
+    relatedTermIds: ["edr", "xdr", "soar"],
   },
   {
     id: "ispm",
@@ -163,9 +251,9 @@ export const glossary: GlossaryTerm[] = [
   },
   {
     id: "itdr",
-    term: "ITDR",
+    term: "Identity threat detection and response (ITDR)",
     definition:
-      "Identity threat detection and response. It looks for abuse of a real identity. It does not replace joiner-mover-leaver.",
+      "Detects and investigates abuse of accounts, credentials or sessions. Did someone use the developer’s account from a new location after the installer ran? Identity teams can use that evidence to revoke access.",
     categoryId: "itdr",
     relatedTermIds: ["identity", "standing"],
   },

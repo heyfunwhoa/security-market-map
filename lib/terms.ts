@@ -11,6 +11,8 @@ const SOURCES: Record<string, TermSource> = {
   // Glossary entries
   EPP: { glossaryId: "epp" },
   EDR: { glossaryId: "edr" },
+  "AI-EDR": { glossaryId: "ai-edr" },
+  ECPP: { glossaryId: "ecpp" },
   NHI: { glossaryId: "nhi" },
   ITDR: { glossaryId: "itdr" },
   CIEM: { glossaryId: "ciem" },

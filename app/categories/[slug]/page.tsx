@@ -5,6 +5,7 @@ import { SecretsManagementGuide } from "@/components/secrets-management-guide";
 import exposureGroups from "@/research/public-exposure-options.json";
 import { ExposureIntelligenceResearch, hasExposureIntelligenceResearch } from "@/components/exposure-intelligence-research";
 import { PublicSecretMonitoring } from "@/components/public-secret-monitoring";
+import { EndpointGlossary } from "@/components/endpoint-glossary";
 import { ExternalExposureGuides } from "@/components/external-exposure-guides";
 import { PageJourney } from "@/components/page-journey";
 import { Breadcrumbs } from "@/components/breadcrumbs";
@@ -77,6 +78,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
       {exposureGroups.some((group) => group.cases.some((item) => item.categoryId === category.id)) && (
         <p className="mt-5 text-sm"><Link href="/landscape/public-exposure" className="text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-ring">Compare public monitoring and external exposure scenarios</Link></p>
       )}
+      {category.id === "endpoint-security" && <EndpointGlossary />}
       {category.id === "cnapp" && <AwsSecurityHubGuide />}
       {["ctem", "cspm", "secrets-management", "workforce-identity"].includes(category.id) && (
         <p className="mt-4 text-sm"><Link className="text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-ring" href="/categories/cnapp#aws-security-hub">Explore AWS Security Hub buyer scenarios</Link></p>

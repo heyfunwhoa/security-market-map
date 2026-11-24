@@ -28,7 +28,7 @@ export const domainSubAreas: Record<string, { domainId: string } & DomainSubArea
       },
       {
         heading: "ECP · Endpoint control and prevention",
-        text: "SACR uses ECP for visibility and policy inside tools people use on the device. For example, could a team see or stop a coding assistant sending sensitive text to a service?",
+        text: "SACR uses AI-EDR for observing a running agent and ECPP for a platform spanning several ECP functions. Can the team trace a coding assistant’s tool call and stop it from sending sensitive text to a service?",
         href: "/categories/endpoint-control",
       },
       {
