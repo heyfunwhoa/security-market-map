@@ -42,6 +42,34 @@ describe("product research pages", () => {
     }
   });
 
+  it("opens all six standalone CIAM profiles from their vendor and keeps evidence, pricing and pilot questions product-specific", async () => {
+    const cases = [
+      ["auth0", "okta"], ["workos", "workos"], ["frontegg", "frontegg"],
+      ["stytch", "stytch"], ["clerk", "clerk"], ["amazon-cognito", "amazon-web-services"],
+    ] as const;
+    for (const [slug, vendor] of cases) {
+      const html = await pageHtml(slug);
+      const vendorHtml = renderToStaticMarkup(await VendorPage({ params: Promise.resolve({ slug: vendor }) }));
+      expect(vendorHtml).toContain(`href="/products/${slug}"`);
+      expect(html).toContain('href="/categories/ciam"');
+      expect(html).toContain(`href="/vendors/${vendor}"`);
+      expect(html).toContain("Who buys and operates it");
+      expect(html).toContain("What drives the bill");
+      expect(html).toContain("Questions to validate in a pilot");
+      expect(html).not.toContain("Compare GitGuardian and Aikido");
+      expect(html).not.toContain("Unknown control boundaries");
+      for (const id of [`src-ciam-sso-${slug}`, `src-ciam-workflow-${slug}`, `src-ciam-pricing-${slug}`, `src-ciam-customer-${slug}`, `src-ciam-owner-${slug}`]) {
+        const url = catalog.sources.find((source) => source.id === id)?.url;
+        expect(url).toBeTruthy();
+        expect(html).toContain(`href="${url}"`);
+      }
+      expect(catalog.pricing.some((row) => row.productId === slug)).toBe(true);
+      expect(catalog.stories.some((row) => row.id === `story-ciam-${slug}` && row.vendorId === vendor)).toBe(true);
+      expect(anchorIds(html).every((id) => html.includes(`id="${id}"`))).toBe(true);
+    }
+    expect(catalog.events.find((event) => event.id === "event-ciam-stytch-acquisition")?.date).toBe("2025-11-14");
+  });
+
   it("keeps canonical vendor and product ids unique", () => {
     expect(catalogProblems(catalog)).toEqual([]);
     for (const kind of ["vendors", "products", "sources", "claims"] as const) {
