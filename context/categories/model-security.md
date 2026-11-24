@@ -3,7 +3,7 @@ id: "model-security"
 type: "category"
 name: "Model and infrastructure security"
 layer: "core"
-vendors: 1
+vendors: 2
 ---
 
 # Model and infrastructure security
@@ -31,6 +31,7 @@ _None recorded._
 ## Vendors (adjacent)
 
 - Palo Alto Networks
+- HiddenLayer
 
 ## What buyers do instead
 
