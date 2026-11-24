@@ -3,7 +3,7 @@ id: "ai-governance"
 type: "category"
 name: "AI governance"
 layer: "core"
-vendors: 3
+vendors: 6
 ---
 
 # AI governance
@@ -32,6 +32,9 @@ Inventory of AI systems, the policy that applies to them, and the audit trail. G
 
 ## Vendors (adjacent)
 
+- Bay
+- Geordie AI
+- Eve Security
 - Zenity
 
 ## What buyers do instead

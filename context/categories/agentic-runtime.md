@@ -3,7 +3,7 @@ id: "agentic-runtime"
 type: "category"
 name: "Agentic runtime enforcement"
 layer: "core"
-vendors: 22
+vendors: 33
 ---
 
 # Agentic runtime enforcement
@@ -38,6 +38,16 @@ A check on a live agent action before it completes. Directory, governance, privi
 - Cyata: Agent-security vendor. SACR's March 2026 runtime note says Check Point acquired Cyata. That ownership was not re-checked on a primary page.
 - Keycard: Named in SACR's runtime-identity note for issuing agent credentials at tool-call time. No issuance claim is filled.
 - Noma Security: Named in SACR's runtime note for agent visibility beyond an MCP gateway. AI application security and runtime enforcement are not separated by a sourced claim here.
+- Bay: Bay AI Inc., Tel Aviv. Checks each action an AI agent tries to take before it runs, on laptops, cloud workloads and SaaS, under one policy set. Founded early 2026 by Unit 8200 veterans; launched 10 Nov 2026 with about $50M raised.
+- Manifold: California AIDR startup (2025), CEO Neal Swaelens. Maps agents on endpoints, especially coding agents and tools like Claude Cowork and OpenClaw, with their tools, MCP servers, databases and actions, flags anomalies and can quarantine or terminate agents. $8M seed led by Costanoa (Mar 2026).
+- Capsule Security: Tel Aviv startup, CEO Naor Paz. Runtime trust layer that checks each agent tool call and data access inside the execution path, with no proxy, gateway or SDK; coverage reports name Copilot Studio, ServiceNow and Agentforce. Publishes open-source ClawGuard. $7M seed (Apr 2026); advisers include Chris Krebs.
+- Kontext Security: Munich company (Cobrowser Technology GmbH per one aggregator) founded by Jens Ernstberger (CEO, doctorate in cryptography) and Michel Osswald. Task-aware runtime authorization between agents and tools: each action is judged by agent identity, assigned task, resource and request, observe-first then enforce, with short-lived credentials brokered so secrets stay out of agent environments. $4M led by 42CAP (Sep 2026).
+- Asymptote Labs: New York startup (2025) founded by Justin D'Souza (CEO) and Shukan Shah (CTO), backed through South Park Commons. Beacon (MIT, Go, May 2026) records agent activity from 23+ harnesses including Claude Code, Codex and Cursor into one OpenTelemetry-based schema; a paid platform adds detection and blocking. $5.5M seed led by Tower Research Ventures (Oct 2026).
+- Rein Security: New York and Tel Aviv company (2024), CEO Matan Bar-Efrat. Launched in Jan 2026 with $8M for application runtime security (API security, SCA reachability), then extended its patented sidecar to where AI agents execute, plus agent supply chain security. $25M Series A co-led by Glilot and Sienna (Oct 2026), $35M total. Names Lemonade and Dun & Bradstreet.
+- Geordie AI: London company (2025) founded by Henry Comfort (CEO), Benji Weber (CTO, ex-Snyk) and Hanah-Marie Darley (Chief AI Officer). Independent security and governance view of agents across cloud, code and endpoint, plus Beam runtime remediation. $6.5M seed, then a $30M Series A led by Balderton with Crosspoint, General Catalyst and Ten Eleven (May 2026); Owkin is a named customer.
+- Arcjet: San Francisco developer security company founded 2023 by David Mytton (previously Server Density and Console.dev). SDKs run bot detection, rate limits, prompt-injection checks and data redaction in code; Guards (May 2026) and agent runtime security (Sep 2026) extend that into agent tool handlers and workflows. $3.6M seed led by a16z (Sep 2024) and $8.3M Series A led by Plural (Oct 2025), about $12M total.
+- Eve Security: Austin company founded 2025 by Nadav Cornberg (CEO), Sharon Eilon (CRO) and Amit Eliav (CTO). Runtime layer that turns security policy into deterministic enforcement for agents on Databricks, Copilot Studio, AgentCore, Bedrock and Glean. $3M seed (LiveOak, Tau, Sep 2025) extended by $4.5M led by Run Ventures (Sep 2026) to $7.5M.
+- CodeIntegrity: Founded May 2024 near Seattle by Steven Jung (CEO) and Abi Raghuram (CTO, ex-Truveta); now San Francisco. Deterministic runtime control layer that limits which systems and data an agent can reach. The Economist cited its sub-four-hour compromise of Notion's AI features. $5M seed led by Syn Ventures, $5.25M total; piloting with regulated companies.
 - Zenity: Zenity markets an AI agent security and governance platform: agent inventory, posture management, runtime boundaries and detection across SaaS, cloud and endpoint agents.
 - Straiker: Straiker markets agent security in three products: Discover AI (inventory and posture), Ascend AI (adversarial testing) and Defend AI (runtime protection).
 
@@ -50,6 +60,7 @@ A check on a live agent action before it completes. Directory, governance, privi
 - TrustFour
 - Lasso Security
 - Operant AI
+- AIR Security
 - Panguard AI
 - Pillar Security
 

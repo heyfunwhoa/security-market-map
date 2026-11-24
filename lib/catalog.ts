@@ -115,7 +115,7 @@ import { agentSecurityVendors, agentSecurityProducts, agentSecuritySources, agen
 import { appsecGapVendors, appsecGapProducts, appsecGapSources, appsecGapClaims } from "./data/appsec-category-gaps";
 import { gapBatch2Vendors, gapBatch2Products, gapBatch2Sources, gapBatch2Claims } from "./data/category-gaps-batch2";
 import { bayGhosteyeVendors, bayGhosteyeProducts, bayGhosteyeSources, bayGhosteyeClaims, bayGhosteyeEvents } from "./data/bay-ghosteye";
-import { runtimeHumanVendors, runtimeHumanProducts, runtimeHumanSources, runtimeHumanClaims } from "./data/agent-runtime-human-layer";
+import { runtimeHumanVendors, runtimeHumanProducts, runtimeHumanSources, runtimeHumanClaims, runtimeHumanEvents } from "./data/agent-runtime-human-layer-profiles";
 import { ispmWimVendors, ispmWimProducts, ispmWimSources, ispmWimClaims } from "./data/ispm-wim";
 import { identityAnalystSources, identityAnalystClaims } from "./data/identity-analyst";
 import { cloudCorpAnalystSources, cloudCorpAnalystClaims } from "./data/cloud-corp-analyst";
@@ -199,8 +199,7 @@ function parseCatalog(): Catalog {
     relationships: z.array(relationshipSchema).parse([...relationships, ...ecosystemRelationships, ...ciamSsoRelationships]),
     stories: z.array(customerStorySchema).parse([...customerStories, ...ciamStories]),
     pricing: z.array(pricingSignalSchema).parse([...pricingSignals, ...ciamPricing]),
-    events: z.array(eventSchema).parse([...events, ...ciamEvents, ...workstationEvents]),
-    events: z.array(eventSchema).parse([...events, ...bayGhosteyeEvents, ...ciamEvents]),
+    events: z.array(eventSchema).parse([...events, ...bayGhosteyeEvents, ...runtimeHumanEvents, ...ciamEvents, ...workstationEvents]),
     glossary: z.array(glossaryTermSchema).parse(glossary),
     scenarios: z.array(scenarioSchema).parse(scenarios),
     distinctions: z.array(distinctionSchema).parse(distinctions),

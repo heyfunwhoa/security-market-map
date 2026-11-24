@@ -3,7 +3,7 @@ id: "ai-application-security"
 type: "category"
 name: "AI application security"
 layer: "core"
-vendors: 8
+vendors: 9
 ---
 
 # AI application security
@@ -36,6 +36,7 @@ Controls aimed at models and AI features, including prompt injection and model a
 
 - Lasso Security
 - Holistic AI
+- CodeIntegrity
 - Straiker
 
 ## What buyers do instead
