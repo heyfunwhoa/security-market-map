@@ -6,6 +6,7 @@ import {
   FIRST_RUN_LOOKBACK_DAYS,
   mergeCandidates,
   parseFeed,
+  parseFeedDetailed,
   type FeedCandidatesFile,
   type MarketFeed,
 } from "./market-feeds";
@@ -39,7 +40,17 @@ describe("parseFeed", () => {
 
   it("fails loudly when the layout changes", () => {
     expect(() => parseFeed("<html>moved</html>", "rss")).toThrow(/No <item>/);
-    expect(() => parseFeed("<rss><item><title>x</title></item></rss>", "rss")).toThrow(/missing/);
+    expect(() => parseFeed("<rss><item><title>x</title></item></rss>", "rss")).toThrow(/malformed/);
+  });
+
+  it("skips one malformed item instead of dropping the whole feed", () => {
+    const xml =
+      "<rss><item><title>Good</title><link>https://example.com/good</link><pubDate>Mon, 23 Nov 2026 10:00:00 GMT</pubDate></item>" +
+      "<item><title>No date</title><link>https://example.com/nodate</link></item>" +
+      "<item><title>Plain http</title><link>http://example.com/http</link><pubDate>Mon, 23 Nov 2026 10:00:00 GMT</pubDate></item></rss>";
+    const { items, skipped } = parseFeedDetailed(xml, "rss");
+    expect(items.map((i) => i.url)).toEqual(["https://example.com/good"]);
+    expect(skipped).toHaveLength(2);
   });
 });
 

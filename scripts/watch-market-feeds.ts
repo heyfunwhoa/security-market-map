@@ -9,7 +9,7 @@ import { join } from "node:path";
 import type { FeedCandidatesFile, MarketFeed } from "../lib/market-feeds";
 
 // Node's type stripping needs the .ts extension at runtime; tsc type-checks via the type-only import above.
-const { parseFeed, mergeCandidates }: typeof import("../lib/market-feeds") = await import(
+const { parseFeedDetailed, mergeCandidates }: typeof import("../lib/market-feeds") = await import(
   "../lib/market-feeds" + ".ts"
 );
 
@@ -17,17 +17,33 @@ const dir = join(process.cwd(), "data/market-feeds");
 const feeds = JSON.parse(readFileSync(join(dir, "feeds.json"), "utf8")) as MarketFeed[];
 const today = new Date().toISOString().slice(0, 10);
 
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+/** One retry for rate limits (429) and server errors, honouring Retry-After up to 60 s. */
+async function fetchWithRetry(url: string): Promise<Response> {
+  const get = () =>
+    fetch(url, {
+      headers: { "user-agent": "security-market-map feed watcher (+https://github.com/heyfunwhoa/security-market-map)" },
+      signal: AbortSignal.timeout(30_000),
+    });
+  const first = await get();
+  if (first.status !== 429 && first.status < 500) return first;
+  const retryAfter = Number(first.headers.get("retry-after"));
+  const waitMs = Number.isFinite(retryAfter) && retryAfter > 0 ? Math.min(retryAfter, 60) * 1000 : 15_000;
+  console.log(`  ${url}: HTTP ${first.status}, retrying once in ${waitMs / 1000}s`);
+  await sleep(waitMs);
+  return get();
+}
+
 let total = 0;
 let failed = 0;
 for (const feed of feeds) {
   const path = join(dir, "candidates", `${feed.id}.json`);
   try {
-    const response = await fetch(feed.url, {
-      headers: { "user-agent": "security-market-map feed watcher (+https://github.com/heyfunwhoa/security-market-map)" },
-      signal: AbortSignal.timeout(30_000),
-    });
+    const response = await fetchWithRetry(feed.url);
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const items = parseFeed(await response.text(), feed.format);
+    const { items, skipped } = parseFeedDetailed(await response.text(), feed.format);
+    for (const reason of skipped) console.log(`  skipped an item: ${reason}`);
     const stored = existsSync(path) ? (JSON.parse(readFileSync(path, "utf8")) as FeedCandidatesFile) : null;
     const { file, added } = mergeCandidates(feed, stored, items, today);
     writeFileSync(path, `${JSON.stringify(file, null, 2)}\n`);
