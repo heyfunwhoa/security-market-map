@@ -98,6 +98,11 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
                 </li>
               ))}
             </ul>
+            {useCase.comparisonShortlists.worksheetPath && (
+              <a href={useCase.comparisonShortlists.worksheetPath} download className="inline-flex min-h-11 items-center text-primary underline underline-offset-4">
+                Download the evaluation worksheet (CSV)
+              </a>
+            )}
           </nav>
         )}
         <ul className="mt-3 grid gap-2 sm:grid-cols-2">

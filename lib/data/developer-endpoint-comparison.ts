@@ -28,18 +28,19 @@ export const developerEndpointUseCases: UseCase[] = [
     capabilityIds: [...workstationEvidenceCapabilities, ...developerEndpointCapabilities].map((c) => c.id).concat("cap-secret-verification"),
     comparisonShortlists: {
       title: "After a package is removed",
+      worksheetPath: "/worksheets/developer-package-advisory.csv",
       options: [
         { label: "Which devices encountered the package?", productIds: ["crowdstrike-platform", "aikido-device-protection", "microsoft-defender-for-endpoint", "stairwell-platform"] },
         { label: "Can we recover the file and hunt for related samples?", productIds: ["stairwell-platform", "limacharlie-binlib", "reversinglabs-spectra-analyze", "carbon-black-cloud-enterprise-edr"] },
       ],
     },
     discoveryQuestions: [
+      "Think of the last package advisory. What decision took longest, and what evidence were you waiting for?",
       "Which developers and environments are in scope: macOS, Windows, Linux, WSL2 or containers?",
       "Which control blocks before execution, which only detects, and what is its fail-open behavior?",
       "Which AI assistant and MCP interactions are supported at the specific hook point?",
       "Does the pilot keep full secret values local and how is the device CA managed?",
       "If a developer tool is declared malicious after removal, can responders recover the file, hunt related samples and identify the devices that saw each one?",
-      "Think of the last package advisory. What decision took longest, and what evidence were you waiting for?",
       "The advisory names a package and version. How do you connect that version to the exact file, device and time when it appeared?",
       "What shows the file ran? Can you distinguish a download, an installation, and execution on the same machine?",
       "If a search returns no matches, which laptops and build runners had working collection, and which were offline, excluded or already gone?",
