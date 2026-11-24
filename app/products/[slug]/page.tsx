@@ -4,6 +4,8 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { PageIntro, StatusPill } from "@/components/chrome";
 import { ProductEvidenceExplorer } from "@/components/product-evidence-explorer";
 import { CiamMarketContext } from "@/components/ciam-market-context";
+import { MarketContext } from "@/components/market-context";
+import { SECOPS_PROFILE_CHECKED, isSecopsProduct, secopsProfiles, type SecopsProductSlug } from "@/lib/data/secops-profiles";
 import { ciamProfiles, isCiamProduct, type CiamProductSlug } from "@/lib/data/ciam-profiles";
 import { ProductFocus } from "@/components/product-focus";
 import { ProductSectionNav } from "@/components/product-section-nav";
@@ -31,7 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return { title: catalog.products.find((product) => isProductResearchSlug(product.slug) && product.slug === slug)?.name ?? "Product" };
 }
 
-const learning: Record<Exclude<ProductResearchSlug, CiamProductSlug>, { action: string; control: string; evidence: string; limitation: string; questions: readonly string[] }> = {
+const learning: Record<Exclude<ProductResearchSlug, CiamProductSlug | SecopsProductSlug>, { action: string; control: string; evidence: string; limitation: string; questions: readonly string[] }> = {
   "gitguardian-developer-endpoint": {
     action: "Credential appears on the developer workstation or in a supported AI tool interaction",
     control: "Scheduled ggshield scans, supported AI hooks and honeytoken workflows",
@@ -70,7 +72,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   if (!product) notFound();
   const vendor = vendorById(product.vendorId);
   const ciam = isCiamProduct(slug);
-  const details = ciam ? ciamProfiles[slug] : learning[slug];
+  const secops = isSecopsProduct(slug);
+  const details = ciam ? ciamProfiles[slug] : secops ? secopsProfiles[slug] : learning[slug];
   const claims = claimsForSubject("product", product.id);
   const related = catalog.categories.filter((category) => [...product.primaryCategoryIds, ...product.adjacentCategoryIds].includes(category.id));
   const category = productResearchCategory(slug);
@@ -90,7 +93,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       <ProductSectionNav sections={productResearchSections(slug)} />
       <section aria-labelledby="how-it-works" className="mt-9">
         <AnchorHeading id="how-it-works" className="text-2xl font-semibold">How it works</AnchorHeading>
-        <p className="mt-2 text-sm text-muted-foreground">{ciam ? "Follow one customer through sign-in and use the pilot to check what the application enforces." : "Illustrative control sequence. Vendor documentation is not an independently verified blocking test."}</p>
+        <p className="mt-2 text-sm text-muted-foreground">{ciam ? "Follow one customer through sign-in and use the pilot to check what the application enforces." : secops ? "Follow one alert from the tool that raises it to the step this product owns. Vendor statements are not an independently verified test." : "Illustrative control sequence. Vendor documentation is not an independently verified blocking test."}</p>
         <ol className="mt-4 grid gap-3 md:grid-cols-3">
           {([["1. Trigger", details.action], ["2. Control", details.control], ["3. Evidence", details.evidence]] as const).map(([heading, description]) => (
             <li key={heading} className="min-w-0 rounded-xl border border-border bg-card p-4">
@@ -123,6 +126,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         </section>
       ) : null}
       {ciam ? <CiamMarketContext slug={slug} /> : null}
+      {secops ? <MarketContext profile={secopsProfiles[slug]} checked={SECOPS_PROFILE_CHECKED} /> : null}
       <section aria-labelledby="limitations" className="mt-8 rounded-xl border border-border p-4">
         <AnchorHeading id="limitations" className="text-xl font-semibold">What this does not establish</AnchorHeading>
         <p className="mt-2 text-sm leading-6">{details.limitation}</p>
@@ -170,7 +174,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <p className="mt-2 text-sm leading-6 text-muted-foreground">The Atlas registers Kingfisher as not evaluated. Rule-level and optional analyzer comparisons will appear only after a pinned-source parser and provenance review. An imported TruffleHog report is not proof of native Kingfisher detector coverage.</p>
           <a href="https://github.com/heyfunwhoa/detector-coverage-atlas" className="mt-3 inline-flex min-h-11 items-center text-sm text-primary underline underline-offset-4">Open Detector Coverage Atlas repository</a>
         </aside>
-      ) : ciam ? null : (
+      ) : ciam || secops ? null : (
         <aside className="mt-10 border-t border-border pt-6">
           <h2 className="text-xl font-semibold">Compare only when needed</h2>
           <p className="mt-2 text-sm leading-6 text-muted-foreground">Start with the product&apos;s own control points and limitations. The comparison matrix combines documented evidence with explicit Unknown states, not a winner or score.</p>
