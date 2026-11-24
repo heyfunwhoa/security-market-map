@@ -70,6 +70,16 @@ Start with the existing tools, then repeat with the candidate on the same eviden
 
 The [developer-workstation use case](https://security-market-map.vercel.app/use-cases/developer-endpoint-protection) links to provider profiles. Use the [device exposure comparison](https://security-market-map.vercel.app/compare?use=uc-developer-endpoint&products=crowdstrike-platform,aikido-device-protection,microsoft-defender-for-endpoint,stairwell-platform) to review download history, inventory and sightings. Use the [retained file comparison](https://security-market-map.vercel.app/compare?use=uc-developer-endpoint&products=stairwell-platform,limacharlie-binlib,reversinglabs-spectra-analyze,carbon-black-cloud-enterprise-edr) to review recovery and historical hunts.
 
+#### Worked example and decision handoff
+
+This fictional exercise uses benign fixtures. The devices, evidence labels and elapsed minutes are illustrative. [Read the completed worksheet](../../public/worksheets/developer-package-advisory-example.csv).
+
+**Technical handoff.** The original file appeared on laptop A and runner B. A process record confirms execution on B. On A, the recovered sample matches the fixture hash, while execution remains unknown. Laptop C was offline during the collection window. Developer platform owns the check linking B’s job to a release. Endpoint IT owns the coverage check for C.
+
+**Executive update.** We confirmed the file ran on a build runner. The release owner is holding the relevant release while engineering checks which output the job produced. Customer impact is still unknown. The next update is due when engineering completes that trace or at the release decision deadline, whichever comes first.
+
+**What changed the decision?** At minute 8, two file sightings justified investigation. At minute 12, the process record gave the team a reason to trace a specific build. Recovering the sample at minute 16 helped the analyst inspect it. That recovery alone would not establish release or customer impact.
+
 Research notes checked 2026-11-24 against primary vendor sources. These are documented capabilities with no hands-on results recorded. The market-map maintainer owns editorial review at the guide's December 11 checkpoint or when a vendor changes collection, retention or entitlement.
 
 ## Layer 3 — AI SOC / agentic investigation
