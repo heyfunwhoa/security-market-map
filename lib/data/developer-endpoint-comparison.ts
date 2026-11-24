@@ -16,6 +16,44 @@ export const developerEndpointCapabilities: Capability[] = [
   { id: "cap-dev-ai-usage-inventory", slug: "dev-ai-usage-inventory", name: "AI provider and MCP usage inventory", description: "Reports agents, models, tools or MCP usage without implying tool-call prevention.", categoryId: "endpoint-control" },
   { id: "cap-dev-honeytoken", slug: "dev-honeytoken", name: "Endpoint honeytoken alert", description: "Places an intentionally invalid decoy credential and alerts on its use; not equivalent to host malware detection.", categoryId: "endpoint-control" },
 ];
+const discoveryGroups = [
+  {
+    audience: "Security leadership",
+    questions: [
+      "Think of the last package advisory. What decision took longest, and what evidence were you waiting for?",
+      "Which business service or release could be affected, and when does its owner need an update?",
+      "What finding would justify isolating a laptop, rebuilding a runner or rotating a credential? Who owns that decision and what evidence do they need?",
+    ],
+  },
+  {
+    audience: "Incident response",
+    questions: [
+      "The advisory names a package and version. How do you connect that version to the exact file, device and time when it appeared?",
+      "What shows the file ran? Can you distinguish a download, an installation, and execution on the same machine?",
+      "If a developer tool is declared malicious after removal, can responders recover the file, hunt related samples and identify the devices that saw each one?",
+      "If the advisory arrives 90 days later, can you still retrieve the original file and the device history for the same period?",
+      "If a modified copy has a different hash, what finds it, and how would an analyst rule out a benign lookalike?",
+    ],
+  },
+  {
+    audience: "Developer platform and endpoint IT",
+    questions: [
+      "Which developers and environments are in scope: macOS, Windows, Linux, WSL2 or containers?",
+      "If a search returns no matches, which laptops and build runners had working collection, and which were offline, excluded or already gone?",
+      "Which build or release used the affected runner during that window, and who can verify it?",
+    ],
+  },
+  {
+    audience: "Application security and identity",
+    questions: [
+      "Which control blocks before execution, which only detects, and what is its fail-open behavior?",
+      "Which AI assistant and MCP interactions are supported at the specific hook point?",
+      "Does the pilot keep full secret values local and how is the device CA managed?",
+      "Who owns exception approvals, finding triage and credential revocation?",
+    ],
+  },
+];
+
 export const developerEndpointUseCases: UseCase[] = [
   { id: "uc-developer-endpoint", slug: "developer-endpoint-protection", name: "Protect developer workstations and AI coding workflows",
     problem: "Secrets remain outside Git, agents can access local assets, and dependency installs can introduce compromised code. EDR, SCA and code scanning observe different stages.",
@@ -34,21 +72,8 @@ export const developerEndpointUseCases: UseCase[] = [
         { label: "Can we recover the file and hunt for related samples?", productIds: ["stairwell-platform", "limacharlie-binlib", "reversinglabs-spectra-analyze", "carbon-black-cloud-enterprise-edr"] },
       ],
     },
-    discoveryQuestions: [
-      "Think of the last package advisory. What decision took longest, and what evidence were you waiting for?",
-      "Which developers and environments are in scope: macOS, Windows, Linux, WSL2 or containers?",
-      "Which control blocks before execution, which only detects, and what is its fail-open behavior?",
-      "Which AI assistant and MCP interactions are supported at the specific hook point?",
-      "Does the pilot keep full secret values local and how is the device CA managed?",
-      "If a developer tool is declared malicious after removal, can responders recover the file, hunt related samples and identify the devices that saw each one?",
-      "The advisory names a package and version. How do you connect that version to the exact file, device and time when it appeared?",
-      "What shows the file ran? Can you distinguish a download, an installation, and execution on the same machine?",
-      "If a search returns no matches, which laptops and build runners had working collection, and which were offline, excluded or already gone?",
-      "If the advisory arrives 90 days later, can you still retrieve the original file and the device history for the same period?",
-      "If a modified copy has a different hash, what finds it, and how would an analyst rule out a benign lookalike?",
-      "What finding would justify isolating a laptop, rebuilding a runner or rotating a credential? Who owns that decision and what evidence do they need?",
-      "Who owns exception approvals, finding triage and credential revocation?",
-    ],
+    discoveryGroups,
+    discoveryQuestions: discoveryGroups.flatMap((group) => group.questions),
     buyerQuestion: "Which developer actions can we prevent, and what evidence can responders recover after a package advisory?"
   },
 ];

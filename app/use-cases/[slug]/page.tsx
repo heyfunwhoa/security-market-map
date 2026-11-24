@@ -1,6 +1,7 @@
 import { seatsForUseCase } from "@/lib/persona-graph";
 import { productDestination } from "@/lib/product-destination";
 import Link from "next/link";
+import { DiscoveryQuestions } from "@/components/discovery-questions";
 import { notFound } from "next/navigation";
 import { PageIntro, StatusPill } from "@/components/chrome";
 import { catalog, findUseCase, vendorById } from "@/lib/catalog";
@@ -41,11 +42,7 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
           </section>
           <section>
             <h2 className="text-2xl">Discovery questions</h2>
-            <ul className="mt-2 list-disc space-y-2 pl-5">
-              {useCase.discoveryQuestions.map((question) => (
-                <li key={question}>{question}</li>
-              ))}
-            </ul>
+            <DiscoveryQuestions useCase={useCase} />
           </section>
         </div>
         <aside className="space-y-4 rounded-xl border border-border bg-card p-4 text-sm">

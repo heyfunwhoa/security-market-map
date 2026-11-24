@@ -193,6 +193,7 @@ export const useCaseSchema = z.object({
   categoryIds: z.array(z.string()).min(1),
   capabilityIds: z.array(z.string()).min(1),
   discoveryQuestions: z.array(z.string()).min(2),
+  discoveryGroups: z.array(z.object({ audience: z.string().min(1), questions: z.array(z.string()).min(1) })).min(1).optional(),
   buyerQuestion: z.string().min(1),
   comparisonShortlists: z.object({
     worksheetPath: z.string().regex(/^\/worksheets\/[a-z0-9-]+\.csv$/).optional(),
