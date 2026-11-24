@@ -66,6 +66,33 @@ export function EndpointGlossary() {
         EDR can help reconstruct what ran. Stairwell describes reanalyzing files it collected as new intelligence
         arrives and tying sightings to devices and times. Check which devices and file types were covered.
       </p>
+      <details className="mt-3 rounded-lg border border-border p-4">
+        <summary className="cursor-pointer font-semibold focus-visible:outline-2 focus-visible:outline-ring">
+          Walk through the same case with three buyers
+        </summary>
+        <p className="mt-3 text-sm leading-6">
+          Use a harmless test installer and agree on the expected devices and events before the evaluation.
+          Simulate a later verdict change and test against evidence from the agreed retention window.
+        </p>
+        <dl className="mt-3 grid gap-4 text-sm leading-6 md:grid-cols-3">
+          <div>
+            <dt className="font-semibold">SOC analyst</dt>
+            <dd>Show what ran, which devices saw the file, and whether you can recover the original sample. Distinguish an observed file from confirmed execution.</dd>
+          </div>
+          <div>
+            <dt className="font-semibold">Endpoint owner</dt>
+            <dd>Reconcile reporting devices against inventory. Show which devices lacked coverage and who can approve and audit isolation.</dd>
+          </div>
+          <div>
+            <dt className="font-semibold">CISO</dt>
+            <dd>Summarize how many devices were affected, what remains unknown, who owns the next action, and which gaps require additional spend.</dd>
+          </div>
+        </dl>
+        <p className="mt-3 text-sm leading-6">
+          Record elapsed time from the verdict change to the first evidence-backed scope and response decision.
+          Mark each expected result as demonstrated, partial, or unverified, with a link to the evidence or a reason it is missing.
+        </p>
+      </details>
       <p className="mt-2 flex flex-wrap gap-x-4 gap-y-2 text-sm">
         <Link className={linkStyle} href={productDetailUrl("stairwell", "stairwell-platform")}>Stairwell product evidence</Link>
         <a className={linkStyle} href="https://docs.stairwell.com/docs/what-is-stairwell">Stairwell collection documentation</a>
