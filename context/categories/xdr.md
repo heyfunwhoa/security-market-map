@@ -30,7 +30,7 @@ Detection and response sold together across more than the endpoint. This map doe
 
 From 3 vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.
 
-- SOC analyst (`soc-analyst`): 3 of 3 vendors
+- SOC analyst (`soc-analyst`): 2 of 3 vendors
 - SOC manager (`soc-lead`): 2 of 3 vendors
 - Threat hunter (`threat-hunter`): 2 of 3 vendors
 - Incident responder (`incident-response`): 1 of 3 vendors

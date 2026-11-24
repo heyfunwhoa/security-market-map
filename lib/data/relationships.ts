@@ -2,6 +2,16 @@ import type { CustomerStory, PricingSignal, Relationship } from "../schema";
 
 export const relationships: Relationship[] = [
   {
+    id: "rel-stairwell-elastic",
+    fromProductId: "stairwell-platform",
+    toProductId: "elastic-security",
+    type: "complement",
+    useCaseId: "uc-alert-investigation",
+    rationale:
+      "Stairwell's integrations docs list Elastic as an outbound integration. Elastic holds the logs and the case; Stairwell sends its findings there. Integration depth is not verified.",
+    sourceId: "src-fill-stairwell-integrations-docs",
+  },
+  {
     id: "rel-stairwell-crowdstrike",
     fromProductId: "stairwell-platform",
     toProductId: "crowdstrike-platform",
@@ -38,7 +48,7 @@ export const relationships: Relationship[] = [
     type: "complement",
     useCaseId: "uc-alert-investigation",
     rationale:
-      "Stairwell lists an app that enriches Splunk logs with its intelligence. Splunk holds the logs and the case. App depth and customer use are not verified.",
+      "Stairwell says its Splunk integration enriches Splunk events with verdicts, investigation context and Rehunt matches. Splunk holds the logs and the case. Depth and customer use are not verified.",
     sourceId: "src-fill-stairwell-integrations-page",
   },
   {
@@ -48,8 +58,8 @@ export const relationships: Relationship[] = [
     type: "complement",
     useCaseId: "uc-alert-investigation",
     rationale:
-      "Stairwell lists Palo Alto Cortex as a SOAR integration. XSOAR runs the playbook; Stairwell is an enrichment step inside it. Integration depth is not verified.",
-    sourceId: "src-fill-stairwell-integrations-page",
+      "Stairwell's docs list Cortex XSOAR as a two-way integration. XSOAR runs the playbook; Stairwell supplies evidence and remediation steps. Integration depth is not verified.",
+    sourceId: "src-fill-stairwell-integrations-docs",
   },
   {
     id: "rel-stairwell-tines",
@@ -58,8 +68,8 @@ export const relationships: Relationship[] = [
     type: "complement",
     useCaseId: "uc-alert-investigation",
     rationale:
-      "Stairwell lists Tines as a SOAR integration with workflow templates. Tines runs the workflow; Stairwell supplies the file verdict. Integration depth is not verified.",
-    sourceId: "src-fill-stairwell-integrations-page",
+      "Stairwell's docs list Tines as an outbound integration, and its integrations page describes Tines templates. Tines runs the workflow; Stairwell supplies the file verdict. Integration depth is not verified.",
+    sourceId: "src-fill-stairwell-integrations-docs",
   },
   {
     id: "rel-c1-opal-jml",

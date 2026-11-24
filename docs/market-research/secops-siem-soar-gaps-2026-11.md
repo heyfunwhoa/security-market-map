@@ -17,9 +17,9 @@ The SIEM and SOAR categories were missing commonly named platforms. SOAR had no 
 
 | Product | Source | What the publisher says |
 | --- | --- | --- |
-| Google SecOps | [Product page](https://cloud.google.com/security/products/security-operations) | Formerly Chronicle; includes SIEM, SOAR and applied threat intelligence. |
+| Google SecOps | [Product page](https://cloud.google.com/security/products/security-operations) | Includes SIEM, SOAR and applied threat intelligence. |
 | Cortex XSOAR | [What is Cortex XSOAR?](https://cortex-docs.paloaltonetworks.com/cortex-xsoar-8-on-prem/8.8/learn-about-cortex-xsoar/get-started-with-cortex-xsoar/what-is-cortex-xsoar) | Ingests alerts and indicators from SIEMs, threat intel feeds and mailboxes, then runs playbooks to enrich and respond. |
-| Tines | [Homepage](https://www.tines.com/) | AI orchestration platform for security and IT teams; connects tools and deploys agents. |
+| Tines | [Homepage](https://www.tines.com/) | A secure environment for AI agents, apps and automation; every team builds, IT and Security govern. |
 
 All three statements are vendor-reported and untested here.
 
@@ -45,7 +45,7 @@ Stairwell's generic webhook doc names Torq, Swimlane and Elastic as example dest
 | Swimlane | SOAR (adjacent AI SOC) | SOC lead, MSSP ops | Platform data sheet and pricing page |
 | Elastic | SIEM (adjacent endpoint, AI SOC) | SOC analyst, threat hunter, detection engineer | SIEM page |
 
-No Stairwell edges were added for these. The webhook doc lists them as examples of a generic integration, not dedicated ones.
+Stairwell's integrations docs list **Elastic** as a dedicated outbound integration, so it gets a `complement` edge. Torq and Swimlane appear only as generic-webhook examples and get no edge.
 
 Torq and Swimlane both market against "legacy SOAR", so they sit across SOAR and AI SOC investigation. Elastic is the first SIEM vendor to pitch detection engineers alongside analysts.
 
@@ -83,3 +83,15 @@ Recorded as four sourced claims on the existing Stairwell product, from Stairwel
 - Tines markets well beyond SOAR (IT workflows, AI agents). Its budget line varies by buyer.
 - Google SecOps package contents and Tines deployment options are not verified.
 - Sharing the `soar` category is not proof that these products compete directly.
+
+## Full-page check (2026-11-24)
+
+Every vendor URL in this PR was re-read in full. Seat-targeting rows that were fully read are now `page-read`. CrowdStrike and Palo Alto XDR stay `search-excerpt` because one of their two URLs wasn't re-read. What changed:
+
+- **Google SecOps:** the product page no longer says "formerly Chronicle," so that wording is gone.
+- **Tines:** the homepage now says "The secure environment for AI agents, apps and automation" and pitches every team, with IT and Security governing. The claim, positioning and seat row were updated. SOC lead moved from pitched to mentioned.
+- **Stairwell + Google SecOps:** enrichment varies by indicator type. Hashes get YARA matches, hostnames get DNS records, IPs get sightings. Prevalence and variants aren't listed per type.
+- **Stairwell + Splunk:** there's no "Stairwell App for Splunk" wording. The page says it enriches Splunk events with verdicts, investigation context and Rehunt matches.
+- **Stairwell + SOAR:** the integrations page doesn't label Cortex or Tines as SOAR. The edges now cite the docs, which list XSOAR as two-way and Tines as outbound.
+- **Stairwell + Elastic:** the docs list a dedicated outbound integration, so an edge was added.
+- **SentinelOne XDR:** the readable text names only "security teams," so SOC analyst was removed. The data-sheet PDF bodies couldn't be read.

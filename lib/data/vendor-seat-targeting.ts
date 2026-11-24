@@ -18,6 +18,8 @@ import type { VendorSeatTargetingInput } from "@/lib/schema";
 // Rows added 2026-11-24 (SOAR): "security teams" and "SOC teams" map to SOC lead, "security
 // analysts" to SOC analyst, "IT teams" to IT operations, and MSSP pages to mssp-ops. XDR rows
 // (2026-11-24) use the same rule; "threat hunters" and "incident responders" map to their own seats.
+// Rows re-read in full on 2026-11-24 are marked page-read. Tines' homepage now pitches every team,
+// with IT and Security as governors, so SOC lead is mentioned rather than pitched.
 
 const CHECKED = "2026-11-09";
 const REREAD = "2026-11-10";
@@ -594,18 +596,19 @@ export const vendorSeatTargeting: VendorSeatTargetingInput[] = [
     audience: "SOC teams automating incident response; an MSSP edition is described as designed with security analysts in mind.",
     urls: ["https://cortex-docs.paloaltonetworks.com/cortex-xsoar-8-on-prem/8.8/learn-about-cortex-xsoar/get-started-with-cortex-xsoar/what-is-cortex-xsoar", "https://www.paloaltonetworks.com/cortex/cortex-xsoar-mssp"],
     basis: "vendor-docs",
-    inspection: "search-excerpt",
+    inspection: "page-read",
     checkedAt: SOAR_SEARCHED,
   },
   {
     vendorId: "tines",
     categoryId: "soar",
-    seatIds: ["soc-lead", "it-operations", "mssp-ops"],
+    seatIds: ["it-operations", "mssp-ops"],
+    mentionedSeatIds: ["soc-lead"],
     selectionReason: "challenger",
-    audience: "Security and IT teams; a separate solutions page targets MSSPs automating workflows across clients.",
+    audience: "Every team builds; IT and Security keep visibility and control. A separate page targets MSSPs automating workflows across clients.",
     urls: ["https://www.tines.com/", "https://www.tines.com/mssps/"],
     basis: "vendor-page",
-    inspection: "search-excerpt",
+    inspection: "page-read",
     checkedAt: SOAR_SEARCHED,
   },
   {
@@ -616,7 +619,7 @@ export const vendorSeatTargeting: VendorSeatTargetingInput[] = [
     audience: "Security teams that detect, investigate and respond; SOAR playbooks and a shared case wall for team collaboration.",
     urls: ["https://cloud.google.com/security/products/security-operations"],
     basis: "vendor-page",
-    inspection: "search-excerpt",
+    inspection: "page-read",
     checkedAt: SOAR_SEARCHED,
   },
   {
@@ -627,7 +630,7 @@ export const vendorSeatTargeting: VendorSeatTargetingInput[] = [
     audience: "Security teams that detect, investigate and respond to threats with Google's scale and intelligence.",
     urls: ["https://cloud.google.com/security/products/security-operations"],
     basis: "vendor-page",
-    inspection: "search-excerpt",
+    inspection: "page-read",
     checkedAt: SOAR_SEARCHED,
   },
   // XDR, added 2026-11-24 from search excerpts
@@ -645,12 +648,12 @@ export const vendorSeatTargeting: VendorSeatTargetingInput[] = [
   {
     vendorId: "sentinelone",
     categoryId: "xdr",
-    seatIds: ["soc-analyst", "soc-lead"],
+    seatIds: ["soc-lead"],
     selectionReason: "challenger",
-    audience: "Security teams and security analysts; analysts resolve threats in one click and see aggregated events as one incident.",
+    audience: "Security teams, given centralized visibility across security layers. Neither page names analysts in readable text.",
     urls: ["https://assets.sentinelone.com/mitre-22/usecase-singularity-xdr-en", "https://assets.sentinelone.com/frost-sullivan/ds-sentinelone-xdr"],
     basis: "vendor-page",
-    inspection: "search-excerpt",
+    inspection: "page-read",
     checkedAt: SOAR_SEARCHED,
   },
   {
@@ -673,7 +676,7 @@ export const vendorSeatTargeting: VendorSeatTargetingInput[] = [
     audience: "SOC teams facing alert volume and analyst fatigue; AI agents triage, investigate and contain.",
     urls: ["https://torq.io/soc-teams/", "https://torq.io/hyperautomation/"],
     basis: "vendor-page",
-    inspection: "search-excerpt",
+    inspection: "page-read",
     checkedAt: SOAR_SEARCHED,
   },
   {
@@ -684,7 +687,7 @@ export const vendorSeatTargeting: VendorSeatTargetingInput[] = [
     audience: "SOC, vulnerability management and compliance teams at enterprises and MSSPs; entry tier aimed at SOC teams automating for the first time.",
     urls: ["https://swimlane.com/resources/datasheets/swimlane-turbine-platform-overview/", "https://swimlane.com/platform/enterprise-packaging/"],
     basis: "vendor-page",
-    inspection: "search-excerpt",
+    inspection: "page-read",
     checkedAt: SOAR_SEARCHED,
   },
   {
@@ -695,7 +698,7 @@ export const vendorSeatTargeting: VendorSeatTargetingInput[] = [
     audience: "Built by security users for security users; agentic layer spans triage, threat hunting, detection engineering and forensics.",
     urls: ["https://www.elastic.co/security/siem"],
     basis: "vendor-page",
-    inspection: "search-excerpt",
+    inspection: "page-read",
     checkedAt: SOAR_SEARCHED,
   },
   // ITDR posture pages (ISPM, folded into ITDR on 2026-11-18)

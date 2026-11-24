@@ -515,7 +515,7 @@ export const categoryFillVendors: Vendor[] = [
     "name": "Tines",
     "formerNames": [],
     "website": "https://www.tines.com/",
-    "positioning": "Tines describes an AI orchestration and workflow platform for security and IT teams.",
+    "positioning": "Tines describes a secure environment for AI agents, apps and automation, built by every team and governed by IT and Security.",
     "primaryCategoryIds": [
       "soar"
     ],
@@ -1176,7 +1176,7 @@ export const categoryFillProducts: Product[] = [
     "slug": "google-secops",
     "vendorId": "google",
     "name": "Google Security Operations (SecOps)",
-    "positioning": "Google says Google SecOps, formerly Chronicle, combines SIEM, SOAR and applied threat intelligence in one platform.",
+    "positioning": "Google says Google SecOps combines SIEM, SOAR and applied threat intelligence in one platform.",
     "primaryCategoryIds": [
       "siem"
     ],
@@ -1200,7 +1200,7 @@ export const categoryFillProducts: Product[] = [
     "slug": "tines-platform",
     "vendorId": "tines",
     "name": "Tines",
-    "positioning": "Tines describes an AI orchestration and workflow platform for security and IT teams, covering SOAR-style enrichment, containment and remediation plus agents and case management.",
+    "positioning": "Tines describes a secure environment for AI agents, apps and automation. Its security page covers alert enrichment, AI-assisted triage and AI agents that create, triage and resolve cases.",
     "primaryCategoryIds": [
       "soar"
     ],
@@ -1697,11 +1697,11 @@ export const categoryFillSources: Source[] = [
     "publishedAt": null,
     "retrievedAt": "2026-11-24",
     "volatility": "fast",
-    "excerpt": "Google says Google SecOps, formerly Chronicle, includes SIEM, SOAR and applied threat intelligence capabilities."
+    "excerpt": "Google says Google SecOps includes SIEM, SOAR and applied threat intelligence capabilities."
   },
   {
     "id": "src-fill-tines",
-    "title": "Tines — homepage",
+    "title": "Tines — homepage (re-read 2026-11-24)",
     "url": "https://www.tines.com/",
     "canonicalUrl": "https://www.tines.com/",
     "publisher": "Tines",
@@ -1709,7 +1709,7 @@ export const categoryFillSources: Source[] = [
     "publishedAt": null,
     "retrievedAt": "2026-11-24",
     "volatility": "fast",
-    "excerpt": "Tines describes itself as an AI orchestration platform for security and IT teams that connects tools and deploys agents to automate work."
+    "excerpt": "Tines describes itself as a secure environment for AI agents, apps and automation that every team can build on, with IT and Security keeping visibility and control."
   },
   {
     "id": "src-fill-cortex-xsoar",
@@ -1733,7 +1733,7 @@ export const categoryFillSources: Source[] = [
     "publishedAt": null,
     "retrievedAt": "2026-11-24",
     "volatility": "moderate",
-    "excerpt": "Stairwell says EDR platforms send it files, while SIEM, SOAR and case management systems receive its findings as events, cases or playbook triggers."
+    "excerpt": "Stairwell says EDR platforms (CrowdStrike, SentinelOne) send it files, while Splunk, Google SecOps, Elastic, TheHive, Tines and Cortex XSOAR receive its findings."
   },
   {
     "id": "src-fill-stairwell-google-secops-docs",
@@ -1745,7 +1745,7 @@ export const categoryFillSources: Source[] = [
     "publishedAt": null,
     "retrievedAt": "2026-11-24",
     "volatility": "moderate",
-    "excerpt": "Stairwell's enrichment integration for Google SecOps returns verdicts, rule matches, prevalence and variants for hashes, hostnames and IPs inside SecOps cases."
+    "excerpt": "Stairwell's Google SecOps enrichment returns verdicts for hashes, hostnames and IPs inside SecOps cases, with YARA matches for hashes, DNS records for hostnames and sightings for IPs."
   },
   {
     "id": "src-fill-stairwell-integrations-page",
@@ -1757,7 +1757,7 @@ export const categoryFillSources: Source[] = [
     "publishedAt": null,
     "retrievedAt": "2026-11-24",
     "volatility": "fast",
-    "excerpt": "Stairwell lists integrations with Palo Alto Cortex (SOAR), Tines (SOAR templates), a Stairwell app for Splunk, Google Security Operations, CrowdStrike, SentinelOne and others."
+    "excerpt": "Stairwell lists integrations with Palo Alto Cortex, Splunk, SentinelOne, Google Security Operations, CrowdStrike, Tines, Slack, TheHive and Wirespeed."
   },
   {
     "id": "src-fill-torq-hyperautomation",
@@ -2380,7 +2380,7 @@ export const categoryFillClaims: Claim[] = [
   },
   {
     "id": "claim-fill-google-secops",
-    "statement": "Google says Google Security Operations, formerly Chronicle, includes SIEM, SOAR and applied threat intelligence capabilities.",
+    "statement": "Google says Google Security Operations includes SIEM, SOAR and applied threat intelligence capabilities.",
     "subjectType": "product",
     "subjectId": "google-secops",
     "capabilityId": null,
@@ -2400,7 +2400,7 @@ export const categoryFillClaims: Claim[] = [
   },
   {
     "id": "claim-fill-tines",
-    "statement": "Tines describes its product as an AI orchestration platform for security and IT teams that connects tools and deploys agents to automate work.",
+    "statement": "Tines describes its product as a secure environment for AI agents, apps and automation that every team can build on, with IT and Security keeping visibility and control.",
     "subjectType": "product",
     "subjectId": "tines-platform",
     "capabilityId": null,
@@ -2456,11 +2456,11 @@ export const categoryFillClaims: Claim[] = [
     "verificationStatus": "vendor_published",
     "lastCheckedAt": "2026-11-24",
     "conflictsWith": [],
-    "notes": "Stairwell-published; read from a search excerpt, not a full page read. Integration listed is not proof of depth or customer use. See docs/market-research/secops-siem-soar-gaps-2026-11.md."
+    "notes": "Stairwell-published; re-read in full on 2026-11-24. Integration listed is not proof of depth or customer use. See docs/market-research/secops-siem-soar-gaps-2026-11.md."
   },
   {
     "id": "claim-fill-stairwell-google-secops",
-    "statement": "Stairwell says its Google SecOps integration enriches hashes, hostnames and IPs inside SecOps cases with verdicts, rule matches, prevalence and variants.",
+    "statement": "Stairwell says its Google SecOps integration enriches hashes, hostnames and IPs inside SecOps cases with verdicts, plus type-specific context such as YARA matches for hashes and DNS records for hostnames.",
     "subjectType": "product",
     "subjectId": "stairwell-platform",
     "capabilityId": null,
@@ -2476,11 +2476,11 @@ export const categoryFillClaims: Claim[] = [
     "verificationStatus": "vendor_published",
     "lastCheckedAt": "2026-11-24",
     "conflictsWith": [],
-    "notes": "Stairwell-published; read from a search excerpt, not a full page read. Integration listed is not proof of depth or customer use. See docs/market-research/secops-siem-soar-gaps-2026-11.md."
+    "notes": "Stairwell-published; re-read in full on 2026-11-24. Integration listed is not proof of depth or customer use. See docs/market-research/secops-siem-soar-gaps-2026-11.md."
   },
   {
     "id": "claim-fill-stairwell-soar",
-    "statement": "Stairwell lists SOAR integrations with Palo Alto Cortex and Tines, the latter with workflow templates.",
+    "statement": "Stairwell's docs list Cortex XSOAR (both directions) and Tines (outbound) as integrations; its integrations page describes Cortex workflows and Tines templates.",
     "subjectType": "product",
     "subjectId": "stairwell-platform",
     "capabilityId": null,
@@ -2496,11 +2496,11 @@ export const categoryFillClaims: Claim[] = [
     "verificationStatus": "vendor_published",
     "lastCheckedAt": "2026-11-24",
     "conflictsWith": [],
-    "notes": "Stairwell-published; read from a search excerpt, not a full page read. Integration listed is not proof of depth or customer use. See docs/market-research/secops-siem-soar-gaps-2026-11.md."
+    "notes": "Stairwell-published; re-read in full on 2026-11-24. Integration listed is not proof of depth or customer use. See docs/market-research/secops-siem-soar-gaps-2026-11.md."
   },
   {
     "id": "claim-fill-stairwell-splunk",
-    "statement": "Stairwell lists a Stairwell app for Splunk that enriches Splunk logs with Stairwell intelligence.",
+    "statement": "Stairwell says its Splunk integration enriches Splunk events with Stairwell verdicts, investigation context and Rehunt matches.",
     "subjectType": "product",
     "subjectId": "stairwell-platform",
     "capabilityId": null,
@@ -2516,7 +2516,7 @@ export const categoryFillClaims: Claim[] = [
     "verificationStatus": "vendor_published",
     "lastCheckedAt": "2026-11-24",
     "conflictsWith": [],
-    "notes": "Stairwell-published; read from a search excerpt, not a full page read. Integration listed is not proof of depth or customer use. See docs/market-research/secops-siem-soar-gaps-2026-11.md."
+    "notes": "Stairwell-published; re-read in full on 2026-11-24. Integration listed is not proof of depth or customer use. See docs/market-research/secops-siem-soar-gaps-2026-11.md."
   },
   {
     "id": "claim-fill-torq",
