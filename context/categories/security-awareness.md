@@ -28,7 +28,7 @@ Training and simulated phishing for people. It changes behavior. It does not rep
 ## Vendors (primary)
 
 - KnowBe4: Security awareness and simulated phishing. It does not stop the email.
-- GhostEye: Early-stage (YC Summer 2025) security awareness startup that runs AI-generated social engineering simulations across email, SMS and voice.
+- GhostEye: New York startup, Y Combinator Summer 2025. Sells "vulnerability management for the human layer": maps what attackers can learn about employees and runs personalized social engineering attacks over email, SMS and voice, including against help desks.
 
 ## Vendors (adjacent)
 

@@ -1,7 +1,7 @@
 import type { Claim, Product, Source, Vendor } from "../schema";
 
 // Category gaps, batch 2 (2026-11-23): customer trust, enterprise browser, pentesting, security ratings,
-// security awareness, plus Bay (agent runtime on endpoints). Research candidates only.
+// security awareness. Research candidates only. Bay and GhostEye profiles live in ./bay-ghosteye.ts.
 // Publisher-reported or news unless noted. No direct-competitor or parity claims.
 // Palo Alto Networks and Black Kite reuse existing vendor records. See docs/market-research/category-gaps-batch2-2026-11.md.
 
@@ -54,41 +54,6 @@ export const gapBatch2Vendors: Vendor[] = [
     verificationStatus: "research_candidate",
     openQuestions: [
       "How the autonomous offering and human pentests are scoped and priced together was not checked.",
-    ],
-  },
-  {
-    id: "bay-security",
-    slug: "bay-security",
-    name: "Bay",
-    formerNames: [],
-    website: "https://bay.security/",
-    positioning:
-      "Israeli startup (Bay AI Inc.) that vets each action an AI agent tries to take on enterprise endpoints before it runs, with AI discovery and posture management. Launched Nov 2026.",
-    primaryCategoryIds: ["agentic-runtime"],
-    adjacentCategoryIds: ["endpoint-security", "ai-governance"],
-    identityScopes: ["agent"],
-    verificationStatus: "research_candidate",
-    openQuestions: [
-      "All capability statements come from launch coverage on 10 Nov 2026; the vendor's own product pages were not reviewed in depth.",
-      "Funding is reported as $50M total, with a $37M Series A led by Battery Ventures in one report. Confirm the split.",
-      "Which AI tools and operating systems are covered, and how does it integrate with existing EDR and MDM?",
-    ],
-  },
-  {
-    id: "ghosteye",
-    slug: "ghosteye",
-    name: "GhostEye",
-    formerNames: [],
-    website: "https://ghosteye.ai/",
-    positioning:
-      "Early-stage (YC Summer 2025) security awareness startup that runs AI-generated social engineering simulations across email, SMS and voice.",
-    primaryCategoryIds: ["security-awareness"],
-    adjacentCategoryIds: ["pentest-program"],
-    identityScopes: ["not_an_identity_control"],
-    verificationStatus: "research_candidate",
-    openQuestions: [
-      "Very early company; funding, headcount and headquarters differ across data aggregators. No first-party product page was reviewed.",
-      "Can the buyer's legal and HR process approve voice and SMS impersonation tests?",
     ],
   },
 ];
@@ -167,36 +132,6 @@ export const gapBatch2Products: Product[] = [
     availability: "generally_available",
     availabilityNote: "Subscription tiers by number of vendors assessed, per the Peer Insights listing.",
     officialUrl: "https://blackkite.com/",
-    useCaseIds: [],
-  },
-  {
-    id: "bay-platform",
-    slug: "bay-platform",
-    vendorId: "bay-security",
-    name: "Bay platform",
-    positioning: "AI discovery and posture management, session-level observability, and real-time enforcement that evaluates each agent action before it runs on the endpoint.",
-    primaryCategoryIds: ["agentic-runtime"],
-    adjacentCategoryIds: ["endpoint-security"],
-    deployment: ["unknown"],
-    identityScopes: ["agent"],
-    availability: "generally_available",
-    availabilityNote: "Coverage of the 10 Nov 2026 launch says enterprises can buy it now and names Micron and Wix as customers.",
-    officialUrl: "https://bay.security/",
-    useCaseIds: [],
-  },
-  {
-    id: "ghosteye-platform",
-    slug: "ghosteye-platform",
-    vendorId: "ghosteye",
-    name: "GhostEye",
-    positioning: "OSINT and voice agents that build personalized social engineering campaigns against a company's own staff to measure human-layer risk.",
-    primaryCategoryIds: ["security-awareness"],
-    adjacentCategoryIds: ["pentest-program"],
-    deployment: ["saas"],
-    identityScopes: ["not_an_identity_control"],
-    availability: "unknown",
-    availabilityNote: "YC company page and a job listing describe the product; general availability and pricing were not checked.",
-    officialUrl: "https://www.ycombinator.com/companies/ghosteye",
     useCaseIds: [],
   },
 ];
@@ -299,54 +234,6 @@ export const gapBatch2Sources: Source[] = [
     volatility: "moderate",
     excerpt: "Listing describes non-intrusive cyber risk ratings for third parties built from open-source intelligence, scoring areas such as breach probability, compliance and network security.",
   },
-  {
-    id: "src-gap2-bay-launch",
-    title: "SiliconANGLE — AI security startup Bay launches with $50M to vet agent actions before they run",
-    url: "https://siliconangle.com/?p=853606",
-    canonicalUrl: "https://siliconangle.com/?p=853606",
-    publisher: "SiliconANGLE",
-    sourceType: "news",
-    publishedAt: "2026-11-10",
-    retrievedAt: CHECKED,
-    volatility: "moderate",
-    excerpt: "Launch coverage: Israeli startup Bay AI Inc. debuts with $50M to let enterprises vet each action an AI agent attempts before it runs.",
-  },
-  {
-    id: "src-gap2-bay-ismg",
-    title: "GovInfoSecurity — Bay Security raises $50M to stop rogue AI agent actions",
-    url: "https://www.govinfosecurity.com/bay-security-raises-50m-to-stop-rogue-ai-agent-actions-a-33343",
-    canonicalUrl: "https://www.govinfosecurity.com/bay-security-raises-50m-to-stop-rogue-ai-agent-actions-a-33343",
-    publisher: "Information Security Media Group",
-    sourceType: "news",
-    publishedAt: null,
-    retrievedAt: CHECKED,
-    volatility: "moderate",
-    excerpt: "Coverage says the Battery Ventures-led round funds shadow AI discovery, agent posture management, security of agent add-ons and integrations, and runtime enforcement through an agentless design.",
-  },
-  {
-    id: "src-gap2-ghosteye-yc",
-    title: "Y Combinator — GhostEye job listing (Founding Engineer, Applied AI)",
-    url: "https://www.ycombinator.com/companies/ghosteye/jobs/PWYdVgI-founding-engineer-applied-ai",
-    canonicalUrl: "https://www.ycombinator.com/companies/ghosteye/jobs/PWYdVgI-founding-engineer-applied-ai",
-    publisher: "Y Combinator",
-    sourceType: "vendor_marketing",
-    publishedAt: null,
-    retrievedAt: CHECKED,
-    volatility: "fast",
-    excerpt: "GhostEye describes itself as security awareness that simulates real attacks; the role owns OSINT and voice agents that deliver social engineering campaigns.",
-  },
-  {
-    id: "src-gap2-ghosteye-dealroom",
-    title: "Dealroom — GhostEye company profile",
-    url: "https://app.dealroom.co/companies/ghosteye",
-    canonicalUrl: "https://app.dealroom.co/companies/ghosteye",
-    publisher: "Dealroom",
-    sourceType: "review",
-    publishedAt: null,
-    retrievedAt: CHECKED,
-    volatility: "moderate",
-    excerpt: "Profile describes an AI-powered human penetration testing platform for social engineering threats, founded in 2025 and part of Y Combinator's Summer 2025 batch.",
-  },
 ];
 
 function claim(
@@ -391,8 +278,4 @@ export const gapBatch2Claims: Claim[] = [
   claim("claim-gap2-nodezero-webapp", "NodeZero added autonomous web application pentesting in Jul 2026 that chains app flaws with credential theft, lateral movement and cloud access.", "product", "horizon3-nodezero", s["src-gap2-horizon3-webapp"], "From news coverage of a vendor launch."),
   claim("claim-gap2-cobalt-platform", "Cobalt's platform centralizes web app, API, cloud, network, red team and AI/LLM security testing.", "product", "cobalt-platform", s["src-gap2-cobalt-platform"], "Publisher-reported."),
   claim("claim-gap2-black-kite", "Black Kite's platform provides non-intrusive third-party cyber risk ratings from open-source intelligence.", "product", "black-kite-platform", s["src-gap2-black-kite-gartner"], "Peer Insights product text is vendor-supplied, not a Gartner evaluation."),
-  claim("claim-gap2-bay-launch", "Bay launched on 10 Nov 2026 with $50M in funding to vet each action an AI agent attempts before it runs.", "vendor", "bay-security", s["src-gap2-bay-launch"], "From news coverage of the launch."),
-  claim("claim-gap2-bay-scope", "Bay's funding is aimed at shadow AI discovery, agent posture management, securing agent add-ons and integrations, and runtime enforcement.", "product", "bay-platform", s["src-gap2-bay-ismg"], "From news coverage; one report says $37M of the total was a Battery-led Series A."),
-  claim("claim-gap2-ghosteye-product", "GhostEye describes its product as security awareness that simulates real attacks using OSINT and voice agents.", "product", "ghosteye-platform", s["src-gap2-ghosteye-yc"], "Company's own job listing on Y Combinator."),
-  claim("claim-gap2-ghosteye-yc", "GhostEye was founded in 2025 and is in Y Combinator's Summer 2025 batch.", "vendor", "ghosteye", s["src-gap2-ghosteye-dealroom"], "Data aggregator; funding and HQ differ across aggregators."),
 ];

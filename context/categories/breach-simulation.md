@@ -3,7 +3,7 @@ id: "breach-simulation"
 type: "category"
 name: "Breach and attack simulation"
 layer: "core"
-vendors: 5
+vendors: 6
 ---
 
 # Breach and attack simulation
@@ -34,6 +34,7 @@ Platforms that safely run attacker techniques to see whether controls detect or 
 
 - Rapid7
 - Horizon3.ai
+- GhostEye
 
 ## What buyers do instead
 

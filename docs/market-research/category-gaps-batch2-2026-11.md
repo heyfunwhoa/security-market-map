@@ -6,7 +6,7 @@ As of **2026-11-23**. Status: researched and proposed. Human review is pending. 
 
 Follow-up to the [AppSec category gaps](appsec-category-gaps-2026-11.md) batch. Five more categories had one to three vendors, and two newly launched companies (Bay and GhostEye) had no record.
 
-Canonical records: [typed data](../../lib/data/category-gaps-batch2.ts), composed by [catalog](../../lib/catalog.ts). Five new vendors, seven products, twelve sources, twelve claims. Existing records edited: Palo Alto Networks (adds `enterprise-browser` as adjacent) and Black Kite (positioning now sourced instead of "Unverified"). No feature-parity cells, scores or direct-competitor edges.
+Canonical records: [typed data](../../lib/data/category-gaps-batch2.ts), composed by [catalog](../../lib/catalog.ts). Three new vendors, five products, eight sources, eight claims. Bay and GhostEye have full profiles in [their own note](bay-ghosteye-profiles-2026-11.md) and [data file](../../lib/data/bay-ghosteye.ts). Existing records edited: Palo Alto Networks (adds `enterprise-browser` as adjacent) and Black Kite (positioning now sourced instead of "Unverified"). No feature-parity cells, scores or direct-competitor edges.
 
 ## Placement (zoom out → zoom in)
 
@@ -23,9 +23,8 @@ To zoom back out, open each category page, then its domain.
 
 ## Limits and open questions
 
-- Bay's details come only from launch coverage on 10 Nov 2026. Reports agree on $50M total; one says $37M was a Battery Ventures-led Series A.
-- GhostEye is very early. Its funding, headcount and headquarters differ across aggregators (Dealroom, PitchBook, Tracxn, Crunchbase). The product description comes from its own YC job listing.
-- The Black Kite and GhostEye company facts come partly from review sites and aggregators; those claims are `needs_review`.
+- Bay and GhostEye limits are listed in [their profile note](bay-ghosteye-profiles-2026-11.md).
+- The Black Kite product text comes from a review site; that claim is `needs_review`.
 - Prisma Browser's rename date from Prisma Access Browser was not confirmed.
 - Horizon3.ai list prices exist on AWS Marketplace but are not recorded as claims.
 - SafeBase is still sold stand-alone per 2025 coverage; current packaging was not checked.
