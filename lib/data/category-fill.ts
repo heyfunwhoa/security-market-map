@@ -194,26 +194,29 @@ export const categoryFillVendors: Vendor[] = [
     ]
   },
   {
-    "id": "votiro",
-    "slug": "votiro",
-    "name": "Votiro",
-    "formerNames": [],
-    "website": "https://votiro.com/",
-    "positioning": "Votiro says its content disarm and reconstruction technology disarms incoming files and rebuilds them while keeping them usable, across email, downloads, file sharing and removable media.",
+    "id": "menlo-security",
+    "slug": "menlo-security",
+    "name": "Menlo Security",
+    "formerNames": [
+      "Votiro"
+    ],
+    "website": "https://www.menlosecurity.com/",
+    "positioning": "Menlo Security sells secure enterprise browser and workspace security. It announced the acquisition of Votiro, a CDR and data detection and response vendor, on 2025-02-19, and votiro.com now redirects to Menlo.",
     "primaryCategoryIds": [
-      "cdr-file-sanitization"
+      "enterprise-browser"
     ],
     "adjacentCategoryIds": [
+      "cdr-file-sanitization",
       "email-security",
-      "enterprise-browser"
+      "dlp"
     ],
     "identityScopes": [
       "not_an_identity_control"
     ],
     "verificationStatus": "research_candidate",
     "openQuestions": [
-      "Acquired by Menlo Security (announced 2025-02-19); votiro.com now redirects to menlosecurity.com. The current product name inside Menlo's portfolio is not verified here.",
-      "Channel coverage and file-type support are vendor-reported and untested here."
+      "What is the Votiro CDR product called now inside Menlo's portfolio, and is it sold standalone?",
+      "Browser security, file sanitization, or both on the quote?"
     ]
   },
   {
@@ -895,8 +898,8 @@ export const categoryFillProducts: Product[] = [
   {
     "id": "votiro-cdr",
     "slug": "votiro-cdr",
-    "vendorId": "votiro",
-    "name": "Votiro CDR",
+    "vendorId": "menlo-security",
+    "name": "Votiro CDR (Menlo Security)",
     "positioning": "Votiro says its content disarm and reconstruction technology disarms incoming files and rebuilds them while keeping them usable, across email, downloads, file sharing and removable media.",
     "primaryCategoryIds": [
       "cdr-file-sanitization"
@@ -2059,9 +2062,9 @@ export const categoryFillClaims: Claim[] = [
   },
   {
     "id": "claim-fill-menlo-acquires-votiro",
-    "statement": "Menlo Security announced on February 19, 2025 that it had acquired Votiro.",
+    "statement": "Menlo Security announced on February 19, 2025 that it had acquired Votiro, a content disarm and reconstruction vendor.",
     "subjectType": "vendor",
-    "subjectId": "votiro",
+    "subjectId": "menlo-security",
     "capabilityId": null,
     "polarity": "asserts",
     "sourceId": "src-fill-menlo-acquires-votiro",

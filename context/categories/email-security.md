@@ -44,7 +44,7 @@ Inbound and outbound mail controls: phishing, impersonation, and data leaving by
 - Forcepoint
 - Virtru
 - OPSWAT
-- Votiro
+- Menlo Security
 
 ## What buyers do instead
 

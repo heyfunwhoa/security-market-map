@@ -67,7 +67,7 @@ These fill a gap the repo already records: the `digital-forensics` seat has an u
 | Vendor / product | Public context | Evidence status |
 | --- | --- | --- |
 | OPSWAT MetaDefender (Deep CDR) | Says Deep CDR disarms and regenerates files and covers 200+ file types [OF8]; also bundles multi-engine scanning [CD2] | **Typed** (`opswat-deep-cdr`); official page opened 2026-11-23 |
-| Votiro | Says its CDR disarms and rebuilds incoming files for email, downloads, file sharing and removable media [OF11]. **Acquired by Menlo Security (announced 2025-02-19) [OF12]; votiro.com redirects to menlosecurity.com** | **Typed** (`votiro-cdr`); official pages via search-index text |
+| Votiro | Says its CDR disarms and rebuilds incoming files for email, downloads, file sharing and removable media [OF11]. **Acquired by Menlo Security (announced 2025-02-19) [OF12]; votiro.com redirects to menlosecurity.com** | **Typed** (`votiro-cdr` under vendor `menlo-security`, former name Votiro); official pages via search-index text |
 | Glasswall | Named CDR vendor [CD3] | Secondary |
 | Check Point (Threat Extraction), Sasa Software (GateScanner), odix, SoftCamp, YazamTech | Named in market reports and directories [CD2, CD3, CD4] | Candidates only |
 
@@ -116,5 +116,5 @@ Rights: short paraphrase only; no reproduced vendor copy.
 
 ## Consumer disposition
 
-- **Security Market Map catalog:** three typed categories added with two vendors each. Next: confirm the current product name for Votiro inside Menlo's portfolio, then consider Magnet Forensics, Tracebit and Glasswall.
+- **Security Market Map catalog:** three typed categories added with two vendors each. Votiro is modelled under a new `menlo-security` vendor (primary `enterprise-browser`) with Votiro as a former name, following the Fortra / Digital Guardian pattern. Next: confirm Votiro's current product name inside Menlo's portfolio, then consider Magnet Forensics, Tracebit and Glasswall.
 - **Other projects:** no change proposed.
