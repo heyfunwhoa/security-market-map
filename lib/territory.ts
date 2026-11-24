@@ -1,4 +1,3 @@
-import type { ComparisonDraft } from "./buyer-comparison";
 import {
   accountSchema,
   fitWeightsSchema,
@@ -229,11 +228,4 @@ export function accountBrief(input: {
   ];
 
   return lines.join("\n");
-}
-
-export function addComparisonToAccount(account: Account, draft: ComparisonDraft): Account {
-  const sourceLinks = new Map(account.sourceLinks.map((source) => [source.url, source]));
-  for (const link of draft.links) if (!sourceLinks.has(link.url)) sourceLinks.set(link.url, link);
-  return { ...account, sourceLinks: [...sourceLinks.values()], useCaseIds: [...new Set([...account.useCaseIds, draft.useCaseId])],
-    notes: account.notes.includes(draft.text) ? account.notes : [account.notes, draft.text].filter(Boolean).join("\n\n") };
 }

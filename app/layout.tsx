@@ -20,7 +20,7 @@ const fraunces = Fraunces({
 });
 
 const DESCRIPTION =
-  "Explore eleven security domains by buyer question, compare products and inspect the source and date behind each claim. Identity and secrets have the deepest coverage.";
+  "Browse security domains, categories and product profiles. Follow the source and date behind each claim. Identity and secrets have the deepest coverage.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -33,12 +33,12 @@ export const metadata: Metadata = {
     type: "website",
     url: SITE_URL,
     siteName: "Security Market Map",
-    title: "Security Market Map | Buyer questions and product evidence",
+    title: "Security Market Map | Domains, categories and products",
     description: DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Security Market Map | Buyer questions and product evidence",
+    title: "Security Market Map | Domains, categories and products",
     description: DESCRIPTION,
   },
 };

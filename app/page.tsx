@@ -33,17 +33,17 @@ export default function HomePage() {
         For AEs, SEs, and analysts preparing customer conversations
       </p>
       <h1 className="mt-3 max-w-3xl text-4xl tracking-tight text-balance sm:text-5xl">
-        Explore the security market through buyer questions.
+        Security Market Map
       </h1>
       <p className="mt-4 max-w-3xl text-lg leading-8 text-muted-foreground">
-        Find who owns a security problem, which products address it, and what the evidence supports. Identity and secrets have the deepest coverage.
+        Browse security domains and categories, or find a company and follow the sources behind its product profile. Identity and secrets have the deepest coverage.
       </p>
       <nav aria-label="Start exploring" className="mt-6 flex flex-wrap gap-3">
         <Button asChild>
-          <Link href="/use-cases">Start with a buyer question</Link>
+          <Link href="#market-domains">Browse by domain</Link>
         </Button>
         <Button asChild variant="outline">
-          <Link href="/domains">Browse all {catalog.domains.length} domains</Link>
+          <Link href="/landscape">Browse products</Link>
         </Button>
       </nav>
       <form action="/landscape" role="search" aria-label="Find a product or company" className="mt-5 max-w-xl">
@@ -61,11 +61,29 @@ export default function HomePage() {
         </Link>
       </p>
 
-      <section className="mt-12" aria-labelledby="domains-heading">
-        <h2 id="domains-heading" className="text-3xl tracking-tight">
+      <section className="mt-8" aria-labelledby="market-domains">
+        <div className="flex flex-wrap items-baseline justify-between gap-x-4">
+          <h2 id="market-domains" tabIndex={-1} className="scroll-mt-24 text-3xl tracking-tight">Security domains</h2>
+          <Link href="/domains" className="inline-flex min-h-11 items-center text-sm text-primary underline">Open the full domain map</Link>
+        </div>
+        <ul className="mt-2 grid gap-x-6 sm:grid-cols-2 lg:grid-cols-3">
+          {catalog.domains.map((domain) => (
+            <li key={domain.id} className="border-b border-border">
+              <Link href={`/domains/${domain.slug}`} className="flex min-h-11 items-center justify-between gap-2 py-2 text-sm hover:underline">
+                <span className="font-medium">{domain.name}</span>
+                <span className="shrink-0 text-xs text-muted-foreground">{domain.categoryIds.length} categories</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="mt-12" aria-labelledby="questions-heading">
+        <h2 id="questions-heading" className="text-3xl tracking-tight">
           Questions to explore
         </h2>
-        <ul className="mt-4 grid gap-3 md:grid-cols-3">
+        <Link href="/use-cases" className="inline-flex min-h-11 items-center text-sm text-primary underline">Browse buyer questions</Link>
+        <ul className="mt-2 grid gap-3 md:grid-cols-3">
           {[
             { href: "/use-cases/customer-auth", title: "How do customers sign in to our product?", context: "Customer identity" },
             { href: "/domains/secops#secops-buyer-guide", title: "Who investigates a security finding?", context: "Security operations" },

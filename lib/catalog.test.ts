@@ -282,8 +282,6 @@ describe("catalog integrity", () => {
       "cap-cspm",
       "cap-endpoint-detect",
       "cap-backup-restore",
-      "cap-investigation-case", "cap-route-finding", "cap-run-response-playbook",
-      "cap-retain-endpoint-files", "cap-inspect-file",
       // Developer endpoint research slice (PR #111): vendor-published claims only.
       "cap-dev-local-secret-scan",
       "cap-dev-package-install-policy",

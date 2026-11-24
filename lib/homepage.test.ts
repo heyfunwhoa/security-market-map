@@ -14,16 +14,17 @@ describe("homepage", () => {
     expect(html.match(/<h1/g)).toHaveLength(1);
     const nav = html.match(/<nav aria-label="Start exploring"[^]*?<\/nav>/)?.[0] ?? "";
     expect(nav.match(/<a /g)).toHaveLength(2);
-    expect(nav).toContain(">Start with a buyer question<");
-    expect(nav).toContain('href="/domains"');
+    expect(nav).toContain(">Browse by domain<");
+    expect(nav).toContain('href="/landscape"');
     expect(html).toContain('action="/landscape"');
   });
 
-  it("puts buyer questions on the homepage and the complete taxonomy in the domain directory", () => {
+  it("links every domain on the homepage before the existing buyer questions", () => {
     const html = home();
     expect(html).toContain('href="/domains/secops#secops-buyer-guide"');
     expect(html).toContain('href="/use-cases/customer-auth"');
-    expect(html).not.toContain('href="/domains/corporate"');
+    for (const domain of catalog.domains) expect(html).toContain(`href="/domains/${domain.slug}"`);
+    expect(html.indexOf('id="market-domains"')).toBeLessThan(html.indexOf('id="questions-heading"'));
     expect(html).not.toContain("Market areas");
     expect(html).not.toContain("Nine buyer views");
     expect(html).not.toContain("/markets/");

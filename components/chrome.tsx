@@ -18,18 +18,16 @@ const NAV_GROUPS = [
   { title: "Explore the market", links: [
     { href: "/domains", label: "Explore domains", description: "Start with broad security areas and their categories." },
     { href: "/landscape", label: "Browse products", description: "Filter vendors and products, inspect details, and build a shortlist." },
-  ] },
-  { title: "Compare", links: [
+    { href: "/use-cases", label: "Buyer use cases", description: "Browse the problems buyers are evaluating." },
     { href: "/compare", label: "Compare evidence", description: "Compare product evidence for a specific use case." },
   ] },
   { title: "Prepare a conversation", links: [
-    { href: "/incidents", label: "Incidents", description: "Reviewed, sourced security incidents with talk tracks." },
-    { href: "/use-cases", label: "Buyer use cases", description: "Start with the problem you need to solve." },
     { href: "/personas", label: "Buyer seats", description: "Who buys, uses, approves, and blocks, with pains and titles." },
     { href: "/territory", label: "Territory planning", description: "Organize account and territory research." },
     { href: "/budget", label: "Budget worksheet", description: "Work through price signals and budget assumptions." },
   ] },
   { title: "Research", links: [
+    { href: "/incidents", label: "Incidents", description: "Reviewed, sourced security incidents with talk tracks." },
     { href: "/learn", label: "Concepts & scenarios", description: "Understand terminology and practical scenarios." },
     { href: "/connections", label: "How tools connect", description: "Explore identity, secrets, and adjacent security jobs." },
     { href: "/evidence-graph", label: "Evidence graph", description: "Inspect sourced identity, secrets, and non-human identity relationships." },
@@ -42,8 +40,8 @@ const NAV_GROUPS = [
   ] },
 ];
 
-/** The four pages shown in the desktop header: the account-prep entry point plus the three market views. */
-const HEADER_HREFS = ["/use-cases", "/domains", "/landscape", "/compare"];
+/** The four pages shown in the desktop header: domain directory, products, use cases, and comparisons. */
+const HEADER_HREFS = ["/domains", "/landscape", "/use-cases", "/compare"];
 export const HEADER_LINKS = HEADER_HREFS.map((href) => NAV_GROUPS.flatMap((group) => group.links).find((link) => link.href === href)!);
 export const NAV_GROUP_TITLES = NAV_GROUPS.map((group) => group.title);
 export const NAV_HREFS = NAV_GROUPS.flatMap((group) => group.links.map((link) => link.href));

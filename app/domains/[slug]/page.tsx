@@ -47,7 +47,7 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
       <PageIntro
         kicker={domainStatusLabel(domain.depth)}
         title={domain.name}
-        lede="Read the question, the charter, then each category. Words link to the learn page when a definition already exists."
+        lede="Choose a category to explore its products and sources, or jump to the buyer questions for this domain."
       />
       {domain.id === "secops" && <p className="mt-4 text-sm"><a href="#secops-buyer-guide" className="text-primary underline underline-offset-4">Compare seven SecOps buying decisions</a></p>}
       {domain.id === "identity" ? (
@@ -59,10 +59,46 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
         </p>
       ) : null}
       <PageJourney steps={[
-        { href: "#study-question", title: "Understand the problem", description: "Start with the buyer question and domain charter." },
         { href: "#study-categories", title: "Explore categories", description: "Choose a category to narrow the map and find relevant tools." },
+        { href: "#study-question", title: "Understand the problem", description: "Start with the buyer question and domain charter." },
         { href: "#study-evidence", title: "Check the evidence", description: "Inspect attributed claims and what is still Unknown." },
       ]} back={{ href: "/domains", label: "Broaden to all domains" }} />
+      <section className="mt-8" aria-labelledby="study-categories">
+        <h2 id="study-categories" tabIndex={-1} className="scroll-mt-24 text-2xl focus-visible:outline-2 focus-visible:outline-ring">
+          Categories
+        </h2>
+        <div className="mt-4">
+          <AreaDiagram
+            title={domain.name}
+            problem="Categories in this domain. A category in two domains is drawn again on the neighboring page."
+            href={null}
+            examples={categories.map((category) => ({
+              label: category.name,
+              href: `/categories/${category.slug}`,
+            }))}
+          />
+        </div>
+        <div className="mt-6 grid gap-6">
+          {categories.map((category) => (
+            <article key={category.id} className="rounded-xl border border-border bg-card p-4">
+              <h3 className="text-xl">
+                <Link href={`/categories/${category.slug}`} className="text-primary hover:underline">
+                  {category.name}
+                </Link>
+              </h3>
+              <p className="mt-2 text-sm leading-6"><AnnotatedText text={category.definition} seen={seen} /></p>
+              <p className="mt-3 text-sm leading-6">
+                <span className="font-semibold">Buyer question. </span>
+                {category.buyerQuestion}
+              </p>
+              <details className="mt-4 rounded-lg border border-border p-3">
+                <summary className="min-h-11 cursor-pointer rounded-sm py-2 text-sm font-medium focus-visible:ring-2 focus-visible:ring-ring">Show illustrative workflow</summary>
+                <FlowStrip flow={category.flow} />
+              </details>
+            </article>
+          ))}
+        </div>
+      </section>
       <p className="mt-6 max-w-3xl text-sm leading-6 text-muted-foreground">
         Question, charter, categories, and words are teaching notes. They are not sourced claims.
       </p>
@@ -174,42 +210,6 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
           <p className="mt-3 text-sm text-muted-foreground">Reviewed {REVIEWED}. Not an analyst or vendor classification.</p>
         </section>
       ) : null}
-      <section className="mt-8" aria-labelledby="study-categories">
-        <h2 id="study-categories" tabIndex={-1} className="scroll-mt-24 text-2xl focus-visible:outline-2 focus-visible:outline-ring">
-          Categories
-        </h2>
-        <div className="mt-4">
-          <AreaDiagram
-            title={domain.name}
-            problem="Categories in this domain. A category in two domains is drawn again on the neighboring page."
-            href={null}
-            examples={categories.map((category) => ({
-              label: category.name,
-              href: `/categories/${category.slug}`,
-            }))}
-          />
-        </div>
-        <div className="mt-6 grid gap-6">
-          {categories.map((category) => (
-            <article key={category.id} className="rounded-xl border border-border bg-card p-4">
-              <h3 className="text-xl">
-                <Link href={`/categories/${category.slug}`} className="text-primary hover:underline">
-                  {category.name}
-                </Link>
-              </h3>
-              <p className="mt-2 text-sm leading-6"><AnnotatedText text={category.definition} seen={seen} /></p>
-              <p className="mt-3 text-sm leading-6">
-                <span className="font-semibold">Buyer question. </span>
-                {category.buyerQuestion}
-              </p>
-              <details className="mt-4 rounded-lg border border-border p-3">
-                <summary className="min-h-11 cursor-pointer rounded-sm py-2 text-sm font-medium focus-visible:ring-2 focus-visible:ring-ring">Show illustrative workflow</summary>
-                <FlowStrip flow={category.flow} />
-              </details>
-            </article>
-          ))}
-        </div>
-      </section>
       <section className="mt-8">
         <h2 className="text-2xl">Primary products in this seed</h2>
         <p className="mt-2 text-sm text-muted-foreground">
