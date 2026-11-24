@@ -3,7 +3,7 @@ id: "siem"
 type: "category"
 name: "SIEM"
 layer: "core"
-vendors: 16
+vendors: 17
 ---
 
 # SIEM
@@ -45,6 +45,7 @@ From 3 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 ## Vendors (adjacent)
 
 - Microsoft
+- Google
 - AttackIQ
 - Rubrik
 - Arctic Wolf

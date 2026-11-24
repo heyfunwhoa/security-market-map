@@ -252,7 +252,7 @@ export const vendors: Vendor[] = [
     website: "https://www.paloaltonetworks.com/",
     positioning: "Closed the CyberArk acquisition on 11 Feb 2026 and introduced Idira on 12 May 2026. Brand changes toward Idira began 31 May 2026. Prisma Cloud remains a cloud-security product. Do not merge Idira, secrets, and CNAPP into one capability row. Palo Alto Networks markets Cortex DSPM for cloud and AI data exposure. Vendor-reported DSPM scope reviewed 2026-10-13.",
     primaryCategoryIds: ["pam", "secrets-management"],
-    adjacentCategoryIds: ["nhi", "agent-identity", "ciem", "adjacent-security", "network-edge", "dspm", "model-security", "endpoint-control"],
+    adjacentCategoryIds: ["nhi", "agent-identity", "ciem", "adjacent-security", "network-edge", "dspm", "model-security", "endpoint-control", "soar"],
     identityScopes: ["human", "nhi", "agent"],
     verificationStatus: "research_candidate",
     openQuestions: [
@@ -456,10 +456,10 @@ export const vendors: Vendor[] = [
     positioning:
       "Google Secret Manager is the cloud secret store on GCP. Same boundary as the other cloud secret stores: issuance and storage, not governance of every identity.",
     primaryCategoryIds: ["secrets-management"],
-    adjacentCategoryIds: ["nhi", "wim"],
+    adjacentCategoryIds: ["nhi", "wim", "siem", "soar"],
     identityScopes: ["nhi"],
     verificationStatus: "research_candidate",
-    openQuestions: ["Is GCP the only place secrets need to live?"],
+    openQuestions: ["Is GCP the only place secrets need to live?", "Google SecOps (SIEM/SOAR) is a separate buyer and budget from Secret Manager."],
   }),
   vendor({
     id: "doppler",

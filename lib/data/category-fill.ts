@@ -87,7 +87,6 @@ export const categoryFillVendors: Vendor[] = [
     ],
     "adjacentCategoryIds": [
       "threat-intelligence",
-      "soar",
       "ai-soc-investigation"
     ],
     "identityScopes": [
@@ -509,6 +508,27 @@ export const categoryFillVendors: Vendor[] = [
       "Instrumentation needs per-language agents; confirm coverage for the buyer's stack.",
       "A Hype Cycle Sample Vendor listing is not a ranking or endorsement."
     ]
+  },
+  {
+    "id": "tines",
+    "slug": "tines",
+    "name": "Tines",
+    "formerNames": [],
+    "website": "https://www.tines.com/",
+    "positioning": "Tines describes an AI orchestration and workflow platform for security and IT teams.",
+    "primaryCategoryIds": [
+      "soar"
+    ],
+    "adjacentCategoryIds": [
+      "ai-soc-investigation"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Tines markets beyond SOAR (IT workflows, AI agents); confirm which budget the buyer uses."
+    ]
   }
 ];
 
@@ -642,7 +662,6 @@ export const categoryFillProducts: Product[] = [
     ],
     "adjacentCategoryIds": [
       "threat-intelligence",
-      "soar",
       "ai-soc-investigation"
     ],
     "deployment": [
@@ -1087,6 +1106,77 @@ export const categoryFillProducts: Product[] = [
     "availabilityNote": "Announced as commercially available in August 2024.",
     "officialUrl": "https://www.contrastsecurity.com/press/contrast-security-introduces-application-detection-and-response-adr-to-identify-and-block-attacks-and-zero-days-on-applications-in-production",
     "useCaseIds": []
+  },
+  {
+    "id": "google-secops",
+    "slug": "google-secops",
+    "vendorId": "google",
+    "name": "Google Security Operations (SecOps)",
+    "positioning": "Google says Google SecOps, formerly Chronicle, combines SIEM, SOAR and applied threat intelligence in one platform.",
+    "primaryCategoryIds": [
+      "siem"
+    ],
+    "adjacentCategoryIds": [
+      "soar",
+      "threat-intelligence"
+    ],
+    "deployment": [
+      "saas"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Sold in packages priced on ingestion, per Google's product page; package contents not verified here.",
+    "officialUrl": "https://cloud.google.com/security/products/security-operations",
+    "useCaseIds": []
+  },
+  {
+    "id": "tines-platform",
+    "slug": "tines-platform",
+    "vendorId": "tines",
+    "name": "Tines",
+    "positioning": "Tines describes an AI orchestration and workflow platform for security and IT teams, covering SOAR-style enrichment, containment and remediation plus agents and case management.",
+    "primaryCategoryIds": [
+      "soar"
+    ],
+    "adjacentCategoryIds": [
+      "ai-soc-investigation"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Deployment options not verified here.",
+    "officialUrl": "https://www.tines.com/",
+    "useCaseIds": []
+  },
+  {
+    "id": "cortex-xsoar",
+    "slug": "cortex-xsoar",
+    "vendorId": "palo-alto-networks",
+    "name": "Cortex XSOAR",
+    "positioning": "Palo Alto Networks describes Cortex XSOAR as security orchestration and automation that unifies playbooks, case management, collaboration and threat intel management.",
+    "primaryCategoryIds": [
+      "soar"
+    ],
+    "adjacentCategoryIds": [
+      "threat-intelligence"
+    ],
+    "deployment": [
+      "saas",
+      "self_hosted"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "SaaS and on-prem documentation sets exist for XSOAR 8; confirm which the buyer runs.",
+    "officialUrl": "https://www.paloaltonetworks.com/cortex/cortex-xsoar",
+    "useCaseIds": []
   }
 ];
 
@@ -1438,6 +1528,42 @@ export const categoryFillSources: Source[] = [
     "retrievedAt": "2026-11-09",
     "volatility": "fast",
     "excerpt": "Contrast introduced ADR on 6 Aug 2024 to detect and block attacks on custom applications and APIs from inside the application, with SIEM, XDR and CNAPP integrations; announced as commercially available."
+  },
+  {
+    "id": "src-fill-google-secops",
+    "title": "Google Security Operations — product page",
+    "url": "https://cloud.google.com/security/products/security-operations",
+    "canonicalUrl": "https://cloud.google.com/security/products/security-operations",
+    "publisher": "Google Cloud",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-24",
+    "volatility": "fast",
+    "excerpt": "Google says Google SecOps, formerly Chronicle, includes SIEM, SOAR and applied threat intelligence capabilities."
+  },
+  {
+    "id": "src-fill-tines",
+    "title": "Tines — homepage",
+    "url": "https://www.tines.com/",
+    "canonicalUrl": "https://www.tines.com/",
+    "publisher": "Tines",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-24",
+    "volatility": "fast",
+    "excerpt": "Tines describes itself as an AI orchestration platform for security and IT teams that connects tools and deploys agents to automate work."
+  },
+  {
+    "id": "src-fill-cortex-xsoar",
+    "title": "What is Cortex XSOAR? — Cortex XSOAR documentation",
+    "url": "https://cortex-docs.paloaltonetworks.com/cortex-xsoar-8-on-prem/8.8/learn-about-cortex-xsoar/get-started-with-cortex-xsoar/what-is-cortex-xsoar",
+    "canonicalUrl": "https://cortex-docs.paloaltonetworks.com/cortex-xsoar-8-on-prem/8.8/learn-about-cortex-xsoar/get-started-with-cortex-xsoar/what-is-cortex-xsoar",
+    "publisher": "Palo Alto Networks",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-24",
+    "volatility": "moderate",
+    "excerpt": "Palo Alto Networks says Cortex XSOAR ingests alerts and indicators from SIEMs, network tools, threat intelligence feeds and mailboxes, then runs playbooks to enrich and respond."
   }
 ];
 
@@ -2021,5 +2147,65 @@ export const categoryFillClaims: Claim[] = [
     "lastCheckedAt": "2026-11-09",
     "conflictsWith": [],
     "notes": "Publisher-reported, not tested. Product is primary in application runtime protection and only adjacent to runtime-validated AppSec, consistent with the RVAS gate."
+  },
+  {
+    "id": "claim-fill-google-secops",
+    "statement": "Google says Google Security Operations, formerly Chronicle, includes SIEM, SOAR and applied threat intelligence capabilities.",
+    "subjectType": "product",
+    "subjectId": "google-secops",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-google-secops",
+    "sourceUrl": "https://cloud.google.com/security/products/security-operations",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-24",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-24",
+    "conflictsWith": [],
+    "notes": "Publisher-reported, not independently tested; no direct-competitor or parity claim. See docs/market-research/secops-siem-soar-gaps-2026-11.md."
+  },
+  {
+    "id": "claim-fill-tines",
+    "statement": "Tines describes its product as an AI orchestration platform for security and IT teams that connects tools and deploys agents to automate work.",
+    "subjectType": "product",
+    "subjectId": "tines-platform",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-tines",
+    "sourceUrl": "https://www.tines.com/",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-24",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-24",
+    "conflictsWith": [],
+    "notes": "Publisher-reported, not independently tested; no direct-competitor or parity claim. See docs/market-research/secops-siem-soar-gaps-2026-11.md."
+  },
+  {
+    "id": "claim-fill-cortex-xsoar",
+    "statement": "Palo Alto Networks says Cortex XSOAR ingests alerts and indicators from detection sources such as SIEMs and threat intelligence feeds, then runs playbooks to enrich and respond to incidents.",
+    "subjectType": "product",
+    "subjectId": "cortex-xsoar",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-cortex-xsoar",
+    "sourceUrl": "https://cortex-docs.paloaltonetworks.com/cortex-xsoar-8-on-prem/8.8/learn-about-cortex-xsoar/get-started-with-cortex-xsoar/what-is-cortex-xsoar",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-11-24",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-24",
+    "conflictsWith": [],
+    "notes": "Publisher-reported, not independently tested; no direct-competitor or parity claim. See docs/market-research/secops-siem-soar-gaps-2026-11.md."
   }
 ];

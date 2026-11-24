@@ -3,7 +3,7 @@ id: "soar"
 type: "category"
 name: "SOAR and response automation"
 layer: "core"
-vendors: 7
+vendors: 9
 ---
 
 # SOAR and response automation
@@ -30,16 +30,17 @@ Playbooks that enrich and sometimes contain an incident. Automation that disable
 
 ## Vendors (primary)
 
-_None recorded._
+- Tines: Tines describes an AI orchestration and workflow platform for security and IT teams.
 
 ## Vendors (adjacent)
 
+- Palo Alto Networks
+- Google
 - Splunk
 - ServiceNow
 - Prophet Security
 - Dropzone AI
 - Intezer
-- Stairwell
 - Anvilogic
 
 ## What buyers do instead
