@@ -10,42 +10,42 @@
       "date": "2026-11-19",
       "url": "https://snyk.io/blog/why-harness-matters-evo-code-scanning-agent/",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "Say Yes To MCP, Safely A Guide For Governing AI Coding Agents With Evo ADS",
       "date": "2026-11-09",
       "url": "https://snyk.io/blog/governing-ai-coding-agents-evo-ads/",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "Snyk Named a Leader in The Forrester Wave™: Agentic Development Security Tools, Q4 2026",
       "date": "2026-11-04",
       "url": "https://snyk.io/blog/snyk-named-leader-forrester-wave-agentic-development-security-tools-q4-2026/",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "PHP2Shell Won't Be the Last. Here's Where the Next One Will Show Up First.",
       "date": "2026-10-28",
       "url": "https://snyk.io/blog/php2shell-where-next-one-will-show-up-first/",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "Snyk UNFILTERED: Inside Our First-Ever Customer Summit",
       "date": "2026-10-28",
       "url": "https://snyk.io/blog/snyk-unfiltered-customer-summit/",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "PHP Patches Two Critical Unauthenticated RCEs (CVE-2026-109618, CVE-2026-109619): [Updated for CVE-2026-115560]",
       "date": "2026-10-26",
       "url": "https://snyk.io/blog/php-patches-critical-unauthenticated-rces/",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     }
   ]
 }

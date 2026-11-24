@@ -10,70 +10,70 @@
       "date": "2026-11-23",
       "url": "https://www.ox.security/blog/plug-and-pray-your-ai-agents-are-taking-orders-from-strangers/",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "Cry2Wolf: Not Every Branded Bug Deserves a Fire Drill",
       "date": "2026-11-19",
       "url": "https://www.ox.security/blog/cry2wolf-not-every-branded-bug-deserves-a-fire-drill/",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "Ruby2Shell: Ruby Memory Corruption Flaws Expose Applications to Remote Code Execution, But is it an Actual Risk?",
       "date": "2026-11-19",
       "url": "https://www.ox.security/blog/ruby2shell-ruby-memory-corruption-flaws-expose-applications-to-remote-code-execution-but-is-it-an-actual-risk/",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "The 2026 Vulnpocalypse Hits PHP: Four Critical RCEs, but How Dangerous Are They?",
       "date": "2026-11-19",
       "url": "https://www.ox.security/blog/the-2026-vulnpocalypse-hits-php-four-critical-rces-but-how-dangerous-are-they/",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "Introducing OX Radar & Response Center: When News Breaks, Know If You’re Affected",
       "date": "2026-11-18",
       "url": "https://www.ox.security/blog/introducing-ox-radar-response-center-when-news-breaks-know-if-youre-affected/",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "Java4Shell (CVE-2026-114938): Easy to Crash, Hard to Exploit — Less Than 0.12% of JVMs Estimated at Risk of RCE",
       "date": "2026-11-18",
       "url": "https://www.ox.security/blog/java4shell-cve-2026-114938-rce-risk/",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "NGINX2Root: Five Critical NGINX Flaws Expose Web Servers to Remote Code Execution",
       "date": "2026-11-18",
       "url": "https://www.ox.security/blog/nginx2root-five-critical-nginx-flaws-expose-web-servers-to-remote-code-execution/",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "OX Security Launches OX Radar and Response Center to Show Companies Which Cyber Threats Actually Affect Them",
       "date": "2026-11-18",
       "url": "https://www.ox.security/blog/ox-radar-response-center-launch/",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "promoted"
     },
     {
       "title": "BREAKING: Hijacked Releases of Microsoft’s Official agent-framework Steals Azure and CI Credentials",
       "date": "2026-11-17",
       "url": "https://www.ox.security/blog/breaking-hijacked-releases-of-microsofts-official-agent-framework-steals-azure-and-ci-credentials/",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "Thousands Of GitHub Accounts Hijacked With wfx-loot CI Secret Stealing Malware Via GitHub Actions & npm",
       "date": "2026-11-12",
       "url": "https://www.ox.security/blog/thousands-of-github-accounts-hijacked-with-wfx-loot-ci-secret-stealing-malware-via-github-actions-npm/",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     }
   ]
 }

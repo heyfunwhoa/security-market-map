@@ -10,175 +10,175 @@
       "date": "2026-11-23",
       "url": "https://www.aikido.dev/blog/hardened-container-images-stigs-fips-fedramp",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "AI incidents of 2026: Rogue agents, stolen keys, and other familiar stories",
       "date": "2026-11-19",
       "url": "https://www.aikido.dev/blog/ai-incidents-root-causes-patterns",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "Aikido launches agentic pentesting for iOS apps",
       "date": "2026-11-19",
       "url": "https://www.aikido.dev/blog/aikido-launches-agentic-pentesting-for-ios-apps",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "Ruby2Shell: critical Ruby RCE, affected versions and how to fix it (CVE-2026-132825)",
       "date": "2026-11-19",
       "url": "https://www.aikido.dev/blog/ruby2shell",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "Aikido's Deep Review finds Java4Shell in the PR that introduced it",
       "date": "2026-11-18",
       "url": "https://www.aikido.dev/blog/deep-review-finds-java4shell-in-pr",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "nginx2root: Critical nginx vulnerabilities, including one RCE [CVE-2026-123007, CVE-2026-123634, CVE-2026-123633, CVE-2026-121810, CVE-2026-113425]",
       "date": "2026-11-18",
       "url": "https://www.aikido.dev/blog/nginx2root-critical-nginx-rce-vulnerabilities",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "PHP critical security release, 19 November (CVE-2026-129289, CVE-2026-115560)",
       "date": "2026-11-18",
       "url": "https://www.aikido.dev/blog/php-security-release-19-november-2026-cve-2026-115560",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "Java4Shell: RCE flaw in OpenJDK's Base64 decoder, with affected versions and fix (CVE-2026-114938)",
       "date": "2026-11-17",
       "url": "https://www.aikido.dev/blog/java-17-rce-vulnerability-cve-2026-114938",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "Two malicious agent-framework releases hit PyPI in 33 minutes",
       "date": "2026-11-17",
       "url": "https://www.aikido.dev/blog/two-malicious-agent-framework-releases-hit-pypi-in-33-minutes",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "Critical Apache HTTP Server vulnerability can allow remote code execution (CVE-2026-119618)",
       "date": "2026-11-13",
       "url": "https://www.aikido.dev/blog/cve-2026-119618-apache-http-server-rce",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "Top 9 Qualys alternatives for infrastructure and application security",
       "date": "2026-11-13",
       "url": "https://www.aikido.dev/blog/top-qualys-alternatives",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "Top 8 Upwind Security alternatives for code and cloud security",
       "date": "2026-11-13",
       "url": "https://www.aikido.dev/blog/upwind-security-alternatives",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "wfx-loot campaign pushes CI secret stealer to tens of thousands of repositories",
       "date": "2026-11-12",
       "url": "https://www.aikido.dev/blog/compromised-github-accounts-push-ci-secret-stealer-to-tens-of-thousands-of-repositories",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "Top AI network and infrastructure pentesting tools in 2026",
       "date": "2026-11-12",
       "url": "https://www.aikido.dev/blog/top-network-infrastructure-pentesting-tools",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "Even gem list can run someone else's code",
       "date": "2026-11-05",
       "url": "https://www.aikido.dev/blog/gem-list-runs-someone-elses-code",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "Deleting a leaked key from your repo doesn't protect you",
       "date": "2026-11-05",
       "url": "https://www.aikido.dev/blog/leaked-api-key-revoke-it-immediately",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "Surviving cybersecurity until the end of 2026",
       "date": "2026-11-04",
       "url": "https://www.aikido.dev/blog/cybersecurity-surviving-vulnerabilities-malware-best-practices",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "Critical Linux kernel TCP vulnerability can allow remote code execution (CVE-2026-98432)",
       "date": "2026-11-02",
       "url": "https://www.aikido.dev/blog/linux-kernel-tcp-rce-vulnerability-cve-2026-98432",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "AI agent security in Kubernetes: Why prompt injection isn't the right term",
       "date": "2026-10-30",
       "url": "https://www.aikido.dev/blog/ai-agent-security-in-kubernetes-prompt-injection",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "Binance hack: how a compromised developer laptop can lead to a $6.3 billion breach",
       "date": "2026-10-30",
       "url": "https://www.aikido.dev/blog/binance-hack-developer-laptop",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "Ghost in the PHP2Shell: Why coordinated disclosure and patching will start moving faster",
       "date": "2026-10-29",
       "url": "https://www.aikido.dev/blog/ghost-php2shell-coordinated-disclosure-faster",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "The day after tomorrow: After PHP2Shell, it gets worse, then defenders win",
       "date": "2026-10-29",
       "url": "https://www.aikido.dev/blog/php2shell-day-after-tomorrow",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "What are shell vulnerabilities? PHP2Shell, Node2Shell (HTTP2Shell), React2Shell and Log4Shell explained",
       "date": "2026-10-29",
       "url": "https://www.aikido.dev/blog/what-are-shell-vulnerabilities",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     },
     {
       "title": "Aikido launches external network pentesting",
       "date": "2026-10-28",
       "url": "https://www.aikido.dev/blog/aikido-launches-external-network-pentesting",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "promoted"
     },
     {
       "title": "How to patch PHP2Shell with free Aikido Images",
       "date": "2026-10-26",
       "url": "https://www.aikido.dev/blog/how-to-patch-php2shell-with-free-aikido-images",
       "firstSeen": "2026-11-24",
-      "status": "new"
+      "status": "dismissed"
     }
   ]
 }
