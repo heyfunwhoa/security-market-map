@@ -1,9 +1,14 @@
 import { describe, expect, it } from "vitest";
-import { shortlistUrl, toggleShortlist } from "./landscape-shortlist";
+import { readShortlist, shortlistUrl, toggleShortlist } from "./landscape-shortlist";
 import { comparisonSelection } from "./comparison-selection";
 import { catalog } from "./catalog";
 
 describe("landscape shortlist handoff", () => {
+  it("restores only distinct, known IDs in the original order up to four", () => {
+    const ids = ["a", "b", "c", "d", "e"];
+    expect(readShortlist("c,missing, b,c,d,a,e", ids)).toEqual(["c", "b", "d", "a"]);
+    expect(readShortlist(null, ids)).toEqual([]);
+  });
   it("limits selection to four while allowing removal and replacement", () => {
     const full = ["a", "b", "c", "d"];
     expect(toggleShortlist(full, "e")).toEqual(full);

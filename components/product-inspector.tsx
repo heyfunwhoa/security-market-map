@@ -5,12 +5,14 @@ import Link from "next/link";
 import type { LandscapeEdge, LandscapeRow } from "@/components/landscape-browser";
 import { StatusPill } from "@/components/chrome";
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { withCatalogReturn } from "@/lib/landscape-filters";
 import { deploymentLabel, relationshipLabel, scopeLabel } from "@/lib/format";
 
 const actionClass = "inline-flex min-h-11 items-center justify-center rounded-md border border-border px-3 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring";
 
-export function ProductInspector({ row, related, categories, useCases }: {
+export function ProductInspector({ row, related, categories, useCases, catalogUrl }: {
   row: LandscapeRow;
+  catalogUrl: string;
   related: LandscapeEdge[];
   categories: { id: string; label: string; slug: string }[];
   useCases: { id: string; label: string }[];
@@ -27,7 +29,7 @@ export function ProductInspector({ row, related, categories, useCases }: {
             <SheetClose className={`${actionClass} shrink-0 hover:bg-muted`}>Close</SheetClose>
           </div>
           <SheetTitle className="break-words text-2xl">{row.productName}</SheetTitle>
-          <SheetDescription><Link href={`/vendors/${row.vendorSlug}`} className="inline-flex min-h-11 items-center text-primary underline">{row.vendorName} company profile</Link></SheetDescription>
+          <SheetDescription><Link href={withCatalogReturn(`/vendors/${row.vendorSlug}`, catalogUrl)} className="inline-flex min-h-11 items-center text-primary underline">{row.vendorName} company profile</Link></SheetDescription>
         </SheetHeader>
         <div className="space-y-6 px-5 pb-6">
           <section aria-label="Product overview" className="space-y-3">
@@ -56,7 +58,7 @@ export function ProductInspector({ row, related, categories, useCases }: {
           <section aria-label="Evidence and uncertainty" className="border-t border-border pt-4">
             <h3 className="font-heading text-lg">Evidence and uncertainty</h3>
             <p className="mt-1 text-muted-foreground">Review source attribution, claim status, and Unknowns on the product detail page before making a capability comparison.</p>
-            <Link href={row.detailHref} className={`${actionClass} mt-3 text-primary hover:bg-muted`}>Open product detail and evidence</Link>
+            <Link href={withCatalogReturn(row.detailHref, catalogUrl)} className={`${actionClass} mt-3 text-primary hover:bg-muted`}>Open product detail and evidence</Link>
           </section>
         </div>
       </SheetContent>

@@ -1,8 +1,7 @@
 import { ProductCategoryLinks } from "@/components/product-category-links";
 import { productComparisonUrl } from "@/lib/landscape-shortlist";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Breadcrumbs } from "@/components/breadcrumbs";
+import { ProfileBreadcrumbs, ProfileLink } from "@/components/catalog-profile-navigation";
 import { PageIntro, StatusPill } from "@/components/chrome";
 import { ProductEvidenceExplorer } from "@/components/product-evidence-explorer";
 import { CiamMarketContext } from "@/components/ciam-market-context";
@@ -82,12 +81,12 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
   return (
     <main className="mx-auto min-w-0 max-w-6xl px-4 py-10">
-      <Breadcrumbs parents={[{ href: "/", label: "Home" }, category]} current={product.name} />
+      <ProfileBreadcrumbs category={category} current={product.name} />
       <PageIntro kicker="Product research" title={product.name} lede={product.positioning} />
       <div className="mt-4 flex flex-wrap items-center gap-3 text-sm">
         <StatusPill status={product.availability} />
-        <Link href={productComparisonUrl(product)} className="inline-flex min-h-11 items-center font-medium text-primary underline underline-offset-4">Compare {product.name}</Link>
-        {vendor ? <Link className="inline-flex min-h-11 items-center text-primary underline underline-offset-4" href={`/vendors/${vendor.slug}`}>About {vendor.name}</Link> : null}
+        <ProfileLink href={productComparisonUrl(product)} className="inline-flex min-h-11 items-center font-medium text-primary underline underline-offset-4">Compare {product.name}</ProfileLink>
+        {vendor ? <ProfileLink className="inline-flex min-h-11 items-center text-primary underline underline-offset-4" href={`/vendors/${vendor.slug}`}>About {vendor.name}</ProfileLink> : null}
         <a className="inline-flex min-h-11 max-w-full items-center text-primary underline underline-offset-4 [overflow-wrap:anywhere]" href={product.officialUrl}>Official product documentation</a>
       </div>
       <p className="mt-2 text-sm leading-6 text-muted-foreground">{availabilityLabel(product.availability)}. {product.availabilityNote}</p>
@@ -179,7 +178,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <aside className="mt-10 border-t border-border pt-6">
           <h2 className="text-xl font-semibold">Compare only when needed</h2>
           <p className="mt-2 text-sm leading-6 text-muted-foreground">Start with the product&apos;s own control points and limitations. The comparison matrix combines documented evidence with explicit Unknown states, not a winner or score.</p>
-          <Link href={DEVELOPER_ENDPOINT_COMPARISON_URL} className="mt-3 inline-flex min-h-11 items-center text-sm font-medium text-primary underline underline-offset-4">Compare GitGuardian and Aikido</Link>
+          <ProfileLink href={DEVELOPER_ENDPOINT_COMPARISON_URL} className="mt-3 inline-flex min-h-11 items-center text-sm font-medium text-primary underline underline-offset-4">Compare GitGuardian and Aikido</ProfileLink>
         </aside>
       )}
     </main>

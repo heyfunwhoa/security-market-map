@@ -96,6 +96,7 @@ export function CompareWorkbench({
   asOf,
   initialUseCase,
   initialProducts,
+  catalogUrl,
 }: {
   categories: Category[];
   categoryId: string;
@@ -107,6 +108,7 @@ export function CompareWorkbench({
   asOf: string;
   initialUseCase: string;
   initialProducts: string[];
+  catalogUrl: string | null;
 }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -129,6 +131,7 @@ export function CompareWorkbench({
     params.set("use", nextUse);
     params.set("products", nextProducts.join(","));
     if (nextCategory) params.set("category", nextCategory);
+    if (catalogUrl) params.set("from", catalogUrl);
     startTransition(() =>
       router.replace(`${pathname}?${params.toString()}`, { scroll: false }),
     );

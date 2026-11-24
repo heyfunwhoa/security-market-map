@@ -71,13 +71,34 @@ export function readLandscapeFilters(params: Pick<URLSearchParams, "get">, optio
   return filters;
 }
 
-export function landscapeFilterUrl(filters: LandscapeFilters, query = ""): string {
+export function landscapeFilterUrl(filters: LandscapeFilters, query = "", shortlist: readonly string[] = []): string {
   const params = new URLSearchParams();
   for (const key of Object.keys(filterParams) as (keyof LandscapeFilters)[]) {
     if (filters[key] !== "all") params.set(filterParams[key], filters[key]);
   }
   if (query) params.set("q", query);
+  if (shortlist.length) params.set("shortlist", shortlist.join(","));
   return `/landscape${params.size ? `?${params.toString()}` : ""}`;
+}
+
+/** Return links may restore only a catalog view and its supported parameters. */
+export function readCatalogReturn(value: string | null): string | null {
+  if (!value || value.includes("#")) return null;
+  if (value === "/landscape") return value;
+  if (!value.startsWith("/landscape?")) return null;
+  const input = new URLSearchParams(value.slice("/landscape?".length));
+  const params = new URLSearchParams();
+  for (const key of [...Object.values(filterParams), "q", "shortlist"]) {
+    const entry = input.get(key);
+    if (entry) params.set(key, entry);
+  }
+  return params.size ? `/landscape?${params}` : "/landscape";
+}
+
+export function withCatalogReturn(href: string, catalogUrl: string): string {
+  const url = new URL(href, "https://catalog.invalid");
+  url.searchParams.set("from", catalogUrl);
+  return url.pathname + url.search + url.hash;
 }
 
 export function productSectionId(productId: string): string {

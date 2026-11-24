@@ -7,7 +7,8 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { StatusPill } from "@/components/chrome";
 import { deploymentLabel, relationshipLabel, scopeLabel } from "@/lib/format";
-import { filterLandscapeRows, initialLandscapeFilters, landscapeFilterReducer, readLandscapeFilters, landscapeFilterUrl, searchLandscape, type CompanySearchEntry } from "@/lib/landscape-filters";
+import { filterLandscapeRows, initialLandscapeFilters, landscapeFilterReducer, readLandscapeFilters, landscapeFilterUrl, withCatalogReturn, searchLandscape, type CompanySearchEntry } from "@/lib/landscape-filters";
+import { readShortlist, toggleShortlist } from "@/lib/landscape-shortlist";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { LandscapeResults } from "@/components/landscape-results";
@@ -57,13 +58,15 @@ export function LandscapeBrowser({
 }) {
   const searchParams = useSearchParams();
   const resultSummaryRef = useRef<HTMLParagraphElement>(null);
+  const productIds = rows.map((row) => row.productId);
+  const selected = readShortlist(searchParams.get("shortlist"), productIds);
   const filters = readLandscapeFilters(searchParams, {
     domain: domains.map((item) => item.id), category: categories.map((item) => item.id),
     useCase: useCases.map((item) => item.id), persona: personas.map((item) => item.id),
     deployment: ["saas", "self_hosted", "hybrid", "cloud_native", "open_source", "unknown"],
     scope: ["human", "nhi", "agent", "not_an_identity_control"],
     relation: ["direct_competitor", "bundled_alternative", "complement", "adjacent_budget"],
-    focusedProduct: rows.map((row) => row.productId),
+    focusedProduct: productIds,
   });
   const scopedCategories = categories.filter((item) => filters.domain === "all" || item.domainIds.includes(filters.domain));
   if (!scopedCategories.some((item) => item.id === filters.category)) filters.category = "all";
@@ -71,11 +74,18 @@ export function LandscapeBrowser({
   if (!scopedProducts.some((row) => row.productId === filters.focusedProduct)) filters.focusedProduct = "all";
   const { domain, category, useCase, persona, deployment, scope, relation, focusedProduct } = filters;
   const query = searchParams.get("q") ?? "";
-  const navigate = (next: typeof filters, text = query, replace = false) => {
-    const url = landscapeFilterUrl(next, text);
+  const catalogUrl = landscapeFilterUrl(filters, query, selected);
+  const currentShortlist = () => readShortlist(new URLSearchParams(window.location.search).get("shortlist"), productIds);
+  const navigate = (next: typeof filters, text = query, replace = false, shortlist = currentShortlist()) => {
+    const url = landscapeFilterUrl(next, text, shortlist);
     if (url === window.location.pathname + window.location.search) return;
     if (replace) window.history.replaceState(null, "", url);
     else window.history.pushState(null, "", url);
+  };
+  const updateShortlist = (productId: string | null) => {
+    const next = productId === null ? [] : toggleShortlist(currentShortlist(), productId);
+    navigate(filters, new URLSearchParams(window.location.search).get("q") ?? "", true, next);
+    return next;
   };
   const change = (key: keyof typeof filters) => (value: string) => navigate(landscapeFilterReducer(filters, { type: "select", key, value }));
   const reset = () => navigate(initialLandscapeFilters, "");
@@ -119,7 +129,7 @@ export function LandscapeBrowser({
           {focused ? <div className="mt-4 rounded-lg border border-border bg-background p-3" aria-live="polite">
             <p className="text-sm font-semibold">{focused.productName} <span className="font-normal text-muted-foreground">· {focused.vendorName}</span></p>
             <p className="mt-1 text-sm">{focused.positioning}</p>
-            <Link href={focused.detailHref} className="mt-2 inline-block text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:ring-ring">Open product detail and evidence</Link>
+            <Link href={withCatalogReturn(focused.detailHref, catalogUrl)} className="mt-2 inline-block text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:ring-ring">Open product detail and evidence</Link>
           </div> : null}
         </section>
         <fieldset className="grid gap-3 rounded-xl border border-border bg-card p-4 sm:grid-cols-2">
@@ -184,10 +194,10 @@ export function LandscapeBrowser({
       </section>}
       {companyMatches.length > 0 && <section aria-label="Matching companies" className="mt-4 rounded-xl border border-border bg-card p-3">
         <h2 className="font-semibold">Company profiles</h2>
-        <CompanyLinks companies={companyMatches.slice(0, 3)} />
+        <CompanyLinks catalogUrl={catalogUrl} companies={companyMatches.slice(0, 3)} />
         {companyMatches.length > 3 && <details key={query} className="mt-1">
           <summary className="min-h-11 cursor-pointer py-2 text-sm">Show {companyMatches.length - 3} more companies</summary>
-          <CompanyLinks companies={companyMatches.slice(3)} />
+          <CompanyLinks catalogUrl={catalogUrl} companies={companyMatches.slice(3)} />
         </details>}
       </section>}
       <p ref={resultSummaryRef} tabIndex={-1} role="status" aria-live="polite" aria-atomic="true" className="mt-4 text-sm text-muted-foreground">
@@ -197,7 +207,7 @@ export function LandscapeBrowser({
         <p>{companyMatches.length ? "Open the company profile above for its recorded research." : "No products match this search and its filters."}</p>
         <button type="button" onClick={reset} className="min-h-11 text-primary underline">Clear search and filters</button>
       </div>}
-      <LandscapeResults rows={visible} allRows={rows} edges={edges} categories={categories} useCases={useCases} useCase={useCase} relation={relation}>
+      <LandscapeResults selected={selected} updateShortlist={updateShortlist} catalogUrl={catalogUrl} rows={visible} allRows={rows} edges={edges} categories={categories} useCases={useCases} useCase={useCase} relation={relation}>
       {visible.length === 0 ? (
         <div className="mt-4 rounded-lg border border-dashed border-border px-4 py-8 text-sm">
           <p>
@@ -218,10 +228,10 @@ export function LandscapeBrowser({
             return (
               <li key={row.productId} className="rounded-xl border border-border bg-card p-4">
                 <div className="flex flex-wrap items-center gap-2">
-                  <Link href={row.detailHref} className="text-lg font-semibold hover:underline">
+                  <Link href={withCatalogReturn(row.detailHref, catalogUrl)} className="text-lg font-semibold hover:underline">
                     {row.productName}
                   </Link>
-                  <Link href={`/vendors/${row.vendorSlug}`} aria-label={`${row.vendorName} company profile`} className="inline-flex min-h-11 items-center text-sm text-primary underline">Company · {row.vendorName}</Link>
+                  <Link href={withCatalogReturn(`/vendors/${row.vendorSlug}`, catalogUrl)} aria-label={`${row.vendorName} company profile`} className="inline-flex min-h-11 items-center text-sm text-primary underline">Company · {row.vendorName}</Link>
                   <StatusPill status={row.availability} />
                 </div>
                 <p className="mt-2 text-sm leading-6">{row.positioning}</p>
@@ -238,7 +248,7 @@ export function LandscapeBrowser({
                     ))}
                   </ul>
                 ) : null}
-                <ProductInspector row={row} related={related} categories={categories} useCases={useCases} />
+                <ProductInspector catalogUrl={catalogUrl} row={row} related={related} categories={categories} useCases={useCases} />
               </li>
             );
           })}
@@ -249,10 +259,10 @@ export function LandscapeBrowser({
   );
 }
 
-function CompanyLinks({ companies }: { companies: CompanySearchEntry[] }) {
+function CompanyLinks({ companies, catalogUrl }: { companies: CompanySearchEntry[]; catalogUrl: string }) {
   return <ul className="flex flex-wrap gap-x-6">
     {companies.map((company) => <li key={company.slug} className="flex flex-wrap items-center gap-x-2">
-      <Link href={`/vendors/${company.slug}`} aria-label={`${company.name} company profile`} className="inline-flex min-h-11 items-center text-sm font-semibold text-primary underline">{company.name}</Link>
+      <Link href={withCatalogReturn(`/vendors/${company.slug}`, catalogUrl)} aria-label={`${company.name} company profile`} className="inline-flex min-h-11 items-center text-sm font-semibold text-primary underline">{company.name}</Link>
       {company.formerNames.length > 0 && <span className="text-xs text-muted-foreground">Formerly {company.formerNames.join(", ")}</span>}
     </li>)}
   </ul>;

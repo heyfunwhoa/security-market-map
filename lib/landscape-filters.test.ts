@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { searchLandscape, filterLandscapeRows, initialLandscapeFilters, landscapeFilterReducer, readLandscapeFilters, landscapeFilterUrl, productDetailUrl, productSectionId } from "./landscape-filters";
+import { searchLandscape, filterLandscapeRows, initialLandscapeFilters, landscapeFilterReducer, readLandscapeFilters, landscapeFilterUrl, readCatalogReturn, withCatalogReturn, productDetailUrl, productSectionId } from "./landscape-filters";
 import type { LandscapeRow } from "@/components/landscape-browser";
 
 const row = (productId: string, overrides: Partial<LandscapeRow> = {}): LandscapeRow => ({
@@ -51,6 +51,26 @@ describe("shareable landscape views", () => {
       deployment: "saas", scope: "nhi", relation: "complement", focusedProduct: "Zulu" };
     const params = new URL(landscapeFilterUrl(state), "https://example.test").searchParams;
     expect(readLandscapeFilters(params, options)).toEqual(state);
+  });
+  it("returns to the same category, search and shortlist through an anchored profile or comparison", () => {
+    const filters = { ...initialLandscapeFilters, category: "ciam" };
+    const view = landscapeFilterUrl(filters, "a & b?", ["workos", "descope"]);
+    for (const href of ["/vendors/example#product-one", "/compare?products=workos,descope"]) {
+      const target = new URL(withCatalogReturn(href, view), "https://example.test");
+      const original = new URL(href, target.origin);
+      expect(target.hash).toBe(original.hash);
+      expect(target.searchParams.get("products")).toBe(original.searchParams.get("products"));
+      expect(readCatalogReturn(target.searchParams.get("from"))).toBe(view);
+    }
+    expect(landscapeFilterUrl(initialLandscapeFilters, "", ["workos", "descope"])).toBe("/landscape?shortlist=workos%2Cdescope");
+    expect(landscapeFilterUrl(filters)).toBe("/landscape?category=ciam");
+  });
+  it("accepts only catalog paths and approved filter, query and shortlist keys", () => {
+    for (const value of [null, "//example.test", "https://example.test/landscape", "/landscape/other", "/landscape#x", "/landscape/../other"]) {
+      expect(readCatalogReturn(value)).toBeNull();
+    }
+    expect(readCatalogReturn("/landscape")).toBe("/landscape");
+    expect(readCatalogReturn("/landscape?category=ciam&from=elsewhere&category=other")).toBe("/landscape?category=ciam");
   });
   it("ignores unknown values and unrelated URL parameters", () => {
     const params = new URLSearchParams("domain=removed&category=vault&product=missing&scope=invalid&returnTo=https://example.test");
