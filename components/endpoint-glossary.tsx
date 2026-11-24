@@ -93,6 +93,34 @@ export function EndpointGlossary() {
           Mark each expected result as demonstrated, partial, or unverified, with a link to the evidence or a reason it is missing.
         </p>
       </details>
+      <details className="mt-3 rounded-lg border border-border p-4">
+        <summary className="cursor-pointer font-semibold focus-visible:outline-2 focus-visible:outline-ring">
+          Example evaluation scorecard
+        </summary>
+        <p className="mt-3 text-sm leading-6">
+          In this fictional test, the team expects evidence from ten enrolled devices and starts the clock
+          when it receives the simulated verdict change.
+        </p>
+        <dl className="mt-3 space-y-3 text-sm leading-6">
+          <div>
+            <dt className="font-semibold">Demonstrated · Recover and identify the file</dt>
+            <dd>The analyst reopened the original sample and confirmed its file hash against the test record.</dd>
+          </div>
+          <div>
+            <dt className="font-semibold">Partial · Scope device exposure</dt>
+            <dd>Nine devices had retained telemetry. Two saw the file and one showed execution. The tenth device remained unknown. The analyst recorded that scoped finding at 18 minutes.</dd>
+          </div>
+          <div>
+            <dt className="font-semibold">Unverified · Approve containment after hours</dt>
+            <dd>The team named an approver but produced no approval or isolation record from the exercise.</dd>
+          </div>
+        </dl>
+        <p className="mt-3 text-sm leading-6">
+          <strong>Decision.</strong> Keep the existing endpoint protection and response workflow in place during the pilot.
+          Have the endpoint owner resolve the device gap and the SOC lead test the approval handoff.
+          Then check whether existing licenses can supply the required file history before funding added capacity.
+        </p>
+      </details>
       <p className="mt-2 flex flex-wrap gap-x-4 gap-y-2 text-sm">
         <Link className={linkStyle} href={productDetailUrl("stairwell", "stairwell-platform")}>Stairwell product evidence</Link>
         <a className={linkStyle} href="https://docs.stairwell.com/docs/what-is-stairwell">Stairwell collection documentation</a>
