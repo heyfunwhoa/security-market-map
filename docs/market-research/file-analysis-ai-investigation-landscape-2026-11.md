@@ -48,9 +48,11 @@ Unknowns: how common pre-deployment EDR testing is beyond this one case; whether
 | Vendor / product | Positioning (source-attributed) | Relationship | Evidence status |
 | --- | --- | --- | --- |
 | Stairwell | Preserves executables from enrolled endpoints in a private environment without a retention window; reruns IOCs, YARA and threat reports across history; Variant Discovery; Backstory agentic investigator; per-asset pricing including investigations [SW1–SW4] | Reference position for this layer | Vendor-published; inspected 2026-11-11; not tested |
-| GLIMPS Fortress (France) | On-premise AI file repository with continuous malware analysis and retrohunting [CT4] | Candidate partial overlap; closest model found | Secondary directory; official pages not inspected |
+| GLIMPS Fortress (France) | On-premise AI file repository with continuous malware analysis and retrohunting [CT4] | Candidate partial overlap | Secondary directory; official pages not inspected |
 
-Note: VirusTotal and ReversingLabs also offer retrohunt over *their* corpora. Whether a buyer sees that as a substitute for retaining *their own* file history is an open buyer-decision question (Unknown).
+LimaCharlie BinLib searches the organization's observed executables. ReversingLabs Spectra Analyze also supports local YARA hunts over customer-held samples, separately from its cloud corpus. For a workstation incident, check how each sample got into the collection and which device and observation time can be recovered. [LimaCharlie documentation](https://docs.limacharlie.io/5-integrations/extensions/limacharlie/binlib/) · [ReversingLabs documentation](https://docs.reversinglabs.com/SpectraAnalyze/yara-retro/)
+
+The map groups file hunting, device investigation, package controls and credential verification in the existing developer-workstation use case at `/use-cases/developer-endpoint-protection`. Open a candidate's provider record for evidence, editions and collection limits. The list covers different steps of the same incident.
 
 ## Layer 3 — AI SOC / agentic investigation
 
@@ -70,13 +72,13 @@ CrowdStrike (Charlotte AI), SentinelOne (Purple AI), Palo Alto Networks (Cortex 
 
 ## Differentiation hypotheses (with falsification tests)
 
-1. **Own-history retention is the differentiator, not AI.** Falsified if buyers accept vendor-corpus retrohunt (VirusTotal/ReversingLabs) as equivalent in evaluations.
+1. **Own-history retention is the differentiator, not AI.** Test which evidence changes the response decision when buyers already have local sample hunting or access to a threat-intelligence corpus.
 2. **Per-asset pricing including investigations beats per-investigation pricing at high alert volume.** Falsified if total 12-month cost at the same workload is not lower, or buyers prefer usage alignment.
 3. **Static + history beats sandbox for triage speed.** Falsified if sandbox-first teams don't change workflow in a POC.
 
 ## Unknowns
 
-Direct win/loss frequency; which layer buyers budget from; ReversingLabs/VirusTotal retrohunt scope vs customer-owned retention; incumbent AI depth for file-level investigation; current status of Radiant Security (one report implies a change, unverified).
+Direct win/loss frequency; which layer buyers budget from; coverage and host attribution of the customer’s own retained samples; incumbent AI depth for file-level investigation; current status of Radiant Security (one report implies a change, unverified).
 
 ## Sources
 
