@@ -3,7 +3,7 @@ id: "ciam"
 type: "category"
 name: "Customer identity (CIAM)"
 layer: "core"
-vendors: 8
+vendors: 10
 ---
 
 # Customer identity (CIAM)
@@ -28,6 +28,7 @@ Authentication and account experience for customers, partners, or developers usi
 
 - Ping Identity: Workforce and customer identity vendor. Not assumed to be an IGA or NHI governance suite in this seed.
 - WorkOS: Developer-facing customer identity and enterprise features for a product. A different budget from workforce IGA.
+- Clerk: Clerk helps application teams manage customer sign-in and membership in business customer organizations.
 - Descope: Descope helps product and engineering teams manage how customers and partners sign in to their applications. Its Agentic Identity Hub also lets a customer's identity provider govern which agents can access an application on a user's behalf.
 - Stytch: Customer authentication APIs. Adjacent budget to workforce identity.
 - Frontegg: Customer identity features aimed at B2B product teams.
@@ -35,6 +36,7 @@ Authentication and account experience for customers, partners, or developers usi
 ## Vendors (adjacent)
 
 - Okta
+- Amazon Web Services
 - SlashID
 - AuthZed
 

@@ -39,7 +39,7 @@ From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - Delinea: PAM vendor known for Secret Server and privileged access. Confirm whether the deal is vaulting, session control, or both.
 - HashiCorp: Vault is the reference product for dynamic secrets and PKI in this atlas. IBM completed the acquisition on 27 Feb 2025. Vault competes in a secrets-management evaluation and complements IGA when the question is issuance.
 - Akeyless: Secrets management and machine-credential vendor. Shortlist it against Vault for issuance. Do not assume NHI governance parity.
-- Amazon Web Services: AWS offers services for storing secrets, managing cloud access, checking configurations and prioritizing exposures. The product and the team responsible depend on the buyer’s decision.
+- Amazon Web Services: AWS offers services for storing secrets, managing cloud access, checking configurations and prioritizing exposures. Amazon Cognito serves application teams managing customer sign-in.
 - Google: Google Secret Manager is the cloud secret store on GCP. Same boundary as the other cloud secret stores: issuance and storage, not governance of every identity.
 - Doppler: Developer-oriented secrets manager. Competes in a vault evaluation, not in IGA.
 - Infisical: Infisical documents credential rotation for supported providers. The handoff between old and new credentials depends on the provider.

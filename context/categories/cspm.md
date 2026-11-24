@@ -26,7 +26,7 @@ Misconfiguration of cloud control planes: public storage, open security groups, 
 
 ## Vendors (primary)
 
-- Amazon Web Services: AWS offers services for storing secrets, managing cloud access, checking configurations and prioritizing exposures. The product and the team responsible depend on the buyer’s decision.
+- Amazon Web Services: AWS offers services for storing secrets, managing cloud access, checking configurations and prioritizing exposures. Amazon Cognito serves application teams managing customer sign-in.
 - Wiz: CNAPP vendor. Cloud entitlement conversations often happen here. That is adjacent budget to IGA, not a certification suite, unless a sourced claim says otherwise. Wiz markets a DSPM solution for cloud data security. Vendor-reported DSPM scope reviewed 2026-10-13.
 - Orca Security: Homepage retrieved 26 Oct 2026 says the platform unifies cloud posture and evaluates paths that include misconfigurations. Code, secrets, identity permissions, and data are named on the same page and are not separate cells.
 
