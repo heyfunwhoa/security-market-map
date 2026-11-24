@@ -2,6 +2,76 @@ import type { CustomerStory, PricingSignal, Relationship } from "../schema";
 
 export const relationships: Relationship[] = [
   {
+    id: "rel-stairwell-elastic",
+    fromProductId: "stairwell-platform",
+    toProductId: "elastic-security",
+    type: "complement",
+    useCaseId: "uc-alert-investigation",
+    rationale:
+      "Stairwell's integrations docs list Elastic as an outbound integration. Elastic holds the logs and the case; Stairwell sends its findings there. Integration depth is not verified.",
+    sourceId: "src-fill-stairwell-integrations-docs",
+  },
+  {
+    id: "rel-stairwell-crowdstrike",
+    fromProductId: "stairwell-platform",
+    toProductId: "crowdstrike-platform",
+    type: "complement",
+    useCaseId: "uc-alert-investigation",
+    rationale:
+      "Stairwell says EDR platforms send it files and lists CrowdStrike as an integration. EDR acts on the endpoint; Stairwell keeps and re-analyzes the files. Integration depth is not verified.",
+    sourceId: "src-fill-stairwell-integrations-docs",
+  },
+  {
+    id: "rel-stairwell-sentinelone",
+    fromProductId: "stairwell-platform",
+    toProductId: "sentinelone-platform",
+    type: "complement",
+    useCaseId: "uc-alert-investigation",
+    rationale:
+      "Stairwell says EDR platforms send it files and lists SentinelOne as an integration. Same split as CrowdStrike: endpoint action vs. file history. Integration depth is not verified.",
+    sourceId: "src-fill-stairwell-integrations-docs",
+  },
+  {
+    id: "rel-stairwell-google-secops",
+    fromProductId: "stairwell-platform",
+    toProductId: "google-secops",
+    type: "complement",
+    useCaseId: "uc-alert-investigation",
+    rationale:
+      "Stairwell documents an enrichment integration that returns verdicts, prevalence and variants inside Google SecOps cases. SecOps holds the case; Stairwell answers what the file is.",
+    sourceId: "src-fill-stairwell-google-secops-docs",
+  },
+  {
+    id: "rel-stairwell-splunk-es",
+    fromProductId: "stairwell-platform",
+    toProductId: "splunk-enterprise-security",
+    type: "complement",
+    useCaseId: "uc-alert-investigation",
+    rationale:
+      "Stairwell says its Splunk integration enriches Splunk events with verdicts, investigation context and Rehunt matches. Splunk holds the logs and the case. Depth and customer use are not verified.",
+    sourceId: "src-fill-stairwell-integrations-page",
+  },
+  {
+    id: "rel-stairwell-cortex-xsoar",
+    fromProductId: "stairwell-platform",
+    toProductId: "cortex-xsoar",
+    type: "complement",
+    useCaseId: "uc-alert-investigation",
+    rationale:
+      "Stairwell's docs list Cortex XSOAR as a two-way integration. XSOAR runs the playbook; Stairwell supplies evidence and remediation steps. Integration depth is not verified.",
+    sourceId: "src-fill-stairwell-integrations-docs",
+  },
+  {
+    id: "rel-stairwell-tines",
+    fromProductId: "stairwell-platform",
+    toProductId: "tines-platform",
+    type: "complement",
+    useCaseId: "uc-alert-investigation",
+    rationale:
+      "Stairwell's docs list Tines as an outbound integration, and its integrations page describes Tines templates. Tines runs the workflow; Stairwell supplies the file verdict. Integration depth is not verified.",
+    sourceId: "src-fill-stairwell-integrations-docs",
+  },
+  {
     id: "rel-c1-opal-jml",
     fromProductId: "c1-platform",
     toProductId: "opal-platform",

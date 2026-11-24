@@ -87,7 +87,6 @@ export const categoryFillVendors: Vendor[] = [
     ],
     "adjacentCategoryIds": [
       "threat-intelligence",
-      "soar",
       "ai-soc-investigation"
     ],
     "identityScopes": [
@@ -509,6 +508,91 @@ export const categoryFillVendors: Vendor[] = [
       "Instrumentation needs per-language agents; confirm coverage for the buyer's stack.",
       "A Hype Cycle Sample Vendor listing is not a ranking or endorsement."
     ]
+  },
+  {
+    "id": "tines",
+    "slug": "tines",
+    "name": "Tines",
+    "formerNames": [],
+    "website": "https://www.tines.com/",
+    "positioning": "Tines describes a secure environment for AI agents, apps and automation, built by every team and governed by IT and Security.",
+    "primaryCategoryIds": [
+      "soar"
+    ],
+    "adjacentCategoryIds": [
+      "ai-soc-investigation"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Tines markets beyond SOAR (IT workflows, AI agents); confirm which budget the buyer uses."
+    ]
+  },
+  {
+    "id": "torq",
+    "slug": "torq",
+    "name": "Torq",
+    "formerNames": [],
+    "website": "https://torq.io/",
+    "positioning": "Torq describes an AI SOC platform built on its Hyperautomation workflow engine, with AI agents for triage, investigation and response.",
+    "primaryCategoryIds": [
+      "soar"
+    ],
+    "adjacentCategoryIds": [
+      "ai-soc-investigation"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Torq markets itself as replacing legacy SOAR; confirm whether the buyer budgets it as SOAR or AI SOC."
+    ]
+  },
+  {
+    "id": "swimlane",
+    "slug": "swimlane",
+    "name": "Swimlane",
+    "formerNames": [],
+    "website": "https://swimlane.com/",
+    "positioning": "Swimlane describes Turbine as an agentic AI automation platform for SOC, vulnerability management and compliance teams, sold to enterprises and MSSPs.",
+    "primaryCategoryIds": [
+      "soar"
+    ],
+    "adjacentCategoryIds": [
+      "ai-soc-investigation"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Turbine spans SOC, vulnerability management and compliance; confirm which team owns it."
+    ]
+  },
+  {
+    "id": "elastic",
+    "slug": "elastic",
+    "name": "Elastic",
+    "formerNames": [],
+    "website": "https://www.elastic.co/security",
+    "positioning": "Elastic describes Elastic Security as SIEM, endpoint protection and cloud security in one solution, built on Elasticsearch.",
+    "primaryCategoryIds": [
+      "siem"
+    ],
+    "adjacentCategoryIds": [
+      "endpoint-security",
+      "ai-soc-investigation"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Is the buyer on Elastic Security as a SIEM, or on Elasticsearch for logging with security added later?"
+    ]
   }
 ];
 
@@ -642,7 +726,6 @@ export const categoryFillProducts: Product[] = [
     ],
     "adjacentCategoryIds": [
       "threat-intelligence",
-      "soar",
       "ai-soc-investigation"
     ],
     "deployment": [
@@ -1087,6 +1170,171 @@ export const categoryFillProducts: Product[] = [
     "availabilityNote": "Announced as commercially available in August 2024.",
     "officialUrl": "https://www.contrastsecurity.com/press/contrast-security-introduces-application-detection-and-response-adr-to-identify-and-block-attacks-and-zero-days-on-applications-in-production",
     "useCaseIds": []
+  },
+  {
+    "id": "google-secops",
+    "slug": "google-secops",
+    "vendorId": "google",
+    "name": "Google Security Operations (SecOps)",
+    "positioning": "Google says Google SecOps combines SIEM, SOAR and applied threat intelligence in one platform.",
+    "primaryCategoryIds": [
+      "siem"
+    ],
+    "adjacentCategoryIds": [
+      "soar",
+      "threat-intelligence"
+    ],
+    "deployment": [
+      "saas"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Sold in packages priced on ingestion, per Google's product page; package contents not verified here.",
+    "officialUrl": "https://cloud.google.com/security/products/security-operations",
+    "useCaseIds": []
+  },
+  {
+    "id": "tines-platform",
+    "slug": "tines-platform",
+    "vendorId": "tines",
+    "name": "Tines",
+    "positioning": "Tines describes a secure environment for AI agents, apps and automation. Its security page covers alert enrichment, AI-assisted triage and AI agents that create, triage and resolve cases.",
+    "primaryCategoryIds": [
+      "soar"
+    ],
+    "adjacentCategoryIds": [
+      "ai-soc-investigation"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Deployment options not verified here.",
+    "officialUrl": "https://www.tines.com/",
+    "useCaseIds": []
+  },
+  {
+    "id": "cortex-xsoar",
+    "slug": "cortex-xsoar",
+    "vendorId": "palo-alto-networks",
+    "name": "Cortex XSOAR",
+    "positioning": "Palo Alto Networks describes Cortex XSOAR as security orchestration and automation that unifies playbooks, case management, collaboration and threat intel management.",
+    "primaryCategoryIds": [
+      "soar"
+    ],
+    "adjacentCategoryIds": [
+      "threat-intelligence"
+    ],
+    "deployment": [
+      "saas",
+      "self_hosted"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "SaaS and on-prem documentation sets exist for XSOAR 8; confirm which the buyer runs.",
+    "officialUrl": "https://www.paloaltonetworks.com/cortex/cortex-xsoar",
+    "useCaseIds": []
+  },
+  {
+    "id": "splunk-enterprise-security",
+    "slug": "splunk-enterprise-security",
+    "vendorId": "splunk",
+    "name": "Splunk Enterprise Security",
+    "positioning": "Splunk's SIEM product. Splunk documents findings and investigations in Enterprise Security; detection depth is not checked here.",
+    "primaryCategoryIds": [
+      "siem"
+    ],
+    "adjacentCategoryIds": [
+      "soar"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Cloud and on-prem editions exist; which one a buyer runs is not recorded.",
+    "officialUrl": "https://www.splunk.com/en_us/products/enterprise-security.html",
+    "useCaseIds": []
+  },
+  {
+    "id": "torq-platform",
+    "slug": "torq-platform",
+    "vendorId": "torq",
+    "name": "Torq AI SOC Platform",
+    "positioning": "Torq says Hyperautomation is the foundation of its AI SOC platform, connecting the security stack and using AI agents to triage and respond.",
+    "primaryCategoryIds": [
+      "soar"
+    ],
+    "adjacentCategoryIds": [
+      "ai-soc-investigation"
+    ],
+    "deployment": [
+      "saas"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Torq describes a cloud-native architecture; packaging not verified here.",
+    "officialUrl": "https://torq.io/hyperautomation/",
+    "useCaseIds": []
+  },
+  {
+    "id": "swimlane-turbine",
+    "slug": "swimlane-turbine",
+    "vendorId": "swimlane",
+    "name": "Swimlane Turbine",
+    "positioning": "Swimlane says Turbine combines agentic AI with deterministic automation to run detections, investigate alerts, orchestrate response and automate workflows.",
+    "primaryCategoryIds": [
+      "soar"
+    ],
+    "adjacentCategoryIds": [
+      "ai-soc-investigation"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Swimlane lists five enterprise tiers priced on daily automation volume; contents not verified here.",
+    "officialUrl": "https://swimlane.com/swimlane-turbine/",
+    "useCaseIds": []
+  },
+  {
+    "id": "elastic-security",
+    "slug": "elastic-security",
+    "vendorId": "elastic",
+    "name": "Elastic Security",
+    "positioning": "Elastic says Elastic Security brings SIEM, endpoint protection and cloud security together, with AI features to detect, investigate and respond.",
+    "primaryCategoryIds": [
+      "siem"
+    ],
+    "adjacentCategoryIds": [
+      "endpoint-security",
+      "ai-soc-investigation"
+    ],
+    "deployment": [
+      "saas",
+      "self_hosted"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Elastic describes cloud, on-prem and air-gapped deployment; a serverless AI SOC tier also complements third-party SIEMs.",
+    "officialUrl": "https://www.elastic.co/security/siem",
+    "useCaseIds": []
   }
 ];
 
@@ -1438,6 +1686,114 @@ export const categoryFillSources: Source[] = [
     "retrievedAt": "2026-11-09",
     "volatility": "fast",
     "excerpt": "Contrast introduced ADR on 6 Aug 2024 to detect and block attacks on custom applications and APIs from inside the application, with SIEM, XDR and CNAPP integrations; announced as commercially available."
+  },
+  {
+    "id": "src-fill-google-secops",
+    "title": "Google Security Operations — product page",
+    "url": "https://cloud.google.com/security/products/security-operations",
+    "canonicalUrl": "https://cloud.google.com/security/products/security-operations",
+    "publisher": "Google Cloud",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-24",
+    "volatility": "fast",
+    "excerpt": "Google says Google SecOps includes SIEM, SOAR and applied threat intelligence capabilities."
+  },
+  {
+    "id": "src-fill-tines",
+    "title": "Tines — homepage (re-read 2026-11-24)",
+    "url": "https://www.tines.com/",
+    "canonicalUrl": "https://www.tines.com/",
+    "publisher": "Tines",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-24",
+    "volatility": "fast",
+    "excerpt": "Tines describes itself as a secure environment for AI agents, apps and automation that every team can build on, with IT and Security keeping visibility and control."
+  },
+  {
+    "id": "src-fill-cortex-xsoar",
+    "title": "What is Cortex XSOAR? — Cortex XSOAR documentation",
+    "url": "https://cortex-docs.paloaltonetworks.com/cortex-xsoar-8-on-prem/8.8/learn-about-cortex-xsoar/get-started-with-cortex-xsoar/what-is-cortex-xsoar",
+    "canonicalUrl": "https://cortex-docs.paloaltonetworks.com/cortex-xsoar-8-on-prem/8.8/learn-about-cortex-xsoar/get-started-with-cortex-xsoar/what-is-cortex-xsoar",
+    "publisher": "Palo Alto Networks",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-24",
+    "volatility": "moderate",
+    "excerpt": "Palo Alto Networks says Cortex XSOAR ingests alerts and indicators from SIEMs, network tools, threat intelligence feeds and mailboxes, then runs playbooks to enrich and respond."
+  },
+  {
+    "id": "src-fill-stairwell-integrations-docs",
+    "title": "Integrations — Stairwell documentation",
+    "url": "https://docs.stairwell.com/docs/integrations",
+    "canonicalUrl": "https://docs.stairwell.com/docs/integrations",
+    "publisher": "Stairwell",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-24",
+    "volatility": "moderate",
+    "excerpt": "Stairwell says EDR platforms (CrowdStrike, SentinelOne) send it files, while Splunk, Google SecOps, Elastic, TheHive, Tines and Cortex XSOAR receive its findings."
+  },
+  {
+    "id": "src-fill-stairwell-google-secops-docs",
+    "title": "Google SecOps — Stairwell documentation",
+    "url": "https://docs.stairwell.com/docs/google-secops",
+    "canonicalUrl": "https://docs.stairwell.com/docs/google-secops",
+    "publisher": "Stairwell",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-24",
+    "volatility": "moderate",
+    "excerpt": "Stairwell's Google SecOps enrichment returns verdicts for hashes, hostnames and IPs inside SecOps cases, with YARA matches for hashes, DNS records for hostnames and sightings for IPs."
+  },
+  {
+    "id": "src-fill-stairwell-integrations-page",
+    "title": "SIEM, EDR and SOAR Integrations — Stairwell",
+    "url": "https://stairwell.com/integrations/",
+    "canonicalUrl": "https://stairwell.com/integrations/",
+    "publisher": "Stairwell",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-24",
+    "volatility": "fast",
+    "excerpt": "Stairwell lists integrations with Palo Alto Cortex, Splunk, SentinelOne, Google Security Operations, CrowdStrike, Tines, Slack, TheHive and Wirespeed."
+  },
+  {
+    "id": "src-fill-torq-hyperautomation",
+    "title": "Torq Hyperautomation",
+    "url": "https://torq.io/hyperautomation/",
+    "canonicalUrl": "https://torq.io/hyperautomation/",
+    "publisher": "Torq",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-24",
+    "volatility": "fast",
+    "excerpt": "Torq says Hyperautomation is the foundation of the Torq AI SOC Platform and automates security workflows across the stack."
+  },
+  {
+    "id": "src-fill-swimlane-turbine",
+    "title": "Swimlane Turbine — product page",
+    "url": "https://swimlane.com/swimlane-turbine/",
+    "canonicalUrl": "https://swimlane.com/swimlane-turbine/",
+    "publisher": "Swimlane",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-24",
+    "volatility": "fast",
+    "excerpt": "Swimlane says Turbine combines agentic AI with deterministic automation to run detections, investigate alerts, orchestrate response and automate workflows."
+  },
+  {
+    "id": "src-fill-elastic-security-docs",
+    "title": "Elastic Security solution overview",
+    "url": "https://www.elastic.co/docs/solutions/security",
+    "canonicalUrl": "https://www.elastic.co/docs/solutions/security",
+    "publisher": "Elastic",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-24",
+    "volatility": "moderate",
+    "excerpt": "Elastic says Elastic Security brings SIEM, endpoint protection and cloud security together, with AI features to detect, investigate and respond."
   }
 ];
 
@@ -2021,5 +2377,205 @@ export const categoryFillClaims: Claim[] = [
     "lastCheckedAt": "2026-11-09",
     "conflictsWith": [],
     "notes": "Publisher-reported, not tested. Product is primary in application runtime protection and only adjacent to runtime-validated AppSec, consistent with the RVAS gate."
+  },
+  {
+    "id": "claim-fill-google-secops",
+    "statement": "Google says Google Security Operations includes SIEM, SOAR and applied threat intelligence capabilities.",
+    "subjectType": "product",
+    "subjectId": "google-secops",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-google-secops",
+    "sourceUrl": "https://cloud.google.com/security/products/security-operations",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-24",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-24",
+    "conflictsWith": [],
+    "notes": "Publisher-reported, not independently tested; no direct-competitor or parity claim. See docs/market-research/secops-siem-soar-gaps-2026-11.md."
+  },
+  {
+    "id": "claim-fill-tines",
+    "statement": "Tines describes its product as a secure environment for AI agents, apps and automation that every team can build on, with IT and Security keeping visibility and control.",
+    "subjectType": "product",
+    "subjectId": "tines-platform",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-tines",
+    "sourceUrl": "https://www.tines.com/",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-24",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-24",
+    "conflictsWith": [],
+    "notes": "Publisher-reported, not independently tested; no direct-competitor or parity claim. See docs/market-research/secops-siem-soar-gaps-2026-11.md."
+  },
+  {
+    "id": "claim-fill-cortex-xsoar",
+    "statement": "Palo Alto Networks says Cortex XSOAR ingests alerts and indicators from detection sources such as SIEMs and threat intelligence feeds, then runs playbooks to enrich and respond to incidents.",
+    "subjectType": "product",
+    "subjectId": "cortex-xsoar",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-cortex-xsoar",
+    "sourceUrl": "https://cortex-docs.paloaltonetworks.com/cortex-xsoar-8-on-prem/8.8/learn-about-cortex-xsoar/get-started-with-cortex-xsoar/what-is-cortex-xsoar",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-11-24",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-24",
+    "conflictsWith": [],
+    "notes": "Publisher-reported, not independently tested; no direct-competitor or parity claim. See docs/market-research/secops-siem-soar-gaps-2026-11.md."
+  },
+  {
+    "id": "claim-fill-stairwell-integration-direction",
+    "statement": "Stairwell says EDR platforms send it files, while SIEM, SOAR and case management tools receive its findings as events, cases or playbook triggers.",
+    "subjectType": "product",
+    "subjectId": "stairwell-platform",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-stairwell-integrations-docs",
+    "sourceUrl": "https://docs.stairwell.com/docs/integrations",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-11-24",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-24",
+    "conflictsWith": [],
+    "notes": "Stairwell-published; re-read in full on 2026-11-24. Integration listed is not proof of depth or customer use. See docs/market-research/secops-siem-soar-gaps-2026-11.md."
+  },
+  {
+    "id": "claim-fill-stairwell-google-secops",
+    "statement": "Stairwell says its Google SecOps integration enriches hashes, hostnames and IPs inside SecOps cases with verdicts, plus type-specific context such as YARA matches for hashes and DNS records for hostnames.",
+    "subjectType": "product",
+    "subjectId": "stairwell-platform",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-stairwell-google-secops-docs",
+    "sourceUrl": "https://docs.stairwell.com/docs/google-secops",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-11-24",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-24",
+    "conflictsWith": [],
+    "notes": "Stairwell-published; re-read in full on 2026-11-24. Integration listed is not proof of depth or customer use. See docs/market-research/secops-siem-soar-gaps-2026-11.md."
+  },
+  {
+    "id": "claim-fill-stairwell-soar",
+    "statement": "Stairwell's docs list Cortex XSOAR (both directions) and Tines (outbound) as integrations; its integrations page describes Cortex workflows and Tines templates.",
+    "subjectType": "product",
+    "subjectId": "stairwell-platform",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-stairwell-integrations-page",
+    "sourceUrl": "https://stairwell.com/integrations/",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-24",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-24",
+    "conflictsWith": [],
+    "notes": "Stairwell-published; re-read in full on 2026-11-24. Integration listed is not proof of depth or customer use. See docs/market-research/secops-siem-soar-gaps-2026-11.md."
+  },
+  {
+    "id": "claim-fill-stairwell-splunk",
+    "statement": "Stairwell says its Splunk integration enriches Splunk events with Stairwell verdicts, investigation context and Rehunt matches.",
+    "subjectType": "product",
+    "subjectId": "stairwell-platform",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-stairwell-integrations-page",
+    "sourceUrl": "https://stairwell.com/integrations/",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-24",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-24",
+    "conflictsWith": [],
+    "notes": "Stairwell-published; re-read in full on 2026-11-24. Integration listed is not proof of depth or customer use. See docs/market-research/secops-siem-soar-gaps-2026-11.md."
+  },
+  {
+    "id": "claim-fill-torq",
+    "statement": "Torq says Hyperautomation is the foundation of its AI SOC platform, automating security workflows and connecting the security stack.",
+    "subjectType": "product",
+    "subjectId": "torq-platform",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-torq-hyperautomation",
+    "sourceUrl": "https://torq.io/hyperautomation/",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-24",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-24",
+    "conflictsWith": [],
+    "notes": "Publisher-reported, read from a search excerpt; not independently tested. No direct-competitor or parity claim. See docs/market-research/secops-siem-soar-gaps-2026-11.md."
+  },
+  {
+    "id": "claim-fill-swimlane",
+    "statement": "Swimlane says Turbine combines agentic AI with deterministic automation to run detections, investigate alerts, orchestrate response and automate workflows.",
+    "subjectType": "product",
+    "subjectId": "swimlane-turbine",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-swimlane-turbine",
+    "sourceUrl": "https://swimlane.com/swimlane-turbine/",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-24",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-24",
+    "conflictsWith": [],
+    "notes": "Publisher-reported, read from a search excerpt; not independently tested. No direct-competitor or parity claim. See docs/market-research/secops-siem-soar-gaps-2026-11.md."
+  },
+  {
+    "id": "claim-fill-elastic-security",
+    "statement": "Elastic says Elastic Security brings SIEM, endpoint protection and cloud security together, with AI features to detect, investigate and respond.",
+    "subjectType": "product",
+    "subjectId": "elastic-security",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-elastic-security-docs",
+    "sourceUrl": "https://www.elastic.co/docs/solutions/security",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-11-24",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-24",
+    "conflictsWith": [],
+    "notes": "Publisher-reported, read from a search excerpt; not independently tested. No direct-competitor or parity claim. See docs/market-research/secops-siem-soar-gaps-2026-11.md."
   }
 ];

@@ -301,4 +301,30 @@ export const useCases: UseCase[] = [
     ],
     buyerQuestion: "Who is signing in, and is this the workforce directory or the product's own auth?",
   },
+  {
+    id: "uc-alert-investigation",
+    slug: "alert-file-investigation",
+    name: "Alert enrichment and file investigation",
+    problem:
+      "An EDR or SIEM alert names a file. The analyst has to decide if it is malicious, find where else it ran, and get the answer back into the case before the queue moves on.",
+    architecture:
+      "EDR sees and stops activity on the endpoint. A SIEM holds the logs and opens the case. File analysis and threat intelligence say what the file is and what it is related to. SOAR runs the playbook that enriches, contains or escalates. These are separate control planes that pass the same alert along; a shared label does not make them substitutes.",
+    stakeholders: ["SOC", "Incident response", "Threat intelligence", "Detection engineering"],
+    triggers: ["Alert backlog", "A file the EDR let through", "SIEM or SOAR migration", "Incident review"],
+    budgetOwner: "SOC or security operations. File analysis can also sit with threat intelligence or incident response.",
+    successMetrics: [
+      "Time from alert to a file verdict in the case",
+      "Share of file-based alerts enriched automatically",
+      "Related hosts found per confirmed malicious file",
+    ],
+    categoryIds: ["endpoint-security", "siem", "soar", "malware-analysis", "threat-intelligence", "ai-soc-investigation"],
+    capabilityIds: ["cap-endpoint-detect"],
+    discoveryQuestions: [
+      "Where does an alert start today: the EDR console, the SIEM, or the SOAR queue?",
+      "When an alert names a file, how does the analyst decide if it is malicious?",
+      "Can they tell where else that file has run, and how far back?",
+      "Which step is automated today, and who maintains the playbook?",
+    ],
+    buyerQuestion: "When an alert names a file, how fast do we know what it is and where else it has been?",
+  },
 ];

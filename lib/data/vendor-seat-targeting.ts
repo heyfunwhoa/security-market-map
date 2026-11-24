@@ -15,11 +15,17 @@ import type { VendorSeatTargetingInput } from "@/lib/schema";
 // Rows added 2026-11-18 (ISPM, WIM): "security teams" means identity security for ITDR posture
 // pages (formerly ISPM) and cloud security for WIM; "identity" or "IAM" teams map to identity security; "operations
 // teams" running production applications map to platform; "application teams" map to developer.
+// Rows added 2026-11-24 (SOAR): "security teams" and "SOC teams" map to SOC lead, "security
+// analysts" to SOC analyst, "IT teams" to IT operations, and MSSP pages to mssp-ops. XDR rows
+// (2026-11-24) use the same rule; "threat hunters" and "incident responders" map to their own seats.
+// Rows re-read in full on 2026-11-24 are marked page-read. Tines' homepage now pitches every team,
+// with IT and Security as governors, so SOC lead is mentioned rather than pitched.
 
 const CHECKED = "2026-11-09";
 const REREAD = "2026-11-10";
 const SEARCHED = "2026-11-10";
 const ISPM_WIM_READ = "2026-11-18";
+const SOAR_SEARCHED = "2026-11-24";
 
 export const vendorSeatTargeting: VendorSeatTargetingInput[] = [
   // Secrets detection and remediation
@@ -580,6 +586,120 @@ export const vendorSeatTargeting: VendorSeatTargetingInput[] = [
     basis: "vendor-page",
     inspection: "search-excerpt",
     checkedAt: SEARCHED,
+  },
+  // SOAR (and Google SecOps for SIEM), added 2026-11-24 from search excerpts
+  {
+    vendorId: "palo-alto-networks",
+    categoryId: "soar",
+    seatIds: ["soc-lead", "soc-analyst", "mssp-ops"],
+    selectionReason: "leader",
+    audience: "SOC teams automating incident response; an MSSP edition is described as designed with security analysts in mind.",
+    urls: ["https://cortex-docs.paloaltonetworks.com/cortex-xsoar-8-on-prem/8.8/learn-about-cortex-xsoar/get-started-with-cortex-xsoar/what-is-cortex-xsoar", "https://www.paloaltonetworks.com/cortex/cortex-xsoar-mssp"],
+    basis: "vendor-docs",
+    inspection: "page-read",
+    checkedAt: SOAR_SEARCHED,
+  },
+  {
+    vendorId: "tines",
+    categoryId: "soar",
+    seatIds: ["it-operations", "mssp-ops"],
+    mentionedSeatIds: ["soc-lead"],
+    selectionReason: "challenger",
+    audience: "Every team builds; IT and Security keep visibility and control. A separate page targets MSSPs automating workflows across clients.",
+    urls: ["https://www.tines.com/", "https://www.tines.com/mssps/"],
+    basis: "vendor-page",
+    inspection: "page-read",
+    checkedAt: SOAR_SEARCHED,
+  },
+  {
+    vendorId: "google",
+    categoryId: "soar",
+    seatIds: ["soc-lead"],
+    selectionReason: "leader",
+    audience: "Security teams that detect, investigate and respond; SOAR playbooks and a shared case wall for team collaboration.",
+    urls: ["https://cloud.google.com/security/products/security-operations"],
+    basis: "vendor-page",
+    inspection: "page-read",
+    checkedAt: SOAR_SEARCHED,
+  },
+  {
+    vendorId: "google",
+    categoryId: "siem",
+    seatIds: ["soc-lead"],
+    selectionReason: "leader",
+    audience: "Security teams that detect, investigate and respond to threats with Google's scale and intelligence.",
+    urls: ["https://cloud.google.com/security/products/security-operations"],
+    basis: "vendor-page",
+    inspection: "page-read",
+    checkedAt: SOAR_SEARCHED,
+  },
+  // XDR, added 2026-11-24 from search excerpts
+  {
+    vendorId: "crowdstrike",
+    categoryId: "xdr",
+    seatIds: ["soc-analyst", "threat-hunter", "soc-lead"],
+    selectionReason: "leader",
+    audience: "Speeds triage and investigation for SOC analysts and threat hunters; product page cites SOC team efficiency.",
+    urls: ["https://ir.crowdstrike.com/news-releases/news-release-details/crowdstrike-announces-general-availability-falcon-xdr-extending", "https://www.crowdstrike.com/en-us/platform/endpoint-security/falcon-insight-xdr/"],
+    basis: "vendor-press",
+    inspection: "search-excerpt",
+    checkedAt: SOAR_SEARCHED,
+  },
+  {
+    vendorId: "sentinelone",
+    categoryId: "xdr",
+    seatIds: ["soc-lead"],
+    selectionReason: "challenger",
+    audience: "Security teams, given centralized visibility across security layers. Neither page names analysts in readable text.",
+    urls: ["https://assets.sentinelone.com/mitre-22/usecase-singularity-xdr-en", "https://assets.sentinelone.com/frost-sullivan/ds-sentinelone-xdr"],
+    basis: "vendor-page",
+    inspection: "page-read",
+    checkedAt: SOAR_SEARCHED,
+  },
+  {
+    vendorId: "palo-alto-networks",
+    categoryId: "xdr",
+    seatIds: ["soc-analyst", "incident-response", "threat-hunter"],
+    mentionedSeatIds: ["soc-lead"],
+    selectionReason: "leader",
+    audience: "Hands-on workshop and course for security analysts, SOC staff, incident responders and threat hunters; the course also names managers.",
+    urls: ["https://www.paloaltonetworks.com/cortex/cortex-xdr/hands-on-workshop", "https://www.paloaltonetworks.com/services/education/ilt-xdr-investigation-analysis"],
+    basis: "vendor-page",
+    inspection: "search-excerpt",
+    checkedAt: SOAR_SEARCHED,
+  },
+  {
+    vendorId: "torq",
+    categoryId: "soar",
+    seatIds: ["soc-lead", "soc-analyst"],
+    selectionReason: "challenger",
+    audience: "SOC teams facing alert volume and analyst fatigue; AI agents triage, investigate and contain.",
+    urls: ["https://torq.io/soc-teams/", "https://torq.io/hyperautomation/"],
+    basis: "vendor-page",
+    inspection: "page-read",
+    checkedAt: SOAR_SEARCHED,
+  },
+  {
+    vendorId: "swimlane",
+    categoryId: "soar",
+    seatIds: ["soc-lead", "mssp-ops"],
+    selectionReason: "specialist",
+    audience: "SOC, vulnerability management and compliance teams at enterprises and MSSPs; entry tier aimed at SOC teams automating for the first time.",
+    urls: ["https://swimlane.com/resources/datasheets/swimlane-turbine-platform-overview/", "https://swimlane.com/platform/enterprise-packaging/"],
+    basis: "vendor-page",
+    inspection: "page-read",
+    checkedAt: SOAR_SEARCHED,
+  },
+  {
+    vendorId: "elastic",
+    categoryId: "siem",
+    seatIds: ["soc-analyst", "threat-hunter", "detection-engineer"],
+    selectionReason: "open-source-led",
+    audience: "Built by security users for security users; agentic layer spans triage, threat hunting, detection engineering and forensics.",
+    urls: ["https://www.elastic.co/security/siem"],
+    basis: "vendor-page",
+    inspection: "page-read",
+    checkedAt: SOAR_SEARCHED,
   },
   // ITDR posture pages (ISPM, folded into ITDR on 2026-11-18)
   {

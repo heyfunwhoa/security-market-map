@@ -3,7 +3,7 @@ id: "threat-intelligence"
 type: "category"
 name: "Threat intelligence"
 layer: "core"
-vendors: 12
+vendors: 13
 ---
 
 # Threat intelligence
@@ -36,6 +36,7 @@ Finished reporting and indicator feeds that detection teams use. This map keeps 
 
 ## Vendors (adjacent)
 
+- Google
 - Secureworks
 - Dragos
 - Dropzone AI
