@@ -1,3 +1,4 @@
+import { CompanyResearchGaps, companyResearchGaps } from "@/components/company-research-gaps";
 import { productDestination } from "@/lib/product-destination";
 import { productComparisonUrl, shortlistUrl } from "@/lib/landscape-shortlist";
 import { landscapeFilterUrl, initialLandscapeFilters, productSectionId } from "@/lib/landscape-filters";
@@ -36,6 +37,7 @@ export default async function VendorPage({ params }: { params: Promise<{ slug: s
   const vendor = vendorBySlug(slug);
   if (!vendor) notFound();
   const products = productsForVendor(vendor.id);
+  const gaps = companyResearchGaps[vendor.id];
   const vendorClaims = claimsForSubject("vendor", vendor.id);
   const productClaims = products.flatMap((product) => claimsForSubject("product", product.id));
   const events = catalog.events
@@ -67,6 +69,7 @@ export default async function VendorPage({ params }: { params: Promise<{ slug: s
         Scope marked for filtering: {vendor.identityScopes.map(scopeLabel).join(", ")}. Scope is a
         research starting point, not a certified coverage claim.
       </p>
+      {gaps && <a href="#research-gaps" className="inline-flex min-h-11 items-center text-sm text-primary underline underline-offset-4">Research gaps</a>}
       {products.length > 1 && <nav aria-label="Find a product on this company page" className="mt-4">
         <details className="rounded-lg border border-border bg-card px-4">
           <summary className="min-h-11 cursor-pointer py-3 text-sm font-semibold">Jump to a product ({products.length})</summary>
@@ -114,14 +117,16 @@ export default async function VendorPage({ params }: { params: Promise<{ slug: s
         </ul>
       </section>
 
-      <section className="mt-10">
-        <h2 className="text-2xl">Open questions</h2>
-        <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-6">
-          {vendor.openQuestions.map((question) => (
-            <li key={question}>{question}</li>
-          ))}
-        </ul>
-      </section>
+      {gaps ? (
+        <CompanyResearchGaps gaps={gaps} questions={vendor.openQuestions} claims={productClaims} />
+      ) : (
+        <section className="mt-10">
+          <h2 className="text-2xl">Open questions</h2>
+          <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-6">
+            {vendor.openQuestions.map((question) => <li key={question}>{question}</li>)}
+          </ul>
+        </section>
+      )}
 
       <section className="mt-10">
         <h2 className="text-2xl">Related products by use case</h2>
