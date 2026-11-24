@@ -1,5 +1,6 @@
 "use client";
 
+import { ProductCategoryLinks } from "@/components/product-category-links";
 import Link from "next/link";
 import type { LandscapeEdge, LandscapeRow } from "@/components/landscape-browser";
 import { StatusPill } from "@/components/chrome";
@@ -11,7 +12,7 @@ const actionClass = "inline-flex min-h-11 items-center justify-center rounded-md
 export function ProductInspector({ row, related, categories, useCases }: {
   row: LandscapeRow;
   related: LandscapeEdge[];
-  categories: { id: string; label: string }[];
+  categories: { id: string; label: string; slug: string }[];
   useCases: { id: string; label: string }[];
 }) {
   return (
@@ -26,14 +27,17 @@ export function ProductInspector({ row, related, categories, useCases }: {
             <SheetClose className={`${actionClass} shrink-0 hover:bg-muted`}>Close</SheetClose>
           </div>
           <SheetTitle className="break-words text-2xl">{row.productName}</SheetTitle>
-          <SheetDescription>{row.vendorName}. Close this panel to return to your filtered results.</SheetDescription>
+          <SheetDescription><Link href={`/vendors/${row.vendorSlug}`} className="inline-flex min-h-11 items-center text-primary underline">{row.vendorName} company profile</Link></SheetDescription>
         </SheetHeader>
         <div className="space-y-6 px-5 pb-6">
           <section aria-label="Product overview" className="space-y-3">
             <StatusPill status={row.availability} />
             <p className="leading-6">{row.positioning}</p>
             <dl className="grid gap-4 rounded-lg border border-border bg-muted/30 p-4">
-              <Detail label="Categories" value={categories.filter((item) => row.categoryIds.includes(item.id)).map((item) => item.label).join(" · ")} />
+              <ProductCategoryLinks
+                primary={categories.filter((category) => row.primaryCategoryIds.includes(category.id))}
+                adjacent={categories.filter((category) => row.categoryIds.includes(category.id) && !row.primaryCategoryIds.includes(category.id))}
+              />
               <Detail label="Identity scope" value={row.scopes.map(scopeLabel).join(" · ")} />
               <Detail label="Deployment" value={row.deployment.map(deploymentLabel).join(" · ")} />
             </dl>

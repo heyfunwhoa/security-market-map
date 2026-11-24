@@ -1,6 +1,6 @@
 import { productDestination } from "@/lib/product-destination";
 import { productComparisonUrl, shortlistUrl } from "@/lib/landscape-shortlist";
-import { productSectionId } from "@/lib/landscape-filters";
+import { landscapeFilterUrl, initialLandscapeFilters, productSectionId } from "@/lib/landscape-filters";
 import { ProductBuyerContext } from "@/components/product-buyer-context";
 import { isProductResearchSlug } from "@/lib/product-research";
 import { Breadcrumbs } from "@/components/breadcrumbs";
@@ -50,7 +50,7 @@ export default async function VendorPage({ params }: { params: Promise<{ slug: s
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
-      <Breadcrumbs parents={[{ href: "/", label: "Home" }, { href: "/landscape", label: "Landscape" }]} current={vendor.name} />
+      <Breadcrumbs parents={[{ href: "/", label: "Home" }, { href: landscapeFilterUrl(initialLandscapeFilters, vendor.name), label: "Catalog results" }]} current={vendor.name} />
       <PageIntro kicker="Research candidate" title={vendor.name} lede={vendor.positioning} />
       <div className="mt-4 flex flex-wrap items-center gap-2">
         <StatusPill status={vendor.verificationStatus} />
@@ -67,13 +67,31 @@ export default async function VendorPage({ params }: { params: Promise<{ slug: s
         Scope marked for filtering: {vendor.identityScopes.map(scopeLabel).join(", ")}. Scope is a
         research starting point, not a certified coverage claim.
       </p>
+      {products.length > 1 && <nav aria-label="Find a product on this company page" className="mt-4">
+        <details className="rounded-lg border border-border bg-card px-4">
+          <summary className="min-h-11 cursor-pointer py-3 text-sm font-semibold">Jump to a product ({products.length})</summary>
+          <ul className="grid gap-x-5 pb-2 sm:grid-cols-2">
+            {[...products].sort((a, b) => a.name.localeCompare(b.name)).map((product) => <li key={product.id}>
+              <a className="inline-flex min-h-11 items-center text-sm text-primary underline" href={`#${productSectionId(product.id)}`}>{product.name}</a>
+            </li>)}
+          </ul>
+        </details>
+      </nav>}
       {monitor ? <ResearchPanelLive initial={monitor} /> : null}
 
       <section className="mt-8">
         <h2 className="text-2xl">Products</h2>
+        {products.length === 0 && <div className="mt-2 text-sm">
+          <p>No product is mapped to this company yet.</p>
+          <ul className="flex flex-wrap gap-x-4" aria-label="Company categories">
+            {catalog.categories.filter((category) => vendor.primaryCategoryIds.includes(category.id)).map((category) => <li key={category.id}>
+              <Link href={`/categories/${category.slug}`} className="inline-flex min-h-11 items-center text-primary underline">{category.name}</Link>
+            </li>)}
+          </ul>
+        </div>}
         <ul className="mt-3 grid gap-3">
           {products.map((product) => (
-            <li key={product.id} id={productSectionId(product.id)} className="scroll-mt-24 rounded-xl border border-border bg-card p-4 target:ring-2 target:ring-ring">
+            <li key={product.id} id={productSectionId(product.id)} tabIndex={-1} className="scroll-mt-24 rounded-xl border border-border bg-card p-4 target:ring-2 target:ring-ring">
               <div className="flex flex-wrap items-center gap-2">
                 <h3 className="text-lg font-semibold">{isProductResearchSlug(product.slug) ? <Link href={`/products/${product.slug}`} className="inline-flex min-h-11 items-center break-words text-primary underline underline-offset-4 hover:underline">{product.name}</Link> : product.name}</h3>
                 <StatusPill status={product.availability} />

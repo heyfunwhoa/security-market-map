@@ -7,7 +7,7 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { StatusPill } from "@/components/chrome";
 import { deploymentLabel, relationshipLabel, scopeLabel } from "@/lib/format";
-import { filterLandscapeRows, initialLandscapeFilters, landscapeFilterReducer, readLandscapeFilters, landscapeFilterUrl } from "@/lib/landscape-filters";
+import { filterLandscapeRows, initialLandscapeFilters, landscapeFilterReducer, readLandscapeFilters, landscapeFilterUrl, searchLandscape, type CompanySearchEntry } from "@/lib/landscape-filters";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { LandscapeResults } from "@/components/landscape-results";
@@ -21,6 +21,7 @@ export type LandscapeRow = {
   vendorSlug: string;
   positioning: string;
   categoryIds: string[];
+  primaryCategoryIds: string[];
   domainIds: string[];
   scopes: string[];
   deployment: string[];
@@ -39,6 +40,7 @@ type Option = { id: string; label: string };
 
 export function LandscapeBrowser({
   rows,
+  companies,
   edges,
   categories,
   domains,
@@ -46,8 +48,9 @@ export function LandscapeBrowser({
   personas,
 }: {
   rows: LandscapeRow[];
+  companies: CompanySearchEntry[];
   edges: LandscapeEdge[];
-  categories: (Option & { domainIds: string[] })[];
+  categories: (Option & { slug: string; domainIds: string[] })[];
   domains: Option[];
   useCases: Option[];
   personas: { id: string; label: string; categoryIds: string[] }[];
@@ -76,12 +79,10 @@ export function LandscapeBrowser({
   };
   const change = (key: keyof typeof filters) => (value: string) => navigate(landscapeFilterReducer(filters, { type: "select", key, value }));
   const reset = () => navigate(initialLandscapeFilters, "");
-  const needle = query.trim().toLowerCase();
-  const visible = scopedProducts.filter((row) =>
-    (focusedProduct === "all" || row.productId === focusedProduct) &&
-    `${row.productName} ${row.vendorName}`.toLowerCase().includes(needle));
-  const focused = visible.find((row) => row.productId === focusedProduct);
   const activeCount = Object.values(filters).filter((value) => value !== "all").length;
+  const selectedRows = focusedProduct === "all" ? scopedProducts : scopedProducts.filter((row) => row.productId === focusedProduct);
+  const { products: visible, companies: companyMatches } = searchLandscape(selectedRows, companies, query, activeCount > 0);
+  const focused = visible.find((row) => row.productId === focusedProduct);
   const advancedCount = [deployment, scope, relation].filter((value) => value !== "all").length;
   const labelFor = (options: Option[], id: string) => options.find((item) => item.id === id)?.label ?? id;
   const activeFilters = [
@@ -181,10 +182,21 @@ export function LandscapeBrowser({
           </li>)}
         </ul>
       </section>}
+      {companyMatches.length > 0 && <section aria-label="Matching companies" className="mt-4 rounded-xl border border-border bg-card p-3">
+        <h2 className="font-semibold">Company profiles</h2>
+        <CompanyLinks companies={companyMatches.slice(0, 3)} />
+        {companyMatches.length > 3 && <details key={query} className="mt-1">
+          <summary className="min-h-11 cursor-pointer py-2 text-sm">Show {companyMatches.length - 3} more companies</summary>
+          <CompanyLinks companies={companyMatches.slice(3)} />
+        </details>}
+      </section>}
       <p ref={resultSummaryRef} tabIndex={-1} role="status" aria-live="polite" aria-atomic="true" className="mt-4 text-sm text-muted-foreground">
-        {visible.length} of {rows.length} products · A to Z
+        {visible.length} of {rows.length} products · A to Z{query.trim() && ` · ${companyMatches.length} matching ${companyMatches.length === 1 ? "company" : "companies"}`}
       </p>
-      {visible.length === 0 && <button type="button" onClick={reset} className="min-h-11 text-sm text-primary underline">Clear search and filters</button>}
+      {visible.length === 0 && <div className="mt-2 text-sm">
+        <p>{companyMatches.length ? "Open the company profile above for its recorded research." : "No products match this search and its filters."}</p>
+        <button type="button" onClick={reset} className="min-h-11 text-primary underline">Clear search and filters</button>
+      </div>}
       <LandscapeResults rows={visible} allRows={rows} edges={edges} categories={categories} useCases={useCases} useCase={useCase} relation={relation}>
       {visible.length === 0 ? (
         <div className="mt-4 rounded-lg border border-dashed border-border px-4 py-8 text-sm">
@@ -209,7 +221,7 @@ export function LandscapeBrowser({
                   <Link href={row.detailHref} className="text-lg font-semibold hover:underline">
                     {row.productName}
                   </Link>
-                  <span className="text-sm text-muted-foreground">{row.vendorName}</span>
+                  <Link href={`/vendors/${row.vendorSlug}`} aria-label={`${row.vendorName} company profile`} className="inline-flex min-h-11 items-center text-sm text-primary underline">Company · {row.vendorName}</Link>
                   <StatusPill status={row.availability} />
                 </div>
                 <p className="mt-2 text-sm leading-6">{row.positioning}</p>
@@ -235,6 +247,15 @@ export function LandscapeBrowser({
       </LandscapeResults>
     </div>
   );
+}
+
+function CompanyLinks({ companies }: { companies: CompanySearchEntry[] }) {
+  return <ul className="flex flex-wrap gap-x-6">
+    {companies.map((company) => <li key={company.slug} className="flex flex-wrap items-center gap-x-2">
+      <Link href={`/vendors/${company.slug}`} aria-label={`${company.name} company profile`} className="inline-flex min-h-11 items-center text-sm font-semibold text-primary underline">{company.name}</Link>
+      {company.formerNames.length > 0 && <span className="text-xs text-muted-foreground">Formerly {company.formerNames.join(", ")}</span>}
+    </li>)}
+  </ul>;
 }
 
 function Filter({

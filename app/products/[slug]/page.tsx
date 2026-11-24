@@ -1,3 +1,4 @@
+import { ProductCategoryLinks } from "@/components/product-category-links";
 import { productComparisonUrl } from "@/lib/landscape-shortlist";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -73,7 +74,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const ciam = isCiamProduct(slug);
   const details = ciam ? ciamProfiles[slug] : learning[slug];
   const claims = claimsForSubject("product", product.id);
-  const related = catalog.categories.filter((category) => [...product.primaryCategoryIds, ...product.adjacentCategoryIds].includes(category.id));
+  const categoryLinks = (ids: string[]) => catalog.categories
+    .filter((item) => ids.includes(item.id))
+    .map((item) => ({ slug: item.slug, label: item.name }));
   const category = productResearchCategory(slug);
   const unknownBoundaries = unknownControlBoundaries(product.id, catalog.asOf);
 
@@ -161,9 +164,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
       <section aria-labelledby="adjacency" className="mt-9">
         <AnchorHeading id="adjacency" className="text-2xl font-semibold">Where it fits</AnchorHeading>
-        <ul className="mt-3 flex flex-wrap gap-2">{related.map((item) => (
-          <li key={item.id}><Link href={`/categories/${item.slug}`} className="inline-flex min-h-11 items-center rounded-md border border-border px-3 text-sm text-primary underline underline-offset-4">{item.name}</Link></li>
-        ))}</ul>
+        <dl className="mt-3 space-y-3">
+          <ProductCategoryLinks primary={categoryLinks(product.primaryCategoryIds)} adjacent={categoryLinks(product.adjacentCategoryIds.filter((id) => !product.primaryCategoryIds.includes(id)))} />
+        </dl>
       </section>
 
       {slug === "kingfisher" ? (

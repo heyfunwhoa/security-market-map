@@ -1,5 +1,24 @@
 import type { LandscapeEdge, LandscapeRow } from "@/components/landscape-browser";
 
+export type CompanySearchEntry = { slug: string; name: string; formerNames: string[] };
+
+export function searchLandscape(
+  rows: LandscapeRow[], companies: CompanySearchEntry[], query: string, restrictCompanies: boolean,
+) {
+  const term = query.trim().toLowerCase();
+  if (!term) return { products: rows, companies: [] };
+  const eligible = restrictCompanies ? new Set(rows.map((row) => row.vendorSlug)) : null;
+  const matches = companies.filter((company) =>
+    (!eligible || eligible.has(company.slug)) &&
+    [company.name, ...company.formerNames].some((name) => name.toLowerCase().includes(term)),
+  );
+  const matchingSlugs = new Set(matches.map((company) => company.slug));
+  const products = rows.filter((row) =>
+    matchingSlugs.has(row.vendorSlug) || `${row.productName} ${row.vendorName}`.toLowerCase().includes(term),
+  );
+  return { products, companies: matches };
+}
+
 export const initialLandscapeFilters = {
   domain: "all", category: "all", useCase: "all", persona: "all",
   deployment: "all", scope: "all", relation: "all", focusedProduct: "all",

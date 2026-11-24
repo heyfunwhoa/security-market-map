@@ -13,7 +13,7 @@ const action = "inline-flex min-h-11 items-center rounded-md border border-borde
 
 export function LandscapeResults({ rows, allRows, edges, categories, useCases, useCase, relation, children }: {
   rows: LandscapeRow[]; allRows: LandscapeRow[]; edges: LandscapeEdge[];
-  categories: { id: string; label: string }[]; useCases: { id: string; label: string }[];
+  categories: { id: string; label: string; slug: string }[]; useCases: { id: string; label: string }[];
   useCase: string; relation: string; children: ReactNode;
 }) {
   const [view, setView] = useState("table");
@@ -28,6 +28,7 @@ export function LandscapeResults({ rows, allRows, edges, categories, useCases, u
     setAnnouncement(`${name} ${next.includes(id) ? "added to" : "removed from"} shortlist. ${next.length} of 4 selected.${next.length === 4 ? " Limit reached; remove a product to select another." : ""}`);
     if (restoreFocus) summaryRef.current?.focus();
   };
+  if (rows.length === 0 && selected.length === 0) return null;
   return <div className="mt-4 space-y-4">
     <div role="group" aria-label="Result view" className="flex flex-wrap gap-2">
       {["table", "cards"].map((mode) => <button key={mode} type="button" aria-pressed={view === mode} onClick={() => setView(mode)} className={`${action} ${view === mode ? "bg-muted font-semibold" : ""}`}>{mode === "table" ? "Selection table" : "Detailed cards"}</button>)}
@@ -48,7 +49,7 @@ export function LandscapeResults({ rows, allRows, edges, categories, useCases, u
         <TableHeader><TableRow><TableHead scope="col">Select</TableHead><TableHead scope="col">Product / vendor</TableHead><TableHead scope="col" className="hidden sm:table-cell">Category context</TableHead><TableHead scope="col" className="hidden sm:table-cell">Availability</TableHead><TableHead scope="col">Inspect</TableHead></TableRow></TableHeader>
         <TableBody>{rows.map((row) => <TableRow key={row.productId} data-state={selected.includes(row.productId) ? "selected" : undefined}>
           <TableCell><label className="flex min-h-11 min-w-11 cursor-pointer items-center justify-center"><Checkbox checked={selected.includes(row.productId)} disabled={selected.length >= 4 && !selected.includes(row.productId)} onCheckedChange={() => toggle(row.productId)} aria-label={`Select ${row.productName} for comparison`} className="motion-reduce:transition-none" /></label></TableCell>
-          <TableHead scope="row" className="min-w-24 whitespace-normal sm:min-w-48"><Link className="inline-flex min-h-11 items-center font-semibold text-primary hover:underline focus-visible:ring-2 focus-visible:ring-ring" href={row.detailHref}>{row.productName}</Link><p className="text-muted-foreground">{row.vendorName}</p></TableHead>
+          <TableHead scope="row" className="min-w-24 whitespace-normal sm:min-w-48"><Link className="inline-flex min-h-11 items-center font-semibold text-primary hover:underline focus-visible:ring-2 focus-visible:ring-ring" href={row.detailHref}>{row.productName}</Link><p><Link href={`/vendors/${row.vendorSlug}`} aria-label={`${row.vendorName} company profile`} className="inline-flex min-h-11 items-center font-normal text-primary underline">Company · {row.vendorName}</Link></p></TableHead>
           <TableCell className="hidden min-w-48 max-w-72 whitespace-normal sm:table-cell">{categories.filter((item) => row.categoryIds.includes(item.id)).map((item) => item.label).join(" · ") || "Unknown"}</TableCell>
           <TableCell className="hidden sm:table-cell"><StatusPill status={row.availability} /></TableCell>
           <TableCell><ProductInspector row={row} categories={categories} useCases={useCases} related={edges.filter((edge) => edge.productId === row.productId && (useCase === "all" || edge.useCaseId === useCase) && (relation === "all" || edge.type === relation))} /></TableCell>
