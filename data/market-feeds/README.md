@@ -48,3 +48,5 @@ Checked for an official RSS or Atom feed. Revisit if one appears.
 ## When a feed fails
 
 If one feed can't be read, the run still collects the others and the workflow shows a warning naming the count. It fails only when no feed could be read. Check the run log for the failing feed id.
+
+A rate limit (HTTP 429) or server error gets one retry, waiting for the site's `Retry-After` (up to 60 seconds). A single item without a title, an https link or a date is skipped and logged; the feed fails only if every item is malformed.
