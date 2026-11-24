@@ -3358,7 +3358,7 @@ export const ecosystemVendors: Vendor[] = [
     name: "Black Kite",
     formerNames: [],
     website: "https://blackkite.com/",
-    positioning: "Third-party security ratings candidate. Unverified.",
+    positioning: "Third-party cyber risk vendor. Gartner Peer Insights lists its platform as outside-in cyber risk ratings built from open-source intelligence; the product record is sourced separately.",
     primaryCategoryIds: ["security-ratings"],
     adjacentCategoryIds: ["third-party-risk"],
     identityScopes: ["not_an_identity_control"],

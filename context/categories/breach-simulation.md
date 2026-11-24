@@ -3,7 +3,7 @@ id: "breach-simulation"
 type: "category"
 name: "Breach and attack simulation"
 layer: "core"
-vendors: 4
+vendors: 5
 ---
 
 # Breach and attack simulation
@@ -33,6 +33,7 @@ Platforms that safely run attacker techniques to see whether controls detect or 
 ## Vendors (adjacent)
 
 - Rapid7
+- Horizon3.ai
 
 ## What buyers do instead
 

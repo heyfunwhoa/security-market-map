@@ -3,7 +3,7 @@ id: "third-party-risk"
 type: "category"
 name: "Third-party risk"
 layer: "core"
-vendors: 6
+vendors: 7
 ---
 
 # Third-party risk
@@ -35,6 +35,7 @@ Assessments of vendors and subprocessors. Related to customer trust when you are
 - SecurityScorecard
 - Black Kite
 - Credo AI
+- Drata
 
 ## What buyers do instead
 

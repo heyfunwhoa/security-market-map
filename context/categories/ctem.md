@@ -3,7 +3,7 @@ id: "ctem"
 type: "category"
 name: "Continuous threat exposure management"
 layer: "adjacent"
-vendors: 4
+vendors: 5
 ---
 
 # Continuous threat exposure management
@@ -34,6 +34,7 @@ _None recorded._
 - XM Cyber
 - Brinqa
 - Nucleus Security
+- Horizon3.ai
 
 ## What buyers do instead
 

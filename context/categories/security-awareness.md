@@ -3,7 +3,7 @@ id: "security-awareness"
 type: "category"
 name: "Security awareness"
 layer: "core"
-vendors: 4
+vendors: 5
 ---
 
 # Security awareness
@@ -28,6 +28,7 @@ Training and simulated phishing for people. It changes behavior. It does not rep
 ## Vendors (primary)
 
 - KnowBe4: Security awareness and simulated phishing. It does not stop the email.
+- GhostEye: Early-stage (YC Summer 2025) security awareness startup that runs AI-generated social engineering simulations across email, SMS and voice.
 
 ## Vendors (adjacent)
 
