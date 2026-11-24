@@ -20,7 +20,7 @@ Full product research pages for four products in the alert-investigation use cas
 
 ## Evidence and uncertainty
 
-- Every URL and vendor statement comes from a search excerpt, not a full page read.
+- Every URL was re-read in full on 2026-11-24. Corrections: Google's product page no longer says "formerly Chronicle", Tines' security page doesn't describe containment or remediation, and Google's Respond page says "hundreds of tools" (300+ is in the pricing table).
 - Buyer, trigger, control, evidence, limitation and pilot questions are editorial. They aren't vendor claims and haven't been tested.
-- Stairwell's pricing page (per asset, billed annually) didn't come up in search, so the profile cites the storage page and says so.
+- Stairwell's pricing page (per asset, billed annually) wasn't found, so the profile cites the storage page, which confirms the no-ingestion-fee wording and doesn't mention per-asset pricing.
 - Customer stories are vendor-published. The figures in them aren't independently verified.

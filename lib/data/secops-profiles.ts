@@ -4,7 +4,7 @@ import { registerProductEvidence, type ProductEvidence } from "./public-monitori
 
 // SecOps product profiles for the alert-investigation use case (uc-alert-investigation).
 // Same shape as the CIAM profiles. Every URL and statement was read from a search
-// excerpt on 2026-11-24, not a full page read. Buyer, action, control, evidence,
+// excerpt and then re-read in full on 2026-11-24. Buyer, action, control, evidence,
 // limitation and questions are editorial and untested.
 export const secopsProfiles = {
   "stairwell-platform": {
@@ -58,7 +58,7 @@ export const secopsProfiles = {
       "Which of our response actions would run through SecOps playbooks, and which stay in the EDR console?",
     ],
     owner: {
-      statement: "Google Security Operations is a Google Cloud product. Google says it was formerly known as Chronicle.",
+      statement: "Google Security Operations is a Google Cloud product, sold in packages through Google Cloud.",
       title: "Google Security Operations",
       publisher: "Google Cloud",
       url: "https://cloud.google.com/security/products/security-operations",
@@ -67,7 +67,7 @@ export const secopsProfiles = {
       title: "Google Security Operations — Respond",
       url: "https://cloud.google.com/security/products/security-orchestration-automation-response",
       section: "Respond with speed and precision",
-      statement: "Google says Google SecOps includes SOAR playbooks that automate common response actions and orchestrate over 300 tools, with a case wall for team collaboration.",
+      statement: "Google says SecOps playbooks orchestrate hundreds of tools and automate common scenarios such as phishing and ransomware, and that analysts coordinate on a case wall. Its pricing table lists 300+ SOAR integrations.",
       caveat: "The integration count is publisher-reported. Check the specific integrations and actions your playbooks need.",
     },
     pricing: {
@@ -142,14 +142,14 @@ export const secopsProfiles = {
     workflow: {
       title: "Solutions for Security",
       url: "https://www.tines.com/solutions/security/",
-      section: "AI SOC",
-      statement: "Tines says teams can start with pre-built triage agents tuned to their detections and tools, with SOAR-style enrichment, containment and remediation steps running as designed.",
-      caveat: "Pre-built agents still need tuning to your detections and escalation paths. Check which steps run deterministically and which use AI.",
+      section: "Security solutions",
+      statement: "Tines says teams can connect any vendor and use AI to enrich alerts, cut alert fatigue, and let AI agents create, triage and resolve cases at the level of autonomy they choose.",
+      caveat: "The page doesn't describe containment or remediation steps. Check which response actions your workflows would take and which run with or without AI.",
     },
     pricing: {
       url: "https://explained.tines.com/en/articles/9620399-understanding-tines-pricing-and-packaging",
       section: "Understanding Tines pricing and packaging",
-      statement: "Tines offers a free Community Edition for learning and proofs of concept, plus paid Business and Enterprise editions. Its terms say some features, including AI credits, may carry usage-based charges.",
+      statement: "Tines offers a free Community Edition for learning and proofs of concept, plus paid Business and Enterprise editions, both also available self-hosted. Its terms say some features, including AI credits, may carry usage-based charges.",
       caveat: "Community Edition limits builders, workflows and daily events. Size the paid tier on production workflow volume and AI usage.",
     },
     customer: {
