@@ -2,7 +2,8 @@
   "feedId": "gitguardian-saas",
   "vendorId": "gitguardian",
   "feedUrl": "https://docs.gitguardian.com/releases/saas/rss.xml",
-  "checkedAt": "2026-11-22",
+  "checkedAt": "2026-11-24",
+  "since": "2026-10-27",
   "candidates": [
     {
       "title": "Invalid secrets no longer block your developers and AI coding agents",

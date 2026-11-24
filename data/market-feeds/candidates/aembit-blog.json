@@ -1,0 +1,79 @@
+{
+  "feedId": "aembit-blog",
+  "vendorId": "aembit",
+  "feedUrl": "https://aembit.io/feed/",
+  "checkedAt": "2026-11-24",
+  "since": "2026-10-25",
+  "candidates": [
+    {
+      "title": "When an AI Agent Does the Job, Who Owns the Outcome?",
+      "date": "2026-11-17",
+      "url": "https://aembit.io/blog/when-an-ai-agent-does-the-job-who-owns-the-outcome/",
+      "firstSeen": "2026-11-24",
+      "status": "new"
+    },
+    {
+      "title": "6 Agentic AI Guardrail Solutions Compared for 2026",
+      "date": "2026-11-12",
+      "url": "https://aembit.io/blog/6-agentic-ai-guardrail-solutions-compared-for-2026/",
+      "firstSeen": "2026-11-24",
+      "status": "new"
+    },
+    {
+      "title": "3 Ways to Reduce Token Consumption When Using LLMs",
+      "date": "2026-11-10",
+      "url": "https://aembit.io/blog/3-ways-to-reduce-token-consumption-when-using-llms/",
+      "firstSeen": "2026-11-24",
+      "status": "new"
+    },
+    {
+      "title": "Aembit Now Secures Google Antigravity Agents",
+      "date": "2026-11-09",
+      "url": "https://aembit.io/blog/aembit-now-secures-google-antigravity-agents/",
+      "firstSeen": "2026-11-24",
+      "status": "new"
+    },
+    {
+      "title": "Agent Hooks Are a Developer Tool, Not Access Control",
+      "date": "2026-11-05",
+      "url": "https://aembit.io/blog/agent-hooks-are-a-developer-tool-not-access-control/",
+      "firstSeen": "2026-11-24",
+      "status": "new"
+    },
+    {
+      "title": "Aembit Now Secures OpenAI Dots Personal Agents",
+      "date": "2026-11-04",
+      "url": "https://aembit.io/blog/aembit-now-secures-openai-dots-personal-agents/",
+      "firstSeen": "2026-11-24",
+      "status": "new"
+    },
+    {
+      "title": "What Is an AI Agent Registry, and How Does It Fit Into Enterprise Identity Security?",
+      "date": "2026-11-03",
+      "url": "https://aembit.io/blog/what-is-an-ai-agent-registry/",
+      "firstSeen": "2026-11-24",
+      "status": "new"
+    },
+    {
+      "title": "2-Legged vs 3-Legged OAuth: Which Flow Fits Your Use Case?",
+      "date": "2026-10-30",
+      "url": "https://aembit.io/blog/2-legged-vs-3-legged-oauth-flows/",
+      "firstSeen": "2026-11-24",
+      "status": "new"
+    },
+    {
+      "title": "Enable Filesystem Access for MCP Servers, Step by Step",
+      "date": "2026-10-30",
+      "url": "https://aembit.io/blog/how-to-enable-filesystem-support-in-model-context-protocol-mcp/",
+      "firstSeen": "2026-11-24",
+      "status": "new"
+    },
+    {
+      "title": "MCP Servers vs API Security: What’s the Difference?",
+      "date": "2026-10-30",
+      "url": "https://aembit.io/blog/mcp-security-vs-traditional-api-security/",
+      "firstSeen": "2026-11-24",
+      "status": "new"
+    }
+  ]
+}
