@@ -21,6 +21,18 @@
 
 **File analysis:** determine whether a file (usually an executable or script) is malicious, what it was built to do, and what it is related to. Common methods: static analysis (inspect structure and code without running it), dynamic analysis/sandboxing (detonate and observe behavior), signature/YARA matching, reputation lookup, and code-similarity/family clustering.
 
+## Buyer problem context: EDR evasion (added 2026-11-23)
+
+These are attributed threat research findings, not incidents and not product claims. They explain why a buyer might want a layer beyond endpoint detection. They do not show that any product in this note would have caught this activity.
+
+- **Attackers test tooling against specific EDR agents.** Sophos researchers describe an actor who built a virtual-machine lab, with hosts running the Sophos and CrowdStrike agents plus a no-EDR control, to develop and test bypass tooling. Windows Defender is also named as a target. The work was found on one endpoint in an unnamed customer tenant [SX1].
+- **AI sped this up, but humans drove it.** The same research says the actor used AI coding agents to write and revise the tooling. Sophos assesses that AI mainly coordinated workflows, and that the evasion work was a human-reviewed engineering cycle [SX1].
+- **Claimed success is disputed.** The agents' own reports claimed near-universal bypass after iteration. Sophos says the documented output does not necessarily support that, so don't cite a success rate [SX1].
+- **Attackers dwell longer.** Mandiant reports global median dwell time rose to 14 days in 2025, from 11 days in 2024 [MT1]. This supports the case for re-checking retained evidence, though it doesn't prove that case.
+- **Counterpoint for file-centric tools.** CrowdStrike reports that 82% of its 2025 detections were malware-free [CS1]. File and malware analysis addresses only the share of intrusions that leave files behind. A buyer may weigh identity and behavior-based controls higher.
+
+Unknowns: how common pre-deployment EDR testing is beyond this one case; whether the Sophos endpoint belonged to a victim or the actor; and the Sophos post's publication date (a secondary summary dated it 2026-06-05).
+
 ## Layer 1 — File and malware analysis
 
 | Vendor / product | Positioning (source-attributed) | Relationship to buyer decision | Evidence status |
@@ -105,6 +117,9 @@ Direct win/loss frequency; which layer buyers budget from; ReversingLabs/VirusTo
 | OF4 | ReversingLabs — Spectra Analyze | https://www.reversinglabs.com/products/spectra-analyze | Vendor | 2026-11-11 |
 | OF5 | VirusTotal — upload page | https://www.virustotal.com/gui/home/upload | Vendor service | 2026-11-11 |
 | NH1 | NHI Mgmt Group — agentic SOC labels (summarizing Prophet) | https://nhimg.org/articles/the-agentic-soc-is-here-but-capability-labels-no-longer-help-buyers/ | Secondary of vendor view | 2026-11-11 |
+| SX1 | Sophos CTU — Pointing a Cursor at evading detection | https://www.sophos.com/en-us/blog/pointing-a-cursor-at-evading-detection | Vendor threat research (primary); fetched | 2026-11-23 |
+| MT1 | Google Cloud / Mandiant — M-Trends 2026 | https://cloud.google.com/blog/topics/threat-intelligence/m-trends-2026 | Vendor threat report; seen via search result, not fetched | 2026-11-23 |
+| CS1 | CrowdStrike — 2026 Global Threat Report | https://www.crowdstrike.com/global-threat-report.html | Vendor threat report; seen via search result, not fetched | 2026-11-23 |
 
 Rights: short paraphrase only; no reproduced vendor copy.
 

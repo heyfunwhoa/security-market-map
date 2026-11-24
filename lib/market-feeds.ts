@@ -41,6 +41,8 @@ export type FeedCandidatesFile = {
   feedUrl: string;
   /** Last time the feed was read successfully. */
   checkedAt: string;
+  /** Items dated before this are never added (set on the first run to the lookback cutoff). */
+  since?: string;
   /** Newest first. */
   candidates: FeedCandidate[];
 };
@@ -79,7 +81,18 @@ function isoDate(value: string | null): string | null {
  * Throws if the document has no items, so a layout change fails loudly instead of
  * reporting "nothing new".
  */
-export function parseFeed(xml: string, format: MarketFeed["format"]): FeedItem[] {
+export type ParsedFeed = {
+  items: FeedItem[];
+  /** Items skipped because they lacked a title, an https link or a date. */
+  skipped: string[];
+};
+
+/**
+ * Like parseFeed, but keeps going past a malformed item and reports it in `skipped`.
+ * Still throws when the document has no items, or when every item is malformed,
+ * so a layout change fails loudly instead of reporting "nothing new".
+ */
+export function parseFeedDetailed(xml: string, format: MarketFeed["format"]): ParsedFeed {
   const blockTag = format === "rss" ? "item" : "entry";
   const blocks = [...xml.matchAll(new RegExp(`<${blockTag}(?:\\s[^>]*)?>([\\s\\S]*?)</${blockTag}>`, "gi"))].map(
     (m) => m[1],
@@ -87,6 +100,7 @@ export function parseFeed(xml: string, format: MarketFeed["format"]): FeedItem[]
   if (blocks.length === 0) throw new Error(`No <${blockTag}> elements found; the feed format may have changed.`);
 
   const items: FeedItem[] = [];
+  const skipped: string[] = [];
   for (const block of blocks) {
     const title = clean(tag(block, "title") ?? "");
     let url: string | null;
@@ -100,11 +114,23 @@ export function parseFeed(xml: string, format: MarketFeed["format"]): FeedItem[]
       url = link ? decode(/href=["']([^"']+)["']/i.exec(link)?.[1] ?? "") || null : null;
       date = isoDate(tag(block, "updated") ?? tag(block, "published"));
     }
-    if (!title || !url || !date) throw new Error(`Feed item is missing a title, link or date: ${title || "(untitled)"}`);
-    if (!/^https:\/\//.test(url)) throw new Error(`Feed item link is not https: ${url}`);
+    if (!title || !url || !date) {
+      skipped.push(`missing a title, link or date: ${title || "(untitled)"}`);
+      continue;
+    }
+    if (!/^https:\/\//.test(url)) {
+      skipped.push(`link is not https: ${url}`);
+      continue;
+    }
     items.push({ title, date, url });
   }
-  return items.sort((a, b) => b.date.localeCompare(a.date));
+  if (items.length === 0) throw new Error(`Every feed item is malformed; first: ${skipped[0]}`);
+  return { items: items.sort((a, b) => b.date.localeCompare(a.date)), skipped };
+}
+
+/** Parse an RSS 2.0 or Atom feed into title/date/link items, newest first, skipping malformed items. */
+export function parseFeed(xml: string, format: MarketFeed["format"]): FeedItem[] {
+  return parseFeedDetailed(xml, format).items;
 }
 
 function daysBefore(today: string, days: number): string {
@@ -124,15 +150,18 @@ export function mergeCandidates(
   today: string,
 ): { file: FeedCandidatesFile; added: FeedCandidate[] } {
   const known = new Set((stored?.candidates ?? []).map((c) => c.url));
-  const cutoff = stored ? null : daysBefore(today, FIRST_RUN_LOOKBACK_DAYS);
+  // Never backfill: the first run keeps the last FIRST_RUN_LOOKBACK_DAYS, and later runs keep the same
+  // starting point, so a feed that still lists older items doesn't re-add them as new.
+  const oldestStored = stored?.candidates.reduce<string | null>((min, c) => (min === null || c.date < min ? c.date : min), null) ?? null;
+  const since = stored?.since ?? (stored ? (oldestStored ?? today) : daysBefore(today, FIRST_RUN_LOOKBACK_DAYS));
   const added: FeedCandidate[] = fetched
-    .filter((item) => !known.has(item.url) && (cutoff === null || item.date >= cutoff))
+    .filter((item) => !known.has(item.url) && item.date >= since)
     .map((item) => ({ ...item, firstSeen: today, status: "new" }));
   const candidates = [...added, ...(stored?.candidates ?? [])].sort(
     (a, b) => b.date.localeCompare(a.date) || a.url.localeCompare(b.url),
   );
   return {
-    file: { feedId: feed.id, vendorId: feed.vendorId, feedUrl: feed.url, checkedAt: today, candidates },
+    file: { feedId: feed.id, vendorId: feed.vendorId, feedUrl: feed.url, checkedAt: today, since, candidates },
     added,
   };
 }

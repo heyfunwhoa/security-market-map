@@ -6,6 +6,7 @@ import {
   FIRST_RUN_LOOKBACK_DAYS,
   mergeCandidates,
   parseFeed,
+  parseFeedDetailed,
   type FeedCandidatesFile,
   type MarketFeed,
 } from "./market-feeds";
@@ -39,7 +40,17 @@ describe("parseFeed", () => {
 
   it("fails loudly when the layout changes", () => {
     expect(() => parseFeed("<html>moved</html>", "rss")).toThrow(/No <item>/);
-    expect(() => parseFeed("<rss><item><title>x</title></item></rss>", "rss")).toThrow(/missing/);
+    expect(() => parseFeed("<rss><item><title>x</title></item></rss>", "rss")).toThrow(/malformed/);
+  });
+
+  it("skips one malformed item instead of dropping the whole feed", () => {
+    const xml =
+      "<rss><item><title>Good</title><link>https://example.com/good</link><pubDate>Mon, 23 Nov 2026 10:00:00 GMT</pubDate></item>" +
+      "<item><title>No date</title><link>https://example.com/nodate</link></item>" +
+      "<item><title>Plain http</title><link>http://example.com/http</link><pubDate>Mon, 23 Nov 2026 10:00:00 GMT</pubDate></item></rss>";
+    const { items, skipped } = parseFeedDetailed(xml, "rss");
+    expect(items.map((i) => i.url)).toEqual(["https://example.com/good"]);
+    expect(skipped).toHaveLength(2);
   });
 });
 
@@ -68,6 +79,35 @@ describe("mergeCandidates", () => {
       ["https://example.com/a", "dismissed"],
     ]);
     expect(mergeCandidates(feed, file, items, "2026-11-30").added).toEqual([]);
+  });
+});
+
+describe("mergeCandidates backfill", () => {
+  it("doesn't re-add items older than the first run's cutoff on later runs", () => {
+    const first = mergeCandidates(feed, null, [{ title: "Recent", date: "2026-11-20", url: "https://example.com/r" }], "2026-11-22");
+    expect(first.file.since).toBe("2026-10-23");
+    const later = mergeCandidates(
+      feed,
+      first.file,
+      [
+        { title: "Newer", date: "2026-11-27", url: "https://example.com/n" },
+        { title: "Recent", date: "2026-11-20", url: "https://example.com/r" },
+        { title: "Old", date: "2026-08-10", url: "https://example.com/o" },
+      ],
+      "2026-11-30",
+    );
+    expect(later.added.map((c) => c.url)).toEqual(["https://example.com/n"]);
+    expect(later.file.since).toBe("2026-10-23");
+  });
+
+  it("uses the oldest stored item as the cutoff for files written before `since` existed", () => {
+    const stored: FeedCandidatesFile = {
+      feedId: feed.id, vendorId: feed.vendorId, feedUrl: feed.url, checkedAt: "2026-11-22",
+      candidates: [{ title: "Kept", date: "2026-10-27", url: "https://example.com/k", firstSeen: "2026-11-22", status: "promoted" }],
+    };
+    const { added, file } = mergeCandidates(feed, stored, [{ title: "Old", date: "2026-10-21", url: "https://example.com/o" }], "2026-11-23");
+    expect(added).toEqual([]);
+    expect(file.since).toBe("2026-10-27");
   });
 });
 
