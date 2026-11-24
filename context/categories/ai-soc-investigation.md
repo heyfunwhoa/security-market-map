@@ -3,7 +3,7 @@ id: "ai-soc-investigation"
 type: "category"
 name: "AI SOC investigation"
 layer: "core"
-vendors: 5
+vendors: 8
 ---
 
 # AI SOC investigation
@@ -36,6 +36,9 @@ AI agents that investigate alerts end to end: pull context from the tools alread
 
 - Stairwell
 - Tines
+- Torq
+- Swimlane
+- Elastic
 
 ## What buyers do instead
 

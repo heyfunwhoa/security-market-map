@@ -3,7 +3,7 @@ id: "soar"
 type: "category"
 name: "SOAR and response automation"
 layer: "core"
-vendors: 9
+vendors: 11
 ---
 
 # SOAR and response automation
@@ -26,16 +26,18 @@ Playbooks that enrich and sometimes contain an incident. Automation that disable
 
 ## Who vendors sell to
 
-From 3 vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.
+From 5 vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.
 
-- SOC manager (`soc-lead`): 3 of 3 vendors
-- MSSP / MDR operations lead (`mssp-ops`): 2 of 3 vendors
-- IT operations / systems administrator (`it-operations`): 1 of 3 vendors
-- SOC analyst (`soc-analyst`): 1 of 3 vendors
+- SOC manager (`soc-lead`): 5 of 5 vendors
+- MSSP / MDR operations lead (`mssp-ops`): 3 of 5 vendors
+- SOC analyst (`soc-analyst`): 2 of 5 vendors
+- IT operations / systems administrator (`it-operations`): 1 of 5 vendors
 
 ## Vendors (primary)
 
 - Tines: Tines describes an AI orchestration and workflow platform for security and IT teams.
+- Torq: Torq describes an AI SOC platform built on its Hyperautomation workflow engine, with AI agents for triage, investigation and response.
+- Swimlane: Swimlane describes Turbine as an agentic AI automation platform for SOC, vulnerability management and compliance teams, sold to enterprises and MSSPs.
 
 ## Vendors (adjacent)
 

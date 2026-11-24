@@ -3,7 +3,7 @@ id: "endpoint-security"
 type: "category"
 name: "Endpoint security"
 layer: "core"
-vendors: 13
+vendors: 14
 ---
 
 # Endpoint security
@@ -51,6 +51,7 @@ From 3 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - Axonius
 - Neo Security
 - Fortra
+- Elastic
 - Cisco
 - LimaCharlie
 

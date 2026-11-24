@@ -529,6 +529,70 @@ export const categoryFillVendors: Vendor[] = [
     "openQuestions": [
       "Tines markets beyond SOAR (IT workflows, AI agents); confirm which budget the buyer uses."
     ]
+  },
+  {
+    "id": "torq",
+    "slug": "torq",
+    "name": "Torq",
+    "formerNames": [],
+    "website": "https://torq.io/",
+    "positioning": "Torq describes an AI SOC platform built on its Hyperautomation workflow engine, with AI agents for triage, investigation and response.",
+    "primaryCategoryIds": [
+      "soar"
+    ],
+    "adjacentCategoryIds": [
+      "ai-soc-investigation"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Torq markets itself as replacing legacy SOAR; confirm whether the buyer budgets it as SOAR or AI SOC."
+    ]
+  },
+  {
+    "id": "swimlane",
+    "slug": "swimlane",
+    "name": "Swimlane",
+    "formerNames": [],
+    "website": "https://swimlane.com/",
+    "positioning": "Swimlane describes Turbine as an agentic AI automation platform for SOC, vulnerability management and compliance teams, sold to enterprises and MSSPs.",
+    "primaryCategoryIds": [
+      "soar"
+    ],
+    "adjacentCategoryIds": [
+      "ai-soc-investigation"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Turbine spans SOC, vulnerability management and compliance; confirm which team owns it."
+    ]
+  },
+  {
+    "id": "elastic",
+    "slug": "elastic",
+    "name": "Elastic",
+    "formerNames": [],
+    "website": "https://www.elastic.co/security",
+    "positioning": "Elastic describes Elastic Security as SIEM, endpoint protection and cloud security in one solution, built on Elasticsearch.",
+    "primaryCategoryIds": [
+      "siem"
+    ],
+    "adjacentCategoryIds": [
+      "endpoint-security",
+      "ai-soc-investigation"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Is the buyer on Elastic Security as a SIEM, or on Elasticsearch for logging with security added later?"
+    ]
   }
 ];
 
@@ -1200,6 +1264,77 @@ export const categoryFillProducts: Product[] = [
     "availabilityNote": "Cloud and on-prem editions exist; which one a buyer runs is not recorded.",
     "officialUrl": "https://www.splunk.com/en_us/products/enterprise-security.html",
     "useCaseIds": []
+  },
+  {
+    "id": "torq-platform",
+    "slug": "torq-platform",
+    "vendorId": "torq",
+    "name": "Torq AI SOC Platform",
+    "positioning": "Torq says Hyperautomation is the foundation of its AI SOC platform, connecting the security stack and using AI agents to triage and respond.",
+    "primaryCategoryIds": [
+      "soar"
+    ],
+    "adjacentCategoryIds": [
+      "ai-soc-investigation"
+    ],
+    "deployment": [
+      "saas"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Torq describes a cloud-native architecture; packaging not verified here.",
+    "officialUrl": "https://torq.io/hyperautomation/",
+    "useCaseIds": []
+  },
+  {
+    "id": "swimlane-turbine",
+    "slug": "swimlane-turbine",
+    "vendorId": "swimlane",
+    "name": "Swimlane Turbine",
+    "positioning": "Swimlane says Turbine combines agentic AI with deterministic automation to run detections, investigate alerts, orchestrate response and automate workflows.",
+    "primaryCategoryIds": [
+      "soar"
+    ],
+    "adjacentCategoryIds": [
+      "ai-soc-investigation"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Swimlane lists five enterprise tiers priced on daily automation volume; contents not verified here.",
+    "officialUrl": "https://swimlane.com/swimlane-turbine/",
+    "useCaseIds": []
+  },
+  {
+    "id": "elastic-security",
+    "slug": "elastic-security",
+    "vendorId": "elastic",
+    "name": "Elastic Security",
+    "positioning": "Elastic says Elastic Security brings SIEM, endpoint protection and cloud security together, with AI features to detect, investigate and respond.",
+    "primaryCategoryIds": [
+      "siem"
+    ],
+    "adjacentCategoryIds": [
+      "endpoint-security",
+      "ai-soc-investigation"
+    ],
+    "deployment": [
+      "saas",
+      "self_hosted"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Elastic describes cloud, on-prem and air-gapped deployment; a serverless AI SOC tier also complements third-party SIEMs.",
+    "officialUrl": "https://www.elastic.co/security/siem",
+    "useCaseIds": []
   }
 ];
 
@@ -1623,6 +1758,42 @@ export const categoryFillSources: Source[] = [
     "retrievedAt": "2026-11-24",
     "volatility": "fast",
     "excerpt": "Stairwell lists integrations with Palo Alto Cortex (SOAR), Tines (SOAR templates), a Stairwell app for Splunk, Google Security Operations, CrowdStrike, SentinelOne and others."
+  },
+  {
+    "id": "src-fill-torq-hyperautomation",
+    "title": "Torq Hyperautomation",
+    "url": "https://torq.io/hyperautomation/",
+    "canonicalUrl": "https://torq.io/hyperautomation/",
+    "publisher": "Torq",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-24",
+    "volatility": "fast",
+    "excerpt": "Torq says Hyperautomation is the foundation of the Torq AI SOC Platform and automates security workflows across the stack."
+  },
+  {
+    "id": "src-fill-swimlane-turbine",
+    "title": "Swimlane Turbine — product page",
+    "url": "https://swimlane.com/swimlane-turbine/",
+    "canonicalUrl": "https://swimlane.com/swimlane-turbine/",
+    "publisher": "Swimlane",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-24",
+    "volatility": "fast",
+    "excerpt": "Swimlane says Turbine combines agentic AI with deterministic automation to run detections, investigate alerts, orchestrate response and automate workflows."
+  },
+  {
+    "id": "src-fill-elastic-security-docs",
+    "title": "Elastic Security solution overview",
+    "url": "https://www.elastic.co/docs/solutions/security",
+    "canonicalUrl": "https://www.elastic.co/docs/solutions/security",
+    "publisher": "Elastic",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-24",
+    "volatility": "moderate",
+    "excerpt": "Elastic says Elastic Security brings SIEM, endpoint protection and cloud security together, with AI features to detect, investigate and respond."
   }
 ];
 
@@ -2346,5 +2517,65 @@ export const categoryFillClaims: Claim[] = [
     "lastCheckedAt": "2026-11-24",
     "conflictsWith": [],
     "notes": "Stairwell-published; read from a search excerpt, not a full page read. Integration listed is not proof of depth or customer use. See docs/market-research/secops-siem-soar-gaps-2026-11.md."
+  },
+  {
+    "id": "claim-fill-torq",
+    "statement": "Torq says Hyperautomation is the foundation of its AI SOC platform, automating security workflows and connecting the security stack.",
+    "subjectType": "product",
+    "subjectId": "torq-platform",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-torq-hyperautomation",
+    "sourceUrl": "https://torq.io/hyperautomation/",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-24",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-24",
+    "conflictsWith": [],
+    "notes": "Publisher-reported, read from a search excerpt; not independently tested. No direct-competitor or parity claim. See docs/market-research/secops-siem-soar-gaps-2026-11.md."
+  },
+  {
+    "id": "claim-fill-swimlane",
+    "statement": "Swimlane says Turbine combines agentic AI with deterministic automation to run detections, investigate alerts, orchestrate response and automate workflows.",
+    "subjectType": "product",
+    "subjectId": "swimlane-turbine",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-swimlane-turbine",
+    "sourceUrl": "https://swimlane.com/swimlane-turbine/",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-24",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-24",
+    "conflictsWith": [],
+    "notes": "Publisher-reported, read from a search excerpt; not independently tested. No direct-competitor or parity claim. See docs/market-research/secops-siem-soar-gaps-2026-11.md."
+  },
+  {
+    "id": "claim-fill-elastic-security",
+    "statement": "Elastic says Elastic Security brings SIEM, endpoint protection and cloud security together, with AI features to detect, investigate and respond.",
+    "subjectType": "product",
+    "subjectId": "elastic-security",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-elastic-security-docs",
+    "sourceUrl": "https://www.elastic.co/docs/solutions/security",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-11-24",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-24",
+    "conflictsWith": [],
+    "notes": "Publisher-reported, read from a search excerpt; not independently tested. No direct-competitor or parity claim. See docs/market-research/secops-siem-soar-gaps-2026-11.md."
   }
 ];

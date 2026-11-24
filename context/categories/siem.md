@@ -3,7 +3,7 @@ id: "siem"
 type: "category"
 name: "SIEM"
 layer: "core"
-vendors: 17
+vendors: 18
 ---
 
 # SIEM
@@ -30,17 +30,19 @@ The place logs are collected, detections are written, and investigations start. 
 
 ## Who vendors sell to
 
-From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.
+From 5 vendors' own pages, mapped to seats editorially. Vendor audience, not proof of who buys.
 
-- SOC manager (`soc-lead`): 3 of 4 vendors
-- Detection engineer (`detection-engineer`): 2 of 4 vendors
-- SOC analyst (`soc-analyst`): 2 of 4 vendors
+- Detection engineer (`detection-engineer`): 3 of 5 vendors
+- SOC analyst (`soc-analyst`): 3 of 5 vendors
+- SOC manager (`soc-lead`): 3 of 5 vendors
+- Threat hunter (`threat-hunter`): 1 of 5 vendors
 
 ## Vendors (primary)
 
 - Splunk: Homepage retrieved 26 Oct 2026 describes a data platform for security and observability that searches telemetry where it lives. Detection content is not described on that page.
 - Rapid7: Homepage retrieved 26 Oct 2026 lists MDR, exposure management, attack surface management, SIEM, cloud security, vulnerability management, and threat intelligence as separate offers. None of those blurbs fills a patch, misconfiguration, or detection-content cell.
 - Panther: Panther describes itself as a cloud-native SIEM and AI SOC platform on a security data lake, with detection-as-code workflows.
+- Elastic: Elastic describes Elastic Security as SIEM, endpoint protection and cloud security in one solution, built on Elasticsearch.
 
 ## Vendors (adjacent)
 

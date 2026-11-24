@@ -35,6 +35,20 @@ Added to `lib/data/vendor-seat-targeting.ts` from search excerpts, not full page
 
 **Gap worth noting:** no vendor pitches detection engineers or incident responders by name, even though the map lists both as SOAR owners.
 
+## More SOAR and SIEM vendors (Torq, Swimlane, Elastic)
+
+Stairwell's generic webhook doc names Torq, Swimlane and Elastic as example destinations. None were in the catalog. They're added as vendors, products, sources and claims, with seat targeting from search excerpts:
+
+| Vendor | Category | Seats | Basis |
+| --- | --- | --- | --- |
+| Torq | SOAR (adjacent AI SOC) | SOC lead, SOC analyst | SOC teams page and Hyperautomation page |
+| Swimlane | SOAR (adjacent AI SOC) | SOC lead, MSSP ops | Platform data sheet and pricing page |
+| Elastic | SIEM (adjacent endpoint, AI SOC) | SOC analyst, threat hunter, detection engineer | SIEM page |
+
+No Stairwell edges were added for these. The webhook doc lists them as examples of a generic integration, not dedicated ones.
+
+Torq and Swimlane both market against "legacy SOAR", so they sit across SOAR and AI SOC investigation. Elastic is the first SIEM vendor to pitch detection engineers alongside analysts.
+
 ## XDR seat targeting
 
 XDR had no vendor mapped to it, even though CrowdStrike and SentinelOne product records list XDR as primary. Added `xdr` as adjacent on the CrowdStrike, SentinelOne and Palo Alto Networks vendor records, plus three targeting rows (search excerpts):
