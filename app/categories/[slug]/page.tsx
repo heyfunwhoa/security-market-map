@@ -1,3 +1,4 @@
+import { EndpointEvaluationGuide } from "@/components/endpoint-evaluation-guide";
 import { productDestination } from "@/lib/product-destination";
 import { AwsSecurityHubGuide } from "@/components/aws-security-hub-guide";
 import { CredentialExposureHandoff, WorkforceIdentityGuide } from "@/components/identity-response-guides";
@@ -66,6 +67,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
         {category.buyerQuestion}
       </p>
       <nav aria-label="On this category page" className="mt-2 flex flex-wrap gap-x-4 text-sm text-primary [&_a]:inline-flex [&_a]:min-h-11 [&_a]:items-center [&_a]:underline">
+        {category.id === "endpoint-security" && <a href="#endpoint-evaluation">Evaluate endpoint coverage</a>}
         <a href="#category-products">Products</a>
         <a href="#category-workflow">Workflow</a>
         <a href="#category-adjacent">Adjacent categories</a>
@@ -73,6 +75,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
         {hasExposureIntelligenceResearch(category.id) && <a href="#market-research">Market research</a>}
         <a href="#category-evidence">Category sources</a>
       </nav>
+      {category.id === "endpoint-security" && <EndpointEvaluationGuide />}
       <section className="mt-4" aria-labelledby="category-products">
         <h2 id="category-products" tabIndex={-1} className="scroll-mt-24 text-2xl focus-visible:outline-2 focus-visible:outline-ring">Primary products</h2>
         {products.length === 0 ? (
