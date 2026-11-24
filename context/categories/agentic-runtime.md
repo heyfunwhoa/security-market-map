@@ -3,7 +3,7 @@ id: "agentic-runtime"
 type: "category"
 name: "Agentic runtime enforcement"
 layer: "core"
-vendors: 18
+vendors: 22
 ---
 
 # Agentic runtime enforcement
@@ -38,6 +38,8 @@ A check on a live agent action before it completes. Directory, governance, privi
 - Cyata: Agent-security vendor. SACR's March 2026 runtime note says Check Point acquired Cyata. That ownership was not re-checked on a primary page.
 - Keycard: Named in SACR's runtime-identity note for issuing agent credentials at tool-call time. No issuance claim is filled.
 - Noma Security: Named in SACR's runtime note for agent visibility beyond an MCP gateway. AI application security and runtime enforcement are not separated by a sourced claim here.
+- Zenity: Zenity markets an AI agent security and governance platform: agent inventory, posture management, runtime boundaries and detection across SaaS, cloud and endpoint agents.
+- Straiker: Straiker markets agent security in three products: Discover AI (inventory and posture), Ascend AI (adversarial testing) and Defend AI (runtime protection).
 
 ## Vendors (adjacent)
 
@@ -48,6 +50,8 @@ A check on a live agent action before it completes. Directory, governance, privi
 - TrustFour
 - Lasso Security
 - Operant AI
+- Panguard AI
+- Pillar Security
 
 ## What buyers do instead
 

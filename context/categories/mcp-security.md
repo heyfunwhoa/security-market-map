@@ -3,7 +3,7 @@ id: "mcp-security"
 type: "category"
 name: "MCP and tool security"
 layer: "core"
-vendors: 2
+vendors: 7
 ---
 
 # MCP and tool security
@@ -28,10 +28,14 @@ Discovery and control of Model Context Protocol servers and the tools an agent c
 
 - Lasso Security: Lasso markets AI security including MCP server discovery, tool-call monitoring and an open-source MCP gateway.
 - Operant AI: Operant AI markets runtime protection for AI agents, including an MCP Gateway for discovery and policy over agent-to-MCP traffic.
+- Panguard AI: Panguard AI publishes PanGuard, an open-source tool that scans the skills AI agents install and guards the tool calls they make, built on its open Agent Threat Rules (ATR) format.
+- Runlayer: Runlayer markets an MCP security platform: a gateway that controls which apps agents reach, threat detection on MCP requests, observability and permissions tied to the identity provider.
 
 ## Vendors (adjacent)
 
-_None recorded._
+- Zenity
+- Pillar Security
+- Straiker
 
 ## What buyers do instead
 

@@ -3,7 +3,7 @@ id: "ai-application-security"
 type: "category"
 name: "AI application security"
 layer: "core"
-vendors: 6
+vendors: 8
 ---
 
 # AI application security
@@ -30,11 +30,13 @@ Controls aimed at models and AI features, including prompt injection and model a
 - HiddenLayer: AI security vendor named for model detection and protection. Unverified here.
 - Robust Intelligence: AI security vendor on the same shortlist. Ownership was not re-checked. Do not treat it as agent identity.
 - Noma Security: Named in SACR's runtime note for agent visibility beyond an MCP gateway. AI application security and runtime enforcement are not separated by a sourced claim here.
+- Pillar Security: Pillar Security markets one platform to discover, test, secure and govern AI agents, with an inventory of agents, models, MCP servers and skills.
 
 ## Vendors (adjacent)
 
 - Lasso Security
 - Holistic AI
+- Straiker
 
 ## What buyers do instead
 
