@@ -1,0 +1,72 @@
+{
+  "feedId": "cycode-blog",
+  "vendorId": "cycode",
+  "feedUrl": "https://cycode.com/feed/",
+  "checkedAt": "2026-11-24",
+  "since": "2026-10-25",
+  "candidates": [
+    {
+      "title": "PHPAfterShell (CVE-2026-126714): critical flaw in PHP’s default session handler",
+      "date": "2026-11-19",
+      "url": "https://cycode.com/blog/phpaftershell-cve-2026-126714/",
+      "firstSeen": "2026-11-24",
+      "status": "dismissed"
+    },
+    {
+      "title": "Real findings should block a merge. Nothing else should.",
+      "date": "2026-11-19",
+      "url": "https://cycode.com/blog/required-security-checks-pull-requests/",
+      "firstSeen": "2026-11-24",
+      "status": "dismissed"
+    },
+    {
+      "title": "Ruby2Shell (GHSA-34m4-m9fh-gqp5): heap overflow in Ruby string case conversion",
+      "date": "2026-11-19",
+      "url": "https://cycode.com/blog/ruby2shell-ghsa-34m4-m9fh-gqp5/",
+      "firstSeen": "2026-11-24",
+      "status": "dismissed"
+    },
+    {
+      "title": "NGINX2Root (CVE-2026-123007 and four more): unauthenticated remote code execution in nginx",
+      "date": "2026-11-18",
+      "url": "https://cycode.com/blog/nginx2root-cve-2026-123007/",
+      "firstSeen": "2026-11-24",
+      "status": "dismissed"
+    },
+    {
+      "title": "Cycode discovers critical zero-click supply chain vulnerability in WinGet (now patched)",
+      "date": "2026-11-18",
+      "url": "https://cycode.com/blog/winget-zero-click-supply-chain-vulnerability/",
+      "firstSeen": "2026-11-24",
+      "status": "dismissed"
+    },
+    {
+      "title": "Java4Shell (CVE-2026-114938): unauthenticated remote code execution in Java 17, 21, 25 and 27",
+      "date": "2026-11-17",
+      "url": "https://cycode.com/blog/java4shell-cve-2026-114938/",
+      "firstSeen": "2026-11-24",
+      "status": "dismissed"
+    },
+    {
+      "title": "Cycode Recognized in The Forrester Wave™: Agentic Development Security Tools, Q4 2026",
+      "date": "2026-11-15",
+      "url": "https://cycode.com/blog/forrester-wave-agentic-development-security-tools-q4-2026/",
+      "firstSeen": "2026-11-24",
+      "status": "dismissed"
+    },
+    {
+      "title": "Cycode named an Overall Leader in the KuppingerCole Leadership Compass for Software Supply Chain Security",
+      "date": "2026-11-15",
+      "url": "https://cycode.com/blog/kuppingercole-leadership-compass-software-supply-chain-security/",
+      "firstSeen": "2026-11-24",
+      "status": "dismissed"
+    },
+    {
+      "title": "wfx CI secret stealer: How to check if a stolen GitHub token probed your repositories",
+      "date": "2026-11-12",
+      "url": "https://cycode.com/blog/wfx-ci-secret-stealer-github-token-probe/",
+      "firstSeen": "2026-11-24",
+      "status": "dismissed"
+    }
+  ]
+}
