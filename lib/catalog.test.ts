@@ -523,7 +523,7 @@ describe("catalog integrity", () => {
     expect(evidenceCell(catalog.claims, "tenable", "cap-vm", "2026-10-26").status).toBe("unknown");
     expect(evidenceCell(catalog.claims, "snyk", "cap-sca", "2026-10-26").status).toBe("unknown");
     expect(evidenceCell(catalog.claims, "qualys", "cap-vm", "2026-10-26").status).toBe("unknown");
-    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(35);
+    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(41);
   });
 
   it("keeps newly sourced field sentences off product cells, rosters, and statistics", () => {
@@ -610,7 +610,7 @@ describe("catalog integrity", () => {
       ).toBe(false);
     }
     expect(evidenceCell(catalog.claims, "tenable", "cap-vm", "2026-10-27").status).toBe("unknown");
-    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(35);
+    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(41);
   });
 
   it("keeps the next retrieved field sentences off rosters, scores, and statistics", () => {
@@ -688,7 +688,7 @@ describe("catalog integrity", () => {
       expect(bounded, banned).not.toContain(banned);
     }
     expect(evidenceCell(catalog.claims, "tenable", "cap-vm", "2026-10-27").status).toBe("unknown");
-    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(35);
+    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(41);
   });
 
   it("keeps the identity, exposure, and AppSec sentences off cells, rosters, and prices", () => {
@@ -756,7 +756,7 @@ describe("catalog integrity", () => {
     }
     expect(evidenceCell(catalog.claims, "snyk", "cap-sca", "2026-10-27").status).toBe("unknown");
     expect(evidenceCell(catalog.claims, "tenable", "cap-vm", "2026-10-27").status).toBe("unknown");
-    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(35);
+    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(41);
     for (const subjectId of ["endpoint-security", "security-ratings", "dast"]) {
       expect(
         catalog.claims.some((claim) => claim.subjectType === "category" && claim.subjectId === subjectId),
@@ -803,7 +803,7 @@ describe("catalog integrity", () => {
     for (const banned of ["magic quadrant", "snyk", "checkmarx", "semgrep", "wiz", "orca", "illumio"]) {
       expect(bounded, banned).not.toContain(banned);
     }
-    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(35);
+    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(41);
   });
 
   it("keeps the workforce, simulation, and posture sentences off cells, scores, and prices", () => {
@@ -847,7 +847,7 @@ describe("catalog integrity", () => {
     }
     expect(catalog.claims.filter((claim) => claim.subjectType === "category" && claim.subjectId === "dast")).toHaveLength(0);
     expect(catalog.claims.filter((claim) => claim.subjectType === "category" && claim.subjectId === "security-ratings")).toHaveLength(0);
-    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(35);
+    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(41);
   });
 });
 

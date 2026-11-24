@@ -1,4 +1,4 @@
-import type { PricingSignal, Relationship } from "../schema";
+import type { CustomerStory, PricingSignal, Relationship } from "../schema";
 
 export const relationships: Relationship[] = [
   {
@@ -750,4 +750,13 @@ export const pricingSignals: PricingSignal[] = [
   },
 ];
 
-export const customerStories: [] = [];
+export const customerStories: CustomerStory[] = [
+  {
+    id: "story-descope-gofundme",
+    vendorId: "descope",
+    title: "GoFundMe adds more ways for donors to sign in",
+    summary: "GoFundMe's engineering team weighed maintaining its own authentication against buying a CIAM service. Descope's case study says GoFundMe added Google and Apple sign-in alongside passwords and migrated existing accounts as users returned.",
+    sourceId: "src-descope-gofundme",
+    proofType: "vendor_published",
+  },
+];
