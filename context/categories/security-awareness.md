@@ -3,7 +3,7 @@ id: "security-awareness"
 type: "category"
 name: "Security awareness"
 layer: "core"
-vendors: 5
+vendors: 8
 ---
 
 # Security awareness
@@ -29,6 +29,9 @@ Training and simulated phishing for people. It changes behavior. It does not rep
 
 - KnowBe4: Security awareness and simulated phishing. It does not stop the email.
 - GhostEye: New York startup, Y Combinator Summer 2025. Sells "vulnerability management for the human layer": maps what attackers can learn about employees and runs personalized social engineering attacks over email, SMS and voice, including against help desks.
+- Adaptive Security: New York company (launched 2023) running deepfake persona simulations over voice, SMS and email, triage of reported messages and per-person risk scoring. Backed by a16z and the OpenAI Startup Fund.
+- Jericho Security: New York company using agentic AI to run personalized phishing, SMS, voice and video simulations, with generated training and a phishing triage center. Holds a $1.8M AFWERX contract.
+- Hoxhunt: Established human risk management platform (conceived 2016, 200+ employees): adaptive, gamified phishing training, behavior risk analytics and automated handling of user-reported threats.
 
 ## Vendors (adjacent)
 

@@ -2,7 +2,7 @@
 
 As of **2026-11-23**. Status: researched and proposed. Human review is pending. Owner: repository maintainer. Next review: **2026-12-23**. Both companies are young, so recheck sooner after any funding, product or customer news.
 
-Canonical records: [typed data](../../lib/data/bay-ghosteye.ts), composed by [catalog](../../lib/catalog.ts). Two vendors, two products, nine sources, sixteen claims and one launch event. The two companies are profiled together only because they were added in the same batch. They are in different categories and are not alternatives to each other.
+Canonical records: [typed data](../../lib/data/bay-ghosteye.ts), composed by [catalog](../../lib/catalog.ts). Two vendors, two products, nine sources, sixteen claims and one launch event, plus seven neighboring vendors (see the end of this note). The two companies are profiled together only because they were added in the same batch. They are in different categories and are not alternatives to each other.
 
 ## Bay
 
@@ -80,6 +80,35 @@ Primary: security awareness. Adjacent: pentest program (it runs live attacks, cl
 - Funding, headcount and HQ differ across aggregators.
 - No customers or pricing.
 - A favorable founder profile (Chicago Reporter, Apr 2026) was found but not used as a source: it names no customers or investors, and its format suggests promotional content.
+
+## Others in the space
+
+Added in the same batch so each profile has neighbors on its category page. Records: [agent-runtime-human-layer.ts](../../lib/data/agent-runtime-human-layer.ts). Seven vendors, seven products, ten sources, fourteen claims. Sharing a category does not make any of these a direct competitor of Bay or GhostEye; the buyer scenario decides that.
+
+### Agent runtime (beside Bay)
+
+| Vendor | HQ | Funding (reported) | Where it acts | Note |
+| --- | --- | --- | --- | --- |
+| Manifold | California | $8M seed, Costanoa, Mar 2026 | Endpoints; detect and respond (quarantine, terminate) | Founders built Laiyer AI, acquired by Protect AI |
+| Capsule Security | Tel Aviv | $7M seed, Lama Partners and Forgepoint, Apr 2026 | Inside the agent's execution path; no proxy or SDK | Open-source ClawGuard pre-invocation checkpoint |
+| AIR Security | New York | $50M: $10M Sequoia-led + $40M Greenoaks-led, Sep 2026 | Between agents and skills, plugins, MCP servers | Primary in MCP and tool security, not runtime |
+| Kontext Security | Munich | $4M, 42CAP, Sep 2026 | Between agents and tools; observe then enforce | Task-aware authorization; adjacent to agent identity |
+
+Bay's sourced difference among these: per-action verdicts on the device through a native hook, installed through existing MDM/EDR.
+
+### Human-layer attack simulation (beside GhostEye)
+
+| Vendor | HQ | Funding (reported) | Channels | Note |
+| --- | --- | --- | --- | --- |
+| Adaptive Security | New York | $43M (a16z, OpenAI Startup Fund) Apr 2025, $55M total by Sep 2025 | Voice, SMS, email deepfake personas | Not Adaptive Shield (SSPM), a separate record |
+| Jericho Security | New York | $15M Series A, Era Fund, Apr 2025 | Email, SMS, voice, video | $1.8M AFWERX contract |
+| Hoxhunt | Finland (200+ staff) | Not recorded | Phishing training, behavior risk, reported-threat handling | Established human risk management platform |
+
+KnowBe4 was already in the catalog. GhostEye's sourced difference among these: OSINT-first targeting of each person, and help-desk voice testing (directory-sourced).
+
+### Not added
+
+Seen but not added in this pass: Asymptote Labs, Eve Security, Rein Security, CodeIntegrity, Geordie AI, Arcjet's coding-agent runtime feature, and other human-layer tools named in comparison posts (Doppel, Brightside, Breacher). Each needs its own sourced record.
 
 ## Sources not used
 
