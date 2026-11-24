@@ -212,7 +212,7 @@ export const categoryFillVendors: Vendor[] = [
     ],
     "verificationStatus": "research_candidate",
     "openQuestions": [
-      "votiro.com now shows Menlo Security branding ('Menlo File Security'); ownership and current product name are unverified here.",
+      "Acquired by Menlo Security (announced 2025-02-19); votiro.com now redirects to menlosecurity.com. The current product name inside Menlo's portfolio is not verified here.",
       "Channel coverage and file-type support are vendor-reported and untested here."
     ]
   },
@@ -911,7 +911,7 @@ export const categoryFillProducts: Product[] = [
       "not_an_identity_control"
     ],
     "availability": "unknown",
-    "availabilityNote": "Site now shows Menlo Security branding; current product name and packaging not verified.",
+    "availabilityNote": "Now part of Menlo Security (acquisition announced 2025-02-19); current product name and packaging not verified.",
     "officialUrl": "https://votiro.com/",
     "useCaseIds": []
   },
@@ -1507,6 +1507,18 @@ export const categoryFillSources: Source[] = [
     "excerpt": "Votiro says its CDR disarms malware from incoming files and reconstructs them while preserving functionality, covering email attachments, downloads, file sharing and removable devices."
   },
   {
+    "id": "src-fill-menlo-acquires-votiro",
+    "title": "Menlo Security \u2014 Menlo Security acquires Votiro (blog)",
+    "url": "https://www.menlosecurity.com/blog/menlo-security-acquires-votiro",
+    "canonicalUrl": "https://www.menlosecurity.com/blog/menlo-security-acquires-votiro",
+    "publisher": "Menlo Security",
+    "sourceType": "vendor_marketing",
+    "publishedAt": "2025-02-19",
+    "retrievedAt": "2026-11-23",
+    "volatility": "stable",
+    "excerpt": "Menlo Security announced it acquired Votiro, describing Votiro as a CDR and data detection and response vendor that will form the data security pillar of its workspace security strategy."
+  },
+  {
     "id": "src-fill-cribl-stream",
     "title": "Cribl Stream — product page",
     "url": "https://www.cribl.io/stream",
@@ -2019,11 +2031,11 @@ export const categoryFillClaims: Claim[] = [
     "observedAt": "2026-11-23",
     "effectiveFrom": null,
     "effectiveTo": null,
-    "confidence": "low",
+    "confidence": "medium",
     "verificationStatus": "vendor_published",
     "lastCheckedAt": "2026-11-23",
     "conflictsWith": [],
-    "notes": "Observed from the official page's search-index text on 2026-11-23; the full page was not opened. Publisher-reported, not tested; no competitor or parity claim. See docs/market-research/adjacent-file-evidence-categories-2026-11-23.md."
+    "notes": "Official page opened and checked 2026-11-23. Publisher-reported, not tested; no competitor or parity claim. See docs/market-research/adjacent-file-evidence-categories-2026-11-23.md."
   },
   {
     "id": "claim-fill-votiro-cdr-support",
@@ -2043,7 +2055,27 @@ export const categoryFillClaims: Claim[] = [
     "verificationStatus": "vendor_published",
     "lastCheckedAt": "2026-11-23",
     "conflictsWith": [],
-    "notes": "Observed from the official page's search-index text on 2026-11-23; the full page was not opened. The support article may predate the Menlo Security branding now on votiro.com. Publisher-reported, not tested; no competitor or parity claim. See docs/market-research/adjacent-file-evidence-categories-2026-11-23.md."
+    "notes": "Observed from the official page's search-index text on 2026-11-23; the full page was not opened. The support article may predate Menlo Security's 2025 acquisition of Votiro. Publisher-reported, not tested; no competitor or parity claim. See docs/market-research/adjacent-file-evidence-categories-2026-11-23.md."
+  },
+  {
+    "id": "claim-fill-menlo-acquires-votiro",
+    "statement": "Menlo Security announced on February 19, 2025 that it had acquired Votiro.",
+    "subjectType": "vendor",
+    "subjectId": "votiro",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-menlo-acquires-votiro",
+    "sourceUrl": "https://www.menlosecurity.com/blog/menlo-security-acquires-votiro",
+    "sourceType": "vendor_marketing",
+    "publishedAt": "2025-02-19",
+    "observedAt": "2026-11-23",
+    "effectiveFrom": "2025-02-19",
+    "effectiveTo": null,
+    "confidence": "high",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-23",
+    "conflictsWith": [],
+    "notes": "Acquirer's own announcement, observed via search-index text; corroborated by Business Wire, SiliconANGLE and Help Net Security reports, and by votiro.com redirecting to menlosecurity.com on 2026-11-23."
   },
   {
     "id": "claim-fill-cribl-stream",

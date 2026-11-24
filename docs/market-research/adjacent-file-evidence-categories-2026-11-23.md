@@ -2,7 +2,7 @@
 
 **Scope:** public industry research. **Status:** research note; the three categories are now typed (`lib/data/ecosystem.ts`), each with two research-candidate vendors/products and vendor-published claims. Not benchmarked, not a feature-parity table, not a competitor list for any one vendor. **Prepared:** 2026-11-23. **Next editorial check:** 2027-01-23. **Method:** [Competitive Intelligence Playbook](competitive-intelligence-playbook.md).
 
-**Evidence status (2026-11-23):** typed records: Velociraptor (existing `rapid7`), Binalyze AIR, Thinkst Canary and OPSWAT Deep CDR. Their official pages were opened and checked (claims at `medium`). Acalvio ShadowPlex and Votiro CDR rest on the vendors' own pages as shown in search-index text (claims at `low`). Every other vendor row below is secondary. Several roundups are written by a vendor in the same category (noted per source).
+**Evidence status (2026-11-23):** typed records: Velociraptor (existing `rapid7`), Binalyze AIR, Thinkst Canary and OPSWAT Deep CDR. Their official pages were opened and checked (claims at `medium`). Acalvio ShadowPlex was also opened and checked (`medium`). Votiro CDR rests on Votiro's support page as shown in search-index text (`low`), because votiro.com now redirects to Menlo Security. Every other vendor row below is secondary. Several roundups are written by a vendor in the same category (noted per source).
 
 ## Why these three
 
@@ -52,7 +52,7 @@ These fill a gap the repo already records: the `digital-forensics` seat has an u
 | Vendor / product | Public context | Evidence status |
 | --- | --- | --- |
 | Thinkst Canary / Canarytokens | Canary decoys plus free Canarytokens in document, credential, VPN-profile and QR formats [OF7]; widely cited as the easy-deployment benchmark [DC2, DC3] | **Typed** (`thinkst-canary`); official help page opened 2026-11-23 |
-| Acalvio ShadowPlex | Says ShadowPlex deploys deception agentlessly across identity, cloud, network, endpoints and OT/ICS [OF10]; GigaOm Radar reprint distributed by Acalvio [DC4] | **Typed** (`acalvio-shadowplex`); official page via search-index text |
+| Acalvio ShadowPlex | Says ShadowPlex deploys deception agentlessly across identity, cloud, network, endpoints and OT/ICS [OF10]; GigaOm Radar reprint distributed by Acalvio [DC4] | **Typed** (`acalvio-shadowplex`); official homepage opened 2026-11-23 |
 | Tracebit | Cloud and CI/CD canary deployment [DC1] | Vendor-authored roundup ranks itself first; treat with caution |
 | CounterCraft, Lupovis, Labyrinth, Zscaler (deception), SentinelOne (ex-Attivo), Proofpoint (ex-Illusive), Fortinet, Rapid7 | Named in GigaOm vendor list and roundups [DC4, DC2] | Candidates only |
 
@@ -67,7 +67,7 @@ These fill a gap the repo already records: the `digital-forensics` seat has an u
 | Vendor / product | Public context | Evidence status |
 | --- | --- | --- |
 | OPSWAT MetaDefender (Deep CDR) | Says Deep CDR disarms and regenerates files and covers 200+ file types [OF8]; also bundles multi-engine scanning [CD2] | **Typed** (`opswat-deep-cdr`); official page opened 2026-11-23 |
-| Votiro | Says its CDR disarms and rebuilds incoming files for email, downloads, file sharing and removable media [OF11]. **votiro.com now shows Menlo Security branding; ownership unverified** | **Typed** (`votiro-cdr`); official pages via search-index text |
+| Votiro | Says its CDR disarms and rebuilds incoming files for email, downloads, file sharing and removable media [OF11]. **Acquired by Menlo Security (announced 2025-02-19) [OF12]; votiro.com redirects to menlosecurity.com** | **Typed** (`votiro-cdr`); official pages via search-index text |
 | Glasswall | Named CDR vendor [CD3] | Secondary |
 | Check Point (Threat Extraction), Sasa Software (GateScanner), odix, SoftCamp, YazamTech | Named in market reports and directories [CD2, CD3, CD4] | Candidates only |
 
@@ -107,13 +107,14 @@ Budget ownership for each proposed category; how far EDR and XDR suites bundle e
 | OF7 | Thinkst — Canarytoken overview and use cases | https://help.canary.tools/hc/en-gb/articles/10905485310109-Canarytoken-Overview-and-Use-Cases | Official docs (opened) | 2026-11-23 |
 | OF8 | OPSWAT — Deep CDR technology | https://www.opswat.com/technologies/deep-cdr | Vendor (opened) | 2026-11-23 |
 | OF9 | Binalyze — homepage | https://www.binalyze.com/ | Vendor (opened) | 2026-11-23 |
-| OF10 | Acalvio — homepage / ShadowPlex | https://www.acalvio.com/ · https://www.acalvio.com/shadowplex-platform/ | Vendor (search-index text) | 2026-11-23 |
-| OF11 | Votiro — CDR support article; homepage | https://support.votiro.com/hc/en-us/articles/360014301677-Content-Disarm-and-Reconstruction-CDR · https://votiro.com/ | Vendor (search-index text) | 2026-11-23 |
+| OF10 | Acalvio — homepage / ShadowPlex | https://www.acalvio.com/ · https://www.acalvio.com/shadowplex-platform/ | Vendor (opened) | 2026-11-23 |
+| OF11 | Votiro — CDR support article | https://support.votiro.com/hc/en-us/articles/360014301677-Content-Disarm-and-Reconstruction-CDR | Vendor (search-index text) | 2026-11-23 |
+| OF12 | Menlo Security — Menlo Security acquires Votiro (2025-02-19); corroborated by Business Wire, SiliconANGLE | https://www.menlosecurity.com/blog/menlo-security-acquires-votiro | Acquirer announcement (search-index text) | 2026-11-23 |
 | CD4 | Slashdot — CDR software directory | https://slashdot.org/software/content-disarm-reconstruction-cdr/ | Directory | 2026-11-23 |
 
 Rights: short paraphrase only; no reproduced vendor copy.
 
 ## Consumer disposition
 
-- **Security Market Map catalog:** three typed categories added with two vendors each. Next: open the Acalvio and Votiro pages in full, confirm Votiro's ownership, then consider Magnet Forensics, Tracebit and Glasswall.
+- **Security Market Map catalog:** three typed categories added with two vendors each. Next: confirm the current product name for Votiro inside Menlo's portfolio, then consider Magnet Forensics, Tracebit and Glasswall.
 - **Other projects:** no change proposed.
