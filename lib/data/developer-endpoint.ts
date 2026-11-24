@@ -13,7 +13,7 @@ export const developerEndpointProducts: Product[] = [
     availability: "generally_available",
     availabilityNote: "Official documentation says this is offered on Growth or Enterprise plans. Verify licensing, platform support, assistant coverage, and self-hosted prerequisites for the buyer.",
     officialUrl: "https://docs.gitguardian.com/endpoint-protection/home",
-    useCaseIds: [],
+    useCaseIds: ["uc-developer-endpoint"],
   },
   {
     id: "aikido-device-protection", slug: "aikido-device-protection",
@@ -25,7 +25,7 @@ export const developerEndpointProducts: Product[] = [
     availability: "unknown",
     availabilityNote: "The vendor publishes operating documentation, but licensing and commercial availability per platform are not established here.",
     officialUrl: "https://help.aikido.dev/aikido-device-protection/miscellaneous-aikido-endpoint/how-does-endpoint-protection-work",
-    useCaseIds: [],
+    useCaseIds: ["uc-developer-endpoint"],
   },
 ];
 export const developerEndpointSources: Source[] = [
