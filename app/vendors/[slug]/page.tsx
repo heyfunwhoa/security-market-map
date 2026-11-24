@@ -160,7 +160,21 @@ export default async function VendorPage({ params }: { params: Promise<{ slug: s
           <p className="mt-2 text-sm text-muted-foreground">
             None seeded. Vendor-published stories are not implied, and no customer logos were added to fill the page.
           </p>
-        ) : null}
+        ) : (
+          <ul className="mt-3 space-y-3">
+            {stories.map((story) => (
+              <li key={story.id} className="rounded-xl border border-border p-4 text-sm leading-6">
+                <StatusPill status={story.proofType} />
+                <h3 className="mt-2 font-semibold">
+                  <a className="inline-flex min-h-11 items-center text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-ring" href={sourceById(story.sourceId)?.url}>
+                    {story.title}
+                  </a>
+                </h3>
+                <p className="mt-1">{story.summary}</p>
+              </li>
+            ))}
+          </ul>
+        )}
       </section>
 
       <section className="mt-10">
