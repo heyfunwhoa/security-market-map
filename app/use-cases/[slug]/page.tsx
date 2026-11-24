@@ -95,10 +95,16 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
                 </li>
               ))}
             </ul>
-            {useCase.comparisonShortlists.worksheetPath && (
-              <a href={useCase.comparisonShortlists.worksheetPath} download className="inline-flex min-h-11 items-center text-primary underline underline-offset-4">
-                Download the evaluation worksheet (CSV)
-              </a>
+            {useCase.comparisonShortlists.worksheets && (
+              <ul aria-label="Evaluation worksheets" className="flex flex-wrap gap-x-5">
+                {useCase.comparisonShortlists.worksheets.map(({ label, path }) => (
+                  <li key={path}>
+                    <a href={path} download className="inline-flex min-h-11 items-center text-primary underline underline-offset-4">
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             )}
           </nav>
         )}

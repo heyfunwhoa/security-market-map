@@ -66,7 +66,10 @@ export const developerEndpointUseCases: UseCase[] = [
     capabilityIds: [...workstationEvidenceCapabilities, ...developerEndpointCapabilities].map((c) => c.id).concat("cap-secret-verification"),
     comparisonShortlists: {
       title: "After a package is removed",
-      worksheetPath: "/worksheets/developer-package-advisory.csv",
+      worksheets: [
+        { label: "Download blank worksheet (CSV)", path: "/worksheets/developer-package-advisory.csv" },
+        { label: "Download completed example (CSV)", path: "/worksheets/developer-package-advisory-example.csv" },
+      ],
       options: [
         { label: "Which devices encountered the package?", productIds: ["crowdstrike-platform", "aikido-device-protection", "microsoft-defender-for-endpoint", "stairwell-platform"] },
         { label: "Can we recover the file and hunt for related samples?", productIds: ["stairwell-platform", "limacharlie-binlib", "reversinglabs-spectra-analyze", "carbon-black-cloud-enterprise-edr"] },
