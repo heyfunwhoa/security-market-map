@@ -3,7 +3,7 @@ id: "agentic-runtime"
 type: "category"
 name: "Agentic runtime enforcement"
 layer: "core"
-vendors: 18
+vendors: 19
 ---
 
 # Agentic runtime enforcement
@@ -48,6 +48,7 @@ A check on a live agent action before it completes. Directory, governance, privi
 - TrustFour
 - Lasso Security
 - Operant AI
+- Panguard AI
 
 ## What buyers do instead
 
