@@ -27,4 +27,4 @@ Recheck each row 180 days after `checkedAt`. Recheck sooner if the vendor is acq
 - Entro redirects to SailPoint, which the record already notes.
 - Check Point endpoint pages name no team roles, so Check Point was skipped.
 - Strac (DLP) is not sampled yet.
-- XDR, threat modeling and IaC security need more primary vendors first. SOAR has three sampled vendors as of 2026-11-24 (Palo Alto Networks, Tines, Google), all from search excerpts.
+- Threat modeling and IaC security need more primary vendors first. XDR has three sampled vendors as of 2026-11-24 (CrowdStrike, SentinelOne, Palo Alto Networks), all from search excerpts; the Palo Alto row comes from training pages, not a product page. SOAR has three sampled vendors as of 2026-11-24 (Palo Alto Networks, Tines, Google), all from search excerpts.

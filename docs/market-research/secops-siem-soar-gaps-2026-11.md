@@ -35,6 +35,18 @@ Added to `lib/data/vendor-seat-targeting.ts` from search excerpts, not full page
 
 **Gap worth noting:** no vendor pitches detection engineers or incident responders by name, even though the map lists both as SOAR owners.
 
+## XDR seat targeting
+
+XDR had no vendor mapped to it, even though CrowdStrike and SentinelOne product records list XDR as primary. Added `xdr` as adjacent on the CrowdStrike, SentinelOne and Palo Alto Networks vendor records, plus three targeting rows (search excerpts):
+
+| Vendor | Seats | Basis |
+| --- | --- | --- |
+| CrowdStrike | SOC analyst, threat hunter, SOC lead | Press release and Insight XDR page |
+| SentinelOne | SOC analyst, SOC lead | Singularity XDR use-case page and data sheet |
+| Palo Alto Networks | SOC analyst, incident response, threat hunter (SOC lead mentioned) | Cortex XDR workshop and course pages, which are training audiences rather than a product pitch |
+
+**Gap:** no vendor names detection engineers, digital forensics or MSSP ops for XDR, though the map lists all three as owners.
+
 ## Other change
 
 - **Stairwell:** removed `soar` from its adjacent categories. No Stairwell source in the catalog describes playbook orchestration or response automation; it integrates with SOAR tools rather than being one. Reverse this if a source shows otherwise.

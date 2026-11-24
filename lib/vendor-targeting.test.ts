@@ -35,7 +35,7 @@ describe("vendor seat targeting", () => {
     const gaps = gapReport(catalog, new Date("2026-11-09")).filter((gap) => gap.kind === "contested-ownership");
     const secrets = gaps.find((gap) => gap.subjectId === "secrets-detection");
     expect(secrets?.message).toContain("Vendors mostly pitch appsec, developer");
-    expect(gaps.find((gap) => gap.subjectId === "xdr")?.message).not.toContain("Vendors mostly pitch");
+    expect(gaps.find((gap) => gap.subjectId === "threat-modeling")?.message).not.toContain("Vendors mostly pitch");
     expect(gaps.find((gap) => gap.subjectId === "soar")?.message).toContain("Vendors mostly pitch soc-lead, mssp-ops");
   });
 

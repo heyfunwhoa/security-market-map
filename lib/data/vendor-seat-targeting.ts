@@ -16,7 +16,8 @@ import type { VendorSeatTargetingInput } from "@/lib/schema";
 // pages (formerly ISPM) and cloud security for WIM; "identity" or "IAM" teams map to identity security; "operations
 // teams" running production applications map to platform; "application teams" map to developer.
 // Rows added 2026-11-24 (SOAR): "security teams" and "SOC teams" map to SOC lead, "security
-// analysts" to SOC analyst, "IT teams" to IT operations, and MSSP pages to mssp-ops.
+// analysts" to SOC analyst, "IT teams" to IT operations, and MSSP pages to mssp-ops. XDR rows
+// (2026-11-24) use the same rule; "threat hunters" and "incident responders" map to their own seats.
 
 const CHECKED = "2026-11-09";
 const REREAD = "2026-11-10";
@@ -625,6 +626,41 @@ export const vendorSeatTargeting: VendorSeatTargetingInput[] = [
     selectionReason: "leader",
     audience: "Security teams that detect, investigate and respond to threats with Google's scale and intelligence.",
     urls: ["https://cloud.google.com/security/products/security-operations"],
+    basis: "vendor-page",
+    inspection: "search-excerpt",
+    checkedAt: SOAR_SEARCHED,
+  },
+  // XDR, added 2026-11-24 from search excerpts
+  {
+    vendorId: "crowdstrike",
+    categoryId: "xdr",
+    seatIds: ["soc-analyst", "threat-hunter", "soc-lead"],
+    selectionReason: "leader",
+    audience: "Speeds triage and investigation for SOC analysts and threat hunters; product page cites SOC team efficiency.",
+    urls: ["https://ir.crowdstrike.com/news-releases/news-release-details/crowdstrike-announces-general-availability-falcon-xdr-extending", "https://www.crowdstrike.com/en-us/platform/endpoint-security/falcon-insight-xdr/"],
+    basis: "vendor-press",
+    inspection: "search-excerpt",
+    checkedAt: SOAR_SEARCHED,
+  },
+  {
+    vendorId: "sentinelone",
+    categoryId: "xdr",
+    seatIds: ["soc-analyst", "soc-lead"],
+    selectionReason: "challenger",
+    audience: "Security teams and security analysts; analysts resolve threats in one click and see aggregated events as one incident.",
+    urls: ["https://assets.sentinelone.com/mitre-22/usecase-singularity-xdr-en", "https://assets.sentinelone.com/frost-sullivan/ds-sentinelone-xdr"],
+    basis: "vendor-page",
+    inspection: "search-excerpt",
+    checkedAt: SOAR_SEARCHED,
+  },
+  {
+    vendorId: "palo-alto-networks",
+    categoryId: "xdr",
+    seatIds: ["soc-analyst", "incident-response", "threat-hunter"],
+    mentionedSeatIds: ["soc-lead"],
+    selectionReason: "leader",
+    audience: "Hands-on workshop and course for security analysts, SOC staff, incident responders and threat hunters; the course also names managers.",
+    urls: ["https://www.paloaltonetworks.com/cortex/cortex-xdr/hands-on-workshop", "https://www.paloaltonetworks.com/services/education/ilt-xdr-investigation-analysis"],
     basis: "vendor-page",
     inspection: "search-excerpt",
     checkedAt: SOAR_SEARCHED,

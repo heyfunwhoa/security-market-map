@@ -252,7 +252,7 @@ export const vendors: Vendor[] = [
     website: "https://www.paloaltonetworks.com/",
     positioning: "Closed the CyberArk acquisition on 11 Feb 2026 and introduced Idira on 12 May 2026. Brand changes toward Idira began 31 May 2026. Prisma Cloud remains a cloud-security product. Do not merge Idira, secrets, and CNAPP into one capability row. Palo Alto Networks markets Cortex DSPM for cloud and AI data exposure. Vendor-reported DSPM scope reviewed 2026-10-13.",
     primaryCategoryIds: ["pam", "secrets-management"],
-    adjacentCategoryIds: ["nhi", "agent-identity", "ciem", "adjacent-security", "network-edge", "dspm", "model-security", "endpoint-control", "soar"],
+    adjacentCategoryIds: ["nhi", "agent-identity", "ciem", "adjacent-security", "network-edge", "dspm", "model-security", "endpoint-control", "soar", "xdr"],
     identityScopes: ["human", "nhi", "agent"],
     verificationStatus: "research_candidate",
     openQuestions: [
@@ -632,7 +632,7 @@ export const vendors: Vendor[] = [
     positioning:
       "Endpoint and XDR vendor. The Falcon homepage retrieved 26 Oct 2026 describes endpoint detection and response as detecting and prioritizing malicious activity. Identity Protection is a module name on that page, so no ITDR cell is filled.",
     primaryCategoryIds: ["itdr", "endpoint-security"],
-    adjacentCategoryIds: ["workforce-identity", "itdr"],
+    adjacentCategoryIds: ["workforce-identity", "itdr", "xdr"],
     identityScopes: ["human"],
     verificationStatus: "research_candidate",
     openQuestions: ["Which identity SKU is on the quote, and is response in scope or only detection?"],
@@ -688,7 +688,7 @@ export const vendors: Vendor[] = [
     positioning:
       "Homepage retrieved 26 Oct 2026 describes endpoint and identity protection in one agent, and says the platform detects, contains, and responds. That detection sentence is not an endpoint-only cell and not an ITDR cell.",
     primaryCategoryIds: ["itdr", "endpoint-security"],
-    adjacentCategoryIds: ["adjacent-security"],
+    adjacentCategoryIds: ["adjacent-security", "xdr"],
     identityScopes: ["human"],
     verificationStatus: "research_candidate",
     openQuestions: ["Which SKU mentions identity, and is it on the current order form?"],
