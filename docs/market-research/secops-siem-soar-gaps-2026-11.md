@@ -39,6 +39,17 @@ Added to `lib/data/vendor-seat-targeting.ts` from search excerpts, not full page
 
 - **Stairwell:** removed `soar` from its adjacent categories. No Stairwell source in the catalog describes playbook orchestration or response automation; it integrates with SOAR tools rather than being one. Reverse this if a source shows otherwise.
 
+## Stairwell integrations (claims on `stairwell-platform`)
+
+Recorded as four sourced claims on the existing Stairwell product, from Stairwell's [integrations docs](https://docs.stairwell.com/docs/integrations), [Google SecOps docs](https://docs.stairwell.com/docs/google-secops) and [integrations page](https://stairwell.com/integrations/). All were read from search excerpts.
+
+- **Direction:** EDR (CrowdStrike, SentinelOne) sends Stairwell files. SIEM, SOAR and case tools receive its findings.
+- **Google SecOps:** enrichment inside SecOps cases.
+- **SOAR:** Palo Alto Cortex and Tines.
+- **Splunk:** an app that enriches Splunk logs.
+
+**Not added as relationship edges.** Relationships need a use case, and the catalog has no SecOps one (the closest, `uc-finding-route`, is about AppSec and cloud findings). Per AGENTS.md, I didn't create a use case just to hold these. A proposed placement for later: an "alert enrichment and file investigation" use case covering `siem`, `soar`, `malware-analysis`, `threat-intelligence` and `ai-soc-investigation`, with `complement` edges from `stairwell-platform` to `google-secops`, `cortex-xsoar` and `tines-platform`. Splunk has a vendor record but no product record, so an edge to it would also need a product.
+
 ## Unknowns
 
 - Tines markets well beyond SOAR (IT workflows, AI agents). Its budget line varies by buyer.
