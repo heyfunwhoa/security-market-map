@@ -5,7 +5,6 @@ import type { LandscapeEdge, LandscapeRow } from "@/components/landscape-browser
 import { StatusPill } from "@/components/chrome";
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { deploymentLabel, relationshipLabel, scopeLabel } from "@/lib/format";
-import { productDetailUrl } from "@/lib/landscape-filters";
 
 const actionClass = "inline-flex min-h-11 items-center justify-center rounded-md border border-border px-3 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring";
 
@@ -53,7 +52,7 @@ export function ProductInspector({ row, related, categories, useCases }: {
           <section aria-label="Evidence and uncertainty" className="border-t border-border pt-4">
             <h3 className="font-heading text-lg">Evidence and uncertainty</h3>
             <p className="mt-1 text-muted-foreground">Review source attribution, claim status, and Unknowns on the product detail page before making a capability comparison.</p>
-            <Link href={productDetailUrl(row.vendorSlug, row.productId)} className={`${actionClass} mt-3 text-primary hover:bg-muted`}>Open product detail and evidence</Link>
+            <Link href={row.detailHref} className={`${actionClass} mt-3 text-primary hover:bg-muted`}>Open product detail and evidence</Link>
           </section>
         </div>
       </SheetContent>

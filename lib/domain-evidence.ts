@@ -4,7 +4,7 @@ import type { Claim, Domain } from "./schema";
 
 /** Status shown on every domain tile. Identity is the evidenced slice; the rest are mapped. */
 export function domainStatusLabel(depth: Domain["depth"]): string {
-  return depth === "evidenced" ? "Evidenced" : "Mapped, evidence coming";
+  return depth === "evidenced" ? "Evidenced" : "Mapped";
 }
 
 /** Claims attached to each domain, using the same rule as the domain page's evidence list. */

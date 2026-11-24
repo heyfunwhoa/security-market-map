@@ -17,8 +17,8 @@ export default async function ComparePage({
     <main className="mx-auto max-w-6xl px-4 py-10">
       <PageIntro
         kicker="Compare"
-        title="Evidence in the cell, or the word Unknown"
-        lede="Secrets detection, vaulting, and NHI governance stay on different rows. Category membership never fills a checkbox."
+        title="Compare product evidence"
+        lede="Choose a buyer question and up to four products. Each capability shows its evidence or an explicit Unknown."
       />
       <div className="mt-8">
         <CompareWorkbench

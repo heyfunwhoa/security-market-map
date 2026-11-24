@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Source } from "../lib/schema";
 import { isSourceStale } from "../lib/coverage";
 import type { EvidenceCell } from "../lib/compare";
@@ -153,6 +154,7 @@ export function ComparisonEvidence({
                         for {productName}: {claim.statement}
                       </span>
                     </a>
+                    {source && <Link href={`/sources?claim=${encodeURIComponent(claim.id)}`} className="ml-3 inline-flex min-h-11 items-center text-primary underline underline-offset-4">View ledger entry</Link>}
                     <dl className="space-y-1 text-xs text-muted-foreground">
                       <div>
                         <dt className="inline font-medium">Publisher: </dt>

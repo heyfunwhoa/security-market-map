@@ -1,3 +1,4 @@
+import { productDestination } from "./product-destination";
 import { z } from "zod";
 import { identityProblems, provenanceProblems } from "./catalog-integrity";
 import { latestClaimDate } from "./as-of";
@@ -637,7 +638,7 @@ export function searchIndex(): SearchHit[] {
       text: `${item.positioning} ${item.formerNames.join(" ")}`,
     })),
     ...catalog.products.map((item) => ({
-      href: `/vendors/${catalog.vendors.find((vendor) => vendor.id === item.vendorId)?.slug ?? ""}`,
+      href: productDestination(item, vendorById(item.vendorId)!.slug),
       kind: "Product",
       title: item.name,
       text: item.positioning,
@@ -655,7 +656,7 @@ export function searchIndex(): SearchHit[] {
       text: item.definition,
     })),
     ...catalog.claims.map((item) => ({
-      href: "/sources",
+      href: `/sources?claim=${encodeURIComponent(item.id)}`,
       kind: "Claim",
       title: item.statement.slice(0, 90),
       text: item.statement,

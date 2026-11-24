@@ -113,9 +113,11 @@ export function CompareWorkbench({
   const useCaseId = initialUseCase;
   const selected = initialProducts;
   const [productQuery, setProductQuery] = useState("");
+  const editor = useRef<HTMLDetailsElement>(null);
   const productInput = useRef<HTMLInputElement>(null);
   const [isPending, startTransition] = useTransition();
 
+  const [editInitiallyOpen] = useState(initialProducts.length < 2 || !initialUseCase);
   const useCase = useCases.find((item) => item.id === useCaseId);
 
   function commit(
@@ -134,7 +136,10 @@ export function CompareWorkbench({
 
   function toggle(productId: string) {
     if (isPending) return;
-    if (selected.includes(productId)) productInput.current?.focus();
+    if (selected.includes(productId)) {
+      if (editor.current) editor.current.open = true;
+      productInput.current?.focus();
+    }
     const next = selected.includes(productId)
       ? selected.filter((id) => id !== productId)
       : selected.length >= 4
@@ -171,7 +176,7 @@ export function CompareWorkbench({
   const needle = productQuery.trim().toLowerCase();
   const candidates = productsInCategory(products, categoryId);
   const filtered = candidates
-    .filter((product) => product.name.toLowerCase().includes(needle))
+    .filter((product) => needle ? product.name.toLowerCase().includes(needle) : !useCase || product.useCaseIds.includes(useCase.id))
     .sort((a, b) => a.name.localeCompare(b.name));
   const matches = filtered.slice(0, 8);
   const matchCount = filtered.length;
@@ -190,7 +195,9 @@ export function CompareWorkbench({
           Back to {category.name}
         </Link>
       ) : null}
-      <div className="flex flex-wrap gap-2">
+      <details className="mb-3 rounded-lg border border-border">
+        <summary className="min-h-11 cursor-pointer px-3 py-2 font-medium">Example comparisons</summary>
+        <div className="flex flex-wrap gap-2 px-3 pb-3">
         {PRESETS.map((preset) => (
           <Button
             key={preset.id}
@@ -205,122 +212,123 @@ export function CompareWorkbench({
           </Button>
         ))}
       </div>
-      <div className="mt-4 max-w-md">
-        <Label htmlFor="compare-category">Category</Label>
-        <select
-          id="compare-category"
-          value={categoryId}
-          disabled={isPending}
-          onChange={(event) => {
-            const id = event.target.value;
-            const nextUse = useCases.find(
-              (item) => !id || item.categoryIds.includes(id),
-            );
-            setProductQuery("");
-            commit(nextUse?.id ?? "", [], id);
-          }}
-          className="mt-1 min-h-11 w-full rounded-md border border-input bg-background px-2 text-sm"
-        >
-          <option value="">All categories</option>
-          {categories.map((item) => (
-            <option key={item.id} value={item.id}>
-              {item.name}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className="mt-4 max-w-md">
-        <Label htmlFor="compare-use">Use case</Label>
-        <select
-          id="compare-use"
-          disabled={isPending || availableUses.length === 0}
-          value={useCaseId}
-          onChange={(event) => {
-            commit(event.target.value, selected);
-          }}
-          className="mt-1 min-h-11 w-full rounded-md border border-input bg-background px-2 text-sm"
-        >
-          {availableUses.length === 0 ? (
-            <option value="">No mapped use case</option>
-          ) : null}
-          {availableUses.map((item) => (
-            <option key={item.id} value={item.id}>
-              {item.name}
-            </option>
-          ))}
-        </select>
-      </div>
-      <p className="mt-4 text-sm text-muted-foreground" id="compare-help">
-        Find products by name in the selected category (primary or adjacent
-        membership). Choose up to four. Category membership is not evidence of a
-        capability; missing evidence says Unknown. Changing category clears the
-        selection.
-      </p>
-      <div className="mt-3 max-w-md" aria-describedby="compare-help">
-        <Label htmlFor="compare-pick">Add a product</Label>
-        <Input
-          id="compare-pick"
-          ref={productInput}
-          aria-describedby="compare-help"
-          type="search"
-          value={productQuery}
-          onChange={(event) => setProductQuery(event.target.value)}
-          placeholder="Type a product name"
-          className="mt-1 min-h-11 bg-background"
-          aria-controls="compare-matches"
-          autoComplete="off"
-        />
-        <p role="status" className="mt-2 text-xs text-muted-foreground">
-          {isPending
-            ? "Updating comparison…"
-            : `${matchCount} matching products · ${selected.length} of 4 selected`}
+      </details>
+      <details ref={editor} open={editInitiallyOpen} className="rounded-lg border border-border p-3">
+        <summary className="min-h-11 cursor-pointer py-2 font-medium">Choose a use case and products</summary>
+        <div className="mt-4 max-w-md">
+          <Label htmlFor="compare-category">Category</Label>
+          <select
+            id="compare-category"
+            value={categoryId}
+            disabled={isPending}
+            onChange={(event) => {
+              const id = event.target.value;
+              const nextUse = useCases.find(
+                (item) => id && item.categoryIds.includes(id),
+              );
+              setProductQuery("");
+              commit(nextUse?.id ?? "", [], id);
+            }}
+            className="mt-1 min-h-11 w-full rounded-md border border-input bg-background px-2 text-sm"
+          >
+            <option value="">All categories</option>
+            {categories.map((item) => (
+              <option key={item.id} value={item.id}>
+                {item.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="mt-4 max-w-md">
+          <Label htmlFor="compare-use">Use case</Label>
+          <select
+            id="compare-use"
+            disabled={isPending || availableUses.length === 0}
+            value={useCaseId}
+            onChange={(event) => {
+              commit(event.target.value, selected);
+            }}
+            className="mt-1 min-h-11 w-full rounded-md border border-input bg-background px-2 text-sm"
+          >
+            <option value="">{availableUses.length ? "Choose a buyer use case" : "No mapped use case"}</option>
+            {availableUses.map((item) => (
+              <option key={item.id} value={item.id}>
+                {item.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <p className="mt-4 text-sm text-muted-foreground" id="compare-help">
+          Suggestions follow the buyer use case. Search by name to include other products in the selected category. Choose up to four. Category membership is not evidence of a
+          capability; missing evidence says Unknown. Changing category clears the
+          selection.
         </p>
-        <ul id="compare-matches" className="mt-2 space-y-2">
-          {matches.length === 0 ? (
-            <li className="text-sm text-muted-foreground">
-              No products match this category and name.
-              {needle ? (
-                <Button
-                  variant="outline"
-                  className="ml-2 min-h-11"
-                  onClick={() => setProductQuery("")}
-                >
-                  Clear search
-                </Button>
-              ) : null}
-            </li>
-          ) : null}
-          {matches.map((product) => {
-            const on = selected.includes(product.id);
-            const disabled = !on && selected.length >= 4;
-            return (
-              <li key={product.id}>
-                <button
-                  type="button"
-                  aria-pressed={on}
-                  disabled={disabled || isPending}
-                  onClick={() => toggle(product.id)}
-                  className="min-h-11 w-full rounded-lg border border-border bg-card px-3 py-2 text-left text-sm enabled:hover:bg-muted disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-                >
-                  <span className="font-medium">{product.name}</span>
-                  <span className="mt-0.5 block text-xs text-muted-foreground">
-                    {on
-                      ? "In the matrix"
-                      : disabled
-                        ? "Remove one to add this"
-                        : "Add"}
-                  </span>
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-        {matchCount > matches.length ? (
-          <p className="mt-2 text-xs text-muted-foreground">
-            Type more of the name to narrow the list.
+        <div className="mt-3 max-w-md" aria-describedby="compare-help">
+          <Label htmlFor="compare-pick">Add a product</Label>
+          <Input
+            id="compare-pick"
+            ref={productInput}
+            aria-describedby="compare-help"
+            type="search"
+            value={productQuery}
+            onChange={(event) => setProductQuery(event.target.value)}
+            placeholder="Type a product name"
+            className="mt-1 min-h-11 bg-background"
+            aria-controls="compare-matches"
+            autoComplete="off"
+          />
+          <p role="status" className="mt-2 text-xs text-muted-foreground">
+            {isPending
+              ? "Updating comparison…"
+              : `${matchCount} matching products · ${selected.length} of 4 selected`}
           </p>
-        ) : null}
-      </div>
+          <ul id="compare-matches" className="mt-2 space-y-2">
+            {matches.length === 0 ? (
+              <li className="text-sm text-muted-foreground">
+                No products match this category and name.
+                {needle ? (
+                  <Button
+                    variant="outline"
+                    className="ml-2 min-h-11"
+                    onClick={() => setProductQuery("")}
+                  >
+                    Clear search
+                  </Button>
+                ) : null}
+              </li>
+            ) : null}
+            {matches.map((product) => {
+              const on = selected.includes(product.id);
+              const disabled = !on && selected.length >= 4;
+              return (
+                <li key={product.id}>
+                  <button
+                    type="button"
+                    aria-pressed={on}
+                    disabled={disabled || isPending}
+                    onClick={() => toggle(product.id)}
+                    className="min-h-11 w-full rounded-lg border border-border bg-card px-3 py-2 text-left text-sm enabled:hover:bg-muted disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                  >
+                    <span className="font-medium">{product.name}</span>
+                    <span className="mt-0.5 block text-xs text-muted-foreground">
+                      {on
+                        ? "In the matrix"
+                        : disabled
+                          ? "Remove one to add this"
+                          : "Add"}
+                    </span>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+          {matchCount > matches.length ? (
+            <p className="mt-2 text-xs text-muted-foreground">
+              Type more of the name to narrow the list.
+            </p>
+          ) : null}
+        </div>
+      </details>
       <ul
         className="mt-3 flex flex-wrap gap-2"
         aria-label="Products in the matrix"
@@ -344,8 +352,7 @@ export function CompareWorkbench({
 
       {!useCase ? (
         <p className="mt-6 rounded-lg border border-dashed p-4">
-          No comparison use case is mapped to this category yet. Choose another
-          category; no capability support is inferred.
+          {availableUses.length ? "Choose a buyer use case to see the capabilities that matter for this comparison." : "No comparison use case is mapped to this category yet. Choose another category to continue."}
         </p>
       ) : selected.length < 2 ? (
         <p className="mt-6 rounded-lg border border-dashed px-4 py-6 text-sm">
