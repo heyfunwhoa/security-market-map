@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { CategoryMap } from "@/components/category-map";
 import { ClaimList } from "@/components/claims";
-import { DomainExplorer } from "@/components/domain-explorer";
+import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { catalog } from "@/lib/catalog";
 import {
@@ -11,7 +11,7 @@ import {
   staleSources,
 } from "@/lib/coverage";
 import { AnnotatedText } from "@/components/annotated-text";
-import { claimDomainLabel, domainClaimCounts } from "@/lib/domain-evidence";
+import { claimDomainLabel } from "@/lib/domain-evidence";
 import { formatDate } from "@/lib/format";
 import { INCIDENT_KIND_LABELS, incidentFeed, latestIncidents } from "@/lib/incident-feed";
 
@@ -33,20 +33,26 @@ export default function HomePage() {
         For AEs, SEs, and analysts preparing customer conversations
       </p>
       <h1 className="mt-3 max-w-3xl text-4xl tracking-tight text-balance sm:text-5xl">
-        Identity and secrets, mapped with evidence.
+        Explore the security market through buyer questions.
       </h1>
       <p className="mt-4 max-w-3xl text-lg leading-8 text-muted-foreground">
-        Every claim links to its source and date. Identity has the deepest evidence. The other ten domains are
-        mapped, and their evidence is thinner.
+        Find who owns a security problem, which products address it, and what the evidence supports. Identity and secrets have the deepest coverage.
       </p>
       <nav aria-label="Start exploring" className="mt-6 flex flex-wrap gap-3">
         <Button asChild>
-          <Link href="/domains">Explore domains</Link>
+          <Link href="/use-cases">Start with a buyer question</Link>
         </Button>
         <Button asChild variant="outline">
-          <Link href="/compare">Compare evidence</Link>
+          <Link href="/domains">Browse all {catalog.domains.length} domains</Link>
         </Button>
       </nav>
+      <form action="/landscape" role="search" aria-label="Find a product or company" className="mt-5 max-w-xl">
+        <label htmlFor="home-product" className="text-sm font-semibold">Find a product or company</label>
+        <div className="mt-1 flex gap-2">
+          <Input type="search" name="q" id="home-product" placeholder="e.g. WorkOS" className="min-h-11 min-w-0 bg-card" />
+          <Button type="submit" variant="outline" className="min-h-11">Search</Button>
+        </div>
+      </form>
       <p className="mt-4 max-w-3xl text-sm leading-6 text-muted-foreground">
         As of {formatDate(catalog.asOf)}. {catalog.domains.length} domains, {catalog.categories.length} categories,{" "}
         {catalog.claims.length} cited claims. Not a ranking, and Unknown stays Unknown.{" "}
@@ -57,17 +63,20 @@ export default function HomePage() {
 
       <section className="mt-12" aria-labelledby="domains-heading">
         <h2 id="domains-heading" className="text-3xl tracking-tight">
-          Eleven domains, one map
+          Questions to explore
         </h2>
-        <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
-          Follow an attack to see which domains act at each step, or open a domain directly.{" "}
-          <a href="/domain-map.svg" download="security-market-map.svg" className="text-primary underline underline-offset-4">
-            Download the map (SVG)
-          </a>
-        </p>
-        <div className="mt-4">
-          <DomainExplorer domains={catalog.domains} claimCounts={domainClaimCounts(catalog)} />
-        </div>
+        <ul className="mt-4 grid gap-3 md:grid-cols-3">
+          {[
+            { href: "/use-cases/customer-auth", title: "How do customers sign in to our product?", context: "Customer identity" },
+            { href: "/domains/secops#secops-buyer-guide", title: "Who investigates a security finding?", context: "Security operations" },
+            { href: "/use-cases/secrets-detection", title: "What happens after a live secret is exposed?", context: "Secrets detection and remediation" },
+          ].map(({ href, title, context }) => (
+            <li key={href}><Link href={href} className="block h-full rounded-xl border border-border bg-card p-4 hover:bg-muted">
+              <span className="text-sm text-muted-foreground">{context}</span>
+              <span className="mt-1 block font-heading text-xl">{title}</span>
+            </Link></li>
+          ))}
+        </ul>
       </section>
 
       <section className="mt-12" aria-labelledby="incidents-heading">
@@ -100,7 +109,7 @@ export default function HomePage() {
       </section>
 
       <section className="mt-12">
-        <h2 className="text-3xl tracking-tight">Identity, the evidenced slice</h2>
+        <h2 className="text-3xl tracking-tight">Featured research in identity and secrets</h2>
         <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
           These piles overlap. A vault complements governance on credential issuance and competes with another
           vault on secrets management.
@@ -151,7 +160,7 @@ export default function HomePage() {
               <span className="font-semibold">{queue.length} claims</span> are in the review queue, and{" "}
               <span className="font-semibold">{stale.length} sources</span> are past their recrawl
               window.{" "}
-              <Link href="/sources" className="text-primary underline-offset-4 hover:underline">
+              <Link href="/sources?view=review" className="text-primary underline-offset-4 hover:underline">
                 Open the source ledger
               </Link>
               .

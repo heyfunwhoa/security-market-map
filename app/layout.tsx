@@ -1,3 +1,5 @@
+import { isProductResearchSlug } from "@/lib/product-destination";
+import { productComparisonUrl } from "@/lib/landscape-shortlist";
 import type { Metadata } from "next";
 import { Fraunces, Source_Sans_3 } from "next/font/google";
 import { SiteFooter, SiteHeader } from "@/components/chrome";
@@ -18,7 +20,7 @@ const fraunces = Fraunces({
 });
 
 const DESCRIPTION =
-  "Identity and secrets security, mapped with cited evidence. Eleven security domains, the buyer behind each category, and the source and date for every claim.";
+  "Explore eleven security domains by buyer question, compare products and inspect the source and date behind each claim. Identity and secrets have the deepest coverage.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -31,15 +33,20 @@ export const metadata: Metadata = {
     type: "website",
     url: SITE_URL,
     siteName: "Security Market Map",
-    title: "Security Market Map: identity and secrets, mapped with evidence",
+    title: "Security Market Map | Buyer questions and product evidence",
     description: DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Security Market Map: identity and secrets, mapped with evidence",
+    title: "Security Market Map | Buyer questions and product evidence",
     description: DESCRIPTION,
   },
 };
+
+const profileComparisons = Object.fromEntries(
+  catalog.products.filter((product) => isProductResearchSlug(product.slug))
+    .map((product) => [`/products/${product.slug}`, productComparisonUrl(product)]),
+);
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
@@ -55,7 +62,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           >
             Skip to content
           </a>
-          <SiteHeader hits={[...searchIndex(), ...incidentSearchHits()]} asOf={catalog.asOf} />
+          <SiteHeader profileComparisons={profileComparisons} hits={[...searchIndex(), ...incidentSearchHits()]} asOf={catalog.asOf} />
           <div id="content" tabIndex={-1}>{children}</div>
           <SiteFooter asOf={catalog.asOf} />
         </TooltipProvider>

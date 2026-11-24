@@ -1,3 +1,4 @@
+import { productDestination } from "@/lib/product-destination";
 import { SecOpsBuyerGuide } from "@/components/secops-buyer-guide";
 import { PageJourney } from "@/components/page-journey";
 import { Breadcrumbs } from "@/components/breadcrumbs";
@@ -222,7 +223,7 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
             {products.map((product) => (
               <li key={product.id}>
                 <Link
-                  href={`/vendors/${vendorById(product.vendorId)?.slug ?? ""}`}
+                  href={productDestination(product, vendorById(product.vendorId)!.slug)}
                   className="block rounded-lg border border-border px-3 py-2 text-sm hover:bg-muted"
                 >
                   <span className="font-medium">{product.name}</span>
@@ -269,8 +270,7 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
         </h2>
         {domain.depth === "mapped" ? (
           <p className="mt-3 max-w-3xl rounded-xl border border-border bg-card p-4 text-sm leading-6">
-            Mapped, evidence coming. {claims.length} {claims.length === 1 ? "claim" : "claims"} so far, thinner
-            than identity. A vendor without a claim is a research candidate, and its cells stay Unknown.
+            This domain has {claims.length} linked {claims.length === 1 ? "claim" : "claims"}. A product without documented capability evidence stays Unknown.
           </p>
         ) : (
           <div className="mt-3 max-w-3xl rounded-xl border border-border bg-card p-4 text-sm leading-6">

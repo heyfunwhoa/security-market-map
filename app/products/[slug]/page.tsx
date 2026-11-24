@@ -1,3 +1,4 @@
+import { productComparisonUrl } from "@/lib/landscape-shortlist";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/breadcrumbs";
@@ -82,6 +83,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       <PageIntro kicker="Product research" title={product.name} lede={product.positioning} />
       <div className="mt-4 flex flex-wrap items-center gap-3 text-sm">
         <StatusPill status={product.availability} />
+        <Link href={productComparisonUrl(product)} className="inline-flex min-h-11 items-center font-medium text-primary underline underline-offset-4">Compare {product.name}</Link>
         {vendor ? <Link className="inline-flex min-h-11 items-center text-primary underline underline-offset-4" href={`/vendors/${vendor.slug}`}>About {vendor.name}</Link> : null}
         <a className="inline-flex min-h-11 max-w-full items-center text-primary underline underline-offset-4 [overflow-wrap:anywhere]" href={product.officialUrl}>Official product documentation</a>
       </div>

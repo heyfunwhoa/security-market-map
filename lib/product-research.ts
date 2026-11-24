@@ -1,24 +1,14 @@
 import { catalog } from "./catalog";
-import { ciamProfiles, isCiamProduct, type CiamProductSlug } from "./data/ciam-profiles";
+import { isCiamProduct } from "./data/ciam-profiles";
 import { evidenceCell } from "./compare";
 import { developerEndpointCapabilities } from "./data/developer-endpoint-comparison";
 
-export const PRODUCT_RESEARCH_SLUGS = [
-  "gitguardian-developer-endpoint",
-  "aikido-device-protection",
-  "kingfisher",
-  ...(Object.keys(ciamProfiles) as CiamProductSlug[]),
-] as const;
-
-export type ProductResearchSlug = (typeof PRODUCT_RESEARCH_SLUGS)[number];
+export { PRODUCT_RESEARCH_SLUGS, isProductResearchSlug, type ProductResearchSlug } from "./product-destination";
+import type { ProductResearchSlug } from "./product-destination";
 
 /** Scroll clearance for the in-page nav once it sticks on large screens. */
 export const PRODUCT_ANCHOR_CLASS =
   "scroll-mt-48 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring";
-
-export function isProductResearchSlug(slug: string): slug is ProductResearchSlug {
-  return (PRODUCT_RESEARCH_SLUGS as readonly string[]).includes(slug);
-}
 
 export function productResearchCategory(slug: ProductResearchSlug): { href: string; label: string } {
   if (isCiamProduct(slug)) return { href: "/categories/ciam", label: "Customer identity (CIAM)" };

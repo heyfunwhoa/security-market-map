@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { DomainMap } from "@/components/domain-map";
+import { DomainExplorer } from "@/components/domain-explorer";
 import { domainQuestions } from "@/lib/data/domain-questions";
 import { PageIntro } from "@/components/chrome";
 import { catalog } from "@/lib/catalog";
@@ -42,8 +42,9 @@ export default function DomainsPage() {
         title="The security market, mapped by what each solution protects"
         lede="Eleven domains. Each one names the buyer, the budget, and the categories inside it. Related categories can share a budget."
       />
-      <div className="mt-6">
-        <DomainMap domains={catalog.domains} claimCounts={domainClaimCounts(catalog)} />
+      <p className="mt-4 text-sm"><a href="/domain-map.svg" download="security-market-map.svg" className="inline-flex min-h-11 items-center text-primary underline underline-offset-4">Download the domain map (SVG)</a></p>
+      <div className="mt-4">
+        <DomainExplorer domains={catalog.domains} claimCounts={domainClaimCounts(catalog)} />
       </div>
 
       <section className="mt-12" id="questions">

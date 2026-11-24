@@ -14,15 +14,16 @@ describe("homepage", () => {
     expect(html.match(/<h1/g)).toHaveLength(1);
     const nav = html.match(/<nav aria-label="Start exploring"[^]*?<\/nav>/)?.[0] ?? "";
     expect(nav.match(/<a /g)).toHaveLength(2);
-    expect(nav).toContain(">Explore domains<");
-    expect(nav).toContain(">Compare evidence<");
+    expect(nav).toContain(">Start with a buyer question<");
+    expect(nav).toContain('href="/domains"');
+    expect(html).toContain('action="/landscape"');
   });
 
-  it("renders one taxonomy: every catalog domain once, and no market-area or buyer-view grid", () => {
+  it("puts buyer questions on the homepage and the complete taxonomy in the domain directory", () => {
     const html = home();
-    for (const domain of catalog.domains) {
-      expect(html.split(`href="/domains/${domain.slug}"`).length - 1).toBe(1);
-    }
+    expect(html).toContain('href="/domains/secops#secops-buyer-guide"');
+    expect(html).toContain('href="/use-cases/customer-auth"');
+    expect(html).not.toContain('href="/domains/corporate"');
     expect(html).not.toContain("Market areas");
     expect(html).not.toContain("Nine buyer views");
     expect(html).not.toContain("/markets/");

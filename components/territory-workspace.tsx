@@ -90,7 +90,7 @@ function blankAccount(): Account {
   };
 }
 
-export function TerritoryWorkspace({ useCases }: { useCases: UseCase[] }) {
+export function TerritoryWorkspace({ useCases, startingUseId }: { useCases: UseCase[]; startingUseId?: string }) {
   const store = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
   const accounts = store.accounts;
   const weights = store.weights;
@@ -114,6 +114,7 @@ export function TerritoryWorkspace({ useCases }: { useCases: UseCase[] }) {
 
   function addAccount() {
     const next = blankAccount();
+    if (startingUseId) next.useCaseIds = [startingUseId];
     writeStore({ weights, accounts: [next, ...accounts] });
     setActiveId(next.id);
   }
