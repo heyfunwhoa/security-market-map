@@ -8,6 +8,14 @@ const groups = [
   { question: "How does the team investigate and respond?", ids: ["sdpp", "siem", "soar", "aisoc", "mdr"] },
 ];
 
+const evaluation = [
+  ["Coverage", "Which developer laptops, servers and virtual desktops contribute evidence?", "Show enrolled devices, collection exclusions and the last time each device checked in."],
+  ["Investigation history", "Can we reconstruct the installer’s activity after the laptop has been reimaged?", "Show the timeline, how long events are retained and which activity is missing."],
+  ["File retention", "Can we reopen the original file and find where else it appeared after its verdict changes?", "Show the retained sample, its sightings and how far back those sightings go."],
+  ["Response ownership", "Who can isolate a laptop after hours, and who approves it?", "Walk through the handoff from alert to authorized action and show the audit record."],
+  ["Budget", "Which parts of this workflow already come with the endpoint contract?", "Identify the licenses, retention fees and managed response coverage needed for the same scenario."],
+];
+
 const linkStyle = "text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-ring";
 
 export function EndpointGlossary() {
@@ -38,6 +46,20 @@ export function EndpointGlossary() {
         Software Analyst Cyber Research (SACR) uses ECP, AI-EDR and ECPP in its{" "}
         <a className={linkStyle} href="https://softwareanalyst.io/reports/the-ciso-guide-to-endpoint-control-and-prevention-ecp-the-next-architecture-for-endpoint-security">endpoint framework</a>.
       </p>
+      <details className="mt-6 rounded-lg border border-border p-4">
+        <summary className="cursor-pointer font-semibold focus-visible:outline-2 focus-visible:outline-ring">
+          Buyer questions for an endpoint evaluation
+        </summary>
+        <ul className="mt-3 space-y-4 text-sm leading-6">
+          {evaluation.map(([topic, question, evidence]) => (
+            <li key={topic}>
+              <h3 className="font-semibold">{topic}</h3>
+              <p>{question}</p>
+              <p className="text-muted-foreground">{evidence}</p>
+            </li>
+          ))}
+        </ul>
+      </details>
       <h3 className="mt-4 font-semibold">If a file verdict changes 60 days later</h3>
       <p className="mt-1 max-w-3xl text-sm leading-6">
         Can the investigator examine the original installer and identify the devices that saw it?
