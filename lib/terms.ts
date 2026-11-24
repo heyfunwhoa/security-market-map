@@ -9,6 +9,8 @@ type TermSource = { glossaryId: string } | { categoryId: string } | { publisher:
 
 const SOURCES: Record<string, TermSource> = {
   // Glossary entries
+  EPP: { glossaryId: "epp" },
+  EDR: { glossaryId: "edr" },
   NHI: { glossaryId: "nhi" },
   ITDR: { glossaryId: "itdr" },
   CIEM: { glossaryId: "ciem" },
@@ -17,6 +19,11 @@ const SOURCES: Record<string, TermSource> = {
   JIT: { glossaryId: "jit" },
   JML: { glossaryId: "jml" },
   // Category records
+  ECP: { categoryId: "endpoint-control" },
+  NDR: { categoryId: "ndr" },
+  CDR: { categoryId: "cloud-detection" },
+  MDR: { categoryId: "mdr" },
+  AISOC: { categoryId: "ai-soc-investigation" },
   IGA: { categoryId: "iga" },
   PAM: { categoryId: "pam" },
   SAST: { categoryId: "sast" },

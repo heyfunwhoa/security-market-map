@@ -8,13 +8,13 @@ vendors: 13
 
 # Endpoint security
 
-Prevention and detection on laptops, servers, and other devices. EDR is the usual product. It is not an identity provider, even when it consumes identity signals.
+An endpoint protection platform (EPP) enforces policy on laptops and servers and can block or quarantine a file. Endpoint detection and response (EDR) records device activity so analysts can investigate an alert, scope affected hosts and take action. A single endpoint suite can provide both.
 
-**Buyer question:** What runs on the device, and who responds when it is compromised?
+**Buyer question:** Can we show what the endpoint blocked, what actually ran, and who can contain an affected device?
 
-**Usual owner:** IT security or the SOC.
+**Usual owner:** IT or endpoint security manages coverage and policy. The security operations center investigates alerts and agrees containment authority with IT.
 
-**Budget source:** Endpoint or IT security.
+**Budget source:** Endpoint or IT security typically owns the license. Confirm who funds monitoring and after-hours response.
 
 ## Owning seats
 

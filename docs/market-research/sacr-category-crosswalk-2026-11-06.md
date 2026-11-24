@@ -36,6 +36,27 @@ These are our practical subgroups using existing category IDs, **not a verbatim 
 
 The [SACR glossary](https://softwareanalyst.io/glossary) provides useful reference terms including EDR, ECP, ITDR, ISPM, NHI, CDR, CNAPP, ASPM and detection engineering. Its emerging terms should remain attributed and should not automatically create new categories or vendor capability cells.
 
+### Endpoint and SOC acronyms in an investigation
+
+Reviewed November 24, 2026. Start with one suspicious installer on a laptop. Each row identifies a decision, a source of evidence, or the team responsible for acting. ECP is SACR’s proposed category. The surrounding terms also circulate across the industry. SACR groups XDR with next-generation SIEM in its glossary; the map keeps their buying questions distinct.
+
+| Term | Meaning | Question in this case |
+| --- | --- | --- |
+| EPP | Endpoint protection platform | Did a prevention policy block the installer? What verdict was recorded on the laptop? |
+| EDR | Endpoint detection and response | If it ran, which processes and connections followed? Can an authorized analyst isolate the host? |
+| ECP | Endpoint control and prevention | SACR extends the inquiry into browsers, developer tooling and AI agents. Can policy govern a sensitive action inside the tool? |
+| NDR, ITDR, CDR | Network detection and response, identity threat detection and response, cloud detection and response | Did the device contact an unusual destination, was an account misused, or did a cloud workload perform a suspicious action? Verify each source independently. |
+| XDR | Extended detection and response | Can analysts connect endpoint, email, identity or cloud signals into one incident? Which integrations and licenses are required? |
+| SDPP | Security data pipeline platform | Which events were normalized, filtered or routed before they reached the analyst? |
+| SIEM | Security information and event management | Can the team search historical events across sources and correlate activity around the same host or user? |
+| SOAR | Security orchestration, automation and response | Which playbook opens the case or requests containment approval, and where is execution recorded? |
+| AISOC | AI-driven security operations center | Which investigation steps can an assistant carry out, what evidence supports its findings, and who authorizes a response? |
+| MDR | Managed detection and response | Who monitors overnight, who calls the customer, and who has contractual authority to contain the device? |
+
+**Historical evidence.** A log entry can establish that a tool observed a file. Reanalyzing the original bytes later requires a retained copy. Ask for two demonstrations from the same case: reconstruct the endpoint activity, then show what can still be recovered and examined after the agreed retention window. Stairwell describes historical analysis of files collected from a customer's environment. Its documented collection scope matters when interpreting a search with zero results. [Stairwell product overview](https://docs.stairwell.com/docs/what-is-stairwell)
+
+**Source scope.** The [SACR ECP report](https://softwareanalyst.io/reports/the-ciso-guide-to-endpoint-control-and-prevention-ecp-the-next-architecture-for-endpoint-security) supplies the emerging category label. The [SACR glossary](https://softwareanalyst.io/glossary/) supplies the EDR, CDR, ITDR, XDR, SDPP, SIEM, SOAR, AISOC and MDR vocabulary. [Cisco’s NDR overview](https://www.cisco.com/site/us/en/learn/topics/security/what-is-network-detection-response.html) describes the network evidence source. [CrowdStrike’s EPP and EDR explainer](https://www.crowdstrike.com/en-us/cybersecurity-101/endpoint-security/epp-vs-edr/) and [Microsoft’s Defender service description](https://learn.microsoft.com/en-us/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/microsoft-defender-service-description) illustrate the overlap in actual suite packaging. The questions are editorial prompts. Vendor material describes the publisher’s offering. Source pages were inspected November 24, 2026. Recheck on a terminology or packaging change.
+
 ## Identity expansion without category inflation
 
 | Concept | Question to teach | Evidence rule for any vendor profile |

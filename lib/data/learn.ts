@@ -66,6 +66,22 @@ export const glossary: GlossaryTerm[] = [
     relatedTermIds: ["wim", "federation"],
   },
   {
+    id: "epp",
+    term: "Endpoint protection platform (EPP)",
+    definition:
+      "Enforces protection policies on devices. It can check an installer as it arrives, block it from running or quarantine it. The prevention verdict records what the control decided. Modern suites can also include EDR.",
+    categoryId: "endpoint-security",
+    relatedTermIds: ["edr"],
+  },
+  {
+    id: "edr",
+    term: "Endpoint detection and response (EDR)",
+    definition:
+      "Records device activity such as which process started another, which files changed and where a connection went. An analyst uses that history to investigate an alert and can isolate a host if authorized. Event retention and access to original files are separate evaluation questions.",
+    categoryId: "endpoint-security",
+    relatedTermIds: ["epp", "itdr"],
+  },
+  {
     id: "ispm",
     term: "Identity security posture management (ISPM)",
     definition:
