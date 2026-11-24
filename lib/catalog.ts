@@ -78,6 +78,7 @@ import { accessScenarioSources, issuerReferenceSources, workforceGuideProducts, 
 import { secretsManagementProducts, secretsManagementResearch, secretsManagementVendors } from "./data/secrets-management";
 import { monitoringModeEvidence, registerProductEvidence, publicMonitoringVendors, publicMonitoringClaims, publicMonitoringProducts, publicMonitoringSources } from "./data/public-monitoring";
 import { developerEndpointCapabilities, developerEndpointUseCases } from "./data/developer-endpoint-comparison";
+import { ciamEvents, ciamPricing, ciamStories, ciamProfileSources, ciamWorkflowEvidence } from "./data/ciam-profiles";
 import { ciamSsoRelationships, ciamSsoResearch } from "./data/ciam-sso";
 import { events, products, vendors } from "./data/market";
 import { personas } from "./data/personas";
@@ -158,7 +159,7 @@ function parseCatalog(): Catalog {
   const ciam = registerProductEvidence(ciamSsoResearch);
   const workforce = registerProductEvidence(workforceGuideResearch);
   const management = registerProductEvidence(secretsManagementResearch);
-  const parsedClaims = z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims, ...developerEndpointClaims, ...categoryFillClaims, ...ispmWimClaims, ...identityAnalystClaims, ...publicMonitoringClaims, ...monitoringModeEvidence.claims, ...management.claims, ...workforce.claims, ...ciam.claims, ...appsecAnalystClaims, ...secopsDataAnalystClaims, ...cloudCorpAnalystClaims, ...standardsClaims]);
+  const parsedClaims = z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims, ...developerEndpointClaims, ...categoryFillClaims, ...ispmWimClaims, ...identityAnalystClaims, ...publicMonitoringClaims, ...monitoringModeEvidence.claims, ...management.claims, ...workforce.claims, ...ciam.claims, ...ciamWorkflowEvidence.claims, ...appsecAnalystClaims, ...secopsDataAnalystClaims, ...cloudCorpAnalystClaims, ...standardsClaims]);
   return {
     // Generated from the data so the header matches the newest claim card. AS_OF is only a fallback.
     asOf: latestClaimDate(parsedClaims) ?? AS_OF,
@@ -184,12 +185,12 @@ function parseCatalog(): Catalog {
     buyingTriggers: z.array(buyingTriggerSchema).parse(buyingTriggers),
     qualificationQuestions: z.array(qualificationQuestionSchema).parse(qualificationQuestions),
     vendorSeatTargeting: z.array(vendorSeatTargetingSchema).parse(vendorSeatTargeting),
-    sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources, ...developerEndpointSources, ...personaSources, ...categoryFillSources, ...ispmWimSources, ...identityAnalystSources, ...industryIdentitySources, ...publicMonitoringSources, ...monitoringModeEvidence.sources, ...management.sources, ...workforce.sources, ...ciam.sources, ...issuerReferenceSources, ...accessScenarioSources, ...appsecAnalystSources, ...secopsDataAnalystSources, ...cloudCorpAnalystSources, ...standardsSources, ...emailSecuritySources]),
+    sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources, ...developerEndpointSources, ...personaSources, ...categoryFillSources, ...ispmWimSources, ...identityAnalystSources, ...industryIdentitySources, ...publicMonitoringSources, ...monitoringModeEvidence.sources, ...management.sources, ...workforce.sources, ...ciam.sources, ...ciamWorkflowEvidence.sources, ...ciamProfileSources, ...issuerReferenceSources, ...accessScenarioSources, ...appsecAnalystSources, ...secopsDataAnalystSources, ...cloudCorpAnalystSources, ...standardsSources, ...emailSecuritySources]),
     claims: parsedClaims,
     relationships: z.array(relationshipSchema).parse([...relationships, ...ecosystemRelationships, ...ciamSsoRelationships]),
-    stories: z.array(customerStorySchema).parse(customerStories),
-    pricing: z.array(pricingSignalSchema).parse(pricingSignals),
-    events: z.array(eventSchema).parse(events),
+    stories: z.array(customerStorySchema).parse([...customerStories, ...ciamStories]),
+    pricing: z.array(pricingSignalSchema).parse([...pricingSignals, ...ciamPricing]),
+    events: z.array(eventSchema).parse([...events, ...ciamEvents]),
     glossary: z.array(glossaryTermSchema).parse(glossary),
     scenarios: z.array(scenarioSchema).parse(scenarios),
     distinctions: z.array(distinctionSchema).parse(distinctions),

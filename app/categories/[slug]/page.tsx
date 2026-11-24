@@ -19,6 +19,7 @@ import { PageIntro } from "@/components/chrome";
 import { catalog, categoryBySlug, claimsForSubject, identityRequirementsForCategory, sourceById, vendorById } from "@/lib/catalog";
 import { painsForCategory, seatById, seatsForCategory } from "@/lib/persona-graph";
 import { targetingForCategory } from "@/lib/vendor-targeting";
+import { isProductResearchSlug } from "@/lib/product-research";
 import { formatDate } from "@/lib/format";
 import { incidentFilterUrl, incidentsForCategory, NO_INCIDENT_FILTERS } from "@/lib/incident-feed";
 
@@ -241,7 +242,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
             {products.map((product) => (
               <li key={product.id}>
                 <Link
-                  href={["gitguardian-developer-endpoint", "aikido-device-protection", "kingfisher"].includes(product.slug) ? `/products/${product.slug}` : `/vendors/${vendorById(product.vendorId)?.slug ?? ""}`}
+                  href={isProductResearchSlug(product.slug) ? `/products/${product.slug}` : `/vendors/${vendorById(product.vendorId)?.slug ?? ""}`}
                   className="block min-h-11 break-words rounded-lg border border-border px-3 py-2 text-sm hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
                 >
                   {product.name}
