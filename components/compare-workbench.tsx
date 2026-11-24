@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { comparisonPresetCategory, productsInCategory } from "@/lib/comparison-selection";
+import { ENTERPRISE_SSO_PRESET, comparisonPresetCategory, productsInCategory } from "@/lib/comparison-selection";
 import { useMemo, useRef, useState, useTransition } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { StatusPill } from "@/components/chrome";
@@ -26,6 +26,7 @@ const PRESETS: {
   useCaseId: string;
   productIds: string[];
 }[] = [
+  ENTERPRISE_SSO_PRESET,
   {
     id: "iga",
     label: "C1, Opal, SailPoint, Saviynt",
@@ -86,6 +87,7 @@ const PRESETS: {
 ];
 
 export function CompareWorkbench({
+  children,
   categories,
   categoryId,
   products,
@@ -97,6 +99,7 @@ export function CompareWorkbench({
   initialUseCase,
   initialProducts,
 }: {
+  children?: React.ReactNode;
   categories: Category[];
   categoryId: string;
   products: Product[];
@@ -350,6 +353,12 @@ export function CompareWorkbench({
         ))}
       </ul>
 
+      {children && <nav aria-label="Comparison sections" className="mt-2 flex flex-wrap gap-x-4 text-sm">
+        {useCaseId === ENTERPRISE_SSO_PRESET.useCaseId && selected.some((id) => ENTERPRISE_SSO_PRESET.productIds.includes(id)) &&
+          <a className="inline-flex min-h-11 items-center text-primary underline" href="#sso-decision">SSO evaluation questions</a>}
+        <a className="inline-flex min-h-11 items-center text-primary underline" href="#brief-findings">Prepare a brief</a>
+      </nav>}
+
       {!useCase ? (
         <p className="mt-6 rounded-lg border border-dashed p-4">
           {availableUses.length ? "Choose a buyer use case to see the capabilities that matter for this comparison." : "No comparison use case is mapped to this category yet. Choose another category to continue."}
@@ -421,6 +430,8 @@ export function CompareWorkbench({
           </table>
         </div>
       )}
+
+      {children}
 
       {useCase ? (
         <section className="mt-8">

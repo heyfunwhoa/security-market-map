@@ -1,3 +1,5 @@
+import { BuyerComparisonGuide } from "@/components/buyer-comparison-guide";
+import { buyerComparison } from "@/lib/buyer-comparison";
 import { CompareWorkbench } from "@/components/compare-workbench";
 import { PageIntro } from "@/components/chrome";
 import { comparisonSelection } from "@/lib/comparison-selection";
@@ -12,6 +14,8 @@ export default async function ComparePage({
 }) {
   const params = await searchParams;
   const selection = comparisonSelection(params, catalog);
+
+  const comparison = buyerComparison(catalog, selection.useCaseId, selection.productIds);
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
@@ -32,7 +36,9 @@ export default async function ComparePage({
           asOf={catalog.asOf}
           initialUseCase={selection.useCaseId}
           initialProducts={selection.productIds}
-        />
+        >
+          {comparison ? <BuyerComparisonGuide comparison={comparison} /> : null}
+        </CompareWorkbench>
       </div>
     </main>
   );

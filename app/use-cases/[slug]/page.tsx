@@ -1,3 +1,5 @@
+import { ssoExample } from "@/lib/buyer-comparison";
+import { secopsJourneys } from "@/lib/data/secops-use-cases";
 import { seatsForUseCase } from "@/lib/persona-graph";
 import { productDestination } from "@/lib/product-destination";
 import Link from "next/link";
@@ -23,12 +25,18 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
   if (!useCase) notFound();
 
   const candidates = catalog.products.filter((product) => product.useCaseIds.includes(useCase.id));
+  const journey = secopsJourneys.find((item) => item.id === useCase.id);
+  const example = useCase.id === ssoExample.id ? ssoExample : journey;
   const { seats } = seatsForUseCase(useCase.id);
   const edges = catalog.relationships.filter((relationship) => relationship.useCaseId === useCase.id);
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
       <PageIntro kicker="Use case" title={useCase.name} lede={useCase.buyerQuestion} />
+      {example && <Link href={shortlistUrl(example.productIds, useCase.id)} className="mt-3 inline-flex min-h-11 items-center text-primary underline">
+        {useCase.id === ssoExample.id ? ssoExample.label : "Compare products for this workflow"}
+      </Link>}
+      {journey && <p className="mt-2 max-w-3xl text-sm leading-6"><strong>Try it in a pilot. </strong>{journey.pilot}</p>}
       <div className="mt-8 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
         <div className="space-y-6 text-sm leading-6">
           <section>

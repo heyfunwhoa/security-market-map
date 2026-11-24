@@ -1,7 +1,8 @@
 "use client";
 
 import { useMemo, useRef, useState, useSyncExternalStore } from "react";
-import { accountBrief, DEFAULT_WEIGHTS, scoreAccount } from "@/lib/territory";
+import type { ComparisonDraft } from "@/lib/buyer-comparison";
+import { accountBrief, addComparisonToAccount, DEFAULT_WEIGHTS, scoreAccount } from "@/lib/territory";
 import type { Account, FitWeights, UseCase } from "@/lib/schema";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -90,7 +91,7 @@ function blankAccount(): Account {
   };
 }
 
-export function TerritoryWorkspace({ useCases, startingUseId }: { useCases: UseCase[]; startingUseId?: string }) {
+export function TerritoryWorkspace({ useCases, startingUseId, comparisonDraft }: { useCases: UseCase[]; startingUseId?: string; comparisonDraft?: ComparisonDraft }) {
   const store = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
   const accounts = store.accounts;
   const weights = store.weights;
@@ -112,8 +113,8 @@ export function TerritoryWorkspace({ useCases, startingUseId }: { useCases: UseC
     });
   }
 
-  function addAccount() {
-    const next = blankAccount();
+  function addAccount(draft?: ComparisonDraft) {
+    const next = draft ? addComparisonToAccount(blankAccount(), draft) : blankAccount();
     if (startingUseId) next.useCaseIds = [startingUseId];
     writeStore({ weights, accounts: [next, ...accounts] });
     setActiveId(next.id);
@@ -142,8 +143,20 @@ export function TerritoryWorkspace({ useCases, startingUseId }: { useCases: UseC
           </div>
         ) : null}
       </div>
+      {comparisonDraft && <section aria-label="Comparison for your brief" className="min-w-0 rounded-xl border border-border bg-card p-4 lg:col-span-2">
+        <h2 className="text-xl">{comparisonDraft.title}</h2>
+        <details className="my-2 text-sm"><summary className="cursor-pointer py-2">Preview comparison notes and sources</summary>
+          <p className="whitespace-pre-line break-words leading-6">{comparisonDraft.text}</p>
+        </details>
+        <div className="flex flex-wrap gap-2">
+          <Button type="button" onClick={() => addAccount(comparisonDraft)}>Create brief from comparison</Button>
+          {account && <Button variant="outline" type="button" disabled={account.notes.includes(comparisonDraft.text)} onClick={() => update(addComparisonToAccount(account, comparisonDraft))}>
+            {account.notes.includes(comparisonDraft.text) ? "Added to this brief" : `Add to ${account.name || "untitled account"}`}
+          </Button>}
+        </div>
+      </section>}
       <aside>
-        <Button type="button" onClick={addAccount}>
+        <Button type="button" onClick={() => addAccount()}>
           New account
         </Button>
         {accounts.length === 0 ? (

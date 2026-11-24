@@ -1,5 +1,10 @@
 import type { Category, Product, UseCase } from "./schema";
 
+export const ENTERPRISE_SSO_PRESET = {
+  id: "enterprise-sso", label: "Enterprise SSO for an existing login",
+  useCaseId: "uc-ciam", productIds: ["descope", "workos"],
+};
+
 /** Category membership never establishes capability support. */
 export const SECRETS_MANAGEMENT_COMPARISON_URL =
   "/compare?category=secrets-management&use=uc-vault&products=infisical,vault,akeyless";
@@ -47,6 +52,7 @@ export function comparisonSelection(
 /** Preset navigation must keep the comparison category aligned with its use case. */
 export function comparisonPresetCategory(presetId: string): string {
   if (presetId === "secrets-three" || presetId === "vault") return "secrets-management";
+  if (presetId === ENTERPRISE_SSO_PRESET.id) return "ciam";
   if (presetId === "detect") return "secrets-detection";
   if (presetId === "developer-endpoint") return "endpoint-control";
   return "";
