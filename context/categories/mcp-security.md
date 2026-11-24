@@ -3,7 +3,7 @@ id: "mcp-security"
 type: "category"
 name: "MCP and tool security"
 layer: "core"
-vendors: 4
+vendors: 7
 ---
 
 # MCP and tool security
@@ -33,7 +33,9 @@ Discovery and control of Model Context Protocol servers and the tools an agent c
 
 ## Vendors (adjacent)
 
-_None recorded._
+- Zenity
+- Pillar Security
+- Straiker
 
 ## What buyers do instead
 
