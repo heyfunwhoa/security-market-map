@@ -86,6 +86,20 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
           These products are mapped to this buyer question. Compare their documented capabilities and research gaps.
         </p>
         <Link href={`/landscape?useCase=${encodeURIComponent(useCase.id)}`} className="inline-flex min-h-11 items-center font-medium text-primary underline underline-offset-4">Build a shortlist for this use case</Link>
+        {useCase.comparisonShortlists && (
+          <nav aria-labelledby="comparison-shortlists" className="my-4">
+            <h3 id="comparison-shortlists" className="text-lg font-semibold">{useCase.comparisonShortlists.title}</h3>
+            <ul className="mt-1">
+              {useCase.comparisonShortlists.options.map(({ label, productIds }) => (
+                <li key={label}>
+                  <Link href={shortlistUrl(productIds, useCase.id)} className="inline-flex min-h-11 items-center text-primary underline underline-offset-4">
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
         <ul className="mt-3 grid gap-2 sm:grid-cols-2">
           {candidates.map((product) => (
             <li key={product.id}>

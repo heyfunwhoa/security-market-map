@@ -294,6 +294,16 @@ export function catalogProblems(catalog: Catalog): string[] {
     for (const id of useCase.capabilityIds) {
       if (!capabilityIds.has(id)) problems.push(`Use case ${useCase.id} capability ${id} missing`);
     }
+    for (const shortlist of useCase.comparisonShortlists?.options ?? []) {
+      if (new Set(shortlist.productIds).size !== shortlist.productIds.length) {
+        problems.push(`Use case ${useCase.id} shortlist repeats a product`);
+      }
+      for (const id of shortlist.productIds) {
+        if (!catalog.products.some((p) => p.id === id && p.useCaseIds.includes(useCase.id))) {
+          problems.push(`Use case ${useCase.id} shortlist product ${id} is not a candidate`);
+        }
+      }
+    }
   }
   for (const source of catalog.sources) {
     if (source.canonicalUrl !== source.url) {

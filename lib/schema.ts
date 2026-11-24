@@ -194,6 +194,13 @@ export const useCaseSchema = z.object({
   capabilityIds: z.array(z.string()).min(1),
   discoveryQuestions: z.array(z.string()).min(2),
   buyerQuestion: z.string().min(1),
+  comparisonShortlists: z.object({
+    title: z.string().min(1),
+    options: z.array(z.object({
+      label: z.string().min(1),
+      productIds: z.array(z.string().min(1)).min(2).max(4),
+    })).min(1),
+  }).optional(),
 });
 
 export const personaSchema = z.object({

@@ -2,6 +2,7 @@ import type { Capability, UseCase } from "../schema";
 
 // The compare engine intentionally returns Unknown when no matching sourced claim exists.
 export const workstationEvidenceCapabilities: Capability[] = [
+  { id: "cap-dev-package-lookback", slug: "dev-package-lookback", name: "Find past downloads of a newly flagged package", description: "Use historical package activity to identify earlier exposure to a dependency named in a new advisory.", categoryId: "software-supply-chain" },
   { id: "cap-workstation-packages", slug: "workstation-packages", name: "Inventory detected software packages on developer devices", description: "List observed packages and versions with device prevalence and observation time.", categoryId: "endpoint-control" },
   { id: "cap-file-retrohunt", slug: "file-retrohunt", name: "Hunt historical customer samples", description: "Apply new indicators or rules to a customer collection of previously captured files.", categoryId: "malware-analysis" },
   { id: "cap-file-retrieval", slug: "file-retrieval", name: "Retrieve a previously captured file", description: "Recover file content from a retained sample. Collection policy and size limits determine what is available.", categoryId: "malware-analysis" },
@@ -22,9 +23,16 @@ export const developerEndpointUseCases: UseCase[] = [
     stakeholders: ["AppSec", "Endpoint and IT security", "Platform engineering", "Secrets/NHI", "SOC"],
     triggers: ["Local credentials in shell history or .env files", "Malicious package incident", "AI coding agent deployment", "EDR renewal does not cover developer workflows"],
     budgetOwner: "AppSec, endpoint/IT security or platform security depending on the gap; confirm primary purchaser.",
-    successMetrics: ["Eligible device enrollment and scan freshness", "Safe simulated install block rate and false blocks", "Supported agent/hook coverage", "Alert-to-credential revocation time"],
+    successMetrics: ["Eligible device enrollment and scan freshness", "Safe simulated install block rate and false blocks", "Supported agent/hook coverage", "Alert-to-credential revocation time", "Time from a package advisory to a list of devices with supporting evidence"],
     categoryIds: ["endpoint-control", "secrets-detection", "software-supply-chain", "mcp-security", "malware-analysis", "endpoint-security"],
-    capabilityIds: [...developerEndpointCapabilities, ...workstationEvidenceCapabilities].map((c) => c.id).concat("cap-secret-verification"),
+    capabilityIds: [...workstationEvidenceCapabilities, ...developerEndpointCapabilities].map((c) => c.id).concat("cap-secret-verification"),
+    comparisonShortlists: {
+      title: "After a package is removed",
+      options: [
+        { label: "Which devices encountered the package?", productIds: ["crowdstrike-platform", "aikido-device-protection", "microsoft-defender-for-endpoint", "stairwell-platform"] },
+        { label: "Can we recover the file and hunt for related samples?", productIds: ["stairwell-platform", "limacharlie-binlib", "reversinglabs-spectra-analyze", "carbon-black-cloud-enterprise-edr"] },
+      ],
+    },
     discoveryQuestions: [
       "Which developers and environments are in scope: macOS, Windows, Linux, WSL2 or containers?",
       "Which control blocks before execution, which only detects, and what is its fail-open behavior?",
