@@ -2,7 +2,7 @@ import type { CatalogEvent, CustomerStory, PricingSignal, Source } from "../sche
 import { registerProductEvidence, type ProductEvidence } from "./public-monitoring";
 
 type Citation = { title: string; url: string; publishedAt?: string };
-type MarketProfile = {
+export type MarketProfile = {
   vendorId: string;
   publisher: string;
   buyer: string;

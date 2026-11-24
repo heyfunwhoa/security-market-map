@@ -178,4 +178,26 @@ describe("product research pages", () => {
       expect(html).toContain("Publication date Unknown");
     }
   });
+  it("opens the four SecOps profiles from their vendor with buyer, pricing, customer and pilot questions", async () => {
+    const cases = [
+      ["stairwell-platform", "stairwell"], ["google-secops", "google"],
+      ["cortex-xsoar", "palo-alto-networks"], ["tines-platform", "tines"],
+    ] as const;
+    for (const [slug, vendor] of cases) {
+      const html = await pageHtml(slug);
+      const vendorHtml = renderToStaticMarkup(await VendorPage({ params: Promise.resolve({ slug: vendor }) }));
+      expect(vendorHtml).toContain(`href="/products/${slug}"`);
+      expect(html).toContain('href="/use-cases/alert-file-investigation"');
+      expect(html).toContain(`href="/vendors/${vendor}"`);
+      expect(html).toContain("Who buys and operates it");
+      expect(html).toContain("What drives the bill");
+      expect(html).toContain("Questions to validate in a pilot");
+      expect(html).not.toContain("Compare GitGuardian and Aikido");
+      expect(html).not.toContain("Unknown control boundaries");
+      expect(catalog.pricing.some((row) => row.productId === slug)).toBe(true);
+      expect(catalog.stories.some((row) => row.id === `story-secops-${slug}`)).toBe(true);
+      for (const id of anchorIds(html)) expect(html).toContain(`id="${id}"`);
+    }
+    expect(catalogProblems(catalog)).toEqual([]);
+  });
 });

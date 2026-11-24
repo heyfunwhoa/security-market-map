@@ -1,5 +1,6 @@
 import { catalog } from "./catalog";
 import { ciamProfiles, isCiamProduct, type CiamProductSlug } from "./data/ciam-profiles";
+import { isSecopsProduct, secopsProfiles, type SecopsProductSlug } from "./data/secops-profiles";
 import { evidenceCell } from "./compare";
 import { developerEndpointCapabilities } from "./data/developer-endpoint-comparison";
 
@@ -8,6 +9,7 @@ export const PRODUCT_RESEARCH_SLUGS = [
   "aikido-device-protection",
   "kingfisher",
   ...(Object.keys(ciamProfiles) as CiamProductSlug[]),
+  ...(Object.keys(secopsProfiles) as SecopsProductSlug[]),
 ] as const;
 
 export type ProductResearchSlug = (typeof PRODUCT_RESEARCH_SLUGS)[number];
@@ -22,6 +24,7 @@ export function isProductResearchSlug(slug: string): slug is ProductResearchSlug
 
 export function productResearchCategory(slug: ProductResearchSlug): { href: string; label: string } {
   if (isCiamProduct(slug)) return { href: "/categories/ciam", label: "Customer identity (CIAM)" };
+  if (isSecopsProduct(slug)) return { href: "/use-cases/alert-file-investigation", label: "Alert enrichment and file investigation" };
   if (slug === "kingfisher") {
     return { href: "/categories/secrets-detection", label: "Secrets detection" };
   }
@@ -35,7 +38,7 @@ export function productResearchSections(slug: ProductResearchSlug): SectionLink[
     { id: "how-it-works", label: "How it works" },
     ...(slug === "kingfisher" || slug === "aikido-device-protection" ? [{ id: "product-focus-title", label: "Zoom in" }] : []),
     ...(slug === "kingfisher" ? [{ id: "kingfisher-upstream", label: "Upstream" }] : []),
-    ...(isCiamProduct(slug) ? [{ id: "market-context", label: "Buyer and economics" }] : []),
+    ...(isCiamProduct(slug) || isSecopsProduct(slug) ? [{ id: "market-context", label: "Buyer and economics" }] : []),
     { id: "limitations", label: "Limitations" },
     { id: "evidence", label: "Evidence" },
     { id: "investigate", label: "Pilot questions" },
@@ -49,7 +52,7 @@ export function productResearchSections(slug: ProductResearchSlug): SectionLink[
  * Kingfisher is not an endpoint-comparison product; its detector coverage stays not_evaluated for KRU-189.
  */
 export function unknownControlBoundaries(productId: string, asOf: string): string[] {
-  if (isCiamProduct(productId) || productId === "kingfisher") return [];
+  if (isCiamProduct(productId) || isSecopsProduct(productId) || productId === "kingfisher") return [];
   return developerEndpointCapabilities
     .filter((capability) => evidenceCell(catalog.claims, productId, capability.id, asOf, catalog.sources).status !== "evidenced")
     .map((capability) => capability.name);
