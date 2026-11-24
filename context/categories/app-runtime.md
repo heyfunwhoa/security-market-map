@@ -3,7 +3,7 @@ id: "app-runtime"
 type: "category"
 name: "Application runtime protection"
 layer: "core"
-vendors: 4
+vendors: 6
 ---
 
 # Application runtime protection
@@ -33,6 +33,8 @@ WAF, bot controls, and RASP in front of or inside a running application. This is
 
 - Salt Security
 - Cequence
+- Rein Security
+- Arcjet
 
 ## What buyers do instead
 

@@ -83,7 +83,7 @@ Primary: security awareness. Adjacent: pentest program (it runs live attacks, cl
 
 ## Others in the space
 
-Added in the same batch so each profile has neighbors on its category page. Records: [agent-runtime-human-layer.ts](../../lib/data/agent-runtime-human-layer.ts). Seven vendors, seven products, ten sources, fourteen claims. Sharing a category does not make any of these a direct competitor of Bay or GhostEye; the buyer scenario decides that.
+Added in the same batch so each profile has neighbors on its category page. Records: [agent-runtime-human-layer.ts](../../lib/data/agent-runtime-human-layer.ts). Sixteen vendors, sixteen products, twenty-four sources, twenty-nine claims. Sharing a category does not make any of these a direct competitor of Bay or GhostEye; the buyer scenario decides that.
 
 ### Agent runtime (beside Bay)
 
@@ -93,6 +93,12 @@ Added in the same batch so each profile has neighbors on its category page. Reco
 | Capsule Security | Tel Aviv | $7M seed, Lama Partners and Forgepoint, Apr 2026 | Inside the agent's execution path; no proxy or SDK | Open-source ClawGuard pre-invocation checkpoint |
 | AIR Security | New York | $50M: $10M Sequoia-led + $40M Greenoaks-led, Sep 2026 | Between agents and skills, plugins, MCP servers | Primary in MCP and tool security, not runtime |
 | Kontext Security | Munich | $4M, 42CAP, Sep 2026 | Between agents and tools; observe then enforce | Task-aware authorization; adjacent to agent identity |
+| Asymptote Labs | New York | $5.5M seed, Tower Research Ventures, Oct 2026 | Endpoints; telemetry first, paid blocking | Open-source Beacon (MIT) records 23+ agent harnesses |
+| Rein Security | New York / Tel Aviv | $25M Series A, Oct 2026 ($35M total) | Sidecar where agents execute | Started in application runtime security; names Lemonade, Dun & Bradstreet |
+| Geordie AI | London | $30M Series A, Balderton, May 2026 | Cloud, code and endpoint agents; Beam remediation | Governance-first; adjacent to AI governance |
+| Arcjet | San Francisco (also reported Austin) | Not recorded | Inside app and agent code via SDKs | Developer security company; agent runtime security added Sep 2026 |
+| Eve Security | Not confirmed | $7.5M seed total, Sep 2026 | Agent platforms: Databricks, Copilot Studio, AgentCore, Bedrock, Glean | Deterministic policy enforcement |
+| CodeIntegrity | San Francisco | ~$5M seed, Syn Ventures, 2026 | Between agents and enterprise systems | Known for a Notion AI research compromise |
 
 Bay's sourced difference among these: per-action verdicts on the device through a native hook, installed through existing MDM/EDR.
 
@@ -103,12 +109,15 @@ Bay's sourced difference among these: per-action verdicts on the device through 
 | Adaptive Security | New York | $43M (a16z, OpenAI Startup Fund) Apr 2025, $55M total by Sep 2025 | Voice, SMS, email deepfake personas | Not Adaptive Shield (SSPM), a separate record |
 | Jericho Security | New York | $15M Series A, Era Fund, Apr 2025 | Email, SMS, voice, video | $1.8M AFWERX contract |
 | Hoxhunt | Finland (200+ staff) | Not recorded | Phishing training, behavior risk, reported-threat handling | Established human risk management platform |
+| Doppel | Not recorded | Not recorded | Email, SMS, messaging apps, voice, meeting apps | Primary in digital risk protection; Simulation turns real detected phishing into campaigns |
+| Brightside AI | Switzerland (directory) | Not found | Email, live vishing calls, deepfake video | Vishing also sold as an add-on |
+| Breacher.ai | Orlando | Not found | Agentic deepfake voice, live deepfake video, help-desk tests | Red-team style; self-serve simulator from $199/month |
 
 KnowBe4 was already in the catalog. GhostEye's sourced difference among these: OSINT-first targeting of each person, and help-desk voice testing (directory-sourced).
 
-### Not added
+### Website caveat
 
-Seen but not added in this pass: Asymptote Labs, Eve Security, Rein Security, CodeIntegrity, Geordie AI, Arcjet's coding-agent runtime feature, and other human-layer tools named in comparison posts (Doppel, Brightside, Breacher). Each needs its own sourced record.
+Geordie AI, Eve Security and CodeIntegrity, like Capsule, AIR and Kontext, had no first-party website confirmed from this session. Their `website` field points to a launch or investor announcement, and each record says so.
 
 ## Sources not used
 
