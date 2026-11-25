@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { filterLandscapeRows, initialLandscapeFilters, landscapeFilterReducer, readLandscapeFilters, landscapeFilterUrl, productDetailUrl, productSectionId } from "./landscape-filters";
+import { catalog } from "./catalog";
+import { frameworkTopics } from "./data/persona-frameworks";
 import type { LandscapeRow } from "@/components/landscape-browser";
 
 const row = (productId: string, overrides: Partial<LandscapeRow> = {}): LandscapeRow => ({
@@ -12,7 +14,7 @@ const rows = [row("Zulu"), row("Alpha", { deployment: ["self_hosted"] })];
 
 describe("landscape filter journeys", () => {
   it("resets every filter and recovers the complete alphabetical list after no results", () => {
-    const narrowed = { domain: "missing", category: "missing", useCase: "missing", persona: "missing",
+    const narrowed = { domain: "missing", category: "missing", useCase: "missing", persona: "missing", framework: "missing",
       deployment: "missing", scope: "missing", relation: "missing", focusedProduct: "missing" };
     expect(filterLandscapeRows(rows, [], [], narrowed)).toEqual([]);
     const reset = landscapeFilterReducer(narrowed, { type: "reset" });
@@ -30,6 +32,23 @@ describe("landscape filter journeys", () => {
       expect(landscapeFilterReducer(state, { type: "select", key, value: "new" }).focusedProduct).toBe("all");
     },
   );
+  it("scopes products to the selected framework and clears stale category and product selections", () => {
+    const before = { ...initialLandscapeFilters, category: "vault", focusedProduct: "Alpha", deployment: "saas" };
+    const state = landscapeFilterReducer(before, { type: "select", key: "framework", value: "csf-recover" });
+    expect(state).toEqual({ ...initialLandscapeFilters, framework: "csf-recover", deployment: "saas" });
+    const recovery = row("Recovery", { categoryIds: ["cyber-recovery"] });
+    expect(filterLandscapeRows([...rows, recovery], [], [], state)).toEqual([recovery]);
+  });
+
+  it("maps all framework topics to existing catalog categories", () => {
+    const ids = new Set(catalog.categories.map(({ id }) => id));
+    expect(new Set(frameworkTopics.map(({ id }) => id)).size).toBe(21);
+    for (const { categoryIds } of frameworkTopics) {
+      expect(categoryIds.length).toBeGreaterThan(0);
+      for (const id of categoryIds) expect(ids.has(id), id).toBe(true);
+    }
+  });
+
   it("applies refinements to product options and keeps relationships scoped to the selected use case", () => {
     const edges = [{ productId: "Zulu", type: "complement", useCaseId: "other", otherName: "Beta" }];
     const filters = { ...initialLandscapeFilters, deployment: "saas", persona: "platform", scope: "nhi" };
@@ -42,11 +61,11 @@ describe("landscape filter journeys", () => {
 
 describe("shareable landscape views", () => {
   const options = {
-    domain: ["identity"], category: ["vault"], useCase: ["delivery"], persona: ["platform"],
+    domain: ["identity"], category: ["vault"], useCase: ["delivery"], persona: ["platform"], framework: ["csf-recover"],
     deployment: ["saas"], scope: ["nhi"], relation: ["complement"], focusedProduct: ["Zulu"],
   };
   it("round trips every filter, including product, through a copied URL", () => {
-    const state = { domain: "identity", category: "vault", useCase: "delivery", persona: "platform",
+    const state = { domain: "identity", category: "vault", useCase: "delivery", persona: "platform", framework: "csf-recover",
       deployment: "saas", scope: "nhi", relation: "complement", focusedProduct: "Zulu" };
     const params = new URL(landscapeFilterUrl(state), "https://example.test").searchParams;
     expect(readLandscapeFilters(params, options)).toEqual(state);
