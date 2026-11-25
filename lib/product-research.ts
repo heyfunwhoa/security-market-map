@@ -15,6 +15,7 @@ export function productResearchCategory(slug: ProductResearchSlug): { href: stri
   if (slug === "kingfisher") {
     return { href: "/categories/secrets-detection", label: "Secrets detection" };
   }
+  if (slug === "bay-platform") return { href: "/categories/agentic-runtime", label: "Agentic runtime enforcement" };
   return { href: "/categories/endpoint-control", label: "Endpoint control" };
 }
 
@@ -23,7 +24,7 @@ export type SectionLink = { id: string; label: string };
 export function productResearchSections(slug: ProductResearchSlug): SectionLink[] {
   return [
     { id: "how-it-works", label: "How it works" },
-    ...(slug === "kingfisher" || slug === "aikido-device-protection" ? [{ id: "product-focus-title", label: "Zoom in" }] : []),
+    ...(slug === "kingfisher" || slug === "aikido-device-protection" || slug === "bay-platform" ? [{ id: "product-focus-title", label: "Zoom in" }] : []),
     ...(slug === "kingfisher" ? [{ id: "kingfisher-upstream", label: "Upstream" }] : []),
     ...(isCiamProduct(slug) ? [{ id: "market-context", label: "Buyer and economics" }] : []),
     { id: "limitations", label: "Limitations" },
@@ -41,7 +42,11 @@ export function productResearchSections(slug: ProductResearchSlug): SectionLink[
 export function unknownControlBoundaries(productId: string, asOf: string): string[] {
   if (isCiamProduct(productId) || productId === "kingfisher") return [];
   return developerEndpointCapabilities
-    .filter((capability) => evidenceCell(catalog.claims, productId, capability.id, asOf, catalog.sources).status !== "evidenced")
+    .filter((capability) => {
+      const status = evidenceCell(catalog.claims, productId, capability.id, asOf, catalog.sources).status;
+      // A limited cell has evidence, with a stated boundary; it is not unknown.
+      return status !== "evidenced" && status !== "limited";
+    })
     .map((capability) => capability.name);
 }
 

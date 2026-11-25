@@ -80,9 +80,9 @@ export const agenticEndpointSources: Source[] = [
   src({ id: "src-ae-s1-agentic", title: "SentinelOne — Prompt Security agentic AI security", url: "https://www.sentinelone.com/tw/platform/prompt-security-agentic-ai-security/", publisher: "SentinelOne", sourceType: "vendor_marketing", publishedAt: null, volatility: "fast", excerpt: "Says the MCP gateway, browser extension, security plugins and API integrations work together to discover agents and MCP servers, with risk scoring and an audit trail of agent actions." }),
 ];
 
-function claim(id: string, statement: string, subjectType: Claim["subjectType"], subjectId: string, source: Source, notes: string, confidence: Claim["confidence"] = "medium"): Claim {
+function claim(id: string, statement: string, subjectType: Claim["subjectType"], subjectId: string, source: Source, notes: string, confidence: Claim["confidence"] = "medium", capabilityId: string | null = null, polarity: Claim["polarity"] = "asserts"): Claim {
   return {
-    id, statement, subjectType, subjectId, capabilityId: null, polarity: "asserts",
+    id, statement, subjectType, subjectId, capabilityId, polarity,
     sourceId: source.id, sourceUrl: source.url, sourceType: source.sourceType, publishedAt: source.publishedAt,
     observedAt: CHECKED, effectiveFrom: null, effectiveTo: null, confidence,
     verificationStatus: source.sourceType === "news" || source.sourceType === "review" ? "needs_review" : "vendor_published",
@@ -117,6 +117,37 @@ export const agenticEndpointClaims: Claim[] = [
   claim("claim-ae-koi-standalone", "Palo Alto Networks says Koi remains available standalone, alongside a customer's existing EDR.", "product", "palo-alto-koi", s["src-ae-panw-koi-blog"], "Vendor blog at announcement."),
   claim("claim-ae-guardian-sensor", "CrowdStrike Falcon Guardian uses the Falcon sensor to inventory known and shadow AI agents on Windows and macOS and connect agent behavior to endpoint telemetry.", "product", "crowdstrike-falcon-guardian", s["src-ae-crwd-guardian"], "Company press release, 1 Sep 2026."),
   claim("claim-ae-guardian-access", "Falcon Guardian's Agent Access Controls define which AI agents may run on managed endpoints and block unauthorized ones.", "product", "crowdstrike-falcon-guardian", s["src-ae-crwd-guardian"], "Company press release."),
+];
+
+// Capability-linked claims for the developer endpoint comparison (lib/data/developer-endpoint-comparison.ts).
+// cap-dev-ai-tool-hook = inspects and may prevent supported agent actions; cap-dev-ai-usage-inventory = reports
+// agents, tools or MCP usage without implying prevention. One claim per product and capability, each from the
+// source that states it. Bay's sources are reused from bay-ghosteye.ts by id.
+const bayAws = { id: "src-bay-aws-marketplace", url: "https://aws.amazon.com/marketplace/pp/prodview-2sqtxuxrvfows", sourceType: "vendor_marketing" as const };
+function bayCap(id: string, statement: string, capabilityId: string, notes: string, polarity: Claim["polarity"] = "asserts"): Claim {
+  return {
+    id, statement, subjectType: "product", subjectId: "bay-platform", capabilityId, polarity,
+    sourceId: bayAws.id, sourceUrl: bayAws.url, sourceType: bayAws.sourceType, publishedAt: null,
+    observedAt: CHECKED, effectiveFrom: null, effectiveTo: null, confidence: "medium",
+    verificationStatus: "vendor_published", lastCheckedAt: CHECKED, conflictsWith: [], notes,
+  };
+}
+
+export const agenticEndpointCapabilityClaims: Claim[] = [
+  bayCap("claim-ae-cap-bay-hook", "Bay's AWS Marketplace listing says Bay Enforcer receives each proposed agent action on the device and returns Allow, Ask or Deny using the full session.", "cap-dev-ai-tool-hook", "Vendor listing; no public supported-agent or hook-event list. Latency is a vendor claim."),
+  bayCap("claim-ae-cap-bay-inventory", "Bay's AWS Marketplace listing says discovery finds every agent, MCP server, extension, package and skill on a device, with who runs it and what it can reach.", "cap-dev-ai-usage-inventory", "Vendor listing; \"every\" is the vendor's word and is not tested."),
+  {
+    ...bayCap("claim-ae-cap-bay-detect-only", "SACR notes that a Bay deployment with only the collector runs in detection mode; prevention needs the on-device enforcement component.", "cap-dev-ai-tool-hook", "Analyst caveat from SACR's 22 Jul 2026 ECP report. Ask which mode a pilot runs in.", "limits"),
+    sourceId: "src-sacr-ecp", sourceUrl: "https://softwareanalyst.substack.com/p/the-ciso-guide-to-endpoint-control", sourceType: "analyst", publishedAt: "2026-07-22", verificationStatus: "needs_review",
+  },
+  claim("claim-ae-cap-msde-hook", "Microsoft documents Defender for Endpoint runtime protection that uses Claude Code, Codex CLI and GitHub Copilot CLI hooks to audit or block agent activity where supported.", "product", "microsoft-defender-for-endpoint", s["src-ae-ms-runtime"], "Supported agents and actions are listed in Microsoft's matrix; check version and licensing.", "high", "cap-dev-ai-tool-hook"),
+  claim("claim-ae-cap-msde-inventory", "Microsoft documents discovery of local AI agents and MCP server configurations on onboarded devices, without extra deployment.", "product", "microsoft-defender-for-endpoint", s["src-ae-ms-discovery"], "Preview; discovery and investigation only, no posture assessment or alerts.", "high", "cap-dev-ai-usage-inventory"),
+  claim("claim-ae-cap-zenity-hook", "Zenity says it blocks dangerous coding-agent actions in real time through native agent hooks for Codex, Claude Code, Cursor and GitHub Copilot.", "product", "zenity-platform", s["src-ae-zenity-device"], "Vendor page; coverage varies by agent and hook.", "medium", "cap-dev-ai-tool-hook"),
+  claim("claim-ae-cap-knostic-hook", "Knostic says Kirin checks each coding-agent action against policy before it runs, for Cursor, Claude Code, Copilot, Windsurf and Codex.", "product", "knostic-kirin", s["src-ae-knostic-coding"], "Vendor page.", "medium", "cap-dev-ai-tool-hook"),
+  claim("claim-ae-cap-island-inventory", "Island says Agentic Endpoint Posture keeps a live inventory of MCP servers, skills, hooks, local models, AI clients, packages and extensions on each device.", "product", "island-agentic-endpoint-posture", s["src-ae-island-blog"], "Vendor blog.", "medium", "cap-dev-ai-usage-inventory"),
+  claim("claim-ae-cap-guardian-inventory", "CrowdStrike says the Falcon sensor inventories known and shadow AI agents on Windows and macOS, including dormant agents.", "product", "crowdstrike-falcon-guardian", s["src-ae-crwd-guardian"], "Company release; GA per capability not checked.", "medium", "cap-dev-ai-usage-inventory"),
+  claim("claim-ae-cap-prompt-inventory", "SentinelOne says Prompt Security's agent and browser extensions discover sanctioned and shadow AI use.", "product", "sentinelone-prompt-security", s["src-ae-s1-prompt-acq"], "Vendor post.", "medium", "cap-dev-ai-usage-inventory"),
+  claim("claim-ae-cap-backslash-inventory", "Backslash says its agentless MDM-pushed scan inventories agents, MCP servers, models, skills, hooks and connectors on endpoints.", "product", "backslash-agentic-endpoint", s["src-ae-backslash-graph"], "Company release; inline blocking needs its optional sensor.", "medium", "cap-dev-ai-usage-inventory"),
 ];
 
 // SACR Endpoint Control and Prevention (ECP) report, 22 Jul 2026. Reuses the existing source record

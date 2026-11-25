@@ -10,6 +10,10 @@ export const SECRETS_COMPARISON_URL =
 export const DEVELOPER_ENDPOINT_COMPARISON_URL =
   "/compare?category=endpoint-control&use=uc-developer-endpoint&products=gitguardian-developer-endpoint,aikido-device-protection";
 
+/** Agentic endpoint peers for the Bay product page; all four sit in endpoint control. */
+export const AGENTIC_ENDPOINT_COMPARISON_URL =
+  "/compare?category=endpoint-control&use=uc-developer-endpoint&products=bay-platform,crowdstrike-falcon-guardian,island-agentic-endpoint-posture,knostic-kirin";
+
 export function productsInCategory(products: Product[], categoryId: string) {
   return products.filter(
     (product) =>

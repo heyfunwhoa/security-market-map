@@ -11,7 +11,7 @@ import { ProductSectionNav } from "@/components/product-section-nav";
 import { catalog, claimsForSubject, vendorById } from "@/lib/catalog";
 import { claimNeedsRecheck } from "@/lib/coverage";
 import { availabilityLabel } from "@/lib/format";
-import { DEVELOPER_ENDPOINT_COMPARISON_URL } from "@/lib/comparison-selection";
+import { AGENTIC_ENDPOINT_COMPARISON_URL, DEVELOPER_ENDPOINT_COMPARISON_URL } from "@/lib/comparison-selection";
 import {
   PRODUCT_ANCHOR_CLASS,
   isProductResearchSlug,
@@ -46,6 +46,13 @@ const learning: Record<Exclude<ProductResearchSlug, CiamProductSlug>, { action: 
     evidence: "Scanner rule and finding fingerprint, source and scan scope, validation outcome where authorized, and a structured JSON/SARIF finding",
     limitation: "Detection does not prove a credential is live. Live validation, blast-radius mapping and revocation depend on provider support, authorization and explicit operator decisions. Detector coverage is not evaluated.",
     questions: ["Which source and rule produced this candidate?", "Is validation supported for this credential and is live testing authorized?", "Are blast-radius queries read-only and scoped?", "Who can approve revocation and verify operational impact?", "Does the pinned release and ruleset match the evaluation evidence?"],
+  },
+  "bay-platform": {
+    action: "An AI agent on a laptop, browser or cloud workspace proposes an action, such as a shell command, file write, tool call or MCP request",
+    control: "A short-lived collector pushed through existing MDM or EDR inventories agents and their tools; Bay Enforcer receives each proposed action through the AI tool's native hook and returns Allow, Ask or Deny on the device, weighing the whole session",
+    evidence: "Agent, MCP server, extension and skill inventory; the proposed action, session context, matched team policy and verdict",
+    limitation: "Enforcement needs the on-device enforcement component; a collector-only deployment runs in detection mode (per SACR). Coverage depends on which AI tools expose hooks and which events they expose. No public supported-agent list; latency and false-positive figures are vendor claims.",
+    questions: ["Which agents, versions and hook events are covered today, and what happens for tools without hooks?", "Does the pilot run collector-only (detect) or with Bay Enforcer (prevent)?", "How do Lighthouse's 30-day policies treat a new team or a new agent?", "What does Ask look like to the developer, and how are exceptions approved?", "What session data leaves the device, and where is it stored?"],
   },
   "aikido-device-protection": {
     action: "Developer or agent requests a package from a supported registry",
@@ -108,6 +115,12 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         { title: "Inspect", summary: "A local device component evaluates traffic on supported domains.", check: "Review selective interception, TLS trust configuration, privacy, and proxy compatibility.", boundary: "Network inspection does not mean universal device or malware visibility." },
         { title: "Decide", summary: "The agent applies available package policy and threat-intelligence decisions.", check: "Use a benign synthetic policy block to test decision timing and exception behavior.", boundary: "A detection or post-install alert is not necessarily a pre-install block." },
         { title: "Report", summary: "Device events and package inventory provide investigation context.", check: "Confirm event timestamp, allowed/blocked decision, metadata minimization, and response owner.", boundary: "Package or AI-provider usage inventory does not establish AI prompt or MCP tool-call prevention." },
+      ]} /> : null}
+      {slug === "bay-platform" ? <ProductFocus stages={[
+        { title: "Discover", summary: "A short-lived collector pushed through MDM or EDR inventories agents, MCP servers, extensions, packages, skills and local models, then exits.", check: "Confirm OS coverage, the MDM or EDR used for rollout, scan cadence and how fast a newly installed agent appears.", boundary: "A point-in-time inventory is not continuous monitoring, and discovery alone does not block anything." },
+        { title: "Set policy", summary: "Lighthouse drafts per-team policy from about 30 days of observed agent activity and lets teams replay it against that period.", check: "Replay a draft policy against real history and review what it would have blocked before turning it on.", boundary: "A learned baseline can approve risky behavior that was already normal; the under-1% false-positive figure is a vendor claim." },
+        { title: "Decide", summary: "When an agent proposes an action, the AI tool hands it to Bay Enforcer through a native hook, which returns Allow, Ask or Deny using the whole session.", check: "Use a benign synthetic action (for example, a test command against a dummy bucket) to confirm the verdict arrives before the action runs.", boundary: "Only tools that expose hooks, and only the events they expose, can be decided pre-execution. Collector-only deployments detect but do not prevent." },
+        { title: "Record", summary: "The action, session context, policy and verdict feed the inventory and entity graph for investigation.", check: "Confirm event fields, retention, export to the SIEM and who owns follow-up on an Ask or Deny.", boundary: "An audit trail of agent actions is not proof that every risky action was intercepted." },
       ]} /> : null}
       {slug === "kingfisher" ? <ProductFocus stages={[
         { title: "Detect", summary: "Match candidate secrets in authorized targets.", check: "Inspect source, pinned rule ID, location and redacted finding.", boundary: "A match is a candidate, not proof that the credential is active." },
@@ -176,7 +189,11 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <aside className="mt-10 border-t border-border pt-6">
           <h2 className="text-xl font-semibold">Compare only when needed</h2>
           <p className="mt-2 text-sm leading-6 text-muted-foreground">Start with the product&apos;s own control points and limitations. The comparison matrix combines documented evidence with explicit Unknown states, not a winner or score.</p>
-          <Link href={DEVELOPER_ENDPOINT_COMPARISON_URL} className="mt-3 inline-flex min-h-11 items-center text-sm font-medium text-primary underline underline-offset-4">Compare GitGuardian and Aikido</Link>
+          {slug === "bay-platform" ? (
+            <Link href={AGENTIC_ENDPOINT_COMPARISON_URL} className="mt-3 inline-flex min-h-11 items-center text-sm font-medium text-primary underline underline-offset-4">Compare Bay with CrowdStrike, Island and Knostic</Link>
+          ) : (
+            <Link href={DEVELOPER_ENDPOINT_COMPARISON_URL} className="mt-3 inline-flex min-h-11 items-center text-sm font-medium text-primary underline underline-offset-4">Compare GitGuardian and Aikido</Link>
+          )}
         </aside>
       )}
     </main>

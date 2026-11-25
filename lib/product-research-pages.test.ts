@@ -167,6 +167,25 @@ describe("product research pages", () => {
     expect(anchorIds(aikido).every((id) => aikido.includes(`id="${id}"`))).toBe(true);
   });
 
+  it("renders Bay in agentic runtime with its own stages, SACR caveat and agentic endpoint comparison", async () => {
+    const html = await pageHtml("bay-platform");
+    expect(html).toContain('href="/categories/agentic-runtime"');
+    expect(html).toContain('href="/vendors/bay-security"');
+    expect(html).toContain("https://aws.amazon.com/marketplace/pp/prodview-2sqtxuxrvfows");
+    expect(html).toContain("https://softwareanalyst.substack.com/p/the-ciso-guide-to-endpoint-control");
+    expect(html).toContain("detection mode");
+    expect(html).toContain("product-focus-title");
+    expect(html.match(/aria-pressed="false"/g)).toHaveLength(4);
+    expect(html).toContain("Compare Bay with CrowdStrike, Island and Knostic");
+    expect(html).not.toContain("Compare GitGuardian and Aikido");
+    expect(anchorIds(html).every((id) => html.includes(`id="${id}"`))).toBe(true);
+    expect(unknownControlBoundaries("bay-platform", catalog.asOf)).toEqual([
+      "Local workstation secrets discovery",
+      "Supported package install interception",
+      "Endpoint honeytoken alert",
+    ]);
+  });
+
   it("keeps an explicit unknown state and distinct evidence controls", () => {
     const empty = renderToStaticMarkup(createElement(ProductEvidenceExplorer, { claims: [] }));
     expect(empty).toContain("Evidence status: Unknown");

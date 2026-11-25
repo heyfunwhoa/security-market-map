@@ -4,7 +4,7 @@ As of **2026-11-25**. Status: researched and proposed. Human review is pending. 
 
 Canonical records: [agentic-endpoint.ts](../../lib/data/agentic-endpoint.ts), composed by [catalog](../../lib/catalog.ts). Two new vendors (Backslash Security, Knostic) and six new products, four of them under existing vendors (Neo Security, Island, Palo Alto Networks, CrowdStrike); nineteen sources, thirty claims (nine from SACR's ECP report, reusing its existing source record) and four events. Neo already had a SACR-sourced stub in [ecosystem.ts](../../lib/data/ecosystem.ts); that record is enriched rather than duplicated. Deployment claims are attached to the existing Bay, Zenity, Prompt Security and Microsoft Defender for Endpoint records. New products also carry the existing `endpoint-control` category as adjacent, and the Endpoint control example list now links Bay's record. All new records are `research_candidate`. Related incident candidates: [2026-11-25-agentic-endpoint-supply-chain.json](../../data/security-intelligence/candidates/2026-11-25-agentic-endpoint-supply-chain.json).
 
-This adds a deployment-model lens to the [Bay profile](bay-ghosteye-profiles-2026-11.md) and the agent-runtime vendors in [agent-runtime-human-layer.ts](../../lib/data/agent-runtime-human-layer.ts) and [agent-security.ts](../../lib/data/agent-security.ts).
+Bay now has a product research page at `/products/bay-platform` ([pilot](../verification/bay-product-template-pilot.md)). This adds a deployment-model lens to the [Bay profile](bay-ghosteye-profiles-2026-11.md) and the agent-runtime vendors in [agent-runtime-human-layer.ts](../../lib/data/agent-runtime-human-layer.ts) and [agent-security.ts](../../lib/data/agent-security.ts).
 
 ## Zoom level and placement
 

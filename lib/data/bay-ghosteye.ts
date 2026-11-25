@@ -57,7 +57,7 @@ export const bayGhosteyeProducts: Product[] = [
     positioning:
       "Wave scans each machine to inventory agents, extensions and local models. Bay Enforcer receives each proposed agent action through a native hook and returns allow, ask or deny on the device using full session context. Lighthouse drafts per-team policy from 30 days of agent activity and replays it against that history.",
     primaryCategoryIds: ["agentic-runtime"],
-    adjacentCategoryIds: ["endpoint-security", "mcp-security"],
+    adjacentCategoryIds: ["endpoint-control", "endpoint-security", "mcp-security"],
     deployment: ["saas"],
     identityScopes: ["agent"],
     availability: "generally_available",

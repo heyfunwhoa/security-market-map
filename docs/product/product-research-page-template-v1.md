@@ -1,6 +1,6 @@
 # Product Research Page Template v1
 
-Status: reusable product onboarding contract, implemented baseline is Kingfisher + GitGuardian Developer Endpoint Protection + Aikido Device Protection. This document describes the existing routes; it does not claim all future product pages use the template automatically.
+Status: reusable product onboarding contract, implemented baseline is Kingfisher + GitGuardian Developer Endpoint Protection + Aikido Device Protection + Bay platform ([pilot](../verification/bay-product-template-pilot.md), first agentic runtime page). This document describes the existing routes; it does not claim all future product pages use the template automatically.
 
 ## Ownership
 - Canonical vendor/product/category records and claims live in the Market Map catalog.
