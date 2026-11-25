@@ -7,6 +7,52 @@ import type { Claim, Product, Source, Vendor } from "../schema";
 
 export const categoryFillVendors: Vendor[] = [
   {
+    "id": "native-security",
+    "slug": "native-security",
+    "name": "Native",
+    "formerNames": [],
+    "website": "https://www.native.security/",
+    "positioning": "Native says it translates requirements into provider-native controls, checks the likely impact before rollout, and maintains them as cloud environments change.",
+    "primaryCategoryIds": [
+      "csie"
+    ],
+    "adjacentCategoryIds": [
+      "iac-security"
+    ],
+    "identityScopes": [
+      "human",
+      "nhi",
+      "agent"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Which guardrails can be simulated and enforced on each provider, and how are exceptions and rollback handled?"
+    ]
+  },
+  {
+    "id": "aryon-security",
+    "slug": "aryon-security",
+    "name": "Aryon Security",
+    "formerNames": [],
+    "website": "https://www.aryon.security/",
+    "positioning": "Aryon says it evaluates proposed cloud policies and can deny non-compliant requests at the cloud control plane.",
+    "primaryCategoryIds": [
+      "csie"
+    ],
+    "adjacentCategoryIds": [
+      "iac-security"
+    ],
+    "identityScopes": [
+      "human",
+      "nhi",
+      "agent"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Which cloud changes and resource types can be blocked, and how are existing resources handled?"
+    ]
+  },
+  {
     "id": "act-security",
     "slug": "act-security",
     "name": "Act Security",
@@ -534,6 +580,56 @@ export const categoryFillVendors: Vendor[] = [
 ];
 
 export const categoryFillProducts: Product[] = [
+  {
+    "id": "native-security-platform",
+    "slug": "native-security-platform",
+    "vendorId": "native-security",
+    "name": "Native platform",
+    "positioning": "Native says it translates requirements into provider-native controls, checks the likely impact before rollout, and maintains them as cloud environments change.",
+    "primaryCategoryIds": [
+      "csie"
+    ],
+    "adjacentCategoryIds": [
+      "iac-security"
+    ],
+    "identityScopes": [
+      "human",
+      "nhi",
+      "agent"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "Public demo offered. Editions and provider-specific coverage were not verified.",
+    "officialUrl": "https://www.native.security/platform",
+    "useCaseIds": []
+  },
+  {
+    "id": "aryon-security-platform",
+    "slug": "aryon-security-platform",
+    "vendorId": "aryon-security",
+    "name": "Aryon Security platform",
+    "positioning": "Aryon says it evaluates proposed cloud policies and can deny non-compliant requests at the cloud control plane.",
+    "primaryCategoryIds": [
+      "csie"
+    ],
+    "adjacentCategoryIds": [
+      "iac-security"
+    ],
+    "identityScopes": [
+      "human",
+      "nhi",
+      "agent"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "Public demo offered. Editions and provider-specific coverage were not verified.",
+    "officialUrl": "https://www.aryon.security/product",
+    "useCaseIds": []
+  },
   {
     "id": "act-cloud-access",
     "slug": "act-cloud-access",
@@ -1135,6 +1231,54 @@ export const categoryFillProducts: Product[] = [
 
 export const categoryFillSources: Source[] = [
   {
+    "id": "src-wiz-defend-acsp",
+    "title": "Wiz Defend",
+    "url": "https://www.wiz.io/platform/wiz-defend",
+    "canonicalUrl": "https://www.wiz.io/platform/wiz-defend",
+    "publisher": "Wiz",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-25",
+    "volatility": "fast",
+    "excerpt": "Wiz says Wiz Defend provides cloud-native detection, AI-assisted investigation and automated response."
+  },
+  {
+    "id": "src-sacr-asset-intelligence-20261019",
+    "title": "From CAASM to Asset Intelligence",
+    "url": "https://softwareanalyst.io/reports/from-caasm-to-asset-intelligence",
+    "canonicalUrl": "https://softwareanalyst.io/reports/from-caasm-to-asset-intelligence",
+    "publisher": "SACR",
+    "sourceType": "analyst",
+    "publishedAt": "2026-10-19",
+    "retrievedAt": "2026-11-25",
+    "volatility": "moderate",
+    "excerpt": "SACR describes asset intelligence as reconciled asset context that preserves source, freshness, disagreements and relationships for operational decisions."
+  },
+  {
+    "id": "src-native-security-platform",
+    "title": "Native platform",
+    "url": "https://www.native.security/platform",
+    "canonicalUrl": "https://www.native.security/platform",
+    "publisher": "Native",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-25",
+    "volatility": "moderate",
+    "excerpt": "Native says it translates requirements into provider-native controls, checks the likely impact before rollout, and maintains them as cloud environments change."
+  },
+  {
+    "id": "src-aryon-security-platform",
+    "title": "Aryon Security platform",
+    "url": "https://www.aryon.security/product",
+    "canonicalUrl": "https://www.aryon.security/product",
+    "publisher": "Aryon Security",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-25",
+    "volatility": "moderate",
+    "excerpt": "Aryon says it evaluates proposed cloud policies and can deny non-compliant requests at the cloud control plane."
+  },
+  {
     "id": "src-sacr-csie-20261028",
     "title": "The CISO’s Guide to Cloud Security Intent Enforcement",
     "url": "https://softwareanalyst.io/reports/the-ciso-s-guide-to-cloud-security-intent-enforcement",
@@ -1521,6 +1665,106 @@ export const categoryFillSources: Source[] = [
 ];
 
 export const categoryFillClaims: Claim[] = [
+  {
+    "id": "claim-wiz-defend-acsp-overlap",
+    "statement": "Wiz says Wiz Defend provides cloud-native detection, AI-assisted investigation and automated response.",
+    "subjectType": "product",
+    "subjectId": "wiz",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-wiz-defend-acsp",
+    "sourceUrl": "https://www.wiz.io/platform/wiz-defend",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Applies to Wiz Defend. This supports overlap with runtime investigation and response; full SACR ACSP criteria and licensed scope remain unverified."
+  },
+  {
+    "id": "claim-sacr-acsp-framework-20260611",
+    "statement": "SACR proposes that an agentic cloud security platform combine live execution visibility, reachable-risk analysis, identity-aware policy, governed intervention and auditable decisions.",
+    "subjectType": "category",
+    "subjectId": "acsp",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-sacr-acsp-20260611",
+    "sourceUrl": "https://softwareanalyst.io/reports/introducing-a-new-cloud-security",
+    "sourceType": "analyst",
+    "publishedAt": "2026-06-11",
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "needs_review",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Existing SACR source reused. Public summary; no vendor qualification inferred."
+  },
+  {
+    "id": "claim-sacr-asset-intelligence-20261019",
+    "statement": "SACR describes asset intelligence as reconciled asset context that preserves source, freshness, disagreements and relationships for operational decisions.",
+    "subjectType": "category",
+    "subjectId": "asset-intelligence",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-sacr-asset-intelligence-20261019",
+    "sourceUrl": "https://softwareanalyst.io/reports/from-caasm-to-asset-intelligence",
+    "sourceType": "analyst",
+    "publishedAt": "2026-10-19",
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "needs_review",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Report profiles Axonius as an example; no capability parity inferred."
+  },
+  {
+    "id": "claim-native-security-platform",
+    "statement": "Native says it translates requirements into provider-native controls, checks the likely impact before rollout, and maintains them as cloud environments change.",
+    "subjectType": "product",
+    "subjectId": "native-security-platform",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-native-security-platform",
+    "sourceUrl": "https://www.native.security/platform",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Publisher-reported. Vendor participated in a sponsored research program associated with the SACR CSIE report."
+  },
+  {
+    "id": "claim-aryon-security-platform",
+    "statement": "Aryon says it evaluates proposed cloud policies and can deny non-compliant requests at the cloud control plane.",
+    "subjectType": "product",
+    "subjectId": "aryon-security-platform",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-aryon-security-platform",
+    "sourceUrl": "https://www.aryon.security/product",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Publisher-reported. Vendor participated in a sponsored research program associated with the SACR CSIE report."
+  },
   {
     "id": "claim-sacr-csie-20261028",
     "statement": "SACR describes CSIE as an emerging control layer that translates security intent into cloud controls, assesses likely impact, enforces approved policy, and maintains it over time.",

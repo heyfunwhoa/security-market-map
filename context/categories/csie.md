@@ -3,7 +3,7 @@ id: "csie"
 type: "category"
 name: "Cloud Security Intent Enforcement (CSIE)"
 layer: "core"
-vendors: 1
+vendors: 3
 ---
 
 # Cloud Security Intent Enforcement (CSIE)
@@ -26,6 +26,8 @@ Turns approved cloud security requirements into enforceable controls. Teams asse
 
 ## Vendors (primary)
 
+- Native: Native says it translates requirements into provider-native controls, checks the likely impact before rollout, and maintains them as cloud environments change.
+- Aryon Security: Aryon says it evaluates proposed cloud policies and can deny non-compliant requests at the cloud control plane.
 - Act Security: Act says it uses infrastructure as code to apply cloud-native controls for access boundaries and maintain them as the environment changes.
 
 ## Vendors (adjacent)
