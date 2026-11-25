@@ -3,7 +3,7 @@ id: "endpoint-security"
 type: "category"
 name: "Endpoint security"
 layer: "core"
-vendors: 16
+vendors: 17
 ---
 
 # Endpoint security
@@ -52,6 +52,7 @@ From 3 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - Neo Security
 - Fortra
 - Bay
+- Backslash Security
 - Manifold
 - Asymptote Labs
 - Cisco

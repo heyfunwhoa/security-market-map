@@ -3,7 +3,7 @@ id: "ai-governance"
 type: "category"
 name: "AI governance"
 layer: "core"
-vendors: 6
+vendors: 7
 ---
 
 # AI governance
@@ -29,6 +29,7 @@ Inventory of AI systems, the policy that applies to them, and the audit trail. G
 
 - Credo AI: Credo AI markets an AI governance platform with an AI registry, evidence intake from MLOps tools and a vendor portal.
 - Holistic AI: Holistic AI markets an AI governance platform that discovers AI systems into an inventory and maps them to risk and regulatory requirements.
+- WitnessAI: WitnessAI markets AI security and governance for the enterprise: detecting employee use of unapproved AI tools, blocking attacks on AI use and supporting compliance, now extended to agents.
 
 ## Vendors (adjacent)
 

@@ -3,7 +3,7 @@ id: "mcp-security"
 type: "category"
 name: "MCP and tool security"
 layer: "core"
-vendors: 10
+vendors: 11
 ---
 
 # MCP and tool security
@@ -35,6 +35,7 @@ Discovery and control of Model Context Protocol servers and the tools an agent c
 ## Vendors (adjacent)
 
 - Bay
+- Backslash Security
 - Capsule Security
 - Zenity
 - Pillar Security

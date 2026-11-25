@@ -39,6 +39,10 @@ Also reported: agentless install through existing MDM or EDR in under five minut
 
 Primary: agentic runtime enforcement. Adjacent: endpoint security (it runs on the device and installs through MDM/EDR), MCP and tool security (it inventories MCP servers), AI governance (per-team policy). It sits beside the platforms in [MCP and agent security](mcp-security-scanners-2026-11.md). Its sourced difference is where the decision happens: on the device, per action, with session context.
 
+### Market context
+
+For incumbents, M&A, funding and an ICP hypothesis around Bay, see [AI agent security market structure](ai-agent-security-market-structure-2026-11.md) (25 Nov 2026).
+
 ### Unknowns
 
 - No public docs, supported-agent list, OS list or pricing found.
