@@ -3,7 +3,7 @@ id: "endpoint-security"
 type: "category"
 name: "Endpoint security"
 layer: "core"
-vendors: 9
+vendors: 16
 ---
 
 # Endpoint security
@@ -39,9 +39,11 @@ From 3 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 
 - CrowdStrike: Endpoint and XDR vendor. The Falcon homepage retrieved 26 Oct 2026 describes endpoint detection and response as detecting and prioritizing malicious activity. Identity Protection is a module name on that page, so no ITDR cell is filled.
 - SentinelOne: Homepage retrieved 26 Oct 2026 describes endpoint and identity protection in one agent, and says the platform detects, contains, and responds. That detection sentence is not an endpoint-only cell and not an ITDR cell.
+- Broadcom: Broadcom's Carbon Black portfolio includes endpoint detection and response. The Enterprise EDR binary store preserves samples under the customer's upload policy.
 
 ## Vendors (adjacent)
 
+- Microsoft
 - AttackIQ
 - Fortinet
 - Check Point
@@ -49,6 +51,11 @@ From 3 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - Axonius
 - Neo Security
 - Fortra
+- Bay
+- Manifold
+- Asymptote Labs
+- Cisco
+- LimaCharlie
 
 ## What buyers do instead
 

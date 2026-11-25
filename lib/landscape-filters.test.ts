@@ -3,7 +3,7 @@ import { filterLandscapeRows, initialLandscapeFilters, landscapeFilterReducer, r
 import type { LandscapeRow } from "@/components/landscape-browser";
 
 const row = (productId: string, overrides: Partial<LandscapeRow> = {}): LandscapeRow => ({
-  productId, productName: productId, vendorName: "Example", vendorSlug: "example",
+  productId, detailHref: productDetailUrl("example", productId), productName: productId, vendorName: "Example", vendorSlug: "example",
   positioning: "Candidate", categoryIds: ["vault"], domainIds: ["identity"],
   scopes: ["nhi"], deployment: ["saas"], useCaseIds: ["delivery"], availability: "unknown",
   ...overrides,

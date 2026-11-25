@@ -121,7 +121,7 @@ export const vendors: Vendor[] = [
     website: "https://www.microsoft.com/en-us/security/business/identity-access/microsoft-entra-id",
     positioning: "Entra ID is the workforce directory for many accounts. ID Governance, PIM, Workload ID, and Agent ID are separate documented capabilities. Do not treat a single Entra logo as IGA, PAM, NHI, and agent authorization at once. Microsoft documents Purview DSPM for discovering, protecting and investigating sensitive-data risks; some non-Microsoft coverage depends on partner integrations. Vendor-reported DSPM scope reviewed 2026-10-13. Completed the Protect AI acquisition; Guardian model scanning is sold under Prisma AIRS (reviewed 2026-11-09).",
     primaryCategoryIds: ["workforce-identity", "iga"],
-    adjacentCategoryIds: ["pam", "nhi", "itdr", "wim", "agent-identity", "secrets-management", "siem", "dspm", "dlp"],
+    adjacentCategoryIds: ["pam", "nhi", "itdr", "wim", "agent-identity", "secrets-management", "siem", "dspm", "dlp", "endpoint-security"],
     identityScopes: ["human", "nhi", "agent"],
     verificationStatus: "research_candidate",
     openQuestions: [
@@ -252,7 +252,7 @@ export const vendors: Vendor[] = [
     website: "https://www.paloaltonetworks.com/",
     positioning: "Closed the CyberArk acquisition on 11 Feb 2026 and introduced Idira on 12 May 2026. Brand changes toward Idira began 31 May 2026. Prisma Cloud remains a cloud-security product. Do not merge Idira, secrets, and CNAPP into one capability row. Palo Alto Networks markets Cortex DSPM for cloud and AI data exposure. Vendor-reported DSPM scope reviewed 2026-10-13.",
     primaryCategoryIds: ["pam", "secrets-management"],
-    adjacentCategoryIds: ["nhi", "agent-identity", "ciem", "adjacent-security", "network-edge", "dspm", "model-security"],
+    adjacentCategoryIds: ["nhi", "agent-identity", "ciem", "adjacent-security", "network-edge", "dspm", "model-security", "endpoint-control", "iac-security", "enterprise-browser"],
     identityScopes: ["human", "nhi", "agent"],
     verificationStatus: "research_candidate",
     openQuestions: [
@@ -618,7 +618,7 @@ export const vendors: Vendor[] = [
     website: "https://www.wiz.io/",
     positioning: "CNAPP vendor. Cloud entitlement conversations often happen here. That is adjacent budget to IGA, not a certification suite, unless a sourced claim says otherwise. Wiz markets a DSPM solution for cloud data security. Vendor-reported DSPM scope reviewed 2026-10-13.",
     primaryCategoryIds: ["cnapp", "cspm", "ciem"],
-    adjacentCategoryIds: ["nhi", "itdr", "adjacent-security", "cloud-vulnerability", "cloud-detection", "dspm"],
+    adjacentCategoryIds: ["nhi", "itdr", "adjacent-security", "cloud-vulnerability", "cloud-detection", "dspm", "iac-security"],
     identityScopes: ["human", "nhi"],
     verificationStatus: "research_candidate",
     openQuestions: ["Is CIEM already entitled in the Wiz agreement?"],
@@ -1412,9 +1412,9 @@ export const products: Product[] = [
     deployment: ["open_source"],
     identityScopes: ["nhi"],
     availability: "generally_available",
-    availabilityNote: "The open-source scanner is documented. A commercial offering is not described in this seed.",
+    availabilityNote: "The open-source scanner is documented. The provider lists the Enterprise edition separately.",
     officialUrl: "https://github.com/trufflesecurity/trufflehog",
-    useCaseIds: ["uc-detect"],
+    useCaseIds: ["uc-detect", "uc-developer-endpoint"],
   }),
   product({
     id: "gitguardian",

@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest";
 import ProductPage from "../app/products/[slug]/page";
 import VendorPage from "../app/vendors/[slug]/page";
 import { ProductEvidenceExplorer } from "../components/product-evidence-explorer";
-import { catalog, catalogProblems, claimsForSubject } from "./catalog";
+import { catalog, catalogProblems, claimsForSubject, searchIndex } from "./catalog";
 import { moveFocusStage, productResearchSections, unknownControlBoundaries } from "./product-research";
 
 async function pageHtml(slug: string) {
@@ -17,6 +17,13 @@ function anchorIds(html: string) {
 }
 
 describe("product research pages", () => {
+  it("routes product search to standalone research or its exact company section", () => {
+    const index = searchIndex();
+    expect(index.find((hit) => hit.kind === "Vendor" && hit.title === "WorkOS")?.href).toBe("/vendors/workos");
+    expect(index.find((hit) => hit.kind === "Product" && hit.title === "WorkOS")?.href).toBe("/products/workos");
+    expect(index.find((hit) => hit.kind === "Product" && hit.title === "Descope")?.href).toBe("/vendors/descope#product-descope");
+  });
+
   it("links the Descope customer story and source evidence from its CIAM profile", async () => {
     const html = renderToStaticMarkup(await VendorPage({ params: Promise.resolve({ slug: "descope" }) }));
     expect(html).toContain('href="/categories/ciam"');
@@ -33,11 +40,10 @@ describe("product research pages", () => {
     for (const id of alternatives) {
       const edge = edges.find((row) => row.toProductId === id);
       const product = catalog.products.find((item) => item.id === id)!;
-      const vendor = catalog.vendors.find((item) => item.id === product.vendorId)!;
       const evidence = claimsForSubject("product", id).find((claim) => claim.sourceId === edge?.sourceId);
       expect(evidence?.capabilityId).toBe("cap-ciam");
       expect(evidence?.verificationStatus).toBe("vendor_published");
-      expect(html).toContain(`href="/vendors/${vendor.slug}#product-${id}"`);
+      expect(html).toContain(`href="/products/${product.slug}"`);
       expect(html).toContain(`href="${evidence?.sourceUrl}"`);
     }
   });

@@ -52,11 +52,12 @@ export function readLandscapeFilters(params: Pick<URLSearchParams, "get">, optio
   return filters;
 }
 
-export function landscapeFilterUrl(filters: LandscapeFilters): string {
+export function landscapeFilterUrl(filters: LandscapeFilters, query = ""): string {
   const params = new URLSearchParams();
   for (const key of Object.keys(filterParams) as (keyof LandscapeFilters)[]) {
     if (filters[key] !== "all") params.set(filterParams[key], filters[key]);
   }
+  if (query) params.set("q", query);
   return `/landscape${params.size ? `?${params.toString()}` : ""}`;
 }
 

@@ -3,9 +3,8 @@ import { charterLead, domainStatusLabel } from "@/lib/domain-evidence";
 import type { Domain } from "@/lib/schema";
 import { cn } from "@/lib/utils";
 
-function claimLine(depth: Domain["depth"], count: number): string {
-  const noun = count === 1 ? "claim" : "claims";
-  return depth === "evidenced" ? `${count} ${noun}` : `${count} ${noun} so far`;
+function claimLine(count: number) {
+  return `${count} linked ${count === 1 ? "claim" : "claims"}`;
 }
 
 export function DomainMap({
@@ -32,7 +31,7 @@ export function DomainMap({
                 highlighted ? "border-primary ring-2 ring-primary/40" : "border-border",
               )}
             >
-              <span className="flex items-start justify-between gap-3">
+              <span className="flex flex-wrap items-start justify-between gap-3">
                 <span className="font-heading text-lg leading-snug tracking-tight">{domain.name}</span>
                 <span
                   className={cn(
@@ -47,7 +46,7 @@ export function DomainMap({
               </span>
               <span className="mt-2 block text-sm leading-6 text-muted-foreground">{charterLead(domain.charter)}</span>
               <span className="mt-3 block text-xs text-muted-foreground">
-                {claimCounts ? `${claimLine(domain.depth, claimCounts[domain.id] ?? 0)} · ` : ""}
+                {claimCounts ? `${claimLine(claimCounts[domain.id] ?? 0)} · ` : ""}
                 {domain.categoryIds.length} categories
               </span>
             </Link>

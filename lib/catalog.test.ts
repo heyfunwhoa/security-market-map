@@ -28,6 +28,31 @@ describe("catalog integrity", () => {
     expect(catalogProblems(catalog)).toEqual([]);
   });
 
+  it("keeps the workstation shortlist attached to its product providers and scoped evidence", () => {
+    const expected = {
+      "limacharlie-binlib": "limacharlie",
+      "reversinglabs-spectra-analyze": "reversinglabs",
+      "carbon-black-cloud-enterprise-edr": "broadcom",
+      "microsoft-defender-for-endpoint": "microsoft",
+      "cisco-secure-endpoint": "cisco",
+      "cortex-aes": "palo-alto-networks",
+      "socket-firewall": "socket",
+      "stairwell-platform": "stairwell",
+      "aikido-device-protection": "aikido",
+      "aikido-safe-chain": "aikido",
+      "trufflehog": "truffle-security",
+      "trufflehog-enterprise": "truffle-security",
+    };
+    const candidates = catalog.products.filter((product) => product.useCaseIds.includes("uc-developer-endpoint"));
+    for (const [id, provider] of Object.entries(expected)) {
+      expect(candidates.find((product) => product.id === id)?.vendorId).toBe(provider);
+      expect(catalog.claims.some((claim) => claim.subjectType === "product" && claim.subjectId === id)).toBe(true);
+    }
+    expect(evidenceCell(catalog.claims, "socket-firewall", "cap-file-retrohunt", catalog.asOf).status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "limacharlie-binlib", "cap-file-retrohunt", catalog.asOf).status).toBe("evidenced");
+    expect(catalog.events.find((event) => event.id === "evt-binlib-general-availability")?.date).toBe("2023-08-08");
+  });
+
   it("reserves verified for an independent public standard", () => {
     const verified = catalog.claims.filter((claim) => claim.verificationStatus === "verified");
     expect(verified.map((claim) => claim.id).sort()).toEqual(["claim-owasp-nhi", "claim-owasp-nhi-top10"]);
@@ -263,6 +288,10 @@ describe("catalog integrity", () => {
       "cap-dev-ai-tool-hook",
       "cap-dev-ai-usage-inventory",
       "cap-dev-honeytoken",
+      "cap-file-retrohunt",
+      "cap-file-retrieval",
+      "cap-file-device-history",
+      "cap-workstation-packages",
     ]);
     const outside = catalog.capabilities.filter((capability) => {
       const category = catalog.categories.find((item) => item.id === capability.categoryId);

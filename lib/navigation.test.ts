@@ -9,7 +9,7 @@ const PAGES_BEFORE_REGROUP = [
 
 describe("site menu", () => {
   it("is grouped by what a visitor is trying to do", () => {
-    expect(NAV_GROUP_TITLES).toEqual(["Prep for an account", "Explore the market", "Understand how it works", "About the evidence"]);
+    expect(NAV_GROUP_TITLES).toEqual(["Explore the market", "Prepare a conversation", "Research"]);
   });
 
   it("keeps every page it linked before, once each", () => {
@@ -17,7 +17,7 @@ describe("site menu", () => {
     expect(new Set(NAV_HREFS).size).toBe(NAV_HREFS.length);
   });
 
-  it("shows the account-prep entry point and the three market views in the header", () => {
-    expect(HEADER_LINKS.map((link) => link.href)).toEqual(["/incidents", "/domains", "/landscape", "/compare"]);
+  it("puts domain and product browsing first in the header", () => {
+    expect(HEADER_LINKS.map((link) => link.href)).toEqual(["/domains", "/landscape", "/use-cases", "/compare"]);
   });
 });

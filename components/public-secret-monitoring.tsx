@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ClaimList } from "@/components/claims";
 import { productById, vendorById } from "@/lib/catalog";
 import { publicMonitoringChecked, publicMonitoringClaims } from "@/lib/data/public-monitoring";
-import { productDetailUrl } from "@/lib/landscape-filters";
+import { productDestination } from "@/lib/product-destination";
 import { formatDate } from "@/lib/format";
 import research from "@/research/public-secret-monitoring.json";
 
@@ -52,7 +52,7 @@ export function PublicSecretMonitoring({ categoryId }: { categoryId: string }) {
                   <p><strong>When to consider it. </strong>{offer.buyerFit}</p>
                   <p><strong>Ask in an evaluation. </strong>{offer.question}</p>
                   <ClaimList claims={claims} />
-                  <Link href={productDetailUrl(vendor.slug, product.id)} className={link}>{vendor.name} catalog profile and product evidence</Link>
+                  <Link href={productDestination(product, vendor.slug)} className={link}>{vendor.name} catalog profile and product evidence</Link>
                 </div>
               </details>
             );

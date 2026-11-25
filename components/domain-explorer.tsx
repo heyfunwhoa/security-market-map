@@ -26,11 +26,8 @@ export function DomainExplorer({ domains, claimCounts }: { domains: Domain[]; cl
 
   return (
     <div>
-      <div className="rounded-2xl border border-border bg-card p-4 sm:p-5">
-        <div className="flex flex-wrap items-baseline justify-between gap-2">
-          <h3 className="font-heading text-lg">Follow an attack</h3>
-          <span className="text-xs text-muted-foreground">A sequence, not a coverage claim</span>
-        </div>
+      <details className="rounded-xl border border-border bg-card px-4">
+        <summary className="min-h-11 cursor-pointer py-3 text-sm font-medium">Follow an illustrative attack across domains</summary>
         <ol className="mt-3 grid grid-cols-2 gap-2 sm:flex sm:items-stretch sm:gap-0" aria-label="Illustrative attack path">
           {ATTACK_PATH.map((step, index) => {
             const selected = step.id === activeId;
@@ -73,7 +70,7 @@ export function DomainExplorer({ domains, claimCounts }: { domains: Domain[]; cl
             ? `${active.label}: ${names.join(" and ")} highlighted below.`
             : "Select a step to highlight the domains that act at that point."}
         </p>
-      </div>
+      </details>
       <div className="mt-4">
         <DomainMap domains={domains} claimCounts={claimCounts} highlightIds={active?.domainIds} />
       </div>

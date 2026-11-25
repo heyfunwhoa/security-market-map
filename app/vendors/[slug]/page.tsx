@@ -1,4 +1,6 @@
-import { productDetailUrl, productSectionId } from "@/lib/landscape-filters";
+import { productDestination } from "@/lib/product-destination";
+import { productComparisonUrl, shortlistUrl } from "@/lib/landscape-shortlist";
+import { productSectionId } from "@/lib/landscape-filters";
 import { ProductBuyerContext } from "@/components/product-buyer-context";
 import { isProductResearchSlug } from "@/lib/product-research";
 import { Breadcrumbs } from "@/components/breadcrumbs";
@@ -83,6 +85,7 @@ export default async function VendorPage({ params }: { params: Promise<{ slug: s
               <a className="mt-2 inline-block text-sm text-primary underline-offset-4 hover:underline" href={product.officialUrl}>
                 Product source
               </a>
+              <Link href={productComparisonUrl(product)} className="ml-3 inline-flex min-h-11 items-center text-sm font-medium text-primary underline underline-offset-4">Compare {product.name}</Link>
               <div className="mt-3">
                 <ProductBuyerContext categories={catalog.categories} primaryIds={product.primaryCategoryIds} adjacentIds={product.adjacentCategoryIds} />
                 <h4 className="mb-3 mt-4 font-semibold">Product evidence and research gaps</h4>
@@ -119,7 +122,7 @@ export default async function VendorPage({ params }: { params: Promise<{ slug: s
                   <p className="mt-2">
                     <span className="font-medium">{product.name}</span> and{" "}
                     {other && otherVendor ? (
-                      <Link href={productDetailUrl(otherVendor.slug, other.id)} className="font-medium text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-ring">
+                      <Link href={productDestination(other, otherVendor.slug)} className="font-medium text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-ring">
                         {other.name}
                       </Link>
                     ) : other?.name} for{" "}
@@ -129,6 +132,7 @@ export default async function VendorPage({ params }: { params: Promise<{ slug: s
                     .
                   </p>
                   <p className="mt-1 text-muted-foreground">{edge.rationale}</p>
+                  {other && edge.type === "direct_competitor" && <Link href={shortlistUrl([product.id, other.id], edge.useCaseId)} className="mr-4 inline-flex min-h-11 items-center text-primary underline underline-offset-4">Compare {product.name} and {other.name}</Link>}
                   {source && (
                     <a href={source.url} className="mt-1 inline-flex min-h-11 items-center text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-ring">
                       {source.publisher} · {source.title}
