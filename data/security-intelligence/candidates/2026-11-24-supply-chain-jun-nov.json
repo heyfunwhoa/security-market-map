@@ -20,6 +20,13 @@
       "reviewStatus": "candidate",
       "discovery": [
         {
+          "publisher": "ManageEngine Threat Analysis Lab",
+          "canonicalUrl": "https://www.manageengine.com/threat-analysis-lab/aomei-backupper-supply-chain-compromise.html",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-25T02:30:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
           "publisher": "BleepingComputer",
           "canonicalUrl": "https://www.bleepingcomputer.com/news/security/hackers-hijack-aomei-update-servers-to-secretly-spread-malware/",
           "sourceRole": "secondary",
@@ -98,7 +105,7 @@
       "defensiveMappings": [],
       "weaknessMappings": [],
       "unresolvedQuestions": [
-        "Primary source needed: the ManageEngine and Google GTIG reports were not fetched.",
+        "Primary source found (ManageEngine report); claims still cite BleepingComputer and SC World, which match it on the May 28 detection and the UNC7017, CROSSROAD and SHINYROAD names.",
         "Cause is disputed between AOMEI (possible interception, no breach found initially) and ManageEngine (altered on AOMEI's side).",
         "Attribution to UNC7017 is from reporting; do not add actor links per the ATT&CK rules.",
         "Credential angle limited to an NTLM hash theft attempt; no secrets exposure reported."
@@ -280,9 +287,16 @@
         },
         {
           "publisher": "StepSecurity",
-          "canonicalUrl": "https://www.stepsecurity.io/blog/miasma-and-hades-are-spreading-now-detect-them-on-developer-machines-with-suspicious-files",
+          "canonicalUrl": "https://www.stepsecurity.io/blog/binding-gyp-npm-supply-chain-attack-spreads-like-worm",
           "sourceRole": "secondary",
           "discoveredAt": "2026-11-24T04:50:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Chainguard",
+          "canonicalUrl": "https://www.chainguard.dev/unchained/chainguard-artifacts-safe-from-miasma-phantom-gyp-npm-attack",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-25T02:30:00Z",
           "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
         }
       ],
@@ -310,7 +324,7 @@
         },
         {
           "id": "claim:npm-bindinggyp-miasma-wave-2026:3",
-          "statement": "The payload collected CI/CD variables from 30+ CI platforms, AWS/Azure/GCP credentials, GitHub OIDC tokens, and local files such as ~/.aws/credentials, ~/.kube/config, SSH keys, .npmrc and .env, then committed them to attacker-controlled GitHub repos.",
+          "statement": "The payload checked more than 30 CI-related environment variables and collected AWS, Azure, GCP and GitHub Actions credentials plus local files such as ~/.aws/credentials, ~/.kube/config, SSH keys, .npmrc and .env, then committed them to attacker-controlled GitHub repos.",
           "epistemicStatus": "observed",
           "sourceUrl": "https://reversinglabs.com/blog/npm-bindinggyp-cicd-secrets"
         },
@@ -328,9 +342,15 @@
         },
         {
           "id": "claim:npm-bindinggyp-miasma-wave-2026:6",
-          "statement": "StepSecurity counted 57 packages across more than 286 versions in under two hours, with @vapi-ai/server-sdk the largest victim at more than 408,000 monthly downloads.",
+          "statement": "StepSecurity counted 57 packages across more than 286 malicious versions in a rolling campaign lasting under two hours.",
           "epistemicStatus": "reported",
-          "sourceUrl": "https://www.stepsecurity.io/blog/miasma-and-hades-are-spreading-now-detect-them-on-developer-machines-with-suspicious-files"
+          "sourceUrl": "https://www.stepsecurity.io/blog/binding-gyp-npm-supply-chain-attack-spreads-like-worm"
+        },
+        {
+          "id": "claim:npm-bindinggyp-miasma-wave-2026:7",
+          "statement": "Chainguard reported @vapi-ai/server-sdk at about 408,000 monthly downloads and ai-sdk-ollama at about 120,000 among the affected packages.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.chainguard.dev/unchained/chainguard-artifacts-safe-from-miasma-phantom-gyp-npm-attack"
         }
       ],
       "attackMappings": [
@@ -516,6 +536,13 @@
       "reviewStatus": "candidate",
       "discovery": [
         {
+          "publisher": "Checkmarx Zero",
+          "canonicalUrl": "https://checkmarx.com/zero-post/npm-btree-malware-campaign-affects-millions-of-downloads-no-need-for-install-script/",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-25T02:30:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
           "publisher": "CSO Online",
           "canonicalUrl": "https://www.csoonline.com/article/4224400/new-npm-malware-finds-a-way-around-install-script-defenses-2.html",
           "sourceRole": "secondary",
@@ -582,7 +609,7 @@
       "defensiveMappings": [],
       "weaknessMappings": [],
       "unresolvedQuestions": [
-        "Primary source needed: the Checkmarx write-up was not fetched.",
+        "Checkmarx's write-up confirms the BTree.prototype.set trigger, Slack and Telegram exfiltration, the Sepolia contract and file self-deletion, but gives no removal date; the September 3 date and 11-week figure come from CSO Online.",
         "No credential theft reported; the second-stage payload is undescribed.",
         "Download figures for a typosquat may include automated installs; treat as reported, not as victims."
       ]
@@ -593,6 +620,13 @@
       "incidentKind": "supply_chain",
       "reviewStatus": "candidate",
       "discovery": [
+        {
+          "publisher": "Socket",
+          "canonicalUrl": "https://socket.dev/blog/openapi-react-query-codegen-npm-compromise",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-25T02:30:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
         {
           "publisher": "Cyber Security News",
           "canonicalUrl": "https://cybersecuritynews.com/popular-npm-package-2/",
@@ -660,9 +694,8 @@
       "defensiveMappings": [],
       "weaknessMappings": [],
       "unresolvedQuestions": [
-        "Primary source needed: the Socket write-up (socket.dev/blog/openapi-react-query-codegen-npm-compromise) was not fetched.",
-        "Earlier chat summary dated this October 11; the source says August 28, 2026, with the article published September 1.",
-        "How the publishing workflow was compromised needs confirming from StepSecurity or Socket."
+        "Socket's write-up confirms ten malicious versions with valid provenance; Cyber Security News reports a release workflow that a pull request comment could trigger, letting attackers publish fork code. Confirm the workflow detail from Socket before promotion.",
+        "Earlier chat summary dated this October 11; the source says August 28, 2026, with the article published September 1."
       ]
     }
   ]
