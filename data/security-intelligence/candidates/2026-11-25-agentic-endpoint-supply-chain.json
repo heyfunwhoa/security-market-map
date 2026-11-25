@@ -1,0 +1,196 @@
+{
+  "batch": "2026-11-25-agentic-endpoint-supply-chain",
+  "status": "candidate_only",
+  "publishable": false,
+  "framework": "docs/security-intelligence/incident-classification-framework.md",
+  "discoveryContext": "Found on 2026-11-25 while researching how agentic endpoint security vendors deploy (docs/market-research/agentic-endpoint-deployment-models-2026-11.md). Vendors cite both cases to explain the risk. Searched the seed and all candidate batches for postmark, OpenClaw, ClawHub and ClawHavoc: no matches. Third-party text was paraphrased, not copied.",
+  "excludedFromIncidents": [
+    "SecurityScorecard STRIKE scans of internet-exposed OpenClaw instances (Feb 2026; 40,214 rising to 135,000+ the same day)",
+    "CrowdStrike-reported Fortune 500 customer that found 18,000 AI agents on its endpoints against 300 approved (VentureBeat, 2026)",
+    "Palo Alto Networks blog claim that AI extensions in VS Code leaked code from 1.5 million developers (no original research source checked)",
+    "Unit 42 report of five evasive malicious ClawHub skills (Feb–May 2026)"
+  ],
+  "excludedReason": "The exposure scans and the 18,000-agent count are measurements with no single affected organization or reported compromise, so they are source-registry candidates, not incidents. The VS Code figure needs its original research located before it can be assessed. The Unit 42 finding is a later wave on the same marketplace; it is recorded as a claim on the ClawHavoc candidate for the reviewer to split out or keep together.",
+  "candidates": [
+    {
+      "incidentId": "incident:postmark-mcp-malicious-npm-2025",
+      "title": "Fake postmark-mcp npm package BCC'd every email sent through it to its publisher",
+      "incidentKind": "supply_chain",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "Koi Security (republished on the Palo Alto Networks blog)",
+          "canonicalUrl": "https://www.paloaltonetworks.com/blog/?p=372549",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-25T16:50:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "The Hacker News",
+          "canonicalUrl": "https://thehackernews.com/2025/09/first-malicious-mcp-server-found.html",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-25T16:50:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "SC Media",
+          "canonicalUrl": "https://www.scworld.com/news/open-source-mcp-server-package-caught-stealing-emails",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-25T16:50:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate mentions postmark-mcp. Closest neighbors are the npm and dev-toolchain supply-chain candidates in 2026-11-17-dev-toolchain-worms.json, which involve different packages and actors.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:postmark-mcp-malicious-npm-2025:1",
+          "statement": "Koi Security reported that version 1.0.16 of the npm package postmark-mcp added a single line that copied every email sent through the MCP server to the publisher's own address, and called it the first malicious MCP server seen in the wild.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.paloaltonetworks.com/blog/?p=372549"
+        },
+        {
+          "id": "claim:postmark-mcp-malicious-npm-2025:2",
+          "statement": "The package copied a legitimate postmark-mcp project hosted on GitHub; Postmark said the npm package was not official.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://thehackernews.com/2025/09/first-malicious-mcp-server-found.html"
+        },
+        {
+          "id": "claim:postmark-mcp-malicious-npm-2025:3",
+          "statement": "The malicious version was released on 17 September 2025; the package was later deleted from npm by its publisher after about 1,643 total downloads.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://thehackernews.com/2025/09/first-malicious-mcp-server-found.html"
+        },
+        {
+          "id": "claim:postmark-mcp-malicious-npm-2025:4",
+          "statement": "Koi described the package as downloaded about 1,500 times a week and integrated into hundreds of developer workflows.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.scworld.com/news/open-source-mcp-server-package-caught-stealing-emails"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Download figures differ by framing: about 1,500 a week (Koi, via SC Media) versus about 1,643 in total (The Hacker News). Keep both and attribute them.",
+        "The primary source is Koi's post as now hosted on the Palo Alto Networks blog after the Koi acquisition. Confirm the original koi.ai URL and publication date.",
+        "No named victim organization and no confirmed count of emails taken. Reviewer decides whether a single malicious package with no named victim fits the seed.",
+        "The researcher is now part of a vendor that sells a product for this risk. Don't treat the write-up as evidence that any product would have prevented it."
+      ]
+    },
+    {
+      "incidentId": "incident:clawhavoc-clawhub-skills-2026",
+      "title": "ClawHavoc: hundreds of malicious OpenClaw skills on ClawHub delivered the AMOS macOS stealer",
+      "incidentKind": "malware_campaign",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "Koi Security",
+          "canonicalUrl": "https://www.koi.ai/blog/clawhavoc-341-malicious-clawedbot-skills-found-by-the-bot-they-were-targeting",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-25T16:55:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "The Hacker News",
+          "canonicalUrl": "https://thehackernews.com/2026/02/researchers-find-341-malicious-clawhub.html",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-25T16:55:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Palo Alto Networks Unit 42",
+          "canonicalUrl": "https://unit42.paloaltonetworks.com/openclaw-ai-supply-chain-risk/",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-25T16:55:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Cloud Security Alliance",
+          "canonicalUrl": "https://labs.cloudsecurityalliance.org/research/csa-research-note-openclaw-clawhub-supply-chain-risk-2026070/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-25T16:55:00Z",
+          "usageRights": "Citation and short paraphrase only; CSA notes some rights reserved."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate mentions OpenClaw, ClawHub or ClawHavoc. The 2026-11-11-ai-agents batch covers other AI agent cases with different platforms.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:clawhavoc-clawhub-skills-2026:1",
+          "statement": "Koi Security audited the 2,857 skills then listed on ClawHub and found 341 malicious ones, 335 of them tied to one campaign it named ClawHavoc.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://thehackernews.com/2026/02/researchers-find-341-malicious-clawhub.html"
+        },
+        {
+          "id": "claim:clawhavoc-clawhub-skills-2026:2",
+          "statement": "The ClawHavoc skills used fake prerequisite steps to get users to install the Atomic macOS Stealer (AMOS).",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://thehackernews.com/2026/02/researchers-find-341-malicious-clawhub.html"
+        },
+        {
+          "id": "claim:clawhavoc-clawhub-skills-2026:3",
+          "statement": "Unit 42 reported that between February and May 2026 it found five further malicious ClawHub skills that had evaded blocking; OpenClaw banned the accounts and deleted the skills after Unit 42 reported them.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://unit42.paloaltonetworks.com/openclaw-ai-supply-chain-risk/"
+        },
+        {
+          "id": "claim:clawhavoc-clawhub-skills-2026:4",
+          "statement": "The Cloud Security Alliance describes ClawHub as a recurring supply-chain vector because OpenClaw grants installed skills broad local access, including credential stores, browser data and shell execution.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://labs.cloudsecurityalliance.org/research/csa-research-note-openclaw-clawhub-supply-chain-risk-2026070/"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Koi's own post was found through a link in a SlowMist analysis and was not fetched in this session. Confirm the URL, date and figures against it before promotion.",
+        "Counts grow across sources: 341 (Koi, early Feb 2026), 824 on a later recount (per CSA), and 1,184 from a separate researcher (per SC Media, citing GBHackers). Keep each figure with its source; don't merge them.",
+        "Reviewer decides whether the Unit 42 wave (claim 3) is part of this record or a separate incident.",
+        "No named victim organization and no confirmed count of infected machines.",
+        "Koi and Unit 42 are both now Palo Alto Networks. That is a reason to seek an independent source, not a reason to doubt the findings."
+      ]
+    }
+  ]
+}

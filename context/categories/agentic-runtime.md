@@ -3,7 +3,7 @@ id: "agentic-runtime"
 type: "category"
 name: "Agentic runtime enforcement"
 layer: "core"
-vendors: 33
+vendors: 36
 ---
 
 # Agentic runtime enforcement
@@ -39,6 +39,8 @@ A check on a live agent action before it completes. Directory, governance, privi
 - Keycard: Named in SACR's runtime-identity note for issuing agent credentials at tool-call time. No issuance claim is filled.
 - Noma Security: Named in SACR's runtime note for agent visibility beyond an MCP gateway. AI application security and runtime enforcement are not separated by a sourced claim here.
 - Bay: Bay AI Inc., Tel Aviv. Checks each action an AI agent tries to take before it runs, on laptops, cloud workloads and SaaS, under one policy set. Founded early 2026 by Unit 8200 veterans; launched 10 Nov 2026 with about $50M raised.
+- Backslash Security: Tel Aviv company founded 2022 that began in AI coding security and now calls itself an agentic AI endpoint security company: agentless discovery through MDM, an optional endpoint sensor for inline enforcement, and the Agentic Fabric Graph map of agents, MCP servers, models, skills and hooks.
+- Knostic: Herndon, Virginia company securing coding assistants and cowork agents on the endpoint. Kirin runs inside the agent and checks each action against policy before it runs; AgentMesh scans skills, MCP servers and extensions and blocks dangerous ones before install.
 - Manifold: California AIDR startup (2025), CEO Neal Swaelens. Maps agents on endpoints, especially coding agents and tools like Claude Cowork and OpenClaw, with their tools, MCP servers, databases and actions, flags anomalies and can quarantine or terminate agents. $8M seed led by Costanoa (Mar 2026).
 - Capsule Security: Tel Aviv startup, CEO Naor Paz. Runtime trust layer that checks each agent tool call and data access inside the execution path, with no proxy, gateway or SDK; coverage reports name Copilot Studio, ServiceNow and Agentforce. Publishes open-source ClawGuard. $7M seed (Apr 2026); advisers include Chris Krebs.
 - Kontext Security: Munich company (Cobrowser Technology GmbH per one aggregator) founded by Jens Ernstberger (CEO, doctorate in cryptography) and Michel Osswald. Task-aware runtime authorization between agents and tools: each action is judged by agent identity, assigned task, resource and request, observe-first then enforce, with short-lived credentials brokered so secrets stay out of agent environments. $4M led by 42CAP (Sep 2026).
@@ -58,6 +60,7 @@ A check on a live agent action before it completes. Directory, governance, privi
 - Natoma
 - SlashID
 - TrustFour
+- Neo Security
 - Lasso Security
 - Operant AI
 - AIR Security
