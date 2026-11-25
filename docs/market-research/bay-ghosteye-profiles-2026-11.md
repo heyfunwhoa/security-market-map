@@ -39,6 +39,8 @@ Also reported: agentless install through existing MDM or EDR in under five minut
 
 Primary: agentic runtime enforcement. Adjacent: endpoint security (it runs on the device and installs through MDM/EDR), MCP and tool security (it inventories MCP servers), AI governance (per-team policy). It sits beside the platforms in [MCP and agent security](mcp-security-scanners-2026-11.md). Its sourced difference is where the decision happens: on the device, per action, with session context.
 
+For how Bay's MDM/EDR rollout and native-hook enforcement compare with other agentic endpoint vendors, see [deployment models](agentic-endpoint-deployment-models-2026-11.md).
+
 ### Unknowns
 
 - No public docs, supported-agent list, OS list or pricing found.
