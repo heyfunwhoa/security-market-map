@@ -43,7 +43,7 @@ For how Bay's MDM/EDR rollout and native-hook enforcement compare with other age
 
 ### Unknowns
 
-- No public docs, supported-agent list, OS list or pricing found.
+- No public docs, supported-agent list or pricing found. SACR's ECP report (22 Jul 2026) says Bay covers Windows, Mac, Linux, cloud endpoints and containers through an ephemeral collector over existing EDR/MDM, and that collector-only deployments run in detection mode. That is analyst-restated vendor information, not tested (see [deployment models](agentic-endpoint-deployment-models-2026-11.md)).
 - Speed and false-positive figures are vendor claims.
 - Funding split and founding month conflict across sources.
 
