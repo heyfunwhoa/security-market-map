@@ -22,14 +22,17 @@ describe("domain study path", () => {
     for (const area of domainQuestions) expect(domainIds.has(area.domainId)).toBe(true);
   });
 
-  it("uses the identity question and the full glossary", () => {
+  it("uses the identity question and keeps cloud terms in the cloud glossary", () => {
     expect(questionsForDomain("identity").map((item) => item.question)).toEqual([
       "Who or what can access a system?",
     ]);
     const identity = catalog.domains.find((domain) => domain.id === "identity");
-    expect(glossaryForDomain(identity?.categoryIds ?? [], catalog.glossary)).toHaveLength(
-      catalog.glossary.length,
-    );
+    const cloud = catalog.domains.find((domain) => domain.id === "cloud");
+    const identityTerms = glossaryForDomain(identity?.categoryIds ?? [], catalog.glossary);
+    const cloudTerms = glossaryForDomain(cloud?.categoryIds ?? [], catalog.glossary);
+    expect(identityTerms.map((term) => term.id)).toContain("ciem");
+    expect(identityTerms.map((term) => term.id)).not.toContain("csie");
+    expect(cloudTerms.map((term) => term.id)).toContain("csie");
   });
 
   it("has no written words for data security", () => {

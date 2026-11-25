@@ -7,6 +7,27 @@ import type { Claim, Product, Source, Vendor } from "../schema";
 
 export const categoryFillVendors: Vendor[] = [
   {
+    "id": "act-security",
+    "slug": "act-security",
+    "name": "Act Security",
+    "formerNames": [],
+    "website": "https://act.security/",
+    "positioning": "Act says it uses infrastructure as code to apply cloud-native controls for access boundaries and maintain them as the environment changes.",
+    "primaryCategoryIds": [
+      "csie"
+    ],
+    "adjacentCategoryIds": [
+      "ciem",
+      "iac-security"
+    ],
+    "identityScopes": ["human", "nhi", "agent"],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Which clouds, control types, and rollout or rollback options are supported?",
+      "How well does impact prediction account for rarely used legitimate workflows?"
+    ]
+  },
+  {
     "id": "prophet-security",
     "slug": "prophet-security",
     "name": "Prophet Security",
@@ -513,6 +534,28 @@ export const categoryFillVendors: Vendor[] = [
 ];
 
 export const categoryFillProducts: Product[] = [
+  {
+    "id": "act-cloud-access",
+    "slug": "act-cloud-access",
+    "vendorId": "act-security",
+    "name": "Act cloud security platform",
+    "positioning": "Act says it uses infrastructure as code to apply cloud-native controls for access boundaries and maintain them as the environment changes.",
+    "primaryCategoryIds": [
+      "csie"
+    ],
+    "adjacentCategoryIds": [
+      "ciem",
+      "iac-security"
+    ],
+    "identityScopes": ["human", "nhi", "agent"],
+    "deployment": [
+      "unknown"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "Public demo offered. Editions, deployment, and generally available scope were not verified.",
+    "officialUrl": "https://act.security/platform",
+    "useCaseIds": []
+  },
   {
     "id": "prophet-ai-soc",
     "slug": "prophet-ai-soc",
@@ -1092,6 +1135,42 @@ export const categoryFillProducts: Product[] = [
 
 export const categoryFillSources: Source[] = [
   {
+    "id": "src-sacr-csie-20261028",
+    "title": "The CISO’s Guide to Cloud Security Intent Enforcement",
+    "url": "https://softwareanalyst.io/reports/the-ciso-s-guide-to-cloud-security-intent-enforcement",
+    "canonicalUrl": "https://softwareanalyst.io/reports/the-ciso-s-guide-to-cloud-security-intent-enforcement",
+    "publisher": "SACR",
+    "sourceType": "analyst",
+    "publishedAt": "2026-10-28",
+    "retrievedAt": "2026-11-25",
+    "volatility": "moderate",
+    "excerpt": "SACR describes CSIE as an emerging control layer that translates security intent into cloud controls, assesses likely impact, enforces approved policy, and maintains it over time."
+  },
+  {
+    "id": "src-act-csie-20261111",
+    "title": "What is Cloud Security Intent Enforcement (CSIE)?",
+    "url": "https://act.security/resources/what-is-cloud-security-intent-enforcement-csie-breaking-down-the-new-cloud-security-category",
+    "canonicalUrl": "https://act.security/resources/what-is-cloud-security-intent-enforcement-csie-breaking-down-the-new-cloud-security-category",
+    "publisher": "Act Security",
+    "sourceType": "vendor_marketing",
+    "publishedAt": "2026-11-11",
+    "retrievedAt": "2026-11-25",
+    "volatility": "fast",
+    "excerpt": "Act explains SACR’s framework from a vendor perspective and positions its platform within the category."
+  },
+  {
+    "id": "src-act-cloud-platform",
+    "title": "Cloud Security Platform: Control Cloud Access End to End",
+    "url": "https://act.security/platform",
+    "canonicalUrl": "https://act.security/platform",
+    "publisher": "Act Security",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-25",
+    "volatility": "fast",
+    "excerpt": "Act says it uses infrastructure as code to apply cloud-native controls for access boundaries and maintain them as the environment changes."
+  },
+  {
     "id": "src-fill-prophet-ai-soc",
     "title": "Prophet Security \u2014 homepage",
     "url": "https://www.prophetsecurity.ai/",
@@ -1442,6 +1521,66 @@ export const categoryFillSources: Source[] = [
 ];
 
 export const categoryFillClaims: Claim[] = [
+  {
+    "id": "claim-sacr-csie-20261028",
+    "statement": "SACR describes CSIE as an emerging control layer that translates security intent into cloud controls, assesses likely impact, enforces approved policy, and maintains it over time.",
+    "subjectType": "category",
+    "subjectId": "csie",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-sacr-csie-20261028",
+    "sourceUrl": "https://softwareanalyst.io/reports/the-ciso-s-guide-to-cloud-security-intent-enforcement",
+    "sourceType": "analyst",
+    "publishedAt": "2026-10-28",
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "needs_review",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Report updated November 13. SACR discloses sponsored research participation by Aryon, Native, Act and Wiz. Product packaging remains unsettled."
+  },
+  {
+    "id": "claim-act-csie-positioning",
+    "statement": "Act positions its cloud access platform within SACR’s CSIE framework.",
+    "subjectType": "product",
+    "subjectId": "act-cloud-access",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-act-csie-20261111",
+    "sourceUrl": "https://act.security/resources/what-is-cloud-security-intent-enforcement-csie-breaking-down-the-new-cloud-security-category",
+    "sourceType": "vendor_marketing",
+    "publishedAt": "2026-11-11",
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Vendor interpretation. Product fit remains a research candidate."
+  },
+  {
+    "id": "claim-act-native-cloud-enforcement",
+    "statement": "Act says it uses infrastructure as code to apply cloud-native controls for access boundaries and maintain them as the environment changes.",
+    "subjectType": "product",
+    "subjectId": "act-cloud-access",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-act-cloud-platform",
+    "sourceUrl": "https://act.security/platform",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Vendor-reported. Provider coverage, prediction accuracy, and rollback behavior were not tested."
+  },
   {
     "id": "claim-fill-prophet-ai-soc",
     "statement": "Prophet Security says its AI SOC Platform automates alert triage, investigations, response, threat hunting and detection engineering.",
