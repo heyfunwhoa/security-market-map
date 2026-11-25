@@ -6,6 +6,7 @@ export const PRODUCT_RESEARCH_SLUGS = [
   "gitguardian-developer-endpoint",
   "aikido-device-protection",
   "kingfisher",
+  "bay-platform",
   ...(Object.keys(ciamProfiles) as CiamProductSlug[]),
 ] as const;
 

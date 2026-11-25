@@ -1129,7 +1129,7 @@ export const sources: Source[] = [
     author: "SACR, Lawrence Pingree, and Francis Odum",
     sourceType: "analyst",
     publishedAt: "2026-07-22",
-    retrievedAt: "2026-09-24",
+    retrievedAt: "2026-11-25",
     volatility: "fast",
     excerpt:
       "SACR names Endpoint Control and Prevention as a layer above EDR for agents, browser sessions, and data on the device. CrowdStrike, Palo Alto Networks, and SentinelOne are described as extending EDR. The note does not replace EDR.",
