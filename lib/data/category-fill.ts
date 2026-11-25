@@ -720,7 +720,7 @@ export const categoryFillProducts: Product[] = [
     "slug": "stairwell-platform",
     "vendorId": "stairwell",
     "name": "Stairwell platform (Rehunt and Backstory)",
-    "positioning": "Stairwell says it preserves executables from enrolled endpoints in a private environment, re-checks them as new intelligence arrives, and investigates related variants and affected hosts with its Backstory agent.",
+    "positioning": "Stairwell says Rehunt searches previously collected files for new threat intelligence, Backstory helps responders scope incidents and reconstruct timelines, and SOC analysts can send alerts and files for investigation and receive findings in their existing tools.",
     "primaryCategoryIds": [
       "malware-analysis"
     ],
@@ -737,7 +737,12 @@ export const categoryFillProducts: Product[] = [
     "availability": "generally_available",
     "availabilityNote": "Per-asset annual pricing with all capabilities included, per Stairwell's pricing page; rates are quoted, not published.",
     "officialUrl": "https://stairwell.com/store/",
-    "useCaseIds": ["uc-developer-endpoint"]
+    "useCaseIds": [
+      "uc-alert-investigation",
+      "uc-retrospective-threat-hunting",
+      "uc-file-incident-scoping",
+      "uc-developer-endpoint"
+    ]
   },
   {
     "id": "cribl-stream",
