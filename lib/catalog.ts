@@ -115,7 +115,7 @@ import { agentSecurityVendors, agentSecurityProducts, agentSecuritySources, agen
 import { appsecGapVendors, appsecGapProducts, appsecGapSources, appsecGapClaims } from "./data/appsec-category-gaps";
 import { gapBatch2Vendors, gapBatch2Products, gapBatch2Sources, gapBatch2Claims } from "./data/category-gaps-batch2";
 import { bayGhosteyeVendors, bayGhosteyeProducts, bayGhosteyeSources, bayGhosteyeClaims, bayGhosteyeEvents } from "./data/bay-ghosteye";
-import { agenticEndpointVendors, agenticEndpointProducts, agenticEndpointSources, agenticEndpointClaims, agenticEndpointEvents } from "./data/agentic-endpoint";
+import { agenticEndpointVendors, agenticEndpointProducts, agenticEndpointSources, agenticEndpointClaims, agenticEndpointSacrClaims, agenticEndpointEvents } from "./data/agentic-endpoint";
 import { runtimeHumanVendors, runtimeHumanProducts, runtimeHumanSources, runtimeHumanClaims, runtimeHumanEvents } from "./data/agent-runtime-human-layer-profiles";
 import { ispmWimVendors, ispmWimProducts, ispmWimSources, ispmWimClaims } from "./data/ispm-wim";
 import { identityAnalystSources, identityAnalystClaims } from "./data/identity-analyst";
@@ -169,7 +169,7 @@ function parseCatalog(): Catalog {
   const workforce = registerProductEvidence(workforceGuideResearch);
   const management = registerProductEvidence(secretsManagementResearch);
   const workstation = registerProductEvidence(workstationResearch);
-  const parsedClaims = z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims, ...developerEndpointClaims, ...categoryFillClaims, ...gapBatch2Claims, ...bayGhosteyeClaims, ...agenticEndpointClaims, ...runtimeHumanClaims, ...mcpSecurityClaims, ...agentSecurityClaims, ...appsecGapClaims, ...ispmWimClaims, ...identityAnalystClaims, ...publicMonitoringClaims, ...monitoringModeEvidence.claims, ...management.claims, ...workstation.claims, ...workforce.claims, ...ciam.claims, ...ciamWorkflowEvidence.claims, ...appsecAnalystClaims, ...secopsDataAnalystClaims, ...cloudCorpAnalystClaims, ...standardsClaims]);
+  const parsedClaims = z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims, ...developerEndpointClaims, ...categoryFillClaims, ...gapBatch2Claims, ...bayGhosteyeClaims, ...agenticEndpointClaims, ...agenticEndpointSacrClaims, ...runtimeHumanClaims, ...mcpSecurityClaims, ...agentSecurityClaims, ...appsecGapClaims, ...ispmWimClaims, ...identityAnalystClaims, ...publicMonitoringClaims, ...monitoringModeEvidence.claims, ...management.claims, ...workstation.claims, ...workforce.claims, ...ciam.claims, ...ciamWorkflowEvidence.claims, ...appsecAnalystClaims, ...secopsDataAnalystClaims, ...cloudCorpAnalystClaims, ...standardsClaims]);
   return {
     // Generated from the data so the header matches the newest claim card. AS_OF is only a fallback.
     asOf: latestClaimDate(parsedClaims) ?? AS_OF,

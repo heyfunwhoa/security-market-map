@@ -119,6 +119,33 @@ export const agenticEndpointClaims: Claim[] = [
   claim("claim-ae-guardian-access", "Falcon Guardian's Agent Access Controls define which AI agents may run on managed endpoints and block unauthorized ones.", "product", "crowdstrike-falcon-guardian", s["src-ae-crwd-guardian"], "Company press release."),
 ];
 
+// SACR Endpoint Control and Prevention (ECP) report, 22 Jul 2026. Reuses the existing source record
+// src-sacr-ecp (lib/data/sources.ts). Zone numbers follow SACR's five-zone framework:
+// 1 software posture and governance, 2 application-layer enforcement, 3 agent runtime visibility (AI-EDR),
+// 4 intent-aware behavioral analysis, 5 data-centric enforcement. Vendor profiles in an analyst report
+// largely restate vendor briefings; they are not independent tests.
+const SACR_ECP = { id: "src-sacr-ecp", url: "https://softwareanalyst.substack.com/p/the-ciso-guide-to-endpoint-control", publishedAt: "2026-07-22" };
+function sacr(id: string, statement: string, subjectType: Claim["subjectType"], subjectId: string, notes: string, polarity: Claim["polarity"] = "asserts"): Claim {
+  return {
+    id, statement, subjectType, subjectId, capabilityId: null, polarity,
+    sourceId: SACR_ECP.id, sourceUrl: SACR_ECP.url, sourceType: "analyst", publishedAt: SACR_ECP.publishedAt,
+    observedAt: CHECKED, effectiveFrom: null, effectiveTo: null, confidence: "medium",
+    verificationStatus: "needs_review", lastCheckedAt: CHECKED, conflictsWith: [], notes,
+  };
+}
+
+export const agenticEndpointSacrClaims: Claim[] = [
+  sacr("claim-ae-sacr-ecp-players", "SACR's ECP report groups CrowdStrike, Palo Alto Networks and SentinelOne as EDR vendors extending into endpoint control, and names Neo, Bay, Bloom, Glow, Pluto, Origin, Ent, Bold, NeuralTrust and Cyberhaven as emerging ECP-native players.", "category", "endpoint-control", "Analyst grouping, not a ranking. The report spells NeuralTrust as \"NeutralTrust\". It does not use Leader or Major Player labels in the text checked."),
+  sacr("claim-ae-sacr-bay-zones", "SACR profiles Bay across ECP zones 1 to 4 and calls it the strongest zone 1 option for credential exposure in agentic toolchains.", "product", "bay-platform", "Analyst characterization."),
+  sacr("claim-ae-sacr-bay-deploy", "SACR reports that Bay deploys an ephemeral collector rather than a persistent agent, over existing EDR or MDM such as Intune and CrowdStrike, covering Windows, Mac, Linux, cloud endpoints and containers.", "product", "bay-platform", "Analyst restating vendor information; first source found for Bay's OS coverage. Not tested."),
+  sacr("claim-ae-sacr-bay-caveat", "SACR cautions that Bay's prevention depends on its on-device enforcement component, that a collector-only deployment runs in detection mode, and that its breadth, latency and cross-platform claims should be validated in a proof of value.", "product", "bay-platform", "Analyst caveat.", "limits"),
+  sacr("claim-ae-sacr-neo-zones", "SACR profiles Neo Security across ECP zones 1 to 3.", "vendor", "neo-security", "Analyst characterization."),
+  sacr("claim-ae-sacr-koi-deploy", "SACR describes Koi as a network supply-chain gateway that integrates with existing CrowdStrike, Defender and MDM telemetry instead of adding a new agent, and places it across zones 1 to 5.", "product", "palo-alto-koi", "Analyst characterization."),
+  sacr("claim-ae-sacr-aidr-deploy", "SACR lists CrowdStrike Falcon AIDR delivery through the Falcon sensor, browser extensions, AI gateway integrations, an SDK and an MCP proxy, and notes its prompt-layer telemetry depends on network connectivity.", "product", "crowdstrike-falcon-guardian", "SACR names the product Falcon AIDR; the Sep 2026 release brands it Falcon Guardian. Treat as the same line pending confirmation."),
+  sacr("claim-ae-sacr-s1-kernel", "SACR describes SentinelOne Singularity's ECP coverage as delivered through a kernel-level endpoint agent.", "vendor", "sentinelone", "Analyst characterization; Prompt Security is profiled separately in this catalog."),
+  sacr("claim-ae-sacr-cyberhaven", "SACR places Cyberhaven in ECP zone 5 (data-centric enforcement), monitoring through a browser extension.", "vendor", "cyberhaven", "Analyst characterization."),
+];
+
 export const agenticEndpointEvents: CatalogEvent[] = [
   { id: "evt-ae-koi-intent", vendorId: "palo-alto-networks", date: "2026-02-17", kind: "acquisition", title: "Palo Alto Networks agrees to acquire Koi", summary: "Definitive agreement announced to acquire Koi for agentic endpoint security. Deal value not recorded here.", sourceId: "src-ae-panw-koi-intent" },
   { id: "evt-ae-koi-close", vendorId: "palo-alto-networks", date: "2026-04-14", kind: "acquisition", title: "Palo Alto Networks completes Koi acquisition", summary: "Closing announced; Koi stays available standalone and is being integrated into Prisma AIRS and Cortex XDR.", sourceId: "src-ae-panw-koi-close" },
