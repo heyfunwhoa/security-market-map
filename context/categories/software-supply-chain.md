@@ -3,7 +3,7 @@ id: "software-supply-chain"
 type: "category"
 name: "Software supply chain"
 layer: "core"
-vendors: 19
+vendors: 20
 ---
 
 # Software supply chain
@@ -47,6 +47,7 @@ The path from a dependency, image, or build to what runs in production. SCA, SBO
 - Aikido Security
 - Apiiro
 - RapidFort
+- Knostic
 - Manifold
 
 ## What buyers do instead
