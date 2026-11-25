@@ -239,14 +239,15 @@ export const categoryFillVendors: Vendor[] = [
     "slug": "binalyze",
     "name": "Binalyze",
     "formerNames": [],
-    "website": "https://www.binalyze.com/",
+    "website": "https://binalyze.ai/",
     "positioning": "Binalyze describes AIR as a platform that automates digital forensics and incident response: remote evidence collection and analysis across operating systems, integration with existing security tools, and automated analysis.",
     "primaryCategoryIds": [
       "dfir-collection"
     ],
     "adjacentCategoryIds": [
       "endpoint-security",
-      "soar"
+      "soar",
+      "ai-soc-investigation"
     ],
     "identityScopes": [
       "not_an_identity_control"
@@ -254,7 +255,8 @@ export const categoryFillVendors: Vendor[] = [
     "verificationStatus": "research_candidate",
     "openQuestions": [
       "Collection depth, OS coverage and automated-analysis quality are vendor-reported and untested here.",
-      "Bought directly, or through an MSSP or IR retainer?"
+      "Bought directly, or through an MSSP or IR retainer?",
+      "Binalyze also markets AIR as an evidence layer for other AI SOC products (APIs, MCP, partners). Is it bought as a standalone AI SOC, or alongside one?"
     ]
   },
   {
@@ -1039,7 +1041,8 @@ export const categoryFillProducts: Product[] = [
       "dfir-collection"
     ],
     "adjacentCategoryIds": [
-      "endpoint-security"
+      "endpoint-security",
+      "ai-soc-investigation"
     ],
     "deployment": [
       "unknown"
@@ -1049,7 +1052,7 @@ export const categoryFillProducts: Product[] = [
     ],
     "availability": "generally_available",
     "availabilityNote": "Deployment and pricing not verified here.",
-    "officialUrl": "https://www.binalyze.com/",
+    "officialUrl": "https://binalyze.ai/",
     "useCaseIds": []
   },
   {
@@ -1797,6 +1800,18 @@ export const categoryFillSources: Source[] = [
     "retrievedAt": "2026-11-23",
     "volatility": "moderate",
     "excerpt": "Binalyze describes AIR as automating DFIR, with remote evidence collection and analysis across operating systems and integrations with existing tools."
+  },
+  {
+    "id": "src-fill-binalyze-ai-soc",
+    "title": "Binalyze \u2014 AI SOC & Agentic Investigations use case",
+    "url": "https://binalyze.ai/use-case/ai-soc/",
+    "canonicalUrl": "https://binalyze.ai/use-case/ai-soc/",
+    "publisher": "Binalyze",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-25",
+    "volatility": "moderate",
+    "excerpt": "Binalyze positions AIR as the forensic evidence and investigation layer for AI-driven SOC workflows, reachable through open APIs, MCP and integrations or through its Fleet agentic investigation workspace."
   },
   {
     "id": "src-fill-acalvio-home",
@@ -2572,6 +2587,26 @@ export const categoryFillClaims: Claim[] = [
     "lastCheckedAt": "2026-11-23",
     "conflictsWith": [],
     "notes": "Official page opened and checked 2026-11-23. Publisher-reported, not tested; no competitor or parity claim. See docs/market-research/adjacent-file-evidence-categories-2026-11-23.md."
+  },
+  {
+    "id": "claim-fill-binalyze-ai-soc",
+    "statement": "Binalyze says AIR gives AI-driven SOC workflows direct forensic evidence through open APIs, MCP and integrations, and through Binalyze Fleet, which it calls an agentic investigation workspace.",
+    "subjectType": "product",
+    "subjectId": "binalyze-air",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-binalyze-ai-soc",
+    "sourceUrl": "https://binalyze.ai/use-case/ai-soc/",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Official page opened and checked 2026-11-25. Publisher-reported, not tested. The page also targets AI SOC vendors and MSSPs as partners, so this supports an adjacent ai-soc-investigation placement, not direct competition with any AI SOC product."
   },
   {
     "id": "claim-fill-acalvio-home",
