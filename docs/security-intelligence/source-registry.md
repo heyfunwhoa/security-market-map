@@ -35,6 +35,46 @@ The starter JSON files hold two *reported* incidents with direct CISA citations.
 
 **Negative rule:** absence of an ATT&CK link, package record, exploit status or affected organization means **unknown/not yet evaluated**, not false.
 
+## Candidate intake sources (proposed 2026-11-24, not reviewed)
+
+Places to look for new incidents. These are discovery sources, not entries in `sources.seed.json`; each incident still cites its own page. **Role** says what a source can support: *primary* can confirm an incident, *secondary* adds detail but is context only, *lead only* is never cited as evidence. **Link** says whether the address was seen in a search result on 2026-11-24 (*seen*) or not checked (*unchecked*); nothing here was fetched, so verify before relying on it.
+
+### Primary: can confirm an incident
+
+| Source | Role | Good for | Link |
+| --- | --- | --- | --- |
+| [SEC EDGAR full-text search](https://efts.sec.gov/LATEST/search-index?q=%22Item%201.05%22&forms=8-K) | primary | US public-company 8-K filings. Search Item 1.05 (material) **and** Item 8.01 (voluntary or not-yet-material disclosures); some incidents start in 8.01 and move to 1.05 | unchecked (EDGAR itself seen) |
+| [Texas AG data breach reports](https://texasattorneygeneral.gov/consumer-protection/data-breach-reporting) | primary | Breaches affecting 250+ Texans; public listing kept up to one year | seen |
+| [California AG data breach list](https://oag.ca.gov/privacy/databreach/list) | primary | Breach notices with sample letters | unchecked |
+| [Maine AG breach notices](https://www.maine.gov/agviewer/content/ag/985235c7-cb95-4be2-8792-a1252b4f8318/list.html) | primary | Notices with total people affected nationwide | unchecked |
+| [Washington AG data breach notifications](https://www.atg.wa.gov/data-breach-notifications) | primary | Notices affecting 500+ residents | unchecked |
+| [HHS OCR breach portal](https://ocrportal.hhs.gov/ocr/breach/breach_report.jsf) | primary | US healthcare breaches affecting 500+ people | unchecked |
+| [HHS HC3](https://www.hhs.gov/hc3) | primary (advisories) | Health-sector threat products | seen |
+| [FBI IC3 advisories](https://www.ic3.gov/CSA) | primary | FBI Flash and joint advisories | unchecked |
+| [CERT-FR (ANSSI)](https://www.cert.ssi.gouv.fr/) | primary | French alerts and reports; context for EU incidents such as Arkéa | unchecked |
+| [UK NCSC](https://www.ncsc.gov.uk/) / [ACSC](https://www.cyber.gov.au/) / [CCCS](https://www.cyber.gc.ca/) | primary | National advisories outside the US | unchecked |
+| Company newsrooms, investor pages, GlobeNewswire/RNS | primary | The company's own statement; prefer the company-hosted copy | per incident |
+
+### Secondary: technical detail, context only
+
+| Source | Role | Good for | Link |
+| --- | --- | --- | --- |
+| Incident-response and threat-intel research (Mandiant/Google Threat Intelligence, Unit 42, Microsoft Threat Intelligence, Talos, ESET, Sophos, Huntress, The DFIR Report) | secondary | Attack chains, dwell time, EDR evasion | unchecked |
+| Annual reports (Verizon DBIR, Mandiant M-Trends, Sophos State of Ransomware) | secondary | Trend figures; not individual incidents | unchecked |
+| Halcyon and Coveware quarterly ransomware reports | secondary | Ransomware trend data | Halcyon seen via Infosecurity Magazine coverage |
+| Journalists who contact the company (BleepingComputer, The Record, SecurityWeek, DataBreaches.net, Reuters) | secondary | Confirmation attempts, figures, timelines | BleepingComputer, SecurityWeek seen |
+| Supply-chain and extension research ([Socket](https://socket.dev/blog), Aikido, Wiz Research, [Koi](https://www.koi.ai/blog)) | secondary | Malicious packages, IDE and browser extensions; fast first reports | Socket already in seed; Koi seen (also uses koi.security) |
+| On-chain investigators (ZachXBT, Elliptic, Chainalysis) | secondary | Crypto-theft amounts and fund flows; not confirmed by the victim | unchecked |
+| FS-ISAC and Health-ISAC public reports | secondary | Sector context; most member content is not public | unchecked |
+
+### Lead only: never cite as evidence
+
+- Ransomware leak-site trackers such as ransomware.live: record a group's **claim** only, labeled as a claim.
+- Dark-web posts, Telegram, Reddit and social posts.
+- AI-generated aggregators and incident "scoring" sites (for example Rankiteo, ThreatCluster): use to find the original report, then cite that.
+
+**Open questions for the reviewer:** which of these to add to `.github/workflows/source-link-check.yml`'s scope once they appear in seed records; terms of use for each before storing more than a citation and short summary; and whether state AG listings should get their own `type` value (the seed currently uses `regulator_filing`).
+
 ## Adding incidents from research sessions
 
 New incidents found during research go through the [incident classification framework](incident-classification-framework.md), not straight into the reviewed seed:
