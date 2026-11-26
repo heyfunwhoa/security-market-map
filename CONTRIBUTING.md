@@ -6,6 +6,7 @@ Use this checklist for a vendor addition, category change or factual correction.
 
 - Search existing IDs, aliases and open PRs. Reuse records; distinguish the parent company from its products.
 - Record the buyer decision, primary/adjacent categories and why the placement fits.
+- For each new or revised product profile, name the action the product performs in each proposed category, the evidence or output a buyer gets, and any prerequisite or handoff. When backfilling, take one buyer question at a time and compare the steps each product covers.
 - Add original source URL, publisher, source type, observation date, last check date and evidence status. Leave unknown publication dates null.
 - For every vendor added or explained in a category guide, link the catalog product to a claim for each material capability and its original source in the shared Sources registry. Reuse existing IDs and URLs. Render those same claims in the guide so source corrections reach both views. Mark unsupported coverage as unknown and identify buyer guidance as editorial.
 - Keep vendor statements vendor-published. A human review does not make marketing independently verified.
