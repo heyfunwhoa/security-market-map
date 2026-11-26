@@ -6,6 +6,8 @@ import type { Claim, Product, Source, Vendor } from "../schema";
 // Palo Alto Networks and Black Kite reuse existing vendor records. See docs/market-research/category-gaps-batch2-2026-11.md.
 
 const CHECKED = "2026-11-23";
+// Strix and Tenzai were added on a later pass.
+const CHECKED_PENTEST2 = "2026-11-25";
 
 export const gapBatch2Vendors: Vendor[] = [
   {
@@ -54,6 +56,41 @@ export const gapBatch2Vendors: Vendor[] = [
     verificationStatus: "research_candidate",
     openQuestions: [
       "How the autonomous offering and human pentests are scoped and priced together was not checked.",
+    ],
+  },
+  {
+    id: "strix",
+    slug: "strix",
+    name: "Strix",
+    formerNames: [],
+    website: "https://www.strix.ai/",
+    positioning:
+      "Autonomous AI pentesting vendor that leads with an open-source (Apache 2.0) agent CLI, plus a hosted platform at app.strix.ai and a self-hosted enterprise option. Agents test code, APIs, cloud and infrastructure, prove exploitability and retest fixes.",
+    primaryCategoryIds: ["pentest-program"],
+    adjacentCategoryIds: ["dast", "sast"],
+    identityScopes: ["not_an_identity_control"],
+    verificationStatus: "research_candidate",
+    openQuestions: [
+      "Funding is reported inconsistently by third-party trackers and blogs; no primary announcement was found.",
+      "Homepage logos (AWS, TikTok, Fortinet, Convex, PayPal, Citi, Pfizer) say 'used by security teams at'; scope of use is not stated.",
+      "Does an autonomous test satisfy the buyer's compliance pentest requirement, or is a human-led report still needed?",
+    ],
+  },
+  {
+    id: "tenzai",
+    slug: "tenzai",
+    name: "Tenzai",
+    formerNames: [],
+    website: "https://www.tenzai.com/",
+    positioning:
+      "Enterprise-focused autonomous AI pentesting vendor. Agents find, chain and exploit vulnerabilities and return exploit-proven findings with guided fixes and retests.",
+    primaryCategoryIds: ["pentest-program"],
+    adjacentCategoryIds: ["dast"],
+    identityScopes: ["not_an_identity_control"],
+    verificationStatus: "research_candidate",
+    openQuestions: [
+      "Deployment model (SaaS or self-hosted) is not stated on the homepage.",
+      "No named customers; design partners in financial services, healthcare and technology are investor-reported.",
     ],
   },
 ];
@@ -132,6 +169,36 @@ export const gapBatch2Products: Product[] = [
     availability: "generally_available",
     availabilityNote: "Subscription tiers by number of vendors assessed, per the Peer Insights listing.",
     officialUrl: "https://blackkite.com/",
+    useCaseIds: [],
+  },
+  {
+    id: "strix-platform",
+    slug: "strix-platform",
+    vendorId: "strix",
+    name: "Strix (open-source agents and Strix Cloud)",
+    positioning: "Open-source multi-agent pentesting CLI with a GitHub Actions workflow for pull requests, plus a hosted platform with validated findings, autofix and PR reviews.",
+    primaryCategoryIds: ["pentest-program"],
+    adjacentCategoryIds: ["dast", "sast"],
+    deployment: ["open_source", "saas", "self_hosted"],
+    identityScopes: ["not_an_identity_control"],
+    availability: "generally_available",
+    availabilityNote: "Open source under Apache 2.0 (LICENSE checked 2026-11-25). Homepage lists VPC, on-prem and air-gapped deployment for enterprise; not separately checked.",
+    officialUrl: "https://github.com/usestrix/strix",
+    useCaseIds: [],
+  },
+  {
+    id: "tenzai-platform",
+    slug: "tenzai-platform",
+    vendorId: "tenzai",
+    name: "Tenzai AI Hacker",
+    positioning: "Agentic pentesting harness for complex enterprise environments: exploit-proven findings, WAF mitigation, guided fixes and retests, with reviewable agent reasoning.",
+    primaryCategoryIds: ["pentest-program"],
+    adjacentCategoryIds: ["dast"],
+    deployment: ["unknown"],
+    identityScopes: ["not_an_identity_control"],
+    availability: "generally_available",
+    availabilityNote: "Launched out of stealth Nov 2025. Leaderboard and CTF ranking claims on the homepage are vendor-reported and not recorded as claims.",
+    officialUrl: "https://www.tenzai.com/",
     useCaseIds: [],
   },
 ];
@@ -234,6 +301,66 @@ export const gapBatch2Sources: Source[] = [
     volatility: "moderate",
     excerpt: "Listing describes non-intrusive cyber risk ratings for third parties built from open-source intelligence, scoring areas such as breach probability, compliance and network security.",
   },
+  {
+    id: "src-gap2-strix-repo",
+    title: "Strix — usestrix/strix README and LICENSE (GitHub)",
+    url: "https://github.com/usestrix/strix",
+    canonicalUrl: "https://github.com/usestrix/strix",
+    publisher: "Strix",
+    sourceType: "official_docs",
+    publishedAt: null,
+    retrievedAt: CHECKED_PENTEST2,
+    volatility: "fast",
+    excerpt: "README describes open-source AI agents that run code dynamically, find vulnerabilities and validate them with proofs of concept, a GitHub Actions workflow for pull requests, and the hosted Strix Cloud at app.strix.ai. LICENSE is Apache 2.0.",
+  },
+  {
+    id: "src-gap2-strix-home",
+    title: "Strix — AI security platform for developers",
+    url: "https://www.strix.ai/",
+    canonicalUrl: "https://www.strix.ai/",
+    publisher: "Strix",
+    sourceType: "vendor_marketing",
+    publishedAt: null,
+    retrievedAt: CHECKED_PENTEST2,
+    volatility: "fast",
+    excerpt: "Homepage says autonomous agents test code, APIs, cloud and infrastructure, prove which issues can be exploited and retest fixes; reviews pull requests; lists open-source and VPC, on-prem or air-gapped deployment.",
+  },
+  {
+    id: "src-gap2-tenzai-home",
+    title: "Tenzai — AI Hacker for Enterprise",
+    url: "https://www.tenzai.com/",
+    canonicalUrl: "https://www.tenzai.com/",
+    publisher: "Tenzai",
+    sourceType: "vendor_marketing",
+    publishedAt: null,
+    retrievedAt: CHECKED_PENTEST2,
+    volatility: "fast",
+    excerpt: "Homepage says its agents discover, chain and exploit vulnerabilities scanners miss, with exploit-proven findings, WAF mitigation and guided, retested fixes.",
+  },
+  {
+    id: "src-gap2-tenzai-seed",
+    title: "Tenzai — Tenzai raises $75 million in record seed round",
+    url: "https://www.newswire.com/news/tenzai-raises-75-million-in-record-seed-round-to-build-an-ai-hacker-that",
+    canonicalUrl: "https://www.newswire.com/news/tenzai-raises-75-million-in-record-seed-round-to-build-an-ai-hacker-that",
+    publisher: "Tenzai",
+    sourceType: "press_release",
+    publishedAt: "2025-11-11",
+    retrievedAt: CHECKED_PENTEST2,
+    volatility: "stable",
+    excerpt: "Tel Aviv release announces launch from stealth with a $75M seed round from investors including Greylock Partners, Battery Ventures and Lux Capital; founded in 2025.",
+  },
+  {
+    id: "src-gap2-tenzai-greylock",
+    title: "Greylock — Introducing Tenzai: Autonomous AI Hackers",
+    url: "https://greylock.com/portfolio-news/introducing-tenzai-autonomous-ai-hackers/",
+    canonicalUrl: "https://greylock.com/portfolio-news/introducing-tenzai-autonomous-ai-hackers/",
+    publisher: "Greylock",
+    sourceType: "news",
+    publishedAt: "2025-11-11",
+    retrievedAt: CHECKED_PENTEST2,
+    volatility: "stable",
+    excerpt: "Lead investor's post says Tenzai is in design partnerships and early deployments with enterprises in financial services, healthcare and technology.",
+  },
 ];
 
 function claim(
@@ -244,6 +371,7 @@ function claim(
   source: Source,
   notes: string,
   confidence: Claim["confidence"] = "medium",
+  checkedAt: string = CHECKED,
 ): Claim {
   return {
     id,
@@ -256,12 +384,12 @@ function claim(
     sourceUrl: source.url,
     sourceType: source.sourceType,
     publishedAt: source.publishedAt,
-    observedAt: CHECKED,
+    observedAt: checkedAt,
     effectiveFrom: null,
     effectiveTo: null,
     confidence,
     verificationStatus: source.sourceType === "news" || source.sourceType === "review" ? "needs_review" : "vendor_published",
-    lastCheckedAt: CHECKED,
+    lastCheckedAt: checkedAt,
     conflictsWith: [],
     notes,
   };
@@ -278,4 +406,9 @@ export const gapBatch2Claims: Claim[] = [
   claim("claim-gap2-nodezero-webapp", "NodeZero added autonomous web application pentesting in Jul 2026 that chains app flaws with credential theft, lateral movement and cloud access.", "product", "horizon3-nodezero", s["src-gap2-horizon3-webapp"], "From news coverage of a vendor launch."),
   claim("claim-gap2-cobalt-platform", "Cobalt's platform centralizes web app, API, cloud, network, red team and AI/LLM security testing.", "product", "cobalt-platform", s["src-gap2-cobalt-platform"], "Publisher-reported."),
   claim("claim-gap2-black-kite", "Black Kite's platform provides non-intrusive third-party cyber risk ratings from open-source intelligence.", "product", "black-kite-platform", s["src-gap2-black-kite-gartner"], "Peer Insights product text is vendor-supplied, not a Gartner evaluation."),
+  claim("claim-gap2-strix-oss", "Strix publishes its pentesting agents as open source under Apache 2.0, with a GitHub Actions workflow that tests pull requests.", "product", "strix-platform", s["src-gap2-strix-repo"], "Publisher-reported README; license file read directly.", "high", CHECKED_PENTEST2),
+  claim("claim-gap2-strix-home", "Strix says its agents test code, APIs, cloud and infrastructure, prove which issues can be exploited and retest fixes.", "product", "strix-platform", s["src-gap2-strix-home"], "Publisher-reported.", "medium", CHECKED_PENTEST2),
+  claim("claim-gap2-tenzai-home", "Tenzai says its agents discover, chain and exploit vulnerabilities and return exploit-proven findings with guided, retested fixes.", "product", "tenzai-platform", s["src-gap2-tenzai-home"], "Publisher-reported.", "medium", CHECKED_PENTEST2),
+  claim("claim-gap2-tenzai-seed", "Tenzai launched from stealth in Nov 2025 with a $75M seed round from investors including Greylock, Battery Ventures and Lux Capital.", "vendor", "tenzai", s["src-gap2-tenzai-seed"], "Company press release.", "high", CHECKED_PENTEST2),
+  claim("claim-gap2-tenzai-design-partners", "Tenzai's lead investor reports design partnerships and early deployments in financial services, healthcare and technology.", "vendor", "tenzai", s["src-gap2-tenzai-greylock"], "Investor-written; no customers named.", "low", CHECKED_PENTEST2),
 ];
