@@ -7,6 +7,27 @@ import type { Claim, Product, Source, Vendor } from "../schema";
 
 export const categoryFillVendors: Vendor[] = [
   {
+    "id": "persona-identities",
+    "slug": "persona-identities",
+    "name": "Persona",
+    "formerNames": [],
+    "website": "https://withpersona.com/",
+    "positioning": "Persona documents an identity verification workflow initiated by a help desk before a Microsoft Entra ID password reset.",
+    "primaryCategoryIds": [
+      "seid"
+    ],
+    "adjacentCategoryIds": [
+      "workforce-identity"
+    ],
+    "identityScopes": [
+      "human"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Which reset workflows and fallback verification paths are supported?"
+    ]
+  },
+  {
     "id": "native-security",
     "slug": "native-security",
     "name": "Native",
@@ -580,6 +601,29 @@ export const categoryFillVendors: Vendor[] = [
 ];
 
 export const categoryFillProducts: Product[] = [
+  {
+    "id": "persona-workforce-idv",
+    "slug": "persona-workforce-idv",
+    "vendorId": "persona-identities",
+    "name": "Persona Workforce IDV",
+    "positioning": "Persona documents an identity verification workflow initiated by a help desk before a Microsoft Entra ID password reset.",
+    "primaryCategoryIds": [
+      "seid"
+    ],
+    "adjacentCategoryIds": [
+      "workforce-identity"
+    ],
+    "identityScopes": [
+      "human"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "Public documentation describes the workflow. Editions and deployment were not verified.",
+    "officialUrl": "https://help.withpersona.com/articles/3fe4bvIj8lSLLPligSzZVL/",
+    "useCaseIds": []
+  },
   {
     "id": "native-security-platform",
     "slug": "native-security-platform",
@@ -1231,6 +1275,54 @@ export const categoryFillProducts: Product[] = [
 
 export const categoryFillSources: Source[] = [
   {
+    "id": "src-smm-rubrik-err-overlap",
+    "title": "Identity Recovery",
+    "url": "https://docs.rubrik.com/en-us/saas/identity_recovery/identity_recovery.html",
+    "canonicalUrl": "https://docs.rubrik.com/en-us/saas/identity_recovery/identity_recovery.html",
+    "publisher": "Rubrik",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-25",
+    "volatility": "moderate",
+    "excerpt": "Rubrik documents restoring identity services from isolated immutable backups, including recovery to clean-room environments."
+  },
+  {
+    "id": "src-smm-persona-workforce-idv",
+    "title": "Persona verification for Entra ID password resets",
+    "url": "https://help.withpersona.com/articles/3fe4bvIj8lSLLPligSzZVL/",
+    "canonicalUrl": "https://help.withpersona.com/articles/3fe4bvIj8lSLLPligSzZVL/",
+    "publisher": "Persona",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-25",
+    "volatility": "moderate",
+    "excerpt": "Persona documents an identity verification workflow initiated by a help desk before a Microsoft Entra ID password reset."
+  },
+  {
+    "id": "src-smm-err",
+    "title": "The Case for Ephemeral Ransomware Resilience",
+    "url": "https://softwareanalyst.io/reports/ransomwares-new-kill-switch-ephemeral-ransomware-resilience",
+    "canonicalUrl": "https://softwareanalyst.io/reports/ransomwares-new-kill-switch-ephemeral-ransomware-resilience",
+    "publisher": "SACR",
+    "sourceType": "analyst",
+    "publishedAt": "2026-07-09",
+    "retrievedAt": "2026-11-25",
+    "volatility": "moderate",
+    "excerpt": "SACR frames ERR around isolated recovery administration, automated frequent copies and temporary recovery compute."
+  },
+  {
+    "id": "src-smm-seid",
+    "title": "Introducing Social Engineering Identity Defense",
+    "url": "https://softwareanalyst.io/reports/introducing-social-engineering-identity",
+    "canonicalUrl": "https://softwareanalyst.io/reports/introducing-social-engineering-identity",
+    "publisher": "SACR",
+    "sourceType": "analyst",
+    "publishedAt": "2026-05-05",
+    "retrievedAt": "2026-11-25",
+    "volatility": "moderate",
+    "excerpt": "SACR describes SEID as protecting identity workflows such as account recovery, help desk operations and onboarding from impersonation."
+  },
+  {
     "id": "src-wiz-defend-acsp",
     "title": "Wiz Defend",
     "url": "https://www.wiz.io/platform/wiz-defend",
@@ -1665,6 +1757,86 @@ export const categoryFillSources: Source[] = [
 ];
 
 export const categoryFillClaims: Claim[] = [
+  {
+    "id": "claim-smm-rubrik-err-overlap",
+    "statement": "Rubrik documents restoring identity services from isolated immutable backups, including recovery to clean-room environments.",
+    "subjectType": "vendor",
+    "subjectId": "rubrik",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-smm-rubrik-err-overlap",
+    "sourceUrl": "https://docs.rubrik.com/en-us/saas/identity_recovery/identity_recovery.html",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Adjacent recovery capability. Full ERR management-plane isolation, copy cadence and continuity are unverified."
+  },
+  {
+    "id": "claim-smm-persona-workforce-idv",
+    "statement": "Persona documents an identity verification workflow initiated by a help desk before a Microsoft Entra ID password reset.",
+    "subjectType": "product",
+    "subjectId": "persona-workforce-idv",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-smm-persona-workforce-idv",
+    "sourceUrl": "https://help.withpersona.com/articles/3fe4bvIj8lSLLPligSzZVL/",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Documents a single workflow. Broader SEID workflow coverage is unverified."
+  },
+  {
+    "id": "claim-smm-err",
+    "statement": "SACR frames ERR around isolated recovery administration, automated frequent copies and temporary recovery compute.",
+    "subjectType": "category",
+    "subjectId": "err",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-smm-err",
+    "sourceUrl": "https://softwareanalyst.io/reports/ransomwares-new-kill-switch-ephemeral-ransomware-resilience",
+    "sourceType": "analyst",
+    "publishedAt": "2026-07-09",
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "needs_review",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Analyst framework and buyer evaluation criteria."
+  },
+  {
+    "id": "claim-smm-seid",
+    "statement": "SACR describes SEID as protecting identity workflows such as account recovery, help desk operations and onboarding from impersonation.",
+    "subjectType": "category",
+    "subjectId": "seid",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-smm-seid",
+    "sourceUrl": "https://softwareanalyst.io/reports/introducing-social-engineering-identity",
+    "sourceType": "analyst",
+    "publishedAt": "2026-05-05",
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "needs_review",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Analyst category definition."
+  },
   {
     "id": "claim-wiz-defend-acsp-overlap",
     "statement": "Wiz says Wiz Defend provides cloud-native detection, AI-assisted investigation and automated response.",

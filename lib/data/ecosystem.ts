@@ -644,6 +644,40 @@ export const ecosystemCategories: Category[] = [
     layer: "adjacent",
   }),
   category({
+    "id": "seid",
+    "name": "Social Engineering Identity Defense (SEID)",
+    "group": "adjacent",
+    "domainIds": [
+      "identity",
+      "corporate"
+    ],
+    "definition": "Protects sensitive identity workflows such as help desk resets, account recovery and onboarding from impersonation. Common controls include identity proofing at the point of change, approvals and an audit trail.",
+    "buyerQuestion": "How do we verify someone before resetting access or changing a recovery factor?",
+    "buyerOwner": "Workforce IAM and the service desk",
+    "budgetSource": "Validate against the team responsible for the workflow.",
+    "triggers": [
+      "A critical workflow depends on trust that has not been tested"
+    ],
+    "outcomes": [
+      "A tested decision path with auditable evidence"
+    ],
+    "adjacentCategoryIds": [
+      "workforce-identity",
+      "itdr",
+      "security-awareness"
+    ],
+    "exampleWorkflow": "Before resetting an employee account, the help desk runs the approved verification workflow and records the result.",
+    "layer": "adjacent",
+    "flow": {
+      "actor": "Service desk",
+      "credential": "Verification evidence",
+      "permission": "Authority to reset access",
+      "decision": "Approve or escalate",
+      "action": "Reset or deny",
+      "evidence": "Verification and decision log"
+    }
+  }),
+  category({
     id: "csie",
     name: "Cloud Security Intent Enforcement (CSIE)",
     group: "cloud",
@@ -1462,6 +1496,38 @@ export const ecosystemCategories: Category[] = [
       action: "Record the check or send the fix",
       evidence: "The finding and whether it was seen on the running system",
     },
+  }),
+  category({
+    "id": "err",
+    "name": "Ephemeral Ransomware Resilience (ERR)",
+    "group": "corporate",
+    "domainIds": [
+      "corporate",
+      "secops"
+    ],
+    "definition": "SACR recovery framework that combines an isolated management plane, frequent automated copies and temporary compute to keep recovery possible during production administrator compromise.",
+    "buyerQuestion": "Can we restore and run critical services if production credentials and infrastructure are unavailable?",
+    "buyerOwner": "Cyber recovery and infrastructure operations",
+    "budgetSource": "Validate against the team responsible for the workflow.",
+    "triggers": [
+      "A critical workflow depends on trust that has not been tested"
+    ],
+    "outcomes": [
+      "A tested decision path with auditable evidence"
+    ],
+    "adjacentCategoryIds": [
+      "cyber-recovery"
+    ],
+    "exampleWorkflow": "In a recovery exercise, the team restores a critical service into a temporary environment using access independent of production.",
+    "layer": "adjacent",
+    "flow": {
+      "actor": "Recovery team",
+      "credential": "Independent recovery access",
+      "permission": "Isolated backups and temporary compute",
+      "decision": "Validate the restore point",
+      "action": "Recover the service",
+      "evidence": "Restore and continuity exercise record"
+    }
   }),
   category({
     id: "cyber-recovery",
@@ -2296,7 +2362,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "Who owns backup tech versus cyber recovery runbooks?",
       "Is this a ransomware tabletop gap or a missing product?",
     ],
-    categoryIds: ["cyber-recovery", "endpoint-security", "cnapp"],
+    categoryIds: ["cyber-recovery", "endpoint-security", "cnapp", "err"],
     aliases: [
       "Cyber recovery",
       "Cyber resilience",
@@ -3064,7 +3130,7 @@ export const ecosystemVendors: Vendor[] = [
     positioning:
       "Homepage retrieved 26 Oct 2026 says the platform keeps immutable backups and can recover data sets across cloud, on-premises, and SaaS. Identity recovery and agent inventory on that page are not identity or agent cells. Rubrik describes its DSPM offering as formerly Laminar in a vendor-published customer story. Vendor-reported DSPM scope reviewed 2026-10-13.",
     primaryCategoryIds: ["cyber-recovery"],
-    adjacentCategoryIds: ["siem", "grc-controls", "dspm"],
+    adjacentCategoryIds: ["siem", "grc-controls", "dspm", "err"],
     identityScopes: ["not_an_identity_control"],
     verificationStatus: "research_candidate",
     openQuestions: ["Is the buy backup, ransomware recovery, or data security posture?"],
