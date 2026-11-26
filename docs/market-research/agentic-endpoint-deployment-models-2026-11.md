@@ -80,7 +80,19 @@ All capability statements below are vendor-reported unless marked otherwise. Not
 - **Cyberhaven:** zone 5, browser-extension monitoring.
 - **Not found in SACR's text:** Island, Zenity, Backslash, Knostic, Check Point, Manifold, Asymptote. The fetched page may not include the full attached report, so absence is not proof of exclusion.
 
-**SACR-named vendors not yet in the catalog** (names only; no capability claims): Bloom Security (zones 1–3), Pluto Security (1–3), Glow (1–2), Origin (primary zone 3), Ent (3–5), Bold Security (4–5; agent through the endpoint management plane plus a browser extension), NeuralTrust (2–3), Harmonic Security (2, 4, 5). They are listed by name in the Endpoint control example set in [connections.ts](../../lib/data/connections.ts), without links, until each gets a first-party check. Several of them cite SACR in their own marketing; treat those posts as vendor statements.
+**SACR-named vendors, now recorded (26 Nov 2026)** with sourced claims, no profile pages yet:
+
+| Vendor | Approach, from its sources | Sources | Record |
+|---|---|---|---|
+| Bloom Security | Inventory and posture of agents, MCP servers, extensions and packages; guardrails on what agents may access, execute and transmit. $20M seed, Jul 2026 | Okta (investor) blog, Unite.AI | `bloom-platform` |
+| Pluto Security | Watches AI tools and employee-built apps and agents; real-time enforcement; deploys sensors through EDR and device management. $42M, Oct 2026 | TechCrunch, The Next Web (news only) | `pluto-platform` |
+| Origin (formerly Prelude) | Endpoint AI observability: one sensor, session reconstruction; blocking not established | Origin site and blog | `origin-endpoint-ai-observability` |
+| Ent | Intent-aware endpoint agent and browser extension for people and agents; insider risk, DLP, AI governance. $100M seed, Jun 2026 | SecurityWeek, Security Boulevard | `ent-platform` |
+| Bold Security | On-device AI DLP; agent action control not described | Bold site | `bold-endpoint` |
+| NeuralTrust | AI gateway and runtime protection at the agent's traffic layer; no endpoint agent | NeuralTrust post | `neuraltrust-platform` |
+| Harmonic Security | Endpoint agent for sensitive data in AI tools plus an MCP gateway for tool calls | Harmonic pages | `harmonic-platform` |
+
+Relationships recorded for the agentic endpoint use case (`agenticEndpointRelationships`), each with a buyer scenario and none marked direct competitor: GitGuardian–Bay (complement: secrets on the laptop vs per-action decisions), Aikido–Koi (partial overlap on package installs), Origin–Bay (complement: record vs gate), Harmonic–Bay (overlap on MCP tool calls; data vs endpoint budget), Bloom–Island (partial overlap on AI asset posture), Ent–Bold (intent-based DLP scope), NeuralTrust–Zenity (sensorless tool-call control). Still to add: Cyberhaven, Island Enterprise Browser and Safety need product records before relationships.
 
 ## Full vendor list and evidence
 
@@ -102,7 +114,7 @@ Every vendor discussed in this note, with the record that holds its evidence. "V
 | Cyberhaven | Browser extension | Analyst | SACR ECP | `cyberhaven` |
 | Asymptote Labs | Open-source hooks into 23+ harnesses | News | Existing record | `asymptote-beacon` |
 | Manifold | Endpoints; model unknown | News | Existing record | `manifold-aidr` |
-| Bloom, Pluto, Origin, Ent, Bold, NeuralTrust, Harmonic | Per SACR only (see above) | Analyst | SACR ECP | Names only, not yet records |
+| Bloom, Pluto, Origin, Ent, Bold, NeuralTrust, Harmonic | See table above | Vendor, news | See above | Recorded 26 Nov |
 
 ## What actually differs (sourced, not ranked)
 

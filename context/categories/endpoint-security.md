@@ -3,7 +3,7 @@ id: "endpoint-security"
 type: "category"
 name: "Endpoint security"
 layer: "core"
-vendors: 19
+vendors: 22
 ---
 
 # Endpoint security
@@ -39,6 +39,7 @@ From 3 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 
 - CrowdStrike: Endpoint and XDR vendor. The Falcon homepage retrieved 26 Oct 2026 describes endpoint detection and response as detecting and prioritizing malicious activity. Identity Protection is a module name on that page, so no ITDR cell is filled.
 - SentinelOne: Homepage retrieved 26 Oct 2026 describes endpoint and identity protection in one agent, and says the platform detects, contains, and responds. That detection sentence is not an endpoint-only cell and not an ITDR cell.
+- Ent: Intent-aware workspace security company founded by RiskIQ's founders; launched June 2026 with a $100M seed. A lightweight endpoint agent and browser extension interpret user and AI agent behavior and intervene before risky actions complete; used for insider risk, DLP, AI governance and threat prevention.
 - Broadcom: Broadcom's Carbon Black portfolio includes endpoint detection and response. The Enterprise EDR binary store preserves samples under the customer's upload policy.
 
 ## Vendors (adjacent)
@@ -54,6 +55,8 @@ From 3 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - Binalyze
 - Bay
 - Backslash Security
+- Origin
+- Bold Security
 - Glow
 - Manifold
 - Asymptote Labs

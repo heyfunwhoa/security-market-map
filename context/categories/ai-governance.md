@@ -3,7 +3,7 @@ id: "ai-governance"
 type: "category"
 name: "AI governance"
 layer: "core"
-vendors: 8
+vendors: 12
 ---
 
 # AI governance
@@ -29,11 +29,15 @@ Inventory of AI systems, the policy that applies to them, and the audit trail. G
 
 - Credo AI: Credo AI markets an AI governance platform with an AI registry, evidence intake from MLOps tools and a vendor portal.
 - Holistic AI: Holistic AI markets an AI governance platform that discovers AI systems into an inventory and maps them to risk and regulatory requirements.
+- NeuralTrust: AI agent and LLM application security platform built around an AI gateway (TrustGate), runtime protection (TrustGuard), observability (TrustLens) and red teaming (TrustTest). Enforces at the agent's traffic layer rather than through an OS-level endpoint agent.
 
 ## Vendors (adjacent)
 
 - Neo Security
 - Bay
+- Pluto Security
+- Origin
+- Ent
 - Glow
 - Geordie AI
 - Eve Security

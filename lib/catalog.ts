@@ -116,7 +116,7 @@ import { agentSecurityVendors, agentSecurityProducts, agentSecuritySources, agen
 import { appsecGapVendors, appsecGapProducts, appsecGapSources, appsecGapClaims } from "./data/appsec-category-gaps";
 import { gapBatch2Vendors, gapBatch2Products, gapBatch2Sources, gapBatch2Claims } from "./data/category-gaps-batch2";
 import { bayGhosteyeVendors, bayGhosteyeProducts, bayGhosteyeSources, bayGhosteyeClaims, bayGhosteyeEvents } from "./data/bay-ghosteye";
-import { agenticEndpointVendors, agenticEndpointProducts, agenticEndpointSources, agenticEndpointClaims, agenticEndpointSacrClaims, agenticEndpointCapabilityClaims, agenticEndpointEvents } from "./data/agentic-endpoint";
+import { agenticEndpointVendors, agenticEndpointProducts, agenticEndpointSources, agenticEndpointClaims, agenticEndpointSacrClaims, agenticEndpointCapabilityClaims, agenticEndpointEvents, agenticEndpointRelationships } from "./data/agentic-endpoint";
 import { runtimeHumanVendors, runtimeHumanProducts, runtimeHumanSources, runtimeHumanClaims, runtimeHumanEvents } from "./data/agent-runtime-human-layer-profiles";
 import { ispmWimVendors, ispmWimProducts, ispmWimSources, ispmWimClaims } from "./data/ispm-wim";
 import { identityAnalystSources, identityAnalystClaims } from "./data/identity-analyst";
@@ -198,7 +198,7 @@ function parseCatalog(): Catalog {
     vendorSeatTargeting: z.array(vendorSeatTargetingSchema).parse(vendorSeatTargeting),
     sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources, ...developerEndpointSources, ...personaSources, ...categoryFillSources, ...gapBatch2Sources, ...bayGhosteyeSources, ...agenticEndpointSources, ...runtimeHumanSources, ...mcpSecuritySources, ...agentSecuritySources, ...appsecGapSources, ...ispmWimSources, ...identityAnalystSources, ...industryIdentitySources, ...publicMonitoringSources, ...monitoringModeEvidence.sources, ...management.sources, ...workstation.sources, ...workforce.sources, ...ciam.sources, ...ciamWorkflowEvidence.sources, ...ciamProfileSources, ...issuerReferenceSources, ...accessScenarioSources, ...appsecAnalystSources, ...secopsDataAnalystSources, ...cloudCorpAnalystSources, ...standardsSources, ...emailSecuritySources]),
     claims: parsedClaims,
-    relationships: z.array(relationshipSchema).parse([...relationships, ...ecosystemRelationships, ...ciamSsoRelationships]),
+    relationships: z.array(relationshipSchema).parse([...relationships, ...ecosystemRelationships, ...ciamSsoRelationships, ...agenticEndpointRelationships]),
     stories: z.array(customerStorySchema).parse([...customerStories, ...ciamStories]),
     pricing: z.array(pricingSignalSchema).parse([...pricingSignals, ...ciamPricing]),
     events: z.array(eventSchema).parse([...events, ...bayGhosteyeEvents, ...agenticEndpointEvents, ...runtimeHumanEvents, ...ciamEvents, ...workstationEvents]),

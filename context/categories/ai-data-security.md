@@ -3,7 +3,7 @@ id: "ai-data-security"
 type: "category"
 name: "AI data security"
 layer: "core"
-vendors: 6
+vendors: 8
 ---
 
 # AI data security
@@ -26,7 +26,7 @@ Sensitive data entering a prompt, retrieved by an agent, or leaving through a to
 
 ## Vendors (primary)
 
-_None recorded._
+- Harmonic Security: AI data protection company: an endpoint agent reads AI tool interactions on employee devices and coaches users away from sharing sensitive data, and an MCP gateway controls what agents can share and do through tool calls. Deploys through Intune, Jamf or Kandji.
 
 ## Vendors (adjacent)
 
@@ -36,6 +36,7 @@ _None recorded._
 - Teleskope
 - Concentric AI
 - Sentra
+- Bold Security
 
 ## What buyers do instead
 

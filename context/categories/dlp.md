@@ -3,7 +3,7 @@ id: "dlp"
 type: "category"
 name: "Data loss prevention"
 layer: "core"
-vendors: 25
+vendors: 28
 ---
 
 # Data loss prevention
@@ -41,6 +41,7 @@ From 3 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - Code42: Endpoint data-movement candidate, often discussed as insider risk. Not assumed to be email DLP or DSPM.
 - Strac: SaaS DLP candidate. No app coverage or block is checked.
 - Fortra: Named on DLP shortlists, including the Digital Guardian lineage. Confirm which product is on the quote.
+- Bold Security: Real-time endpoint DLP: runs AI on the device to read the intent behind each action and stop sensitive data before it leaves, including through AI tools.
 
 ## Vendors (adjacent)
 
@@ -62,6 +63,8 @@ From 3 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - Virtru
 - PKWARE
 - Menlo Security
+- Ent
+- Harmonic Security
 - Material Security
 - Sublime Security
 

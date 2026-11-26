@@ -3,7 +3,7 @@ id: "mcp-security"
 type: "category"
 name: "MCP and tool security"
 layer: "core"
-vendors: 12
+vendors: 16
 ---
 
 # MCP and tool security
@@ -37,6 +37,10 @@ Discovery and control of Model Context Protocol servers and the tools an agent c
 - Bay
 - Backslash Security
 - Knostic
+- Bloom Security
+- Pluto Security
+- NeuralTrust
+- Harmonic Security
 - Capsule Security
 - Zenity
 - Pillar Security
