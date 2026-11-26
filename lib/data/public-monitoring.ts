@@ -316,6 +316,7 @@ export type ProductEvidence = {
   url: string;
   type: Source["sourceType"];
   publishedAt?: string;
+  checkedAt?: string;
   author?: string;
   section: string;
   statement: string;
@@ -628,14 +629,14 @@ export function registerProductEvidence({ prefix, checked, entries }: {
   const sources: Source[] = entries.map((row) => ({
     id: `src-${prefix}-${row.key}`, title: row.title, publisher: row.publisher, author: row.author,
     url: row.url, canonicalUrl: row.url, sourceType: row.type, publishedAt: row.publishedAt ?? null,
-    retrievedAt: checked, volatility: "fast", excerpt: row.section + ". " + row.statement,
+    retrievedAt: row.checkedAt ?? checked, volatility: "fast", excerpt: row.section + ". " + row.statement,
   }));
 
   const claims: Claim[] = entries.map((row) => ({
     id: `claim-${prefix}-${row.key}`, subjectType: "product", subjectId: row.productId,
     capabilityId: row.capabilityId ?? null, polarity: "asserts", statement: row.statement,
     sourceId: `src-${prefix}-${row.key}`, sourceUrl: row.url, sourceType: row.type, publishedAt: row.publishedAt ?? null,
-    observedAt: checked, lastCheckedAt: checked, effectiveFrom: null, effectiveTo: null,
+    observedAt: row.checkedAt ?? checked, lastCheckedAt: row.checkedAt ?? checked, effectiveFrom: null, effectiveTo: null,
     confidence: "medium", verificationStatus: "vendor_published", conflictsWith: [], notes: row.caveat,
   }));
   return { sources, claims };

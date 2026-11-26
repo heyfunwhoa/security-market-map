@@ -42,7 +42,7 @@ export default function DomainsPage() {
         title="The security market, mapped by what each solution protects"
         lede="Eleven domains. Each one names the buyer, the budget, and the categories inside it. Related categories can share a budget."
       />
-      <p className="mt-4 text-sm"><a href="/domain-map.svg" download="security-market-map.svg" className="inline-flex min-h-11 items-center text-primary underline underline-offset-4">Download the domain map (SVG)</a></p>
+      <p className="mt-4 flex flex-wrap gap-x-4 text-sm"><Link href="/categories" className="inline-flex min-h-11 items-center text-primary underline underline-offset-4">Categories A–Z</Link><a href="/domain-map.svg" download="security-market-map.svg" className="inline-flex min-h-11 items-center text-primary underline underline-offset-4">Download the domain map (SVG)</a></p>
       <div className="mt-4">
         <DomainExplorer domains={catalog.domains} claimCounts={domainClaimCounts(catalog)} />
       </div>

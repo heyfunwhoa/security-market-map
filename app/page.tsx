@@ -64,7 +64,10 @@ export default function HomePage() {
       <section className="mt-8" aria-labelledby="market-domains">
         <div className="flex flex-wrap items-baseline justify-between gap-x-4">
           <h2 id="market-domains" tabIndex={-1} className="scroll-mt-24 text-3xl tracking-tight">Security domains</h2>
-          <Link href="/domains" className="inline-flex min-h-11 items-center text-sm text-primary underline">Open the full domain map</Link>
+          <div className="flex flex-wrap gap-x-4 text-sm text-primary">
+            <Link href="/domains" className="inline-flex min-h-11 items-center underline">Open the full domain map</Link>
+            <Link href="/categories" className="inline-flex min-h-11 items-center underline">Categories A–Z</Link>
+          </div>
         </div>
         <ul className="mt-2 grid gap-x-6 sm:grid-cols-2 lg:grid-cols-3">
           {catalog.domains.map((domain) => (

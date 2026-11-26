@@ -242,6 +242,14 @@ export const glossary: GlossaryTerm[] = [
     relatedTermIds: ["certification", "entitlement"],
   },
   {
+    id: "csie",
+    term: "CSIE",
+    definition:
+      "Cloud Security Intent Enforcement. Turn approved security requirements into cloud guardrails, check the likely impact before applying them, and manage drift and exceptions over time. The term comes from SACR's emerging cloud security framework.",
+    categoryId: "csie",
+    relatedTermIds: ["ciem"],
+  },
+  {
     id: "ciem",
     term: "CIEM",
     definition:

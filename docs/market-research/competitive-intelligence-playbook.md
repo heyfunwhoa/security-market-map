@@ -12,6 +12,8 @@ Give an enterprise AE, future Head of Sales, technical seller or job candidate a
 
 **SOC file analysis and AI investigation:** [File analysis, retained-evidence hunting and AI investigation (Nov 2026)](file-analysis-ai-investigation-landscape-2026-11.md) — candidate research by layer, not typed claims.
 
+**Profile pilot evidence.** [Descope, WorkOS and Stairwell](profile-pilot-evidence-2026-11-24.md) links vendor documentation to open questions about offboarding, file collection and historical investigation.
+
 **First applied case:** [Agentic SecOps and MSSP/MDR competitive landscape](agentic-secops-competitive-landscape.md).
 
 **DSPM and secrets expansion:** [Analyst-informed vendor and product inventory](analyst-dspm-secrets-expansion.md), with public Gartner, SACR and Forrester source limits and original product evidence.
