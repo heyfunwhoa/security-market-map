@@ -6,7 +6,7 @@ import { Menu } from "lucide-react";
 import { formatDate } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import { ANSWER_LABELS, readableStatus, TRUST_TONES, trustLabel } from "@/lib/evidence-labels";
-import type { SearchHit } from "@/lib/search";
+import type { AliasGroups, SearchHit } from "@/lib/search";
 import { SearchCommand } from "@/components/search-panel";
 import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetClose } from "@/components/ui/sheet";
 
@@ -49,7 +49,7 @@ export const NAV_HREFS = NAV_GROUPS.flatMap((group) => group.links.map((link) =>
 
 const navLinkClass = "inline-flex min-h-11 items-center rounded-md px-3 text-sm hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring";
 
-export function SiteHeader({ hits, asOf, profileComparisons }: { hits: SearchHit[]; asOf: string; profileComparisons: Record<string, string> }) {
+export function SiteHeader({ hits, aliases = [], asOf, profileComparisons }: { hits: SearchHit[]; aliases?: AliasGroups; asOf: string; profileComparisons: Record<string, string> }) {
   const pathname = usePathname();
   const destination = (href: string) => href === "/compare" ? profileComparisons[pathname] ?? href : href;
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
@@ -64,7 +64,7 @@ export function SiteHeader({ hits, asOf, profileComparisons }: { hits: SearchHit
           {HEADER_LINKS.map((link) => <Link key={link.href} href={destination(link.href)} aria-current={pathname === link.href ? "page" : undefined} className={cn(navLinkClass, isActive(link.href) ? "bg-muted font-semibold" : "text-muted-foreground")}>{link.label}</Link>)}
         </nav>
         <div className="flex shrink-0 items-center gap-2">
-          <SearchCommand hits={hits} />
+          <SearchCommand hits={hits} aliases={aliases} />
           <Sheet>
             <SheetTrigger className={`${navLinkClass} gap-2 border border-border`}>
               <Menu className="size-4" aria-hidden="true" />Menu

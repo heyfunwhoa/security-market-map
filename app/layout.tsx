@@ -3,7 +3,7 @@ import { productComparisonUrl } from "@/lib/landscape-shortlist";
 import type { Metadata } from "next";
 import { Fraunces, Source_Sans_3 } from "next/font/google";
 import { SiteFooter, SiteHeader } from "@/components/chrome";
-import { catalog, searchIndex } from "@/lib/catalog";
+import { catalog, searchAliases, searchIndex } from "@/lib/catalog";
 import { incidentSearchHits } from "@/lib/incident-feed";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
@@ -62,7 +62,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           >
             Skip to content
           </a>
-          <SiteHeader profileComparisons={profileComparisons} hits={[...searchIndex(), ...incidentSearchHits()]} asOf={catalog.asOf} />
+          <SiteHeader profileComparisons={profileComparisons} hits={[...searchIndex(), ...incidentSearchHits()]} aliases={searchAliases()} asOf={catalog.asOf} />
           <div id="content" tabIndex={-1}>{children}</div>
           <SiteFooter asOf={catalog.asOf} />
         </TooltipProvider>
