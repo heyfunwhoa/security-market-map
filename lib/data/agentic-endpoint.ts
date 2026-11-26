@@ -43,16 +43,16 @@ export const agenticEndpointVendors: Vendor[] = [
     ],
   }),
   vendor({
-    id: "bloom-security", slug: "bloom-security", name: "Bloom Security", website: "https://www.bloomsecurity.ai/",
+    id: "bloom-security", slug: "bloom-security", name: "Bloom Security", website: "https://bloom.security/",
     positioning: "Tel Aviv company that came out of stealth in July 2026 with a $20M seed. Inventories AI agents, MCP servers, browser extensions, IDE plugins and code packages on employee devices and sets guardrails on what agents may access, execute and transmit.",
     primaryCategoryIds: ["endpoint-control"], adjacentCategoryIds: ["agentic-runtime", "mcp-security", "software-supply-chain"],
-    openQuestions: ["Website domain and deployment model not checked on a first-party page; sources are launch news and an Okta (investor) blog.", "SACR places Bloom in endpoint control and prevention zones 1 to 3."],
+    openQuestions: ["Website bloom.security comes from Dealroom, not a Bloom page. Deployment model not checked; sources are launch news and an Okta (investor) blog.", "SACR places Bloom in endpoint control and prevention zones 1 to 3."],
   }),
   vendor({
-    id: "pluto-security", slug: "pluto-security", name: "Pluto Security", website: "https://www.pluto.security/",
+    id: "pluto-security", slug: "pluto-security", name: "Pluto Security", website: "https://pluto.security/",
     positioning: "Israeli company that came out of stealth in October 2026 with $42M. Watches the AI tools employees use, their skills, extensions and MCP servers, and the apps and agents employees build, with real-time enforcement; connects to EDR and device management to deploy its sensors.",
     primaryCategoryIds: ["agentic-runtime"], adjacentCategoryIds: ["endpoint-control", "mcp-security", "ai-governance"],
-    openQuestions: ["Sources are launch news; no first-party product page checked yet. Website domain unverified.", "SACR places Pluto in endpoint control and prevention zones 1 to 3."],
+    openQuestions: ["Sources are launch news; pluto.security product pages not yet read. Dealroom calls the platform agentless while TechCrunch says Pluto deploys its own sensors; confirm which.", "SACR places Pluto in endpoint control and prevention zones 1 to 3."],
   }),
   vendor({
     id: "origin-technology", slug: "origin-technology", name: "Origin", formerNames: ["Prelude Security"], website: "https://www.originhq.com/",
