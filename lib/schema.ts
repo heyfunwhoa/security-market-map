@@ -193,7 +193,19 @@ export const useCaseSchema = z.object({
   categoryIds: z.array(z.string()).min(1),
   capabilityIds: z.array(z.string()).min(1),
   discoveryQuestions: z.array(z.string()).min(2),
+  discoveryGroups: z.array(z.object({ audience: z.string().min(1), questions: z.array(z.string()).min(1) })).min(1).optional(),
   buyerQuestion: z.string().min(1),
+  comparisonShortlists: z.object({
+    worksheets: z.array(z.object({
+      label: z.string().min(1),
+      path: z.string().regex(/^\/worksheets\/[a-z0-9-]+\.csv$/),
+    })).min(1).optional(),
+    title: z.string().min(1),
+    options: z.array(z.object({
+      label: z.string().min(1),
+      productIds: z.array(z.string().min(1)).min(2).max(4),
+    })).min(1),
+  }).optional(),
 });
 
 export const personaSchema = z.object({

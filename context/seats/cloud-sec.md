@@ -26,6 +26,8 @@ Cloud control-plane posture, workload protection, entitlements, and cloud detect
 - Cloud workload protection (`cwpp`)
 - CIEM and access intelligence (`ciem`)
 - Cloud-native application protection (`cnapp`)
+- Cloud Security Intent Enforcement (CSIE) (`csie`)
+- Agentic Cloud Security Platforms (ACSP) (`acsp`)
 - Cloud detection and response (`cloud-detection`)
 - Identity threat detection and posture (ITDR, ISPM) (`itdr`)
 - Adjacent security (`adjacent-security`)

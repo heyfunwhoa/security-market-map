@@ -2,6 +2,7 @@ import type { Capability, UseCase } from "../schema";
 
 // The compare engine intentionally returns Unknown when no matching sourced claim exists.
 export const workstationEvidenceCapabilities: Capability[] = [
+  { id: "cap-dev-package-lookback", slug: "dev-package-lookback", name: "Find past downloads of a newly flagged package", description: "Use historical package activity to identify earlier exposure to a dependency named in a new advisory.", categoryId: "software-supply-chain" },
   { id: "cap-workstation-packages", slug: "workstation-packages", name: "Inventory detected software packages on developer devices", description: "List observed packages and versions with device prevalence and observation time.", categoryId: "endpoint-control" },
   { id: "cap-file-retrohunt", slug: "file-retrohunt", name: "Hunt historical customer samples", description: "Apply new indicators or rules to a customer collection of previously captured files.", categoryId: "malware-analysis" },
   { id: "cap-file-retrieval", slug: "file-retrieval", name: "Retrieve a previously captured file", description: "Recover file content from a retained sample. Collection policy and size limits determine what is available.", categoryId: "malware-analysis" },
@@ -15,6 +16,44 @@ export const developerEndpointCapabilities: Capability[] = [
   { id: "cap-dev-ai-usage-inventory", slug: "dev-ai-usage-inventory", name: "AI provider and MCP usage inventory", description: "Reports agents, models, tools or MCP usage without implying tool-call prevention.", categoryId: "endpoint-control" },
   { id: "cap-dev-honeytoken", slug: "dev-honeytoken", name: "Endpoint honeytoken alert", description: "Places an intentionally invalid decoy credential and alerts on its use; not equivalent to host malware detection.", categoryId: "endpoint-control" },
 ];
+const discoveryGroups = [
+  {
+    audience: "Security leadership",
+    questions: [
+      "Think of the last package advisory. What decision took longest, and what evidence were you waiting for?",
+      "Which business service or release could be affected, and when does its owner need an update?",
+      "What finding would justify isolating a laptop, rebuilding a runner or rotating a credential? Who owns that decision and what evidence do they need?",
+    ],
+  },
+  {
+    audience: "Incident response",
+    questions: [
+      "The advisory names a package and version. How do you connect that version to the exact file, device and time when it appeared?",
+      "What shows the file ran? Can you distinguish a download, an installation, and execution on the same machine?",
+      "If a developer tool is declared malicious after removal, can responders recover the file, hunt related samples and identify the devices that saw each one?",
+      "If the advisory arrives 90 days later, can you still retrieve the original file and the device history for the same period?",
+      "If a modified copy has a different hash, what finds it, and how would an analyst rule out a benign lookalike?",
+    ],
+  },
+  {
+    audience: "Developer platform and endpoint IT",
+    questions: [
+      "Which developers and environments are in scope: macOS, Windows, Linux, WSL2 or containers?",
+      "If a search returns no matches, which laptops and build runners had working collection, and which were offline, excluded or already gone?",
+      "Which build or release used the affected runner during that window, and who can verify it?",
+    ],
+  },
+  {
+    audience: "Application security and identity",
+    questions: [
+      "Which control blocks before execution, which only detects, and what is its fail-open behavior?",
+      "Which AI assistant and MCP interactions are supported at the specific hook point?",
+      "Does the pilot keep full secret values local and how is the device CA managed?",
+      "Who owns exception approvals, finding triage and credential revocation?",
+    ],
+  },
+];
+
 export const developerEndpointUseCases: UseCase[] = [
   { id: "uc-developer-endpoint", slug: "developer-endpoint-protection", name: "Protect developer workstations and AI coding workflows",
     problem: "Secrets remain outside Git, agents can access local assets, and dependency installs can introduce compromised code. EDR, SCA and code scanning observe different stages.",
@@ -22,17 +61,22 @@ export const developerEndpointUseCases: UseCase[] = [
     stakeholders: ["AppSec", "Endpoint and IT security", "Platform engineering", "Secrets/NHI", "SOC"],
     triggers: ["Local credentials in shell history or .env files", "Malicious package incident", "AI coding agent deployment", "EDR renewal does not cover developer workflows"],
     budgetOwner: "AppSec, endpoint/IT security or platform security depending on the gap; confirm primary purchaser.",
-    successMetrics: ["Eligible device enrollment and scan freshness", "Safe simulated install block rate and false blocks", "Supported agent/hook coverage", "Alert-to-credential revocation time"],
+    successMetrics: ["Eligible device enrollment and scan freshness", "Safe simulated install block rate and false blocks", "Supported agent/hook coverage", "Alert-to-credential revocation time", "Time from a package advisory to a list of devices with supporting evidence"],
     categoryIds: ["endpoint-control", "secrets-detection", "software-supply-chain", "mcp-security", "malware-analysis", "endpoint-security"],
-    capabilityIds: [...developerEndpointCapabilities, ...workstationEvidenceCapabilities].map((c) => c.id).concat("cap-secret-verification"),
-    discoveryQuestions: [
-      "Which developers and environments are in scope: macOS, Windows, Linux, WSL2 or containers?",
-      "Which control blocks before execution, which only detects, and what is its fail-open behavior?",
-      "Which AI assistant and MCP interactions are supported at the specific hook point?",
-      "Does the pilot keep full secret values local and how is the device CA managed?",
-      "If a developer tool is declared malicious after removal, can responders recover the file, hunt related samples and identify the devices that saw each one?",
-      "Who owns exception approvals, finding triage and credential revocation?",
-    ],
+    capabilityIds: [...workstationEvidenceCapabilities, ...developerEndpointCapabilities].map((c) => c.id).concat("cap-secret-verification"),
+    comparisonShortlists: {
+      title: "After a package is removed",
+      worksheets: [
+        { label: "Download blank worksheet (CSV)", path: "/worksheets/developer-package-advisory.csv" },
+        { label: "Download completed example (CSV)", path: "/worksheets/developer-package-advisory-example.csv" },
+      ],
+      options: [
+        { label: "Which devices encountered the package?", productIds: ["crowdstrike-platform", "aikido-device-protection", "microsoft-defender-for-endpoint", "stairwell-platform"] },
+        { label: "Can we recover the file and hunt for related samples?", productIds: ["stairwell-platform", "limacharlie-binlib", "reversinglabs-spectra-analyze", "carbon-black-cloud-enterprise-edr"] },
+      ],
+    },
+    discoveryGroups,
+    discoveryQuestions: discoveryGroups.flatMap((group) => group.questions),
     buyerQuestion: "Which developer actions can we prevent, and what evidence can responders recover after a package advisory?"
   },
 ];

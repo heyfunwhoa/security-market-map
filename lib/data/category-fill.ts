@@ -7,6 +7,94 @@ import type { Claim, Product, Source, Vendor } from "../schema";
 
 export const categoryFillVendors: Vendor[] = [
   {
+    "id": "persona-identities",
+    "slug": "persona-identities",
+    "name": "Persona",
+    "formerNames": [],
+    "website": "https://withpersona.com/",
+    "positioning": "Persona documents an identity verification workflow initiated by a help desk before a Microsoft Entra ID password reset.",
+    "primaryCategoryIds": [
+      "seid"
+    ],
+    "adjacentCategoryIds": [
+      "workforce-identity"
+    ],
+    "identityScopes": [
+      "human"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Which reset workflows and fallback verification paths are supported?"
+    ]
+  },
+  {
+    "id": "native-security",
+    "slug": "native-security",
+    "name": "Native",
+    "formerNames": [],
+    "website": "https://www.native.security/",
+    "positioning": "Native says it translates requirements into provider-native controls, checks the likely impact before rollout, and maintains them as cloud environments change.",
+    "primaryCategoryIds": [
+      "csie"
+    ],
+    "adjacentCategoryIds": [
+      "iac-security"
+    ],
+    "identityScopes": [
+      "human",
+      "nhi",
+      "agent"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Which guardrails can be simulated and enforced on each provider, and how are exceptions and rollback handled?"
+    ]
+  },
+  {
+    "id": "aryon-security",
+    "slug": "aryon-security",
+    "name": "Aryon Security",
+    "formerNames": [],
+    "website": "https://www.aryon.security/",
+    "positioning": "Aryon says it evaluates proposed cloud policies and can deny non-compliant requests at the cloud control plane.",
+    "primaryCategoryIds": [
+      "csie"
+    ],
+    "adjacentCategoryIds": [
+      "iac-security"
+    ],
+    "identityScopes": [
+      "human",
+      "nhi",
+      "agent"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Which cloud changes and resource types can be blocked, and how are existing resources handled?"
+    ]
+  },
+  {
+    "id": "act-security",
+    "slug": "act-security",
+    "name": "Act Security",
+    "formerNames": [],
+    "website": "https://act.security/",
+    "positioning": "Act says it uses infrastructure as code to apply cloud-native controls for access boundaries and maintain them as the environment changes.",
+    "primaryCategoryIds": [
+      "csie"
+    ],
+    "adjacentCategoryIds": [
+      "ciem",
+      "iac-security"
+    ],
+    "identityScopes": ["human", "nhi", "agent"],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Which clouds, control types, and rollout or rollback options are supported?",
+      "How well does impact prediction account for rarely used legitimate workflows?"
+    ]
+  },
+  {
     "id": "prophet-security",
     "slug": "prophet-security",
     "name": "Prophet Security",
@@ -513,6 +601,101 @@ export const categoryFillVendors: Vendor[] = [
 ];
 
 export const categoryFillProducts: Product[] = [
+  {
+    "id": "persona-workforce-idv",
+    "slug": "persona-workforce-idv",
+    "vendorId": "persona-identities",
+    "name": "Persona Workforce IDV",
+    "positioning": "Persona documents an identity verification workflow initiated by a help desk before a Microsoft Entra ID password reset.",
+    "primaryCategoryIds": [
+      "seid"
+    ],
+    "adjacentCategoryIds": [
+      "workforce-identity"
+    ],
+    "identityScopes": [
+      "human"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "Public documentation describes the workflow. Editions and deployment were not verified.",
+    "officialUrl": "https://help.withpersona.com/articles/3fe4bvIj8lSLLPligSzZVL/",
+    "useCaseIds": []
+  },
+  {
+    "id": "native-security-platform",
+    "slug": "native-security-platform",
+    "vendorId": "native-security",
+    "name": "Native platform",
+    "positioning": "Native says it translates requirements into provider-native controls, checks the likely impact before rollout, and maintains them as cloud environments change.",
+    "primaryCategoryIds": [
+      "csie"
+    ],
+    "adjacentCategoryIds": [
+      "iac-security"
+    ],
+    "identityScopes": [
+      "human",
+      "nhi",
+      "agent"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "Public demo offered. Editions and provider-specific coverage were not verified.",
+    "officialUrl": "https://www.native.security/platform",
+    "useCaseIds": []
+  },
+  {
+    "id": "aryon-security-platform",
+    "slug": "aryon-security-platform",
+    "vendorId": "aryon-security",
+    "name": "Aryon Security platform",
+    "positioning": "Aryon says it evaluates proposed cloud policies and can deny non-compliant requests at the cloud control plane.",
+    "primaryCategoryIds": [
+      "csie"
+    ],
+    "adjacentCategoryIds": [
+      "iac-security"
+    ],
+    "identityScopes": [
+      "human",
+      "nhi",
+      "agent"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "Public demo offered. Editions and provider-specific coverage were not verified.",
+    "officialUrl": "https://www.aryon.security/product",
+    "useCaseIds": []
+  },
+  {
+    "id": "act-cloud-access",
+    "slug": "act-cloud-access",
+    "vendorId": "act-security",
+    "name": "Act cloud security platform",
+    "positioning": "Act says it uses infrastructure as code to apply cloud-native controls for access boundaries and maintain them as the environment changes.",
+    "primaryCategoryIds": [
+      "csie"
+    ],
+    "adjacentCategoryIds": [
+      "ciem",
+      "iac-security"
+    ],
+    "identityScopes": ["human", "nhi", "agent"],
+    "deployment": [
+      "unknown"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "Public demo offered. Editions, deployment, and generally available scope were not verified.",
+    "officialUrl": "https://act.security/platform",
+    "useCaseIds": []
+  },
   {
     "id": "prophet-ai-soc",
     "slug": "prophet-ai-soc",
@@ -1092,6 +1275,138 @@ export const categoryFillProducts: Product[] = [
 
 export const categoryFillSources: Source[] = [
   {
+    "id": "src-smm-rubrik-err-overlap",
+    "title": "Identity Recovery",
+    "url": "https://docs.rubrik.com/en-us/saas/identity_recovery/identity_recovery.html",
+    "canonicalUrl": "https://docs.rubrik.com/en-us/saas/identity_recovery/identity_recovery.html",
+    "publisher": "Rubrik",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-25",
+    "volatility": "moderate",
+    "excerpt": "Rubrik documents restoring identity services from isolated immutable backups, including recovery to clean-room environments."
+  },
+  {
+    "id": "src-smm-persona-workforce-idv",
+    "title": "Persona verification for Entra ID password resets",
+    "url": "https://help.withpersona.com/articles/3fe4bvIj8lSLLPligSzZVL/",
+    "canonicalUrl": "https://help.withpersona.com/articles/3fe4bvIj8lSLLPligSzZVL/",
+    "publisher": "Persona",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-25",
+    "volatility": "moderate",
+    "excerpt": "Persona documents an identity verification workflow initiated by a help desk before a Microsoft Entra ID password reset."
+  },
+  {
+    "id": "src-smm-err",
+    "title": "The Case for Ephemeral Ransomware Resilience",
+    "url": "https://softwareanalyst.io/reports/ransomwares-new-kill-switch-ephemeral-ransomware-resilience",
+    "canonicalUrl": "https://softwareanalyst.io/reports/ransomwares-new-kill-switch-ephemeral-ransomware-resilience",
+    "publisher": "SACR",
+    "sourceType": "analyst",
+    "publishedAt": "2026-07-09",
+    "retrievedAt": "2026-11-25",
+    "volatility": "moderate",
+    "excerpt": "SACR frames ERR around isolated recovery administration, automated frequent copies and temporary recovery compute."
+  },
+  {
+    "id": "src-smm-seid",
+    "title": "Introducing Social Engineering Identity Defense",
+    "url": "https://softwareanalyst.io/reports/introducing-social-engineering-identity",
+    "canonicalUrl": "https://softwareanalyst.io/reports/introducing-social-engineering-identity",
+    "publisher": "SACR",
+    "sourceType": "analyst",
+    "publishedAt": "2026-05-05",
+    "retrievedAt": "2026-11-25",
+    "volatility": "moderate",
+    "excerpt": "SACR describes SEID as protecting identity workflows such as account recovery, help desk operations and onboarding from impersonation."
+  },
+  {
+    "id": "src-wiz-defend-acsp",
+    "title": "Wiz Defend",
+    "url": "https://www.wiz.io/platform/wiz-defend",
+    "canonicalUrl": "https://www.wiz.io/platform/wiz-defend",
+    "publisher": "Wiz",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-25",
+    "volatility": "fast",
+    "excerpt": "Wiz says Wiz Defend provides cloud-native detection, AI-assisted investigation and automated response."
+  },
+  {
+    "id": "src-sacr-asset-intelligence-20261019",
+    "title": "From CAASM to Asset Intelligence",
+    "url": "https://softwareanalyst.io/reports/from-caasm-to-asset-intelligence",
+    "canonicalUrl": "https://softwareanalyst.io/reports/from-caasm-to-asset-intelligence",
+    "publisher": "SACR",
+    "sourceType": "analyst",
+    "publishedAt": "2026-10-19",
+    "retrievedAt": "2026-11-25",
+    "volatility": "moderate",
+    "excerpt": "SACR describes asset intelligence as reconciled asset context that preserves source, freshness, disagreements and relationships for operational decisions."
+  },
+  {
+    "id": "src-native-security-platform",
+    "title": "Native platform",
+    "url": "https://www.native.security/platform",
+    "canonicalUrl": "https://www.native.security/platform",
+    "publisher": "Native",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-25",
+    "volatility": "moderate",
+    "excerpt": "Native says it translates requirements into provider-native controls, checks the likely impact before rollout, and maintains them as cloud environments change."
+  },
+  {
+    "id": "src-aryon-security-platform",
+    "title": "Aryon Security platform",
+    "url": "https://www.aryon.security/product",
+    "canonicalUrl": "https://www.aryon.security/product",
+    "publisher": "Aryon Security",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-25",
+    "volatility": "moderate",
+    "excerpt": "Aryon says it evaluates proposed cloud policies and can deny non-compliant requests at the cloud control plane."
+  },
+  {
+    "id": "src-sacr-csie-20261028",
+    "title": "The CISO’s Guide to Cloud Security Intent Enforcement",
+    "url": "https://softwareanalyst.io/reports/the-ciso-s-guide-to-cloud-security-intent-enforcement",
+    "canonicalUrl": "https://softwareanalyst.io/reports/the-ciso-s-guide-to-cloud-security-intent-enforcement",
+    "publisher": "SACR",
+    "sourceType": "analyst",
+    "publishedAt": "2026-10-28",
+    "retrievedAt": "2026-11-25",
+    "volatility": "moderate",
+    "excerpt": "SACR describes CSIE as an emerging control layer that translates security intent into cloud controls, assesses likely impact, enforces approved policy, and maintains it over time."
+  },
+  {
+    "id": "src-act-csie-20261111",
+    "title": "What is Cloud Security Intent Enforcement (CSIE)?",
+    "url": "https://act.security/resources/what-is-cloud-security-intent-enforcement-csie-breaking-down-the-new-cloud-security-category",
+    "canonicalUrl": "https://act.security/resources/what-is-cloud-security-intent-enforcement-csie-breaking-down-the-new-cloud-security-category",
+    "publisher": "Act Security",
+    "sourceType": "vendor_marketing",
+    "publishedAt": "2026-11-11",
+    "retrievedAt": "2026-11-25",
+    "volatility": "fast",
+    "excerpt": "Act explains SACR’s framework from a vendor perspective and positions its platform within the category."
+  },
+  {
+    "id": "src-act-cloud-platform",
+    "title": "Cloud Security Platform: Control Cloud Access End to End",
+    "url": "https://act.security/platform",
+    "canonicalUrl": "https://act.security/platform",
+    "publisher": "Act Security",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-25",
+    "volatility": "fast",
+    "excerpt": "Act says it uses infrastructure as code to apply cloud-native controls for access boundaries and maintain them as the environment changes."
+  },
+  {
     "id": "src-fill-prophet-ai-soc",
     "title": "Prophet Security \u2014 homepage",
     "url": "https://www.prophetsecurity.ai/",
@@ -1442,6 +1757,246 @@ export const categoryFillSources: Source[] = [
 ];
 
 export const categoryFillClaims: Claim[] = [
+  {
+    "id": "claim-smm-rubrik-err-overlap",
+    "statement": "Rubrik documents restoring identity services from isolated immutable backups, including recovery to clean-room environments.",
+    "subjectType": "vendor",
+    "subjectId": "rubrik",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-smm-rubrik-err-overlap",
+    "sourceUrl": "https://docs.rubrik.com/en-us/saas/identity_recovery/identity_recovery.html",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Adjacent recovery capability. Full ERR management-plane isolation, copy cadence and continuity are unverified."
+  },
+  {
+    "id": "claim-smm-persona-workforce-idv",
+    "statement": "Persona documents an identity verification workflow initiated by a help desk before a Microsoft Entra ID password reset.",
+    "subjectType": "product",
+    "subjectId": "persona-workforce-idv",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-smm-persona-workforce-idv",
+    "sourceUrl": "https://help.withpersona.com/articles/3fe4bvIj8lSLLPligSzZVL/",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Documents a single workflow. Broader SEID workflow coverage is unverified."
+  },
+  {
+    "id": "claim-smm-err",
+    "statement": "SACR frames ERR around isolated recovery administration, automated frequent copies and temporary recovery compute.",
+    "subjectType": "category",
+    "subjectId": "err",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-smm-err",
+    "sourceUrl": "https://softwareanalyst.io/reports/ransomwares-new-kill-switch-ephemeral-ransomware-resilience",
+    "sourceType": "analyst",
+    "publishedAt": "2026-07-09",
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "needs_review",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Analyst framework and buyer evaluation criteria."
+  },
+  {
+    "id": "claim-smm-seid",
+    "statement": "SACR describes SEID as protecting identity workflows such as account recovery, help desk operations and onboarding from impersonation.",
+    "subjectType": "category",
+    "subjectId": "seid",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-smm-seid",
+    "sourceUrl": "https://softwareanalyst.io/reports/introducing-social-engineering-identity",
+    "sourceType": "analyst",
+    "publishedAt": "2026-05-05",
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "needs_review",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Analyst category definition."
+  },
+  {
+    "id": "claim-wiz-defend-acsp-overlap",
+    "statement": "Wiz says Wiz Defend provides cloud-native detection, AI-assisted investigation and automated response.",
+    "subjectType": "product",
+    "subjectId": "wiz",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-wiz-defend-acsp",
+    "sourceUrl": "https://www.wiz.io/platform/wiz-defend",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Applies to Wiz Defend. This supports overlap with runtime investigation and response; full SACR ACSP criteria and licensed scope remain unverified."
+  },
+  {
+    "id": "claim-sacr-acsp-framework-20260611",
+    "statement": "SACR proposes that an agentic cloud security platform combine live execution visibility, reachable-risk analysis, identity-aware policy, governed intervention and auditable decisions.",
+    "subjectType": "category",
+    "subjectId": "acsp",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-sacr-acsp-20260611",
+    "sourceUrl": "https://softwareanalyst.io/reports/introducing-a-new-cloud-security",
+    "sourceType": "analyst",
+    "publishedAt": "2026-06-11",
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "needs_review",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Existing SACR source reused. Public summary; no vendor qualification inferred."
+  },
+  {
+    "id": "claim-sacr-asset-intelligence-20261019",
+    "statement": "SACR describes asset intelligence as reconciled asset context that preserves source, freshness, disagreements and relationships for operational decisions.",
+    "subjectType": "category",
+    "subjectId": "asset-intelligence",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-sacr-asset-intelligence-20261019",
+    "sourceUrl": "https://softwareanalyst.io/reports/from-caasm-to-asset-intelligence",
+    "sourceType": "analyst",
+    "publishedAt": "2026-10-19",
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "needs_review",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Report profiles Axonius as an example; no capability parity inferred."
+  },
+  {
+    "id": "claim-native-security-platform",
+    "statement": "Native says it translates requirements into provider-native controls, checks the likely impact before rollout, and maintains them as cloud environments change.",
+    "subjectType": "product",
+    "subjectId": "native-security-platform",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-native-security-platform",
+    "sourceUrl": "https://www.native.security/platform",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Publisher-reported. Vendor participated in a sponsored research program associated with the SACR CSIE report."
+  },
+  {
+    "id": "claim-aryon-security-platform",
+    "statement": "Aryon says it evaluates proposed cloud policies and can deny non-compliant requests at the cloud control plane.",
+    "subjectType": "product",
+    "subjectId": "aryon-security-platform",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-aryon-security-platform",
+    "sourceUrl": "https://www.aryon.security/product",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Publisher-reported. Vendor participated in a sponsored research program associated with the SACR CSIE report."
+  },
+  {
+    "id": "claim-sacr-csie-20261028",
+    "statement": "SACR describes CSIE as an emerging control layer that translates security intent into cloud controls, assesses likely impact, enforces approved policy, and maintains it over time.",
+    "subjectType": "category",
+    "subjectId": "csie",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-sacr-csie-20261028",
+    "sourceUrl": "https://softwareanalyst.io/reports/the-ciso-s-guide-to-cloud-security-intent-enforcement",
+    "sourceType": "analyst",
+    "publishedAt": "2026-10-28",
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "needs_review",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Report updated November 13. SACR discloses sponsored research participation by Aryon, Native, Act and Wiz. Product packaging remains unsettled."
+  },
+  {
+    "id": "claim-act-csie-positioning",
+    "statement": "Act positions its cloud access platform within SACR’s CSIE framework.",
+    "subjectType": "product",
+    "subjectId": "act-cloud-access",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-act-csie-20261111",
+    "sourceUrl": "https://act.security/resources/what-is-cloud-security-intent-enforcement-csie-breaking-down-the-new-cloud-security-category",
+    "sourceType": "vendor_marketing",
+    "publishedAt": "2026-11-11",
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Vendor interpretation. Product fit remains a research candidate."
+  },
+  {
+    "id": "claim-act-native-cloud-enforcement",
+    "statement": "Act says it uses infrastructure as code to apply cloud-native controls for access boundaries and maintain them as the environment changes.",
+    "subjectType": "product",
+    "subjectId": "act-cloud-access",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-act-cloud-platform",
+    "sourceUrl": "https://act.security/platform",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Vendor-reported. Provider coverage, prediction accuracy, and rollback behavior were not tested."
+  },
   {
     "id": "claim-fill-prophet-ai-soc",
     "statement": "Prophet Security says its AI SOC Platform automates alert triage, investigations, response, threat hunting and detection engineering.",

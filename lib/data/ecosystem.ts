@@ -209,21 +209,21 @@ export const ecosystemCategories: Category[] = [
     group: "corporate",
     domainIds: ["corporate", "secops"],
     definition:
-      "Prevention and detection on laptops, servers, and other devices. EDR is the usual product. It is not an identity provider, even when it consumes identity signals.",
-    buyerQuestion: "What runs on the device, and who responds when it is compromised?",
-    buyerOwner: "IT security or the SOC.",
+      "An endpoint protection platform (EPP) enforces policy on laptops and servers and can block or quarantine a file. Endpoint detection and response (EDR) records device activity so analysts can investigate an alert, scope affected hosts and take action. A single endpoint suite can provide both.",
+    buyerQuestion: "Can we show what the endpoint blocked, what actually ran, and who can contain an affected device?",
+    buyerOwner: "IT or endpoint security manages coverage and policy. The security operations center investigates alerts and agrees containment authority with IT.",
     triggers: ["EDR renewal", "Ransomware", "Unmanaged servers"],
-    budgetSource: "Endpoint or IT security.",
-    outcomes: ["Coverage of the device estate", "Time to isolate a host"],
-    adjacentCategoryIds: ["itdr", "siem", "pam"],
-    exampleWorkflow: "A laptop runs a suspicious process. EDR isolates it. Identity later asks why the user was a local admin.",
+    budgetSource: "Endpoint or IT security typically owns the license. Confirm who funds monitoring and after-hours response.",
+    outcomes: ["Coverage of the device estate", "Time to reconstruct activity and isolate a host", "Evidence available after the event"],
+    adjacentCategoryIds: ["endpoint-control", "xdr", "mdr", "malware-analysis", "itdr", "siem", "pam"],
+    exampleWorkflow: "A laptop downloads a suspicious installer. Check the EPP verdict first. If the installer ran, use EDR to trace the processes it started and ask whether another host shows the same activity. An authorized responder can isolate an affected device. If new intelligence arrives months later, check which events and original files were retained before drawing conclusions.",
     flow: {
-      actor: "Employee device or server",
-      credential: "Usually not the control",
-      permission: "What the process can do on the host",
-      decision: "Prevention policy or an analyst",
-      action: "Block, isolate, or alert",
-      evidence: "Endpoint alert and the response action",
+      actor: "Endpoint engineer and SOC analyst",
+      credential: "Responder account with a scoped endpoint role",
+      permission: "Read device history and, if authorized, isolate a host",
+      decision: "Did prevention block the file, or does observed activity warrant containment?",
+      action: "Quarantine the file or isolate the affected device",
+      evidence: "Prevention verdict, process timeline, containment record and any retained file",
     },
   }),
   category({
@@ -631,7 +631,7 @@ export const ecosystemCategories: Category[] = [
     budgetSource: "CNAPP renewal. Code and identity modules may be extra.",
     triggers: ["CNAPP consolidation pitch"],
     outcomes: ["A named list of entitled modules"],
-    adjacentCategoryIds: ["cspm", "ciem", "cwpp", "aspm", "cloud-detection", "iac-security", "container-security", "cloud-vulnerability"],
+    adjacentCategoryIds: ["cspm", "ciem", "cwpp", "aspm", "cloud-detection", "iac-security", "container-security", "cloud-vulnerability", "csie"],
     exampleWorkflow: "A renewal says CNAPP. The team lists CSPM and CIEM as entitled, and code security as not.",
     flow: {
       actor: "Cloud security lead",
@@ -641,6 +641,79 @@ export const ecosystemCategories: Category[] = [
       action: "Use the entitled module",
       evidence: "The order form",
     },
+    layer: "adjacent",
+  }),
+  category({
+    "id": "seid",
+    "name": "Social Engineering Identity Defense (SEID)",
+    "group": "adjacent",
+    "domainIds": [
+      "identity",
+      "corporate"
+    ],
+    "definition": "Protects sensitive identity workflows such as help desk resets, account recovery and onboarding from impersonation. Common controls include identity proofing at the point of change, approvals and an audit trail.",
+    "buyerQuestion": "How do we verify someone before resetting access or changing a recovery factor?",
+    "buyerOwner": "Workforce IAM and the service desk",
+    "budgetSource": "Validate against the team responsible for the workflow.",
+    "triggers": [
+      "A critical workflow depends on trust that has not been tested"
+    ],
+    "outcomes": [
+      "A tested decision path with auditable evidence"
+    ],
+    "adjacentCategoryIds": [
+      "workforce-identity",
+      "itdr",
+      "security-awareness"
+    ],
+    "exampleWorkflow": "Before resetting an employee account, the help desk runs the approved verification workflow and records the result.",
+    "layer": "adjacent",
+    "flow": {
+      "actor": "Service desk",
+      "credential": "Verification evidence",
+      "permission": "Authority to reset access",
+      "decision": "Approve or escalate",
+      "action": "Reset or deny",
+      "evidence": "Verification and decision log"
+    }
+  }),
+  category({
+    id: "csie",
+    name: "Cloud Security Intent Enforcement (CSIE)",
+    group: "cloud",
+    domainIds: ["cloud"],
+    definition:
+      "Turns approved cloud security requirements into enforceable controls. Teams assess the effect of a change, apply it at an appropriate enforcement point, and keep the approved state current as infrastructure and exceptions change.",
+    buyerQuestion: "Can we prevent risky cloud access from coming back without interrupting legitimate workloads?",
+    buyerOwner: "Cloud security and platform engineering.",
+    budgetSource: "Cloud security or platform guardrails. Standalone budget and product packaging vary.",
+    triggers: ["Recurring policy drift", "Excess access after cleanup", "Guardrail rollout across cloud accounts"],
+    outcomes: ["Recurrence of disallowed access", "Impact of enforcement on approved workloads", "Exceptions closed or renewed on time"],
+    adjacentCategoryIds: ["cnapp", "cspm", "ciem", "iac-security"],
+    exampleWorkflow: "A team limits access to sensitive storage to approved workloads. It checks which legitimate jobs depend on current permissions, rolls out the native control, and tracks approved exceptions as the environment changes.",
+    flow: {
+      actor: "Cloud security and platform owners",
+      credential: "Cloud workload or human identity",
+      permission: "Approved access to sensitive resources",
+      decision: "Review policy intent and simulate impact",
+      action: "Roll out the guardrail and maintain exceptions",
+      evidence: "Impact assessment, applied policy, change log, and drift history",
+    },
+  }),
+  category({
+    id: "acsp",
+    name: "Agentic Cloud Security Platforms (ACSP)",
+    group: "cloud",
+    domainIds: ["cloud", "secops"],
+    definition: "Connects live cloud execution, identity and data context to policy decisions and governed intervention. SACR proposes criteria for this emerging architecture.",
+    buyerQuestion: "Can we see what is reachable now and intervene with clear authority and an audit trail?",
+    buyerOwner: "Cloud security and SecOps",
+    budgetSource: "Validate within the existing security budget.",
+    triggers: ["Existing tools lack shared context for a security decision"],
+    outcomes: ["Evidence linked to the decision and its owner"],
+    adjacentCategoryIds: ["cnapp", "cloud-detection", "csie"],
+    exampleWorkflow: "A runtime signal is checked against workload identity and data access. The SOC reviews a scoped intervention and retains the decision record.",
+    flow: { actor: "Cloud responder", credential: "Workload identity", permission: "Reachable resources", decision: "Review the intervention", action: "Apply an approved runtime control", evidence: "Execution telemetry and audit record" },
     layer: "adjacent",
   }),
   category({
@@ -1246,6 +1319,22 @@ export const ecosystemCategories: Category[] = [
     },
   }),
   category({
+    id: "asset-intelligence",
+    name: "Asset intelligence",
+    group: "secops",
+    domainIds: ["secops", "corporate"],
+    definition: "Reconciles asset observations and relationships across tools while preserving freshness, provenance and conflicts for downstream decisions.",
+    buyerQuestion: "Can we explain which asset record we trust and why before taking action?",
+    buyerOwner: "Security operations and IT asset management",
+    budgetSource: "Validate within the existing security budget.",
+    triggers: ["Existing tools lack shared context for a security decision"],
+    outcomes: ["Evidence linked to the decision and its owner"],
+    adjacentCategoryIds: ["security-asset-management", "it-vulnerability-management"],
+    exampleWorkflow: "When endpoint and cloud inventories disagree, the responder traces each observation, confirms the current owner and records the reason for the selected asset match.",
+    flow: { actor: "Asset or SOC analyst", credential: "Authorized data connector", permission: "Read asset observations", decision: "Reconcile identity and ownership", action: "Route the decision to the owner", evidence: "Source observations and freshness" },
+    layer: "adjacent",
+  }),
+  category({
     id: "security-asset-management",
     name: "Cyber asset management",
     group: "corporate",
@@ -1407,6 +1496,38 @@ export const ecosystemCategories: Category[] = [
       action: "Record the check or send the fix",
       evidence: "The finding and whether it was seen on the running system",
     },
+  }),
+  category({
+    "id": "err",
+    "name": "Ephemeral Ransomware Resilience (ERR)",
+    "group": "corporate",
+    "domainIds": [
+      "corporate",
+      "secops"
+    ],
+    "definition": "SACR recovery framework that combines an isolated management plane, frequent automated copies and temporary compute to keep recovery possible during production administrator compromise.",
+    "buyerQuestion": "Can we restore and run critical services if production credentials and infrastructure are unavailable?",
+    "buyerOwner": "Cyber recovery and infrastructure operations",
+    "budgetSource": "Validate against the team responsible for the workflow.",
+    "triggers": [
+      "A critical workflow depends on trust that has not been tested"
+    ],
+    "outcomes": [
+      "A tested decision path with auditable evidence"
+    ],
+    "adjacentCategoryIds": [
+      "cyber-recovery"
+    ],
+    "exampleWorkflow": "In a recovery exercise, the team restores a critical service into a temporary environment using access independent of production.",
+    "layer": "adjacent",
+    "flow": {
+      "actor": "Recovery team",
+      "credential": "Independent recovery access",
+      "permission": "Isolated backups and temporary compute",
+      "decision": "Validate the restore point",
+      "action": "Recover the service",
+      "evidence": "Restore and continuity exercise record"
+    }
   }),
   category({
     id: "cyber-recovery",
@@ -2216,6 +2337,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "external-attack-surface",
       "ctem",
       "security-asset-management",
+      "asset-intelligence",
       "cloud-vulnerability",
       "it-vulnerability-management",
     ],
@@ -2240,7 +2362,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "Who owns backup tech versus cyber recovery runbooks?",
       "Is this a ransomware tabletop gap or a missing product?",
     ],
-    categoryIds: ["cyber-recovery", "endpoint-security", "cnapp"],
+    categoryIds: ["cyber-recovery", "endpoint-security", "cnapp", "err"],
     aliases: [
       "Cyber recovery",
       "Cyber resilience",
@@ -3008,7 +3130,7 @@ export const ecosystemVendors: Vendor[] = [
     positioning:
       "Homepage retrieved 26 Oct 2026 says the platform keeps immutable backups and can recover data sets across cloud, on-premises, and SaaS. Identity recovery and agent inventory on that page are not identity or agent cells. Rubrik describes its DSPM offering as formerly Laminar in a vendor-published customer story. Vendor-reported DSPM scope reviewed 2026-10-13.",
     primaryCategoryIds: ["cyber-recovery"],
-    adjacentCategoryIds: ["siem", "grc-controls", "dspm"],
+    adjacentCategoryIds: ["siem", "grc-controls", "dspm", "err"],
     identityScopes: ["not_an_identity_control"],
     verificationStatus: "research_candidate",
     openQuestions: ["Is the buy backup, ransomware recovery, or data security posture?"],
@@ -3230,7 +3352,7 @@ export const ecosystemVendors: Vendor[] = [
     website: "https://www.axonius.com/",
     positioning: "Cyber asset management vendor. The inventory is the product. It does not replace EDR or vulnerability scanning.",
     primaryCategoryIds: ["security-asset-management"],
-    adjacentCategoryIds: ["it-vulnerability-management", "endpoint-security"],
+    adjacentCategoryIds: ["it-vulnerability-management", "endpoint-security", "asset-intelligence"],
     identityScopes: ["not_an_identity_control"],
     verificationStatus: "research_candidate",
     openQuestions: ["Which existing tools will feed the inventory?"],
@@ -4511,7 +4633,7 @@ export const ecosystemProducts: Product[] = [
     vendorId: "crowdstrike",
     name: "CrowdStrike Falcon",
     positioning:
-      "Falcon homepage retrieved 26 Oct 2026 says endpoint detection and response detects and prioritizes malicious activity. Next-gen antivirus, Identity Protection, and Next-Gen SIEM are separate sentences and are not this cell. Kept separate from the identity product.",
+      "Falcon detects and prioritizes endpoint threats. Its Real-Time Supply Chain Attack Protection checks supported package downloads and searches past activity when a package is newly flagged.",
     primaryCategoryIds: ["endpoint-security", "xdr"],
     adjacentCategoryIds: ["itdr", "mdr"],
     deployment: ["unknown"],
@@ -4519,7 +4641,7 @@ export const ecosystemProducts: Product[] = [
     availability: "unknown",
     availabilityNote: unknown,
     officialUrl: "https://www.crowdstrike.com/",
-    useCaseIds: [],
+    useCaseIds: ["uc-developer-endpoint"],
   }),
   product({
     id: "sentinelone-platform",
