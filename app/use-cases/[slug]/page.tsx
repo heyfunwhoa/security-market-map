@@ -2,6 +2,7 @@ import { seatsForUseCase } from "@/lib/persona-graph";
 import { productDestination } from "@/lib/product-destination";
 import Link from "next/link";
 import { DiscoveryQuestions } from "@/components/discovery-questions";
+import { DecisionGuide } from "@/components/decision-guide";
 import { notFound } from "next/navigation";
 import { PageIntro, StatusPill } from "@/components/chrome";
 import { catalog, findUseCase, vendorById } from "@/lib/catalog";
@@ -76,6 +77,8 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
           </nav>
         </aside>
       </div>
+
+      <DecisionGuide useCaseId={useCase.id} />
 
       <section className="mt-10">
         <h2 className="text-2xl">Candidates</h2>
