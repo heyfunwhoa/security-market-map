@@ -12,6 +12,7 @@ import { catalog, claimsForSubject, vendorById } from "@/lib/catalog";
 import { claimNeedsRecheck } from "@/lib/coverage";
 import { availabilityLabel } from "@/lib/format";
 import { AGENTIC_ENDPOINT_COMPARISON_URL, DEVELOPER_ENDPOINT_COMPARISON_URL } from "@/lib/comparison-selection";
+import { productFit } from "@/lib/product-fit";
 import {
   PRODUCT_ANCHOR_CLASS,
   isProductResearchSlug,
@@ -83,6 +84,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const related = catalog.categories.filter((category) => [...product.primaryCategoryIds, ...product.adjacentCategoryIds].includes(category.id));
   const category = productResearchCategory(slug);
   const unknownBoundaries = unknownControlBoundaries(product.id, catalog.asOf);
+  const fit = productFit[slug];
 
   return (
     <main className="mx-auto min-w-0 max-w-6xl px-4 py-10">
@@ -90,16 +92,29 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       <PageIntro kicker="Product research" title={product.name} lede={product.positioning} />
       <div className="mt-4 flex flex-wrap items-center gap-3 text-sm">
         <StatusPill status={product.availability} />
-        <Link href={productComparisonUrl(product)} className="inline-flex min-h-11 items-center font-medium text-primary underline underline-offset-4">Compare {product.name}</Link>
+        <Link href={fit ? AGENTIC_ENDPOINT_COMPARISON_URL : productComparisonUrl(product)} className="inline-flex min-h-11 items-center font-medium text-primary underline underline-offset-4">{fit ? "Compare with peers" : `Compare ${product.name}`}</Link>
         {vendor ? <Link className="inline-flex min-h-11 items-center text-primary underline underline-offset-4" href={`/vendors/${vendor.slug}`}>About {vendor.name}</Link> : null}
         <a className="inline-flex min-h-11 max-w-full items-center text-primary underline underline-offset-4 [overflow-wrap:anywhere]" href={product.officialUrl}>Official product documentation</a>
       </div>
       <p className="mt-2 text-sm leading-6 text-muted-foreground">{availabilityLabel(product.availability)}. {product.availabilityNote}</p>
+      {fit ? (
+        <p className="mt-4 rounded-lg border-l-4 border-primary bg-card p-4 text-base leading-7"><span className="block text-xs font-semibold uppercase tracking-wide text-muted-foreground">Buyer question</span>{fit.buyerQuestion}</p>
+      ) : null}
 
       <ProductSectionNav sections={productResearchSections(slug)} />
       <section aria-labelledby="how-it-works" className="mt-9">
         <AnchorHeading id="how-it-works" className="text-2xl font-semibold">How it works</AnchorHeading>
         <p className="mt-2 text-sm text-muted-foreground">{ciam ? "Follow one customer through sign-in and use the pilot to check what the application enforces." : "Illustrative control sequence. Vendor documentation is not an independently verified blocking test."}</p>
+        {fit ? (
+          <dl className="mt-4 grid gap-2 rounded-xl border border-border bg-card p-4 text-sm leading-6 sm:grid-cols-[8rem_1fr]">
+            {([["Trigger", details.action], ["Control", details.control], ["Evidence", details.evidence]] as const).map(([heading, description]) => (
+              <div key={heading} className="contents">
+                <dt className="font-semibold">{heading}</dt>
+                <dd className="[overflow-wrap:anywhere]">{description}</dd>
+              </div>
+            ))}
+          </dl>
+        ) : (
         <ol className="mt-4 grid gap-3 md:grid-cols-3">
           {([["1. Trigger", details.action], ["2. Control", details.control], ["3. Evidence", details.evidence]] as const).map(([heading, description]) => (
             <li key={heading} className="min-w-0 rounded-xl border border-border bg-card p-4">
@@ -108,6 +123,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             </li>
           ))}
         </ol>
+        )}
       </section>
 
       {slug === "aikido-device-protection" ? <ProductFocus stages={[
@@ -143,6 +159,36 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <p className="mt-2 text-sm leading-6">{details.limitation}</p>
       </section>
 
+      {fit ? (
+        <section aria-labelledby="market-fit" className="mt-9">
+          <AnchorHeading id="market-fit" className="text-2xl font-semibold">Where it fits in the market</AnchorHeading>
+          <p className="mt-2 text-sm text-muted-foreground">Grouped by how each product gets onto the device. A shared approach is not a ranking or a direct-competitor finding.</p>
+          <dl className="mt-4 grid gap-4 text-sm leading-6">
+            <div>
+              <dt className="font-semibold">Deployment</dt>
+              <dd className="mt-1">{fit.deployment}</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Analyst view</dt>
+              <dd className="mt-1">{fit.analyst.text} <a href={fit.analyst.href} className="inline-flex min-h-11 items-center text-primary underline underline-offset-4">{fit.analyst.label}</a></dd>
+            </div>
+          </dl>
+          <h3 className="mt-4 font-semibold">Nearest peers by approach</h3>
+          <ul className="mt-2 grid gap-3 md:grid-cols-2">
+            {fit.peers.map((group) => (
+              <li key={group.approach} className="min-w-0 rounded-xl border border-border bg-card p-4">
+                <p className="text-sm font-medium">{group.approach}</p>
+                <ul className="mt-2 flex flex-wrap gap-x-4">
+                  {group.items.map((item) => (
+                    <li key={item.name}><Link href={item.href} className="inline-flex min-h-11 items-center text-sm text-primary underline underline-offset-4">{item.name}</Link></li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
       <section aria-labelledby="evidence" className="mt-9 min-w-0">
         <AnchorHeading id="evidence" className="text-2xl font-semibold">Source-backed product evidence</AnchorHeading>
         <p className="mt-2 mb-4 text-sm text-muted-foreground">Every statement links to its publisher source and review date. Missing evidence remains Unknown, not unsupported.</p>
@@ -161,6 +207,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           </div>
         ) : null}
         <ProductEvidenceExplorer
+          groupBySource={Boolean(fit)}
           claims={claims}
           asOf={catalog.asOf}
           recheckClaimIds={claims.filter((claim) => claimNeedsRecheck(claim, catalog.sources, catalog.asOf)).map((claim) => claim.id)}

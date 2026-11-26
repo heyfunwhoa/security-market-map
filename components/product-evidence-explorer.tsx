@@ -6,12 +6,30 @@ import { SourceBadge } from "@/components/source-badge";
 import { evidenceBasis, noteWithoutCaveat } from "@/lib/claim-basis";
 import type { Claim } from "@/lib/schema";
 
+/** Who said it: vendor material first, then analysts, then press and other third parties. */
+const SOURCE_GROUPS: { label: string; types: Claim["sourceType"][] }[] = [
+  { label: "What the vendor says", types: ["official_docs", "vendor_marketing", "press_release", "customer_story"] },
+  { label: "What analysts say", types: ["analyst"] },
+  { label: "Press and third parties", types: [] },
+];
+
+function groupBySourceType(claims: Claim[]) {
+  const known = new Set(SOURCE_GROUPS.flatMap((group) => group.types));
+  return SOURCE_GROUPS.map((group) => ({
+    label: group.label,
+    claims: claims.filter((claim) => (group.types.length ? group.types.includes(claim.sourceType) : !known.has(claim.sourceType))),
+  })).filter((group) => group.claims.length > 0);
+}
+
 export function ProductEvidenceExplorer({
   claims,
   recheckClaimIds = [],
   asOf,
+  groupBySource = false,
 }: {
   claims: Claim[];
+  /** Group claims under vendor, analyst and press headings instead of one list. */
+  groupBySource?: boolean;
   /** Claims whose source is past its review window as of the catalog snapshot (computed on the server). */
   recheckClaimIds?: string[];
   asOf?: string;
@@ -33,8 +51,11 @@ export function ProductEvidenceExplorer({
         {claims.length} recorded source-linked {claims.length === 1 ? "claim" : "claims"}. Original publisher links remain
         available without expanding details.
       </p>
+      {(groupBySource ? groupBySourceType(claims) : [{ label: "", claims }]).map((group) => (
+      <div key={group.label || "all"} className="min-w-0 space-y-3">
+      {group.label ? <h3 className="pt-3 text-lg font-semibold">{group.label} <span className="text-sm font-normal text-muted-foreground">({group.claims.length})</span></h3> : null}
       <Accordion type="multiple" className="space-y-3">
-        {claims.map((claim) => (
+        {group.claims.map((claim) => (
           <AccordionItem key={claim.id} value={claim.id} className="min-w-0 rounded-xl border border-border bg-card px-4">
             <div className="flex flex-wrap items-center gap-2 pt-3">
               <SourceBadge claim={claim} />
@@ -82,6 +103,8 @@ export function ProductEvidenceExplorer({
           </AccordionItem>
         ))}
       </Accordion>
+      </div>
+      ))}
     </div>
   );
 }

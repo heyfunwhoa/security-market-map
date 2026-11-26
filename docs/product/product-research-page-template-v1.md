@@ -53,3 +53,19 @@ Use the [Atlas handoff checklist proposed in M2](https://github.com/heyfunwhoa/d
 - Kingfisher's verified source audit concerns five first-party exception identities only. M2 proposes YAML-aware parsing and immutable-blob verification. Betterleaks/Veles import parsing, validator registration and measured scanning remain outside that implementation. Do not turn the five identities into a complete coverage count or vendor comparison claim.
 
 Placement remains category → vendor → product → source evidence → optional Atlas. Reuse existing product IDs and navigation; no catalog, component, public capability or deployment change accompanies this handoff guidance. Keep rule-level records in Atlas.
+
+## Regrouped layout (trial, Bay platform, 2026-11-25)
+
+An optional layout for products whose buyer question differs from the developer-endpoint set. Turn it on by adding an entry to [product-fit.ts](../../lib/product-fit.ts); pages without an entry are unchanged.
+
+Order: header (short product name; Compare with peers, About vendor, official docs) → buyer question → how it works (compact trigger, control, evidence) → zoom-in stages → limitations → where it fits in the market (deployment, analyst view, nearest peers by approach) → evidence grouped by who said it (vendor, analysts, press and third parties) → pilot questions → categories.
+
+Rules:
+
+- The comparison set must match the buyer question. Agent-security products use the agentic endpoint set ([agentic-endpoint-comparison.ts](../../lib/data/agentic-endpoint-comparison.ts), use case `uc-agentic-endpoint`); developer-workstation products keep `uc-developer-endpoint`.
+- Unknown control boundaries list only capabilities with no current claim. Limited, conflicting and needs-review cells have evidence to inspect and are shown in the comparison, not as Unknown.
+- Every line in the fit section restates a recorded claim. Peer groups describe deployment approach only; they are not a ranking or a direct-competitor edge.
+- Conflicting sources stay visible (for Bay, Lighthouse's baselining period) instead of being resolved by choice.
+
+Roll it to other products only after the Bay trial is reviewed.
+

@@ -2,6 +2,8 @@ import { catalog } from "./catalog";
 import { isCiamProduct } from "./data/ciam-profiles";
 import { evidenceCell } from "./compare";
 import { developerEndpointCapabilities } from "./data/developer-endpoint-comparison";
+import { agenticEndpointCapabilities } from "./data/agentic-endpoint-comparison";
+import { hasRegroupedLayout } from "./product-fit";
 
 export { PRODUCT_RESEARCH_SLUGS, isProductResearchSlug, type ProductResearchSlug } from "./product-destination";
 import type { ProductResearchSlug } from "./product-destination";
@@ -28,6 +30,7 @@ export function productResearchSections(slug: ProductResearchSlug): SectionLink[
     ...(slug === "kingfisher" ? [{ id: "kingfisher-upstream", label: "Upstream" }] : []),
     ...(isCiamProduct(slug) ? [{ id: "market-context", label: "Buyer and economics" }] : []),
     { id: "limitations", label: "Limitations" },
+    ...(hasRegroupedLayout(slug) ? [{ id: "market-fit", label: "Market fit" }] : []),
     { id: "evidence", label: "Evidence" },
     { id: "investigate", label: "Pilot questions" },
     { id: "adjacency", label: "Categories" },
@@ -41,11 +44,15 @@ export function productResearchSections(slug: ProductResearchSlug): SectionLink[
  */
 export function unknownControlBoundaries(productId: string, asOf: string): string[] {
   if (isCiamProduct(productId) || productId === "kingfisher") return [];
-  return developerEndpointCapabilities
+  // Use the capability set that matches the buyer question for this product.
+  const product = catalog.products.find((item) => item.id === productId);
+  const capabilities = product?.useCaseIds.includes("uc-agentic-endpoint") ? agenticEndpointCapabilities : developerEndpointCapabilities;
+  return capabilities
     .filter((capability) => {
       const status = evidenceCell(catalog.claims, productId, capability.id, asOf, catalog.sources).status;
-      // A limited cell has evidence, with a stated boundary; it is not unknown.
-      return status !== "evidenced" && status !== "limited";
+      // Only a cell with no current claim is unknown. Limited, conflicting and unverified cells
+      // have evidence to inspect, with a stated boundary, a dispute or a review flag.
+      return status === "unknown";
     })
     .map((capability) => capability.name);
 }

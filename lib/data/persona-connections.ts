@@ -100,6 +100,11 @@ export const useCaseSeats: UseCaseSeatsInput[] = [
     seatIds: ["appsec", "it-security", "platform-security", "soc-lead"],
     likelyBudgetSeatIds: ["appsec", "it-security", "platform-security"],
   },
+  {
+    useCaseId: "uc-agentic-endpoint",
+    seatIds: ["ciso", "it-security", "appsec", "platform-security", "ai-owner", "soc-lead"],
+    likelyBudgetSeatIds: ["ciso", "it-security"],
+  },
 ];
 
 /**

@@ -53,7 +53,7 @@ export const bayGhosteyeProducts: Product[] = [
     id: "bay-platform",
     slug: "bay-platform",
     vendorId: "bay-security",
-    name: "Bay platform (Wave, Bay Enforcer, Lighthouse)",
+    name: "Bay platform",
     positioning:
       "Wave scans each machine to inventory agents, extensions and local models. Bay Enforcer receives each proposed agent action through a native hook and returns allow, ask or deny on the device using full session context. Lighthouse drafts per-team policy from 30 days of agent activity and replays it against that history.",
     primaryCategoryIds: ["agentic-runtime"],
@@ -64,7 +64,7 @@ export const bayGhosteyeProducts: Product[] = [
     availabilityNote:
       "Purchasable at launch (10 Nov 2026) and listed on AWS Marketplace. Installs through the customer's existing MDM or EDR. Pricing not public.",
     officialUrl: "https://aws.amazon.com/marketplace/pp/prodview-2sqtxuxrvfows",
-    useCaseIds: [],
+    useCaseIds: ["uc-agentic-endpoint"],
   },
   {
     id: "ghosteye-platform",
