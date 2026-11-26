@@ -1,3 +1,4 @@
+import { SacrMarketGroups } from "@/components/sacr-market-groups";
 import { productDestination } from "@/lib/product-destination";
 import { AwsSecurityHubGuide } from "@/components/aws-security-hub-guide";
 import { CredentialExposureHandoff, WorkforceIdentityGuide } from "@/components/identity-response-guides";
@@ -86,6 +87,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
       {category.id === "workforce-identity" && <WorkforceIdentityGuide />}
       {category.id === "secrets-management" && <><SecretsManagementGuide /><CredentialExposureHandoff /></>}
       <ExternalExposureGuides categoryId={category.id} />
+      <SacrMarketGroups categoryId={category.id} />
       {relatedIncidents.length > 0 && (
         <section className="mt-6 rounded-xl border border-border bg-card p-4" aria-labelledby="category-incidents">
           <h2 id="category-incidents" className="text-xl">

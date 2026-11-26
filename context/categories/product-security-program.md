@@ -3,7 +3,7 @@ id: "product-security-program"
 type: "category"
 name: "Product security program"
 layer: "core"
-vendors: 2
+vendors: 3
 ---
 
 # Product security program
@@ -32,6 +32,7 @@ _None recorded._
 
 - IriusRisk
 - HiddenLayer
+- Security Compass
 
 ## What buyers do instead
 

@@ -3,7 +3,7 @@ id: "mcp-security"
 type: "category"
 name: "MCP and tool security"
 layer: "core"
-vendors: 2
+vendors: 10
 ---
 
 # MCP and tool security
@@ -28,10 +28,17 @@ Discovery and control of Model Context Protocol servers and the tools an agent c
 
 - Lasso Security: Lasso markets AI security including MCP server discovery, tool-call monitoring and an open-source MCP gateway.
 - Operant AI: Operant AI markets runtime protection for AI agents, including an MCP Gateway for discovery and policy over agent-to-MCP traffic.
+- AIR Security: New York company founded Feb 2026 by Unit 8200 veterans Yair Saban (CEO) and Niv Hoffman (CTO); former Disney and Costco CISO Ryan Knisley is Chief Strategy Officer. Inline firewall that vets skills, plugins, sub-agents and MCP servers before and after install and blocks what enters an agent's context. $50M across two seed rounds (Sep 2026); about 40 employees.
+- Panguard AI: Panguard AI publishes PanGuard, an open-source tool that scans the skills AI agents install and guards the tool calls they make, built on its open Agent Threat Rules (ATR) format.
+- Runlayer: Runlayer markets an MCP security platform: a gateway that controls which apps agents reach, threat detection on MCP requests, observability and permissions tied to the identity provider.
 
 ## Vendors (adjacent)
 
-_None recorded._
+- Bay
+- Capsule Security
+- Zenity
+- Pillar Security
+- Straiker
 
 ## What buyers do instead
 

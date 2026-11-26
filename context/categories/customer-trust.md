@@ -3,7 +3,7 @@ id: "customer-trust"
 type: "category"
 name: "Customer trust"
 layer: "core"
-vendors: 2
+vendors: 3
 ---
 
 # Customer trust
@@ -28,6 +28,7 @@ Questionnaires, penetration-test letters, and control descriptions a buyer of yo
 ## Vendors (primary)
 
 - Vanta: Customer-trust and compliance automation often bought by smaller companies. Not an enterprise GRC suite by default.
+- Drata: Trust management vendor: compliance automation, a customer-facing Trust Center built on SafeBase (acquired 2025), questionnaire automation and third-party risk.
 
 ## Vendors (adjacent)
 

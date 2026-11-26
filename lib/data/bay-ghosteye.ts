@@ -1,0 +1,385 @@
+import type { CatalogEvent, Claim, Product, Source, Vendor } from "../schema";
+
+// Full profiles for Bay (agent action enforcement) and GhostEye (human-layer social engineering testing), 2026-11-23.
+// Research candidates only. Both companies are young; most facts come from launch coverage or aggregators.
+// Where sources disagree, the claim notes say so. See docs/market-research/bay-ghosteye-profiles-2026-11.md.
+
+const CHECKED = "2026-11-23";
+
+export const bayGhosteyeVendors: Vendor[] = [
+  {
+    id: "bay-security",
+    slug: "bay-security",
+    name: "Bay",
+    formerNames: [],
+    website: "https://www.bay.io/",
+    positioning:
+      "Bay AI Inc., Tel Aviv. Checks each action an AI agent tries to take before it runs, on laptops, cloud workloads and SaaS, under one policy set. Founded early 2026 by Unit 8200 veterans; launched 10 Nov 2026 with about $50M raised.",
+    primaryCategoryIds: ["agentic-runtime"],
+    adjacentCategoryIds: ["endpoint-security", "mcp-security", "ai-governance"],
+    identityScopes: ["agent"],
+    verificationStatus: "research_candidate",
+    openQuestions: [
+      "Funding split differs by source: $37M Series A plus a $13M seed (SiliconANGLE, Ynet) versus a $50M Series A (GovInfoSecurity).",
+      "Founding date differs by source: January 2026 versus about nine months before the 10 Nov 2026 launch.",
+      "No public docs, supported-agent list or pricing were found. Which coding agents, assistants and OSes does the native hook cover?",
+      "The <1% false-positive and millisecond-verdict figures are vendor claims, not tested.",
+      "bay.security now redirects to bay.io; confirm the canonical domain before quoting.",
+    ],
+  },
+  {
+    id: "ghosteye",
+    slug: "ghosteye",
+    name: "GhostEye",
+    formerNames: [],
+    website: "https://ghosteye.ai/",
+    positioning:
+      "New York startup, Y Combinator Summer 2025. Sells \"vulnerability management for the human layer\": maps what attackers can learn about employees and runs personalized social engineering attacks over email, SMS and voice, including against help desks.",
+    primaryCategoryIds: ["security-awareness"],
+    adjacentCategoryIds: ["pentest-program", "breach-simulation"],
+    identityScopes: ["not_an_identity_control"],
+    verificationStatus: "research_candidate",
+    openQuestions: [
+      "Very early: YC lists a team of 3. Aggregators disagree on funding (unfunded per Tracxn, about $500K per PitchBook and others) and HQ (New York per YC, San Francisco per one aggregator).",
+      "No customers are named in any source reviewed.",
+      "Help-desk voice testing (password resets, MFA bypass) is described by a tools directory, not a first-party page.",
+      "Can the buyer's legal and HR process approve voice and SMS impersonation of staff and outsourced help desks?",
+    ],
+  },
+];
+
+export const bayGhosteyeProducts: Product[] = [
+  {
+    id: "bay-platform",
+    slug: "bay-platform",
+    vendorId: "bay-security",
+    name: "Bay platform (Wave, Bay Enforcer, Lighthouse)",
+    positioning:
+      "Wave scans each machine to inventory agents, extensions and local models. Bay Enforcer receives each proposed agent action through a native hook and returns allow, ask or deny on the device using full session context. Lighthouse drafts per-team policy from 30 days of agent activity and replays it against that history.",
+    primaryCategoryIds: ["agentic-runtime"],
+    adjacentCategoryIds: ["endpoint-security", "mcp-security"],
+    deployment: ["saas"],
+    identityScopes: ["agent"],
+    availability: "generally_available",
+    availabilityNote:
+      "Purchasable at launch (10 Nov 2026) and listed on AWS Marketplace. Installs through the customer's existing MDM or EDR. Pricing not public.",
+    officialUrl: "https://aws.amazon.com/marketplace/pp/prodview-2sqtxuxrvfows",
+    useCaseIds: [],
+  },
+  {
+    id: "ghosteye-platform",
+    slug: "ghosteye-platform",
+    vendorId: "ghosteye",
+    name: "GhostEye",
+    positioning:
+      "OSINT agents profile each employee's public exposure; voice and messaging agents then run personalized multi-step social engineering campaigns across email, SMS and voice. Tracks per-person risk scores over time and shows employees how they were compromised.",
+    primaryCategoryIds: ["security-awareness"],
+    adjacentCategoryIds: ["pentest-program", "breach-simulation"],
+    deployment: ["saas"],
+    identityScopes: ["not_an_identity_control"],
+    availability: "unknown",
+    availabilityNote: "Described on its YC company page and job listings; no public pricing or GA announcement found.",
+    officialUrl: "https://www.ycombinator.com/companies/ghosteye",
+    useCaseIds: [],
+  },
+];
+
+export const bayGhosteyeSources: Source[] = [
+  {
+    id: "src-bay-siliconangle-launch",
+    title: "SiliconANGLE — AI security startup Bay launches with $50M to vet agent actions before they run",
+    url: "https://siliconangle.com/?p=853606",
+    canonicalUrl: "https://siliconangle.com/?p=853606",
+    publisher: "SiliconANGLE",
+    sourceType: "news",
+    publishedAt: "2026-11-10",
+    retrievedAt: CHECKED,
+    volatility: "moderate",
+    excerpt:
+      "Launch coverage: founders from Unit 8200, Noname and Preempt/CrowdStrike; $37M Series A led by Battery plus a $13M seed; Wave, Bay Enforcer and Lighthouse components; customers Micron, Wix, ClickUp and Peloton.",
+  },
+  {
+    id: "src-bay-ynet",
+    title: "Ynetnews — Bay emerges from stealth with $50 million",
+    url: "https://ynetnews.com/business/article/hy100j0g0ml",
+    canonicalUrl: "https://ynetnews.com/business/article/hy100j0g0ml",
+    publisher: "Ynetnews",
+    sourceType: "news",
+    publishedAt: "2026-11-10",
+    retrievedAt: CHECKED,
+    volatility: "moderate",
+    excerpt:
+      "Coverage puts the team at about 35 people, mostly in Israel, names angels including Wiz's Assaf Rappaport and Cisco's Jeetu Patel, and says the platform allows, blocks or routes each agent action for approval.",
+  },
+  {
+    id: "src-bay-ismg",
+    title: "GovInfoSecurity — Bay Security raises $50M to stop rogue AI agent actions",
+    url: "https://www.govinfosecurity.com/bay-security-raises-50m-to-stop-rogue-ai-agent-actions-a-33343",
+    canonicalUrl: "https://www.govinfosecurity.com/bay-security-raises-50m-to-stop-rogue-ai-agent-actions-a-33343",
+    publisher: "Information Security Media Group",
+    sourceType: "news",
+    publishedAt: null,
+    retrievedAt: CHECKED,
+    volatility: "moderate",
+    excerpt:
+      "Coverage describes agentless, stateful enforcement that inspects prompts, tool calls, skills and session context, an entity graph linking agents, users, MCP servers and SaaS, and a Micron rollout to 150,000 endpoints.",
+  },
+  {
+    id: "src-bay-aws-marketplace",
+    title: "AWS Marketplace — Bay AI agent security platform listing",
+    url: "https://aws.amazon.com/marketplace/pp/prodview-2sqtxuxrvfows",
+    canonicalUrl: "https://aws.amazon.com/marketplace/pp/prodview-2sqtxuxrvfows",
+    publisher: "Bay (via AWS Marketplace)",
+    sourceType: "vendor_marketing",
+    publishedAt: null,
+    retrievedAt: CHECKED,
+    volatility: "fast",
+    excerpt:
+      "Vendor listing says Lighthouse builds session-aware, per-team policy with no baselining period and Bay Enforcer weighs the full session to return Allow, Ask or Deny on the device in under 4 ms.",
+  },
+  {
+    id: "src-ghosteye-yc",
+    title: "Y Combinator — GhostEye company page",
+    url: "https://www.ycombinator.com/companies/ghosteye",
+    canonicalUrl: "https://www.ycombinator.com/companies/ghosteye",
+    publisher: "Y Combinator",
+    sourceType: "vendor_marketing",
+    publishedAt: null,
+    retrievedAt: CHECKED,
+    volatility: "moderate",
+    excerpt:
+      "Company page: \"Vulnerability Management for the Human Layer\"; founded 2025, Summer 2025 batch, team of 3, New York; founders Mohammad Eshan (ex-BlackRock red team lead, MITRE) and Charles Antoine Malenfant (ex-BlackRock AI engineer).",
+  },
+  {
+    id: "src-ghosteye-yc-job",
+    title: "Y Combinator — GhostEye job listing (Founding Engineer, Applied AI)",
+    url: "https://www.ycombinator.com/companies/ghosteye/jobs/PWYdVgI-founding-engineer-applied-ai",
+    canonicalUrl: "https://www.ycombinator.com/companies/ghosteye/jobs/PWYdVgI-founding-engineer-applied-ai",
+    publisher: "Y Combinator",
+    sourceType: "vendor_marketing",
+    publishedAt: null,
+    retrievedAt: CHECKED,
+    volatility: "fast",
+    excerpt: "GhostEye describes itself as security awareness that simulates real attacks; the role owns OSINT and voice agents that deliver social engineering campaigns.",
+  },
+  {
+    id: "src-ghosteye-secureworld",
+    title: "SecureWorld — Speaker profile, Mohammad Eshan",
+    url: "https://events.secureworld.io/speakers/mohammad-eshan/",
+    canonicalUrl: "https://events.secureworld.io/speakers/mohammad-eshan/",
+    publisher: "SecureWorld",
+    sourceType: "vendor_marketing",
+    publishedAt: null,
+    retrievedAt: CHECKED,
+    volatility: "moderate",
+    excerpt: "Speaker bio says GhostEye uses AI and OSINT to simulate social engineering attacks across voice, email and SMS to find human weaknesses that scanners miss.",
+  },
+  {
+    id: "src-ghosteye-cybersectools",
+    title: "CyberSecTools — Ghosteye tool listing",
+    url: "https://cybersectools.com/tools/ghosteye",
+    canonicalUrl: "https://cybersectools.com/tools/ghosteye",
+    publisher: "CyberSecTools",
+    sourceType: "review",
+    publishedAt: null,
+    retrievedAt: CHECKED,
+    volatility: "moderate",
+    excerpt: "Directory listing says the platform targets employees and outsourced help desks, with AI voice agents attempting password resets and MFA bypass in help-desk tests.",
+  },
+  {
+    id: "src-ghosteye-pitchbook",
+    title: "PitchBook — GhostEye company profile",
+    url: "https://pitchbook.com/profiles/company/862655-77",
+    canonicalUrl: "https://pitchbook.com/profiles/company/862655-77",
+    publisher: "PitchBook",
+    sourceType: "review",
+    publishedAt: null,
+    retrievedAt: CHECKED,
+    volatility: "moderate",
+    excerpt: "Profile lists about $500K raised from investors including Y Combinator, and describes OSINT-driven multi-vector simulated campaigns across email, text and voice that adapt to responses.",
+  },
+];
+
+function claim(
+  id: string,
+  statement: string,
+  subjectType: Claim["subjectType"],
+  subjectId: string,
+  source: Source,
+  notes: string,
+  opts: { confidence?: Claim["confidence"]; conflictsWith?: string[] } = {},
+): Claim {
+  return {
+    id,
+    statement,
+    subjectType,
+    subjectId,
+    capabilityId: null,
+    polarity: "asserts",
+    sourceId: source.id,
+    sourceUrl: source.url,
+    sourceType: source.sourceType,
+    publishedAt: source.publishedAt,
+    observedAt: CHECKED,
+    effectiveFrom: null,
+    effectiveTo: null,
+    confidence: opts.confidence ?? "medium",
+    verificationStatus: source.sourceType === "news" || source.sourceType === "review" ? "needs_review" : "vendor_published",
+    lastCheckedAt: CHECKED,
+    conflictsWith: opts.conflictsWith ?? [],
+    notes,
+  };
+}
+
+const s = Object.fromEntries(bayGhosteyeSources.map((x) => [x.id, x])) as Record<string, Source>;
+
+export const bayGhosteyeClaims: Claim[] = [
+  // Bay — company
+  claim(
+    "claim-bay-founders",
+    "Bay was founded by Yuval Zacharia (CEO, Unit 8200 and Hunters), Aner Morag (CPO, first employee at Noname Security) and Boris Danilovich (R&D, Preempt and CrowdStrike).",
+    "vendor",
+    "bay-security",
+    s["src-bay-siliconangle-launch"],
+    "Founder backgrounds as reported at launch; Ynet gives matching backgrounds.",
+  ),
+  claim(
+    "claim-bay-funding-split",
+    "Bay has raised about $50M: a $37M Series A led by Battery Ventures with Micron Ventures, plus a $13M seed co-led by YL Ventures and Striker Venture Partners.",
+    "vendor",
+    "bay-security",
+    s["src-bay-siliconangle-launch"],
+    "Ynet reports the same split.",
+    { conflictsWith: ["claim-bay-funding-ismg"] },
+  ),
+  claim(
+    "claim-bay-funding-ismg",
+    "GovInfoSecurity reports Bay's round as a $50M Series A led by Battery Ventures, after a $13M seed.",
+    "vendor",
+    "bay-security",
+    s["src-bay-ismg"],
+    "Conflicts with the $37M Series A figure in SiliconANGLE and Ynet. Treat the total as about $50M and the split as unconfirmed.",
+    { conflictsWith: ["claim-bay-funding-split"] },
+  ),
+  claim(
+    "claim-bay-team-angels",
+    "Bay has about 35 employees, mostly in Israel, and angel investors including Wiz CEO Assaf Rappaport and Cisco CPO Jeetu Patel.",
+    "vendor",
+    "bay-security",
+    s["src-bay-ynet"],
+    "Headcount from one news report.",
+  ),
+  claim(
+    "claim-bay-customers",
+    "Bay names Micron, Wix, ClickUp and Peloton as customers.",
+    "vendor",
+    "bay-security",
+    s["src-bay-siliconangle-launch"],
+    "Vendor-named customers reported at launch. Micron Ventures is also an investor.",
+  ),
+  // Bay — product
+  claim(
+    "claim-bay-wave",
+    "Bay's Wave scanner inventories the agents, extensions and local models on each machine and leaves nothing running afterward.",
+    "product",
+    "bay-platform",
+    s["src-bay-siliconangle-launch"],
+    "From launch coverage.",
+  ),
+  claim(
+    "claim-bay-enforcer",
+    "Bay Enforcer receives each proposed agent action through a native hook and returns Allow, Ask or Deny on the device in under 4 ms, weighing the full session.",
+    "product",
+    "bay-platform",
+    s["src-bay-aws-marketplace"],
+    "Vendor listing. The latency figure is a vendor claim.",
+  ),
+  claim(
+    "claim-bay-lighthouse",
+    "Bay's Lighthouse drafts a separate policy for each team from 30 days of agent activity and lets teams test it against that period; Bay says false positives are under 1%.",
+    "product",
+    "bay-platform",
+    s["src-bay-siliconangle-launch"],
+    "False-positive rate is a vendor claim.",
+  ),
+  claim(
+    "claim-bay-architecture",
+    "Bay describes agentless, stateful enforcement that inspects prompts, responses, skills, tool calls and session context, and maps agents, users, MCP servers and SaaS apps in an entity graph.",
+    "product",
+    "bay-platform",
+    s["src-bay-ismg"],
+    "Coverage also mentions token-consumption controls by user and team.",
+  ),
+  claim(
+    "claim-bay-micron-rollout",
+    "Bay says it was deployed across 150,000 Micron endpoints in under five minutes through existing MDM or EDR tooling.",
+    "product",
+    "bay-platform",
+    s["src-bay-ismg"],
+    "Vendor-reported customer outcome; not independently confirmed.",
+  ),
+  // GhostEye — company
+  claim(
+    "claim-ghosteye-yc",
+    "GhostEye was founded in 2025, is in Y Combinator's Summer 2025 batch, lists a team of 3 and is based in New York.",
+    "vendor",
+    "ghosteye",
+    s["src-ghosteye-yc"],
+    "YC company page. One aggregator lists San Francisco.",
+    { confidence: "high" },
+  ),
+  claim(
+    "claim-ghosteye-founders",
+    "GhostEye's founders are Mohammad Eshan, a former BlackRock red team lead who worked in offensive operations at MITRE, and Charles Antoine Malenfant, a former senior AI engineer at BlackRock.",
+    "vendor",
+    "ghosteye",
+    s["src-ghosteye-yc"],
+    "Self-described on the YC page.",
+    { confidence: "high" },
+  ),
+  claim(
+    "claim-ghosteye-funding",
+    "PitchBook lists GhostEye as having raised about $500K from investors including Y Combinator.",
+    "vendor",
+    "ghosteye",
+    s["src-ghosteye-pitchbook"],
+    "Tracxn lists the company as unfunded. Treat funding as unconfirmed.",
+  ),
+  // GhostEye — product
+  claim(
+    "claim-ghosteye-product",
+    "GhostEye uses OSINT and voice agents to run personalized social engineering campaigns against a company's own staff.",
+    "product",
+    "ghosteye-platform",
+    s["src-ghosteye-yc-job"],
+    "Company's own job listing.",
+  ),
+  claim(
+    "claim-ghosteye-channels",
+    "GhostEye simulates social engineering attacks across voice, email and SMS.",
+    "product",
+    "ghosteye-platform",
+    s["src-ghosteye-secureworld"],
+    "Founder's conference speaker bio.",
+  ),
+  claim(
+    "claim-ghosteye-helpdesk",
+    "GhostEye also tests outsourced help desks, with AI voice agents attempting password resets and MFA bypass.",
+    "product",
+    "ghosteye-platform",
+    s["src-ghosteye-cybersectools"],
+    "Directory listing, not a first-party page.",
+  ),
+];
+
+export const bayGhosteyeEvents: CatalogEvent[] = [
+  {
+    id: "evt-bay-launch",
+    vendorId: "bay-security",
+    date: "2026-11-10",
+    kind: "launch",
+    title: "Bay launches from stealth with about $50M",
+    summary: "Bay came out of stealth with the Wave, Bay Enforcer and Lighthouse components and named customers including Micron and Wix. The platform was available to buy at launch.",
+    sourceId: "src-bay-siliconangle-launch",
+  },
+];

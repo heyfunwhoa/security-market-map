@@ -3,7 +3,7 @@ id: "grc-controls"
 type: "category"
 name: "Control evidence and risk"
 layer: "core"
-vendors: 8
+vendors: 9
 ---
 
 # Control evidence and risk
@@ -38,6 +38,7 @@ The risk register, control tests, and audit evidence. GRC platforms track whethe
 - Veeam
 - Cohesity
 - Credo AI
+- Drata
 
 ## What buyers do instead
 
