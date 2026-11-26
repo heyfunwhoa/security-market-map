@@ -3,7 +3,7 @@ id: "agentic-runtime"
 type: "category"
 name: "Agentic runtime enforcement"
 layer: "core"
-vendors: 33
+vendors: 35
 ---
 
 # Agentic runtime enforcement
@@ -39,6 +39,7 @@ A check on a live agent action before it completes. Directory, governance, privi
 - Keycard: Named in SACR's runtime-identity note for issuing agent credentials at tool-call time. No issuance claim is filled.
 - Noma Security: Named in SACR's runtime note for agent visibility beyond an MCP gateway. AI application security and runtime enforcement are not separated by a sourced claim here.
 - Bay: Bay AI Inc., Tel Aviv. Checks each action an AI agent tries to take before it runs, on laptops, cloud workloads and SaaS, under one policy set. Founded early 2026 by Unit 8200 veterans; launched 10 Nov 2026 with about $50M raised.
+- Backslash Security: Backslash markets security for the agents on developer and workforce devices (Claude Code, Cursor, Codex, GitHub Copilot) and for the MCP servers, skills, plugins, hooks, rules and local models that shape what those agents do.
 - Manifold: California AIDR startup (2025), CEO Neal Swaelens. Maps agents on endpoints, especially coding agents and tools like Claude Cowork and OpenClaw, with their tools, MCP servers, databases and actions, flags anomalies and can quarantine or terminate agents. $8M seed led by Costanoa (Mar 2026).
 - Capsule Security: Tel Aviv startup, CEO Naor Paz. Runtime trust layer that checks each agent tool call and data access inside the execution path, with no proxy, gateway or SDK; coverage reports name Copilot Studio, ServiceNow and Agentforce. Publishes open-source ClawGuard. $7M seed (Apr 2026); advisers include Chris Krebs.
 - Kontext Security: Munich company (Cobrowser Technology GmbH per one aggregator) founded by Jens Ernstberger (CEO, doctorate in cryptography) and Michel Osswald. Task-aware runtime authorization between agents and tools: each action is judged by agent identity, assigned task, resource and request, observe-first then enforce, with short-lived credentials brokered so secrets stay out of agent environments. $4M led by 42CAP (Sep 2026).
@@ -60,6 +61,7 @@ A check on a live agent action before it completes. Directory, governance, privi
 - TrustFour
 - Lasso Security
 - Operant AI
+- WitnessAI
 - AIR Security
 - Panguard AI
 - Pillar Security

@@ -53,6 +53,7 @@ From 3 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - Fortra
 - Binalyze
 - Bay
+- Backslash Security
 - Manifold
 - Asymptote Labs
 - Cisco
