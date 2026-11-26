@@ -28,7 +28,7 @@ Outside-in scores of a company's exposed posture, used in third-party risk and i
 
 - BitSight: Security ratings vendor used in third-party risk. A score is not a questionnaire and not a pentest.
 - SecurityScorecard: Security ratings vendor on the same shortlist as BitSight. No scoring method is sourced here.
-- Black Kite: Third-party security ratings candidate. Unverified.
+- Black Kite: Third-party cyber risk vendor. Gartner Peer Insights lists its platform as outside-in cyber risk ratings built from open-source intelligence; the product record is sourced separately.
 
 ## Vendors (adjacent)
 

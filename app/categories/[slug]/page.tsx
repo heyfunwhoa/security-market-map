@@ -1,5 +1,6 @@
 import { CiamEvaluationGuide } from "@/components/ciam-evaluation-guide";
 import { EndpointEvaluationGuide } from "@/components/endpoint-evaluation-guide";
+import { SacrMarketGroups } from "@/components/sacr-market-groups";
 import { productDestination } from "@/lib/product-destination";
 import { AwsSecurityHubGuide } from "@/components/aws-security-hub-guide";
 import { CredentialExposureHandoff, WorkforceIdentityGuide } from "@/components/identity-response-guides";
@@ -7,6 +8,7 @@ import { SecretsManagementGuide } from "@/components/secrets-management-guide";
 import exposureGroups from "@/research/public-exposure-options.json";
 import { ExposureIntelligenceResearch, hasExposureIntelligenceResearch } from "@/components/exposure-intelligence-research";
 import { PublicSecretMonitoring } from "@/components/public-secret-monitoring";
+import { EndpointGlossary } from "@/components/endpoint-glossary";
 import { ExternalExposureGuides } from "@/components/external-exposure-guides";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { SECRETS_COMPARISON_URL, DEVELOPER_ENDPOINT_COMPARISON_URL } from "@/lib/comparison-selection";
@@ -104,6 +106,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
       {exposureGroups.some((group) => group.cases.some((item) => item.categoryId === category.id)) && (
         <p className="mt-5 text-sm"><Link href="/landscape/public-exposure" className="text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-ring">Compare public monitoring and external exposure scenarios</Link></p>
       )}
+      {category.id === "endpoint-security" && <EndpointGlossary />}
       {category.id === "cnapp" && <AwsSecurityHubGuide />}
       {["ctem", "cspm", "secrets-management", "workforce-identity"].includes(category.id) && (
         <p className="mt-4 text-sm"><Link className="text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-ring" href="/categories/cnapp#aws-security-hub">Explore AWS Security Hub buyer scenarios</Link></p>
@@ -111,6 +114,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
       {category.id === "workforce-identity" && <WorkforceIdentityGuide />}
       {category.id === "secrets-management" && <><SecretsManagementGuide /><CredentialExposureHandoff /></>}
       <ExternalExposureGuides categoryId={category.id} />
+      <SacrMarketGroups categoryId={category.id} />
       {relatedIncidents.length > 0 && (
         <section className="mt-6 rounded-xl border border-border bg-card p-4" aria-labelledby="category-incidents">
           <h2 id="category-incidents" className="text-xl">

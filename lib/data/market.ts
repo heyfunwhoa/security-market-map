@@ -252,7 +252,7 @@ export const vendors: Vendor[] = [
     website: "https://www.paloaltonetworks.com/",
     positioning: "Closed the CyberArk acquisition on 11 Feb 2026 and introduced Idira on 12 May 2026. Brand changes toward Idira began 31 May 2026. Prisma Cloud remains a cloud-security product. Do not merge Idira, secrets, and CNAPP into one capability row. Palo Alto Networks markets Cortex DSPM for cloud and AI data exposure. Vendor-reported DSPM scope reviewed 2026-10-13.",
     primaryCategoryIds: ["pam", "secrets-management"],
-    adjacentCategoryIds: ["nhi", "agent-identity", "ciem", "adjacent-security", "network-edge", "dspm", "model-security", "endpoint-control"],
+    adjacentCategoryIds: ["nhi", "agent-identity", "ciem", "adjacent-security", "network-edge", "dspm", "model-security", "endpoint-control", "iac-security", "enterprise-browser"],
     identityScopes: ["human", "nhi", "agent"],
     verificationStatus: "research_candidate",
     openQuestions: [
@@ -618,7 +618,7 @@ export const vendors: Vendor[] = [
     website: "https://www.wiz.io/",
     positioning: "CNAPP vendor. Cloud entitlement conversations often happen here. That is adjacent budget to IGA, not a certification suite, unless a sourced claim says otherwise. Wiz markets a DSPM solution for cloud data security. Vendor-reported DSPM scope reviewed 2026-10-13.",
     primaryCategoryIds: ["cnapp", "cspm", "ciem"],
-    adjacentCategoryIds: ["nhi", "itdr", "adjacent-security", "cloud-vulnerability", "cloud-detection", "dspm"],
+    adjacentCategoryIds: ["nhi", "itdr", "adjacent-security", "cloud-vulnerability", "cloud-detection", "dspm", "iac-security"],
     identityScopes: ["human", "nhi"],
     verificationStatus: "research_candidate",
     openQuestions: ["Is CIEM already entitled in the Wiz agreement?"],

@@ -1234,7 +1234,8 @@ export const secretsSweepProducts: Product[] = [
     "adjacentCategoryIds": [
       "sast",
       "sca",
-      "cnapp"
+      "cnapp",
+      "iac-security"
     ],
     "deployment": [
       "unknown"

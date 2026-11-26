@@ -3,7 +3,7 @@ id: "digital-risk-protection"
 type: "category"
 name: "Digital risk protection"
 layer: "adjacent"
-vendors: 7
+vendors: 8
 ---
 
 # Digital risk protection
@@ -27,6 +27,7 @@ A search for public abuse of a brand, domain, executive, product, or customer-fa
 ## Vendors (primary)
 
 - ZeroFox: ZeroFox markets digital risk protection across brand, domain, executive, social and dark web exposure, with takedowns. It says Gartner and Forrester recognize it in DRP (vendor-reported). No product cell is assigned.
+- Doppel: Social engineering defense platform founded by Kevin Tian (CEO) and Rahul Madduluri (CTO): brand and executive protection, takedowns, human risk management with Simulation, and email security. $70M Series C led by Bessemer (Nov 2025) at a valuation above $600M, $124M total.
 - CybelAngel: CybelAngel investigates exposed company material and provides analyst reports that help an owner identify the leak.
 - Netcraft: Netcraft provides brand protection services for detecting phishing and coordinating site takedowns.
 

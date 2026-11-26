@@ -1,0 +1,8 @@
+Check,Buyer question,What to verify,Tool and policy,Device or time window,Finding (confirmed / contradicted / unknown),Evidence reference,Minutes elapsed,Decision or follow-up,Owner
+Coverage,Which devices had working collection during the exercise?,List enrolled devices and gaps against the known device list.,,,,,,,
+Exposure,Where and when did the original file appear?,"Match the package version to the expected hash, device and time.",,,,,,,
+Execution,Which device ran the file?,Compare process records with the known run on one device and presence alone on another.,,,,,,,
+File recovery,Can the analyst recover the removed file?,Compare the recovered bytes by hash with the original fixture.,,,,,,,
+Related files,Which modified copy was found?,Record the match evidence and check a benign unrelated control.,,,,,,,
+Retention,How far back can the same conclusion be supported?,Record the oldest available sample and device observation separately. Mark an untested interval unknown.,,,,,,,
+Decision,Which devices need follow-up and who owns it?,"Record the action, elapsed minutes and evidence that changed or confirmed the decision.",,,,,,,
