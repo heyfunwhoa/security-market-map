@@ -56,7 +56,7 @@ export const productProfileSteps: Record<string, ProfileStep[]> = {
         "cap-agent-session-context",
         "cap-agent-unhooked-coverage",
       ],
-      claimIds: ["claim-bay-architecture"],
+      claimIds: ["claim-bay-architecture", "claim-ae-bay-govinfosec"],
       check:
         "Run a harmless synthetic action, such as a test command against a dummy bucket, and confirm the verdict arrives before it runs.",
       boundary:
@@ -102,11 +102,11 @@ export const productProfileSteps: Record<string, ProfileStep[]> = {
       summary:
         "Policy blocks assets above a risk threshold, allow-lists sanctioned AI clients, removes or updates risky components and locks unsafe settings.",
       capabilityIds: ["cap-agent-preexec-control"],
-      claimIds: ["claim-ae-island-enforce"],
+      claimIds: ["claim-ae-island-enforce", "claim-ae-island-realtime"],
       check:
         "Trigger each policy action on a test device, in each deployment mode, and time how long it takes to apply.",
       boundary:
-        "These controls act on assets and settings. Island does not say they stop an individual agent action before it runs, or which ones work agentless.",
+        "These controls act on assets and settings. Island places control of individual agent actions in a separate product, AI Runtime Protection, and does not say which controls work agentless.",
     },
     {
       title: "Record",
@@ -137,7 +137,7 @@ export const productProfileSteps: Record<string, ProfileStep[]> = {
       summary:
         "Guardrails stop unverified packages and browser add-ons before they run, and remediation removes flagged plugins, npm packages and connectors.",
       capabilityIds: [],
-      claimIds: ["claim-ae-koi-remediate", "claim-ae-koi-cogentrix"],
+      claimIds: ["claim-ae-koi-remediate", "claim-ae-koi-cogentrix", "claim-ae-koi-wwt"],
       check:
         "Install a benign test package and extension that policy should block, then confirm removal and that the registry proxy stops reinstall.",
       boundary:
@@ -172,22 +172,22 @@ export const productProfileSteps: Record<string, ProfileStep[]> = {
       summary:
         "The existing Falcon sensor inventories known and shadow AI agents, running or dormant, on Windows and macOS.",
       capabilityIds: ["cap-agent-asset-inventory"],
-      claimIds: [],
+      claimIds: ["claim-ae-guardian-nov-status"],
       check:
         "Confirm the sensor version and licence needed, and how quickly a newly installed agent appears in the inventory.",
       boundary:
-        "Discovery is stated for Windows and macOS only.",
+        "Windows and macOS today. Linux, cloud workload and Kubernetes coverage is announced, not shipped.",
     },
     {
-      title: "Control which agents run",
+      title: "Decide",
       summary:
-        "Agent Access Controls define which AI agents may run on managed endpoints and block unauthorized ones.",
-      capabilityIds: ["cap-agent-preexec-control"],
-      claimIds: ["claim-ae-guardian-access"],
+        "Agent Access Controls allow or block whole agents. For Claude Code, OpenAI Codex, GitHub Copilot, OpenCode and Cursor, agent hooks block harmful actions before they run.",
+      capabilityIds: ["cap-agent-preexec-control", "cap-agent-unhooked-coverage"],
+      claimIds: ["claim-ae-guardian-access", "claim-ae-guardian-siliconangle"],
       check:
-        "Block an unapproved test agent, then try a risky action inside an approved one and see whether anything stops it before it runs.",
+        "Block an unapproved test agent, then run a harmless risky action inside each supported agent and confirm it stops before it runs.",
       boundary:
-        "An allow-list of agents is not a decision on each action. The release does not say whether individual tool calls are blocked before execution.",
+        "Per-action blocking is a vendor claim for five named agents. Any other agent can only be allowed or blocked as a whole.",
     },
     {
       title: "Trace",

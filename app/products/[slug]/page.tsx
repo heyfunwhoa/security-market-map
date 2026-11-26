@@ -60,8 +60,8 @@ const learning: Record<Exclude<ProductResearchSlug, CiamProductSlug>, { action: 
     action: "An MCP server, skill, hook, AI client, package or extension is installed or changed on a device",
     control: "Island Desktop, or an agentless deployment through existing MDM or EDR, inventories AI assets; Island scores each one in its cloud and policy blocks, allow-lists, removes or locks components that cross a risk threshold",
     evidence: "AI asset inventory, per-asset risk score with impact, likelihood and findings, and the matched policy action",
-    limitation: "Island's post does not say whether any control stops an individual agent action before it runs, which enforcement actions work in agentless mode, or which operating systems are supported. Scores are Island's own analysis and are not independently tested.",
-    questions: ["Which enforcement actions work in agentless mode, and how soon after a scan do they apply?", "Can any control stop a single agent action before it runs, or only block, remove or lock assets?", "Which operating systems and AI clients are supported today?", "What device data goes to Island's cloud for scoring?", "Can it be bought without Island Enterprise Browser or Island Desktop?"],
+    limitation: "This product governs AI assets and their settings. Island places control of individual agent actions in its separate AI Runtime Protection product. Island does not say which enforcement actions work in agentless mode or which operating systems are supported. Scores are Island's own analysis and are not independently tested.",
+    questions: ["Which enforcement actions work in agentless mode?", "Does stopping a single agent action need AI Runtime Protection, and is that priced separately?", "Which operating systems are supported today?", "What device data goes to Island's cloud for scoring?", "Can it be bought without Island Enterprise Browser or Island Desktop?"],
   },
   "palo-alto-koi": {
     action: "A developer or agent installs a package, extension, plugin or MCP server, or an agent proposes a shell, file, MCP, skill or network action",
@@ -72,10 +72,10 @@ const learning: Record<Exclude<ProductResearchSlug, CiamProductSlug>, { action: 
   },
   "crowdstrike-falcon-guardian": {
     action: "An AI agent runs, or tries to run, on a managed Windows or macOS endpoint",
-    control: "The existing Falcon sensor inventories known and shadow agents, links prompts, identity, tool calls and skills to endpoint activity, and Agent Access Controls block agents that are not approved",
+    control: "The existing Falcon sensor inventories known and shadow agents and links prompts, identity, tool calls and skills to endpoint activity; Agent Access Controls block unapproved agents, and hooks for five named agents block harmful actions before they run",
     evidence: "Agent inventory with deployer and status, the agent execution chain, detections, and agent data in Falcon Next-Gen SIEM",
-    limitation: "Agent Access Controls decide which agents may run; CrowdStrike's release does not say whether individual agent actions or tool calls are blocked before they run. No GA dates are given, AI Gateway and Falcon Complete for Guardian are future capabilities, and discovery is stated for Windows and macOS only.",
-    questions: ["Which Falcon Guardian components are generally available today, and which are licensed separately?", "Can a policy stop a single tool call or command before it runs, or only stop an agent from running?", "Is Falcon Guardian the product SACR calls Falcon AIDR?", "What covers Linux hosts and developer containers?", "Which agent fields reach Next-Gen SIEM, and how long are they kept?"],
+    limitation: "Per-action blocking is a vendor claim, made only for hooks in Claude Code, OpenAI Codex, GitHub Copilot, OpenCode and Cursor; other agents can only be allowed or blocked as a whole. Linux, cloud workload and Kubernetes coverage is announced, not shipped. No formal GA date for the core product was found.",
+    questions: ["Which Falcon Guardian components are licensed separately from the sensor?", "Which actions do the hooks cover in each of the five agents, and what happens for agents without hooks?", "Does the AI kill switch target one agent type or all model access?", "What covers Linux hosts and developer containers?", "Which agent fields reach Next-Gen SIEM, and how long are they kept?"],
   },
   "aikido-device-protection": {
     action: "Developer or agent requests a package from a supported registry",

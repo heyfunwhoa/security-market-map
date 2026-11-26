@@ -133,11 +133,23 @@ Two public cases vendors in this space use to explain the risk. Both are logged 
 
 Island, Koi and Falcon Guardian now have source-based profile pages beside Bay: `/products/island-agentic-endpoint-posture`, `/products/palo-alto-koi`, `/products/crowdstrike-falcon-guardian`. Each step lists its recorded claims or shows Unknown.
 
+### Third-party evidence check (26 Nov 2026)
+
+Independent evidence is thin for all four. What exists:
+- **Falcon Guardian:** SiliconANGLE launch coverage (relies on CrowdStrike's claims). CrowdStrike's 3 Nov update adds per-action hooks for Claude Code, OpenAI Codex, GitHub Copilot, OpenCode and Cursor, which changes its pre-execution cell from Unknown to vendor-claimed.
+- **Koi:** a WWT partner architect's walkthrough. WWT is a Palo Alto partner and describes no hands-on test; recorded as a review, not independent verification.
+- **Bay:** GovInfoSecurity launch coverage quoting only the CEO.
+- **Island:** none found. Island's product page says enforcement is real time, not on a scheduled scan, and places action-level control in its separate AI Runtime Protection product; recorded as a limit on the pre-execution cell.
+
+The step counts on each profile label these "third-party" by publisher, not as independent tests.
+
 ## Follow-ups (need owner review)
 
 1. Confirm Koi's original ClawHavoc and postmark-mcp posts before promoting either incident.
 2. Fetch the Microsoft AI agent support matrix and record per-agent discovery and runtime coverage.
 3. Check Neo's first-party site, funding split and founders; check Knostic's funding and founders.
 4. Decide whether Check Point Workforce AI Security and the SACR-named startups (Bloom, Pluto, Glow, Origin, Ent, Bold, NeuralTrust, Harmonic) warrant vendor records, each after a first-party check.
-5. Record per-capability GA status for Falcon Guardian.
-6. Confirm that SACR's "Falcon AIDR" and CrowdStrike's "Falcon Guardian" are the same product line.
+5. ~~Record per-capability GA status for Falcon Guardian.~~ Done 26 Nov from CrowdStrike's 3 Nov update: hooks, kill switch and AI Gateway available; Falcon Complete for Guardian GA; Linux, cloud and Kubernetes still future.
+6. ~~Confirm SACR's "Falcon AIDR" is "Falcon Guardian".~~ Done: CrowdStrike calls Guardian the evolution of Falcon AIDR.
+7. Bay Lighthouse baselining (30 days per SiliconANGLE and Let's Data Science vs none per Bay's AWS listing) is still unresolved in public sources. Ask Bay directly.
+8. Candidate, not recorded: BeyondTrust documents an "AI Agent Security" product that discovers agents such as Claude Code and Codex on endpoints and blocks, audits or asks before risky actions complete ([docs](https://docs.beyondtrust.com/bt-docs/docs/ai-agent-security)). Needs a first-party product page check before a product record.

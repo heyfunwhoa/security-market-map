@@ -206,7 +206,8 @@ describe("product research pages", () => {
     const island = await pageHtml("island-agentic-endpoint-posture");
     expect(island).toContain('href="/categories/agentic-runtime"');
     expect(island).toContain("No analyst coverage recorded.");
-    expect(island).toContain("Unknown: Decide before an agent action runs.");
+    expect(island).toContain("AI Runtime Protection");
+    expect(island).not.toContain("Unknown: Decide before an agent action runs.");
     expect(island).toContain("https://www.island.io/blog/see-score-and-control-every-ai-asset-on-your-endpoints");
     expect(island).toContain("products=island-agentic-endpoint-posture,bay-platform,crowdstrike-falcon-guardian,palo-alto-koi");
     expect(anchorIds(island).every((id) => island.includes(`id="${id}"`))).toBe(true);
@@ -221,9 +222,9 @@ describe("product research pages", () => {
     expect(anchorIds(koi).every((id) => koi.includes(`id="${id}"`))).toBe(true);
 
     const guardian = await pageHtml("crowdstrike-falcon-guardian");
-    expect(guardian).toContain("2. Control which agents run");
-    expect(guardian).toContain("An allow-list of agents is not a decision on each action.");
-    expect(guardian).toContain("Falcon AIDR");
+    expect(guardian).toContain("2. Decide");
+    expect(guardian).toContain("OpenCode");
+    expect(guardian).toContain("evolution of Falcon AIDR");
     expect(guardian).toContain("Unknown: Agent action audit trail.");
     expect(anchorIds(guardian).every((id) => guardian.includes(`id="${id}"`))).toBe(true);
 
@@ -232,7 +233,7 @@ describe("product research pages", () => {
       "Coverage for AI tools without hooks",
       "Agent action audit trail",
     ]);
-    expect(unknownControlBoundaries("crowdstrike-falcon-guardian", catalog.asOf)).toContain("Decide before an agent action runs");
+    expect(unknownControlBoundaries("crowdstrike-falcon-guardian", catalog.asOf)).not.toContain("Decide before an agent action runs");
   });
 
   it("keeps an explicit unknown state and distinct evidence controls", () => {

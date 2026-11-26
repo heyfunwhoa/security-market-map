@@ -88,7 +88,7 @@ export const productFit: Record<string, ProductFit> = {
   "crowdstrike-falcon-guardian": {
     deployment: "Runs on the Falcon sensor the customer already has; CrowdStrike states discovery on Windows and macOS. No separate install is described.",
     analyst: {
-      text: "SACR covers this line as Falcon AIDR, delivered through the Falcon sensor, browser extensions, AI gateway integrations, an SDK and an MCP proxy, and notes its prompt-layer telemetry depends on network connectivity. The Sep 2026 release brands it Falcon Guardian; this site treats them as one line until confirmed.",
+      text: "SACR covers this line as Falcon AIDR, delivered through the Falcon sensor, browser extensions, AI gateway integrations, an SDK and an MCP proxy, and notes its prompt-layer telemetry depends on network connectivity. CrowdStrike calls Guardian the evolution of Falcon AIDR, so this is the same product line.",
       href: "https://softwareanalyst.substack.com/p/the-ciso-guide-to-endpoint-control",
       label: "SACR, CISO Guide to Endpoint Control and Prevention (22 Jul 2026)",
     },
