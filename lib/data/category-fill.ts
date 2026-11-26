@@ -197,9 +197,7 @@ export const categoryFillVendors: Vendor[] = [
     "id": "menlo-security",
     "slug": "menlo-security",
     "name": "Menlo Security",
-    "formerNames": [
-      "Votiro"
-    ],
+    "formerNames": [],
     "website": "https://www.menlosecurity.com/",
     "positioning": "Menlo Security sells secure enterprise browser and workspace security. It announced the acquisition of Votiro, a CDR and data detection and response vendor, on 2025-02-19, and votiro.com now redirects to Menlo.",
     "primaryCategoryIds": [
@@ -2058,7 +2056,7 @@ export const categoryFillClaims: Claim[] = [
     "verificationStatus": "vendor_published",
     "lastCheckedAt": "2026-11-23",
     "conflictsWith": [],
-    "notes": "Observed from the official page's search-index text on 2026-11-23; the full page was not opened. The support article may predate Menlo Security's 2025 acquisition of Votiro. Publisher-reported, not tested; no competitor or parity claim. See docs/market-research/adjacent-file-evidence-categories-2026-11-23.md."
+    "notes": "Official page opened and checked on 2026-11-26 (it lists email, downloads and file transfers, and removable devices). The support article may predate Menlo Security's 2025 acquisition of Votiro. Publisher-reported, not tested; no competitor or parity claim. See docs/market-research/adjacent-file-evidence-categories-2026-11-23.md."
   },
   {
     "id": "claim-fill-menlo-acquires-votiro",
@@ -2078,7 +2076,7 @@ export const categoryFillClaims: Claim[] = [
     "verificationStatus": "vendor_published",
     "lastCheckedAt": "2026-11-23",
     "conflictsWith": [],
-    "notes": "Acquirer's own announcement, observed via search-index text; corroborated by Business Wire, SiliconANGLE and Help Net Security reports, and by votiro.com redirecting to menlosecurity.com on 2026-11-23."
+    "notes": "Acquirer's own announcement, opened and checked on 2026-11-26 (dated February 19, 2025); corroborated by Business Wire, SiliconANGLE and Help Net Security reports, and by votiro.com redirecting to menlosecurity.com on 2026-11-23."
   },
   {
     "id": "claim-fill-cribl-stream",

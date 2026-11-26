@@ -108,7 +108,7 @@ Budget ownership for each proposed category; how far EDR and XDR suites bundle e
 | OF8 | OPSWAT — Deep CDR technology | https://www.opswat.com/technologies/deep-cdr | Vendor (opened) | 2026-11-23 |
 | OF9 | Binalyze — homepage | https://www.binalyze.com/ | Vendor (opened) | 2026-11-23 |
 | OF10 | Acalvio — homepage / ShadowPlex | https://www.acalvio.com/ · https://www.acalvio.com/shadowplex-platform/ | Vendor (opened) | 2026-11-23 |
-| OF11 | Votiro — CDR support article | https://support.votiro.com/hc/en-us/articles/360014301677-Content-Disarm-and-Reconstruction-CDR | Vendor (search-index text) | 2026-11-23 |
+| OF11 | Votiro — CDR support article | https://support.votiro.com/hc/en-us/articles/360014301677-Content-Disarm-and-Reconstruction-CDR | Vendor (opened 2026-11-26) | 2026-11-23 |
 | OF12 | Menlo Security — Menlo Security acquires Votiro (2025-02-19); corroborated by Business Wire, SiliconANGLE | https://www.menlosecurity.com/blog/menlo-security-acquires-votiro | Acquirer announcement (search-index text) | 2026-11-23 |
 | CD4 | Slashdot — CDR software directory | https://slashdot.org/software/content-disarm-reconstruction-cdr/ | Directory | 2026-11-23 |
 
@@ -118,3 +118,5 @@ Rights: short paraphrase only; no reproduced vendor copy.
 
 - **Security Market Map catalog:** three typed categories added with two vendors each. Votiro is modelled under a new `menlo-security` vendor (primary `enterprise-browser`) with Votiro as a former name, following the Fortra / Digital Guardian pattern. Next: confirm Votiro's current product name inside Menlo's portfolio, then consider Magnet Forensics, Tracebit and Glasswall.
 - **Other projects:** no change proposed.
+
+**Correction (2026-11-26):** Votiro was removed from Menlo Security's former names. Menlo acquired Votiro; it was never called Votiro. The Votiro CDR product record still carries the name. OF11 and OF12 were opened and confirmed.
