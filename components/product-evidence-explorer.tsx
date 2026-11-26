@@ -1,4 +1,5 @@
 "use client";
+import { VENDOR_SOURCE_TYPES } from "@/lib/source-kind";
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { RecheckBadge } from "@/components/recheck-badge";
@@ -8,7 +9,7 @@ import type { Claim } from "@/lib/schema";
 
 /** Who said it: vendor material first, then analysts, then press and other third parties. */
 const SOURCE_GROUPS: { label: string; types: Claim["sourceType"][] }[] = [
-  { label: "What the vendor says", types: ["official_docs", "vendor_marketing", "press_release", "customer_story"] },
+  { label: "What the vendor says", types: VENDOR_SOURCE_TYPES },
   { label: "What analysts say", types: ["analyst"] },
   { label: "Press and third parties", types: [] },
 ];

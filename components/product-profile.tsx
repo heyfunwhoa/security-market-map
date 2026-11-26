@@ -9,31 +9,36 @@ import { claimNeedsRecheck } from "@/lib/coverage";
 import { resolveProfileSteps } from "@/lib/product-profile";
 import { productFit } from "@/lib/product-fit";
 import { unknownControlBoundaries } from "@/lib/product-research";
+import { sourceMix, withoutAttribution } from "@/lib/source-kind";
 import type { Claim, Product, Vendor } from "@/lib/schema";
 
 const LINK =
   "inline-flex min-h-11 items-center text-primary underline underline-offset-4 [overflow-wrap:anywhere]";
 
 function ProofItem({ claim }: { claim: Claim }) {
+  const source = catalog.sources.find((item) => item.id === claim.sourceId);
+  const label = source?.title ?? source?.publisher ?? "Recorded source";
   return (
-    <li className="min-w-0 border-t border-border pt-3 first:border-t-0 first:pt-0">
-      <div className="flex flex-wrap items-center gap-2">
-        <SourceBadge claim={claim} />
-        <span className="text-xs text-muted-foreground">
-          Published {claim.publishedAt ?? "Unknown"} · checked{" "}
+    <li className="min-w-0 border-t border-border pt-2 first:border-t-0 first:pt-0">
+      <details className="group">
+        <summary className="flex min-h-11 cursor-pointer flex-wrap items-center gap-x-2 gap-y-1">
+          <SourceBadge claim={claim} />
+          <span className="min-w-0 flex-1 truncate text-sm group-open:whitespace-normal">
+            {withoutAttribution(claim.statement)}
+          </span>
+        </summary>
+        <p className="mt-1 text-xs text-muted-foreground [overflow-wrap:anywhere]">
+          {label} · {claim.publishedAt ?? "No publish date"} · checked{" "}
           {claim.lastCheckedAt}
-        </span>
-      </div>
-      <p className="mt-2 text-sm leading-6 [overflow-wrap:anywhere]">
-        {claim.statement}
-      </p>
-      <a
-        href={claim.sourceUrl}
-        aria-label={`Open original source: ${claim.statement}`}
-        className={`${LINK} text-sm`}
-      >
-        Open original source
-      </a>
+        </p>
+        <a
+          href={claim.sourceUrl}
+          aria-label={`Open original source: ${claim.statement}`}
+          className={`${LINK} text-sm`}
+        >
+          Open original source
+        </a>
+      </details>
     </li>
   );
 }
@@ -143,10 +148,6 @@ export function ProductProfile({
             for this product yet.
           </p>
         )}
-        <h3 className="mt-4 font-semibold">Categories</h3>
-        <dl className="mt-2 space-y-3">
-          <ProductCategoryLinks primary={primaryCategories} adjacent={adjacentCategories} />
-        </dl>
       </section>
 
       <section aria-labelledby="how-it-works" className="mt-9">
@@ -168,7 +169,12 @@ export function ProductProfile({
                 {index + 1}. {step.title}
               </h3>
               <p className="mt-2 text-sm leading-6">{step.summary}</p>
-              <h4 className="mt-4 text-sm font-semibold">Proof</h4>
+              <h4 className="mt-4 text-sm font-semibold">
+                Proof{" "}
+                <span className="font-normal text-muted-foreground">
+                  ({sourceMix(step.claims)}; open a row for the source)
+                </span>
+              </h4>
               {step.claims.length ? (
                 <ul className="mt-2 grid gap-3">
                   {step.claims.map((claim) => (
@@ -327,6 +333,15 @@ export function ProductProfile({
             <li key={question}>{question}</li>
           ))}
         </ul>
+      </section>
+
+      <section aria-labelledby="categories" className="mt-9">
+        <h2 id="categories" className="text-xl font-semibold">
+          Categories
+        </h2>
+        <dl className="mt-2 space-y-3">
+          <ProductCategoryLinks primary={primaryCategories} adjacent={adjacentCategories} />
+        </dl>
       </section>
 
       <section aria-labelledby="evidence" className="mt-9 min-w-0">
