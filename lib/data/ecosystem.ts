@@ -631,7 +631,7 @@ export const ecosystemCategories: Category[] = [
     budgetSource: "CNAPP renewal. Code and identity modules may be extra.",
     triggers: ["CNAPP consolidation pitch"],
     outcomes: ["A named list of entitled modules"],
-    adjacentCategoryIds: ["cspm", "ciem", "cwpp", "aspm", "cloud-detection", "iac-security", "container-security", "cloud-vulnerability"],
+    adjacentCategoryIds: ["cspm", "ciem", "cwpp", "aspm", "cloud-detection", "iac-security", "container-security", "cloud-vulnerability", "csie"],
     exampleWorkflow: "A renewal says CNAPP. The team lists CSPM and CIEM as entitled, and code security as not.",
     flow: {
       actor: "Cloud security lead",
@@ -642,6 +642,29 @@ export const ecosystemCategories: Category[] = [
       evidence: "The order form",
     },
     layer: "adjacent",
+  }),
+  category({
+    id: "csie",
+    name: "Cloud Security Intent Enforcement (CSIE)",
+    group: "cloud",
+    domainIds: ["cloud"],
+    definition:
+      "Turns approved cloud security requirements into enforceable controls. Teams assess the effect of a change, apply it at an appropriate enforcement point, and keep the approved state current as infrastructure and exceptions change.",
+    buyerQuestion: "Can we prevent risky cloud access from coming back without interrupting legitimate workloads?",
+    buyerOwner: "Cloud security and platform engineering.",
+    budgetSource: "Cloud security or platform guardrails. Standalone budget and product packaging vary.",
+    triggers: ["Recurring policy drift", "Excess access after cleanup", "Guardrail rollout across cloud accounts"],
+    outcomes: ["Recurrence of disallowed access", "Impact of enforcement on approved workloads", "Exceptions closed or renewed on time"],
+    adjacentCategoryIds: ["cnapp", "cspm", "ciem", "iac-security"],
+    exampleWorkflow: "A team limits access to sensitive storage to approved workloads. It checks which legitimate jobs depend on current permissions, rolls out the native control, and tracks approved exceptions as the environment changes.",
+    flow: {
+      actor: "Cloud security and platform owners",
+      credential: "Cloud workload or human identity",
+      permission: "Approved access to sensitive resources",
+      decision: "Review policy intent and simulate impact",
+      action: "Roll out the guardrail and maintain exceptions",
+      evidence: "Impact assessment, applied policy, change log, and drift history",
+    },
   }),
   category({
     id: "cloud-detection",

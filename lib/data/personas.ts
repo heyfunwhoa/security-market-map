@@ -174,7 +174,7 @@ export const personas: BuyerPersona[] = [
       "Who remediates account findings versus app findings?",
       "Is this a cloud control-plane gap or a shared CI/image gap?",
     ],
-    categoryIds: ["cspm", "cwpp", "ciem", "cnapp", "cloud-detection", "itdr", "adjacent-security"],
+    categoryIds: ["cspm", "cwpp", "ciem", "cnapp", "csie", "cloud-detection", "itdr", "adjacent-security"],
     aliases: [
       "CloudSec",
       "Cloud security engineer",

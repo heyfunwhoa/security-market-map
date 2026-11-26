@@ -3,7 +3,7 @@ id: "iac-security"
 type: "category"
 name: "Infrastructure-as-code security"
 layer: "core"
-vendors: 4
+vendors: 5
 ---
 
 # Infrastructure-as-code security
@@ -36,6 +36,7 @@ Review of Terraform, CloudFormation, and similar before apply. It catches the ch
 - Palo Alto Networks
 - Wiz
 - Snyk
+- Act Security
 
 ## What buyers do instead
 
