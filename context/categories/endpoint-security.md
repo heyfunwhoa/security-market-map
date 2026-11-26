@@ -51,6 +51,7 @@ From 3 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - Axonius
 - Neo Security
 - Fortra
+- Binalyze
 - Bay
 - Backslash Security
 - Manifold

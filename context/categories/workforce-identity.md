@@ -3,7 +3,7 @@ id: "workforce-identity"
 type: "category"
 name: "Workforce identity"
 layer: "core"
-vendors: 16
+vendors: 17
 ---
 
 # Workforce identity
@@ -51,6 +51,7 @@ From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - Semperis
 - Zscaler
 - Island
+- Persona
 - Strata Identity
 
 ## What buyers do instead

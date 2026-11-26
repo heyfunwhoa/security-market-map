@@ -1,4 +1,5 @@
 import type { LandscapeEdge, LandscapeRow } from "@/components/landscape-browser";
+import { frameworkTopics } from "./data/persona-frameworks";
 
 export type CompanySearchEntry = { slug: string; name: string; formerNames: string[] };
 
@@ -20,7 +21,7 @@ export function searchLandscape(
 }
 
 export const initialLandscapeFilters = {
-  domain: "all", category: "all", useCase: "all", persona: "all",
+  domain: "all", category: "all", useCase: "all", persona: "all", framework: "all",
   deployment: "all", scope: "all", relation: "all", focusedProduct: "all",
 };
 export type LandscapeFilters = typeof initialLandscapeFilters;
@@ -31,7 +32,7 @@ export function landscapeFilterReducer(state: LandscapeFilters, action: FilterAc
   return {
     ...state,
     ...(action.key !== "focusedProduct" ? { focusedProduct: "all" } : {}),
-    ...(action.key === "domain" ? { category: "all" } : {}),
+    ...((action.key === "domain" || action.key === "framework") ? { category: "all" } : {}),
     [action.key]: action.value,
   };
 }
@@ -40,14 +41,16 @@ export function filterLandscapeRows(
   rows: LandscapeRow[], edges: LandscapeEdge[],
   personas: { id: string; categoryIds: string[] }[], filters: LandscapeFilters,
 ) {
-  const { domain, category, useCase, persona, deployment, scope, relation, focusedProduct } = filters;
+  const { domain, category, useCase, persona, framework, deployment, scope, relation, focusedProduct } = filters;
   const personaCategories = personas.find((item) => item.id === persona)?.categoryIds ?? [];
+  const frameworkCategories = frameworkTopics.find((item) => item.id === framework)?.categoryIds ?? [];
   return rows
     .filter((row) => domain === "all" || row.domainIds.includes(domain))
     .filter((row) => category === "all" || row.categoryIds.includes(category))
     .filter((row) => focusedProduct === "all" || row.productId === focusedProduct)
     .filter((row) => useCase === "all" || row.useCaseIds.includes(useCase))
     .filter((row) => persona === "all" || row.categoryIds.some((id) => personaCategories.includes(id)))
+    .filter((row) => framework === "all" || row.categoryIds.some((id) => frameworkCategories.includes(id)))
     .filter((row) => deployment === "all" || row.deployment.includes(deployment))
     .filter((row) => scope === "all" || row.scopes.includes(scope))
     .filter((row) => relation === "all" || edges.some((edge) =>
@@ -57,7 +60,7 @@ export function filterLandscapeRows(
 }
 
 const filterParams: Record<keyof LandscapeFilters, string> = {
-  domain: "domain", category: "category", useCase: "useCase", persona: "buyer",
+  domain: "domain", category: "category", useCase: "useCase", persona: "buyer", framework: "framework",
   deployment: "deployment", scope: "scope", relation: "relation", focusedProduct: "product",
 };
 export type LandscapeFilterOptions = Record<keyof LandscapeFilters, readonly string[]>;

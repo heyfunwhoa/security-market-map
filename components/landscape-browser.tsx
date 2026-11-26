@@ -9,6 +9,7 @@ import { StatusPill } from "@/components/chrome";
 import { deploymentLabel, relationshipLabel, scopeLabel } from "@/lib/format";
 import { filterLandscapeRows, initialLandscapeFilters, landscapeFilterReducer, readLandscapeFilters, landscapeFilterUrl, withCatalogReturn, searchLandscape, type CompanySearchEntry } from "@/lib/landscape-filters";
 import { readShortlist, toggleShortlist } from "@/lib/landscape-shortlist";
+import { frameworkTopics, personaFrameworks } from "@/lib/data/persona-frameworks";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { LandscapeResults } from "@/components/landscape-results";
@@ -63,16 +64,21 @@ export function LandscapeBrowser({
   const filters = readLandscapeFilters(searchParams, {
     domain: domains.map((item) => item.id), category: categories.map((item) => item.id),
     useCase: useCases.map((item) => item.id), persona: personas.map((item) => item.id),
+    framework: frameworkTopics.map((item) => item.id),
     deployment: ["saas", "self_hosted", "hybrid", "cloud_native", "open_source", "unknown"],
     scope: ["human", "nhi", "agent", "not_an_identity_control"],
     relation: ["direct_competitor", "bundled_alternative", "complement", "adjacent_budget"],
     focusedProduct: productIds,
   });
-  const scopedCategories = categories.filter((item) => filters.domain === "all" || item.domainIds.includes(filters.domain));
+  const selectedView = personaFrameworks.find(({ topics }) => topics.some(({ id }) => id === filters.framework));
+  const frameworkTopic = frameworkTopics.find((item) => item.id === filters.framework);
+  const scopedCategories = categories.filter((item) =>
+    (filters.domain === "all" || item.domainIds.includes(filters.domain)) &&
+    (!frameworkTopic || frameworkTopic.categoryIds.includes(item.id)));
   if (!scopedCategories.some((item) => item.id === filters.category)) filters.category = "all";
   const scopedProducts = filterLandscapeRows(rows, edges, personas, { ...filters, focusedProduct: "all" });
   if (!scopedProducts.some((row) => row.productId === filters.focusedProduct)) filters.focusedProduct = "all";
-  const { domain, category, useCase, persona, deployment, scope, relation, focusedProduct } = filters;
+  const { domain, category, useCase, persona, framework, deployment, scope, relation, focusedProduct } = filters;
   const query = searchParams.get("q") ?? "";
   const catalogUrl = landscapeFilterUrl(filters, query, selected);
   const currentShortlist = () => readShortlist(new URLSearchParams(window.location.search).get("shortlist"), productIds);
@@ -100,6 +106,7 @@ export function LandscapeBrowser({
     { key: "category", label: "Category", value: labelFor(categories, category) },
     { key: "useCase", label: "Use case", value: labelFor(useCases, useCase) },
     { key: "persona", label: "Buyer", value: labelFor(personas, persona) },
+    { key: "framework", label: "Persona view", value: selectedView && frameworkTopic ? `${selectedView.label} · ${frameworkTopic.label}` : framework },
     { key: "deployment", label: "Deployment", value: deploymentLabel(deployment) },
     { key: "scope", label: "Scope", value: scopeLabel(scope) },
     { key: "relation", label: "Relationship", value: relationshipLabel(relation) },
@@ -115,7 +122,21 @@ export function LandscapeBrowser({
         className="mt-1 min-h-11 max-w-xl bg-card" />
       <details className="mt-3 rounded-xl border border-border bg-card p-3">
         <summary className="min-h-11 cursor-pointer py-2 font-semibold">Filters{activeCount > 0 ? ` · ${activeCount} active` : ""}</summary>
-        <section aria-labelledby="drilldown-heading" className="pb-3">
+        <section aria-labelledby="persona-view-heading" className="mb-5 rounded-xl border border-border bg-card p-4">
+        <h2 id="persona-view-heading" className="font-heading text-lg">Explore by persona</h2>
+        <div className="mt-3 max-w-lg">
+          <Filter label="Persona view" value={framework} onChange={change("framework")} groups={personaFrameworks.map(({ label, topics }) => ({ label, options: topics }))} />
+        </div>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Categories are editorial mappings. Use the filters to explore relevant tools and review product evidence separately.
+        </p>
+        <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+          {(selectedView ? [selectedView] : personaFrameworks.slice(0, 2)).map(({ sourceName, sourceUrl }) => sourceName && sourceUrl && (
+            <li key={sourceName}><a href={sourceUrl} className="text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-ring">{sourceName}</a></li>
+          ))}
+        </ul>
+      </section>
+      <section aria-labelledby="drilldown-heading" className="pb-3">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <h2 id="drilldown-heading" className="font-heading text-lg">Explore from landscape to product</h2>
             <button type="button" className="min-h-11 px-2 text-sm text-primary underline" onClick={reset}>Reset all filters</button>
@@ -272,12 +293,14 @@ function Filter({
   label,
   value,
   onChange,
-  options,
+  options = [],
+  groups = [],
 }: {
   label: string;
   value: string;
   onChange: (value: string) => void;
-  options: Option[];
+  options?: Option[];
+  groups?: { label: string; options: Option[] }[];
 }) {
   const id = `filter-${label.replace(/\s+/g, "-").toLowerCase()}`;
   return (
@@ -294,6 +317,11 @@ function Filter({
           <option key={option.id} value={option.id}>
             {option.label}
           </option>
+        ))}
+        {groups.map((group) => (
+          <optgroup key={group.label} label={group.label}>
+            {group.options.map((option) => <option key={option.id} value={option.id}>{option.label}</option>)}
+          </optgroup>
         ))}
       </select>
     </div>

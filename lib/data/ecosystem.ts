@@ -631,7 +631,7 @@ export const ecosystemCategories: Category[] = [
     budgetSource: "CNAPP renewal. Code and identity modules may be extra.",
     triggers: ["CNAPP consolidation pitch"],
     outcomes: ["A named list of entitled modules"],
-    adjacentCategoryIds: ["cspm", "ciem", "cwpp", "aspm", "cloud-detection", "iac-security", "container-security", "cloud-vulnerability"],
+    adjacentCategoryIds: ["cspm", "ciem", "cwpp", "aspm", "cloud-detection", "iac-security", "container-security", "cloud-vulnerability", "csie"],
     exampleWorkflow: "A renewal says CNAPP. The team lists CSPM and CIEM as entitled, and code security as not.",
     flow: {
       actor: "Cloud security lead",
@@ -641,6 +641,79 @@ export const ecosystemCategories: Category[] = [
       action: "Use the entitled module",
       evidence: "The order form",
     },
+    layer: "adjacent",
+  }),
+  category({
+    "id": "seid",
+    "name": "Social Engineering Identity Defense (SEID)",
+    "group": "adjacent",
+    "domainIds": [
+      "identity",
+      "corporate"
+    ],
+    "definition": "Protects sensitive identity workflows such as help desk resets, account recovery and onboarding from impersonation. Common controls include identity proofing at the point of change, approvals and an audit trail.",
+    "buyerQuestion": "How do we verify someone before resetting access or changing a recovery factor?",
+    "buyerOwner": "Workforce IAM and the service desk",
+    "budgetSource": "Validate against the team responsible for the workflow.",
+    "triggers": [
+      "A critical workflow depends on trust that has not been tested"
+    ],
+    "outcomes": [
+      "A tested decision path with auditable evidence"
+    ],
+    "adjacentCategoryIds": [
+      "workforce-identity",
+      "itdr",
+      "security-awareness"
+    ],
+    "exampleWorkflow": "Before resetting an employee account, the help desk runs the approved verification workflow and records the result.",
+    "layer": "adjacent",
+    "flow": {
+      "actor": "Service desk",
+      "credential": "Verification evidence",
+      "permission": "Authority to reset access",
+      "decision": "Approve or escalate",
+      "action": "Reset or deny",
+      "evidence": "Verification and decision log"
+    }
+  }),
+  category({
+    id: "csie",
+    name: "Cloud Security Intent Enforcement (CSIE)",
+    group: "cloud",
+    domainIds: ["cloud"],
+    definition:
+      "Turns approved cloud security requirements into enforceable controls. Teams assess the effect of a change, apply it at an appropriate enforcement point, and keep the approved state current as infrastructure and exceptions change.",
+    buyerQuestion: "Can we prevent risky cloud access from coming back without interrupting legitimate workloads?",
+    buyerOwner: "Cloud security and platform engineering.",
+    budgetSource: "Cloud security or platform guardrails. Standalone budget and product packaging vary.",
+    triggers: ["Recurring policy drift", "Excess access after cleanup", "Guardrail rollout across cloud accounts"],
+    outcomes: ["Recurrence of disallowed access", "Impact of enforcement on approved workloads", "Exceptions closed or renewed on time"],
+    adjacentCategoryIds: ["cnapp", "cspm", "ciem", "iac-security"],
+    exampleWorkflow: "A team limits access to sensitive storage to approved workloads. It checks which legitimate jobs depend on current permissions, rolls out the native control, and tracks approved exceptions as the environment changes.",
+    flow: {
+      actor: "Cloud security and platform owners",
+      credential: "Cloud workload or human identity",
+      permission: "Approved access to sensitive resources",
+      decision: "Review policy intent and simulate impact",
+      action: "Roll out the guardrail and maintain exceptions",
+      evidence: "Impact assessment, applied policy, change log, and drift history",
+    },
+  }),
+  category({
+    id: "acsp",
+    name: "Agentic Cloud Security Platforms (ACSP)",
+    group: "cloud",
+    domainIds: ["cloud", "secops"],
+    definition: "Connects live cloud execution, identity and data context to policy decisions and governed intervention. SACR proposes criteria for this emerging architecture.",
+    buyerQuestion: "Can we see what is reachable now and intervene with clear authority and an audit trail?",
+    buyerOwner: "Cloud security and SecOps",
+    budgetSource: "Validate within the existing security budget.",
+    triggers: ["Existing tools lack shared context for a security decision"],
+    outcomes: ["Evidence linked to the decision and its owner"],
+    adjacentCategoryIds: ["cnapp", "cloud-detection", "csie"],
+    exampleWorkflow: "A runtime signal is checked against workload identity and data access. The SOC reviews a scoped intervention and retains the decision record.",
+    flow: { actor: "Cloud responder", credential: "Workload identity", permission: "Reachable resources", decision: "Review the intervention", action: "Apply an approved runtime control", evidence: "Execution telemetry and audit record" },
     layer: "adjacent",
   }),
   category({
@@ -1092,7 +1165,7 @@ export const ecosystemCategories: Category[] = [
     budgetSource: "SecOps. Sometimes bundled with threat intelligence or an EDR renewal; verify with the buyer.",
     triggers: ["Analysts pasting hashes into public lookup sites", "A new campaign report", "Sandbox backlog", "Concern about uploading internal binaries publicly"],
     outcomes: ["An explained verdict per file", "Related variants identified", "Known presence or absence in the estate"],
-    adjacentCategoryIds: ["threat-intelligence", "soar", "xdr", "endpoint-security", "detection-engineering", "ai-soc-investigation"],
+    adjacentCategoryIds: ["threat-intelligence", "soar", "xdr", "endpoint-security", "detection-engineering", "ai-soc-investigation", "dfir-collection", "cdr-file-sanitization"],
     exampleWorkflow:
       "An EDR alert names an unknown executable. The analyst gets a verdict and a plain explanation, finds related variants, and checks which hosts have seen any of them before deciding what to contain.",
     flow: {
@@ -1126,6 +1199,78 @@ export const ecosystemCategories: Category[] = [
       decision: "Agent reasoning plus human approval rules",
       action: "Close, escalate or contain",
       evidence: "The investigation record: sources queried, steps taken, verdict and approvals",
+    },
+  }),
+  category({
+    id: "dfir-collection",
+    name: "Digital forensics and IR collection",
+    group: "secops",
+    domainIds: ["secops"],
+    definition:
+      "Remotely collecting and preserving forensic evidence (disk and memory artifacts, logs, volatile data) from endpoints and cloud workloads, then triaging it to scope an incident and build a timeline. EDR telemetry is continuous but usually not forensic-grade; an incident response retainer is people under contract, not a tool the team runs.",
+    buyerQuestion: "During an incident, how fast can we collect defensible evidence from every affected host, and who runs the collection: our team or the retainer firm?",
+    buyerOwner: "Incident response or digital forensics, sometimes the SOC lead.",
+    budgetSource: "SecOps or incident response. Often bundled into an IR retainer, MDR or EDR add-on; verify with the buyer.",
+    triggers: ["A ransomware or intrusion investigation", "Retainer scope that doesn't match the incident", "Legal hold or regulator request", "Slow manual collection across many hosts"],
+    outcomes: ["Evidence collected from every in-scope host", "A defensible timeline", "Chain of custody recorded"],
+    adjacentCategoryIds: ["endpoint-security", "xdr", "malware-analysis", "mdr", "siem"],
+    exampleWorkflow:
+      "Responders push a collection to 300 hosts, pull memory and key artifacts from the ten that matter, hand suspicious files to analysis, and build the timeline that decides what to rebuild.",
+    flow: {
+      actor: "Incident responder or forensic analyst",
+      credential: "Collector agent or remote access to hosts",
+      permission: "Which hosts and data may be collected, under what legal or HR constraints",
+      decision: "Collection scope and triage rules",
+      action: "Collect, preserve and analyse evidence",
+      evidence: "Collected artifacts, hashes and the chain-of-custody record",
+    },
+  }),
+  category({
+    id: "deception",
+    name: "Deception and decoys",
+    group: "secops",
+    domainIds: ["secops", "identity"],
+    definition:
+      "Decoy hosts, services, credentials, files and cloud keys placed where legitimate users have no reason to go, so that any touch is a strong signal of an intruder. A honeytoken alert says someone used the decoy; it does not by itself say how they got in or what else they reached.",
+    buyerQuestion: "Can we get alerts that are almost never false positives, without deploying agents everywhere?",
+    buyerOwner: "SOC lead, threat hunting or detection engineering; identity security for credential decoys.",
+    budgetSource: "SecOps. Increasingly bundled into EDR, XDR or identity platforms; verify with the buyer.",
+    triggers: ["Alert fatigue and low-fidelity detections", "Concern about lateral movement on unmanaged or OT assets", "Red-team findings that went undetected"],
+    outcomes: ["High-confidence intrusion alerts", "Early warning of lateral movement or credential theft"],
+    adjacentCategoryIds: ["xdr", "siem", "itdr", "ndr", "secrets-detection"],
+    exampleWorkflow:
+      "A fake cloud key is left in an internal wiki. Weeks later someone calls the cloud API with it. The SOC gets one alert with the source address and starts an investigation.",
+    flow: {
+      actor: "Intruder, or an insider where no one should be",
+      credential: "A decoy credential, key or token",
+      permission: "None legitimate: the decoy grants nothing real",
+      decision: "Any use of the decoy",
+      action: "Alert and hand to investigation",
+      evidence: "The decoy trigger: when, from where, and with what",
+    },
+  }),
+  category({
+    id: "cdr-file-sanitization",
+    name: "Content disarm and reconstruction",
+    group: "corporate",
+    domainIds: ["corporate", "secops"],
+    definition:
+      "Prevention-first file sanitization: strip active or risky content (macros, scripts, embedded objects) from incoming files and rebuild a usable copy, instead of deciding whether the original is malicious. Usually placed on email, web download, file transfer and removable-media paths. CDR gives no verdict; file and malware analysis does.",
+    buyerQuestion: "Can people open files from outside without each one being detonated or scanned to a verdict first?",
+    buyerOwner: "IT security or email security; OT and critical-infrastructure teams for removable media and file transfer.",
+    budgetSource: "Email or web security, or an OT/critical-infrastructure program. Sometimes bundled in a gateway; verify with the buyer.",
+    triggers: ["Weaponized documents getting past the gateway", "Sandbox delay blocking business files", "Removable media into an isolated network"],
+    outcomes: ["Usable files delivered without active content", "Fewer file-borne incidents at entry points"],
+    adjacentCategoryIds: ["email-security", "malware-analysis", "network-edge", "ot-security"],
+    exampleWorkflow:
+      "A supplier emails a spreadsheet with macros. The gateway delivers a rebuilt copy with the macros removed, and keeps the original for analysis if someone asks for it.",
+    flow: {
+      actor: "External sender or file source",
+      credential: "Not the point",
+      permission: "Which file types and channels are sanitized, and who may request the original",
+      decision: "Sanitization policy per file type",
+      action: "Deliver the rebuilt file; quarantine or keep the original",
+      evidence: "The sanitization log and the retained original",
     },
   }),
   category({
@@ -1244,6 +1389,22 @@ export const ecosystemCategories: Category[] = [
       action: "Record the abuse and name an owner",
       evidence: "The abused asset and the owner",
     },
+  }),
+  category({
+    id: "asset-intelligence",
+    name: "Asset intelligence",
+    group: "secops",
+    domainIds: ["secops", "corporate"],
+    definition: "Reconciles asset observations and relationships across tools while preserving freshness, provenance and conflicts for downstream decisions.",
+    buyerQuestion: "Can we explain which asset record we trust and why before taking action?",
+    buyerOwner: "Security operations and IT asset management",
+    budgetSource: "Validate within the existing security budget.",
+    triggers: ["Existing tools lack shared context for a security decision"],
+    outcomes: ["Evidence linked to the decision and its owner"],
+    adjacentCategoryIds: ["security-asset-management", "it-vulnerability-management"],
+    exampleWorkflow: "When endpoint and cloud inventories disagree, the responder traces each observation, confirms the current owner and records the reason for the selected asset match.",
+    flow: { actor: "Asset or SOC analyst", credential: "Authorized data connector", permission: "Read asset observations", decision: "Reconcile identity and ownership", action: "Route the decision to the owner", evidence: "Source observations and freshness" },
+    layer: "adjacent",
   }),
   category({
     id: "security-asset-management",
@@ -1407,6 +1568,38 @@ export const ecosystemCategories: Category[] = [
       action: "Record the check or send the fix",
       evidence: "The finding and whether it was seen on the running system",
     },
+  }),
+  category({
+    "id": "err",
+    "name": "Ephemeral Ransomware Resilience (ERR)",
+    "group": "corporate",
+    "domainIds": [
+      "corporate",
+      "secops"
+    ],
+    "definition": "SACR recovery framework that combines an isolated management plane, frequent automated copies and temporary compute to keep recovery possible during production administrator compromise.",
+    "buyerQuestion": "Can we restore and run critical services if production credentials and infrastructure are unavailable?",
+    "buyerOwner": "Cyber recovery and infrastructure operations",
+    "budgetSource": "Validate against the team responsible for the workflow.",
+    "triggers": [
+      "A critical workflow depends on trust that has not been tested"
+    ],
+    "outcomes": [
+      "A tested decision path with auditable evidence"
+    ],
+    "adjacentCategoryIds": [
+      "cyber-recovery"
+    ],
+    "exampleWorkflow": "In a recovery exercise, the team restores a critical service into a temporary environment using access independent of production.",
+    "layer": "adjacent",
+    "flow": {
+      "actor": "Recovery team",
+      "credential": "Independent recovery access",
+      "permission": "Isolated backups and temporary compute",
+      "decision": "Validate the restore point",
+      "action": "Recover the service",
+      "evidence": "Restore and continuity exercise record"
+    }
   }),
   category({
     id: "cyber-recovery",
@@ -1906,7 +2099,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "What may a playbook disable without human approval?",
       "Is the pain coverage, noise, or staffing for investigations?",
     ],
-    categoryIds: ["siem", "soar", "itdr", "cloud-detection", "xdr", "mdr", "ai-soc-investigation"],
+    categoryIds: ["siem", "soar", "itdr", "cloud-detection", "xdr", "mdr", "ai-soc-investigation", "deception"],
     aliases: [
       "SOC",
       "Security operations center manager",
@@ -2044,7 +2237,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "What evidence must survive for forensics or legal?",
       "Walk through your last representative investigation, including every tool and handoff.",
     ],
-    categoryIds: ["soar", "siem", "xdr", "mdr", "endpoint-security", "itdr", "malware-analysis", "ai-soc-investigation"],
+    categoryIds: ["soar", "siem", "xdr", "mdr", "endpoint-security", "itdr", "malware-analysis", "ai-soc-investigation", "dfir-collection"],
     aliases: [
       "IR",
       "Incident response",
@@ -2067,7 +2260,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "How do hunt findings become detections or controls?",
       "Is hunting staffed separately from Tier-1 triage?",
     ],
-    categoryIds: ["siem", "xdr", "ndr", "threat-intelligence", "cloud-detection", "malware-analysis"],
+    categoryIds: ["siem", "xdr", "ndr", "threat-intelligence", "cloud-detection", "malware-analysis", "deception"],
     aliases: [
       "Threat hunter",
       "Tier 3 analyst",
@@ -2109,7 +2302,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "What systems are in scope for collection?",
       "Do legal or HR constraints change the playbook?",
     ],
-    categoryIds: ["endpoint-security", "siem", "xdr", "insider-risk", "malware-analysis"],
+    categoryIds: ["endpoint-security", "siem", "xdr", "insider-risk", "malware-analysis", "dfir-collection"],
     aliases: [
       "DFIR",
       "Digital forensics",
@@ -2191,7 +2384,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "Who approves changes—OT engineering or IT security?",
       "Is the purchase monitoring, segmentation, or both?",
     ],
-    categoryIds: ["ot-security", "network-edge", "ndr", "microsegmentation"],
+    categoryIds: ["ot-security", "network-edge", "ndr", "microsegmentation", "cdr-file-sanitization"],
     aliases: [
       "OT security",
       "ICS security",
@@ -2216,6 +2409,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "external-attack-surface",
       "ctem",
       "security-asset-management",
+      "asset-intelligence",
       "cloud-vulnerability",
       "it-vulnerability-management",
     ],
@@ -2240,7 +2434,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "Who owns backup tech versus cyber recovery runbooks?",
       "Is this a ransomware tabletop gap or a missing product?",
     ],
-    categoryIds: ["cyber-recovery", "endpoint-security", "cnapp"],
+    categoryIds: ["cyber-recovery", "endpoint-security", "cnapp", "err"],
     aliases: [
       "Cyber recovery",
       "Cyber resilience",
@@ -2955,7 +3149,7 @@ export const ecosystemVendors: Vendor[] = [
     positioning:
       "Homepage retrieved 26 Oct 2026 lists MDR, exposure management, attack surface management, SIEM, cloud security, vulnerability management, and threat intelligence as separate offers. None of those blurbs fills a patch, misconfiguration, or detection-content cell.",
     primaryCategoryIds: ["it-vulnerability-management", "siem"],
-    adjacentCategoryIds: ["breach-simulation", "cloud-vulnerability"],
+    adjacentCategoryIds: ["breach-simulation", "cloud-vulnerability", "dfir-collection"],
     identityScopes: ["not_an_identity_control"],
     verificationStatus: "research_candidate",
     openQuestions: ["Vulnerability management, detection, or managed detection?"],
@@ -3008,7 +3202,7 @@ export const ecosystemVendors: Vendor[] = [
     positioning:
       "Homepage retrieved 26 Oct 2026 says the platform keeps immutable backups and can recover data sets across cloud, on-premises, and SaaS. Identity recovery and agent inventory on that page are not identity or agent cells. Rubrik describes its DSPM offering as formerly Laminar in a vendor-published customer story. Vendor-reported DSPM scope reviewed 2026-10-13.",
     primaryCategoryIds: ["cyber-recovery"],
-    adjacentCategoryIds: ["siem", "grc-controls", "dspm"],
+    adjacentCategoryIds: ["siem", "grc-controls", "dspm", "err"],
     identityScopes: ["not_an_identity_control"],
     verificationStatus: "research_candidate",
     openQuestions: ["Is the buy backup, ransomware recovery, or data security posture?"],
@@ -3230,7 +3424,7 @@ export const ecosystemVendors: Vendor[] = [
     website: "https://www.axonius.com/",
     positioning: "Cyber asset management vendor. The inventory is the product. It does not replace EDR or vulnerability scanning.",
     primaryCategoryIds: ["security-asset-management"],
-    adjacentCategoryIds: ["it-vulnerability-management", "endpoint-security"],
+    adjacentCategoryIds: ["it-vulnerability-management", "endpoint-security", "asset-intelligence"],
     identityScopes: ["not_an_identity_control"],
     verificationStatus: "research_candidate",
     openQuestions: ["Which existing tools will feed the inventory?"],
