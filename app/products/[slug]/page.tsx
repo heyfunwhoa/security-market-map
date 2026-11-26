@@ -77,6 +77,27 @@ const learning: Record<Exclude<ProductResearchSlug, CiamProductSlug>, { action: 
     limitation: "Per-action blocking is a vendor claim, made only for hooks in Claude Code, OpenAI Codex, GitHub Copilot, OpenCode and Cursor; other agents can only be allowed or blocked as a whole. Linux, cloud workload and Kubernetes coverage is announced, not shipped. No formal GA date for the core product was found.",
     questions: ["Which Falcon Guardian components are licensed separately from the sensor?", "Which actions do the hooks cover in each of the five agents, and what happens for agents without hooks?", "Does the AI kill switch target one agent type or all model access?", "What covers Linux hosts and developer containers?", "Which agent fields reach Next-Gen SIEM, and how long are they kept?"],
   },
+  "backslash-agentic-endpoint": {
+    action: "An AI coding agent proposes code execution, credential access or sending data somewhere unapproved",
+    control: "An MDM-pushed script inventories agents and their tools; an on-host component blocks risky actions inline before they run",
+    evidence: "Point-in-time inventory and graph of agents, MCP servers, skills and connectors; blocked actions under per-team policy",
+    limitation: "The agentless script cannot block anything; prevention needs the on-host component. Scan cadence, OS support and action logging are not stated. All recorded sources are Backslash's own.",
+    questions: ["How often does the MDM script run, and what triggers a new scan?", "What is the on-host component, how heavy is it, and which OS versions does it support?", "What happens for agents outside the six named?", "What is logged when an action is blocked, and where is it exported?"],
+  },
+  "knostic-kirin": {
+    action: "A coding agent makes a tool call, or a developer installs a skill, extension or MCP server",
+    control: "Kirin runs inside supported agents and checks each tool call against policy before it runs; AgentMesh verdicts let Kirin block dangerous installs",
+    evidence: "Prevented alerts, drift and vulnerability findings in the dashboard and SIEM; AgentMesh verdicts",
+    limitation: "Knostic does not say how Kirin is installed or which operating systems it supports; deployment comes from a third-party profile. Discovery outside agents where Kirin runs is not described.",
+    questions: ["How is Kirin installed and updated across a fleet?", "What prevents a developer from turning Kirin off?", "Does the inventory find agents Kirin is not running in?", "Which fields reach the SIEM, and how long are they kept?"],
+  },
+  "zenity-platform": {
+    action: "A coding or personal agent on a laptop makes a tool call, MCP request or command",
+    control: "Native agent hooks and the Zenity MCP gateway block or modify dangerous tool calls before they run, using prompts, tool calls, commands and memory to infer intent",
+    evidence: "Agent and MCP inventory, intent analysis, blocked or modified tool calls, audit trails",
+    limitation: "Zenity covers listed agents through their hooks and its MCP gateway; coverage for tools that do neither is not stated. OS support and the audit trail format are not described. Endpoint is one surface of a wider SaaS and cloud agent platform.",
+    questions: ["How does endpoint discovery reach a laptop without an endpoint sensor?", "Which actions can each hook block, and what passes through the MCP gateway?", "What happens for agents with no hooks?", "Is the endpoint capability sold separately from the SaaS agent platform?"],
+  },
   "aikido-device-protection": {
     action: "Developer or agent requests a package from a supported registry",
     control: "Local selective interception evaluates package-domain traffic against synchronized policy and intelligence",

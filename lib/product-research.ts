@@ -17,6 +17,9 @@ const AGENTIC_RUNTIME_SLUGS = new Set<string>([
   "island-agentic-endpoint-posture",
   "palo-alto-koi",
   "crowdstrike-falcon-guardian",
+  "backslash-agentic-endpoint",
+  "knostic-kirin",
+  "zenity-platform",
 ]);
 
 export function productResearchCategory(slug: ProductResearchSlug): { href: string; label: string } {

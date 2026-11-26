@@ -10,6 +10,9 @@ export const PRODUCT_RESEARCH_SLUGS = [
   "island-agentic-endpoint-posture",
   "palo-alto-koi",
   "crowdstrike-falcon-guardian",
+  "backslash-agentic-endpoint",
+  "knostic-kirin",
+  "zenity-platform",
   ...(Object.keys(ciamProfiles) as CiamProductSlug[]),
 ] as const;
 

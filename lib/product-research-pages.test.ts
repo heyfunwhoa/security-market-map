@@ -236,6 +236,22 @@ describe("product research pages", () => {
     expect(unknownControlBoundaries("crowdstrike-falcon-guardian", catalog.asOf)).not.toContain("Decide before an agent action runs");
   });
 
+  it("renders Backslash, Knostic and Zenity as source-based agentic endpoint profiles", async () => {
+    const backslash = await pageHtml("backslash-agentic-endpoint");
+    expect(backslash).toContain("cannot block anything");
+    expect(backslash).toContain("No analyst coverage recorded.");
+    const knostic = await pageHtml("knostic-kirin");
+    expect(knostic).toContain("1. Vet installs");
+    expect(knostic).toContain("Prevented alerts");
+    const zenity = await pageHtml("zenity-platform");
+    expect(zenity).toContain("Zenity MCP gateway");
+    expect(zenity).toContain("products=zenity-platform,bay-platform");
+    for (const html of [backslash, knostic, zenity]) {
+      expect(html).toContain('href="/categories/agentic-runtime"');
+      expect(anchorIds(html).every((id) => html.includes(`id="${id}"`))).toBe(true);
+    }
+  });
+
   it("keeps an explicit unknown state and distinct evidence controls", () => {
     const empty = renderToStaticMarkup(createElement(ProductEvidenceExplorer, { claims: [] }));
     expect(empty).toContain("Evidence status: Unknown");

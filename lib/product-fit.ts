@@ -21,11 +21,11 @@ export const productFit: Record<string, ProductFit> = {
     peers: [
       { approach: "Same rollout: agentless through existing MDM or EDR", items: [
         { name: "Island Agentic Endpoint Posture", href: "/products/island-agentic-endpoint-posture" },
-        { name: "Backslash Security", href: "/vendors/backslash-security" },
+        { name: "Backslash Security", href: "/products/backslash-agentic-endpoint" },
       ] },
       { approach: "Same decision point: the AI tool's own hooks", items: [
-        { name: "Zenity", href: "/vendors/zenity" },
-        { name: "Knostic Kirin", href: "/vendors/knostic" },
+        { name: "Zenity", href: "/products/zenity-platform" },
+        { name: "Knostic Kirin", href: "/products/knostic-kirin" },
         { name: "Microsoft Defender for Endpoint", href: "/vendors/microsoft" },
       ] },
       { approach: "Sensor-first: a full endpoint agent", items: [
@@ -44,11 +44,11 @@ export const productFit: Record<string, ProductFit> = {
     peers: [
       { approach: "Same rollout: agentless through existing MDM or EDR", items: [
         { name: "Bay platform", href: "/products/bay-platform" },
-        { name: "Backslash Security", href: "/vendors/backslash-security" },
+        { name: "Backslash Security", href: "/products/backslash-agentic-endpoint" },
       ] },
       { approach: "Decision at the AI tool's own hooks", items: [
-        { name: "Zenity", href: "/vendors/zenity" },
-        { name: "Knostic Kirin", href: "/vendors/knostic" },
+        { name: "Zenity", href: "/products/zenity-platform" },
+        { name: "Knostic Kirin", href: "/products/knostic-kirin" },
         { name: "Microsoft Defender for Endpoint", href: "/vendors/microsoft" },
       ] },
       { approach: "Sensor-first: a full endpoint agent", items: [
@@ -72,11 +72,11 @@ export const productFit: Record<string, ProductFit> = {
       { approach: "Same rollout: agentless through existing MDM or EDR", items: [
         { name: "Bay platform", href: "/products/bay-platform" },
         { name: "Island Agentic Endpoint Posture", href: "/products/island-agentic-endpoint-posture" },
-        { name: "Backslash Security", href: "/vendors/backslash-security" },
+        { name: "Backslash Security", href: "/products/backslash-agentic-endpoint" },
       ] },
       { approach: "Decision at the AI tool's own hooks", items: [
-        { name: "Zenity", href: "/vendors/zenity" },
-        { name: "Knostic Kirin", href: "/vendors/knostic" },
+        { name: "Zenity", href: "/products/zenity-platform" },
+        { name: "Knostic Kirin", href: "/products/knostic-kirin" },
       ] },
       { approach: "Extends an EDR the customer already runs", items: [
         { name: "CrowdStrike Falcon Guardian", href: "/products/crowdstrike-falcon-guardian" },
@@ -104,11 +104,67 @@ export const productFit: Record<string, ProductFit> = {
       { approach: "Agentless through existing MDM or EDR", items: [
         { name: "Bay platform", href: "/products/bay-platform" },
         { name: "Island Agentic Endpoint Posture", href: "/products/island-agentic-endpoint-posture" },
-        { name: "Backslash Security", href: "/vendors/backslash-security" },
+        { name: "Backslash Security", href: "/products/backslash-agentic-endpoint" },
       ] },
       { approach: "Decision at the AI tool's own hooks", items: [
-        { name: "Zenity", href: "/vendors/zenity" },
-        { name: "Knostic Kirin", href: "/vendors/knostic" },
+        { name: "Zenity", href: "/products/zenity-platform" },
+        { name: "Knostic Kirin", href: "/products/knostic-kirin" },
+      ] },
+    ],
+  },
+  "backslash-agentic-endpoint": {
+    deployment: "A script pushed through existing MDM that runs, reports and exits, plus an on-host component needed for inline blocking, per Backslash.",
+    analyst: null,
+    peers: [
+      { approach: "Same rollout: agentless through existing MDM or EDR", items: [
+        { name: "Bay platform", href: "/products/bay-platform" },
+        { name: "Island Agentic Endpoint Posture", href: "/products/island-agentic-endpoint-posture" },
+      ] },
+      { approach: "Decision at the AI tool's own hooks", items: [
+        { name: "Zenity", href: "/products/zenity-platform" },
+        { name: "Knostic Kirin", href: "/products/knostic-kirin" },
+      ] },
+      { approach: "Extends an EDR the customer already runs", items: [
+        { name: "CrowdStrike Falcon Guardian", href: "/products/crowdstrike-falcon-guardian" },
+        { name: "Palo Alto Networks (Koi)", href: "/products/palo-alto-koi" },
+      ] },
+    ],
+  },
+  "knostic-kirin": {
+    deployment: "Kirin runs inside each supported agent, per Knostic. A third-party profile describes a user-space endpoint client pushed through MDM or installed by developers; Knostic's page does not say.",
+    analyst: null,
+    peers: [
+      { approach: "Same decision point: the AI tool's own hooks", items: [
+        { name: "Zenity", href: "/products/zenity-platform" },
+        { name: "Bay platform", href: "/products/bay-platform" },
+        { name: "Microsoft Defender for Endpoint", href: "/vendors/microsoft" },
+      ] },
+      { approach: "Agentless through existing MDM or EDR", items: [
+        { name: "Backslash Security", href: "/products/backslash-agentic-endpoint" },
+        { name: "Island Agentic Endpoint Posture", href: "/products/island-agentic-endpoint-posture" },
+      ] },
+      { approach: "Extends an EDR the customer already runs", items: [
+        { name: "CrowdStrike Falcon Guardian", href: "/products/crowdstrike-falcon-guardian" },
+        { name: "Palo Alto Networks (Koi)", href: "/products/palo-alto-koi" },
+      ] },
+    ],
+  },
+  "zenity-platform": {
+    deployment: "No endpoint sensor, per Zenity: native agent hooks and OpenTelemetry for visibility and blocking, plus the Zenity MCP gateway for tool calls. The endpoint is one surface of a platform that also covers SaaS and cloud agents.",
+    analyst: null,
+    peers: [
+      { approach: "Same decision point: the AI tool's own hooks", items: [
+        { name: "Knostic Kirin", href: "/products/knostic-kirin" },
+        { name: "Bay platform", href: "/products/bay-platform" },
+        { name: "Microsoft Defender for Endpoint", href: "/vendors/microsoft" },
+      ] },
+      { approach: "Agentless through existing MDM or EDR", items: [
+        { name: "Backslash Security", href: "/products/backslash-agentic-endpoint" },
+        { name: "Island Agentic Endpoint Posture", href: "/products/island-agentic-endpoint-posture" },
+      ] },
+      { approach: "Extends an EDR the customer already runs", items: [
+        { name: "CrowdStrike Falcon Guardian", href: "/products/crowdstrike-falcon-guardian" },
+        { name: "Palo Alto Networks (Koi)", href: "/products/palo-alto-koi" },
       ] },
     ],
   },

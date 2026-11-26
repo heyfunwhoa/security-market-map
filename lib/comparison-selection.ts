@@ -18,6 +18,8 @@ const AGENTIC_ENDPOINT_PEERS = [
   "island-agentic-endpoint-posture",
   "palo-alto-koi",
   "knostic-kirin",
+  "backslash-agentic-endpoint",
+  "zenity-platform",
 ] as const;
 
 /** Agentic endpoint comparison that starts with the given product; the compare page shows at most four. */

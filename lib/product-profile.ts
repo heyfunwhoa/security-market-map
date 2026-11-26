@@ -212,6 +212,111 @@ export const productProfileSteps: Record<string, ProfileStep[]> = {
         "No field list or retention period is stated.",
     },
   ],
+  "backslash-agentic-endpoint": [
+    {
+      title: "Discover",
+      summary:
+        "A short script pushed through existing MDM runs, reports and exits, listing agents, models, MCP servers, skills, hooks, rules files, plugins and connectors; the Agentic Fabric Graph maps them.",
+      capabilityIds: ["cap-agent-asset-inventory"],
+      claimIds: ["claim-ae-backslash-graph"],
+      check:
+        "Confirm how often the script runs through MDM, supported operating systems, and how fast a new agent or MCP server shows up.",
+      boundary:
+        "A script that has exited gives a point-in-time view, not live monitoring.",
+    },
+    {
+      title: "Decide",
+      summary:
+        "Backslash's on-host component blocks risky agent actions inline before they run, using allow-lists, deny-lists and per-team policy.",
+      capabilityIds: ["cap-agent-preexec-control", "cap-agent-unhooked-coverage"],
+      claimIds: ["claim-ae-backslash-model", "claim-ae-backslash-onhost"],
+      check:
+        "Run the pilot with and without the on-host component and confirm which mode blocks a harmless synthetic action before it runs.",
+      boundary:
+        "Blocking needs the on-host component; the agentless script alone cannot block anything, by Backslash's own description.",
+    },
+    {
+      title: "Record",
+      summary:
+        "Any session or action history would sit here; the recorded sources do not describe one for the endpoint product.",
+      capabilityIds: ["cap-agent-session-context", "cap-agent-action-audit"],
+      claimIds: [],
+      check:
+        "Ask what is logged when policy fires, where it is exported and how long it is kept.",
+      boundary:
+        "Backslash mentions compliance audit evidence, which is not the same as a record of each agent action.",
+    },
+  ],
+  "knostic-kirin": [
+    {
+      title: "Vet installs",
+      summary:
+        "AgentMesh rates skills, VS Code extensions and MCP servers Dangerous, Risky or Clean, and Kirin blocks Dangerous items before install.",
+      capabilityIds: [],
+      claimIds: ["claim-ae-knostic-agentmesh"],
+      check:
+        "Install a known-bad test skill or extension and confirm the verdict and the block.",
+      boundary:
+        "Install vetting controls what lands, not what an agent later does with approved tools.",
+    },
+    {
+      title: "Decide",
+      summary:
+        "Kirin runs inside supported agents and checks every tool call against policy before it runs.",
+      capabilityIds: ["cap-agent-preexec-control", "cap-agent-unhooked-coverage"],
+      claimIds: ["claim-ae-knostic-agents", "claim-ae-knostic-deploy"],
+      check:
+        "Run a harmless risky command in each supported agent and confirm it is stopped before it runs; repeat in an agent not on the list.",
+      boundary:
+        "Coverage is limited to listed agents. How Kirin is installed comes only from a third-party profile.",
+    },
+    {
+      title: "Discover and record",
+      summary:
+        "Blocked actions, drift and vulnerabilities roll up into one dashboard and the SIEM.",
+      capabilityIds: ["cap-agent-asset-inventory", "cap-agent-session-context", "cap-agent-action-audit"],
+      claimIds: [],
+      check:
+        "Confirm which fields reach the SIEM, how long they are kept, and whether the inventory finds agents Kirin is not installed in.",
+      boundary:
+        "Knostic's page shows an Inventory screen but does not explain how discovery works.",
+    },
+  ],
+  "zenity-platform": [
+    {
+      title: "Discover",
+      summary:
+        "Zenity discovers coding and personal agents on developer laptops and desktops, with the MCP servers and tools they reach, as part of a wider agent security platform.",
+      capabilityIds: ["cap-agent-asset-inventory"],
+      claimIds: ["claim-ae-zenity-agents", "claim-agent-zenity-platform"],
+      check:
+        "Confirm how endpoint discovery reaches the device, given Zenity says no endpoint sensor is needed, and which operating systems are covered.",
+      boundary:
+        "The endpoint is one surface of a platform that also covers SaaS and cloud agents.",
+    },
+    {
+      title: "Decide",
+      summary:
+        "Native agent hooks and the Zenity MCP gateway block or modify a dangerous tool call before it runs, using the prompt, tool calls, commands and memory to infer intent.",
+      capabilityIds: ["cap-agent-preexec-control", "cap-agent-session-context", "cap-agent-unhooked-coverage"],
+      claimIds: ["claim-ae-zenity-hooks", "claim-ae-zenity-gateway"],
+      check:
+        "Trigger a harmless risky tool call in each listed agent, once through a hook and once through the MCP gateway, and confirm both stop it before it runs.",
+      boundary:
+        "Only agents that expose hooks, or route tools through the gateway, can be decided before execution.",
+    },
+    {
+      title: "Record",
+      summary:
+        "Zenity lists audit trails among its governance features.",
+      capabilityIds: ["cap-agent-action-audit"],
+      claimIds: [],
+      check:
+        "Ask for the audit event fields, retention and SIEM export.",
+      boundary:
+        "Audit trails are named but not described.",
+    },
+  ],
   "gitguardian-developer-endpoint": [
     {
       title: "Scan the workstation",
