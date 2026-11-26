@@ -22,14 +22,20 @@ describe("domain study path", () => {
     for (const area of domainQuestions) expect(domainIds.has(area.domainId)).toBe(true);
   });
 
-  it("uses the identity question and the full glossary", () => {
+  it("keeps endpoint terms on the corporate and SecOps lessons and identity terms on the identity lesson", () => {
     expect(questionsForDomain("identity").map((item) => item.question)).toEqual([
       "Who or what can access a system?",
     ]);
     const identity = catalog.domains.find((domain) => domain.id === "identity");
-    expect(glossaryForDomain(identity?.categoryIds ?? [], catalog.glossary)).toHaveLength(
-      catalog.glossary.length,
-    );
+    const identityTerms = glossaryForDomain(identity?.categoryIds ?? [], catalog.glossary).map((term) => term.id);
+    expect(identityTerms).toContain("itdr");
+    expect(identityTerms).not.toContain("epp");
+    expect(identityTerms).not.toContain("edr");
+    for (const domainId of ["corporate", "secops"]) {
+      const domain = catalog.domains.find((item) => item.id === domainId);
+      const terms = glossaryForDomain(domain?.categoryIds ?? [], catalog.glossary).map((term) => term.id);
+      expect(terms).toEqual(expect.arrayContaining(["epp", "edr"]));
+    }
   });
 
   it("has no written words for data security", () => {
