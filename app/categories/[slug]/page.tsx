@@ -20,6 +20,7 @@ import { CloudAppShortlist, DataSecurityShortlist } from "@/components/cloud-app
 import { ClaimList } from "@/components/claims";
 import { FlowStrip } from "@/components/category-map";
 import { PageIntro } from "@/components/chrome";
+import { pageMetadata } from "@/lib/page-metadata";
 import { catalog, categoryBySlug, claimsForSubject, identityRequirementsForCategory, sourceById, vendorById } from "@/lib/catalog";
 import { painsForCategory, seatById, seatsForCategory } from "@/lib/persona-graph";
 import { targetingForCategory } from "@/lib/vendor-targeting";
@@ -32,7 +33,9 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  return { title: categoryBySlug(slug)?.name ?? "Category" };
+  const category = categoryBySlug(slug);
+  if (!category) return { title: "Category" };
+  return pageMetadata({ title: category.name, description: `${category.buyerQuestion} ${category.definition}`, path: `/categories/${category.slug}` });
 }
 
 export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
