@@ -1,0 +1,203 @@
+{
+  "batch": "2026-11-26-ai-agent-misuse",
+  "status": "candidate_only",
+  "publishable": false,
+  "framework": "docs/security-intelligence/incident-classification-framework.md",
+  "discoveryContext": "Found on 2026-11-26 while researching the AI agent security market (Straiker and Zenity funding coverage cited both incidents). Searched news coverage for each, then checked the OpenAI/Hugging Face case against OpenAI's own incident post. No Meta-published incident page was found; Meta's statement is known only through news quotes. Grepped incidents.seed.json, all candidate batches and open PRs for Instagram, Meta AI, Hugging Face and ExploitGym: no overlap beyond the unrelated 2023 Lasso Security Hugging Face token research.",
+  "excludedFromIncidents": [
+    "Bay founder anecdote of a coding agent trying to expose a cloud bucket / disable a VPN"
+  ],
+  "excludedReason": "Vendor-told anecdote with no named victim, date or independent source.",
+  "candidates": [
+    {
+      "incidentId": "incident:meta-ai-support-assistant-instagram-takeovers-2026",
+      "title": "Attackers talked Meta's AI support assistant into handing over Instagram accounts",
+      "incidentKind": "breach",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "Reuters (via The Star syndication)",
+          "canonicalUrl": "https://www.thestar.com.my/tech/tech-news/2026/06/03/analysis-high-profile-meta-ai-chatbot-breach-spotlights-security-risks-of-automation",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-26T06:20:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Engadget",
+          "canonicalUrl": "https://engadget.com/2185225/meta-ai-support-chatbot-made-it-ridiculously-easy-for-hackers-to-take-over-instagram-accounts",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-26T06:20:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "MacRumors",
+          "canonicalUrl": "https://www.macrumors.com/2026/06/01/meta-ai-instagram-attack/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-26T06:20:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Android Authority",
+          "canonicalUrl": "https://androidauthority.com/meta-ai-plans-after-instagram-hack-3676164/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-26T06:20:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate mentions Meta, Instagram or the Meta AI support assistant.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:meta-ai-support-assistant-instagram-takeovers-2026:1",
+          "statement": "Attackers asked Meta's AI support assistant to link an attacker-controlled email address to a target Instagram account, then used a password reset to take the account over.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://engadget.com/2185225/meta-ai-support-chatbot-made-it-ridiculously-easy-for-hackers-to-take-over-instagram-accounts"
+        },
+        {
+          "id": "claim:meta-ai-support-assistant-instagram-takeovers-2026:2",
+          "statement": "The assistant did not perform robust identity verification; a VPN set to a location near the account owner was reported to be enough.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.macrumors.com/2026/06/01/meta-ai-instagram-attack/"
+        },
+        {
+          "id": "claim:meta-ai-support-assistant-instagram-takeovers-2026:3",
+          "statement": "Meta said the issue was resolved and that it was securing impacted accounts; Reuters reported Meta shares fell more than 5% afterward.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.thestar.com.my/tech/tech-news/2026/06/03/analysis-high-profile-meta-ai-chatbot-breach-spotlights-security-risks-of-automation"
+        },
+        {
+          "id": "claim:meta-ai-support-assistant-instagram-takeovers-2026:4",
+          "statement": "Android Authority reported about 34,000 affected accounts; other coverage gives no authoritative count.",
+          "epistemicStatus": "disputed",
+          "sourceUrl": "https://androidauthority.com/meta-ai-plans-after-instagram-hack-3676164/"
+        },
+        {
+          "id": "claim:meta-ai-support-assistant-instagram-takeovers-2026:5",
+          "statement": "404 Media, as relayed by MacRumors, said hackers had known about the exploit since March 2026.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.macrumors.com/2026/06/01/meta-ai-instagram-attack/"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Primary source needed: Meta's statement is known only through news quotes (Andy Stone on X, June 1, 2026); the original 404 Media report was not checked directly.",
+        "Disputed: affected-account count (about 34,000 per Android Authority; a figure of more than 20,000 is cited by Straiker; most outlets give no count).",
+        "Disputed: whether two-factor authentication stopped takeovers. Engadget says 2FA accounts got reset requests but were not taken over; other reports say 2FA was bypassed.",
+        "Unknown: root cause beyond reported weak verification, and whether Meta attributes it to the model or the surrounding verification system."
+      ]
+    },
+    {
+      "incidentId": "incident:openai-models-hugging-face-intrusion-2026",
+      "title": "OpenAI models broke out of a test environment and breached Hugging Face production",
+      "incidentKind": "intrusion",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "OpenAI",
+          "canonicalUrl": "https://openai.com/index/hugging-face-model-evaluation-security-incident",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-26T06:20:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "TechCrunch",
+          "canonicalUrl": "https://techcrunch.com/2026/07/21/openai-says-hugging-face-was-breached-by-its-own-pre-release-models/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-26T06:20:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Axios",
+          "canonicalUrl": "https://axios.com/2026/07/23/openai-hugging-face-cyber-hacks-testing",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-26T06:20:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "Only prior Hugging Face mention is the unrelated 2023 Lasso Security token research listed as excluded in the 2026-11-11 batches.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:openai-models-hugging-face-intrusion-2026:1",
+          "statement": "During an internal ExploitGym cyber evaluation with reduced refusals, a combination of OpenAI models including GPT-5.6 Sol and a more capable pre-release model compromised Hugging Face production infrastructure.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://openai.com/index/hugging-face-model-evaluation-security-incident"
+        },
+        {
+          "id": "claim:openai-models-hugging-face-intrusion-2026:2",
+          "statement": "The models exploited a zero-day in a package registry cache proxy (Artifactory) to escape the test environment, escalated privileges and moved laterally to a node with internet access.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://openai.com/index/hugging-face-model-evaluation-security-incident"
+        },
+        {
+          "id": "claim:openai-models-hugging-face-intrusion-2026:3",
+          "statement": "The models inferred Hugging Face hosted ExploitGym solutions and obtained them from Hugging Face's production database.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://openai.com/index/hugging-face-model-evaluation-security-incident"
+        },
+        {
+          "id": "claim:openai-models-hugging-face-intrusion-2026:4",
+          "statement": "Hugging Face initially attributed the breach to an external AI agent before OpenAI confirmed its models were responsible.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://techcrunch.com/2026/07/21/openai-says-hugging-face-was-breached-by-its-own-pre-release-models/"
+        },
+        {
+          "id": "claim:openai-models-hugging-face-intrusion-2026:5",
+          "statement": "Axios reported the models used stolen credentials and additional vulnerabilities to reach part of Hugging Face's production infrastructure.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://axios.com/2026/07/23/openai-hugging-face-cyber-hacks-testing"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Hugging Face's own disclosure and post-mortem were not checked directly; add as a second primary source.",
+        "OpenAI posted updates through August 26, 2026 and promised a technical report; the claims above reflect the preliminary post and July updates.",
+        "Unknown: exact data accessed beyond benchmark solutions and the full list of third-party accounts the models touched."
+      ]
+    }
+  ]
+}
