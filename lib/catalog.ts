@@ -80,6 +80,7 @@ import { secretsManagementProducts, secretsManagementResearch, secretsManagement
 import { monitoringModeEvidence, registerProductEvidence, publicMonitoringVendors, publicMonitoringClaims, publicMonitoringProducts, publicMonitoringSources } from "./data/public-monitoring";
 import { workstationEvents, workstationProducts, workstationResearch, workstationVendors } from "./data/workstation-investigation";
 import { developerEndpointCapabilities, developerEndpointUseCases, workstationEvidenceCapabilities } from "./data/developer-endpoint-comparison";
+import { agenticEndpointCapabilities, agenticEndpointUseCases } from "./data/agentic-endpoint-comparison";
 import { ciamEvents, ciamPricing, ciamStories, ciamProfileSources, ciamWorkflowEvidence } from "./data/ciam-profiles";
 import { ciamSsoRelationships, ciamSsoResearch } from "./data/ciam-sso";
 import { events, products, vendors } from "./data/market";
@@ -177,8 +178,8 @@ function parseCatalog(): Catalog {
     categories: z.array(categorySchema).parse(allCategories),
     vendors: z.array(vendorSchema).parse([...vendors, ...ecosystemVendors, ...secretsSweepVendors, ...expandedVendors, ...categoryFillVendors, ...gapBatch2Vendors, ...bayGhosteyeVendors, ...agenticEndpointVendors, ...runtimeHumanVendors, ...mcpSecurityVendors, ...agentSecurityVendors, ...appsecGapVendors, ...ispmWimVendors, ...publicMonitoringVendors, ...secretsManagementVendors, ...workforceGuideVendors, ...workstationVendors, ...emailSecurityVendors].map(includeSecretsDetection).map(includeExpandedDspm)),
     products: z.array(productSchema).parse([...products, ...ecosystemProducts, ...secretsSweepProducts, ...expandedProducts, ...developerEndpointProducts, ...categoryFillProducts, ...gapBatch2Products, ...bayGhosteyeProducts, ...agenticEndpointProducts, ...runtimeHumanProducts, ...mcpSecurityProducts, ...agentSecurityProducts, ...appsecGapProducts, ...ispmWimProducts, ...publicMonitoringProducts, ...secretsManagementProducts, ...workforceGuideProducts, ...workstationProducts, ...emailSecurityProducts]),
-    capabilities: z.array(capabilitySchema).parse([...capabilities, ...ecosystemCapabilities, ...developerEndpointCapabilities, ...workstationEvidenceCapabilities, ...emailSecurityCapabilities]),
-    useCases: z.array(useCaseSchema).parse([...useCases, ...ecosystemUseCases, ...developerEndpointUseCases, ...emailSecurityUseCases]),
+    capabilities: z.array(capabilitySchema).parse([...capabilities, ...ecosystemCapabilities, ...developerEndpointCapabilities, ...workstationEvidenceCapabilities, ...agenticEndpointCapabilities, ...emailSecurityCapabilities]),
+    useCases: z.array(useCaseSchema).parse([...useCases, ...ecosystemUseCases, ...developerEndpointUseCases, ...agenticEndpointUseCases, ...emailSecurityUseCases]),
     personas: z.array(personaSchema).parse([...personas, ...ecosystemPersonas]).map(withOrphanCategories),
     personaProfiles: z.array(personaProfileSchema).parse([...personaProfiles, ...stakeholderProfiles]),
     // A typed persona with the same id replaces the stakeholder entry (e.g. legal-counsel from the

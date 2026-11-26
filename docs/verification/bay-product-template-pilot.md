@@ -42,7 +42,9 @@ Not found in any source: a supported-agent list, a hook-event list, pricing, or 
 - [x] `ProductFocus` uses Bay's own four stages, with a check and boundary per stage.
 - [x] Breadcrumb points to the primary category (agentic runtime enforcement).
 - [x] Unknown control boundaries list only capabilities with no claim; a limited cell (hooks: vendor asserts, SACR caveats) is shown as evidence with its boundary, not as Unknown.
-- [x] Comparison is secondary and links Bay with CrowdStrike Falcon Guardian, Island Agentic Endpoint Posture and Knostic Kirin in endpoint control.
+- [x] Regrouped layout (2026-11-25): buyer question, compact flow, market fit with peers by approach, evidence grouped by who said it. Comparison uses the agentic endpoint set (`uc-agentic-endpoint`), linking Bay with CrowdStrike Falcon Guardian, Island Agentic Endpoint Posture and Knostic Kirin.
+- [x] Lighthouse conflict recorded: launch coverage says about 30 days of observed activity; Bay's AWS listing says no baselining period.
+- [x] Rendered at 375px and 1280px after the regroup.
 - [x] Unit, catalog integrity, lint and typecheck pass.
 - [ ] Production build: not run to completion here; this environment cannot reach Google Fonts.
 - [x] Rendered in headless Chrome against `next dev` at 320px and 1280px: breadcrumb, section nav, four stages, limitation, evidence list and the four-product comparison all render; no horizontal overflow seen at 320px.
