@@ -24,6 +24,7 @@ Prove the business can restore clean systems after ransomware or destructive att
 - Cyber recovery (`cyber-recovery`)
 - Endpoint security (`endpoint-security`)
 - Cloud-native application protection (`cnapp`)
+- Ephemeral Ransomware Resilience (ERR) (`err`)
 
 ## Pains
 

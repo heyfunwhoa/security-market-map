@@ -1,180 +1,54 @@
 # Security Market Map
 
-An evidence-linked guide to the cybersecurity market: what each solution category does, which problems it solves, where categories overlap, and how vendors position themselves.
+[Explore the live Security Market Map](https://security-market-map.vercel.app/)
 
-Built by Kristen Aing as a portfolio project combining enterprise security sales, competitive research, and product thinking.
+I’m Kristen Aing, an enterprise cybersecurity seller. When two security products sound alike, I want to know which part of the buyer’s problem each one solves. I built this map to connect security categories, buyer roles and products to the public sources behind their claims.
 
-## Purpose
+## Start with a question
 
-Help people navigate complex security markets and make informed choices with confidence.
+| What do you want to know? | Where to start |
+| --- | --- |
+| What does this security category do, and who owns the problem? | [Browse domains](https://security-market-map.vercel.app/domains), then open a category to see its purpose, buyers and adjacent categories. |
+| Where does a product fit? | [Search the landscape](https://security-market-map.vercel.app/landscape) by product or company. Follow its profile to see its positioning and related categories. |
+| What evidence supports a buying decision? | [Compare products](https://security-market-map.vercel.app/compare) for one use case. Open the cited sources and note which questions are still marked **Unknown**. |
 
-- **Who it helps:** security buyers, builders, sellers and learners comparing categories and tools.
-- **What gets in their way:** overlapping categories, fragmented sources and unclear capability claims.
-- **How it helps:** organize the landscape and connect published claims to their evidence, keeping Unknown and research limits visible.
-- **What works today:** the existing feature, status and data-limit sections below define current scope; this purpose does not expand the implemented catalog or enable live research.
+### A question I’d take into discovery
 
-The aspiration is to empower better security decisions with less research friction. This is an intended benefit, not a claim of measured savings or verified product suitability. It applies the [joy. brand purpose](https://github.com/heyfunwhoa/byjoyaing-portfolio/blob/main/docs/brand/brand-guidelines.md) through this project's own evidence standards.
+**“We found an exposed application credential. Who can revoke it, and how will we know the app picked up its replacement?”**
 
-## Why this exists
+A scanner finding tells me where someone saw the credential. To understand the response, I’d ask who can invalidate the old credential at the issuer, who owns the application using it, and what evidence each person can bring back. Those questions help a buyer see where secrets detection, secrets management and incident response fit together. [Walk through the handoff](docs/market-research/workforce-identity-and-credential-response.md#from-public-alert-to-confirmed-containment) or [explore seven secrets-management decisions](docs/market-research/secrets-management-comparison.md).
 
-Security categories are difficult to navigate. A product may be described as identity security, secrets management, cloud security, or application security depending on its capabilities and buyer. This project makes those relationships easier to explore without treating every vendor as a direct competitor.
+## How to read the evidence
 
-## What the map covers
+Identity and secrets have the deepest coverage. Across the wider map, a category or vendor profile can help you decide what to investigate even when capability evidence is sparse. The [live map](https://security-market-map.vercel.app/) displays current catalog counts. The [dated category audit](docs/market-research/category-audit-2026-11-06.md) records coverage and gaps at the time of review.
 
-- **Identity:** access management, IGA, PAM, CIEM, and nonhuman identities
-- **Application security:** static, interactive, and dynamic testing, dependencies, secrets detection, APIs, runtime protection, supply chain, and ASPM
-- **Cloud security:** CSPM, CNAPP, cloud vulnerability assessment, containers, infrastructure as code, and cloud detection
-- **Data security:** DSPM, data access governance, database controls, DLP, encryption, and privacy
-- **Network and access:** firewalls, ZTNA, SSE, and SASE
-- **Security operations:** SIEM, security data pipelines, detection engineering, XDR, MDR, and threat intelligence
-- **Exposure management:** vulnerabilities, attack surface, and prioritization
-- **AI security:** agent identity, authorization, data access, and application controls
+- **Vendor-published** means the statement comes from the vendor. Open the source to see exactly what it promises and when it was reviewed.
+- **Conflicting** means sources disagree. Both accounts stay visible.
+- **Unknown** means the map has insufficient evidence to answer that question. Use it as a follow-up in an evaluation.
 
-Identity is the evidenced slice: every comparison cell is a sourced claim, a conflict, or Unknown. The other domains name the buyer, the budget, and research-candidate vendors. They do not invent feature checkmarks.
+The map is an independent educational project. Category membership describes where a product fits. Use the [methodology](https://security-market-map.vercel.app/methodology) and [source ledger](https://security-market-map.vercel.app/sources) to interpret individual claims.
 
-## What each category page explains
+## Go deeper
 
-1. The problem it solves
-2. Typical buyers and stakeholders
-3. Core capabilities and common terminology
-4. Adjacent and overlapping categories
-5. Example vendors and their positioning
-6. Sources, publication dates, and confidence notes
-
-Vendor inclusion is illustrative. It is not an endorsement or an analyst ranking.
-
-## Initial focus
-
-The first deep dive maps **secrets detection → secrets management → nonhuman identity → identity governance → agent runtime → data security**. The guided scenario is a coding agent that finds a credential, uses it against a cloud service, and tries to export data.
-
-AI security is its own domain: application testing, agent identity, runtime enforcement, MCP and tools, AI data boundaries, model deployment, and governance. SACR's ARISE and endpoint-control zones are labeled as SACR frameworks.
-
-The Cyera–Oasis case study separates the companies' strategic rationale and the 3 Sep 2026 completion statement from any claim that a joint enforcement workflow has been reviewed.
-
-## Research standards
-
-**API-native and agentic email security (November 2026):** [Source-linked comparison and twelve buyer functions](docs/market-research/agentic-email-security-2026-11-05.md) with [vendor research dossiers](research/vendors/) for AegisAI, Sublime Security, Ocean, StrongestLayer and Material Security; existing Abnormal remains the reference. The **existing** email-security category now has one source-neutral buyer use case (`uc-email-fraud-response`) and eight distinct control questions available through the current category/use-case/compare routes. All product capability comparison cells remain **Unknown** until independently reviewed, source-bound `Claim` records are approved. No new category, parallel registry, competitor ranking, live scraper or cross-repo sync was introduced. A provider API/no MX change is not proof of pre-delivery enforcement.
-
-**Agentic SecOps / MSSP industry research:** [October 2026 competitive landscape](docs/market-research/agentic-secops-competitive-landscape.md) groups vendors by buyer job, original source and unverified comparison hypotheses. This is editorial research, not yet published as typed catalog claims.
-
-**Reusable method:** [Competitive Intelligence Playbook](docs/market-research/competitive-intelligence-playbook.md) covers buyer-led comparison, source quality, case studies, interview preparation, win/loss privacy and downstream GTM reuse.
-
-**Security org personas:** [Sourced persona atlas](docs/market-research/security-org-personas.md) covering AppSec/ProdSec/PlatformSec/DevOps/ITSec, identity/cloud/data/AI/GRC, SecOps depth (analyst/IR/hunt/CTI/DFIR), SaaS/OT/exposure/recovery/supply-chain, MSSP ops, developers/CTO—with acronyms/aliases and NICE/practitioner source anchors. Overloaded labels like DevSecOps are disambiguated. Research candidate; landscape buyer filters sample aliases from typed personas in `lib/data`.
-
-- Link material claims to a public source.
-- Record when a source was published and when it was reviewed.
-- Separate vendor claims from independently supported findings. A claim is marked verified only when the source is an independent public standard. A vendor doc, marketing page, or press release stays labeled as what the vendor said.
-- Identify analysis as interpretation.
-- Do not reproduce paywalled analyst reports or present an analyst category as a universal market definition.
-- Update or flag claims when positioning or product capabilities change.
+- **Learn a market.** The [industry and category guide](docs/market-research/industry-category-foundation.md) explains domains, workflows and category boundaries. The [security persona guide](docs/market-research/security-org-personas.md) explains who owns the work.
+- **Prepare a buyer conversation.** Explore the research on [security operations and managed providers](docs/market-research/secops-mssp-economics-2026-11-06.md), [email fraud response](docs/market-research/agentic-email-security-2026-11-05.md), or [secrets detection](docs/market-research/secrets-detection-sweep-2026-10-13.md). Each guide gives its sources and review status.
+- **Learn by following a scenario.** The [coding-agent walkthrough](https://security-market-map.vercel.app/attack-path) follows one credential from discovery to attempted data export, showing where different controls could intervene.
+- **Contribute a correction.** Follow the [contribution guide](CONTRIBUTING.md) and [research playbook](docs/market-research/competitive-intelligence-playbook.md). Published records live in the [typed catalog](lib/data/). A person reviews proposed findings before adding them to the catalog.
 
 ## Run locally
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
-The dev server listens on [http://127.0.0.1:43123](http://127.0.0.1:43123).
+Open [localhost:43123](http://127.0.0.1:43123). The app runs from the bundled catalog without API keys.
 
-UI components are maintained locally. The app uses a licensed, versioned copy of
-shadcn's CSS without installing its CLI; see [stylesheet and component maintenance](app/styles/vendor/README.md).
-
-```bash
-npm test
-npm run typecheck
-npm run lint
-npm run build
-```
-
-`npm install` also installs two local git hooks from `scripts/` (re-run with `node scripts/install-hooks.mjs`).
-Pre-commit scans the staged changes for secrets with TruffleHog (`scripts/secret-scan.sh`); pre-push runs the
-research integrity tests, unit tests, typecheck, lint and the release policy tests (about 45s; no build).
-Install TruffleHog with `brew install trufflehog` (or see the [install options](https://github.com/trufflesecurity/trufflehog#floppy_disk-installation)); without it the scan only warns.
-`git commit --no-verify` / `git push --no-verify` skip the hooks; CI still checks ready PRs.
-
-Copy `.env.example` to `.env.local` if you want the optional flags. Leave `FIRECRAWL_API_KEY` and `EXA_API_KEY` empty. The app runs on the local seed and does not call those adapters at startup.
-
-## Vendor research
-
-The published catalog stays in `lib/data`. A separate ledger can record one HashiCorp Vault check from an offline fixture and queue it as a pending vendor claim. Details are in `docs/inngest.md` and `docs/research-engine.md`.
-
-These paths work with no external account:
-
-- Pages, including the research panel on `/sources` and `/vendors/hashicorp`.
-- `GET /api/research/status`, which returns the offline fixture until this process has saved a run.
-- `npm test`, which covers deduplication, excerpt history, material alerts, and the Inngest function settings.
-
-These paths stay idle until you configure them:
-
-| Capability | What you must set |
+| Working on | Reference |
 | --- | --- |
-| Run the scheduled functions | Locally, `INNGEST_DEV=1` and the Inngest Dev Server below. In a deployment, Inngest Cloud keys. `next start` does not fire the Monday cron by itself. |
-| Serve `/api/inngest` | `INNGEST_DEV=1` for local development, or `INNGEST_SIGNING_KEY` for Cloud. Otherwise the route returns HTTP 503. |
-| Send events from this app to Inngest Cloud | `INNGEST_EVENT_KEY`. Local dev does not need it. |
-| Collect a live vendor page | Not available. `FIRECRAWL_API_KEY` and `EXA_API_KEY` do not enable a crawl. |
-| Keep research history on one machine after a restart | The default file `.data/research-ledger.json`, or `RESEARCH_LEDGER_PATH`. Set the path to `memory` to skip the file. Two servers still do not share a ledger. |
-| Publish a finding into the map | A person copies a reviewed statement into `lib/data`. Recording a review in the ledger does not do this. |
+| Catalog structure, evidence and freshness | [Catalog assembly](lib/catalog.ts) and [record schemas](lib/schema.ts) |
+| Validation, hooks and release checks | [Contribution checks](CONTRIBUTING.md#checks-and-limits) and [release workflow](RELEASE.md) |
+| Research fixtures and scheduling | [Research engine](docs/research-engine.md) and [Inngest setup](docs/inngest.md). The vendor-monitor example runs on an offline fixture. |
+| New sources and proposed integrations | [Market feed review](data/market-feeds/README.md) and [proposed shared architecture](docs/security-intelligence/architecture.md) |
 
-Local Dev Server, in two terminals:
-
-```bash
-INNGEST_DEV=1 npm run dev
-npx inngest-cli@latest dev
-```
-
-Register `http://127.0.0.1:43123/api/inngest` in the Dev Server. Leave `INNGEST_DEV` unset on any public host.
-
-To deploy the functions, host this Next.js app, set `INNGEST_EVENT_KEY` and `INNGEST_SIGNING_KEY` from the Inngest Cloud app, leave `INNGEST_DEV` unset, and sync `https://<host>/api/inngest`. That sync has not been done from this repository. A successful sync still checks the offline fixture. It does not monitor the public web, and a second instance will not see the first instance's ledger.
-
-## Architecture
-
-- Next.js App Router, TypeScript, Tailwind, and accessible UI primitives.
-- Typed seed in `lib/data`, validated with Zod in `lib/schema.ts`.
-- `lib/catalog.ts` merges the identity seed with the wider ecosystem and throws if a cross-reference is broken.
-- Comparison fills a cell only from claims that are in force. Category membership is not evidence.
-- Coverage marks stale sources from the retrieval date and the source’s volatility window.
-- The phase 1 research ledger in `lib/research` checks an offline fixture, queues pending proposals, and does not publish them. See `docs/research-engine.md`. Inngest can schedule the HashiCorp fixture. See `docs/inngest.md`. Live Exa, Firecrawl, and Inngest Cloud monitoring are not implemented.
-- Budget is three-year arithmetic on numbers you type. It is not a forecast.
-- Territory notes stay in `localStorage`. A blank incumbent is unknown and is left out of the score.
-
-## Secrets detection sweep
-
-The [2026-10-13 sweep](docs/market-research/secrets-detection-sweep-2026-10-13.md) covers 60 product/project records across specialist scanners, OSS, AppSec/ASPM, cloud security, and integrations. The [typed additions](lib/data/secrets-sweep.ts) preserve product scope, publisher evidence, and review-needed states. Integration-only evidence does not populate native scanner capability cells.
-
-## How to add a sourced claim
-
-1. Add the source in `lib/data/sources.ts` (or a focused typed module composed by `lib/catalog.ts`, such as `lib/data/secrets-sweep.ts`) with the canonical URL, publisher, retrieval date, and volatility.
-2. Add the claim in `lib/data/claims.ts`. Set the subject, capability, polarity, source URL, observed date, and verification status.
-3. If two current pages disagree, point `conflictsWith` both ways.
-4. Run `npm test`. The catalog refuses a claim whose source, product, or capability does not exist, and a conflict that is not symmetric.
-5. Do not fill a cell because a vendor is in the category. Absence of a statement stays Unknown.
-6. A research proposal is not a catalog claim. Accepting one in `lib/research` does not edit this seed. Copy a reviewed statement into the files above in a separate change, and leave the older claim in place when positioning changes.
-
-## Data limits
-
-- Identity claims were checked against public pages as of 23 Sep 2026. They go stale. The source ledger shows which ones are past their window.
-- Mapped domains are a taxonomy plus named research candidates. No claim answers SAST, SCA, CSPM, or the other non-identity capabilities.
-- No analyst placement, list price, customer logo, or feature-parity grid was invented.
-- Account notes never leave the browser.
-
-## Status
-
-The map is runnable. Identity carries cited claims. The surrounding domains are mapped, with Unknown left visible where a source has not been recorded.
-
-## About
-
-I’m an enterprise cybersecurity seller with experience across network security, detection and response, and application security. This project is a way to make complex security markets useful for sales discovery, competitive analysis, and learning.
-
-## Disclaimer
-
-This is an independent educational and portfolio project. It is not affiliated with Gartner, Forrester, IDC, or any vendor mentioned.
-
-## Proposed shared security intelligence foundation
-
-The [Security Intelligence architecture proposal](docs/security-intelligence/architecture.md) defines a reusable evidence model, [read-only API contract](docs/security-intelligence/api-contract.md), [source registry](docs/security-intelligence/source-registry.md), and two source-linked example incidents. **Design and seed data only:** no deployed database, automated collection, or new public API. The future shared service should remain independent of this Market Map and support Builder Academy, Detector Atlas, and other authorized consumers.
-
-## Reusable Security & GTM Intelligence Foundation
-
-[Owning-repo implementation plan](docs/product/security-gtm-intelligence-plan.md) links shared architecture and the reviewed-evidence pilot. It is subordinate to existing product/module PRDs; no live integration or paid usage is enabled.
-
+[More of Kristen Aing’s work in enterprise cybersecurity](https://www.kristenaing.com/work)

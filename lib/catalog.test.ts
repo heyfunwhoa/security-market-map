@@ -28,6 +28,48 @@ describe("catalog integrity", () => {
     expect(catalogProblems(catalog)).toEqual([]);
   });
 
+  it("keeps the workstation shortlist attached to its product providers and scoped evidence", () => {
+    const expected = {
+      "limacharlie-binlib": "limacharlie",
+      "reversinglabs-spectra-analyze": "reversinglabs",
+      "carbon-black-cloud-enterprise-edr": "broadcom",
+      "microsoft-defender-for-endpoint": "microsoft",
+      "cisco-secure-endpoint": "cisco",
+      "crowdstrike-platform": "crowdstrike",
+      "cortex-aes": "palo-alto-networks",
+      "socket-firewall": "socket",
+      "stairwell-platform": "stairwell",
+      "aikido-device-protection": "aikido",
+      "aikido-safe-chain": "aikido",
+      "trufflehog": "truffle-security",
+      "trufflehog-enterprise": "truffle-security",
+    };
+    const candidates = catalog.products.filter((product) => product.useCaseIds.includes("uc-developer-endpoint"));
+    for (const [id, provider] of Object.entries(expected)) {
+      expect(candidates.find((product) => product.id === id)?.vendorId).toBe(provider);
+      expect(catalog.claims.some((claim) => claim.subjectType === "product" && claim.subjectId === id)).toBe(true);
+    }
+    expect(evidenceCell(catalog.claims, "socket-firewall", "cap-file-retrohunt", catalog.asOf).status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "limacharlie-binlib", "cap-file-retrohunt", catalog.asOf).status).toBe("evidenced");
+    expect(catalog.events.find((event) => event.id === "evt-binlib-general-availability")?.date).toBe("2023-08-08");
+  });
+
+  it("keeps a package lookback distinct from stored files and device sightings", () => {
+    const cell = (product: string, capability: string) =>
+      evidenceCell(catalog.claims, product, capability, catalog.asOf, catalog.sources);
+    expect(cell("crowdstrike-platform", "cap-dev-package-lookback").status).toBe("evidenced");
+    expect(cell("crowdstrike-platform", "cap-file-retrieval").status).toBe("unknown");
+    expect(cell("aikido-device-protection", "cap-dev-package-lookback").status).toBe("unknown");
+    for (const product of ["microsoft-defender-for-endpoint", "reversinglabs-spectra-analyze"]) {
+      expect(cell(product, "cap-file-retrieval").status).toBe("evidenced");
+    }
+    expect(cell("carbon-black-cloud-enterprise-edr", "cap-file-device-history").status).toBe("evidenced");
+    const prior = cell("limacharlie-binlib", "cap-file-retrieval").claims[0];
+    const added = cell("microsoft-defender-for-endpoint", "cap-file-retrieval").claims[0];
+    expect(prior.lastCheckedAt).toBe("2026-11-23");
+    expect(added.lastCheckedAt).toBe("2026-11-24");
+  });
+
   it("reserves verified for an independent public standard", () => {
     const verified = catalog.claims.filter((claim) => claim.verificationStatus === "verified");
     expect(verified.map((claim) => claim.id).sort()).toEqual(["claim-owasp-nhi", "claim-owasp-nhi-top10"]);
@@ -260,9 +302,14 @@ describe("catalog integrity", () => {
       // Developer endpoint research slice (PR #111): vendor-published claims only.
       "cap-dev-local-secret-scan",
       "cap-dev-package-install-policy",
+      "cap-dev-package-lookback",
       "cap-dev-ai-tool-hook",
       "cap-dev-ai-usage-inventory",
       "cap-dev-honeytoken",
+      "cap-file-retrohunt",
+      "cap-file-retrieval",
+      "cap-file-device-history",
+      "cap-workstation-packages",
     ]);
     const outside = catalog.capabilities.filter((capability) => {
       const category = catalog.categories.find((item) => item.id === capability.categoryId);
@@ -523,7 +570,7 @@ describe("catalog integrity", () => {
     expect(evidenceCell(catalog.claims, "tenable", "cap-vm", "2026-10-26").status).toBe("unknown");
     expect(evidenceCell(catalog.claims, "snyk", "cap-sca", "2026-10-26").status).toBe("unknown");
     expect(evidenceCell(catalog.claims, "qualys", "cap-vm", "2026-10-26").status).toBe("unknown");
-    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(35);
+    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(41);
   });
 
   it("keeps newly sourced field sentences off product cells, rosters, and statistics", () => {
@@ -610,7 +657,7 @@ describe("catalog integrity", () => {
       ).toBe(false);
     }
     expect(evidenceCell(catalog.claims, "tenable", "cap-vm", "2026-10-27").status).toBe("unknown");
-    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(35);
+    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(41);
   });
 
   it("keeps the next retrieved field sentences off rosters, scores, and statistics", () => {
@@ -688,7 +735,7 @@ describe("catalog integrity", () => {
       expect(bounded, banned).not.toContain(banned);
     }
     expect(evidenceCell(catalog.claims, "tenable", "cap-vm", "2026-10-27").status).toBe("unknown");
-    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(35);
+    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(41);
   });
 
   it("keeps the identity, exposure, and AppSec sentences off cells, rosters, and prices", () => {
@@ -756,7 +803,7 @@ describe("catalog integrity", () => {
     }
     expect(evidenceCell(catalog.claims, "snyk", "cap-sca", "2026-10-27").status).toBe("unknown");
     expect(evidenceCell(catalog.claims, "tenable", "cap-vm", "2026-10-27").status).toBe("unknown");
-    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(35);
+    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(41);
     for (const subjectId of ["endpoint-security", "security-ratings", "dast"]) {
       expect(
         catalog.claims.some((claim) => claim.subjectType === "category" && claim.subjectId === subjectId),
@@ -803,7 +850,7 @@ describe("catalog integrity", () => {
     for (const banned of ["magic quadrant", "snyk", "checkmarx", "semgrep", "wiz", "orca", "illumio"]) {
       expect(bounded, banned).not.toContain(banned);
     }
-    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(35);
+    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(41);
   });
 
   it("keeps the workforce, simulation, and posture sentences off cells, scores, and prices", () => {
@@ -847,7 +894,7 @@ describe("catalog integrity", () => {
     }
     expect(catalog.claims.filter((claim) => claim.subjectType === "category" && claim.subjectId === "dast")).toHaveLength(0);
     expect(catalog.claims.filter((claim) => claim.subjectType === "category" && claim.subjectId === "security-ratings")).toHaveLength(0);
-    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(35);
+    expect(catalog.relationships.filter((relationship) => relationship.type === "direct_competitor")).toHaveLength(41);
   });
 });
 

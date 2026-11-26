@@ -15,43 +15,43 @@ import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescri
  * Every page keeps its address; only the grouping and order changed.
  */
 const NAV_GROUPS = [
-  { title: "Prep for an account", links: [
-    { href: "/incidents", label: "Incidents", description: "Reviewed, sourced security incidents with talk tracks." },
-    { href: "/use-cases", label: "Buyer use cases", description: "Start with the problem you need to solve." },
+  { title: "Explore the market", links: [
+    { href: "/domains", label: "Explore domains", description: "Start with broad security areas and their categories." },
+    { href: "/categories", label: "Categories A–Z", description: "Find a category by name or acronym and see its domains." },
+    { href: "/landscape", label: "Browse products", description: "Filter vendors and products, inspect details, and build a shortlist." },
+    { href: "/use-cases", label: "Buyer use cases", description: "Browse the problems buyers are evaluating." },
+    { href: "/compare", label: "Compare evidence", description: "Compare product evidence for a specific use case." },
+  ] },
+  { title: "Prepare a conversation", links: [
     { href: "/personas", label: "Buyer seats", description: "Who buys, uses, approves, and blocks, with pains and titles." },
     { href: "/territory", label: "Territory planning", description: "Organize account and territory research." },
     { href: "/budget", label: "Budget worksheet", description: "Work through price signals and budget assumptions." },
   ] },
-  { title: "Explore the market", links: [
-    { href: "/domains", label: "Explore domains", description: "Start with broad security areas and their categories." },
-    { href: "/landscape", label: "Browse products", description: "Filter vendors and products, inspect details, and build a shortlist." },
-    { href: "/compare", label: "Compare evidence", description: "Compare product evidence for a specific use case." },
-  ] },
-  { title: "Understand how it works", links: [
+  { title: "Research", links: [
+    { href: "/incidents", label: "Incidents", description: "Reviewed, sourced security incidents with talk tracks." },
     { href: "/learn", label: "Concepts & scenarios", description: "Understand terminology and practical scenarios." },
     { href: "/connections", label: "How tools connect", description: "Explore identity, secrets, and adjacent security jobs." },
     { href: "/evidence-graph", label: "Evidence graph", description: "Inspect sourced identity, secrets, and non-human identity relationships." },
     { href: "/attack-path", label: "Attack paths", description: "Follow how an exposure can lead to an attack." },
     { href: "/control-map", label: "Security controls", description: "Explore the controls that address security problems." },
     { href: "/frameworks", label: "Frameworks", description: "Connect security concepts to framework guidance." },
-  ] },
-  { title: "About the evidence", links: [
     { href: "/methodology", label: "Methodology", description: "How evidence, status labels, and Unknown work on this map." },
     { href: "/sources", label: "Sources & references", description: "Inspect the references behind the research." },
     { href: "/about", label: "About", description: "Who maintains the map and what it is for." },
   ] },
 ];
 
-/** The four pages shown in the desktop header: the account-prep entry point plus the three market views. */
-const HEADER_HREFS = ["/incidents", "/domains", "/landscape", "/compare"];
+/** The four pages shown in the desktop header: domain directory, products, use cases, and comparisons. */
+const HEADER_HREFS = ["/domains", "/landscape", "/use-cases", "/compare"];
 export const HEADER_LINKS = HEADER_HREFS.map((href) => NAV_GROUPS.flatMap((group) => group.links).find((link) => link.href === href)!);
 export const NAV_GROUP_TITLES = NAV_GROUPS.map((group) => group.title);
 export const NAV_HREFS = NAV_GROUPS.flatMap((group) => group.links.map((link) => link.href));
 
 const navLinkClass = "inline-flex min-h-11 items-center rounded-md px-3 text-sm hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring";
 
-export function SiteHeader({ hits, asOf }: { hits: SearchHit[]; asOf: string }) {
+export function SiteHeader({ hits, asOf, profileComparisons }: { hits: SearchHit[]; asOf: string; profileComparisons: Record<string, string> }) {
   const pathname = usePathname();
+  const destination = (href: string) => href === "/compare" ? profileComparisons[pathname] ?? href : href;
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
   return (
     <header className="relative z-40 border-b border-border bg-background">
@@ -61,7 +61,7 @@ export function SiteHeader({ hits, asOf }: { hits: SearchHit[]; asOf: string }) 
           <span className="block text-xs text-muted-foreground">Research notes · as of {formatDate(asOf)}</span>
         </Link>
         <nav aria-label="Primary" className="hidden items-center gap-1 xl:flex">
-          {HEADER_LINKS.map((link) => <Link key={link.href} href={link.href} aria-current={pathname === link.href ? "page" : undefined} className={cn(navLinkClass, isActive(link.href) ? "bg-muted font-semibold" : "text-muted-foreground")}>{link.label}</Link>)}
+          {HEADER_LINKS.map((link) => <Link key={link.href} href={destination(link.href)} aria-current={pathname === link.href ? "page" : undefined} className={cn(navLinkClass, isActive(link.href) ? "bg-muted font-semibold" : "text-muted-foreground")}>{link.label}</Link>)}
         </nav>
         <div className="flex shrink-0 items-center gap-2">
           <SearchCommand hits={hits} />
@@ -72,14 +72,14 @@ export function SiteHeader({ hits, asOf }: { hits: SearchHit[]; asOf: string }) 
             <SheetContent showCloseButton={false} className="data-[side=right]:w-full data-[side=right]:sm:max-w-lg overflow-y-auto overscroll-contain motion-reduce:animate-none motion-reduce:transition-none">
               <SheetHeader className="border-b border-border p-5">
                 <div className="flex items-center justify-between gap-3"><SheetTitle className="text-xl">Explore the map</SheetTitle><SheetClose className={`${navLinkClass} border border-border`}>Close</SheetClose></div>
-                <SheetDescription>Prep for an account, explore the market, or check how the evidence works.</SheetDescription>
+                <SheetDescription>Explore the market, compare products, prepare a conversation, or look up research.</SheetDescription>
               </SheetHeader>
               <nav aria-label="All pages" className="space-y-6 px-5 pb-6">
                 <SheetClose asChild><Link href="/" aria-current={pathname === "/" ? "page" : undefined} className={`${navLinkClass} border border-border`}>Home overview</Link></SheetClose>
                 {NAV_GROUPS.map((group) => <section key={group.title} aria-label={group.title}>
                   <h2 className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">{group.title}</h2>
                   <ul className="space-y-1">{group.links.map((link) => <li key={link.href}>
-                    <SheetClose asChild><Link href={link.href} aria-current={pathname === link.href ? "page" : undefined} className={cn("block min-h-11 rounded-lg p-3 hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring", isActive(link.href) && "bg-muted")}>
+                    <SheetClose asChild><Link href={destination(link.href)} aria-current={pathname === link.href ? "page" : undefined} className={cn("block min-h-11 rounded-lg p-3 hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring", isActive(link.href) && "bg-muted")}>
                       <span className="block font-medium">{link.label}{pathname === link.href && <span className="ml-2 text-xs text-muted-foreground">Current page</span>}</span>
                       <span className="mt-1 block text-sm leading-5 text-muted-foreground">{link.description}</span>
                     </Link></SheetClose>

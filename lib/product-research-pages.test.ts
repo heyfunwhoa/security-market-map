@@ -2,8 +2,9 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import ProductPage from "../app/products/[slug]/page";
+import VendorPage from "../app/vendors/[slug]/page";
 import { ProductEvidenceExplorer } from "../components/product-evidence-explorer";
-import { catalog, catalogProblems, claimsForSubject } from "./catalog";
+import { catalog, catalogProblems, claimsForSubject, searchIndex } from "./catalog";
 import { moveFocusStage, productResearchSections, unknownControlBoundaries } from "./product-research";
 
 async function pageHtml(slug: string) {
@@ -16,6 +17,65 @@ function anchorIds(html: string) {
 }
 
 describe("product research pages", () => {
+  it("routes product search to standalone research or its exact company section", () => {
+    const index = searchIndex();
+    expect(index.find((hit) => hit.kind === "Vendor" && hit.title === "WorkOS")?.href).toBe("/vendors/workos");
+    expect(index.find((hit) => hit.kind === "Product" && hit.title === "WorkOS")?.href).toBe("/products/workos");
+    expect(index.find((hit) => hit.kind === "Product" && hit.title === "Descope")?.href).toBe("/vendors/descope#product-descope");
+  });
+
+  it("links the Descope customer story and source evidence from its CIAM profile", async () => {
+    const html = renderToStaticMarkup(await VendorPage({ params: Promise.resolve({ slug: "descope" }) }));
+    expect(html).toContain('href="/categories/ciam"');
+    expect(html).toContain('href="https://docs.descope.com/auth-methods/sso"');
+    expect(html).toContain('href="https://docs.descope.com/agentic-identity-hub/enterprise-managed-authorization"');
+    expect(html).toContain('href="https://www.descope.com/customers/gofundme"');
+    expect(html).toContain("GoFundMe adds more ways for donors to sign in");
+  });
+
+  it("links each Descope CIAM alternative to its product, use case, and cited evidence", async () => {
+    const html = renderToStaticMarkup(await VendorPage({ params: Promise.resolve({ slug: "descope" }) }));
+    const alternatives = ["auth0", "workos", "frontegg", "stytch", "clerk", "amazon-cognito"];
+    const edges = catalog.relationships.filter((edge) => edge.fromProductId === "descope" && edge.useCaseId === "uc-ciam");
+    for (const id of alternatives) {
+      const edge = edges.find((row) => row.toProductId === id);
+      const product = catalog.products.find((item) => item.id === id)!;
+      const evidence = claimsForSubject("product", id).find((claim) => claim.sourceId === edge?.sourceId);
+      expect(evidence?.capabilityId).toBe("cap-ciam");
+      expect(evidence?.verificationStatus).toBe("vendor_published");
+      expect(html).toContain(`href="/products/${product.slug}"`);
+      expect(html).toContain(`href="${evidence?.sourceUrl}"`);
+    }
+  });
+
+  it("opens all six standalone CIAM profiles from their vendor and keeps evidence, pricing and pilot questions product-specific", async () => {
+    const cases = [
+      ["auth0", "okta"], ["workos", "workos"], ["frontegg", "frontegg"],
+      ["stytch", "stytch"], ["clerk", "clerk"], ["amazon-cognito", "amazon-web-services"],
+    ] as const;
+    for (const [slug, vendor] of cases) {
+      const html = await pageHtml(slug);
+      const vendorHtml = renderToStaticMarkup(await VendorPage({ params: Promise.resolve({ slug: vendor }) }));
+      expect(vendorHtml).toContain(`href="/products/${slug}"`);
+      expect(html).toContain('href="/categories/ciam"');
+      expect(html).toContain(`href="/vendors/${vendor}"`);
+      expect(html).toContain("Who buys and operates it");
+      expect(html).toContain("What drives the bill");
+      expect(html).toContain("Questions to validate in a pilot");
+      expect(html).not.toContain("Compare GitGuardian and Aikido");
+      expect(html).not.toContain("Unknown control boundaries");
+      for (const id of [`src-ciam-sso-${slug}`, `src-ciam-workflow-${slug}`, `src-ciam-pricing-${slug}`, `src-ciam-customer-${slug}`, `src-ciam-owner-${slug}`]) {
+        const url = catalog.sources.find((source) => source.id === id)?.url;
+        expect(url).toBeTruthy();
+        expect(html).toContain(`href="${url}"`);
+      }
+      expect(catalog.pricing.some((row) => row.productId === slug)).toBe(true);
+      expect(catalog.stories.some((row) => row.id === `story-ciam-${slug}` && row.vendorId === vendor)).toBe(true);
+      expect(anchorIds(html).every((id) => html.includes(`id="${id}"`))).toBe(true);
+    }
+    expect(catalog.events.find((event) => event.id === "event-ciam-stytch-acquisition")?.date).toBe("2025-11-14");
+  });
+
   it("keeps canonical vendor and product ids unique", () => {
     expect(catalogProblems(catalog)).toEqual([]);
     for (const kind of ["vendors", "products", "sources", "claims"] as const) {

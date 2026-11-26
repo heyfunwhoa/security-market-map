@@ -34,3 +34,19 @@ Promote an item when it changes what a buyer can do or buy: a new product or cap
 Add one entry to `feeds.json` with the vendor's catalog id, its official feed URL, and `rss` or `atom`. Use the note to record why it's watched and how often it posts. The first run only picks up items from the last 30 days.
 
 GitGuardian publishes seven feeds ([list](https://docs.gitguardian.com/platform/feeds)). Only SaaS is watched here. Self-Hosted mostly repeats the SaaS features each month, and ggshield, Py-GitGuardian, the VS Code extension and the ggscout Helm charts post release tags. The detection-engine feed is watched daily by Detector Atlas.
+
+### Vendors checked without a usable feed (2026-11-23)
+
+Checked for an official RSS or Atom feed. Revisit if one appears.
+
+| Vendor | Result |
+| --- | --- |
+| Akeyless, 1Password, Oasis Security, Token Security, Apiiro, Legit Security, Endor Labs | No feed advertised on the blog, and the common feed paths don't serve one. |
+| Infisical | Its site blocked the check. Its GitHub releases feed only posts version tags, so it isn't watched (same reason as ggshield). |
+| Astrix Security, Entro Security | Acquired (by Cisco and SailPoint; both closes are in the catalog). Their blogs now redirect to the acquirer. |
+
+## When a feed fails
+
+If one feed can't be read, the run still collects the others and the workflow shows a warning naming the count. It fails only when no feed could be read. Check the run log for the failing feed id.
+
+A rate limit (HTTP 429) or server error gets one retry, waiting for the site's `Retry-After` (up to 60 seconds). A single item without a title, an https link or a date is skipped and logged; the feed fails only if every item is malformed.

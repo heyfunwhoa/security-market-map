@@ -3,7 +3,7 @@ id: "breach-simulation"
 type: "category"
 name: "Breach and attack simulation"
 layer: "core"
-vendors: 4
+vendors: 6
 ---
 
 # Breach and attack simulation
@@ -29,10 +29,12 @@ Platforms that safely run attacker techniques to see whether controls detect or 
 - AttackIQ: Breach and attack simulation vendor. A missed technique is a detection gap, not a product failure you can assert without a test.
 - Pentera: Security validation vendor on breach-simulation shortlists beside AttackIQ. Results are not evidence about a specific control.
 - XM Cyber: XM Cyber markets continuous exposure management (attack-path analysis that supports a CTEM program) built on an attack graph that chains vulnerabilities, misconfigurations and identity exposures into attack paths.
+- GhostEye: New York YC Summer 2025 startup combining human-layer social engineering simulation with scoped breach and attack simulation, security control validation and remediation retesting.
 
 ## Vendors (adjacent)
 
 - Rapid7
+- Horizon3.ai
 
 ## What buyers do instead
 

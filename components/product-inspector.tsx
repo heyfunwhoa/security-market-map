@@ -1,18 +1,20 @@
 "use client";
 
+import { ProductCategoryLinks } from "@/components/product-category-links";
 import Link from "next/link";
 import type { LandscapeEdge, LandscapeRow } from "@/components/landscape-browser";
 import { StatusPill } from "@/components/chrome";
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { withCatalogReturn } from "@/lib/landscape-filters";
 import { deploymentLabel, relationshipLabel, scopeLabel } from "@/lib/format";
-import { productDetailUrl } from "@/lib/landscape-filters";
 
 const actionClass = "inline-flex min-h-11 items-center justify-center rounded-md border border-border px-3 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring";
 
-export function ProductInspector({ row, related, categories, useCases }: {
+export function ProductInspector({ row, related, categories, useCases, catalogUrl }: {
   row: LandscapeRow;
+  catalogUrl: string;
   related: LandscapeEdge[];
-  categories: { id: string; label: string }[];
+  categories: { id: string; label: string; slug: string }[];
   useCases: { id: string; label: string }[];
 }) {
   return (
@@ -27,14 +29,17 @@ export function ProductInspector({ row, related, categories, useCases }: {
             <SheetClose className={`${actionClass} shrink-0 hover:bg-muted`}>Close</SheetClose>
           </div>
           <SheetTitle className="break-words text-2xl">{row.productName}</SheetTitle>
-          <SheetDescription>{row.vendorName}. Close this panel to return to your filtered results.</SheetDescription>
+          <SheetDescription><Link href={withCatalogReturn(`/vendors/${row.vendorSlug}`, catalogUrl)} className="inline-flex min-h-11 items-center text-primary underline">{row.vendorName} company profile</Link></SheetDescription>
         </SheetHeader>
         <div className="space-y-6 px-5 pb-6">
           <section aria-label="Product overview" className="space-y-3">
             <StatusPill status={row.availability} />
             <p className="leading-6">{row.positioning}</p>
             <dl className="grid gap-4 rounded-lg border border-border bg-muted/30 p-4">
-              <Detail label="Categories" value={categories.filter((item) => row.categoryIds.includes(item.id)).map((item) => item.label).join(" · ")} />
+              <ProductCategoryLinks
+                primary={categories.filter((category) => row.primaryCategoryIds.includes(category.id))}
+                adjacent={categories.filter((category) => row.categoryIds.includes(category.id) && !row.primaryCategoryIds.includes(category.id))}
+              />
               <Detail label="Identity scope" value={row.scopes.map(scopeLabel).join(" · ")} />
               <Detail label="Deployment" value={row.deployment.map(deploymentLabel).join(" · ")} />
             </dl>
@@ -53,7 +58,7 @@ export function ProductInspector({ row, related, categories, useCases }: {
           <section aria-label="Evidence and uncertainty" className="border-t border-border pt-4">
             <h3 className="font-heading text-lg">Evidence and uncertainty</h3>
             <p className="mt-1 text-muted-foreground">Review source attribution, claim status, and Unknowns on the product detail page before making a capability comparison.</p>
-            <Link href={productDetailUrl(row.vendorSlug, row.productId)} className={`${actionClass} mt-3 text-primary hover:bg-muted`}>Open product detail and evidence</Link>
+            <Link href={withCatalogReturn(row.detailHref, catalogUrl)} className={`${actionClass} mt-3 text-primary hover:bg-muted`}>Open product detail and evidence</Link>
           </section>
         </div>
       </SheetContent>

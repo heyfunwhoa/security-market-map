@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ClaimList } from "@/components/claims";
 import { productById, vendorById } from "@/lib/catalog";
 import { publicMonitoringClaims } from "@/lib/data/public-monitoring";
-import { productDetailUrl } from "@/lib/landscape-filters";
+import { productDestination } from "@/lib/product-destination";
 import guides from "@/research/external-exposure-guides.json";
 
 const linkStyle = "text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring";
@@ -42,7 +42,7 @@ export function ExternalExposureGuides({ categoryId }: { categoryId: string }) {
             <div className="space-y-3 pb-4 text-sm leading-6">
               <p><strong>Ask the vendor. </strong>{option.ask}</p>
               <ClaimList claims={[claim]} />
-              <Link className={linkStyle} href={productDetailUrl(vendor.slug, product.id)}>{vendor.name} product profile</Link>
+              <Link className={linkStyle} href={productDestination(product, vendor.slug)}>{vendor.name} product profile</Link>
             </div>
           </details>
         );

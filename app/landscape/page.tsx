@@ -1,3 +1,4 @@
+import { productDestination } from "@/lib/product-destination";
 import Link from "next/link";
 import { Suspense } from "react";
 import { PageIntro } from "@/components/chrome";
@@ -10,11 +11,13 @@ export const metadata = { title: "Landscape" };
 export default function LandscapePage() {
   const rows: LandscapeRow[] = catalog.products.map((product) => ({
     productId: product.id,
+    detailHref: productDestination(product, vendorById(product.vendorId)!.slug),
     productName: product.name,
     vendorName: vendorById(product.vendorId)?.name ?? product.vendorId,
     vendorSlug: vendorById(product.vendorId)?.slug ?? "",
     positioning: product.positioning,
     categoryIds: [...product.primaryCategoryIds, ...product.adjacentCategoryIds],
+    primaryCategoryIds: product.primaryCategoryIds,
     domainIds: [
       ...new Set(
         catalog.categories
@@ -54,16 +57,16 @@ export default function LandscapePage() {
     <main className="mx-auto max-w-6xl px-4 py-10">
       <PageIntro
         kicker="Landscape"
-        title="Who shows up for a use case, without a leaderboard"
-        lede="Filter by domain, category, buyer, deployment, and scope. Use “Not an identity control” for AppSec, IT, and other tools that are on the map without being identity products. A relationship counts only inside a use case. There is no overall score."
+        title="Find a product or company"
+        lede="Search the catalog or narrow it by buyer question. Select two to four products to compare their evidence."
       />
-      <p className="mt-5"><Link href="/landscape/public-exposure" className="text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-ring">Compare public monitoring and external exposure scenarios</Link></p>
       <div className="mt-8">
         <Suspense fallback={<p role="status">Loading landscape filters…</p>}>
         <LandscapeBrowser
           rows={rows}
+          companies={catalog.vendors.map(({ name, slug, formerNames }) => ({ name, slug, formerNames })).sort((a, b) => a.name.localeCompare(b.name))}
           edges={edges}
-          categories={catalog.categories.map((category) => ({ id: category.id, label: category.name, domainIds: category.domainIds }))}
+          categories={catalog.categories.map((category) => ({ id: category.id, label: category.name, slug: category.slug, domainIds: category.domainIds }))}
           domains={catalog.domains.map((domain) => ({ id: domain.id, label: domain.name }))}
           useCases={catalog.useCases.map((useCase) => ({ id: useCase.id, label: useCase.name }))}
           personas={catalog.personas.map((persona) => ({
@@ -74,6 +77,7 @@ export default function LandscapePage() {
         />
         </Suspense>
       </div>
+      <p className="mt-5"><Link href="/landscape/public-exposure" className="text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-ring">Compare public monitoring and external exposure scenarios</Link></p>
     </main>
   );
 }

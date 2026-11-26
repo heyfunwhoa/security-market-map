@@ -1,6 +1,10 @@
-import { productSectionId } from "@/lib/landscape-filters";
+import { CompanyResearchGaps, companyResearchGaps } from "@/components/company-research-gaps";
+import { productDestination } from "@/lib/product-destination";
+import { productComparisonUrl, shortlistUrl } from "@/lib/landscape-shortlist";
+import { landscapeFilterUrl, initialLandscapeFilters, productSectionId } from "@/lib/landscape-filters";
 import { ProductBuyerContext } from "@/components/product-buyer-context";
-import { Breadcrumbs } from "@/components/breadcrumbs";
+import { isProductResearchSlug } from "@/lib/product-research";
+import { ProfileBreadcrumbs, ProfileLink } from "@/components/catalog-profile-navigation";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ClaimList } from "@/components/claims";
@@ -10,11 +14,13 @@ import {
   catalog,
   claimsForSubject,
   productsForVendor,
+  productById,
   relationshipsForProduct,
   sourceById,
+  vendorById,
   vendorBySlug,
 } from "@/lib/catalog";
-import { availabilityLabel, formatDate, relationshipLabel, scopeLabel } from "@/lib/format";
+import { availabilityLabel, formatDate, scopeLabel } from "@/lib/format";
 import { previewHashicorpMonitor } from "@/lib/research/vendor-monitor";
 
 export function generateStaticParams() {
@@ -31,6 +37,7 @@ export default async function VendorPage({ params }: { params: Promise<{ slug: s
   const vendor = vendorBySlug(slug);
   if (!vendor) notFound();
   const products = productsForVendor(vendor.id);
+  const gaps = companyResearchGaps[vendor.id];
   const vendorClaims = claimsForSubject("vendor", vendor.id);
   const productClaims = products.flatMap((product) => claimsForSubject("product", product.id));
   const events = catalog.events
@@ -45,7 +52,7 @@ export default async function VendorPage({ params }: { params: Promise<{ slug: s
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
-      <Breadcrumbs parents={[{ href: "/", label: "Home" }, { href: "/landscape", label: "Landscape" }]} current={vendor.name} />
+      <ProfileBreadcrumbs catalogFallback={{ href: landscapeFilterUrl(initialLandscapeFilters, vendor.name), label: "Catalog results" }} current={vendor.name} />
       <PageIntro kicker="Research candidate" title={vendor.name} lede={vendor.positioning} />
       <div className="mt-4 flex flex-wrap items-center gap-2">
         <StatusPill status={vendor.verificationStatus} />
@@ -62,15 +69,34 @@ export default async function VendorPage({ params }: { params: Promise<{ slug: s
         Scope marked for filtering: {vendor.identityScopes.map(scopeLabel).join(", ")}. Scope is a
         research starting point, not a certified coverage claim.
       </p>
+      {gaps && <a href="#research-gaps" className="inline-flex min-h-11 items-center text-sm text-primary underline underline-offset-4">Research gaps</a>}
+      {products.length > 1 && <nav aria-label="Find a product on this company page" className="mt-4">
+        <details className="rounded-lg border border-border bg-card px-4">
+          <summary className="min-h-11 cursor-pointer py-3 text-sm font-semibold">Jump to a product ({products.length})</summary>
+          <ul className="grid gap-x-5 pb-2 sm:grid-cols-2">
+            {[...products].sort((a, b) => a.name.localeCompare(b.name)).map((product) => <li key={product.id}>
+              <a className="inline-flex min-h-11 items-center text-sm text-primary underline" href={`#${productSectionId(product.id)}`}>{product.name}</a>
+            </li>)}
+          </ul>
+        </details>
+      </nav>}
       {monitor ? <ResearchPanelLive initial={monitor} /> : null}
 
       <section className="mt-8">
         <h2 className="text-2xl">Products</h2>
+        {products.length === 0 && <div className="mt-2 text-sm">
+          <p>No product is mapped to this company yet.</p>
+          <ul className="flex flex-wrap gap-x-4" aria-label="Company categories">
+            {catalog.categories.filter((category) => vendor.primaryCategoryIds.includes(category.id)).map((category) => <li key={category.id}>
+              <Link href={`/categories/${category.slug}`} className="inline-flex min-h-11 items-center text-primary underline">{category.name}</Link>
+            </li>)}
+          </ul>
+        </div>}
         <ul className="mt-3 grid gap-3">
           {products.map((product) => (
-            <li key={product.id} id={productSectionId(product.id)} className="scroll-mt-24 rounded-xl border border-border bg-card p-4 target:ring-2 target:ring-ring">
+            <li key={product.id} id={productSectionId(product.id)} tabIndex={-1} className="scroll-mt-24 rounded-xl border border-border bg-card p-4 target:ring-2 target:ring-ring">
               <div className="flex flex-wrap items-center gap-2">
-                <h3 className="text-lg font-semibold">{["gitguardian-developer-endpoint", "aikido-device-protection", "kingfisher"].includes(product.slug) ? <Link href={`/products/${product.slug}`} className="inline-flex min-h-11 items-center break-words text-primary underline underline-offset-4 hover:underline">{product.name}</Link> : product.name}</h3>
+                <h3 className="text-lg font-semibold">{isProductResearchSlug(product.slug) ? <ProfileLink href={`/products/${product.slug}`} className="inline-flex min-h-11 items-center break-words text-primary underline underline-offset-4 hover:underline">{product.name}</ProfileLink> : product.name}</h3>
                 <StatusPill status={product.availability} />
               </div>
               <p className="mt-2 text-sm leading-6">{product.positioning}</p>
@@ -80,6 +106,7 @@ export default async function VendorPage({ params }: { params: Promise<{ slug: s
               <a className="mt-2 inline-block text-sm text-primary underline-offset-4 hover:underline" href={product.officialUrl}>
                 Product source
               </a>
+              <ProfileLink href={productComparisonUrl(product)} className="ml-3 inline-flex min-h-11 items-center text-sm font-medium text-primary underline underline-offset-4">Compare {product.name}</ProfileLink>
               <div className="mt-3">
                 <ProductBuyerContext categories={catalog.categories} primaryIds={product.primaryCategoryIds} adjacentIds={product.adjacentCategoryIds} />
                 <h4 className="mb-3 mt-4 font-semibold">Product evidence and research gaps</h4>
@@ -90,36 +117,50 @@ export default async function VendorPage({ params }: { params: Promise<{ slug: s
         </ul>
       </section>
 
-      <section className="mt-10">
-        <h2 className="text-2xl">Open questions</h2>
-        <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-6">
-          {vendor.openQuestions.map((question) => (
-            <li key={question}>{question}</li>
-          ))}
-        </ul>
-      </section>
+      {gaps ? (
+        <CompanyResearchGaps gaps={gaps} questions={vendor.openQuestions} claims={productClaims} />
+      ) : (
+        <section className="mt-10">
+          <h2 className="text-2xl">Open questions</h2>
+          <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-6">
+            {vendor.openQuestions.map((question) => <li key={question}>{question}</li>)}
+          </ul>
+        </section>
+      )}
 
       <section className="mt-10">
-        <h2 className="text-2xl">Category edges</h2>
+        <h2 className="text-2xl">Related products by use case</h2>
         <ul className="mt-3 space-y-3">
           {products.flatMap((product) =>
             relationshipsForProduct(product.id).map((edge) => {
               const otherId =
                 edge.fromProductId === product.id ? edge.toProductId : edge.fromProductId;
-              const other = catalog.products.find((item) => item.id === otherId);
+              const other = productById(otherId);
+              const otherVendor = other && vendorById(other.vendorId);
+              const source = edge.sourceId && sourceById(edge.sourceId);
               const useCase = catalog.useCases.find((item) => item.id === edge.useCaseId);
               return (
                 <li key={`${product.id}-${edge.id}`} className="rounded-xl border border-border p-4 text-sm leading-6">
                   <StatusPill status={edge.type} />
                   <p className="mt-2">
-                    <span className="font-medium">{product.name}</span> {relationshipLabel(edge.type).toLowerCase()}{" "}
-                    <span className="font-medium">{other?.name}</span> for{" "}
+                    <span className="font-medium">{product.name}</span> and{" "}
+                    {other && otherVendor ? (
+                      <ProfileLink href={productDestination(other, otherVendor.slug)} className="font-medium text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-ring">
+                        {other.name}
+                      </ProfileLink>
+                    ) : other?.name} for{" "}
                     <Link href={`/use-cases/${useCase?.slug ?? ""}`} className="text-primary hover:underline">
                       {useCase?.name}
                     </Link>
                     .
                   </p>
                   <p className="mt-1 text-muted-foreground">{edge.rationale}</p>
+                  {other && edge.type === "direct_competitor" && <ProfileLink href={shortlistUrl([product.id, other.id], edge.useCaseId)} className="mr-4 inline-flex min-h-11 items-center text-primary underline underline-offset-4">Compare {product.name} and {other.name}</ProfileLink>}
+                  {source && (
+                    <a href={source.url} className="mt-1 inline-flex min-h-11 items-center text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-ring">
+                      {source.publisher} · {source.title}
+                    </a>
+                  )}
                 </li>
               );
             }),
@@ -160,7 +201,21 @@ export default async function VendorPage({ params }: { params: Promise<{ slug: s
           <p className="mt-2 text-sm text-muted-foreground">
             None seeded. Vendor-published stories are not implied, and no customer logos were added to fill the page.
           </p>
-        ) : null}
+        ) : (
+          <ul className="mt-3 space-y-3">
+            {stories.map((story) => (
+              <li key={story.id} className="rounded-xl border border-border p-4 text-sm leading-6">
+                <StatusPill status={story.proofType} />
+                <h3 className="mt-2 font-semibold">
+                  <a className="inline-flex min-h-11 items-center text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-ring" href={sourceById(story.sourceId)?.url}>
+                    {story.title}
+                  </a>
+                </h3>
+                <p className="mt-1">{story.summary}</p>
+              </li>
+            ))}
+          </ul>
+        )}
       </section>
 
       <section className="mt-10">

@@ -28,6 +28,8 @@
 5. **Credential harvesting**: GitGuardian's planted AWS honeytoken can alert if used, indicating suspicious access to that decoy. This is not proof of complete malware detection.
 6. **SOC handoff**: correlate the package-install event, host process telemetry from EDR, secret exposure, use of decoy and credential revoke/rotate event. Preserve distinct controls and accountable owners.
 
+When an advisory arrives after a developer has removed the package, see the [seven-provider investigation notes](file-analysis-ai-investigation-landscape-2026-11.md#investigating-a-developer-package-after-removal) for device sightings, recovery of the original file, and historical searches for related files.
+
 ## Evaluation checklist (record as Unknown until tested)
 - **Enforcement boundary**: detect vs alert vs block vs quarantine vs revoke; timing pre-/post-event; does enforcement fail open or closed offline?
 - **Inventory scope**: managed Mac/Windows/Linux; BYOD; servers; developer containers; WSL2; AI IDE, CLI, provider, MCP coverage; release/version support.
@@ -45,12 +47,25 @@
 - Can we demonstrate enforcement on synthetic samples without real credentials or live malicious packages?
 - What security event should trigger an incident response versus an AppSec ticket?
 
+## GitGuardian updates since publication (Oct–Nov 2026)
+
+These three changelog posts add to Endpoint Protection without changing what it is, so they're recorded here instead of as market events. All are vendor-reported.
+
+- **27 Oct:** the machine scan checks validity for more secret types (GitGuardian says 501, up from 432), adds a low-priority background mode for scheduled MDM runs, and opens the local dashboard on a cleanup overview. [GG6]
+- **12 Nov:** a second honeytoken type, a decoy kubeconfig planted next to real ones, alongside the existing decoy AWS key. Growth or Enterprise plans with Endpoint Protection. [GG7]
+- **18 Nov:** the Endpoints dashboard shows which machines have the ggshield pre-commit hook, next to AI hooks and honeytokens; admins can remove retired machines; a new API lists machines and their users. [GG8]
+
+Taken together: GitGuardian is turning Endpoint Protection from a local secret inventory into fleet-wide coverage reporting plus intrusion detection. Worth a fresh look at the evaluation checklist above when it next comes up.
+
 ## Source inventory (publisher-reported)
 - [GG1 — GitGuardian Endpoint Protection overview](https://docs.gitguardian.com/endpoint-protection/home): scheduled scanning rather than persistent EDR agent; licensing caveats.
 - [GG2 — GitGuardian deployment](https://docs.gitguardian.com/endpoint-protection/deploy/deployment-options): MDM scheduled scripts and independently enabled capabilities.
 - [GG3 — GitGuardian AI Hooks](https://docs.gitguardian.com/endpoint-protection/ai-hooks): prompt/pre-tool and assistant-dependent post-tool behavior.
 - [GG4 — GitGuardian commands](https://docs.gitguardian.com/endpoint-protection/commands): local scan/report/submit and machine setup/doctor semantics.
 - [GG5 — GitGuardian coverage](https://docs.gitguardian.com/endpoint-protection/dashboard): coverage KPIs.
+- [GG6 — GitGuardian changelog, 27 Oct 2026](https://docs.gitguardian.com/releases/saas/2026/10/27/changelog): machine-scan validity coverage, background mode, cleanup.
+- [GG7 — GitGuardian changelog, 12 Nov 2026](https://docs.gitguardian.com/releases/saas/2026/11/12/changelog): kubeconfig honeytoken.
+- [GG8 — GitGuardian changelog, 18 Nov 2026](https://docs.gitguardian.com/releases/saas/2026/11/18/changelog): pre-commit coverage per machine, endpoint removal, machines API.
 - [AK1 — Aikido Device Protection architecture](https://help.aikido.dev/aikido-device-protection/miscellaneous-aikido-endpoint/how-does-endpoint-protection-work): local selective proxy, TLS certificate, package/AI domains, reporting and limits.
 - [AK2 — Aikido supported ecosystems](https://help.aikido.dev/aikido-device-protection/miscellaneous-aikido-endpoint/supported-ecosystems): verify the exact ecosystem/OS inventory at time of trial.
 

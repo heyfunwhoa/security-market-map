@@ -1,3 +1,4 @@
+import { readShortlist } from "./landscape-shortlist";
 import type { Category, Product, UseCase } from "./schema";
 
 /** Category membership never establishes capability support. */
@@ -34,18 +35,11 @@ export function comparisonSelection(
   );
   const useCaseId =
     useCases.find((item) => item.id === params.use)?.id ??
-    useCases[0]?.id ??
+    (categoryId ? useCases[0]?.id : undefined) ??
     "";
   const candidates = productsInCategory(catalog.products, categoryId);
-  const raw =
-    typeof params.products === "string"
-      ? params.products
-      : categoryId
-        ? ""
-        : "c1-platform,opal-platform,sailpoint-isc,saviynt-eic";
-  const productIds = [...new Set(raw.split(",").map((id) => id.trim()))]
-    .filter((id) => candidates.some((product) => product.id === id))
-    .slice(0, 4);
+  const raw = typeof params.products === "string" ? params.products : "";
+  const productIds = readShortlist(raw, candidates.map((product) => product.id));
   return { categoryId, useCaseId, productIds };
 }
 

@@ -2,7 +2,7 @@ name: Watch vendor release feeds
 
 on:
   schedule:
-    # Weekly, Monday. GitGuardian's SaaS feed posts about once a week; daily would only add PRs.
+    # Weekly, Monday. Most watched feeds post weekly or less; daily would only add PRs.
     - cron: "41 11 * * 1"
   workflow_dispatch:
 
@@ -36,6 +36,8 @@ jobs:
           set -o pipefail
           node --experimental-strip-types scripts/watch-market-feeds.ts 2>&1 | tee watch.log
           echo "added=$(sed -n 's/^FEED_CANDIDATES_ADDED=//p' watch.log)" >> "$GITHUB_OUTPUT"
+          failures=$(sed -n 's/^FEED_FAILURES=//p' watch.log)
+          if [ "${failures:-0}" != "0" ]; then echo "::warning::$failures feed(s) could not be read; see the log. Other feeds' candidates were still collected."; fi
       - name: Open or update the candidates pull request
         if: github.ref == 'refs/heads/main' && steps.watch.outputs.added != '0'
         env:
@@ -57,7 +59,7 @@ jobs:
             echo "New items from watched vendor release feeds (\`data/market-feeds/feeds.json\`). Only title, date and link are stored."
             echo
             echo '```'
-            grep -v '^FEED_CANDIDATES_ADDED=' watch.log | head -n 60
+            grep -v -E '^FEED_(CANDIDATES_ADDED|FAILURES)=' watch.log | head -n 60
             echo '```'
             echo
             echo "**These are candidates, not published claims.** For each one, set \`status\` to \`dismissed\` or \`promoted\`. For a notable item, add an event in \`lib/data/market.ts\` with a registered source and a summary in your own words (see \`data/market-feeds/README.md\`)."

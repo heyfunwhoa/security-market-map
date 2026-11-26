@@ -3,7 +3,7 @@ id: "cloud-detection"
 type: "category"
 name: "Cloud detection and response"
 layer: "core"
-vendors: 7
+vendors: 8
 ---
 
 # Cloud detection and response
@@ -48,6 +48,7 @@ From 3 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - Splunk
 - Sysdig
 - Upwind
+- Acalvio
 
 ## What buyers do instead
 

@@ -14,22 +14,37 @@ export const domainSubAreas: Record<string, { domainId: string } & DomainSubArea
   endpoint: {
     domainId: "corporate",
     title: "Endpoint security",
-    lede: "EPP and EDR remain the device record. SACR's 22 Jul 2026 report, re-read 27 Oct 2026, defines endpoint control as visibility beyond the file and the process. That sentence does not replace endpoint detection. The five labels below are not capability cells.",
+    lede: "Start with what happened on one device. A prevention verdict, a timeline of activity and a record of what someone did inside an application answer different questions.",
     body: [
       {
-        heading: "EPP",
-        text: "Endpoint protection tries to stop known-bad files and enforce device policy. It does not reconstruct an agent's tool calls.",
+        heading: "EPP · Endpoint protection platform",
+        text: "Which policy blocked or quarantined the installer? Check the verdict and whether the policy covered this device.",
         href: "/categories/endpoint-security",
       },
       {
-        heading: "EDR",
-        text: "Endpoint detection records processes, files, and related activity, then helps an analyst respond. SACR's 22 Jul 2026 report expands visibility beyond that record into developer environments, SaaS applications, AI tools, and agent frameworks. It does not say the endpoint record is unnecessary, and it does not fill a detection cell.",
+        heading: "EDR · Endpoint detection and response",
+        text: "If the installer ran, what did it launch and who can isolate the device? Ask how far back the process history goes and whether the original file is available.",
         href: "/categories/endpoint-security",
       },
       {
-        heading: "XDR",
-        text: "Extended detection correlates endpoint with other signals. It is a different purchase from a specialist that only watches local AI use.",
+        heading: "ECP · Endpoint control and prevention",
+        text: "SACR uses AI-EDR for observing a running agent and ECPP for a platform spanning several ECP functions. Can the team trace a coding assistant’s tool call and stop it from sending sensitive text to a service?",
+        href: "/categories/endpoint-control",
+      },
+      {
+        heading: "XDR · Extended detection and response",
+        text: "Can the endpoint alert be connected to the same user's sign-in and email activity? Check which sources the buyer has connected.",
         href: "/categories/xdr",
+      },
+      {
+        heading: "Detection by environment",
+        text: "NDR looks at network traffic, ITDR at identity abuse and CDR at cloud activity. Each can contribute a different part of the same investigation.",
+        href: "/domains/secops",
+      },
+      {
+        heading: "Operating the investigation",
+        text: "An SDPP routes events, a SIEM searches and correlates them, and SOAR runs response playbooks. AISOC describes AI-assisted SOC work. With MDR, a provider takes responsibility for agreed monitoring and response tasks.",
+        href: "/categories/mdr",
       },
     ],
   },

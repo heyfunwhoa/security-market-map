@@ -3,7 +3,7 @@ id: "secrets-detection"
 type: "category"
 name: "Secrets detection and remediation"
 layer: "core"
-vendors: 64
+vendors: 65
 ---
 
 # Secrets detection and remediation
@@ -53,7 +53,7 @@ From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - CodeAnt AI: Publisher or maintainer of CodeAnt AI secrets detection. Research candidate; see product-level evidence and scope.
 - ripsecrets project: Publisher or maintainer of ripsecrets. Research candidate; see product-level evidence and scope.
 - shhgit project: Publisher or maintainer of shhgit. Research candidate; see product-level evidence and scope.
-- ReversingLabs: Publisher or maintainer of ReversingLabs secrets detection. Research candidate; see product-level evidence and scope.
+- ReversingLabs: ReversingLabs provides secrets detection in software artifacts and Spectra Analyze for malware analysis and retrospective file hunting.
 - Postman: Publisher or maintainer of Postman Secret Scanner. Research candidate; see product-level evidence and scope.
 - Black Duck: Publisher of a secrets-scanning datasheet for source code and infrastructure-as-code. The catalog still has a separate synopsys shortlist record. This pass does not merge those names.
 - OpenText: Publisher of the OpenText SAST documentation that describes a secrets analyzer. The product name on that documentation set is Fortify. This record does not establish a rename history.
@@ -100,6 +100,7 @@ From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - Teleskope
 - Sentra
 - Strac
+- Thinkst Applied Research
 
 ## What buyers do instead
 

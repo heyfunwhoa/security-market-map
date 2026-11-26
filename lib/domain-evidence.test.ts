@@ -3,9 +3,9 @@ import { catalog } from "./catalog";
 import { charterLead, domainClaimCounts, domainStatusLabel } from "./domain-evidence";
 
 describe("domain evidence status", () => {
-  it("labels identity evidenced and every other domain mapped, evidence coming", () => {
+  it("labels identity evidenced and every other domain mapped", () => {
     for (const domain of catalog.domains) {
-      expect(domainStatusLabel(domain.depth)).toBe(domain.id === "identity" ? "Evidenced" : "Mapped, evidence coming");
+      expect(domainStatusLabel(domain.depth)).toBe(domain.id === "identity" ? "Evidenced" : "Mapped");
     }
   });
 
