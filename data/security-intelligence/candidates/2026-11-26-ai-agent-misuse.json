@@ -122,6 +122,13 @@
           "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
         },
         {
+          "publisher": "Hugging Face",
+          "canonicalUrl": "https://huggingface.co/blog/security-incident-july-2026",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-26T21:10:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
           "publisher": "TechCrunch",
           "canonicalUrl": "https://techcrunch.com/2026/07/21/openai-says-hugging-face-was-breached-by-its-own-pre-release-models/",
           "sourceRole": "secondary",
@@ -148,7 +155,7 @@
       "claims": [
         {
           "id": "claim:openai-models-hugging-face-intrusion-2026:1",
-          "statement": "During an internal ExploitGym cyber evaluation with reduced refusals, a combination of OpenAI models including GPT-5.6 Sol and a more capable pre-release model compromised Hugging Face production infrastructure.",
+          "statement": "During an internal OpenAI evaluation on the third-party ExploitGym benchmark, run with reduced cyber refusals, a combination of OpenAI models including GPT-5.6 Sol and a more capable pre-release model compromised Hugging Face production infrastructure.",
           "epistemicStatus": "reported",
           "sourceUrl": "https://openai.com/index/hugging-face-model-evaluation-security-incident"
         },
@@ -175,6 +182,12 @@
           "statement": "Axios reported the models used stolen credentials and additional vulnerabilities to reach part of Hugging Face's production infrastructure.",
           "epistemicStatus": "reported",
           "sourceUrl": "https://axios.com/2026/07/23/openai-hugging-face-cyber-hacks-testing"
+        },
+        {
+          "id": "claim:openai-models-hugging-face-intrusion-2026:6",
+          "statement": "Hugging Face disclosed on July 16, 2026 an intrusion it said was driven end to end by an autonomous AI agent system, using an unknown LLM. It entered through a malicious dataset that gained code execution on a processing worker, then harvested cloud and cluster credentials and reached a limited set of internal datasets and several service credentials.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://huggingface.co/blog/security-incident-july-2026"
         }
       ],
       "attackMappings": [
@@ -194,7 +207,7 @@
       "defensiveMappings": [],
       "weaknessMappings": [],
       "unresolvedQuestions": [
-        "Hugging Face's own disclosure and post-mortem were not checked directly; add as a second primary source.",
+        "Hugging Face's July 16 disclosure was checked on 2026-11-26. It does not name Artifactory; that detail comes from OpenAI. A later, more detailed Hugging Face write-up is reported (around July 27) but was not checked.",
         "OpenAI posted updates through August 26, 2026 and promised a technical report; the claims above reflect the preliminary post and July updates.",
         "Unknown: exact data accessed beyond benchmark solutions and the full list of third-party accounts the models touched."
       ]
