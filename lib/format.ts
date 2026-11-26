@@ -35,6 +35,8 @@ export function relationshipLabel(type: string): string {
       return "Bundled alternative";
     case "complement":
       return "Complement";
+    case "partial_overlap":
+      return "Partial overlap";
     case "adjacent_budget":
       return "Adjacent budget";
     default:

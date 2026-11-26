@@ -44,6 +44,8 @@ Use explicit relationship values for each buyer decision:
 
 No sourced evidence means **candidate** or **unknown**, never an asserted direct competitor.
 
+In the typed catalog (`relationshipTypeSchema`) these map to `direct_competitor`, `partial_overlap`, `complement`, `bundled_alternative` (an incumbent platform's included option) and `adjacent_budget` (a different budget line touches the same problem). Use `partial_overlap` when two products share scope in one buyer scenario but sit in different primary categories (for example AI data protection and agentic runtime enforcement both governing MCP tool calls). State the shared scope and what stays different in the rationale; shared scope is not feature parity.
+
 ## 3. Evidence collection workflow
 
 1. Register canonical **original** URLs: product docs, current pricing, case studies, release notes, APIs and partner pages, with publisher and as-of dates.

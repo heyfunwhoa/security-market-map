@@ -333,20 +333,22 @@ export const agenticEndpointEvents: CatalogEvent[] = [
 /**
  * Relationships for the agentic endpoint use case. None is a direct-competitor finding: each states the
  * buyer scenario in which two products overlap or complement each other, from recorded claims.
+ * partial_overlap: shared scope in a defined scenario, usually because the products sit in different
+ * primary categories; shared scope is not feature parity. adjacent_budget is kept for different budgets.
  */
 export const agenticEndpointRelationships: Relationship[] = [
   { id: "rel-ae-gitguardian-bay", fromProductId: "gitguardian-developer-endpoint", toProductId: "bay-platform", type: "complement", useCaseId: "uc-agentic-endpoint",
     rationale: "Complement when a coding agent can read secrets on a developer laptop: GitGuardian finds secrets in local files and supported AI tool prompts; Bay decides whether the agent's next action may run. Neither replaces the other.", sourceId: null },
-  { id: "rel-ae-aikido-koi", fromProductId: "aikido-device-protection", toProductId: "palo-alto-koi", type: "adjacent_budget", useCaseId: "uc-agentic-endpoint",
+  { id: "rel-ae-aikido-koi", fromProductId: "aikido-device-protection", toProductId: "palo-alto-koi", type: "partial_overlap", useCaseId: "uc-agentic-endpoint",
     rationale: "Partial overlap on package-install control: both intercept installs from public registries. Koi also claims runtime policies for named agents; Aikido's agent coverage is inventory, not tool-call blocking.", sourceId: null },
   { id: "rel-ae-origin-bay", fromProductId: "origin-endpoint-ai-observability", toProductId: "bay-platform", type: "complement", useCaseId: "uc-agentic-endpoint",
     rationale: "Complement when a team wants both a record and a gate: Origin reconstructs what agents did from endpoint evidence; Bay decides on actions before they run. Origin's blocking is not established.", sourceId: "src-ae-origin-start" },
-  { id: "rel-ae-harmonic-bay", fromProductId: "harmonic-platform", toProductId: "bay-platform", type: "adjacent_budget", useCaseId: "uc-agentic-endpoint",
+  { id: "rel-ae-harmonic-bay", fromProductId: "harmonic-platform", toProductId: "bay-platform", type: "partial_overlap", useCaseId: "uc-agentic-endpoint",
     rationale: "Overlap on MCP tool calls, different center: Harmonic leads with sensitive data in AI tool use and governs MCP tool calls through a gateway; Bay leads with per-action decisions through AI tool hooks. Often a data-protection budget versus an endpoint budget.", sourceId: "src-ae-harmonic-agents" },
-  { id: "rel-ae-bloom-island", fromProductId: "bloom-platform", toProductId: "island-agentic-endpoint-posture", type: "adjacent_budget", useCaseId: "uc-agentic-endpoint",
+  { id: "rel-ae-bloom-island", fromProductId: "bloom-platform", toProductId: "island-agentic-endpoint-posture", type: "partial_overlap", useCaseId: "uc-agentic-endpoint",
     rationale: "Partial overlap on inventory and posture of AI assets on devices (agents, MCP servers, extensions, packages). Island ties into its browser and Desktop; Bloom is standalone. Shared scope is not feature parity.", sourceId: null },
-  { id: "rel-ae-ent-bold", fromProductId: "ent-platform", toProductId: "bold-endpoint", type: "adjacent_budget", useCaseId: "uc-agentic-endpoint",
+  { id: "rel-ae-ent-bold", fromProductId: "ent-platform", toProductId: "bold-endpoint", type: "partial_overlap", useCaseId: "uc-agentic-endpoint",
     rationale: "Both read intent on the endpoint to stop risky actions by people and agents, and both reach into DLP. Ent spans insider risk and threat prevention; Bold leads with data loss. Evaluate on the data-protection scenario, not the agent-control one.", sourceId: null },
-  { id: "rel-ae-neuraltrust-zenity", fromProductId: "neuraltrust-platform", toProductId: "zenity-platform", type: "adjacent_budget", useCaseId: "uc-agentic-endpoint",
+  { id: "rel-ae-neuraltrust-zenity", fromProductId: "neuraltrust-platform", toProductId: "zenity-platform", type: "partial_overlap", useCaseId: "uc-agentic-endpoint",
     rationale: "Both control agent tool calls without an endpoint sensor: NeuralTrust through its AI gateway, Zenity through native hooks and an MCP gateway. For laptop coding agents, coverage depends on whether traffic or hooks reach them.", sourceId: null },
 ];

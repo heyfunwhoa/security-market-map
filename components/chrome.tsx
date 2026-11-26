@@ -132,6 +132,7 @@ const PILL_LABELS: Record<string, string> = {
   direct_competitor: "Direct competitor",
   bundled_alternative: "Bundled alternative",
   complement: "Complement",
+  partial_overlap: "Partial overlap",
   adjacent_budget: "Adjacent budget",
   seed_reviewed: "Seed reviewed",
   approved: "Reviewed",

@@ -179,7 +179,7 @@ export const evidenceEdgeSchema = z.object({
   sourceIds: z.array(z.string()),
   catalogRecordId: z.string().nullable(),
   useCaseId: z.string().nullable(),
-  relationshipType: z.enum(["direct_competitor", "bundled_alternative", "complement", "adjacent_budget"]).nullable(),
+  relationshipType: z.enum(["direct_competitor", "bundled_alternative", "complement", "partial_overlap", "adjacent_budget"]).nullable(),
   polarity: z.enum(["asserts", "denies", "limits"]).nullable(),
   claimVerificationStatus: z.enum(["verified", "vendor_published", "needs_review", "conflicting", "superseded"]).nullable(),
   // Derived from the catalog so new source types (news, legal_summary, academic) stay in sync.

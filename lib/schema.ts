@@ -29,6 +29,7 @@ export const relationshipTypeSchema = z.enum([
   "direct_competitor",
   "bundled_alternative",
   "complement",
+  "partial_overlap",
   "adjacent_budget",
 ]);
 export const deploymentSchema = z.enum([

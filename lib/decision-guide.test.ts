@@ -34,3 +34,13 @@ describe("agentic endpoint decision guide", () => {
     expect(renderToStaticMarkup(createElement(DecisionGuide, { useCaseId: "uc-detect" }))).toBe("");
   });
 });
+
+describe("partial overlap relationship type", () => {
+  it("is labeled and used for the agentic endpoint overlaps", async () => {
+    const { relationshipLabel } = await import("./format");
+    const { catalog } = await import("./catalog");
+    expect(relationshipLabel("partial_overlap")).toBe("Partial overlap");
+    const overlaps = catalog.relationships.filter((r) => r.type === "partial_overlap").map((r) => r.id).sort();
+    expect(overlaps).toEqual(["rel-ae-aikido-koi", "rel-ae-bloom-island", "rel-ae-ent-bold", "rel-ae-harmonic-bay", "rel-ae-neuraltrust-zenity"]);
+  });
+});
