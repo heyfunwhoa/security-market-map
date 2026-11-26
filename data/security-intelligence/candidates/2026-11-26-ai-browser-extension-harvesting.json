@@ -1,0 +1,99 @@
+{
+  "batch": "2026-11-26-ai-browser-extension-harvesting",
+  "status": "candidate_only",
+  "publishable": false,
+  "framework": "docs/security-intelligence/incident-classification-framework.md",
+  "discoveryContext": "Found on 2026-11-26 while researching agentic endpoint vendors (docs/market-research/agentic-endpoint-deployment-models-2026-11.md). A CIO.com piece cited Koi research on a campaign it called DarkSpectre: eight 'featured' browser extensions with over 8 million users harvesting AI chats. Those figures match Koi's December 2025 Urban VPN research, recorded here. Searched the seed and every candidate batch for Urban VPN, BiScience, DarkSpectre and BragJack: no matches. Koi's original blog URL now redirects to a Palo Alto Networks product page, so no primary source could be read. Third-party text was paraphrased, not copied.",
+  "excludedFromIncidents": [
+    "BragJack (Forever Security, disclosed 16 Sep 2026): proof-of-concept technique in which one browser extension hijacked the built-in AI agents of Chrome (Gemini Live), Edge, Perplexity Comet, Opera Neon and Claude in Chrome; CVE-2026-0628 and CVE-2026-55945; fixes and bug bounties reported"
+  ],
+  "excludedReason": "BragJack is coordinated vulnerability research with fixes, CVEs and bounties; no affected organization or in-the-wild compromise is reported, so it is a source-registry or weakness-mapping candidate, not an incident. Forever Security's own write-up was not located; secondary sources are BleepingComputer (19 Sep 2026, https://bleepingcomputer.com/news/security/bragjack-attacks-hijack-ai-browser-agents-through-malicious-extensions), Dark Reading (https://www.darkreading.com/endpoint-security/bragjack-browser-agentic-ai) and the Cloud Security Alliance research note (https://labs.cloudsecurityalliance.org/research/csa-research-note-bragjack-browser-ai-agent-hijack-20260922/).",
+  "candidates": [
+    {
+      "incidentId": "incident:urban-vpn-ai-chat-harvesting-2025",
+      "title": "Urban VPN and related browser extensions silently harvested users' AI chatbot conversations",
+      "incidentKind": "malware_campaign",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "The Register",
+          "canonicalUrl": "https://www.theregister.com/2025/12/16/chrome_edge_privacy_extensions_quietly/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-26T21:10:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Information Security Media Group (BankInfoSecurity)",
+          "canonicalUrl": "https://www.bankinfosecurity.com/urban-vpn-proxy-spies-on-ai-chatbot-conversations-a-30368",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-26T21:10:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Malwarebytes",
+          "canonicalUrl": "https://www.malwarebytes.com/blog/news/2025/12/chrome-extension-slurps-up-ai-chats-after-users-installed-it-for-privacy",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-26T21:10:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate mentions Urban VPN, 1ClickVPN, BiScience or DarkSpectre. Nearest neighbors are the extension and marketplace supply-chain candidates (ClawHavoc in 2026-11-25-agentic-endpoint-supply-chain.json), which involve different publishers and platforms.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:urban-vpn-ai-chat-harvesting-2025:1",
+          "statement": "The Register reports Koi Security research that four extensions (Urban VPN Proxy, 1ClickVPN Proxy, Urban Browser Guard and Urban Ad Blocker), distributed through the Chrome Web Store and Microsoft Edge Add-ons, captured users' AI chatbot conversations and sent them to the developers, affecting more than 8 million users.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.theregister.com/2025/12/16/chrome_edge_privacy_extensions_quietly/"
+        },
+        {
+          "id": "claim:urban-vpn-ai-chat-harvesting-2025:2",
+          "statement": "BankInfoSecurity reports that the harvesting arrived in Urban VPN Proxy version 5.5.0, released 9 July 2025, and that earlier versions did not capture AI conversations.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.bankinfosecurity.com/urban-vpn-proxy-spies-on-ai-chatbot-conversations-a-30368"
+        },
+        {
+          "id": "claim:urban-vpn-ai-chat-harvesting-2025:3",
+          "statement": "Malwarebytes reports Koi's finding that captured prompts and responses were sent to Urban Cybersecurity's parent company, BiScience, and that the extensions auto-updated silently on Chrome and Edge.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.malwarebytes.com/blog/news/2025/12/chrome-extension-slurps-up-ai-chats-after-users-installed-it-for-privacy"
+        },
+        {
+          "id": "claim:urban-vpn-ai-chat-harvesting-2025:4",
+          "statement": "Reported targets were ChatGPT, Claude, Gemini, Microsoft Copilot, Perplexity, DeepSeek, Grok and Meta AI, and capture reportedly continued whether or not the extension's protection features were turned on.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.malwarebytes.com/blog/news/2025/12/chrome-extension-slurps-up-ai-chats-after-users-installed-it-for-privacy"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Primary source needed: Koi's original post (koi.ai/blog/urban-vpn-browser-extension-ai-conversations-data-collection) now redirects to a Palo Alto Networks product page; look for a Palo Alto Networks blog republication, as was found for postmark-mcp, or an archived copy.",
+        "Unknown: whether 'DarkSpectre', the name used in a CIO.com piece, is Koi's name for this same campaign or a different one.",
+        "incidentKind is a reviewer call: the publisher itself added the harvesting, so this may fit better as a data-harvesting or privacy incident than a malware campaign.",
+        "Unknown: current store status; Malwarebytes reported the Chrome versions removed while the Edge listings remained at the time."
+      ]
+    }
+  ]
+}
