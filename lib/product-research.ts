@@ -12,12 +12,19 @@ import type { ProductResearchSlug } from "./product-destination";
 export const PRODUCT_ANCHOR_CLASS =
   "scroll-mt-48 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring";
 
+const AGENTIC_RUNTIME_SLUGS = new Set<string>([
+  "bay-platform",
+  "island-agentic-endpoint-posture",
+  "palo-alto-koi",
+  "crowdstrike-falcon-guardian",
+]);
+
 export function productResearchCategory(slug: ProductResearchSlug): { href: string; label: string } {
   if (isCiamProduct(slug)) return { href: "/categories/ciam", label: "Customer identity (CIAM)" };
   if (slug === "kingfisher") {
     return { href: "/categories/secrets-detection", label: "Secrets detection" };
   }
-  if (slug === "bay-platform") return { href: "/categories/agentic-runtime", label: "Agentic runtime enforcement" };
+  if (AGENTIC_RUNTIME_SLUGS.has(slug)) return { href: "/categories/agentic-runtime", label: "Agentic runtime enforcement" };
   return { href: "/categories/endpoint-control", label: "Endpoint control" };
 }
 

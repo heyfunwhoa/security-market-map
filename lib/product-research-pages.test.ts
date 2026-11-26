@@ -183,7 +183,8 @@ describe("product research pages", () => {
     expect(html).not.toContain('id="market-fit"');
     expect(html).not.toContain('id="adjacency"');
     expect(html).toContain("Nearest peers by approach");
-    expect(html).toContain('href="/vendors/crowdstrike"');
+    expect(html).toContain('href="/products/crowdstrike-falcon-guardian"');
+    expect(html).toContain("products=bay-platform,crowdstrike-falcon-guardian,island-agentic-endpoint-posture,palo-alto-koi");
     expect(html).toContain("3. Decide");
     expect(html).toContain("Unknown: Coverage for AI tools without hooks.");
     expect(html).toContain("detection mode");
@@ -199,6 +200,39 @@ describe("product research pages", () => {
       "Coverage for AI tools without hooks",
       "Agent action audit trail",
     ]);
+  });
+
+  it("renders Island, Koi and Falcon Guardian as source-based agentic endpoint profiles", async () => {
+    const island = await pageHtml("island-agentic-endpoint-posture");
+    expect(island).toContain('href="/categories/agentic-runtime"');
+    expect(island).toContain("No analyst coverage recorded.");
+    expect(island).toContain("Unknown: Decide before an agent action runs.");
+    expect(island).toContain("https://www.island.io/blog/see-score-and-control-every-ai-asset-on-your-endpoints");
+    expect(island).toContain("products=island-agentic-endpoint-posture,bay-platform,crowdstrike-falcon-guardian,palo-alto-koi");
+    expect(anchorIds(island).every((id) => island.includes(`id="${id}"`))).toBe(true);
+
+    const koi = await pageHtml("palo-alto-koi");
+    expect(koi).toContain("2. Govern installs");
+    expect(koi).toContain("Cursor, Claude Code and Antigravity");
+    expect(koi).toContain("Unknown: Coverage for AI tools without hooks.");
+    expect(koi).toContain("https://www.paloaltonetworks.com/blog/security-operations/a-quarter-of-innovation-with-koi-agentic-endpoint-security/");
+    expect(koi).toContain("What analysts say");
+    expect(koi).toContain('href="/products/crowdstrike-falcon-guardian"');
+    expect(anchorIds(koi).every((id) => koi.includes(`id="${id}"`))).toBe(true);
+
+    const guardian = await pageHtml("crowdstrike-falcon-guardian");
+    expect(guardian).toContain("2. Control which agents run");
+    expect(guardian).toContain("An allow-list of agents is not a decision on each action.");
+    expect(guardian).toContain("Falcon AIDR");
+    expect(guardian).toContain("Unknown: Agent action audit trail.");
+    expect(anchorIds(guardian).every((id) => guardian.includes(`id="${id}"`))).toBe(true);
+
+    expect(unknownControlBoundaries("palo-alto-koi", catalog.asOf)).toEqual([
+      "Policy drafted from observed activity",
+      "Coverage for AI tools without hooks",
+      "Agent action audit trail",
+    ]);
+    expect(unknownControlBoundaries("crowdstrike-falcon-guardian", catalog.asOf)).toContain("Decide before an agent action runs");
   });
 
   it("keeps an explicit unknown state and distinct evidence controls", () => {

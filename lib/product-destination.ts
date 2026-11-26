@@ -7,6 +7,9 @@ export const PRODUCT_RESEARCH_SLUGS = [
   "aikido-device-protection",
   "kingfisher",
   "bay-platform",
+  "island-agentic-endpoint-posture",
+  "palo-alto-koi",
+  "crowdstrike-falcon-guardian",
   ...(Object.keys(ciamProfiles) as CiamProductSlug[]),
 ] as const;
 

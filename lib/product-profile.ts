@@ -74,6 +74,144 @@ export const productProfileSteps: Record<string, ProfileStep[]> = {
         "An audit trail of agent actions is not proof that every risky action was intercepted.",
     },
   ],
+  "island-agentic-endpoint-posture": [
+    {
+      title: "Discover",
+      summary:
+        "Island Desktop, or an agentless rollout through the MDM or EDR already on the device, inventories MCP servers, skills, hooks, AI clients, local models, packages and extensions.",
+      capabilityIds: ["cap-agent-asset-inventory"],
+      claimIds: ["claim-ae-island-deploy"],
+      check:
+        "Confirm which path the pilot uses (Island Desktop or agentless), supported operating systems, and how fast a newly installed MCP server or skill appears.",
+      boundary:
+        "An inventory shows what is installed; it does not show what an agent did with it.",
+    },
+    {
+      title: "Score",
+      summary:
+        "Island scores each asset in its cloud for impact and likelihood, using code analysis, publisher trust, known CVEs, secrets in configs and hidden characters.",
+      capabilityIds: [],
+      claimIds: ["claim-ae-island-scoring"],
+      check:
+        "Seed a test device with a known-risky MCP server or extension and confirm the score and findings it gets.",
+      boundary:
+        "Scores are Island's own analysis. A high score is a prioritization signal, not proof of compromise.",
+    },
+    {
+      title: "Enforce",
+      summary:
+        "Policy blocks assets above a risk threshold, allow-lists sanctioned AI clients, removes or updates risky components and locks unsafe settings.",
+      capabilityIds: ["cap-agent-preexec-control"],
+      claimIds: ["claim-ae-island-enforce"],
+      check:
+        "Trigger each policy action on a test device, in each deployment mode, and time how long it takes to apply.",
+      boundary:
+        "These controls act on assets and settings. Island does not say they stop an individual agent action before it runs, or which ones work agentless.",
+    },
+    {
+      title: "Record",
+      summary:
+        "Any session or action history would sit here; Island's post does not describe one.",
+      capabilityIds: ["cap-agent-session-context", "cap-agent-action-audit"],
+      claimIds: [],
+      check:
+        "Ask what is logged when policy fires, where it is exported and how long it is kept.",
+      boundary:
+        "No recorded source describes agent session or action logging for this product.",
+    },
+  ],
+  "palo-alto-koi": [
+    {
+      title: "Discover",
+      summary:
+        "An endpoint component, rolled out through Palo Alto's deployment portal or as a script through MDM or EDR, inventories agents, packages, extensions, IDE plugins, MCP servers and models.",
+      capabilityIds: ["cap-agent-asset-inventory"],
+      claimIds: ["claim-ae-koi-deploy", "claim-ae-koi-mdm-script", "claim-ae-sacr-koi-deploy"],
+      check:
+        "Ask which pieces the pilot needs (endpoint package, registry proxy, SASE routing) and confirm macOS, Windows and Linux coverage on real devices.",
+      boundary:
+        "Sources describe deployment three ways: an endpoint portal, an MDM-pushed script and, per SACR, a network gateway with no new agent. Treat the pilot design as unconfirmed.",
+    },
+    {
+      title: "Govern installs",
+      summary:
+        "Guardrails stop unverified packages and browser add-ons before they run, and remediation removes flagged plugins, npm packages and connectors.",
+      capabilityIds: [],
+      claimIds: ["claim-ae-koi-remediate", "claim-ae-koi-cogentrix"],
+      check:
+        "Install a benign test package and extension that policy should block, then confirm removal and that the registry proxy stops reinstall.",
+      boundary:
+        "Install governance controls what lands on the device; it does not by itself control what an agent does with approved tools.",
+    },
+    {
+      title: "Decide",
+      summary:
+        "Runtime policies block, or pause for user approval, shell, file, MCP tool, skill and network actions before they run, for Cursor, Claude Code and Antigravity.",
+      capabilityIds: ["cap-agent-preexec-control", "cap-agent-unhooked-coverage"],
+      claimIds: [],
+      check:
+        "Run a harmless synthetic action in each named agent and confirm Block and Ask both fire before it runs; repeat in an agent outside the list.",
+      boundary:
+        "Three agents are named and the interception mechanism is not described. Coverage for other AI tools is not shown.",
+    },
+    {
+      title: "Trace",
+      summary:
+        "Activity is grouped into developer-agent sessions with the user, models and extensions involved, and a timeline of shell, file and blocked actions.",
+      capabilityIds: ["cap-agent-session-context", "cap-agent-action-audit"],
+      claimIds: [],
+      check:
+        "Open a session from the pilot and confirm the fields, retention and export path to the SIEM.",
+      boundary:
+        "Palo Alto does not mention prompts in session timelines or describe a formal audit trail.",
+    },
+  ],
+  "crowdstrike-falcon-guardian": [
+    {
+      title: "Discover",
+      summary:
+        "The existing Falcon sensor inventories known and shadow AI agents, running or dormant, on Windows and macOS.",
+      capabilityIds: ["cap-agent-asset-inventory"],
+      claimIds: [],
+      check:
+        "Confirm the sensor version and licence needed, and how quickly a newly installed agent appears in the inventory.",
+      boundary:
+        "Discovery is stated for Windows and macOS only.",
+    },
+    {
+      title: "Control which agents run",
+      summary:
+        "Agent Access Controls define which AI agents may run on managed endpoints and block unauthorized ones.",
+      capabilityIds: ["cap-agent-preexec-control"],
+      claimIds: ["claim-ae-guardian-access"],
+      check:
+        "Block an unapproved test agent, then try a risky action inside an approved one and see whether anything stops it before it runs.",
+      boundary:
+        "An allow-list of agents is not a decision on each action. The release does not say whether individual tool calls are blocked before execution.",
+    },
+    {
+      title: "Trace",
+      summary:
+        "Runtime visibility links an agent's prompt, identity, tool calls and skill use to downstream endpoint activity.",
+      capabilityIds: ["cap-agent-session-context"],
+      claimIds: [],
+      check:
+        "Run a scripted agent task and confirm the execution chain shows the prompt, tool call and resulting process or file change.",
+      boundary:
+        "Visibility after the fact is not prevention.",
+    },
+    {
+      title: "Record",
+      summary:
+        "Agent data flows into Falcon Next-Gen SIEM with retention built in, and detections reconstruct the execution chain.",
+      capabilityIds: ["cap-agent-action-audit"],
+      claimIds: ["claim-ae-guardian-siem"],
+      check:
+        "Confirm which fields reach the SIEM, the retention period and the licence it needs.",
+      boundary:
+        "No field list or retention period is stated.",
+    },
+  ],
   "gitguardian-developer-endpoint": [
     {
       title: "Scan the workstation",

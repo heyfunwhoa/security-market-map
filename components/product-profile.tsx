@@ -103,10 +103,16 @@ export function ProductProfile({
               <div>
                 <dt className="font-semibold">Analyst view</dt>
                 <dd className="mt-1">
-                  {fit.analyst.text}{" "}
-                  <a href={fit.analyst.href} className={LINK}>
-                    {fit.analyst.label}
-                  </a>
+                  {fit.analyst ? (
+                    <>
+                      {fit.analyst.text}{" "}
+                      <a href={fit.analyst.href} className={LINK}>
+                        {fit.analyst.label}
+                      </a>
+                    </>
+                  ) : (
+                    "No analyst coverage recorded. SACR's endpoint control report, as fetched, does not name this product; that is not proof it was excluded."
+                  )}
                 </dd>
               </div>
             </dl>

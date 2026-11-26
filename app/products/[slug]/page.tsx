@@ -10,7 +10,7 @@ import { ProductSectionNav } from "@/components/product-section-nav";
 import { catalog, claimsForSubject, vendorById } from "@/lib/catalog";
 import { claimNeedsRecheck } from "@/lib/coverage";
 import { availabilityLabel } from "@/lib/format";
-import { AGENTIC_ENDPOINT_COMPARISON_URL, DEVELOPER_ENDPOINT_COMPARISON_URL } from "@/lib/comparison-selection";
+import { agenticEndpointComparisonUrl, DEVELOPER_ENDPOINT_COMPARISON_URL } from "@/lib/comparison-selection";
 import { productFit } from "@/lib/product-fit";
 import { AnchorHeading } from "@/components/anchor-heading";
 import { ProductProfile } from "@/components/product-profile";
@@ -56,6 +56,27 @@ const learning: Record<Exclude<ProductResearchSlug, CiamProductSlug>, { action: 
     limitation: "Enforcement needs the on-device enforcement component; a collector-only deployment runs in detection mode (per SACR). Coverage depends on which AI tools expose hooks and which events they expose. No public supported-agent list; latency and false-positive figures are vendor claims.",
     questions: ["Which agents, versions and hook events are covered today, and what happens for tools without hooks?", "Does the pilot run collector-only (detect) or with Bay Enforcer (prevent)?", "How do Lighthouse's 30-day policies treat a new team or a new agent?", "What does Ask look like to the developer, and how are exceptions approved?", "What session data leaves the device, and where is it stored?"],
   },
+  "island-agentic-endpoint-posture": {
+    action: "An MCP server, skill, hook, AI client, package or extension is installed or changed on a device",
+    control: "Island Desktop, or an agentless deployment through existing MDM or EDR, inventories AI assets; Island scores each one in its cloud and policy blocks, allow-lists, removes or locks components that cross a risk threshold",
+    evidence: "AI asset inventory, per-asset risk score with impact, likelihood and findings, and the matched policy action",
+    limitation: "Island's post does not say whether any control stops an individual agent action before it runs, which enforcement actions work in agentless mode, or which operating systems are supported. Scores are Island's own analysis and are not independently tested.",
+    questions: ["Which enforcement actions work in agentless mode, and how soon after a scan do they apply?", "Can any control stop a single agent action before it runs, or only block, remove or lock assets?", "Which operating systems and AI clients are supported today?", "What device data goes to Island's cloud for scoring?", "Can it be bought without Island Enterprise Browser or Island Desktop?"],
+  },
+  "palo-alto-koi": {
+    action: "A developer or agent installs a package, extension, plugin or MCP server, or an agent proposes a shell, file, MCP, skill or network action",
+    control: "An endpoint component and registry proxy inventory and govern non-binary software; runtime policies block or ask before named agent actions for Cursor, Claude Code and Antigravity",
+    evidence: "Software and agent inventory, developer-agent session timeline, blocked or approved actions, and remediation records",
+    limitation: "Runtime blocking is described for Cursor, Claude Code and Antigravity only, and Palo Alto does not say how those actions are intercepted. Deployment descriptions differ: Palo Alto describes an endpoint deployment portal, Koi's page an MDM-pushed script, and SACR a network supply-chain gateway. Customer figures come from a vendor-published story.",
+    questions: ["Which components does the pilot need: endpoint package, registry proxy, SASE routing, or all three?", "Which agents get pre-execution runtime policies today, and what happens for other AI tools?", "Is Koi bought standalone, through Cortex XDR or through Prisma AIRS, and does packaging change what is included?", "What session data leaves the device, and how long is it kept?", "What does Ask look like to a developer, and who approves it?"],
+  },
+  "crowdstrike-falcon-guardian": {
+    action: "An AI agent runs, or tries to run, on a managed Windows or macOS endpoint",
+    control: "The existing Falcon sensor inventories known and shadow agents, links prompts, identity, tool calls and skills to endpoint activity, and Agent Access Controls block agents that are not approved",
+    evidence: "Agent inventory with deployer and status, the agent execution chain, detections, and agent data in Falcon Next-Gen SIEM",
+    limitation: "Agent Access Controls decide which agents may run; CrowdStrike's release does not say whether individual agent actions or tool calls are blocked before they run. No GA dates are given, AI Gateway and Falcon Complete for Guardian are future capabilities, and discovery is stated for Windows and macOS only.",
+    questions: ["Which Falcon Guardian components are generally available today, and which are licensed separately?", "Can a policy stop a single tool call or command before it runs, or only stop an agent from running?", "Is Falcon Guardian the product SACR calls Falcon AIDR?", "What covers Linux hosts and developer containers?", "Which agent fields reach Next-Gen SIEM, and how long are they kept?"],
+  },
   "aikido-device-protection": {
     action: "Developer or agent requests a package from a supported registry",
     control: "Local selective interception evaluates package-domain traffic against synchronized policy and intelligence",
@@ -90,7 +111,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       <PageIntro kicker="Product research" title={product.name} lede={product.positioning} />
       <div className="mt-4 flex flex-wrap items-center gap-3 text-sm">
         <StatusPill status={product.availability} />
-        <ProfileLink href={fit ? AGENTIC_ENDPOINT_COMPARISON_URL : productComparisonUrl(product)} className="inline-flex min-h-11 items-center font-medium text-primary underline underline-offset-4">{fit ? "Compare with peers" : `Compare ${product.name}`}</ProfileLink>
+        <ProfileLink href={fit ? agenticEndpointComparisonUrl(product.id) : productComparisonUrl(product)} className="inline-flex min-h-11 items-center font-medium text-primary underline underline-offset-4">{fit ? "Compare with peers" : `Compare ${product.name}`}</ProfileLink>
         {vendor ? <ProfileLink className="inline-flex min-h-11 items-center text-primary underline underline-offset-4" href={`/vendors/${vendor.slug}`}>About {vendor.name}</ProfileLink> : null}
         <a className="inline-flex min-h-11 max-w-full items-center text-primary underline underline-offset-4 [overflow-wrap:anywhere]" href={product.officialUrl}>Official product documentation</a>
       </div>
@@ -183,8 +204,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <aside className="mt-10 border-t border-border pt-6">
           <h2 className="text-xl font-semibold">Compare only when needed</h2>
           <p className="mt-2 text-sm leading-6 text-muted-foreground">Start with the product&apos;s own control points and limitations. The comparison matrix combines documented evidence with explicit Unknown states, not a winner or score.</p>
-          {slug === "bay-platform" ? (
-            <ProfileLink href={AGENTIC_ENDPOINT_COMPARISON_URL} className="mt-3 inline-flex min-h-11 items-center text-sm font-medium text-primary underline underline-offset-4">Compare Bay with CrowdStrike, Island and Knostic</ProfileLink>
+          {fit ? (
+            <ProfileLink href={agenticEndpointComparisonUrl(product.id)} className="mt-3 inline-flex min-h-11 items-center text-sm font-medium text-primary underline underline-offset-4">Compare with agentic endpoint peers</ProfileLink>
           ) : (
             <ProfileLink href={DEVELOPER_ENDPOINT_COMPARISON_URL} className="mt-3 inline-flex min-h-11 items-center text-sm font-medium text-primary underline underline-offset-4">Compare GitGuardian and Aikido</ProfileLink>
           )}

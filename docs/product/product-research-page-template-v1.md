@@ -1,6 +1,6 @@
 # Product Research Page Template v1
 
-Status: reusable product onboarding contract, implemented baseline is Kingfisher + GitGuardian Developer Endpoint Protection + Aikido Device Protection + Bay platform ([pilot](../verification/bay-product-template-pilot.md), first agentic runtime page). This document describes the existing routes; it does not claim all future product pages use the template automatically.
+Status: reusable product onboarding contract, implemented baseline is Kingfisher + GitGuardian Developer Endpoint Protection + Aikido Device Protection + Bay platform ([pilot](../verification/bay-product-template-pilot.md), first agentic runtime page) + Island Agentic Endpoint Posture + Koi (Palo Alto Networks) + CrowdStrike Falcon Guardian. This document describes the existing routes; it does not claim all future product pages use the template automatically.
 
 ## Ownership
 - Canonical vendor/product/category records and claims live in the Market Map catalog.
@@ -56,7 +56,7 @@ Placement remains category → vendor → product → source evidence → option
 
 ## Source-based profile layout (2026-11-25)
 
-Kingfisher, GitGuardian Developer Endpoint Protection, Aikido Device Protection and Bay platform use this layout. CIAM product pages keep the original layout.
+Kingfisher, GitGuardian Developer Endpoint Protection, Aikido Device Protection, Bay platform, Island Agentic Endpoint Posture, Koi and CrowdStrike Falcon Guardian use this layout. Agentic endpoint profiles link to a comparison that starts with their own product (`agenticEndpointComparisonUrl`); a profile with no recorded analyst coverage says so instead of leaving the line out. CIAM product pages keep the original layout.
 
 Order: header (short product name; compare, About vendor, official docs) → buyer question (from the product's use case record) → **Where it fits** (deployment, analyst view and nearest peers by approach when recorded in [product-fit.ts](../../lib/product-fit.ts); categories always) → **How it works, with proof** → limitations → **Company, customers and news** → pilot questions → **All sources** (collapsed, grouped by vendor, analysts, press and third parties).
 

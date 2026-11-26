@@ -11,9 +11,23 @@ export const SECRETS_COMPARISON_URL =
 export const DEVELOPER_ENDPOINT_COMPARISON_URL =
   "/compare?category=endpoint-control&use=uc-developer-endpoint&products=gitguardian-developer-endpoint,aikido-device-protection";
 
+/** Agentic endpoint products with recorded capability claims, in the order peers are offered. */
+const AGENTIC_ENDPOINT_PEERS = [
+  "bay-platform",
+  "crowdstrike-falcon-guardian",
+  "island-agentic-endpoint-posture",
+  "palo-alto-koi",
+  "knostic-kirin",
+] as const;
+
+/** Agentic endpoint comparison that starts with the given product; the compare page shows at most four. */
+export function agenticEndpointComparisonUrl(productId: string): string {
+  const ids = [productId, ...AGENTIC_ENDPOINT_PEERS.filter((id) => id !== productId)].slice(0, 4);
+  return `/compare?category=agentic-runtime&use=uc-agentic-endpoint&products=${ids.join(",")}`;
+}
+
 /** Agentic endpoint peers for the Bay product page, on the agentic endpoint capability set. */
-export const AGENTIC_ENDPOINT_COMPARISON_URL =
-  "/compare?category=agentic-runtime&use=uc-agentic-endpoint&products=bay-platform,crowdstrike-falcon-guardian,island-agentic-endpoint-posture,knostic-kirin";
+export const AGENTIC_ENDPOINT_COMPARISON_URL = agenticEndpointComparisonUrl("bay-platform");
 
 export function productsInCategory(products: Product[], categoryId: string) {
   return products.filter(
