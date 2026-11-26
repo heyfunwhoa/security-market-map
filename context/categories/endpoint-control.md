@@ -3,7 +3,7 @@ id: "endpoint-control"
 type: "category"
 name: "Endpoint control and prevention"
 layer: "core"
-vendors: 9
+vendors: 10
 ---
 
 # Endpoint control and prevention
@@ -28,6 +28,7 @@ Controls aimed at what a device is doing above the file and the process: develop
 
 - Cyberhaven: Named by SACR in July 2026 among endpoint-control specialists, beside data-movement detection. No endpoint or DLP capability is checked.
 - Neo Security: Named by SACR as an endpoint-control specialist. Boston-based, Israeli-founded "agentic software control" company that emerged from stealth on 20 Jul 2026 with $100M (a16z, Bessemer): a full endpoint agent inventories AI agents and AI-enabled apps, scores risk, attributes actions and enforces policy on the device. Product detail in agentic-endpoint.ts.
+- Glow: Tel Aviv and Palo Alto company founded 2025 that calls itself the Endpoint AI company: AI agents that inventory endpoint software, control what is allowed to run or be installed, and steer employees to managed AI tools. Launched July 2026 with a $180M Series A.
 
 ## Vendors (adjacent)
 

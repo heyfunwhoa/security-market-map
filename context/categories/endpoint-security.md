@@ -3,7 +3,7 @@ id: "endpoint-security"
 type: "category"
 name: "Endpoint security"
 layer: "core"
-vendors: 18
+vendors: 19
 ---
 
 # Endpoint security
@@ -54,6 +54,7 @@ From 3 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - Binalyze
 - Bay
 - Backslash Security
+- Glow
 - Manifold
 - Asymptote Labs
 - Cisco

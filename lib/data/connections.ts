@@ -775,7 +775,7 @@ export const estateAreas: { name: string; problem: string; href: string; example
       vendor("Neo Security", "neo-security"),
       vendor("Bay Security", "bay-security"),
       vendor("Bloom Security", null),
-      vendor("Glow Security", null),
+      vendor("Glow Security", "glow"),
       vendor("Pluto Security", null),
       vendor("Origin", null),
       vendor("Ent", null),

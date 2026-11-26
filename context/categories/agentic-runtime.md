@@ -3,7 +3,7 @@ id: "agentic-runtime"
 type: "category"
 name: "Agentic runtime enforcement"
 layer: "core"
-vendors: 36
+vendors: 37
 ---
 
 # Agentic runtime enforcement
@@ -63,6 +63,7 @@ A check on a live agent action before it completes. Directory, governance, privi
 - Neo Security
 - Lasso Security
 - Operant AI
+- Glow
 - AIR Security
 - Panguard AI
 - Pillar Security

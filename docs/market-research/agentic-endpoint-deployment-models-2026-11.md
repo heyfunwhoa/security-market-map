@@ -53,7 +53,7 @@ All capability statements below are vendor-reported unless marked otherwise. Not
 ### Source caveats
 
 - The Backslash ["top 7 agentic endpoint security companies"](https://www.backslash.security/blog/top-7-agentic-endpoint-security-companies) post (dated 2026-10-01) is written by a competitor and ranks Backslash first. It was used only to find names. Claims about other vendors that rest on it alone are marked pending. It predates Bay's 10 Nov launch, so Bay isn't in it.
-- Glow (install-time blocking of AI tools) appears only in the Backslash post. It is not recorded here until a first-party source is checked.
+- Glow is now recorded (`glow`, `glow-platform`) from glow.io, its Anthropic integration docs and SecurityWeek. Its own material centers on software control and safe AI adoption; deployment model and per-action agent control are not stated. The install-time framing comes from the competitor-authored Backslash post.
 - Bay's funding split and the Koi deal value are not repeated here; see the Bay profile and the PANW releases.
 
 ## SACR coverage: Endpoint Control and Prevention (22 Jul 2026)
@@ -102,7 +102,7 @@ Every vendor discussed in this note, with the record that holds its evidence. "V
 | Cyberhaven | Browser extension | Analyst | SACR ECP | `cyberhaven` |
 | Asymptote Labs | Open-source hooks into 23+ harnesses | News | Existing record | `asymptote-beacon` |
 | Manifold | Endpoints; model unknown | News | Existing record | `manifold-aidr` |
-| Bloom, Pluto, Glow, Origin, Ent, Bold, NeuralTrust, Harmonic | Per SACR only (see above) | Analyst | SACR ECP | Names only, not yet records |
+| Bloom, Pluto, Origin, Ent, Bold, NeuralTrust, Harmonic | Per SACR only (see above) | Analyst | SACR ECP | Names only, not yet records |
 
 ## What actually differs (sourced, not ranked)
 
@@ -148,7 +148,7 @@ The step counts on each profile label these "third-party" by publisher, not as i
 1. Confirm Koi's original ClawHavoc and postmark-mcp posts before promoting either incident.
 2. Fetch the Microsoft AI agent support matrix and record per-agent discovery and runtime coverage.
 3. Check Neo's first-party site, funding split and founders; check Knostic's funding and founders.
-4. Decide whether Check Point Workforce AI Security and the SACR-named startups (Bloom, Pluto, Glow, Origin, Ent, Bold, NeuralTrust, Harmonic) warrant vendor records, each after a first-party check.
+4. Decide whether Check Point Workforce AI Security and the SACR-named startups (Bloom, Pluto, Origin, Ent, Bold, NeuralTrust, Harmonic) warrant vendor records, each after a first-party check.
 5. ~~Record per-capability GA status for Falcon Guardian.~~ Done 26 Nov from CrowdStrike's 3 Nov update: hooks, kill switch and AI Gateway available; Falcon Complete for Guardian GA; Linux, cloud and Kubernetes still future.
 6. ~~Confirm SACR's "Falcon AIDR" is "Falcon Guardian".~~ Done: CrowdStrike calls Guardian the evolution of Falcon AIDR.
 7. Bay Lighthouse baselining (30 days per SiliconANGLE and Let's Data Science vs none per Bay's AWS listing) is still unresolved in public sources. Ask Bay directly.

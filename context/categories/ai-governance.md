@@ -3,7 +3,7 @@ id: "ai-governance"
 type: "category"
 name: "AI governance"
 layer: "core"
-vendors: 7
+vendors: 8
 ---
 
 # AI governance
@@ -34,6 +34,7 @@ Inventory of AI systems, the policy that applies to them, and the audit trail. G
 
 - Neo Security
 - Bay
+- Glow
 - Geordie AI
 - Eve Security
 - Zenity
