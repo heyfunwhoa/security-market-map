@@ -6,6 +6,13 @@ import { join, dirname } from 'node:path';
 import test from 'node:test';
 import { decide, shouldSkip } from './vercel-ignore.mjs';
 
+// Git sets these when it runs a hook (for example pre-push), and they win over `cwd`. Left in
+// place, the synthetic repository below would run `git init`, `config` and `commit` against the
+// real repository instead. Clear them so this file only ever touches its own temp repository.
+for (const name of ['GIT_DIR', 'GIT_WORK_TREE', 'GIT_INDEX_FILE', 'GIT_COMMON_DIR', 'GIT_OBJECT_DIRECTORY', 'GIT_ALTERNATE_OBJECT_DIRECTORIES', 'GIT_PREFIX']) {
+  delete process.env[name];
+}
+
 const policy = JSON.parse(readFileSync(new URL('./policy.json', import.meta.url), 'utf8'));
 test('internal allowlist does not swallow content, config, data or mixed changes', () => {
   assert.equal(shouldSkip(['RELEASE.md'], policy), true);
