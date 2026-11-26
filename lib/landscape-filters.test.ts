@@ -1,8 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { filterLandscapeRows, initialLandscapeFilters, landscapeFilterReducer, readLandscapeFilters, landscapeFilterUrl, productDetailUrl, productSectionId } from "./landscape-filters";
+import { searchLandscape, filterLandscapeRows, initialLandscapeFilters, landscapeFilterReducer, readLandscapeFilters, landscapeFilterUrl, readCatalogReturn, withCatalogReturn, productDetailUrl, productSectionId } from "./landscape-filters";
 import type { LandscapeRow } from "@/components/landscape-browser";
 
 const row = (productId: string, overrides: Partial<LandscapeRow> = {}): LandscapeRow => ({
+  primaryCategoryIds: [],
   productId, detailHref: productDetailUrl("example", productId), productName: productId, vendorName: "Example", vendorSlug: "example",
   positioning: "Candidate", categoryIds: ["vault"], domainIds: ["identity"],
   scopes: ["nhi"], deployment: ["saas"], useCaseIds: ["delivery"], availability: "unknown",
@@ -51,6 +52,26 @@ describe("shareable landscape views", () => {
     const params = new URL(landscapeFilterUrl(state), "https://example.test").searchParams;
     expect(readLandscapeFilters(params, options)).toEqual(state);
   });
+  it("returns to the same category, search and shortlist through an anchored profile or comparison", () => {
+    const filters = { ...initialLandscapeFilters, category: "ciam" };
+    const view = landscapeFilterUrl(filters, "a & b?", ["workos", "descope"]);
+    for (const href of ["/vendors/example#product-one", "/compare?products=workos,descope"]) {
+      const target = new URL(withCatalogReturn(href, view), "https://example.test");
+      const original = new URL(href, target.origin);
+      expect(target.hash).toBe(original.hash);
+      expect(target.searchParams.get("products")).toBe(original.searchParams.get("products"));
+      expect(readCatalogReturn(target.searchParams.get("from"))).toBe(view);
+    }
+    expect(landscapeFilterUrl(initialLandscapeFilters, "", ["workos", "descope"])).toBe("/landscape?shortlist=workos%2Cdescope");
+    expect(landscapeFilterUrl(filters)).toBe("/landscape?category=ciam");
+  });
+  it("accepts only catalog paths and approved filter, query and shortlist keys", () => {
+    for (const value of [null, "//example.test", "https://example.test/landscape", "/landscape/other", "/landscape#x", "/landscape/../other"]) {
+      expect(readCatalogReturn(value)).toBeNull();
+    }
+    expect(readCatalogReturn("/landscape")).toBe("/landscape");
+    expect(readCatalogReturn("/landscape?category=ciam&from=elsewhere&category=other")).toBe("/landscape?category=ciam");
+  });
   it("ignores unknown values and unrelated URL parameters", () => {
     const params = new URLSearchParams("domain=removed&category=vault&product=missing&scope=invalid&returnTo=https://example.test");
     expect(readLandscapeFilters(params, options)).toEqual({ ...initialLandscapeFilters, category: "vault" });
@@ -67,5 +88,26 @@ describe("shareable landscape views", () => {
     expect(first.pathname).toBe("/vendors/example");
     expect(decodeURIComponent(first.hash.slice(1))).toBe(productSectionId("vault-one"));
     expect(first.hash).not.toBe(second.hash);
+  });
+});
+
+describe("company and product search", () => {
+  const companies = [
+    { slug: "example", name: "Example", formerNames: ["Former name"] },
+    { slug: "company-only", name: "Company only", formerNames: [] },
+  ];
+
+  it("matches a recorded former name to the current company and its eligible products", () => {
+    const result = searchLandscape(rows, companies, " FORMER Name ", false);
+    expect(result.products).toEqual(rows);
+    expect(result.companies).toEqual([companies[0]]);
+    expect(searchLandscape([rows[1]], companies, "Former name", true).products).toEqual([rows[1]]);
+  });
+
+  it("can return a company without mapped products and respects an active product filter", () => {
+    expect(searchLandscape(rows, companies, "Company only", false)).toEqual({ companies: [companies[1]], products: [] });
+    expect(searchLandscape(rows, companies, "Company only", true)).toEqual({ companies: [], products: [] });
+    expect(searchLandscape(rows, companies, "Alpha", false)).toEqual({ companies: [], products: [rows[1]] });
+    expect(searchLandscape(rows, companies, " ", false)).toEqual({ companies: [], products: rows });
   });
 });

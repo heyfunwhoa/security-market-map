@@ -17,6 +17,7 @@ export default function LandscapePage() {
     vendorSlug: vendorById(product.vendorId)?.slug ?? "",
     positioning: product.positioning,
     categoryIds: [...product.primaryCategoryIds, ...product.adjacentCategoryIds],
+    primaryCategoryIds: product.primaryCategoryIds,
     domainIds: [
       ...new Set(
         catalog.categories
@@ -56,15 +57,16 @@ export default function LandscapePage() {
     <main className="mx-auto max-w-6xl px-4 py-10">
       <PageIntro
         kicker="Landscape"
-        title="Find a security product"
+        title="Find a product or company"
         lede="Search the catalog or narrow it by buyer question. Select two to four products to compare their evidence."
       />
       <div className="mt-8">
         <Suspense fallback={<p role="status">Loading landscape filters…</p>}>
         <LandscapeBrowser
           rows={rows}
+          companies={catalog.vendors.map(({ name, slug, formerNames }) => ({ name, slug, formerNames })).sort((a, b) => a.name.localeCompare(b.name))}
           edges={edges}
-          categories={catalog.categories.map((category) => ({ id: category.id, label: category.name, domainIds: category.domainIds }))}
+          categories={catalog.categories.map((category) => ({ id: category.id, label: category.name, slug: category.slug, domainIds: category.domainIds }))}
           domains={catalog.domains.map((domain) => ({ id: domain.id, label: domain.name }))}
           useCases={catalog.useCases.map((useCase) => ({ id: useCase.id, label: useCase.name }))}
           personas={catalog.personas.map((persona) => ({
