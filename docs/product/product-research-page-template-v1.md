@@ -54,18 +54,25 @@ Use the [Atlas handoff checklist proposed in M2](https://github.com/heyfunwhoa/d
 
 Placement remains category → vendor → product → source evidence → optional Atlas. Reuse existing product IDs and navigation; no catalog, component, public capability or deployment change accompanies this handoff guidance. Keep rule-level records in Atlas.
 
-## Regrouped layout (trial, Bay platform, 2026-11-25)
+## Source-based profile layout (2026-11-25)
 
-An optional layout for products whose buyer question differs from the developer-endpoint set. Turn it on by adding an entry to [product-fit.ts](../../lib/product-fit.ts); pages without an entry are unchanged.
+Kingfisher, GitGuardian Developer Endpoint Protection, Aikido Device Protection and Bay platform use this layout. CIAM product pages keep the original layout.
 
-Order: header (short product name; Compare with peers, About vendor, official docs) → buyer question → how it works (compact trigger, control, evidence) → zoom-in stages → limitations → where it fits in the market (deployment, analyst view, nearest peers by approach) → evidence grouped by who said it (vendor, analysts, press and third parties) → pilot questions → categories.
+Order: header (short product name; compare, About vendor, official docs) → buyer question (from the product's use case record) → **Where it fits** (deployment, analyst view and nearest peers by approach when recorded in [product-fit.ts](../../lib/product-fit.ts); categories always) → **How it works, with proof** → limitations → **Company, customers and news** → pilot questions → **All sources** (collapsed, grouped by vendor, analysts, press and third parties).
+
+How a step works ([product-profile.ts](../../lib/product-profile.ts)):
+
+- Each step lists the recorded claims behind it, pulled by capability ID and, for claims recorded without a capability, by claim ID. No step text is a claim.
+- Under each step: **Proof** (claims with source badge and link), **Not proven** (the step's boundary plus any capability in that step with no current claim), **Test it in a pilot**.
+- A step with no recorded claim says "No recorded source for this step." Capabilities in the product's comparison set that no step covers are listed once under "Not shown by any recorded source".
+- Company, customers and news show only recorded events, vendor claims, customer stories and pricing signals, each with its source. Empty states say what is missing.
 
 Rules:
 
-- The comparison set must match the buyer question. Agent-security products use the agentic endpoint set ([agentic-endpoint-comparison.ts](../../lib/data/agentic-endpoint-comparison.ts), use case `uc-agentic-endpoint`); developer-workstation products keep `uc-developer-endpoint`.
-- Unknown control boundaries list only capabilities with no current claim. Limited, conflicting and needs-review cells have evidence to inspect and are shown in the comparison, not as Unknown.
-- Every line in the fit section restates a recorded claim. Peer groups describe deployment approach only; they are not a ranking or a direct-competitor edge.
-- Conflicting sources stay visible (for Bay, Lighthouse's baselining period) instead of being resolved by choice.
+- Source-based throughout: every statement on the page is a recorded claim, event, story or price with a source link, or an explicit Unknown.
+- The comparison set must match the buyer question. Agent-security products use the agentic endpoint set ([agentic-endpoint-comparison.ts](../../lib/data/agentic-endpoint-comparison.ts), `uc-agentic-endpoint`); developer-workstation products keep `uc-developer-endpoint`.
+- Limited, conflicting and needs-review evidence is shown as evidence with its caveat, not as Unknown. Conflicting sources stay visible (for Bay, Lighthouse's baselining period).
+- Peer groups describe deployment approach only; they are not a ranking or a direct-competitor edge.
+- Keep personal selling angles out of the repo; it is public and neutral.
 
-Roll it to other products only after the Bay trial is reviewed.
-
+Adding a product: add its steps to `productProfileSteps`, its learning entry (limitation, pilot questions) in the product page, and, if sourced, a `productFit` entry. Tag new claims with a capability where the source states one.

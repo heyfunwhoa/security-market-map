@@ -4,7 +4,6 @@
  * Peer groupings describe deployment approach only. Sharing an approach does not make vendors direct competitors.
  */
 export type ProductFit = {
-  buyerQuestion: string;
   deployment: string;
   analyst: { text: string; href: string; label: string };
   peers: { approach: string; items: { name: string; href: string }[] }[];
@@ -12,7 +11,6 @@ export type ProductFit = {
 
 export const productFit: Record<string, ProductFit> = {
   "bay-platform": {
-    buyerQuestion: "Can we see and stop risky AI agent actions on our devices without deploying a new agent?",
     deployment: "Agentless rollout: a short-lived collector delivered through the MDM or EDR already on the device, plus a decision on each agent action through the AI tool's own hook. No persistent agent, proxy or kernel driver, per Bay.",
     analyst: {
       text: "SACR places Bay in endpoint control and prevention zones 1–4 (posture, in-session enforcement, runtime visibility, intent) and calls it the strongest zone 1 option for credential exposure in agentic toolchains. SACR also notes a collector-only deployment runs in detection mode.",
@@ -40,7 +38,3 @@ export const productFit: Record<string, ProductFit> = {
     ],
   },
 };
-
-export function hasRegroupedLayout(slug: string): boolean {
-  return slug in productFit;
-}

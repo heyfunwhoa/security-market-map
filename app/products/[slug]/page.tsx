@@ -6,15 +6,16 @@ import { PageIntro, StatusPill } from "@/components/chrome";
 import { ProductEvidenceExplorer } from "@/components/product-evidence-explorer";
 import { CiamMarketContext } from "@/components/ciam-market-context";
 import { ciamProfiles, isCiamProduct, type CiamProductSlug } from "@/lib/data/ciam-profiles";
-import { ProductFocus } from "@/components/product-focus";
 import { ProductSectionNav } from "@/components/product-section-nav";
 import { catalog, claimsForSubject, vendorById } from "@/lib/catalog";
 import { claimNeedsRecheck } from "@/lib/coverage";
 import { availabilityLabel } from "@/lib/format";
 import { AGENTIC_ENDPOINT_COMPARISON_URL, DEVELOPER_ENDPOINT_COMPARISON_URL } from "@/lib/comparison-selection";
 import { productFit } from "@/lib/product-fit";
+import { AnchorHeading } from "@/components/anchor-heading";
+import { ProductProfile } from "@/components/product-profile";
+import { hasProfileSteps } from "@/lib/product-profile";
 import {
-  PRODUCT_ANCHOR_CLASS,
   isProductResearchSlug,
   productResearchCategory,
   productResearchSections,
@@ -64,13 +65,6 @@ const learning: Record<Exclude<ProductResearchSlug, CiamProductSlug>, { action: 
   },
 };
 
-function AnchorHeading({ id, className, children }: { id: string; className: string; children: string }) {
-  return (
-    <h2 id={id} tabIndex={-1} className={`${PRODUCT_ANCHOR_CLASS} ${className}`}>
-      {children}
-    </h2>
-  );
-}
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -87,6 +81,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const category = productResearchCategory(slug);
   const unknownBoundaries = unknownControlBoundaries(product.id, catalog.asOf);
   const fit = productFit[slug];
+  const profile = !ciam && hasProfileSteps(slug);
+  const buyerQuestion = profile ? catalog.useCases.find((useCase) => useCase.id === product.useCaseIds[0])?.buyerQuestion : undefined;
 
   return (
     <main className="mx-auto min-w-0 max-w-6xl px-4 py-10">
@@ -99,24 +95,34 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <a className="inline-flex min-h-11 max-w-full items-center text-primary underline underline-offset-4 [overflow-wrap:anywhere]" href={product.officialUrl}>Official product documentation</a>
       </div>
       <p className="mt-2 text-sm leading-6 text-muted-foreground">{availabilityLabel(product.availability)}. {product.availabilityNote}</p>
-      {fit ? (
-        <p className="mt-4 rounded-lg border-l-4 border-primary bg-card p-4 text-base leading-7"><span className="block text-xs font-semibold uppercase tracking-wide text-muted-foreground">Buyer question</span>{fit.buyerQuestion}</p>
+      {buyerQuestion ? (
+        <p className="mt-4 rounded-lg border-l-4 border-primary bg-card p-4 text-base leading-7"><span className="block text-xs font-semibold uppercase tracking-wide text-muted-foreground">Buyer question</span>{buyerQuestion}</p>
       ) : null}
 
       <ProductSectionNav sections={productResearchSections(slug)} />
+      {profile && details ? (
+        <ProductProfile
+          product={product}
+          vendor={vendor}
+          primaryCategories={categoryLinks(product.primaryCategoryIds)}
+          adjacentCategories={categoryLinks(product.adjacentCategoryIds.filter((id) => !product.primaryCategoryIds.includes(id)))}
+          limitation={details.limitation}
+          questions={details.questions}
+          extraAfterSteps={slug === "kingfisher" ? (
+            <section aria-labelledby="kingfisher-upstream" className="mt-9">
+              <AnchorHeading id="kingfisher-upstream" className="text-2xl font-semibold">Upstream project</AnchorHeading>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">Five distinct stages, not one universal control. Provider-specific support and the active release must be checked in upstream documentation.</p>
+              <p className="mt-4 text-sm leading-6"><strong>Open source:</strong> Rust-based, Apache-2.0 according to the upstream project. Its stated benchmarks and feature coverage are publisher reports, not independently tested results.</p>
+              <a href="https://github.com/mongodb/kingfisher" className="mt-3 inline-flex min-h-11 items-center text-sm text-primary underline underline-offset-4">Read Kingfisher source and documentation</a>
+              <p className="mt-4 text-sm leading-6"><strong>Detector coverage:</strong> not evaluated. Technical rule and analyzer coverage stays in Detector Coverage Atlas until its separate pinned-source parser is implemented. This page does not treat an imported scanner report as native Kingfisher detector coverage.</p>
+            </section>
+          ) : null}
+        />
+      ) : (
+        <>
       <section aria-labelledby="how-it-works" className="mt-9">
         <AnchorHeading id="how-it-works" className="text-2xl font-semibold">How it works</AnchorHeading>
         <p className="mt-2 text-sm text-muted-foreground">{ciam ? "Follow one customer through sign-in and use the pilot to check what the application enforces." : "Illustrative control sequence. Vendor documentation is not an independently verified blocking test."}</p>
-        {fit ? (
-          <dl className="mt-4 grid gap-2 rounded-xl border border-border bg-card p-4 text-sm leading-6 sm:grid-cols-[8rem_1fr]">
-            {([["Trigger", details.action], ["Control", details.control], ["Evidence", details.evidence]] as const).map(([heading, description]) => (
-              <div key={heading} className="contents">
-                <dt className="font-semibold">{heading}</dt>
-                <dd className="[overflow-wrap:anywhere]">{description}</dd>
-              </div>
-            ))}
-          </dl>
-        ) : (
         <ol className="mt-4 grid gap-3 md:grid-cols-3">
           {([["1. Trigger", details.action], ["2. Control", details.control], ["3. Evidence", details.evidence]] as const).map(([heading, description]) => (
             <li key={heading} className="min-w-0 rounded-xl border border-border bg-card p-4">
@@ -125,80 +131,18 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             </li>
           ))}
         </ol>
-        )}
       </section>
 
-      {slug === "aikido-device-protection" ? <ProductFocus stages={[
-        { title: "Request", summary: "A developer or coding agent requests a package from a supported registry.", check: "Confirm the actual package manager, network route, mirror, operating system and device enrollment.", boundary: "An unsupported registry, offline cache, container or WSL path must not be assumed covered." },
-        { title: "Inspect", summary: "A local device component evaluates traffic on supported domains.", check: "Review selective interception, TLS trust configuration, privacy, and proxy compatibility.", boundary: "Network inspection does not mean universal device or malware visibility." },
-        { title: "Decide", summary: "The agent applies available package policy and threat-intelligence decisions.", check: "Use a benign synthetic policy block to test decision timing and exception behavior.", boundary: "A detection or post-install alert is not necessarily a pre-install block." },
-        { title: "Report", summary: "Device events and package inventory provide investigation context.", check: "Confirm event timestamp, allowed/blocked decision, metadata minimization, and response owner.", boundary: "Package or AI-provider usage inventory does not establish AI prompt or MCP tool-call prevention." },
-      ]} /> : null}
-      {slug === "bay-platform" ? <ProductFocus stages={[
-        { title: "Discover", summary: "A short-lived collector pushed through MDM or EDR inventories agents, MCP servers, extensions, packages, skills and local models, then exits.", check: "Confirm OS coverage, the MDM or EDR used for rollout, scan cadence and how fast a newly installed agent appears.", boundary: "A point-in-time inventory is not continuous monitoring, and discovery alone does not block anything." },
-        { title: "Set policy", summary: "Lighthouse drafts per-team policy from about 30 days of observed agent activity and lets teams replay it against that period.", check: "Replay a draft policy against real history and review what it would have blocked before turning it on.", boundary: "A learned baseline can approve risky behavior that was already normal; the under-1% false-positive figure is a vendor claim." },
-        { title: "Decide", summary: "When an agent proposes an action, the AI tool hands it to Bay Enforcer through a native hook, which returns Allow, Ask or Deny using the whole session.", check: "Use a benign synthetic action (for example, a test command against a dummy bucket) to confirm the verdict arrives before the action runs.", boundary: "Only tools that expose hooks, and only the events they expose, can be decided pre-execution. Collector-only deployments detect but do not prevent." },
-        { title: "Record", summary: "The action, session context, policy and verdict feed the inventory and entity graph for investigation.", check: "Confirm event fields, retention, export to the SIEM and who owns follow-up on an Ask or Deny.", boundary: "An audit trail of agent actions is not proof that every risky action was intercepted." },
-      ]} /> : null}
-      {slug === "kingfisher" ? <ProductFocus stages={[
-        { title: "Detect", summary: "Match candidate secrets in authorized targets.", check: "Inspect source, pinned rule ID, location and redacted finding.", boundary: "A match is a candidate, not proof that the credential is active." },
-        { title: "Validate", summary: "Optionally ask a supported issuer whether a credential works.", check: "Confirm provider support, test authorization, outcomes and network side effects.", boundary: "Timeouts and unsupported credential types are inconclusive, not invalid." },
-        { title: "Map", summary: "Investigate available identity and permission context.", check: "Confirm mapped provider, read-only scope and least-privilege permissions.", boundary: "Provider-specific mapping is not universal blast-radius coverage." },
-        { title: "Triage", summary: "Prioritize evidence and assign an owner.", check: "Confirm output format, fingerprint, redaction and reviewer handoff.", boundary: "Importing other scanner results is not native detector support." },
-        { title: "Revoke", summary: "Contain an exposed credential with explicit approval.", check: "Confirm supported provider, authority, impact assessment and rollback.", boundary: "No live revocation in this research workflow; it can disrupt applications." },
-      ]} /> : null}
-      {slug === "kingfisher" ? (
-        <section aria-labelledby="kingfisher-upstream" className="mt-9">
-          <AnchorHeading id="kingfisher-upstream" className="text-2xl font-semibold">Upstream project</AnchorHeading>
-          <p className="mt-2 text-sm leading-6 text-muted-foreground">Five distinct stages, not one universal control. Provider-specific support and the active release must be checked in upstream documentation.</p>
-          <p className="mt-4 text-sm leading-6"><strong>Open source:</strong> Rust-based, Apache-2.0 according to the upstream project. Its stated benchmarks and feature coverage are publisher reports, not independently tested results.</p>
-          <a href="https://github.com/mongodb/kingfisher" className="mt-3 inline-flex min-h-11 items-center text-sm text-primary underline underline-offset-4">Read Kingfisher source and documentation</a>
-        </section>
-      ) : null}
       {ciam ? <CiamMarketContext slug={slug} /> : null}
       <section aria-labelledby="limitations" className="mt-8 rounded-xl border border-border p-4">
         <AnchorHeading id="limitations" className="text-xl font-semibold">What this does not establish</AnchorHeading>
         <p className="mt-2 text-sm leading-6">{details.limitation}</p>
       </section>
 
-      {fit ? (
-        <section aria-labelledby="market-fit" className="mt-9">
-          <AnchorHeading id="market-fit" className="text-2xl font-semibold">Where it fits in the market</AnchorHeading>
-          <p className="mt-2 text-sm text-muted-foreground">Grouped by how each product gets onto the device. A shared approach is not a ranking or a direct-competitor finding.</p>
-          <dl className="mt-4 grid gap-4 text-sm leading-6">
-            <div>
-              <dt className="font-semibold">Deployment</dt>
-              <dd className="mt-1">{fit.deployment}</dd>
-            </div>
-            <div>
-              <dt className="font-semibold">Analyst view</dt>
-              <dd className="mt-1">{fit.analyst.text} <a href={fit.analyst.href} className="inline-flex min-h-11 items-center text-primary underline underline-offset-4">{fit.analyst.label}</a></dd>
-            </div>
-          </dl>
-          <h3 className="mt-4 font-semibold">Nearest peers by approach</h3>
-          <ul className="mt-2 grid gap-3 md:grid-cols-2">
-            {fit.peers.map((group) => (
-              <li key={group.approach} className="min-w-0 rounded-xl border border-border bg-card p-4">
-                <p className="text-sm font-medium">{group.approach}</p>
-                <ul className="mt-2 flex flex-wrap gap-x-4">
-                  {group.items.map((item) => (
-                    <li key={item.name}><ProfileLink href={item.href} className="inline-flex min-h-11 items-center text-sm text-primary underline underline-offset-4">{item.name}</ProfileLink></li>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ) : null}
 
       <section aria-labelledby="evidence" className="mt-9 min-w-0">
         <AnchorHeading id="evidence" className="text-2xl font-semibold">Source-backed product evidence</AnchorHeading>
         <p className="mt-2 mb-4 text-sm text-muted-foreground">Every statement links to its publisher source and review date. Missing evidence remains Unknown, not unsupported.</p>
-        {slug === "kingfisher" ? (
-          <p className="mb-4 text-sm leading-6">
-            <strong>Detector coverage:</strong> not evaluated. Technical rule and analyzer coverage stays in Detector Coverage Atlas until its separate pinned-source parser is implemented. This page does not treat an imported scanner report as native Kingfisher detector coverage.
-          </p>
-        ) : null}
         {unknownBoundaries.length > 0 ? (
           <div className="mb-4 rounded-lg border border-dashed border-border p-4">
             <h3 className="font-semibold">Unknown control boundaries</h3>
@@ -209,7 +153,6 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           </div>
         ) : null}
         <ProductEvidenceExplorer
-          groupBySource={Boolean(fit)}
           claims={claims}
           asOf={catalog.asOf}
           recheckClaimIds={claims.filter((claim) => claimNeedsRecheck(claim, catalog.sources, catalog.asOf)).map((claim) => claim.id)}
@@ -227,6 +170,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <ProductCategoryLinks primary={categoryLinks(product.primaryCategoryIds)} adjacent={categoryLinks(product.adjacentCategoryIds.filter((id) => !product.primaryCategoryIds.includes(id)))} />
         </dl>
       </section>
+        </>
+      )}
 
       {slug === "kingfisher" ? (
         <aside className="mt-10 border-t border-border pt-6">
