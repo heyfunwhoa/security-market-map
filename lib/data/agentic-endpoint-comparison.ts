@@ -19,7 +19,7 @@ export const agenticEndpointUseCases: UseCase[] = [
     slug: "agentic-endpoint-control",
     name: "See and control AI agents acting on devices",
     problem: "Coding and personal agents run on laptops, browsers and cloud workspaces with the user's permissions. Prompt filters and EDR see different parts of what an agent does, and approved tools spread faster than policy.",
-    architecture: "Inventory agents and their tools, decide on risky actions before they run, and keep a record of who or what acted. Check which agents and events each control covers, and what happens for tools without hooks.",
+    architecture: "Inventory agents and their tools, decide on risky actions before they run, and keep a record of who or what acted. Controls sit in five places: a short-lived MDM or EDR script (sees, cannot block), a resident sensor (stops agents and processes), the AI tool's own hooks (decides single actions for supported tools), a gateway (stops what routes through it) and a browser extension (web agents only). Check which of these a deployment turns on, which agents and events it covers, and what happens for tools without hooks.",
     stakeholders: ["CISO", "Endpoint and IT security", "AppSec and platform engineering", "AI governance", "SOC"],
     triggers: ["AI coding agent rollout", "Shadow AI or MCP server discovery", "Agent incident such as a destructive command or data exposure", "EDR renewal or AI security budget"],
     budgetOwner: "CISO or endpoint security, sometimes AI governance; confirm the purchaser.",

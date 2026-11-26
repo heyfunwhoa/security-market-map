@@ -94,6 +94,31 @@ The workflow is an original teaching aid, not a formal mapping to NIST controls.
 
 Use the existing [pipelines and detection-engineering review](secops-pipelines-detection-enrichment.md) for depth. The first three sections of the [SecOps/MSSP research](secops-mssp-economics-2026-11-06.md) add a glossary, delivery economics and an evaluation worksheet before any vendor profiles.
 
+## Second slice: AI agents on the endpoint
+
+A coding or personal AI agent on a laptop acts with the user's permissions. In one session it can read files (including `.env` files and keys), run shell commands, install packages, extensions, skills and MCP servers, call tools and APIs with the user's credentials, and send content to a model. EDR was built to judge processes and files; it was not built to judge whether a legitimate tool is doing something the user did not intend.
+
+Controls for this sit in five places. Each sees something different and misses something different:
+
+| Where the control sits | What it sees | What it can stop before it runs | What it misses | Pilot test |
+| --- | --- | --- | --- | --- |
+| Short-lived script pushed through MDM or EDR | Installed agents, MCP servers, extensions, packages and settings at scan time | Nothing on its own; a script that has exited cannot block | Changes between scans; anything not on disk | Install a new MCP server and time how long until it appears |
+| Resident endpoint sensor | Processes, files and network activity, linked to the agent that caused them | Whole agents, processes or connections; single actions only where the sensor understands them | Intent behind actions that look like normal user activity; devices without the sensor | Run a risky command inside an approved agent and see whether anything stops it |
+| The AI tool's own hooks, or a client inside the agent | Each proposed action with the agent's session context | Individual actions, for supported tools and hook events | Tools without hooks, events a hook does not expose, and anyone who disables the hook | Repeat the same action in a supported and an unsupported agent |
+| Gateway or proxy (MCP, model traffic, package registry) | Tool calls, model traffic or package installs routed through it | Calls and installs that pass through it | Local actions that never cross it | Make the same call directly and through the gateway |
+| Browser extension | Web-based agents and data typed or pasted into AI sites | Web actions and data leaving the tab | Desktop and terminal agents | Repeat a web task in a desktop agent |
+
+Four distinctions prevent most confusion:
+
+- **Inventory is not control.** Knowing an agent or MCP server exists does not stop what it does.
+- **Install governance is not action control.** Blocking a bad package or extension says nothing about what an approved agent does next.
+- **An allow-list of agents is not a decision on each action.** Stopping unapproved agents leaves approved ones unchecked.
+- **A record is not prevention.** Reconstructing a session after the fact helps investigation; it does not stop the action.
+
+Buyer questions that work for any product: What does it see? What does it stop before the action runs, and for which tools? What can it not see? What is recorded, and where? Most products combine two or three of the five control points; ask which ones a given deployment mode actually turns on.
+
+Vendor evidence against this framework is in the agentic endpoint use case (`/use-cases/agentic-endpoint-control`) and the [deployment models research](agentic-endpoint-deployment-models-2026-11.md). Those pages apply this framework; they do not change it.
+
 ## How a security concern becomes a project and budget
 
 Illustrative discovery sequence: identify the business impact → establish the current gap → assign an accountable owner → define outcomes → compare operational approaches → fund implementation and ongoing delivery → measure results.
