@@ -8,6 +8,7 @@ import { incidentSearchHits } from "@/lib/incident-feed";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
 import { SITE_URL } from "@/lib/site";
+import { Analytics } from "@vercel/analytics/next";
 
 const sourceSans = Source_Sans_3({
   subsets: ["latin"],
@@ -66,7 +67,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <div id="content" tabIndex={-1}>{children}</div>
           <SiteFooter asOf={catalog.asOf} />
         </TooltipProvider>
-      </body>
+        <Analytics />
+        </body>
     </html>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { track } from "@vercel/analytics";
 import { Search } from "lucide-react";
 import { groupSearchHits, searchHits, type AliasGroups, type SearchHit } from "@/lib/search";
 import { Button } from "@/components/ui/button";
@@ -26,7 +27,22 @@ export function SearchCommand({ hits, aliases = [] }: { hits: SearchHit[]; alias
   const navigating = useRef(false);
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const groups = useMemo(() => groupSearchHits(searchHits(query, hits, aliases)), [query, hits, aliases]);
+  const ranked = useMemo(() => searchHits(query, hits, aliases), [query, hits, aliases]);
+  const groups = useMemo(() => groupSearchHits(ranked), [ranked]);
+  const lastTracked = useRef("");
+
+  // Record what readers look for once they pause typing, including searches that find
+  // nothing. Query text and result count only. Custom events need a Vercel Pro plan;
+  // on other plans this call is ignored.
+  useEffect(() => {
+    const text = query.trim().toLowerCase();
+    if (text.length < 2 || text === lastTracked.current) return;
+    const timer = window.setTimeout(() => {
+      lastTracked.current = text;
+      track("search", { query: text.slice(0, 100), results: ranked.length });
+    }, 1200);
+    return () => window.clearTimeout(timer);
+  }, [query, ranked]);
 
   useEffect(() => {
     function onKey(event: KeyboardEvent) {
