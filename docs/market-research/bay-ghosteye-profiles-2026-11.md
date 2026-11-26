@@ -117,7 +117,7 @@ KnowBe4 was already in the catalog. GhostEye's sourced difference among these: O
 
 ### Website caveat
 
-Geordie AI and CodeIntegrity, like Capsule, AIR and Kontext, had no first-party website confirmed from this session. Their `website` field points to a launch or investor announcement, and each record says so.
+Website check (2026-11-24): Geordie AI's homepage (geordie.ai) was fetched and now backs its `website` field. Kontext's site (kontext.security) comes from its company-run DEV Community profile; the homepage itself was not fetched. CodeIntegrity, Capsule and AIR still have no confirmed first-party website: their `website` field points to a launch or funding announcement, and each record says so. (A CodeIntegrity staff comment on Hacker News mentions codeintegrity.ai; that is a lead, not a confirmation.)
 
 ## Sources not used
 
