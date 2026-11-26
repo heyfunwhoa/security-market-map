@@ -4511,7 +4511,7 @@ export const ecosystemProducts: Product[] = [
     vendorId: "crowdstrike",
     name: "CrowdStrike Falcon",
     positioning:
-      "Falcon homepage retrieved 26 Oct 2026 says endpoint detection and response detects and prioritizes malicious activity. Next-gen antivirus, Identity Protection, and Next-Gen SIEM are separate sentences and are not this cell. Kept separate from the identity product.",
+      "Falcon detects and prioritizes endpoint threats. Its Real-Time Supply Chain Attack Protection checks supported package downloads and searches past activity when a package is newly flagged.",
     primaryCategoryIds: ["endpoint-security", "xdr"],
     adjacentCategoryIds: ["itdr", "mdr"],
     deployment: ["unknown"],
@@ -4519,7 +4519,7 @@ export const ecosystemProducts: Product[] = [
     availability: "unknown",
     availabilityNote: unknown,
     officialUrl: "https://www.crowdstrike.com/",
-    useCaseIds: [],
+    useCaseIds: ["uc-developer-endpoint"],
   }),
   product({
     id: "sentinelone-platform",
