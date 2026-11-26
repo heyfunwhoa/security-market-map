@@ -12,8 +12,8 @@ describe("site menu", () => {
     expect(NAV_GROUP_TITLES).toEqual(["Explore the market", "Prepare a conversation", "Research"]);
   });
 
-  it("keeps every page it linked before, once each", () => {
-    expect([...NAV_HREFS].sort()).toEqual(PAGES_BEFORE_REGROUP);
+  it("keeps every previous destination and adds the category index once", () => {
+    expect([...NAV_HREFS].sort()).toEqual([...PAGES_BEFORE_REGROUP, "/categories"].sort());
     expect(new Set(NAV_HREFS).size).toBe(NAV_HREFS.length);
   });
 

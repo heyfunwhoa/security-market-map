@@ -1,3 +1,6 @@
+import { CiamEvaluationGuide } from "@/components/ciam-evaluation-guide";
+import { EndpointEvaluationGuide } from "@/components/endpoint-evaluation-guide";
+import { SacrMarketGroups } from "@/components/sacr-market-groups";
 import { productDestination } from "@/lib/product-destination";
 import { AwsSecurityHubGuide } from "@/components/aws-security-hub-guide";
 import { CredentialExposureHandoff, WorkforceIdentityGuide } from "@/components/identity-response-guides";
@@ -5,8 +8,8 @@ import { SecretsManagementGuide } from "@/components/secrets-management-guide";
 import exposureGroups from "@/research/public-exposure-options.json";
 import { ExposureIntelligenceResearch, hasExposureIntelligenceResearch } from "@/components/exposure-intelligence-research";
 import { PublicSecretMonitoring } from "@/components/public-secret-monitoring";
+import { EndpointGlossary } from "@/components/endpoint-glossary";
 import { ExternalExposureGuides } from "@/components/external-exposure-guides";
-import { PageJourney } from "@/components/page-journey";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { SECRETS_COMPARISON_URL, DEVELOPER_ENDPOINT_COMPARISON_URL } from "@/lib/comparison-selection";
 import { AcademyLinks } from "@/components/academy-links";
@@ -60,23 +63,50 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
-      <Breadcrumbs parents={[{ href: "/", label: "Home" }, { href: "/landscape", label: "Landscape" }]} current={category.name} />
+      <Breadcrumbs parents={[{ href: "/", label: "Home" }]} domains={domains.map((domain) => ({ href: `/domains/${domain.slug}`, label: domain.name }))} current={category.name} />
       <PageIntro kicker={category.layer === "adjacent" ? "Adjacent" : "Category"} title={category.name} lede={category.definition} />
-      <PageJourney steps={[
-        { href: "#category-buyer", title: "Understand the decision", description: "See the buyer question, owner, workflow and outcomes." },
-        hasExposureIntelligenceResearch(category.id)
-          ? { href: "#market-research", title: "Open the market map", description: "Explore companies by buyer need, product evidence and evaluation questions." }
-          : { href: "#category-products", title: "Explore products", description: "Browse primary products, then open their vendor evidence." },
-        { href: "#category-evidence", title: "Check category claims", description: "Separate teaching notes from sourced category statements." },
-      ]} back={{ href: "/domains", label: "Broaden to all domains" }} />
-      <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">{sourcingLabel}</p>
       <p id="category-buyer" tabIndex={-1} className="mt-4 max-w-3xl scroll-mt-24 text-sm leading-6 focus-visible:outline-2 focus-visible:outline-ring">
         <span className="font-semibold">Buyer question. </span>
         {category.buyerQuestion}
       </p>
+      <nav aria-label="On this category page" className="mt-2 flex flex-wrap gap-x-4 text-sm text-primary [&_a]:inline-flex [&_a]:min-h-11 [&_a]:items-center [&_a]:underline">
+        {category.id === "endpoint-security" && <a href="#endpoint-evaluation">Evaluate endpoint coverage</a>}
+        {category.id === "ciam" && <a href="#ciam-evaluation">Evaluate enterprise SSO</a>}
+        <a href="#category-products">Products</a>
+        <a href="#category-workflow">Workflow</a>
+        <a href="#category-adjacent">Adjacent categories</a>
+        {relatedIncidents.length > 0 && <a href="#category-incidents">Incidents</a>}
+        {hasExposureIntelligenceResearch(category.id) && <a href="#market-research">Market research</a>}
+        <a href="#category-evidence">Category sources</a>
+      </nav>
+      {category.id === "endpoint-security" && <EndpointEvaluationGuide />}
+      {category.id === "ciam" && <CiamEvaluationGuide />}
+      <section className="mt-4" aria-labelledby="category-products">
+        <h2 id="category-products" tabIndex={-1} className="scroll-mt-24 text-2xl focus-visible:outline-2 focus-visible:outline-ring">Primary products</h2>
+        {products.length === 0 ? (
+          <p className="mt-3 text-sm leading-6 text-muted-foreground">
+            No primary product is assigned. An empty list is a gap in this map, not a finding that the field has no vendors.
+          </p>
+        ) : (
+          <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+            {products.map((product) => (
+              <li key={product.id}>
+                <Link
+                  href={productDestination(product, vendorById(product.vendorId)!.slug)}
+                  className="block min-h-11 break-words rounded-lg border border-border px-3 py-2 text-sm hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                >
+                  {product.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+      <p className="mt-4 max-w-3xl text-sm leading-6 text-muted-foreground">{sourcingLabel}</p>
       {exposureGroups.some((group) => group.cases.some((item) => item.categoryId === category.id)) && (
         <p className="mt-5 text-sm"><Link href="/landscape/public-exposure" className="text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-ring">Compare public monitoring and external exposure scenarios</Link></p>
       )}
+      {category.id === "endpoint-security" && <EndpointGlossary />}
       {category.id === "cnapp" && <AwsSecurityHubGuide />}
       {["ctem", "cspm", "secrets-management", "workforce-identity"].includes(category.id) && (
         <p className="mt-4 text-sm"><Link className="text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-ring" href="/categories/cnapp#aws-security-hub">Explore AWS Security Hub buyer scenarios</Link></p>
@@ -84,6 +114,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
       {category.id === "workforce-identity" && <WorkforceIdentityGuide />}
       {category.id === "secrets-management" && <><SecretsManagementGuide /><CredentialExposureHandoff /></>}
       <ExternalExposureGuides categoryId={category.id} />
+      <SacrMarketGroups categoryId={category.id} />
       {relatedIncidents.length > 0 && (
         <section className="mt-6 rounded-xl border border-border bg-card p-4" aria-labelledby="category-incidents">
           <h2 id="category-incidents" className="text-xl">
@@ -148,22 +179,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
         </section>
       ) : null}
       <section className="mt-8">
-        <h2 className="text-2xl">Domains</h2>
-        <ul className="mt-3 flex flex-wrap gap-2">
-          {domains.map((domain) => (
-            <li key={domain.id}>
-              <Link
-                href={`/domains/${domain.slug}`}
-                className="rounded-full border border-border px-3 py-1 text-sm hover:bg-muted"
-              >
-                {domain.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
-      <section className="mt-8">
-        <h2 className="text-2xl">Illustrative flow</h2>
+        <h2 id="category-workflow" tabIndex={-1} className="scroll-mt-4 text-2xl">Illustrative flow</h2>
         <div className="mt-3">
           <FlowStrip flow={category.flow} />
         </div>
@@ -192,7 +208,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
       <DataSecurityShortlist categoryId={category.id} />
       <AcademyLinks categoryId={category.id} />
       <section className="mt-8">
-        <h2 className="text-2xl">Adjacent categories</h2>
+        <h2 id="category-adjacent" tabIndex={-1} className="scroll-mt-4 text-2xl">Adjacent categories</h2>
         <ul className="mt-3 flex flex-wrap gap-2">
           {adjacent.map((item) => (
             <li key={item.id}>
@@ -231,27 +247,6 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
           />
         </div>
       ) : null}
-      <section className="mt-8">
-        <h2 id="category-products" tabIndex={-1} className="scroll-mt-24 text-2xl focus-visible:outline-2 focus-visible:outline-ring">Primary products</h2>
-        {products.length === 0 ? (
-          <p className="mt-3 text-sm leading-6 text-muted-foreground">
-            No primary product is assigned. An empty list is a gap in this map, not a finding that the field has no vendors.
-          </p>
-        ) : (
-          <ul className="mt-3 grid gap-2 sm:grid-cols-2">
-            {products.map((product) => (
-              <li key={product.id}>
-                <Link
-                  href={productDestination(product, vendorById(product.vendorId)!.slug)}
-                  className="block min-h-11 break-words rounded-lg border border-border px-3 py-2 text-sm hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-                >
-                  {product.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
-      </section>
       {categoryAlternatives.length > 0 || categoryTriggers.length > 0 || categoryObjections.length > 0 ? (
         <section className="mt-8 grid gap-6 text-sm leading-6 lg:grid-cols-3" aria-label="Buying context">
           <div>

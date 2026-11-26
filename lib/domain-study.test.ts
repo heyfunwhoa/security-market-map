@@ -22,17 +22,25 @@ describe("domain study path", () => {
     for (const area of domainQuestions) expect(domainIds.has(area.domainId)).toBe(true);
   });
 
-  it("uses the identity question and keeps cloud terms in the cloud glossary", () => {
+  it("keeps cloud, endpoint and identity terms on the right lessons", () => {
     expect(questionsForDomain("identity").map((item) => item.question)).toEqual([
       "Who or what can access a system?",
     ]);
     const identity = catalog.domains.find((domain) => domain.id === "identity");
     const cloud = catalog.domains.find((domain) => domain.id === "cloud");
-    const identityTerms = glossaryForDomain(identity?.categoryIds ?? [], catalog.glossary);
-    const cloudTerms = glossaryForDomain(cloud?.categoryIds ?? [], catalog.glossary);
-    expect(identityTerms.map((term) => term.id)).toContain("ciem");
-    expect(identityTerms.map((term) => term.id)).not.toContain("csie");
-    expect(cloudTerms.map((term) => term.id)).toContain("csie");
+    const identityTerms = glossaryForDomain(identity?.categoryIds ?? [], catalog.glossary).map((term) => term.id);
+    const cloudTerms = glossaryForDomain(cloud?.categoryIds ?? [], catalog.glossary).map((term) => term.id);
+    expect(identityTerms).toContain("ciem");
+    expect(identityTerms).toContain("itdr");
+    expect(identityTerms).not.toContain("csie");
+    expect(identityTerms).not.toContain("epp");
+    expect(identityTerms).not.toContain("edr");
+    expect(cloudTerms).toContain("csie");
+    for (const domainId of ["corporate", "secops"]) {
+      const domain = catalog.domains.find((item) => item.id === domainId);
+      const terms = glossaryForDomain(domain?.categoryIds ?? [], catalog.glossary).map((term) => term.id);
+      expect(terms).toEqual(expect.arrayContaining(["epp", "edr"]));
+    }
   });
 
   it("has no written words for data security", () => {

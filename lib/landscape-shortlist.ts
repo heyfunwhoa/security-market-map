@@ -1,3 +1,8 @@
+export function readShortlist(raw: string | null, knownIds: readonly string[]): string[] {
+  const unique = new Set((raw ?? "").split(",").map((id) => id.trim()));
+  return [...unique].filter((id) => knownIds.includes(id)).slice(0, 4);
+}
+
 export function toggleShortlist(selected: string[], id: string): string[] {
   if (selected.includes(id)) return selected.filter((item) => item !== id);
   return selected.length < 4 ? [...selected, id] : selected;

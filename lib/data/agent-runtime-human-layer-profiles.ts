@@ -43,10 +43,11 @@ const patches: Record<string, Patch> = {
     ],
   },
   "kontext-security": {
+    website: "https://kontext.security/",
     positioning:
       "Munich company (Cobrowser Technology GmbH per one aggregator) founded by Jens Ernstberger (CEO, doctorate in cryptography) and Michel Osswald. Task-aware runtime authorization between agents and tools: each action is judged by agent identity, assigned task, resource and request, observe-first then enforce, with short-lived credentials brokered so secrets stay out of agent environments. $4M led by 42CAP (Sep 2026).",
     openQuestions: [
-      "Company website not confirmed; the website field points to an investor announcement.",
+      "Website comes from the company's own DEV Community profile and a funding-news listing; the homepage itself was not fetched.",
       "Reported as $4M or EUR 3.5M depending on the outlet.",
       "Credential brokering is described by an aggregator, not a first-party page.",
     ],
@@ -69,10 +70,10 @@ const patches: Record<string, Patch> = {
     ],
   },
   "geordie-ai": {
+    website: "https://www.geordie.ai/",
     positioning:
       "London company (2025) founded by Henry Comfort (CEO), Benji Weber (CTO, ex-Snyk) and Hanah-Marie Darley (Chief AI Officer). Independent security and governance view of agents across cloud, code and endpoint, plus Beam runtime remediation. $6.5M seed, then a $30M Series A led by Balderton with Crosspoint, General Catalyst and Ten Eleven (May 2026); Owkin is a named customer.",
     openQuestions: [
-      "Company website not confirmed; the website field points to its lead investor's announcement.",
       "Total raised is $36.5M per SecurityWeek and $43M per one aggregator; post-money valuation ($155M) is aggregator-reported.",
     ],
   },
@@ -165,6 +166,8 @@ const extraSources: Source[] = [
   src({ id: "src-rhp-geordie-bankinfosec", title: "BankInfoSecurity — Startup Geordie AI lands $30M to secure enterprise AI agents", url: "https://bankinfosecurity.com/startup-geordie-ai-lands-30m-to-secure-enterprise-ai-agents-a-31919", publisher: "Information Security Media Group", sourceType: "news", publishedAt: null, volatility: "moderate", excerpt: "Co-founder Hanah-Marie Darley says the round funds engineering and product, with visibility across cloud, code and endpoint agent environments." }),
   src({ id: "src-rhp-arcjet-seedcamp", title: "Seedcamp — Arcjet raises $3.6M seed funding", url: "https://seedcamp.com/views/arcjet-raises-3-6m-seed-funding-to-help-developers-protect-their-apps-in-production/", publisher: "Seedcamp (investor)", sourceType: "press_release", publishedAt: "2024-09-10", volatility: "stable", excerpt: "Investor post on Arcjet's $3.6M seed led by Zane Lackey at Andreessen Horowitz, for founder David Mytton." }),
   src({ id: "src-rhp-arcjet-series-a", title: "FinTech Global — Arcjet raises $8.3m to fight AI-driven cyberattacks", url: "https://fintech.global/2025/10/10/arcjet-raises-8-3m-to-fight-ai-driven-cyberattacks/", publisher: "FinTech Global", sourceType: "news", publishedAt: "2025-10-10", volatility: "stable", excerpt: "Arcjet raises an $8.3M Series A, bringing total funding to $12M, to roll out in-code security for modern applications." }),
+  { ...src({ id: "src-rhp-kontext-devto", title: "DEV Community — Kontext organization profile", url: "https://dev.to/kontext", publisher: "Kontext (on DEV Community)", sourceType: "vendor_marketing", publishedAt: null, volatility: "moderate", excerpt: "Company-run profile lists kontext.security as its website and Munich, Germany as its location." }), retrievedAt: "2026-11-24" },
+  { ...src({ id: "src-rhp-geordie-home", title: "Geordie AI — Agent Security and Operations Platform", url: "https://www.geordie.ai/", publisher: "Geordie AI", sourceType: "vendor_marketing", publishedAt: null, volatility: "fast", excerpt: "Homepage names Beam as the inline remediation engine, alongside Agent Discovery, Risk Intelligence, Value Intelligence and Cost Intelligence." }), retrievedAt: "2026-11-24" },
   src({ id: "src-rhp-eve-saasnews", title: "The SaaS News — Eve Security raises $4.5M in seed extension", url: "https://www.thesaasnews.com/news/eve-security-raises-4-5m-seed-extension/", publisher: "The SaaS News", sourceType: "news", publishedAt: "2026-09-15", volatility: "stable", excerpt: "Austin-based Eve Security raises $4.5M led by Run Ventures, bringing total funding to $7.5M; lists eve.security as its website." }),
   src({ id: "src-rhp-eve-dealroom", title: "Dealroom — Eve Security company profile", url: "https://dealroom.co/companies/eve-security/", publisher: "Dealroom", sourceType: "review", publishedAt: null, volatility: "moderate", excerpt: "Profile lists Austin, founded 2025 by Nadav Cornberg, Sharon Eilon and Amit Eliav, with a $3M seed led by LiveOak and Tau in Sep 2025." }),
   src({ id: "src-rhp-adaptive-series-b", title: "SecurityWeek — Adaptive Security raises $81 million in Series B funding", url: "https://securityweek.com/adaptive-security-raises-81-million-in-series-b-funding", publisher: "SecurityWeek", sourceType: "news", publishedAt: "2025-12-16", volatility: "stable", excerpt: "Adaptive's $81M Series B led by Bain Capital Ventures brings total raised to $146.5M." }),
@@ -208,6 +211,8 @@ const extraClaims: Claim[] = [
   claim("claim-rhp-geordie-scope", "Geordie says it provides visibility into agents across cloud, code and endpoint environments.", "product", "geordie-platform", "src-rhp-geordie-bankinfosec", "Co-founder statement in news."),
   claim("claim-rhp-arcjet-seed", "Arcjet raised a $3.6M seed led by Andreessen Horowitz in Sep 2024.", "vendor", "arcjet", "src-rhp-arcjet-seedcamp", "Investor announcement.", "high"),
   claim("claim-rhp-arcjet-series-a", "Arcjet raised an $8.3M Series A in Oct 2025, bringing total funding to $12M.", "vendor", "arcjet", "src-rhp-arcjet-series-a", "Led by Plural and Ott Kaukver per other coverage."),
+  claim("claim-rhp-kontext-site", "Kontext Security lists kontext.security as its website and Munich, Germany as its location.", "vendor", "kontext-security", "src-rhp-kontext-devto", "Company-run profile on a third-party site; homepage not fetched."),
+  claim("claim-rhp-geordie-site", "Geordie AI's site at geordie.ai names Beam as its inline remediation engine, alongside agent discovery and risk intelligence modules.", "vendor", "geordie-ai", "src-rhp-geordie-home", "First-party homepage, fetched 2026-11-24."),
   claim("claim-rhp-eve-hq", "Eve Security is based in Austin and lists eve.security as its website.", "vendor", "eve-security", "src-rhp-eve-saasnews", "Funding-news site citing the company's press release."),
   claim("claim-rhp-eve-founders", "Eve Security was founded in 2025 by Nadav Cornberg, Sharon Eilon and Amit Eliav and raised a $3M seed led by LiveOak and Tau in Sep 2025.", "vendor", "eve-security", "src-rhp-eve-dealroom", "Aggregator."),
   claim("claim-rhp-codeintegrity-founders", "CodeIntegrity was founded in May 2024 near Seattle by Steven Jung (CEO) and Abi Raghuram (CTO) and is now based in San Francisco; its seed was $5M, $5.25M total.", "vendor", "codeintegrity", "src-rh-codeintegrity-geekwire", "News coverage."),

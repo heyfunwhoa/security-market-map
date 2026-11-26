@@ -62,7 +62,12 @@ export default async function LearnPage({
         </h2>
         <div className="mt-4 grid gap-3 md:grid-cols-2">
           {catalog.glossary.map((term) => (
-            <article key={term.id} id={term.id} className="rounded-xl border border-border bg-card p-4">
+            <article
+              key={term.id}
+              id={term.id}
+              tabIndex={-1}
+              className="scroll-mt-24 rounded-xl border border-border bg-card p-4 focus-visible:outline-2 focus-visible:outline-ring"
+            >
               <h3 className="text-xl">{term.term}</h3>
               <p className="mt-2 text-sm leading-6">{term.definition}</p>
             </article>
