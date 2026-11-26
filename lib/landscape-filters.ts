@@ -1,7 +1,27 @@
 import type { LandscapeEdge, LandscapeRow } from "@/components/landscape-browser";
+import { frameworkTopics } from "./data/persona-frameworks";
+
+export type CompanySearchEntry = { slug: string; name: string; formerNames: string[] };
+
+export function searchLandscape(
+  rows: LandscapeRow[], companies: CompanySearchEntry[], query: string, restrictCompanies: boolean,
+) {
+  const term = query.trim().toLowerCase();
+  if (!term) return { products: rows, companies: [] };
+  const eligible = restrictCompanies ? new Set(rows.map((row) => row.vendorSlug)) : null;
+  const matches = companies.filter((company) =>
+    (!eligible || eligible.has(company.slug)) &&
+    [company.name, ...company.formerNames].some((name) => name.toLowerCase().includes(term)),
+  );
+  const matchingSlugs = new Set(matches.map((company) => company.slug));
+  const products = rows.filter((row) =>
+    matchingSlugs.has(row.vendorSlug) || `${row.productName} ${row.vendorName}`.toLowerCase().includes(term),
+  );
+  return { products, companies: matches };
+}
 
 export const initialLandscapeFilters = {
-  domain: "all", category: "all", useCase: "all", persona: "all",
+  domain: "all", category: "all", useCase: "all", persona: "all", framework: "all",
   deployment: "all", scope: "all", relation: "all", focusedProduct: "all",
 };
 export type LandscapeFilters = typeof initialLandscapeFilters;
@@ -12,7 +32,7 @@ export function landscapeFilterReducer(state: LandscapeFilters, action: FilterAc
   return {
     ...state,
     ...(action.key !== "focusedProduct" ? { focusedProduct: "all" } : {}),
-    ...(action.key === "domain" ? { category: "all" } : {}),
+    ...((action.key === "domain" || action.key === "framework") ? { category: "all" } : {}),
     [action.key]: action.value,
   };
 }
@@ -21,14 +41,16 @@ export function filterLandscapeRows(
   rows: LandscapeRow[], edges: LandscapeEdge[],
   personas: { id: string; categoryIds: string[] }[], filters: LandscapeFilters,
 ) {
-  const { domain, category, useCase, persona, deployment, scope, relation, focusedProduct } = filters;
+  const { domain, category, useCase, persona, framework, deployment, scope, relation, focusedProduct } = filters;
   const personaCategories = personas.find((item) => item.id === persona)?.categoryIds ?? [];
+  const frameworkCategories = frameworkTopics.find((item) => item.id === framework)?.categoryIds ?? [];
   return rows
     .filter((row) => domain === "all" || row.domainIds.includes(domain))
     .filter((row) => category === "all" || row.categoryIds.includes(category))
     .filter((row) => focusedProduct === "all" || row.productId === focusedProduct)
     .filter((row) => useCase === "all" || row.useCaseIds.includes(useCase))
     .filter((row) => persona === "all" || row.categoryIds.some((id) => personaCategories.includes(id)))
+    .filter((row) => framework === "all" || row.categoryIds.some((id) => frameworkCategories.includes(id)))
     .filter((row) => deployment === "all" || row.deployment.includes(deployment))
     .filter((row) => scope === "all" || row.scopes.includes(scope))
     .filter((row) => relation === "all" || edges.some((edge) =>
@@ -38,7 +60,7 @@ export function filterLandscapeRows(
 }
 
 const filterParams: Record<keyof LandscapeFilters, string> = {
-  domain: "domain", category: "category", useCase: "useCase", persona: "buyer",
+  domain: "domain", category: "category", useCase: "useCase", persona: "buyer", framework: "framework",
   deployment: "deployment", scope: "scope", relation: "relation", focusedProduct: "product",
 };
 export type LandscapeFilterOptions = Record<keyof LandscapeFilters, readonly string[]>;
@@ -52,12 +74,34 @@ export function readLandscapeFilters(params: Pick<URLSearchParams, "get">, optio
   return filters;
 }
 
-export function landscapeFilterUrl(filters: LandscapeFilters): string {
+export function landscapeFilterUrl(filters: LandscapeFilters, query = "", shortlist: readonly string[] = []): string {
   const params = new URLSearchParams();
   for (const key of Object.keys(filterParams) as (keyof LandscapeFilters)[]) {
     if (filters[key] !== "all") params.set(filterParams[key], filters[key]);
   }
+  if (query) params.set("q", query);
+  if (shortlist.length) params.set("shortlist", shortlist.join(","));
   return `/landscape${params.size ? `?${params.toString()}` : ""}`;
+}
+
+/** Return links may restore only a catalog view and its supported parameters. */
+export function readCatalogReturn(value: string | null): string | null {
+  if (!value || value.includes("#")) return null;
+  if (value === "/landscape") return value;
+  if (!value.startsWith("/landscape?")) return null;
+  const input = new URLSearchParams(value.slice("/landscape?".length));
+  const params = new URLSearchParams();
+  for (const key of [...Object.values(filterParams), "q", "shortlist"]) {
+    const entry = input.get(key);
+    if (entry) params.set(key, entry);
+  }
+  return params.size ? `/landscape?${params}` : "/landscape";
+}
+
+export function withCatalogReturn(href: string, catalogUrl: string): string {
+  const url = new URL(href, "https://catalog.invalid");
+  url.searchParams.set("from", catalogUrl);
+  return url.pathname + url.search + url.hash;
 }
 
 export function productSectionId(productId: string): string {

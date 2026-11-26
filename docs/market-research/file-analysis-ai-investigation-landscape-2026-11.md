@@ -48,9 +48,39 @@ Unknowns: how common pre-deployment EDR testing is beyond this one case; whether
 | Vendor / product | Positioning (source-attributed) | Relationship | Evidence status |
 | --- | --- | --- | --- |
 | Stairwell | Preserves executables from enrolled endpoints in a private environment without a retention window; reruns IOCs, YARA and threat reports across history; Variant Discovery; Backstory agentic investigator; per-asset pricing including investigations [SW1–SW4] | Reference position for this layer | Vendor-published; inspected 2026-11-11; not tested |
-| GLIMPS Fortress (France) | On-premise AI file repository with continuous malware analysis and retrohunting [CT4] | Candidate partial overlap; closest model found | Secondary directory; official pages not inspected |
+| GLIMPS Fortress (France) | On-premise AI file repository with continuous malware analysis and retrohunting [CT4] | Candidate partial overlap | Secondary directory; official pages not inspected |
 
-Note: VirusTotal and ReversingLabs also offer retrohunt over *their* corpora. Whether a buyer sees that as a substitute for retaining *their own* file history is an open buyer-decision question (Unknown).
+### Investigating a developer package after removal
+
+A developer removes a dependency on Friday. On Monday, an advisory identifies the old version as malicious. The SOC and developer-platform team need to know which machines saw it, whether they can recover the original file, and whether related files appeared under other hashes. A package-version record can identify a laptop to investigate. A retained copy lets an analyst inspect the file again. Process evidence helps establish whether it ran.
+
+| Provider and product | Evidence available after the advisory | Coverage question |
+| --- | --- | --- |
+| Stairwell Rehunt and Backstory | Stairwell retains the original bytes of collected files. Analysts can apply new rules to those files and use the investigation graph to inspect related files, machine sightings, paths and times. | Did the collection policy include the actual script or executable on the laptop or build runner before removal? [Collection policy](https://docs.stairwell.com/docs/policies-overview) · [Stored files](https://docs.stairwell.com/docs/objects) · [YARA rules](https://docs.stairwell.com/docs/yara-rules) · [Investigation graph](https://docs.stairwell.com/docs/reading-the-investigation-graph) |
+| LimaCharlie BinLib | With BinLib enabled, an analyst can download previously captured executables by hash and run YARA rules over that private collection. | Which executable did the sensor capture? Verify collection of a script-only dependency separately. [BinLib operations](https://docs.limacharlie.io/5-integrations/extensions/limacharlie/binlib/) |
+| CrowdStrike Falcon | CrowdStrike describes a fleet-wide search of historical data when a previously downloaded package is newly flagged. Its announcement names npm and PyPI. | Can the responder also retrieve the original file after deletion? The vendor announcement establishes the historical search. Raw-file recovery through this feature is unknown. [Real-Time Supply Chain Attack Protection](https://www.crowdstrike.com/en-us/blog/crowdstrike-extends-endpoint-security-to-stop-supply-chain-attacks/) |
+| Broadcom Carbon Black Cloud Enterprise EDR | The Unified Binary Store can return Windows PE files uploaded under the endpoint policy after execution. Process search links an executable hash to a device name and start time. | Was the artifact an executed Windows binary on an upload-enabled device? The store retains only the first 25 MB of larger files. Its device summaries cover executions in the preceding three months. [Unified Binary Store overview](https://developer.carbonblack.com/reference/carbon-black-cloud/cb-threathunter/latest/unified-binary-store-api/) · [Process search fields](https://developer.carbonblack.com/reference/carbon-black-cloud/platform/latest/platform-search-fields/) |
+| Microsoft Defender for Endpoint | The file page shows device sightings. An analyst can download a sample Defender already stored. If a copy still needs to be collected, Defender retrieves it from its current device path. | Which machines saw the file, and was a downloadable copy stored before it disappeared? [File investigation](https://learn.microsoft.com/en-us/defender-endpoint/investigate-files) · [File response actions](https://learn.microsoft.com/en-us/defender-endpoint/respond-file-alerts) |
+| ReversingLabs Spectra Analyze | Local Retro Hunting applies YARA rules to samples held on the customer's appliance. An analyst can download a local sample by hash. Cloud Retro Hunting searches a separate ReversingLabs collection. | Which input supplied the local sample, and what record links it to a named laptop or build runner at the relevant time? [Local and cloud retro hunting](https://docs.reversinglabs.com/SpectraAnalyze/yara-retro/) · [Sample downloads](https://docs.reversinglabs.com/SpectraAnalyze/api-documentation/download-api/) |
+| Aikido Device Protection | The package inventory records package name and version, first observation, and how many connected devices have it installed. Aikido also documents blocking known malicious installs. | Can an analyst still identify the device after uninstall and retrieve the removed file? Both remain open for this workflow. [Package inventory](https://help.aikido.dev/aikido-device-protection/using-aikido-endpoint/browsing-packages) · [Device Protection](https://help.aikido.dev/aikido-device-protection/endpoint-protection) |
+
+For an evaluation, use a benign package and a modified copy on two enrolled test devices. Remove the original before sharing the advisory. Record which devices each tool identifies, whether the analyst can download the exact file, whether the hunt finds the modified copy, and what evidence supports execution. Time the investigation through the decision on which machines need follow-up.
+
+Start with the existing tools, then repeat with the candidate on the same evidence and time window. Keep a separate record of the device IDs, hashes, times and actions used in the exercise so reviewers can check the findings. Save one worksheet per setup. Mark each finding confirmed, contradicted or unknown and cite the supporting record. Compare the time to a decision and whether the additional evidence changed the response. [Download the evaluation worksheet](../../public/worksheets/developer-package-advisory.csv)
+
+The [developer-workstation use case](https://security-market-map.vercel.app/use-cases/developer-endpoint-protection) links to provider profiles. Use the [device exposure comparison](https://security-market-map.vercel.app/compare?use=uc-developer-endpoint&products=crowdstrike-platform,aikido-device-protection,microsoft-defender-for-endpoint,stairwell-platform) to review download history, inventory and sightings. Use the [retained file comparison](https://security-market-map.vercel.app/compare?use=uc-developer-endpoint&products=stairwell-platform,limacharlie-binlib,reversinglabs-spectra-analyze,carbon-black-cloud-enterprise-edr) to review recovery and historical hunts.
+
+#### Worked example and decision handoff
+
+This fictional exercise uses benign fixtures. The devices, evidence labels and elapsed minutes are illustrative. [Read the completed worksheet](../../public/worksheets/developer-package-advisory-example.csv).
+
+**Technical handoff.** The original file appeared on laptop A and runner B. A process record confirms execution on B. On A, the recovered sample matches the fixture hash, while execution remains unknown. Laptop C was offline during the collection window. Developer platform owns the check linking B’s job to a release. Endpoint IT owns the coverage check for C.
+
+**Executive update.** We confirmed the file ran on a build runner. The release owner is holding the relevant release while engineering checks which output the job produced. Customer impact is still unknown. The next update is due when engineering completes that trace or at the release decision deadline, whichever comes first.
+
+**What changed the decision?** At minute 8, two file sightings justified investigation. At minute 12, the process record gave the team a reason to trace a specific build. Recovering the sample at minute 16 helped the analyst inspect it. That recovery alone would not establish release or customer impact.
+
+Research notes checked 2026-11-24 against primary vendor sources. These are documented capabilities with no hands-on results recorded. The market-map maintainer owns editorial review at the guide's December 11 checkpoint or when a vendor changes collection, retention or entitlement.
 
 ## Layer 3 — AI SOC / agentic investigation
 
@@ -83,13 +113,13 @@ Adjacent categories that sit around this buyer decision (DFIR collection, decept
 
 ## Differentiation hypotheses (with falsification tests)
 
-1. **Own-history retention is the differentiator, not AI.** Falsified if buyers accept vendor-corpus retrohunt (VirusTotal/ReversingLabs) as equivalent in evaluations.
+1. **Own-history retention is the differentiator, not AI.** Test which evidence changes the response decision when buyers already have local sample hunting or access to a threat-intelligence corpus.
 2. **Per-asset pricing including investigations beats per-investigation pricing at high alert volume.** Falsified if total 12-month cost at the same workload is not lower, or buyers prefer usage alignment.
 3. **Static + history beats sandbox for triage speed.** Falsified if sandbox-first teams don't change workflow in a POC.
 
 ## Unknowns
 
-Direct win/loss frequency; which layer buyers budget from; ReversingLabs/VirusTotal retrohunt scope vs customer-owned retention; incumbent AI depth for file-level investigation; current status of Radiant Security (one report implies a change, unverified).
+Direct win/loss frequency; which layer buyers budget from; coverage and host attribution of the customer’s own retained samples; incumbent AI depth for file-level investigation; current status of Radiant Security (one report implies a change, unverified).
 
 ## Sources
 

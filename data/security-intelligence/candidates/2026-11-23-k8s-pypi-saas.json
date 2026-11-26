@@ -1,0 +1,242 @@
+{
+  "batch": "2026-11-23-k8s-pypi-saas",
+  "status": "candidate_only",
+  "publishable": false,
+  "framework": "docs/security-intelligence/incident-classification-framework.md",
+  "discoveryContext": "Found during the November 23, 2026 account-signal sweep for credential and secrets incidents disclosed November 9-23. Checked against data/security-intelligence/incidents.seed.json, every existing candidate batch and the open bot/market-feed-candidates branch; none of the three appeared. Dosu and StepSecurity pages were read directly; Rackspace is secondary-only. Third-party text was paraphrased.",
+  "excludedFromIncidents": [
+    "Railway full incident report (Nov 10): update to seeded incident:railway-env-vars-2026, not a new incident",
+    "Northflank full incident report (Nov 16): update to the existing Northflank record, not a new incident",
+    "Trigger.dev full incident report (no publication date shown): update to the existing Trigger.dev record",
+    "Fireworks AI downstream disclosures (Notion, Cursor): already in seed or candidates",
+    "Uber driver-license data via Fireworks AI: not verified against a source this run; license data, not credentials"
+  ],
+  "excludedReason": "Updates to existing records, already covered, or not verified this run.",
+  "candidates": [
+    {
+      "incidentId": "incident:rackspace-spot-leaked-credentials-2026",
+      "title": "Rackspace Spot: leaked credentials let an attacker read customer Kubernetes Secrets for about 22 hours",
+      "incidentKind": "intrusion",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "BleepingComputer",
+          "canonicalUrl": "https://www.bleepingcomputer.com/news/security/rackspace-spot-breach-let-hackers-access-customer-kubernetes-secrets/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-23T12:00:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "SC Media",
+          "canonicalUrl": "https://www.scworld.com/brief/rackspace-discloses-security-breach-of-spot-cloud-platform",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-23T12:00:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate shares this identity. Distinct from Rackspace's 2022 Exchange ransomware and 2024 ScienceLogic zero-day incidents.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:rackspace-spot-leaked-credentials-2026:1",
+          "statement": "BleepingComputer reports that Rackspace told customers an unauthorized party used leaked credentials to access parts of Rackspace Spot on November 17, 2026, between about 00:20 and 22:00 UTC.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.bleepingcomputer.com/news/security/rackspace-spot-breach-let-hackers-access-customer-kubernetes-secrets/"
+        },
+        {
+          "id": "claim:rackspace-spot-leaked-credentials-2026:2",
+          "statement": "Acting as legitimate users, the attacker created pods, read Kubernetes Secrets, listed nodes and volumes, and could obtain Spot API or refresh tokens held by affected users.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.bleepingcomputer.com/news/security/rackspace-spot-breach-let-hackers-access-customer-kubernetes-secrets/"
+        },
+        {
+          "id": "claim:rackspace-spot-leaked-credentials-2026:3",
+          "statement": "Rackspace revoked affected tokens and sessions, removed unauthorized pods and rotated keys; customers were told to reissue Spot API tokens, replace refresh tokens in automation, download new kubeconfig files, rotate credentials stored in cluster Secrets, and review logs for connected databases, registries, Git repositories, storage and third-party services from November 17.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.bleepingcomputer.com/news/security/rackspace-spot-breach-let-hackers-access-customer-kubernetes-secrets/"
+        },
+        {
+          "id": "claim:rackspace-spot-leaked-credentials-2026:4",
+          "statement": "SC Media, citing BleepingComputer, reports the incident caused a temporary outage while Rackspace cleaned the environment and shared indicators of compromise.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.scworld.com/brief/rackspace-discloses-security-breach-of-spot-cloud-platform"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Primary source needed: no Rackspace statement, status page or customer notice was fetched; facts come from BleepingComputer's account of the customer notification.",
+        "Unknown: whose credentials leaked and how they leaked.",
+        "Unknown: number of affected customers and clusters."
+      ]
+    },
+    {
+      "incidentId": "incident:microsoft-agent-framework-pypi-2026",
+      "title": "Microsoft agent-framework PyPI releases 1.26.1 and 1.26.2 shipped a cloud and CI credential stealer",
+      "incidentKind": "supply_chain",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "StepSecurity",
+          "canonicalUrl": "https://www.stepsecurity.io/blog/microsoft-agent-framework-pypi-package-compromised",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-23T12:00:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "publisher": "Help Net Security",
+          "canonicalUrl": "https://www.helpnetsecurity.com/2026/11/19/microsoft-agent-framework-package-pypi-compromised/",
+          "sourceRole": "secondary",
+          "discoveredAt": "2026-11-23T12:00:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate shares this identity. Not part of the TeamPCP / Mini Shai-Hulud records already promoted.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:microsoft-agent-framework-pypi-2026:1",
+          "statement": "StepSecurity's analysis says agent-framework 1.26.1 was published to PyPI on November 17, 2026 at 20:35 UTC and quarantined at 21:06 UTC, and 1.26.2 was published at 21:08 UTC, after the first quarantine, and quarantined at 21:16 UTC.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.stepsecurity.io/blog/microsoft-agent-framework-pypi-package-compromised"
+        },
+        {
+          "id": "claim:microsoft-agent-framework-pypi-2026:2",
+          "statement": "Both releases installed a Python startup (.pth) hook that ran without importing the framework and collected credential-like environment variables, up to 80 credential files (cloud CLI caches, .npmrc, .git-credentials, Docker config, .env, CI runner directories), process environments, and fresh tokens from GitHub Actions OIDC, Azure DevOps OIDC and Azure managed identity; data was sent to a webhook.site endpoint.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.stepsecurity.io/blog/microsoft-agent-framework-pypi-package-compromised"
+        },
+        {
+          "id": "claim:microsoft-agent-framework-pypi-2026:3",
+          "statement": "StepSecurity says the initial access vector and uploader identity are not established; a new maintainer account was added to the project and the wheels had no provenance attestation.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.stepsecurity.io/blog/microsoft-agent-framework-pypi-package-compromised"
+        },
+        {
+          "id": "claim:microsoft-agent-framework-pypi-2026:4",
+          "statement": "Help Net Security reports that StepSecurity, OX Security and Socket analysed the releases and that guidance is to isolate affected hosts, return to 1.26.0 and treat all reachable secrets as compromised.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://www.helpnetsecurity.com/2026/11/19/microsoft-agent-framework-package-pypi-compromised/"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "StepSecurity is recorded as primary as the original researcher; no Microsoft statement or GitHub advisory was fetched.",
+        "Unknown: how the publishing access was obtained and how many installs ran the malicious versions."
+      ]
+    },
+    {
+      "incidentId": "incident:dosu-invitation-rls-takeover-2026",
+      "title": "Dosu: free-account attacker exploited an invitation check, redirected integration tokens and reached CI and production credentials",
+      "incidentKind": "intrusion",
+      "reviewStatus": "candidate",
+      "discovery": [
+        {
+          "publisher": "Dosu",
+          "canonicalUrl": "https://dosu.dev/security/incident-2026-11-02",
+          "sourceRole": "primary",
+          "discoveredAt": "2026-11-23T12:00:00Z",
+          "usageRights": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "dedupeCheck": "No seed incident or candidate shares this identity.",
+      "veris": {
+        "schemaVersion": null,
+        "actor": null,
+        "action": null,
+        "asset": null,
+        "attribute": null,
+        "sourceClaimIds": []
+      },
+      "claims": [
+        {
+          "id": "claim:dosu-invitation-rls-takeover-2026:1",
+          "statement": "Dosu's post-mortem (published November 8, 2026) says an attacker created a free account on November 2 and exploited an incorrect row-level security check on org invitations to make themselves an owner of Dosu's internal org and an open-source community org.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://dosu.dev/security/incident-2026-11-02"
+        },
+        {
+          "id": "claim:dosu-invitation-rls-takeover-2026:2",
+          "statement": "The attacker redirected integration credentials, including a read-only database token and a GitHub bot token, to an attacker-controlled Cloudflare Quick Tunnel and used them to reach Dosu's CI pipeline, database credentials and production cloud credentials.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://dosu.dev/security/incident-2026-11-02"
+        },
+        {
+          "id": "claim:dosu-invitation-rls-takeover-2026:3",
+          "statement": "Supabase alerted Dosu; exposed data included user names, emails, sign-in providers and times, and indexed pages for a small percentage of customers. Dosu says stored integration credentials (encrypted) and API keys (hashed) were not exposed.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://dosu.dev/security/incident-2026-11-02"
+        },
+        {
+          "id": "claim:dosu-invitation-rls-takeover-2026:4",
+          "statement": "Dosu rotated every production secret by 16:53 UTC on November 2, rotated keys and tokens held for customers, and locked down CI so pull requests cannot reach production credentials and deployments use short-lived credentials.",
+          "epistemicStatus": "reported",
+          "sourceUrl": "https://dosu.dev/security/incident-2026-11-02"
+        }
+      ],
+      "attackMappings": [
+        {
+          "domain": "enterprise-attack",
+          "attackId": null,
+          "stixId": null,
+          "attackDatasetVersion": null,
+          "mappingStatus": "not_evaluated",
+          "evidenceStatus": "unknown",
+          "rationale": null,
+          "sourceClaimIds": [],
+          "reviewer": null,
+          "reviewedAt": null
+        }
+      ],
+      "defensiveMappings": [],
+      "weaknessMappings": [],
+      "unresolvedQuestions": [
+        "Incident date (Nov 2) and publication date (Nov 8) differ; record both.",
+        "Unknown: whether any customer integration was misused before rotation."
+      ]
+    }
+  ]
+}

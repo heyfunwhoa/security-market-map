@@ -3,7 +3,7 @@ import { catalog } from "@/lib/catalog";
 import { domainClaimCounts } from "@/lib/domain-evidence";
 import { formatDate } from "@/lib/format";
 
-export const alt = "Security Market Map: identity and secrets, mapped with evidence. Eleven security domains with claim counts.";
+export const alt = "Security Market Map: domains, categories and products. Eleven security domains with claim counts.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -22,7 +22,7 @@ export default function Image() {
           Security Market Map
         </div>
         <div style={{ marginTop: 20, fontSize: 64, lineHeight: 1.1, fontWeight: 700, maxWidth: 900 }}>
-          Identity and secrets, mapped with evidence.
+          Security domains, categories and products.
         </div>
         <div style={{ marginTop: 40, display: "flex", flexWrap: "wrap", gap: 12 }}>
           {catalog.domains.map((domain) => (

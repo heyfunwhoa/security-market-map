@@ -40,18 +40,22 @@ test("checks the current merged vendor, product, source and claim records", asyn
   const monitoring = await import("../lib/data/public-monitoring.ts");
   const management = await import("../lib/data/secrets-management.ts");
   const workforce = await import("../lib/data/workforce-guide.ts");
+  const workstation = await import("../lib/data/workstation-investigation.ts");
+  const workstationEvidence = monitoring.registerProductEvidence(workstation.workstationResearch);
+  const { ciamSsoResearch } = await import("../lib/data/ciam-sso.ts");
+  const ciamEvidence = monitoring.registerProductEvidence(ciamSsoResearch);
   const workforceEvidence = monitoring.registerProductEvidence(workforce.workforceGuideResearch);
   const managementEvidence = monitoring.registerProductEvidence(management.secretsManagementResearch);
   const collections = {
-    vendors: [...market.vendors, ...ecosystem.ecosystemVendors, ...sweep.secretsSweepVendors, ...expanded.expandedVendors, ...monitoring.publicMonitoringVendors, ...management.secretsManagementVendors, ...workforce.workforceGuideVendors],
-    products: [...market.products, ...ecosystem.ecosystemProducts, ...sweep.secretsSweepProducts, ...expanded.expandedProducts, ...endpoint.developerEndpointProducts, ...monitoring.publicMonitoringProducts, ...management.secretsManagementProducts, ...workforce.workforceGuideProducts],
-    sources: [...sources, ...sweep.secretsSweepSources, ...expanded.expandedSources, ...endpoint.developerEndpointSources, ...monitoring.publicMonitoringSources, ...monitoring.monitoringModeEvidence.sources, ...managementEvidence.sources, ...workforceEvidence.sources, ...workforce.issuerReferenceSources, ...workforce.accessScenarioSources],
-    claims: [...claims, ...sweep.secretsSweepClaims, ...expanded.expandedClaims, ...endpoint.developerEndpointClaims, ...monitoring.publicMonitoringClaims, ...monitoring.monitoringModeEvidence.claims, ...managementEvidence.claims, ...workforceEvidence.claims],
+    vendors: [...market.vendors, ...ecosystem.ecosystemVendors, ...sweep.secretsSweepVendors, ...expanded.expandedVendors, ...monitoring.publicMonitoringVendors, ...management.secretsManagementVendors, ...workforce.workforceGuideVendors, ...workstation.workstationVendors],
+    products: [...market.products, ...ecosystem.ecosystemProducts, ...sweep.secretsSweepProducts, ...expanded.expandedProducts, ...endpoint.developerEndpointProducts, ...monitoring.publicMonitoringProducts, ...management.secretsManagementProducts, ...workforce.workforceGuideProducts, ...workstation.workstationProducts],
+    sources: [...sources, ...sweep.secretsSweepSources, ...expanded.expandedSources, ...endpoint.developerEndpointSources, ...monitoring.publicMonitoringSources, ...monitoring.monitoringModeEvidence.sources, ...managementEvidence.sources, ...workforceEvidence.sources, ...ciamEvidence.sources, ...workforce.issuerReferenceSources, ...workforce.accessScenarioSources, ...workstationEvidence.sources],
+    claims: [...claims, ...sweep.secretsSweepClaims, ...expanded.expandedClaims, ...endpoint.developerEndpointClaims, ...monitoring.publicMonitoringClaims, ...monitoring.monitoringModeEvidence.claims, ...managementEvidence.claims, ...workforceEvidence.claims, ...ciamEvidence.claims, ...workstationEvidence.claims],
   };
   assert.deepEqual(identityProblems(collections), []);
   assert.equal(collections.products.filter((product) => product.id === "kingfisher").length, 1);
   assert.deepEqual(provenanceProblems(collections.sources, collections.claims,
-    [...capabilities, ...ecosystem.ecosystemCapabilities, ...endpointComparison.developerEndpointCapabilities].map((item) => item.id)), []);
+    [...capabilities, ...ecosystem.ecosystemCapabilities, ...endpointComparison.developerEndpointCapabilities, ...endpointComparison.workstationEvidenceCapabilities].map((item) => item.id)), []);
 });
 
 test("contribution documents link to existing local files", async () => {

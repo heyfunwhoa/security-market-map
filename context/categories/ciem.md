@@ -3,7 +3,7 @@ id: "ciem"
 type: "category"
 name: "CIEM and access intelligence"
 layer: "core"
-vendors: 11
+vendors: 12
 ---
 
 # CIEM and access intelligence
@@ -41,6 +41,7 @@ Cloud entitlement posture and the question of effective access: what a human or 
 - Britive
 - Apono
 - Symmetry Systems
+- Act Security
 
 ## What buyers do instead
 

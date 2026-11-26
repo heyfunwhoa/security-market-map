@@ -28,6 +28,8 @@
 5. **Credential harvesting**: GitGuardian's planted AWS honeytoken can alert if used, indicating suspicious access to that decoy. This is not proof of complete malware detection.
 6. **SOC handoff**: correlate the package-install event, host process telemetry from EDR, secret exposure, use of decoy and credential revoke/rotate event. Preserve distinct controls and accountable owners.
 
+When an advisory arrives after a developer has removed the package, see the [seven-provider investigation notes](file-analysis-ai-investigation-landscape-2026-11.md#investigating-a-developer-package-after-removal) for device sightings, recovery of the original file, and historical searches for related files.
+
 ## Evaluation checklist (record as Unknown until tested)
 - **Enforcement boundary**: detect vs alert vs block vs quarantine vs revoke; timing pre-/post-event; does enforcement fail open or closed offline?
 - **Inventory scope**: managed Mac/Windows/Linux; BYOD; servers; developer containers; WSL2; AI IDE, CLI, provider, MCP coverage; release/version support.

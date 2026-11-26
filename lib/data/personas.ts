@@ -55,7 +55,7 @@ export const personas: BuyerPersona[] = [
       "Who certifies cloud entitlements today?",
       "Are agents and workloads in the same program as people?",
     ],
-    categoryIds: ["workforce-identity", "iga", "pam", "nhi", "ciem", "itdr", "agent-identity", "wim"],
+    categoryIds: ["workforce-identity", "iga", "pam", "nhi", "ciem", "itdr", "agent-identity", "wim", "seid"],
     aliases: [
       "IdSec",
       "IAM lead",
@@ -174,7 +174,7 @@ export const personas: BuyerPersona[] = [
       "Who remediates account findings versus app findings?",
       "Is this a cloud control-plane gap or a shared CI/image gap?",
     ],
-    categoryIds: ["cspm", "cwpp", "ciem", "cnapp", "cloud-detection", "itdr", "adjacent-security"],
+    categoryIds: ["cspm", "cwpp", "ciem", "cnapp", "csie", "acsp", "cloud-detection", "itdr", "adjacent-security"],
     aliases: [
       "CloudSec",
       "Cloud security engineer",

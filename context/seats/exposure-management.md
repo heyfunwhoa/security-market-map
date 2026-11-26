@@ -24,6 +24,7 @@ Find and prioritize exposures across internet-facing, cloud, and IT assets, then
 - External attack surface (`external-attack-surface`)
 - Continuous threat exposure management (`ctem`)
 - Cyber asset management (`security-asset-management`)
+- Asset intelligence (`asset-intelligence`)
 - Cloud vulnerability management (`cloud-vulnerability`)
 - IT vulnerability management (`it-vulnerability-management`)
 

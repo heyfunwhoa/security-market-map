@@ -3,7 +3,7 @@ id: "endpoint-control"
 type: "category"
 name: "Endpoint control and prevention"
 layer: "core"
-vendors: 4
+vendors: 7
 ---
 
 # Endpoint control and prevention
@@ -31,7 +31,10 @@ Controls aimed at what a device is doing above the file and the process: develop
 
 ## Vendors (adjacent)
 
+- Palo Alto Networks
 - Cyata
+- Aikido Security
+- Socket
 - Code42
 
 ## What buyers do instead

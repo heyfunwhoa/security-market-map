@@ -3,7 +3,7 @@ id: "enterprise-browser"
 type: "category"
 name: "Enterprise browser"
 layer: "core"
-vendors: 3
+vendors: 4
 ---
 
 # Enterprise browser
@@ -33,7 +33,7 @@ A managed browser as the work surface, used alongside virtual desktop and secure
 
 ## Vendors (adjacent)
 
-_None recorded._
+- Palo Alto Networks
 
 ## What buyers do instead
 

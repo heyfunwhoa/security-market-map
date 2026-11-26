@@ -56,7 +56,7 @@ export default function MethodologyPage() {
             </dd>
           </div>
           <div className="rounded-xl border border-border bg-card p-4">
-            <dt className="font-semibold">Mapped, evidence coming</dt>
+            <dt className="font-semibold">Mapped</dt>
             <dd className="mt-1">
               The category and the buyer are named. Some claims exist, and the tile shows how many. Evidence is
               thinner than identity, and most capability cells stay Unknown.

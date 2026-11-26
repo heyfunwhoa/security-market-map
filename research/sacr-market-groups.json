@@ -1,0 +1,224 @@
+[
+  {
+    "title": "DSPM: Data Security Posture Management",
+    "categoryIds": [
+      "dspm"
+    ],
+    "source": "https://softwareanalyst.io/reports/the-agentic-dspm-shift-how-data-discovery-is-evolving-into-real-time-remediation",
+    "description": "The four groups follow the supplied SACR map. For a sensitive file with excessive access, ask who can approve a permission change, which system applies it, and how the team verifies the result.",
+    "groups": [
+      {
+        "label": "Native agentic DSPM",
+        "brands": "Teleskope"
+      },
+      {
+        "label": "Emerging agentic DSPM",
+        "brands": "BigID Next, Concentric AI, Cyera, Veeam"
+      },
+      {
+        "label": "Platform-orchestrated DSPM",
+        "brands": "Cyberhaven, Forcepoint, Fortra, IBM, LinkShadow, Microsoft, Netskope, Palo Alto Networks, Proofpoint, Rubrik, Skyhigh Security, Wiz, Zscaler"
+      },
+      {
+        "label": "Automated / context-driven DSPM",
+        "brands": "Arexdata, Bedrock Data, Lepide, Netwrix, Sentra, Theom, Trust3 AI, TrustLogix, Varonis"
+      }
+    ]
+  },
+  {
+    "title": "AIAP: Agentic Identity Access Platforms",
+    "categoryIds": [
+      "agent-identity",
+      "mcp-security"
+    ],
+    "source": "https://softwareanalyst.io/reports/emerging-agentic-identity-access-platforms-aiap",
+    "description": "The ecosystem figure groups products by the part of the workflow they touch. Ask who owns an agent, how its task limits access, who issues its credential, and where a tool call can be stopped. The report profiles seven partners, including JumpCloud; that profile list differs from the logos in the figure.",
+    "groups": [
+      {
+        "label": "Governance · data agent controls",
+        "brands": "CrowdStrike, Wiz, Palo Alto Networks, Microsoft, Zscaler, Privacera, Cyera, BigID Next, Securiti, Rubrik, Concentric AI, Sentra, Tenable, Satori, Netskope"
+      },
+      {
+        "label": "Governance · observability",
+        "brands": "AgentOps, Aim Security, Arize, Astrix, Aqua, Braintrust, Capsule, Clutch, Fiddler, Geordie, HoneyHive, Mint, Noma, Oasis, ObserveID, Obsidian, Onyx, Openlayer, Pillar, Reco, Trust3 AI, Virtue AI, Weights & Biases, Zenity"
+      },
+      {
+        "label": "Governance · agent monitoring and runtime guardrails",
+        "brands": "Alice, AIceberg, Aim Security, Aurascape, AuthMind, CalypsoAI, Capsule, Guardrails AI, HiddenLayer, Judgment Labs, Lakera, Mint, Noma, Onyx, Operant, Pangea, Pillar, Prompt Security, promptfoo, Reco, Robust Intelligence, Straiker, Trust3 AI, Virtue AI, WatertightAI, Zenity"
+      },
+      {
+        "label": "MCP · interface and scanning",
+        "brands": "Aim Security, Descope, Docker, Enkrypt AI, Keyfactor, mcp.run, Natoma, Ory, Pomerium, promptfoo, Rein, Salt, SGNL, Sonoma, Teleport, ZioSec"
+      },
+      {
+        "label": "MCP · discovery",
+        "brands": "Akto, Invariant Labs, Noma, Natoma, Ory, Pillar, Teleport, Salt"
+      },
+      {
+        "label": "MCP · proxy and monitoring",
+        "brands": "Akto, Anysource, Cequence, Docker, Kong, Lasso Security, lunar.dev, MCPTotal, Natoma, Obot, Operant, Pomerium, Prompt Security, promptfoo, TrueFoundry"
+      },
+      {
+        "label": "Identity · AIAP",
+        "brands": "Aembit, Astrix, Aizome, Cyata, Oasis, Silverfort"
+      },
+      {
+        "label": "Identity · access controls",
+        "brands": "Aembit, Akeyless, Britive, Capsule, CyberArk, Delinea, Keeper, Keyfactor, ObserveID, Okta, SGNL, Teleport"
+      },
+      {
+        "label": "Identity · access governance",
+        "brands": "ConductorOne, Astrix, Britive, Clutch, Cyata, CyberArk, Delinea, Entro, GitGuardian, Linx, Hush Security, Oasis, ObserveID, Okta, P0 Security, Permiso, Reco, SailPoint, Saviynt, Silverfort, SlashID, Strata, Teleport, Veza, Token, Akeyless"
+      }
+    ]
+  },
+  {
+    "title": "AIAP: Access architecture",
+    "categoryIds": [
+      "agent-identity"
+    ],
+    "source": "https://softwareanalyst.io/reports/emerging-agentic-identity-access-platforms-aiap",
+    "description": "The second AIAP diagram follows delegated access from the agent and its human owner through identity, tool and runtime controls to audit evidence. The agent examples identify callers. SIEM and monitoring are destinations for evidence.",
+    "groups": [
+      {
+        "label": "Agent examples",
+        "brands": "OpenAI, Cursor, Claude"
+      },
+      {
+        "label": "Credential issuers and stores",
+        "brands": "Okta, Microsoft"
+      },
+      {
+        "label": "Agentic identity control plane",
+        "brands": "Aembit, Astrix, Oasis, Silverfort, Cyata"
+      },
+      {
+        "label": "Non-human identity (NHI)",
+        "brands": "Astrix, Oasis, Linx, SlashID, Clutch, Entro, Token, Akeyless, Andromeda, Veza, Unosecur, Teleport"
+      },
+      {
+        "label": "MCP and tool brokers",
+        "brands": "Natoma, Lasso Security, Cequence, Kong, Obot, Operant, Prompt Security, promptfoo, Akto, Pomerium, MCPTotal, Docker"
+      },
+      {
+        "label": "Runtime controls",
+        "brands": "Silverfort, Astrix, CrowdStrike, Oasis, Permiso, SentinelOne, Push, AuthMind"
+      },
+      {
+        "label": "Privileged and just-in-time access",
+        "brands": "CyberArk (Palo Alto Networks), Apono, Britive, P0 Security, Silverfort"
+      },
+      {
+        "label": "Audit logs and session recordings",
+        "brands": "Silverfort"
+      }
+    ]
+  },
+  {
+    "title": "ARISE: Agentic Runtime Identity Security Enforcement",
+    "categoryIds": [
+      "agentic-runtime",
+      "agent-identity"
+    ],
+    "source": "https://softwareanalyst.io/reports/arise-agentic-runtime-identity-security-enforcement-for-agents",
+    "description": "Figure 10 groups vendors by control surface. Ask a vendor to trace one agent action from delegated authority to the enforcement decision and audit record. The report also discusses credential brokerage as a pattern. Placements below follow the figure; its runtime-detection panel includes one unlabeled symbol.",
+    "groups": [
+      {
+        "label": "Identity and delegated authority",
+        "brands": "Akeyless, Andromeda, Aizome, Britive, Oak, Permiso, Silverfort, Xage Security"
+      },
+      {
+        "label": "Gateways and prompt control",
+        "brands": "AIR Security, Aurascape, Britive, Cequence, Cato Networks, Check Point, Lumia, NeuralTrust, SentinelOne, TrojAI, WhiteMatter, WitnessAI"
+      },
+      {
+        "label": "MCP and tool governance",
+        "brands": "Aembit, Britive, Cequence, Operant, PointGuard AI, Silverfort, TrojAI, Virtue AI, WitnessAI, Zenity"
+      },
+      {
+        "label": "Runtime behavior and agent detection",
+        "brands": "Aizome, ClearVector, HiddenLayer, Lasso Security, Noma, Operant, Permiso, Pillar, QuilrAI, Straiker, WitnessAI, Zenity"
+      },
+      {
+        "label": "Adjacent build, testing and provenance controls",
+        "brands": "HiddenLayer, Lasso Security, Noma, NeuralTrust, Pillar, Straiker, Virtue AI, WhiteMatter"
+      },
+      {
+        "label": "Emerging full-stack contenders",
+        "brands": "Akeyless, AuthMind, Britive, Oak, Okta, Pillar, Silverfort, Virtue AI, WitnessAI, Zenity"
+      }
+    ]
+  },
+  {
+    "title": "UADP: Unified Agentic Defense Platforms",
+    "categoryIds": [
+      "dspm",
+      "dlp",
+      "nhi",
+      "itdr",
+      "ai-data-security"
+    ],
+    "source": "https://softwareanalyst.io/reports/the-rise-of-uadp-market-share-growth",
+    "description": "SACR describes five markets converging around shared data, identity and enforcement. These are illustrative vendors discussed in the report. For a consolidation purchase, verify which modules share evidence, policy, licensing and response ownership.",
+    "groups": [
+      {
+        "label": "Data loss prevention (DLP)",
+        "brands": "Microsoft, Broadcom"
+      },
+      {
+        "label": "Data security posture management (DSPM)",
+        "brands": "Wiz, Palo Alto Networks, Rubrik, Veeam"
+      },
+      {
+        "label": "AI security",
+        "brands": "HiddenLayer, Noma, Netskope, Check Point"
+      },
+      {
+        "label": "Non-human identity (NHI) security",
+        "brands": "CyberArk"
+      },
+      {
+        "label": "Identity threat detection and response (ITDR)",
+        "brands": "Microsoft, CrowdStrike"
+      }
+    ]
+  },
+  {
+    "title": "From CAASM to asset intelligence",
+    "categoryIds": [
+      "security-asset-management"
+    ],
+    "source": "https://softwareanalyst.io/reports/from-caasm-to-asset-intelligence",
+    "description": "Cyber asset attack surface management (CAASM) inventories assets. Asset intelligence asks whether observations refer to the same asset, how recent they are, who owns it, and whether a control covers it. Test a conflicting endpoint and cloud record: can the team explain the match and assign the coverage gap to an owner?",
+    "groups": [
+      {
+        "label": "Asset intelligence and CAASM",
+        "brands": "Axonius, Arctic Wolf, JupiterOne, Rapid7"
+      },
+      {
+        "label": "External attack surface management",
+        "brands": "Cortex (Palo Alto Networks), CrowdStrike, Censys, CyCognito, Google Cloud, Microsoft, Wiz"
+      },
+      {
+        "label": "Exposure management and vulnerability prioritization",
+        "brands": "Axonius, Brinqa, Nagomi, Panaseer, Qualys, Rapid7, Seemplicity, SAFE Security, Tenable, XM Cyber, Zafran"
+      },
+      {
+        "label": "Specialized asset discovery",
+        "brands": "Claroty, Dragos, Forescout, Google Cloud, Oligo, runZero, ServiceNow, Wiz"
+      },
+      {
+        "label": "IT asset management, configuration databases and service context",
+        "brands": "BMC, Flexera, Freshworks, Lansweeper, ServiceNow"
+      },
+      {
+        "label": "Identity, SaaS and non-human identity governance",
+        "brands": "Astrix, C1, Entro, Microsoft, Okta, Saviynt, SailPoint"
+      },
+      {
+        "label": "Control validation and security testing",
+        "brands": "AttackIQ, Cymulate, Picus, Pentera, SafeBreach"
+      }
+    ]
+  }
+]

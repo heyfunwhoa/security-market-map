@@ -1,7 +1,11 @@
+import { seatsForUseCase } from "@/lib/persona-graph";
+import { productDestination } from "@/lib/product-destination";
 import Link from "next/link";
+import { DiscoveryQuestions } from "@/components/discovery-questions";
 import { notFound } from "next/navigation";
 import { PageIntro, StatusPill } from "@/components/chrome";
 import { catalog, findUseCase, vendorById } from "@/lib/catalog";
+import { shortlistUrl } from "@/lib/landscape-shortlist";
 import { relationshipLabel } from "@/lib/format";
 
 export function generateStaticParams() {
@@ -20,6 +24,7 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
   if (!useCase) notFound();
 
   const candidates = catalog.products.filter((product) => product.useCaseIds.includes(useCase.id));
+  const { seats } = seatsForUseCase(useCase.id);
   const edges = catalog.relationships.filter((relationship) => relationship.useCaseId === useCase.id);
 
   return (
@@ -37,11 +42,7 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
           </section>
           <section>
             <h2 className="text-2xl">Discovery questions</h2>
-            <ul className="mt-2 list-disc space-y-2 pl-5">
-              {useCase.discoveryQuestions.map((question) => (
-                <li key={question}>{question}</li>
-              ))}
-            </ul>
+            <DiscoveryQuestions useCase={useCase} />
           </section>
         </div>
         <aside className="space-y-4 rounded-xl border border-border bg-card p-4 text-sm">
@@ -57,6 +58,10 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
             <span className="font-semibold">Triggers. </span>
             {useCase.triggers.join("; ")}
           </p>
+          {seats.length > 0 && <div>
+            <h2 className="font-semibold">Buyer profiles</h2>
+            <ul className="flex flex-wrap gap-x-4">{seats.map((seat) => <li key={seat.id}><Link className="inline-flex min-h-11 items-center text-primary underline" href={`/personas/${seat.id}`}>{seat.name}</Link></li>)}</ul>
+          </div>}
           <div>
             <p className="font-semibold">Success metrics you can measure</p>
             <ul className="mt-1 list-disc pl-5">
@@ -65,20 +70,49 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
               ))}
             </ul>
           </div>
+          <nav aria-label="Account preparation" className="flex flex-wrap gap-x-4">
+            <Link href="/territory" className="inline-flex min-h-11 items-center text-primary underline">Prepare an account brief</Link>
+            <Link href="/budget" className="inline-flex min-h-11 items-center text-primary underline">Open budget worksheet</Link>
+          </nav>
         </aside>
       </div>
 
       <section className="mt-10">
         <h2 className="text-2xl">Candidates</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          Listed because the product is tagged for this use case. Open Compare before you treat that as a
-          capability.
+          These products are mapped to this buyer question. Compare their documented capabilities and research gaps.
         </p>
+        <Link href={`/landscape?useCase=${encodeURIComponent(useCase.id)}`} className="inline-flex min-h-11 items-center font-medium text-primary underline underline-offset-4">Build a shortlist for this use case</Link>
+        {useCase.comparisonShortlists && (
+          <nav aria-labelledby="comparison-shortlists" className="my-4">
+            <h3 id="comparison-shortlists" className="text-lg font-semibold">{useCase.comparisonShortlists.title}</h3>
+            <ul className="mt-1">
+              {useCase.comparisonShortlists.options.map(({ label, productIds }) => (
+                <li key={label}>
+                  <Link href={shortlistUrl(productIds, useCase.id)} className="inline-flex min-h-11 items-center text-primary underline underline-offset-4">
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            {useCase.comparisonShortlists.worksheets && (
+              <ul aria-label="Evaluation worksheets" className="flex flex-wrap gap-x-5">
+                {useCase.comparisonShortlists.worksheets.map(({ label, path }) => (
+                  <li key={path}>
+                    <a href={path} download className="inline-flex min-h-11 items-center text-primary underline underline-offset-4">
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </nav>
+        )}
         <ul className="mt-3 grid gap-2 sm:grid-cols-2">
           {candidates.map((product) => (
             <li key={product.id}>
               <Link
-                href={`/vendors/${vendorById(product.vendorId)?.slug ?? ""}`}
+                href={productDestination(product, vendorById(product.vendorId)!.slug)}
                 className="block rounded-lg border border-border px-3 py-2 text-sm hover:bg-muted"
               >
                 <span className="font-medium">{product.name}</span>
@@ -105,6 +139,11 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
                     {relationshipLabel(edge.type)}: {from?.name} and {to?.name}
                   </p>
                   <p className="mt-1 text-muted-foreground">{edge.rationale}</p>
+                  {from && to && edge.type === "direct_competitor" && (
+                    <Link href={shortlistUrl([from.id, to.id], useCase.id)} className="inline-flex min-h-11 items-center text-primary underline underline-offset-4">
+                      Compare {from.name} and {to.name} for this use case
+                    </Link>
+                  )}
                 </li>
               );
             })}

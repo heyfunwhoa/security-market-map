@@ -19,7 +19,7 @@ export function ClaimList({ claims, labels, linkable = false }: { claims: Claim[
   return (
     <ul className="space-y-3">
       {claims.map((claim) => (
-        <li key={claim.id} id={linkable ? claim.id : undefined} tabIndex={linkable ? -1 : undefined} className="scroll-mt-24 rounded-xl border border-border bg-card p-4 target:ring-2 target:ring-ring">
+        <li key={claim.id} id={linkable ? claim.id : undefined} tabIndex={linkable ? -1 : undefined} className="min-w-0 scroll-mt-24 [overflow-wrap:anywhere] rounded-xl border border-border bg-card p-4 target:ring-2 target:ring-ring">
           <div className="flex flex-wrap items-center gap-2">
             <SourceBadge claim={claim} />
             {claimNeedsRecheck(claim, catalog.sources, catalog.asOf) ? <RecheckBadge asOf={catalog.asOf} /> : null}

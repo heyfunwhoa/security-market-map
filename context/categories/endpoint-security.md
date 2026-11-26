@@ -3,18 +3,18 @@ id: "endpoint-security"
 type: "category"
 name: "Endpoint security"
 layer: "core"
-vendors: 10
+vendors: 17
 ---
 
 # Endpoint security
 
-Prevention and detection on laptops, servers, and other devices. EDR is the usual product. It is not an identity provider, even when it consumes identity signals.
+An endpoint protection platform (EPP) enforces policy on laptops and servers and can block or quarantine a file. Endpoint detection and response (EDR) records device activity so analysts can investigate an alert, scope affected hosts and take action. A single endpoint suite can provide both.
 
-**Buyer question:** What runs on the device, and who responds when it is compromised?
+**Buyer question:** Can we show what the endpoint blocked, what actually ran, and who can contain an affected device?
 
-**Usual owner:** IT security or the SOC.
+**Usual owner:** IT or endpoint security manages coverage and policy. The security operations center investigates alerts and agrees containment authority with IT.
 
-**Budget source:** Endpoint or IT security.
+**Budget source:** Endpoint or IT security typically owns the license. Confirm who funds monitoring and after-hours response.
 
 ## Owning seats
 
@@ -39,9 +39,11 @@ From 3 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 
 - CrowdStrike: Endpoint and XDR vendor. The Falcon homepage retrieved 26 Oct 2026 describes endpoint detection and response as detecting and prioritizing malicious activity. Identity Protection is a module name on that page, so no ITDR cell is filled.
 - SentinelOne: Homepage retrieved 26 Oct 2026 describes endpoint and identity protection in one agent, and says the platform detects, contains, and responds. That detection sentence is not an endpoint-only cell and not an ITDR cell.
+- Broadcom: Broadcom's Carbon Black portfolio includes endpoint detection and response. The Enterprise EDR binary store preserves samples under the customer's upload policy.
 
 ## Vendors (adjacent)
 
+- Microsoft
 - AttackIQ
 - Fortinet
 - Check Point
@@ -50,6 +52,11 @@ From 3 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - Neo Security
 - Fortra
 - Binalyze
+- Bay
+- Manifold
+- Asymptote Labs
+- Cisco
+- LimaCharlie
 
 ## What buyers do instead
 

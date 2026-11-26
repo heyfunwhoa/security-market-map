@@ -66,6 +66,110 @@ export const glossary: GlossaryTerm[] = [
     relatedTermIds: ["wim", "federation"],
   },
   {
+    id: "epp",
+    term: "Endpoint protection platform (EPP)",
+    definition:
+      "A suite that protects laptops and servers by enforcing security policies on the device. It can check an installer as it arrives, block it from running or quarantine it. The prevention verdict records what the control decided. Modern suites can also include EDR.",
+    categoryId: "endpoint-security",
+    relatedTermIds: ["edr", "ecp"],
+  },
+  {
+    id: "edr",
+    term: "Endpoint detection and response (EDR)",
+    definition:
+      "A security capability that records and analyzes device activity, including which programs ran, which files changed and where the device connected. An analyst uses that history to investigate an alert and can isolate a host if authorized. Event retention and access to original files are separate evaluation questions.",
+    categoryId: "endpoint-security",
+    relatedTermIds: ["epp", "xdr", "itdr"],
+  },
+  {
+    id: "ecp",
+    term: "Endpoint control and prevention (ECP)",
+    definition:
+      "Software Analyst Cyber Research (SACR) uses ECP for controls that observe and govern what people and software agents can do inside browsers, developer tools and AI assistants on a device. A buyer might ask whether a coding assistant can be stopped before it sends source code to an unapproved service.",
+    categoryId: "endpoint-control",
+    relatedTermIds: ["edr", "ai-edr", "ecpp"],
+  },
+  {
+    id: "ai-edr",
+    term: "Agent runtime visibility (AI-EDR)",
+    definition:
+      "SACR uses this label for monitoring an artificial intelligence agent while it works. Investigators trace which tools the agent called, what data it accessed and in what order. It applies the idea of endpoint detection and response to an agent’s actions.",
+    categoryId: "endpoint-control",
+    relatedTermIds: ["ecp", "edr", "aisoc"],
+  },
+  {
+    id: "ecpp",
+    term: "Endpoint control and prevention platform (ECPP)",
+    definition:
+      "SACR uses ECPP for a platform that combines several endpoint controls, such as observing agent activity and enforcing a policy inside an application. Ask the provider to demonstrate which controls work together.",
+    categoryId: "endpoint-control",
+    relatedTermIds: ["ecp", "ai-edr", "epp"],
+  },
+  {
+    id: "ndr",
+    term: "Network detection and response (NDR)",
+    definition:
+      "A security capability that analyzes network traffic to detect suspicious connections and help a team investigate or contain them. If an installer ran, which destinations did the laptop contact and did other devices reach them too?",
+    categoryId: "ndr",
+    relatedTermIds: ["edr", "xdr"],
+  },
+  {
+    id: "cdr",
+    term: "Cloud detection and response (CDR)",
+    definition:
+      "A security capability that detects and helps teams respond to suspicious activity in running cloud environments, such as unexpected access by a workload. An investigator can ask whether a workload used an API or accessed data after the suspicious activity on a laptop.",
+    categoryId: "cloud-detection",
+    relatedTermIds: ["edr", "itdr", "xdr"],
+  },
+  {
+    id: "xdr",
+    term: "Extended detection and response (XDR)",
+    definition:
+      "A platform capability that connects signals from endpoints, identity and other security tools so analysts can investigate and respond to a single incident. Ask whether the analyst can follow one event from email to a laptop to a sign-in, and which integrations provide the evidence.",
+    categoryId: "xdr",
+    relatedTermIds: ["edr", "itdr", "cdr", "ndr"],
+  },
+  {
+    id: "sdpp",
+    term: "Security data pipeline platform (SDPP)",
+    definition:
+      "A platform that collects security events, puts them in a consistent format, filters them and sends them to tools that store or analyze them. If an analyst cannot find an event, which fields and records reached the destination?",
+    categoryId: "security-data-pipelines",
+    relatedTermIds: ["siem", "xdr"],
+  },
+  {
+    id: "siem",
+    term: "Security information and event management (SIEM)",
+    definition:
+      "A system that collects and searches logs from multiple sources and connects related events to detect suspicious activity. An analyst can look up what a device and account did during the same time window.",
+    categoryId: "siem",
+    relatedTermIds: ["sdpp", "xdr", "soar"],
+  },
+  {
+    id: "soar",
+    term: "Security orchestration, automation and response (SOAR)",
+    definition:
+      "Software that coordinates security tools and automates the steps in a response plan, often called a playbook. A playbook might open a case, request approval and tell the endpoint tool to isolate a device.",
+    categoryId: "soar",
+    relatedTermIds: ["siem", "edr", "mdr"],
+  },
+  {
+    id: "aisoc",
+    term: "AI-driven security operations center (AISOC)",
+    definition:
+      "A security operations center that uses artificial intelligence to triage alerts and help analysts investigate and respond to incidents. Ask which triage or investigation steps the system can perform, what evidence it presents and who authorizes containment.",
+    categoryId: "ai-soc-investigation",
+    relatedTermIds: ["soar", "mdr", "ai-edr"],
+  },
+  {
+    id: "mdr",
+    term: "Managed detection and response (MDR)",
+    definition:
+      "A service in which an external team monitors for threats, investigates alerts and takes the response actions agreed with the customer. If an alert arrives overnight, who investigates, calls the customer and has permission to isolate the laptop?",
+    categoryId: "mdr",
+    relatedTermIds: ["edr", "xdr", "soar"],
+  },
+  {
     id: "ispm",
     term: "Identity security posture management (ISPM)",
     definition:
@@ -138,6 +242,14 @@ export const glossary: GlossaryTerm[] = [
     relatedTermIds: ["certification", "entitlement"],
   },
   {
+    id: "csie",
+    term: "CSIE",
+    definition:
+      "Cloud Security Intent Enforcement. Turn approved security requirements into cloud guardrails, check the likely impact before applying them, and manage drift and exceptions over time. The term comes from SACR's emerging cloud security framework.",
+    categoryId: "csie",
+    relatedTermIds: ["ciem"],
+  },
+  {
     id: "ciem",
     term: "CIEM",
     definition:
@@ -147,9 +259,9 @@ export const glossary: GlossaryTerm[] = [
   },
   {
     id: "itdr",
-    term: "ITDR",
+    term: "Identity threat detection and response (ITDR)",
     definition:
-      "Identity threat detection and response. It looks for abuse of a real identity. It does not replace joiner-mover-leaver.",
+      "A security capability that detects and helps teams respond to misuse of accounts, credentials or active sessions. Did someone use the developer’s account from a new location after the installer ran? Identity teams can use that evidence to revoke access.",
     categoryId: "itdr",
     relatedTermIds: ["identity", "standing"],
   },

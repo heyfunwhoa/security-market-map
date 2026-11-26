@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ClaimList } from "@/components/claims";
 import { catalog, productById, vendorById } from "@/lib/catalog";
-import { productDetailUrl } from "@/lib/landscape-filters";
+import { productDestination } from "@/lib/product-destination";
 
 const claimsById = new Map(catalog.claims.map((claim) => [claim.id, claim]));
 const linkStyle = "text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring";
@@ -19,7 +19,7 @@ export function BuyerProductOptions({ options }: { options: { label: string; cla
               <summary className="cursor-pointer py-3 font-semibold focus-visible:outline-2 focus-visible:outline-ring">{option.label}</summary>
               <div className="space-y-3 pb-4 text-sm">
                 <ClaimList claims={claims} />
-                <Link className={linkStyle} href={productDetailUrl(vendor.slug, product.id)}>View {vendor.name} product profile</Link>
+                <Link className={linkStyle} href={productDestination(product, vendor.slug)}>View {vendor.name} product profile</Link>
               </div>
             </details>
           </li>

@@ -9,6 +9,13 @@ import {
 } from "./comparison-selection";
 
 describe("category comparison navigation", () => {
+  it("starts an unscoped comparison empty and retains explicit shortlists until a buyer chooses a use case", () => {
+    expect(comparisonSelection({}, catalog)).toEqual({ categoryId: "", useCaseId: "", productIds: [] });
+    expect(comparisonSelection({ products: "workos,descope" }, catalog)).toEqual({
+      categoryId: "", useCaseId: "", productIds: ["workos", "descope"],
+    });
+  });
+
   it("keeps management presets scoped and detection scoped separately", () => {
     expect(comparisonPresetCategory("secrets-three")).toBe("secrets-management");
     expect(comparisonPresetCategory("vault")).toBe("secrets-management");

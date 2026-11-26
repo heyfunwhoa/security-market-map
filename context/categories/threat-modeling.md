@@ -3,7 +3,7 @@ id: "threat-modeling"
 type: "category"
 name: "Threat modeling"
 layer: "core"
-vendors: 1
+vendors: 2
 ---
 
 # Threat modeling
@@ -30,6 +30,7 @@ A structured look at how a design can be abused, done before or beside the code.
 ## Vendors (primary)
 
 - IriusRisk: Threat-modeling product. The practice can also be a workshop with no tool. This seed does not check product features.
+- Security Compass: Security-by-design vendor. Acquired the Devici threat-modeling product in Jun 2025; also sells SD Elements for security requirements.
 
 ## Vendors (adjacent)
 
