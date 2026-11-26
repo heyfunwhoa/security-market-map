@@ -1,0 +1,14 @@
+{
+  "batch": "2026-11-24-agent-research-context",
+  "status": "candidate_only",
+  "publishable": false,
+  "framework": "docs/security-intelligence/incident-classification-framework.md",
+  "discoveryContext": "Found on 2026-11-23 while profiling AI agent security vendors for the market map (PRs #245 and #247). Three agent-security research findings surfaced: CodeIntegrity's Notion 3.0 demo, Capsule Security's ShareLeak and PipeLeak disclosures, and AIR's fake-skill experiment. Coverage was read on 2026-11-24 and paraphrased: Simon Willison's link post and THE DECODER for Notion, VentureBeat for ShareLeak and PipeLeak, The Hacker News for AIR. The researchers' own write-ups were identified but not fetched: codeintegrity.ai/blog/notion, NVD CVE-2026-21520, air.security/blog-posts/the-story-of-skills. Each is recorded as research context in docs/market-research/agent-attack-research-2026-11.md.",
+  "excludedFromIncidents": [
+    "CodeIntegrity, The Hidden Risk in Notion 3.0 AI Agents: web search tool abuse for data exfiltration (Sep 2025)",
+    "Capsule Security, ShareLeak in Microsoft Copilot Studio (CVE-2026-21520, CVSS 7.5) and PipeLeak in Salesforce Agentforce (disclosed 2026-04-15)",
+    "AIR, The story of skills: fake brand-landingpage skill that passed skill scanners and reportedly reached about 26,000 agents (Jun 2026)"
+  ],
+  "excludedReason": "Researcher demonstrations and coordinated vulnerability disclosures with no confirmed affected organization or reported impact. None of the coverage reports in-the-wild exploitation; AIR's payload only collected the email addresses of users who installed its test skill. Recorded as research context, not incidents (same rule as the 2026-11-11 and 2026-11-23 batches).",
+  "candidates": []
+}
