@@ -3,7 +3,7 @@ id: "dast"
 type: "category"
 name: "Dynamic testing (DAST)"
 layer: "core"
-vendors: 7
+vendors: 9
 ---
 
 # Dynamic testing (DAST)
@@ -37,6 +37,8 @@ Testing a running application from the outside. Useful against what is deployed.
 - Checkmarx
 - Veracode
 - Tenable
+- Strix
+- Tenzai
 
 ## What buyers do instead
 

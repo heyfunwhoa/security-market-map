@@ -3,7 +3,7 @@ id: "sast"
 type: "category"
 name: "Static analysis (SAST)"
 layer: "core"
-vendors: 19
+vendors: 20
 ---
 
 # Static analysis (SAST)
@@ -58,6 +58,7 @@ From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - OpenText
 - DeepSource
 - Codacy
+- Strix
 
 ## What buyers do instead
 
