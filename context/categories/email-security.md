@@ -3,7 +3,7 @@ id: "email-security"
 type: "category"
 name: "Email security"
 layer: "core"
-vendors: 15
+vendors: 17
 ---
 
 # Email security
@@ -43,6 +43,8 @@ Inbound and outbound mail controls: phishing, impersonation, and data leaving by
 - KnowBe4
 - Forcepoint
 - Virtru
+- OPSWAT
+- Menlo Security
 - Adaptive Security
 - Jericho Security
 - Hoxhunt

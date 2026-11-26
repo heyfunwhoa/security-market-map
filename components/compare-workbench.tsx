@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { DiscoveryQuestions } from "@/components/discovery-questions";
 import { comparisonPresetCategory, productsInCategory } from "@/lib/comparison-selection";
 import { useMemo, useRef, useState, useTransition } from "react";
 import { usePathname, useRouter } from "next/navigation";
@@ -96,6 +97,7 @@ export function CompareWorkbench({
   asOf,
   initialUseCase,
   initialProducts,
+  catalogUrl,
 }: {
   categories: Category[];
   categoryId: string;
@@ -107,6 +109,7 @@ export function CompareWorkbench({
   asOf: string;
   initialUseCase: string;
   initialProducts: string[];
+  catalogUrl: string | null;
 }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -129,6 +132,7 @@ export function CompareWorkbench({
     params.set("use", nextUse);
     params.set("products", nextProducts.join(","));
     if (nextCategory) params.set("category", nextCategory);
+    if (catalogUrl) params.set("from", catalogUrl);
     startTransition(() =>
       router.replace(`${pathname}?${params.toString()}`, { scroll: false }),
     );
@@ -425,11 +429,7 @@ export function CompareWorkbench({
       {useCase ? (
         <section className="mt-8">
           <h2 className="text-2xl">Questions to ask before you trust a cell</h2>
-          <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-6">
-            {useCase.discoveryQuestions.map((question) => (
-              <li key={question}>{question}</li>
-            ))}
-          </ul>
+          <DiscoveryQuestions useCase={useCase} />
         </section>
       ) : null}
     </div>

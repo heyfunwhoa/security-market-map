@@ -17,6 +17,7 @@ import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescri
 const NAV_GROUPS = [
   { title: "Explore the market", links: [
     { href: "/domains", label: "Explore domains", description: "Start with broad security areas and their categories." },
+    { href: "/categories", label: "Categories A–Z", description: "Find a category by name or acronym and see its domains." },
     { href: "/landscape", label: "Browse products", description: "Filter vendors and products, inspect details, and build a shortlist." },
     { href: "/use-cases", label: "Buyer use cases", description: "Browse the problems buyers are evaluating." },
     { href: "/compare", label: "Compare evidence", description: "Compare product evidence for a specific use case." },

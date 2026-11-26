@@ -7,6 +7,94 @@ import type { Claim, Product, Source, Vendor } from "../schema";
 
 export const categoryFillVendors: Vendor[] = [
   {
+    "id": "persona-identities",
+    "slug": "persona-identities",
+    "name": "Persona",
+    "formerNames": [],
+    "website": "https://withpersona.com/",
+    "positioning": "Persona documents an identity verification workflow initiated by a help desk before a Microsoft Entra ID password reset.",
+    "primaryCategoryIds": [
+      "seid"
+    ],
+    "adjacentCategoryIds": [
+      "workforce-identity"
+    ],
+    "identityScopes": [
+      "human"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Which reset workflows and fallback verification paths are supported?"
+    ]
+  },
+  {
+    "id": "native-security",
+    "slug": "native-security",
+    "name": "Native",
+    "formerNames": [],
+    "website": "https://www.native.security/",
+    "positioning": "Native says it translates requirements into provider-native controls, checks the likely impact before rollout, and maintains them as cloud environments change.",
+    "primaryCategoryIds": [
+      "csie"
+    ],
+    "adjacentCategoryIds": [
+      "iac-security"
+    ],
+    "identityScopes": [
+      "human",
+      "nhi",
+      "agent"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Which guardrails can be simulated and enforced on each provider, and how are exceptions and rollback handled?"
+    ]
+  },
+  {
+    "id": "aryon-security",
+    "slug": "aryon-security",
+    "name": "Aryon Security",
+    "formerNames": [],
+    "website": "https://www.aryon.security/",
+    "positioning": "Aryon says it evaluates proposed cloud policies and can deny non-compliant requests at the cloud control plane.",
+    "primaryCategoryIds": [
+      "csie"
+    ],
+    "adjacentCategoryIds": [
+      "iac-security"
+    ],
+    "identityScopes": [
+      "human",
+      "nhi",
+      "agent"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Which cloud changes and resource types can be blocked, and how are existing resources handled?"
+    ]
+  },
+  {
+    "id": "act-security",
+    "slug": "act-security",
+    "name": "Act Security",
+    "formerNames": [],
+    "website": "https://act.security/",
+    "positioning": "Act says it uses infrastructure as code to apply cloud-native controls for access boundaries and maintain them as the environment changes.",
+    "primaryCategoryIds": [
+      "csie"
+    ],
+    "adjacentCategoryIds": [
+      "ciem",
+      "iac-security"
+    ],
+    "identityScopes": ["human", "nhi", "agent"],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Which clouds, control types, and rollout or rollback options are supported?",
+      "How well does impact prediction account for rarely used legitimate workflows?"
+    ]
+  },
+  {
     "id": "prophet-security",
     "slug": "prophet-security",
     "name": "Prophet Security",
@@ -97,6 +185,126 @@ export const categoryFillVendors: Vendor[] = [
     "openQuestions": [
       "Retention, rehunt and variant claims are vendor-reported and untested here.",
       "Several Stairwell pages describe the company as threat intelligence or an AI SOC; confirm which budget the buyer uses."
+    ]
+  },
+  {
+    "id": "thinkst",
+    "slug": "thinkst",
+    "name": "Thinkst Applied Research",
+    "formerNames": [],
+    "website": "https://canary.tools/",
+    "positioning": "Thinkst sells Canary decoy devices and services and offers Canarytokens, free tripwires such as fake documents, API keys and DNS names that alert when touched.",
+    "primaryCategoryIds": [
+      "deception"
+    ],
+    "adjacentCategoryIds": [
+      "itdr",
+      "secrets-detection"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Decoy coverage across cloud, OT and identity is vendor-described and untested here.",
+      "Which deployment model (hardware, virtual or cloud Canaries) fits the buyer's estate?"
+    ]
+  },
+  {
+    "id": "opswat",
+    "slug": "opswat",
+    "name": "OPSWAT",
+    "formerNames": [],
+    "website": "https://www.opswat.com/",
+    "positioning": "OPSWAT markets Deep CDR as file sanitization that disarms and regenerates files, inside its MetaDefender products for email, storage and other entry points.",
+    "primaryCategoryIds": [
+      "cdr-file-sanitization"
+    ],
+    "adjacentCategoryIds": [
+      "email-security",
+      "malware-analysis",
+      "ot-security"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "File-type coverage and usability after sanitization are vendor-reported and untested here.",
+      "Which MetaDefender product and channel does the buyer actually need?"
+    ]
+  },
+  {
+    "id": "binalyze",
+    "slug": "binalyze",
+    "name": "Binalyze",
+    "formerNames": [],
+    "website": "https://binalyze.ai/",
+    "positioning": "Binalyze describes AIR as a platform that automates digital forensics and incident response: remote evidence collection and analysis across operating systems, integration with existing security tools, and automated analysis.",
+    "primaryCategoryIds": [
+      "dfir-collection"
+    ],
+    "adjacentCategoryIds": [
+      "endpoint-security",
+      "soar",
+      "ai-soc-investigation"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Collection depth, OS coverage and automated-analysis quality are vendor-reported and untested here.",
+      "Bought directly, or through an MSSP or IR retainer?",
+      "Binalyze also markets AIR as an evidence layer for other AI SOC products (APIs, MCP, partners). Is it bought as a standalone AI SOC, or alongside one?"
+    ]
+  },
+  {
+    "id": "acalvio",
+    "slug": "acalvio",
+    "name": "Acalvio",
+    "formerNames": [],
+    "website": "https://www.acalvio.com/",
+    "positioning": "Acalvio markets ShadowPlex as an agentless deception platform that deploys decoys and honeytokens across identity, cloud, network, endpoints and OT.",
+    "primaryCategoryIds": [
+      "deception"
+    ],
+    "adjacentCategoryIds": [
+      "itdr",
+      "cloud-detection",
+      "ot-security"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Coverage and automation claims are vendor-reported and untested here.",
+      "Bought as a standalone deception platform or for identity protection?"
+    ]
+  },
+  {
+    "id": "menlo-security",
+    "slug": "menlo-security",
+    "name": "Menlo Security",
+    "formerNames": [],
+    "website": "https://www.menlosecurity.com/",
+    "positioning": "Menlo Security sells secure enterprise browser and workspace security. It announced the acquisition of Votiro, a CDR and data detection and response vendor, on 2025-02-19, and votiro.com now redirects to Menlo.",
+    "primaryCategoryIds": [
+      "enterprise-browser"
+    ],
+    "adjacentCategoryIds": [
+      "cdr-file-sanitization",
+      "email-security",
+      "dlp"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "What is the Votiro CDR product called now inside Menlo's portfolio, and is it sold standalone?",
+      "Browser security, file sanitization, or both on the quote?"
     ]
   },
   {
@@ -514,6 +722,101 @@ export const categoryFillVendors: Vendor[] = [
 
 export const categoryFillProducts: Product[] = [
   {
+    "id": "persona-workforce-idv",
+    "slug": "persona-workforce-idv",
+    "vendorId": "persona-identities",
+    "name": "Persona Workforce IDV",
+    "positioning": "Persona documents an identity verification workflow initiated by a help desk before a Microsoft Entra ID password reset.",
+    "primaryCategoryIds": [
+      "seid"
+    ],
+    "adjacentCategoryIds": [
+      "workforce-identity"
+    ],
+    "identityScopes": [
+      "human"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "Public documentation describes the workflow. Editions and deployment were not verified.",
+    "officialUrl": "https://help.withpersona.com/articles/3fe4bvIj8lSLLPligSzZVL/",
+    "useCaseIds": []
+  },
+  {
+    "id": "native-security-platform",
+    "slug": "native-security-platform",
+    "vendorId": "native-security",
+    "name": "Native platform",
+    "positioning": "Native says it translates requirements into provider-native controls, checks the likely impact before rollout, and maintains them as cloud environments change.",
+    "primaryCategoryIds": [
+      "csie"
+    ],
+    "adjacentCategoryIds": [
+      "iac-security"
+    ],
+    "identityScopes": [
+      "human",
+      "nhi",
+      "agent"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "Public demo offered. Editions and provider-specific coverage were not verified.",
+    "officialUrl": "https://www.native.security/platform",
+    "useCaseIds": []
+  },
+  {
+    "id": "aryon-security-platform",
+    "slug": "aryon-security-platform",
+    "vendorId": "aryon-security",
+    "name": "Aryon Security platform",
+    "positioning": "Aryon says it evaluates proposed cloud policies and can deny non-compliant requests at the cloud control plane.",
+    "primaryCategoryIds": [
+      "csie"
+    ],
+    "adjacentCategoryIds": [
+      "iac-security"
+    ],
+    "identityScopes": [
+      "human",
+      "nhi",
+      "agent"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "Public demo offered. Editions and provider-specific coverage were not verified.",
+    "officialUrl": "https://www.aryon.security/product",
+    "useCaseIds": []
+  },
+  {
+    "id": "act-cloud-access",
+    "slug": "act-cloud-access",
+    "vendorId": "act-security",
+    "name": "Act cloud security platform",
+    "positioning": "Act says it uses infrastructure as code to apply cloud-native controls for access boundaries and maintain them as the environment changes.",
+    "primaryCategoryIds": [
+      "csie"
+    ],
+    "adjacentCategoryIds": [
+      "ciem",
+      "iac-security"
+    ],
+    "identityScopes": ["human", "nhi", "agent"],
+    "deployment": [
+      "unknown"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "Public demo offered. Editions, deployment, and generally available scope were not verified.",
+    "officialUrl": "https://act.security/platform",
+    "useCaseIds": []
+  },
+  {
     "id": "prophet-ai-soc",
     "slug": "prophet-ai-soc",
     "vendorId": "prophet-security",
@@ -655,6 +958,149 @@ export const categoryFillProducts: Product[] = [
     "availabilityNote": "Per-asset annual pricing with all capabilities included, per Stairwell's pricing page; rates are quoted, not published.",
     "officialUrl": "https://stairwell.com/store/",
     "useCaseIds": ["uc-developer-endpoint"]
+  },
+  {
+    "id": "velociraptor",
+    "slug": "velociraptor",
+    "vendorId": "rapid7",
+    "name": "Velociraptor",
+    "positioning": "Velociraptor's documentation describes an open-source platform for endpoint monitoring, digital forensics and incident response, with an agent on each host queried from a central server using VQL.",
+    "primaryCategoryIds": [
+      "dfir-collection"
+    ],
+    "adjacentCategoryIds": [
+      "detection-engineering",
+      "endpoint-security"
+    ],
+    "deployment": [
+      "self_hosted"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Open source on GitHub; the project says Rapid7 acquired the technology and community in 2021. Commercial support options not verified here.",
+    "officialUrl": "https://docs.velociraptor.app/docs/overview/",
+    "useCaseIds": []
+  },
+  {
+    "id": "thinkst-canary",
+    "slug": "thinkst-canary",
+    "vendorId": "thinkst",
+    "name": "Thinkst Canary and Canarytokens",
+    "positioning": "Thinkst sells Canary decoy devices and services and offers Canarytokens, free tripwires such as fake documents, API keys and DNS names that alert when touched.",
+    "primaryCategoryIds": [
+      "deception"
+    ],
+    "adjacentCategoryIds": [
+      "itdr",
+      "secrets-detection"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Canarytokens are free; Canary pricing and deployment options not verified here.",
+    "officialUrl": "https://canary.tools/",
+    "useCaseIds": []
+  },
+  {
+    "id": "opswat-deep-cdr",
+    "slug": "opswat-deep-cdr",
+    "vendorId": "opswat",
+    "name": "OPSWAT Deep CDR (MetaDefender)",
+    "positioning": "OPSWAT markets Deep CDR as file sanitization that disarms and regenerates files, inside its MetaDefender products for email, storage and other entry points.",
+    "primaryCategoryIds": [
+      "cdr-file-sanitization"
+    ],
+    "adjacentCategoryIds": [
+      "email-security",
+      "malware-analysis"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Packaging across MetaDefender products and deployment options not verified here.",
+    "officialUrl": "https://www.opswat.com/technologies/deep-cdr",
+    "useCaseIds": []
+  },
+  {
+    "id": "binalyze-air",
+    "slug": "binalyze-air",
+    "vendorId": "binalyze",
+    "name": "Binalyze AIR",
+    "positioning": "Binalyze describes AIR as a platform that automates digital forensics and incident response: remote evidence collection and analysis across operating systems, integration with existing security tools, and automated analysis.",
+    "primaryCategoryIds": [
+      "dfir-collection"
+    ],
+    "adjacentCategoryIds": [
+      "endpoint-security",
+      "ai-soc-investigation"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Deployment and pricing not verified here.",
+    "officialUrl": "https://binalyze.ai/",
+    "useCaseIds": []
+  },
+  {
+    "id": "acalvio-shadowplex",
+    "slug": "acalvio-shadowplex",
+    "vendorId": "acalvio",
+    "name": "Acalvio ShadowPlex",
+    "positioning": "Acalvio markets ShadowPlex as an agentless deception platform that deploys decoys and honeytokens across identity, cloud, network, endpoints and OT.",
+    "primaryCategoryIds": [
+      "deception"
+    ],
+    "adjacentCategoryIds": [
+      "itdr",
+      "cloud-detection"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Module packaging (threat defense, identity, cloud) and deployment not verified here.",
+    "officialUrl": "https://www.acalvio.com/shadowplex-platform/",
+    "useCaseIds": []
+  },
+  {
+    "id": "votiro-cdr",
+    "slug": "votiro-cdr",
+    "vendorId": "menlo-security",
+    "name": "Votiro CDR (Menlo Security)",
+    "positioning": "Votiro says its content disarm and reconstruction technology disarms incoming files and rebuilds them while keeping them usable, across email, downloads, file sharing and removable media.",
+    "primaryCategoryIds": [
+      "cdr-file-sanitization"
+    ],
+    "adjacentCategoryIds": [
+      "email-security"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "Now part of Menlo Security (acquisition announced 2025-02-19); current product name and packaging not verified.",
+    "officialUrl": "https://votiro.com/",
+    "useCaseIds": []
   },
   {
     "id": "cribl-stream",
@@ -1092,6 +1538,138 @@ export const categoryFillProducts: Product[] = [
 
 export const categoryFillSources: Source[] = [
   {
+    "id": "src-smm-rubrik-err-overlap",
+    "title": "Identity Recovery",
+    "url": "https://docs.rubrik.com/en-us/saas/identity_recovery/identity_recovery.html",
+    "canonicalUrl": "https://docs.rubrik.com/en-us/saas/identity_recovery/identity_recovery.html",
+    "publisher": "Rubrik",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-25",
+    "volatility": "moderate",
+    "excerpt": "Rubrik documents restoring identity services from isolated immutable backups, including recovery to clean-room environments."
+  },
+  {
+    "id": "src-smm-persona-workforce-idv",
+    "title": "Persona verification for Entra ID password resets",
+    "url": "https://help.withpersona.com/articles/3fe4bvIj8lSLLPligSzZVL/",
+    "canonicalUrl": "https://help.withpersona.com/articles/3fe4bvIj8lSLLPligSzZVL/",
+    "publisher": "Persona",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-25",
+    "volatility": "moderate",
+    "excerpt": "Persona documents an identity verification workflow initiated by a help desk before a Microsoft Entra ID password reset."
+  },
+  {
+    "id": "src-smm-err",
+    "title": "The Case for Ephemeral Ransomware Resilience",
+    "url": "https://softwareanalyst.io/reports/ransomwares-new-kill-switch-ephemeral-ransomware-resilience",
+    "canonicalUrl": "https://softwareanalyst.io/reports/ransomwares-new-kill-switch-ephemeral-ransomware-resilience",
+    "publisher": "SACR",
+    "sourceType": "analyst",
+    "publishedAt": "2026-07-09",
+    "retrievedAt": "2026-11-25",
+    "volatility": "moderate",
+    "excerpt": "SACR frames ERR around isolated recovery administration, automated frequent copies and temporary recovery compute."
+  },
+  {
+    "id": "src-smm-seid",
+    "title": "Introducing Social Engineering Identity Defense",
+    "url": "https://softwareanalyst.io/reports/introducing-social-engineering-identity",
+    "canonicalUrl": "https://softwareanalyst.io/reports/introducing-social-engineering-identity",
+    "publisher": "SACR",
+    "sourceType": "analyst",
+    "publishedAt": "2026-05-05",
+    "retrievedAt": "2026-11-25",
+    "volatility": "moderate",
+    "excerpt": "SACR describes SEID as protecting identity workflows such as account recovery, help desk operations and onboarding from impersonation."
+  },
+  {
+    "id": "src-wiz-defend-acsp",
+    "title": "Wiz Defend",
+    "url": "https://www.wiz.io/platform/wiz-defend",
+    "canonicalUrl": "https://www.wiz.io/platform/wiz-defend",
+    "publisher": "Wiz",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-25",
+    "volatility": "fast",
+    "excerpt": "Wiz says Wiz Defend provides cloud-native detection, AI-assisted investigation and automated response."
+  },
+  {
+    "id": "src-sacr-asset-intelligence-20261019",
+    "title": "From CAASM to Asset Intelligence",
+    "url": "https://softwareanalyst.io/reports/from-caasm-to-asset-intelligence",
+    "canonicalUrl": "https://softwareanalyst.io/reports/from-caasm-to-asset-intelligence",
+    "publisher": "SACR",
+    "sourceType": "analyst",
+    "publishedAt": "2026-10-19",
+    "retrievedAt": "2026-11-25",
+    "volatility": "moderate",
+    "excerpt": "SACR describes asset intelligence as reconciled asset context that preserves source, freshness, disagreements and relationships for operational decisions."
+  },
+  {
+    "id": "src-native-security-platform",
+    "title": "Native platform",
+    "url": "https://www.native.security/platform",
+    "canonicalUrl": "https://www.native.security/platform",
+    "publisher": "Native",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-25",
+    "volatility": "moderate",
+    "excerpt": "Native says it translates requirements into provider-native controls, checks the likely impact before rollout, and maintains them as cloud environments change."
+  },
+  {
+    "id": "src-aryon-security-platform",
+    "title": "Aryon Security platform",
+    "url": "https://www.aryon.security/product",
+    "canonicalUrl": "https://www.aryon.security/product",
+    "publisher": "Aryon Security",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-25",
+    "volatility": "moderate",
+    "excerpt": "Aryon says it evaluates proposed cloud policies and can deny non-compliant requests at the cloud control plane."
+  },
+  {
+    "id": "src-sacr-csie-20261028",
+    "title": "The CISO’s Guide to Cloud Security Intent Enforcement",
+    "url": "https://softwareanalyst.io/reports/the-ciso-s-guide-to-cloud-security-intent-enforcement",
+    "canonicalUrl": "https://softwareanalyst.io/reports/the-ciso-s-guide-to-cloud-security-intent-enforcement",
+    "publisher": "SACR",
+    "sourceType": "analyst",
+    "publishedAt": "2026-10-28",
+    "retrievedAt": "2026-11-25",
+    "volatility": "moderate",
+    "excerpt": "SACR describes CSIE as an emerging control layer that translates security intent into cloud controls, assesses likely impact, enforces approved policy, and maintains it over time."
+  },
+  {
+    "id": "src-act-csie-20261111",
+    "title": "What is Cloud Security Intent Enforcement (CSIE)?",
+    "url": "https://act.security/resources/what-is-cloud-security-intent-enforcement-csie-breaking-down-the-new-cloud-security-category",
+    "canonicalUrl": "https://act.security/resources/what-is-cloud-security-intent-enforcement-csie-breaking-down-the-new-cloud-security-category",
+    "publisher": "Act Security",
+    "sourceType": "vendor_marketing",
+    "publishedAt": "2026-11-11",
+    "retrievedAt": "2026-11-25",
+    "volatility": "fast",
+    "excerpt": "Act explains SACR’s framework from a vendor perspective and positions its platform within the category."
+  },
+  {
+    "id": "src-act-cloud-platform",
+    "title": "Cloud Security Platform: Control Cloud Access End to End",
+    "url": "https://act.security/platform",
+    "canonicalUrl": "https://act.security/platform",
+    "publisher": "Act Security",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-25",
+    "volatility": "fast",
+    "excerpt": "Act says it uses infrastructure as code to apply cloud-native controls for access boundaries and maintain them as the environment changes."
+  },
+  {
     "id": "src-fill-prophet-ai-soc",
     "title": "Prophet Security \u2014 homepage",
     "url": "https://www.prophetsecurity.ai/",
@@ -1162,6 +1740,114 @@ export const categoryFillSources: Source[] = [
     "retrievedAt": "2026-11-11",
     "volatility": "fast",
     "excerpt": "Stairwell says it preserves every executable from enrolled endpoints in a dedicated environment with no arbitrary retention window."
+  },
+  {
+    "id": "src-fill-stairwell-backstory-launch",
+    "title": "Stairwell — Backstory launch press release (GlobeNewswire)",
+    "url": "https://www.globenewswire.com/news-release/2026/07/29/3335300/0/en/stairwell-launches-backstory-the-first-agentic-investigation-platform-for-malware-blast-radius.html",
+    "canonicalUrl": "https://www.globenewswire.com/news-release/2026/07/29/3335300/0/en/stairwell-launches-backstory-the-first-agentic-investigation-platform-for-malware-blast-radius.html",
+    "publisher": "Stairwell",
+    "sourceType": "vendor_marketing",
+    "publishedAt": "2026-07-29",
+    "retrievedAt": "2026-11-22",
+    "volatility": "stable",
+    "excerpt": "Stairwell announced Backstory as an agentic investigation product that traces related malware variants, identifies affected systems and maps an incident's scope."
+  },
+  {
+    "id": "src-fill-velociraptor-overview",
+    "title": "Velociraptor \u2014 What is Velociraptor? (docs)",
+    "url": "https://docs.velociraptor.app/docs/overview/",
+    "canonicalUrl": "https://docs.velociraptor.app/docs/overview/",
+    "publisher": "Velocidex / Rapid7",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-23",
+    "volatility": "moderate",
+    "excerpt": "Velociraptor's documentation describes it as an open-source platform for endpoint monitoring, digital forensics and cyber response."
+  },
+  {
+    "id": "src-fill-thinkst-canarytokens",
+    "title": "Thinkst Canary \u2014 Canarytoken overview and use cases (help center)",
+    "url": "https://help.canary.tools/hc/en-gb/articles/10905485310109-Canarytoken-Overview-and-Use-Cases",
+    "canonicalUrl": "https://help.canary.tools/hc/en-gb/articles/10905485310109-Canarytoken-Overview-and-Use-Cases",
+    "publisher": "Thinkst Applied Research",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-23",
+    "volatility": "moderate",
+    "excerpt": "Thinkst describes Canarytokens as free tripwires, including document, web bug, API key, VPN profile and QR code tokens, that alert when accessed."
+  },
+  {
+    "id": "src-fill-opswat-deep-cdr",
+    "title": "OPSWAT \u2014 Deep CDR technology",
+    "url": "https://www.opswat.com/technologies/deep-cdr",
+    "canonicalUrl": "https://www.opswat.com/technologies/deep-cdr",
+    "publisher": "OPSWAT",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-23",
+    "volatility": "moderate",
+    "excerpt": "OPSWAT says Deep CDR disarms and regenerates each file so only sanitized, usable content reaches the user, and lists 200+ supported file types."
+  },
+  {
+    "id": "src-fill-binalyze-home",
+    "title": "Binalyze \u2014 homepage (AIR)",
+    "url": "https://www.binalyze.com/",
+    "canonicalUrl": "https://www.binalyze.com/",
+    "publisher": "Binalyze",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-23",
+    "volatility": "moderate",
+    "excerpt": "Binalyze describes AIR as automating DFIR, with remote evidence collection and analysis across operating systems and integrations with existing tools."
+  },
+  {
+    "id": "src-fill-binalyze-ai-soc",
+    "title": "Binalyze \u2014 AI SOC & Agentic Investigations use case",
+    "url": "https://binalyze.ai/use-case/ai-soc/",
+    "canonicalUrl": "https://binalyze.ai/use-case/ai-soc/",
+    "publisher": "Binalyze",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-25",
+    "volatility": "moderate",
+    "excerpt": "Binalyze positions AIR as the forensic evidence and investigation layer for AI-driven SOC workflows, reachable through open APIs, MCP and integrations or through its Fleet agentic investigation workspace."
+  },
+  {
+    "id": "src-fill-acalvio-home",
+    "title": "Acalvio \u2014 homepage (ShadowPlex)",
+    "url": "https://www.acalvio.com/",
+    "canonicalUrl": "https://www.acalvio.com/",
+    "publisher": "Acalvio",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-23",
+    "volatility": "moderate",
+    "excerpt": "Acalvio describes ShadowPlex as a deception platform with agentless deployment across identity, cloud, network, endpoints and OT/ICS."
+  },
+  {
+    "id": "src-fill-votiro-cdr-support",
+    "title": "Votiro \u2014 Content Disarm and Reconstruction (support article)",
+    "url": "https://support.votiro.com/hc/en-us/articles/360014301677-Content-Disarm-and-Reconstruction-CDR",
+    "canonicalUrl": "https://support.votiro.com/hc/en-us/articles/360014301677-Content-Disarm-and-Reconstruction-CDR",
+    "publisher": "Votiro",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-23",
+    "volatility": "moderate",
+    "excerpt": "Votiro says its CDR disarms malware from incoming files and reconstructs them while preserving functionality, covering email attachments, downloads, file sharing and removable devices."
+  },
+  {
+    "id": "src-fill-menlo-acquires-votiro",
+    "title": "Menlo Security \u2014 Menlo Security acquires Votiro (blog)",
+    "url": "https://www.menlosecurity.com/blog/menlo-security-acquires-votiro",
+    "canonicalUrl": "https://www.menlosecurity.com/blog/menlo-security-acquires-votiro",
+    "publisher": "Menlo Security",
+    "sourceType": "vendor_marketing",
+    "publishedAt": "2025-02-19",
+    "retrievedAt": "2026-11-23",
+    "volatility": "stable",
+    "excerpt": "Menlo Security announced it acquired Votiro, describing Votiro as a CDR and data detection and response vendor that will form the data security pillar of its workspace security strategy."
   },
   {
     "id": "src-fill-cribl-stream",
@@ -1443,6 +2129,246 @@ export const categoryFillSources: Source[] = [
 
 export const categoryFillClaims: Claim[] = [
   {
+    "id": "claim-smm-rubrik-err-overlap",
+    "statement": "Rubrik documents restoring identity services from isolated immutable backups, including recovery to clean-room environments.",
+    "subjectType": "vendor",
+    "subjectId": "rubrik",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-smm-rubrik-err-overlap",
+    "sourceUrl": "https://docs.rubrik.com/en-us/saas/identity_recovery/identity_recovery.html",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Adjacent recovery capability. Full ERR management-plane isolation, copy cadence and continuity are unverified."
+  },
+  {
+    "id": "claim-smm-persona-workforce-idv",
+    "statement": "Persona documents an identity verification workflow initiated by a help desk before a Microsoft Entra ID password reset.",
+    "subjectType": "product",
+    "subjectId": "persona-workforce-idv",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-smm-persona-workforce-idv",
+    "sourceUrl": "https://help.withpersona.com/articles/3fe4bvIj8lSLLPligSzZVL/",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Documents a single workflow. Broader SEID workflow coverage is unverified."
+  },
+  {
+    "id": "claim-smm-err",
+    "statement": "SACR frames ERR around isolated recovery administration, automated frequent copies and temporary recovery compute.",
+    "subjectType": "category",
+    "subjectId": "err",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-smm-err",
+    "sourceUrl": "https://softwareanalyst.io/reports/ransomwares-new-kill-switch-ephemeral-ransomware-resilience",
+    "sourceType": "analyst",
+    "publishedAt": "2026-07-09",
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "needs_review",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Analyst framework and buyer evaluation criteria."
+  },
+  {
+    "id": "claim-smm-seid",
+    "statement": "SACR describes SEID as protecting identity workflows such as account recovery, help desk operations and onboarding from impersonation.",
+    "subjectType": "category",
+    "subjectId": "seid",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-smm-seid",
+    "sourceUrl": "https://softwareanalyst.io/reports/introducing-social-engineering-identity",
+    "sourceType": "analyst",
+    "publishedAt": "2026-05-05",
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "needs_review",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Analyst category definition."
+  },
+  {
+    "id": "claim-wiz-defend-acsp-overlap",
+    "statement": "Wiz says Wiz Defend provides cloud-native detection, AI-assisted investigation and automated response.",
+    "subjectType": "product",
+    "subjectId": "wiz",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-wiz-defend-acsp",
+    "sourceUrl": "https://www.wiz.io/platform/wiz-defend",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Applies to Wiz Defend. This supports overlap with runtime investigation and response; full SACR ACSP criteria and licensed scope remain unverified."
+  },
+  {
+    "id": "claim-sacr-acsp-framework-20260611",
+    "statement": "SACR proposes that an agentic cloud security platform combine live execution visibility, reachable-risk analysis, identity-aware policy, governed intervention and auditable decisions.",
+    "subjectType": "category",
+    "subjectId": "acsp",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-sacr-acsp-20260611",
+    "sourceUrl": "https://softwareanalyst.io/reports/introducing-a-new-cloud-security",
+    "sourceType": "analyst",
+    "publishedAt": "2026-06-11",
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "needs_review",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Existing SACR source reused. Public summary; no vendor qualification inferred."
+  },
+  {
+    "id": "claim-sacr-asset-intelligence-20261019",
+    "statement": "SACR describes asset intelligence as reconciled asset context that preserves source, freshness, disagreements and relationships for operational decisions.",
+    "subjectType": "category",
+    "subjectId": "asset-intelligence",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-sacr-asset-intelligence-20261019",
+    "sourceUrl": "https://softwareanalyst.io/reports/from-caasm-to-asset-intelligence",
+    "sourceType": "analyst",
+    "publishedAt": "2026-10-19",
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "needs_review",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Report profiles Axonius as an example; no capability parity inferred."
+  },
+  {
+    "id": "claim-native-security-platform",
+    "statement": "Native says it translates requirements into provider-native controls, checks the likely impact before rollout, and maintains them as cloud environments change.",
+    "subjectType": "product",
+    "subjectId": "native-security-platform",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-native-security-platform",
+    "sourceUrl": "https://www.native.security/platform",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Publisher-reported. Vendor participated in a sponsored research program associated with the SACR CSIE report."
+  },
+  {
+    "id": "claim-aryon-security-platform",
+    "statement": "Aryon says it evaluates proposed cloud policies and can deny non-compliant requests at the cloud control plane.",
+    "subjectType": "product",
+    "subjectId": "aryon-security-platform",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-aryon-security-platform",
+    "sourceUrl": "https://www.aryon.security/product",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Publisher-reported. Vendor participated in a sponsored research program associated with the SACR CSIE report."
+  },
+  {
+    "id": "claim-sacr-csie-20261028",
+    "statement": "SACR describes CSIE as an emerging control layer that translates security intent into cloud controls, assesses likely impact, enforces approved policy, and maintains it over time.",
+    "subjectType": "category",
+    "subjectId": "csie",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-sacr-csie-20261028",
+    "sourceUrl": "https://softwareanalyst.io/reports/the-ciso-s-guide-to-cloud-security-intent-enforcement",
+    "sourceType": "analyst",
+    "publishedAt": "2026-10-28",
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "needs_review",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Report updated November 13. SACR discloses sponsored research participation by Aryon, Native, Act and Wiz. Product packaging remains unsettled."
+  },
+  {
+    "id": "claim-act-csie-positioning",
+    "statement": "Act positions its cloud access platform within SACR’s CSIE framework.",
+    "subjectType": "product",
+    "subjectId": "act-cloud-access",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-act-csie-20261111",
+    "sourceUrl": "https://act.security/resources/what-is-cloud-security-intent-enforcement-csie-breaking-down-the-new-cloud-security-category",
+    "sourceType": "vendor_marketing",
+    "publishedAt": "2026-11-11",
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Vendor interpretation. Product fit remains a research candidate."
+  },
+  {
+    "id": "claim-act-native-cloud-enforcement",
+    "statement": "Act says it uses infrastructure as code to apply cloud-native controls for access boundaries and maintain them as the environment changes.",
+    "subjectType": "product",
+    "subjectId": "act-cloud-access",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-act-cloud-platform",
+    "sourceUrl": "https://act.security/platform",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Vendor-reported. Provider coverage, prediction accuracy, and rollback behavior were not tested."
+  },
+  {
     "id": "claim-fill-prophet-ai-soc",
     "statement": "Prophet Security says its AI SOC Platform automates alert triage, investigations, response, threat hunting and detection engineering.",
     "subjectType": "product",
@@ -1561,6 +2487,186 @@ export const categoryFillClaims: Claim[] = [
     "lastCheckedAt": "2026-11-11",
     "conflictsWith": [],
     "notes": "Publisher-reported, not independently tested; no direct-competitor claim. See docs/market-research/file-analysis-ai-investigation-landscape-2026-11.md."
+  },
+  {
+    "id": "claim-fill-stairwell-backstory-launch",
+    "statement": "Stairwell says Backstory, announced July 29, 2026, traces related malware variants, identifies affected systems and maps an incident's scope by reasoning over preserved executable files rather than alerts.",
+    "subjectType": "product",
+    "subjectId": "stairwell-platform",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-stairwell-backstory-launch",
+    "sourceUrl": "https://www.globenewswire.com/news-release/2026/07/29/3335300/0/en/stairwell-launches-backstory-the-first-agentic-investigation-platform-for-malware-blast-radius.html",
+    "sourceType": "vendor_marketing",
+    "publishedAt": "2026-07-29",
+    "observedAt": "2026-11-22",
+    "effectiveFrom": "2026-07-29",
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-22",
+    "conflictsWith": [],
+    "notes": "Vendor press release; investigation quality not independently tested. 'First agentic investigation platform' is the vendor's own label and is not adopted here. See docs/market-research/file-analysis-ai-investigation-landscape-2026-11.md (2026-11-23 update)."
+  },
+  {
+    "id": "claim-fill-velociraptor-overview",
+    "statement": "Velociraptor's documentation describes it as an open-source platform for endpoint monitoring, digital forensics and incident response.",
+    "subjectType": "product",
+    "subjectId": "velociraptor",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-velociraptor-overview",
+    "sourceUrl": "https://docs.velociraptor.app/docs/overview/",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-11-23",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-23",
+    "conflictsWith": [],
+    "notes": "Official page opened and checked 2026-11-23. Publisher-reported, not tested; no competitor or parity claim. See docs/market-research/adjacent-file-evidence-categories-2026-11-23.md."
+  },
+  {
+    "id": "claim-fill-thinkst-canarytokens",
+    "statement": "Thinkst says Canarytokens are free tripwires, such as document, API key, DNS and VPN profile tokens, that send an alert when accessed.",
+    "subjectType": "product",
+    "subjectId": "thinkst-canary",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-thinkst-canarytokens",
+    "sourceUrl": "https://help.canary.tools/hc/en-gb/articles/10905485310109-Canarytoken-Overview-and-Use-Cases",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-11-23",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-23",
+    "conflictsWith": [],
+    "notes": "Official page opened and checked 2026-11-23. Publisher-reported, not tested; no competitor or parity claim. See docs/market-research/adjacent-file-evidence-categories-2026-11-23.md."
+  },
+  {
+    "id": "claim-fill-opswat-deep-cdr",
+    "statement": "OPSWAT says Deep CDR disarms and regenerates each file so only sanitized, usable content is delivered, and claims support for more than 200 file types.",
+    "subjectType": "product",
+    "subjectId": "opswat-deep-cdr",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-opswat-deep-cdr",
+    "sourceUrl": "https://www.opswat.com/technologies/deep-cdr",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-23",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-23",
+    "conflictsWith": [],
+    "notes": "Official page opened and checked 2026-11-23. Publisher-reported, not tested; no competitor or parity claim. See docs/market-research/adjacent-file-evidence-categories-2026-11-23.md."
+  },
+  {
+    "id": "claim-fill-binalyze-home",
+    "statement": "Binalyze says AIR automates digital forensics and incident response, collecting and analysing evidence remotely across operating systems.",
+    "subjectType": "product",
+    "subjectId": "binalyze-air",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-binalyze-home",
+    "sourceUrl": "https://www.binalyze.com/",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-23",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-23",
+    "conflictsWith": [],
+    "notes": "Official page opened and checked 2026-11-23. Publisher-reported, not tested; no competitor or parity claim. See docs/market-research/adjacent-file-evidence-categories-2026-11-23.md."
+  },
+  {
+    "id": "claim-fill-binalyze-ai-soc",
+    "statement": "Binalyze says AIR gives AI-driven SOC workflows direct forensic evidence through open APIs, MCP and integrations, and through Binalyze Fleet, which it calls an agentic investigation workspace.",
+    "subjectType": "product",
+    "subjectId": "binalyze-air",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-binalyze-ai-soc",
+    "sourceUrl": "https://binalyze.ai/use-case/ai-soc/",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-25",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-25",
+    "conflictsWith": [],
+    "notes": "Official page opened and checked 2026-11-25. Publisher-reported, not tested. The page also targets AI SOC vendors and MSSPs as partners, so this supports an adjacent ai-soc-investigation placement, not direct competition with any AI SOC product."
+  },
+  {
+    "id": "claim-fill-acalvio-home",
+    "statement": "Acalvio says ShadowPlex deploys deception agentlessly across identity, cloud, network, endpoint and OT/ICS environments.",
+    "subjectType": "product",
+    "subjectId": "acalvio-shadowplex",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-acalvio-home",
+    "sourceUrl": "https://www.acalvio.com/",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-23",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-23",
+    "conflictsWith": [],
+    "notes": "Official page opened and checked 2026-11-23. Publisher-reported, not tested; no competitor or parity claim. See docs/market-research/adjacent-file-evidence-categories-2026-11-23.md."
+  },
+  {
+    "id": "claim-fill-votiro-cdr-support",
+    "statement": "Votiro says its CDR disarms incoming files and rebuilds them with their functionality intact, for email attachments, downloads, file sharing and removable devices.",
+    "subjectType": "product",
+    "subjectId": "votiro-cdr",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-votiro-cdr-support",
+    "sourceUrl": "https://support.votiro.com/hc/en-us/articles/360014301677-Content-Disarm-and-Reconstruction-CDR",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-11-23",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "low",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-23",
+    "conflictsWith": [],
+    "notes": "Official page opened and checked on 2026-11-26 (it lists email, downloads and file transfers, and removable devices). The support article may predate Menlo Security's 2025 acquisition of Votiro. Publisher-reported, not tested; no competitor or parity claim. See docs/market-research/adjacent-file-evidence-categories-2026-11-23.md."
+  },
+  {
+    "id": "claim-fill-menlo-acquires-votiro",
+    "statement": "Menlo Security announced on February 19, 2025 that it had acquired Votiro, a content disarm and reconstruction vendor.",
+    "subjectType": "vendor",
+    "subjectId": "menlo-security",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-menlo-acquires-votiro",
+    "sourceUrl": "https://www.menlosecurity.com/blog/menlo-security-acquires-votiro",
+    "sourceType": "vendor_marketing",
+    "publishedAt": "2025-02-19",
+    "observedAt": "2026-11-23",
+    "effectiveFrom": "2025-02-19",
+    "effectiveTo": null,
+    "confidence": "high",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-23",
+    "conflictsWith": [],
+    "notes": "Acquirer's own announcement, opened and checked on 2026-11-26 (dated February 19, 2025); corroborated by Business Wire, SiliconANGLE and Help Net Security reports, and by votiro.com redirecting to menlosecurity.com on 2026-11-23."
   },
   {
     "id": "claim-fill-cribl-stream",

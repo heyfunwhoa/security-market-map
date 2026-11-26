@@ -3,7 +3,7 @@ id: "soar"
 type: "category"
 name: "SOAR and response automation"
 layer: "core"
-vendors: 7
+vendors: 8
 ---
 
 # SOAR and response automation
@@ -40,6 +40,7 @@ _None recorded._
 - Dropzone AI
 - Intezer
 - Stairwell
+- Binalyze
 - Anvilogic
 
 ## What buyers do instead

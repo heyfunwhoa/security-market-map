@@ -58,28 +58,50 @@ Attackers increasingly target people rather than systems: phishing, texts, calls
 | Founded | 2025 | YC page (high) |
 | Accelerator | Y Combinator Summer 2025 | YC page (high) |
 | HQ | New York (one aggregator says San Francisco) | YC page |
-| Team | 3 (YC page); other directories list 4–5 | Low |
+| Team | 6 as of 2026-11-25 | Current YC page |
 | Founders | Mohammad Eshan (CEO; ex-BlackRock red team lead, MITRE offensive operations), Charles Antoine Malenfant (CTO; ex-BlackRock senior AI engineer) | YC page |
 | Funding | About $500K per PitchBook and others; Tracxn lists it as unfunded | Conflicting |
-| Customers | None named in any source reviewed | — |
-| Website | ghosteye.ai (not fetched from this session) | — |
+| Customers | Eight Sleep, Everest Global Insurance, Day One Agency, Fella Health, Precision Medicine Group, Kontigo | Vendor-displayed logos; commercial status unknown |
+| Website | ghosteye.ai | First-party site reviewed 2026-11-25 |
 
 ### Product (vendor-reported or directory-reported)
 
 - OSINT agents map each employee's public exposure: role, online presence, public information.
 - Voice and messaging agents run personalized, multi-step social engineering campaigns over email, SMS and voice.
-- Help-desk testing: AI voice agents try to reset passwords or bypass MFA through outsourced help desks (directory listing only).
+- Help-desk testing: AI voice agents try to reset passwords or bypass MFA through outsourced help desks (now also described on the first-party platform).
 - Per-person risk scores tracked over time; employees are shown how they were compromised.
 
 ### Placement
 
-Primary: security awareness. Adjacent: pentest program (it runs live attacks, closer to a red-team test than a training course) and breach simulation. It is not an email security filter.
+Primary: security awareness and breach simulation (dual placement). Adjacent: pentest program. It validates controls rather than acting as an email filter or identity enforcement product.
 
 ### Unknowns
 
 - Funding, headcount and HQ differ across aggregators.
-- No customers or pricing.
+- Pricing, paid customer count, ACV and depth of automation remain unknown.
 - A favorable founder profile (Chicago Reporter, Apr 2026) was found but not used as a source: it names no customers or investors, and its format suggests promotional content.
+
+### Commercial use cases and market sizing (2026-11-25 refresh)
+
+The [official platform](https://ghosteye.ai/platform/) and [homepage](https://ghosteye.ai/) now describe human-layer simulation together with scoped technical control validation. The [current YC profile](https://www.ycombinator.com/companies/ghosteye) describes continuous red teaming and remediation. YC currently lists Mohammad Eshan as the active founder; Charles Antoine Malenfant's current status is unconfirmed.
+
+| Use case | Likely buyer / partner | Outcome to measure |
+| --- | --- | --- |
+| Personalized social engineering simulation | Human risk / awareness | Reporting and verification effectiveness |
+| Help-desk recovery validation | IAM / IT service desk | Recovery control effectiveness |
+| Scoped identity and application access validation | IAM / security engineering | Whether approved access checks succeed or are blocked |
+| Detection and response validation | SOC / red team | Evidence of detection and response gaps |
+| Remediation and repeat testing | CISO / security assurance | Whether remediation holds on retest |
+
+Buyer and budget mappings are analytical hypotheses, not confirmed purchasing history. Potential budget sources: security awareness, BAS, red teaming and identity security assurance. Initial ICP hypothesis: organizations with dedicated security, identity and help-desk owners, especially financial services, insurance, healthcare and technology. Potential peers include Adaptive Security, Jericho Security, Hoxhunt and Breacher.ai; BAS vendors such as Cymulate and AttackIQ are adjacent alternatives, not verified direct competitors.
+
+| Global adjacent market | 2026 estimate | Forecast | Source |
+| --- | --- | --- | --- |
+| Security awareness training | $6.74B | $14.66B in 2031 | [Mordor Intelligence](https://www.mordorintelligence.com/industry-reports/security-awareness-training-market) |
+| BAS | $733.6M | $7.51B in 2033 | [Grand View Research](https://www.grandviewresearch.com/industry-analysis/automated-breach-attack-simulation-market-report) |
+| BAS | $1.29B | $3.61B in 2031 | [Mordor Intelligence](https://www.mordorintelligence.com/industry-reports/breach-and-attack-simulation-market) |
+
+Different analyst definitions and forecast methods produce different estimates. Do not add these overlapping markets or treat either as GhostEye's TAM. Illustrative bottom-up scenario: 10,000 eligible accounts × $75,000 annual contract value = $750M annual addressable spend; 2% penetration = 200 accounts and $15M ARR. Neither input is validated; actual eligibility, ACV, geography, procurement and delivery capacity require research. No company-reported TAM is established.
 
 ## Others in the space
 
@@ -117,7 +139,7 @@ KnowBe4 was already in the catalog. GhostEye's sourced difference among these: O
 
 ### Website caveat
 
-Geordie AI and CodeIntegrity, like Capsule, AIR and Kontext, had no first-party website confirmed from this session. Their `website` field points to a launch or investor announcement, and each record says so.
+Website check (2026-11-24): Geordie AI's homepage (geordie.ai) was fetched and now backs its `website` field. Kontext's site (kontext.security) comes from its company-run DEV Community profile; the homepage itself was not fetched. CodeIntegrity, Capsule and AIR still have no confirmed first-party website: their `website` field points to a launch or funding announcement, and each record says so. (A CodeIntegrity staff comment on Hacker News mentions codeintegrity.ai; that is a lead, not a confirmation.)
 
 ## Sources not used
 

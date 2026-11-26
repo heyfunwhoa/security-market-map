@@ -26,6 +26,7 @@ Preserve and analyze evidence so it survives legal and regulatory scrutiny.
 - Extended detection and response (`xdr`)
 - Insider risk (`insider-risk`)
 - File and malware analysis (`malware-analysis`)
+- Digital forensics and IR collection (`dfir-collection`)
 
 ## Pains
 

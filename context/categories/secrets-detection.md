@@ -3,7 +3,7 @@ id: "secrets-detection"
 type: "category"
 name: "Secrets detection and remediation"
 layer: "core"
-vendors: 64
+vendors: 65
 ---
 
 # Secrets detection and remediation
@@ -100,6 +100,7 @@ From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 - Teleskope
 - Sentra
 - Strac
+- Thinkst Applied Research
 
 ## What buyers do instead
 

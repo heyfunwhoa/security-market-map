@@ -26,6 +26,7 @@ Secure plants, lines, and control systems where availability and safety come fir
 - Network edge (`network-edge`)
 - Network detection and response (`ndr`)
 - Microsegmentation (`microsegmentation`)
+- Content disarm and reconstruction (`cdr-file-sanitization`)
 
 ## Pains
 
