@@ -70,6 +70,7 @@ export function LandscapeBrowser({
     relation: ["direct_competitor", "bundled_alternative", "complement", "adjacent_budget"],
     focusedProduct: productIds,
   });
+  const selectedView = personaFrameworks.find(({ topics }) => topics.some(({ id }) => id === filters.framework));
   const frameworkTopic = frameworkTopics.find((item) => item.id === filters.framework);
   const scopedCategories = categories.filter((item) =>
     (filters.domain === "all" || item.domainIds.includes(filters.domain)) &&
@@ -105,7 +106,7 @@ export function LandscapeBrowser({
     { key: "category", label: "Category", value: labelFor(categories, category) },
     { key: "useCase", label: "Use case", value: labelFor(useCases, useCase) },
     { key: "persona", label: "Buyer", value: labelFor(personas, persona) },
-    { key: "framework", label: "Persona view", value: frameworkTopic?.label ?? framework },
+    { key: "framework", label: "Persona view", value: selectedView && frameworkTopic ? `${selectedView.label} · ${frameworkTopic.label}` : framework },
     { key: "deployment", label: "Deployment", value: deploymentLabel(deployment) },
     { key: "scope", label: "Scope", value: scopeLabel(scope) },
     { key: "relation", label: "Relationship", value: relationshipLabel(relation) },
@@ -130,7 +131,7 @@ export function LandscapeBrowser({
           Categories are editorial mappings. Use the filters to explore relevant tools and review product evidence separately.
         </p>
         <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm">
-          {personaFrameworks.map(({ sourceName, sourceUrl }) => (
+          {(selectedView ? [selectedView] : personaFrameworks.slice(0, 2)).map(({ sourceName, sourceUrl }) => sourceName && sourceUrl && (
             <li key={sourceName}><a href={sourceUrl} className="text-primary underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-ring">{sourceName}</a></li>
           ))}
         </ul>

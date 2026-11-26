@@ -41,9 +41,18 @@ describe("landscape filter journeys", () => {
     expect(filterLandscapeRows([...rows, recovery], [], [], state)).toEqual([recovery]);
   });
 
+  it("lets incident response and threat hunting explore overlapping file evidence independently", () => {
+    const fileAnalysis = row("File analysis", { categoryIds: ["malware-analysis"] });
+    const intel = row("Intel", { categoryIds: ["threat-intelligence"] });
+    const samples = [fileAnalysis, intel, ...rows];
+    const withView = (framework: string) => filterLandscapeRows(samples, [], [], { ...initialLandscapeFilters, framework });
+    expect(withView("ir-scope")).toEqual([fileAnalysis]);
+    expect(withView("hunt-historical")).toEqual([fileAnalysis, intel]);
+  });
+
   it("maps all framework topics to existing catalog categories", () => {
     const ids = new Set(catalog.categories.map(({ id }) => id));
-    expect(new Set(frameworkTopics.map(({ id }) => id)).size).toBe(21);
+    expect(new Set(frameworkTopics.map(({ id }) => id)).size).toBe(frameworkTopics.length);
     for (const { categoryIds } of frameworkTopics) {
       expect(categoryIds.length).toBeGreaterThan(0);
       for (const id of categoryIds) expect(ids.has(id), id).toBe(true);
