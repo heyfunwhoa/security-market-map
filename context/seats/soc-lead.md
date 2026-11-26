@@ -27,6 +27,7 @@ Own queue outcomes, coverage, staffing, and approval of safe automation.
 - Extended detection and response (`xdr`)
 - Managed detection and response (`mdr`)
 - AI SOC investigation (`ai-soc-investigation`)
+- Deception and decoys (`deception`)
 
 ## Pains
 

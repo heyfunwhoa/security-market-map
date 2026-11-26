@@ -188,6 +188,124 @@ export const categoryFillVendors: Vendor[] = [
     ]
   },
   {
+    "id": "thinkst",
+    "slug": "thinkst",
+    "name": "Thinkst Applied Research",
+    "formerNames": [],
+    "website": "https://canary.tools/",
+    "positioning": "Thinkst sells Canary decoy devices and services and offers Canarytokens, free tripwires such as fake documents, API keys and DNS names that alert when touched.",
+    "primaryCategoryIds": [
+      "deception"
+    ],
+    "adjacentCategoryIds": [
+      "itdr",
+      "secrets-detection"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Decoy coverage across cloud, OT and identity is vendor-described and untested here.",
+      "Which deployment model (hardware, virtual or cloud Canaries) fits the buyer's estate?"
+    ]
+  },
+  {
+    "id": "opswat",
+    "slug": "opswat",
+    "name": "OPSWAT",
+    "formerNames": [],
+    "website": "https://www.opswat.com/",
+    "positioning": "OPSWAT markets Deep CDR as file sanitization that disarms and regenerates files, inside its MetaDefender products for email, storage and other entry points.",
+    "primaryCategoryIds": [
+      "cdr-file-sanitization"
+    ],
+    "adjacentCategoryIds": [
+      "email-security",
+      "malware-analysis",
+      "ot-security"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "File-type coverage and usability after sanitization are vendor-reported and untested here.",
+      "Which MetaDefender product and channel does the buyer actually need?"
+    ]
+  },
+  {
+    "id": "binalyze",
+    "slug": "binalyze",
+    "name": "Binalyze",
+    "formerNames": [],
+    "website": "https://www.binalyze.com/",
+    "positioning": "Binalyze describes AIR as a platform that automates digital forensics and incident response: remote evidence collection and analysis across operating systems, integration with existing security tools, and automated analysis.",
+    "primaryCategoryIds": [
+      "dfir-collection"
+    ],
+    "adjacentCategoryIds": [
+      "endpoint-security",
+      "soar"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Collection depth, OS coverage and automated-analysis quality are vendor-reported and untested here.",
+      "Bought directly, or through an MSSP or IR retainer?"
+    ]
+  },
+  {
+    "id": "acalvio",
+    "slug": "acalvio",
+    "name": "Acalvio",
+    "formerNames": [],
+    "website": "https://www.acalvio.com/",
+    "positioning": "Acalvio markets ShadowPlex as an agentless deception platform that deploys decoys and honeytokens across identity, cloud, network, endpoints and OT.",
+    "primaryCategoryIds": [
+      "deception"
+    ],
+    "adjacentCategoryIds": [
+      "itdr",
+      "cloud-detection",
+      "ot-security"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "Coverage and automation claims are vendor-reported and untested here.",
+      "Bought as a standalone deception platform or for identity protection?"
+    ]
+  },
+  {
+    "id": "menlo-security",
+    "slug": "menlo-security",
+    "name": "Menlo Security",
+    "formerNames": [],
+    "website": "https://www.menlosecurity.com/",
+    "positioning": "Menlo Security sells secure enterprise browser and workspace security. It announced the acquisition of Votiro, a CDR and data detection and response vendor, on 2025-02-19, and votiro.com now redirects to Menlo.",
+    "primaryCategoryIds": [
+      "enterprise-browser"
+    ],
+    "adjacentCategoryIds": [
+      "cdr-file-sanitization",
+      "email-security",
+      "dlp"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "verificationStatus": "research_candidate",
+    "openQuestions": [
+      "What is the Votiro CDR product called now inside Menlo's portfolio, and is it sold standalone?",
+      "Browser security, file sanitization, or both on the quote?"
+    ]
+  },
+  {
     "id": "cribl",
     "slug": "cribl",
     "name": "Cribl",
@@ -840,6 +958,148 @@ export const categoryFillProducts: Product[] = [
     "useCaseIds": ["uc-developer-endpoint"]
   },
   {
+    "id": "velociraptor",
+    "slug": "velociraptor",
+    "vendorId": "rapid7",
+    "name": "Velociraptor",
+    "positioning": "Velociraptor's documentation describes an open-source platform for endpoint monitoring, digital forensics and incident response, with an agent on each host queried from a central server using VQL.",
+    "primaryCategoryIds": [
+      "dfir-collection"
+    ],
+    "adjacentCategoryIds": [
+      "detection-engineering",
+      "endpoint-security"
+    ],
+    "deployment": [
+      "self_hosted"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Open source on GitHub; the project says Rapid7 acquired the technology and community in 2021. Commercial support options not verified here.",
+    "officialUrl": "https://docs.velociraptor.app/docs/overview/",
+    "useCaseIds": []
+  },
+  {
+    "id": "thinkst-canary",
+    "slug": "thinkst-canary",
+    "vendorId": "thinkst",
+    "name": "Thinkst Canary and Canarytokens",
+    "positioning": "Thinkst sells Canary decoy devices and services and offers Canarytokens, free tripwires such as fake documents, API keys and DNS names that alert when touched.",
+    "primaryCategoryIds": [
+      "deception"
+    ],
+    "adjacentCategoryIds": [
+      "itdr",
+      "secrets-detection"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Canarytokens are free; Canary pricing and deployment options not verified here.",
+    "officialUrl": "https://canary.tools/",
+    "useCaseIds": []
+  },
+  {
+    "id": "opswat-deep-cdr",
+    "slug": "opswat-deep-cdr",
+    "vendorId": "opswat",
+    "name": "OPSWAT Deep CDR (MetaDefender)",
+    "positioning": "OPSWAT markets Deep CDR as file sanitization that disarms and regenerates files, inside its MetaDefender products for email, storage and other entry points.",
+    "primaryCategoryIds": [
+      "cdr-file-sanitization"
+    ],
+    "adjacentCategoryIds": [
+      "email-security",
+      "malware-analysis"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Packaging across MetaDefender products and deployment options not verified here.",
+    "officialUrl": "https://www.opswat.com/technologies/deep-cdr",
+    "useCaseIds": []
+  },
+  {
+    "id": "binalyze-air",
+    "slug": "binalyze-air",
+    "vendorId": "binalyze",
+    "name": "Binalyze AIR",
+    "positioning": "Binalyze describes AIR as a platform that automates digital forensics and incident response: remote evidence collection and analysis across operating systems, integration with existing security tools, and automated analysis.",
+    "primaryCategoryIds": [
+      "dfir-collection"
+    ],
+    "adjacentCategoryIds": [
+      "endpoint-security"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Deployment and pricing not verified here.",
+    "officialUrl": "https://www.binalyze.com/",
+    "useCaseIds": []
+  },
+  {
+    "id": "acalvio-shadowplex",
+    "slug": "acalvio-shadowplex",
+    "vendorId": "acalvio",
+    "name": "Acalvio ShadowPlex",
+    "positioning": "Acalvio markets ShadowPlex as an agentless deception platform that deploys decoys and honeytokens across identity, cloud, network, endpoints and OT.",
+    "primaryCategoryIds": [
+      "deception"
+    ],
+    "adjacentCategoryIds": [
+      "itdr",
+      "cloud-detection"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "generally_available",
+    "availabilityNote": "Module packaging (threat defense, identity, cloud) and deployment not verified here.",
+    "officialUrl": "https://www.acalvio.com/shadowplex-platform/",
+    "useCaseIds": []
+  },
+  {
+    "id": "votiro-cdr",
+    "slug": "votiro-cdr",
+    "vendorId": "menlo-security",
+    "name": "Votiro CDR (Menlo Security)",
+    "positioning": "Votiro says its content disarm and reconstruction technology disarms incoming files and rebuilds them while keeping them usable, across email, downloads, file sharing and removable media.",
+    "primaryCategoryIds": [
+      "cdr-file-sanitization"
+    ],
+    "adjacentCategoryIds": [
+      "email-security"
+    ],
+    "deployment": [
+      "unknown"
+    ],
+    "identityScopes": [
+      "not_an_identity_control"
+    ],
+    "availability": "unknown",
+    "availabilityNote": "Now part of Menlo Security (acquisition announced 2025-02-19); current product name and packaging not verified.",
+    "officialUrl": "https://votiro.com/",
+    "useCaseIds": []
+  },
+  {
     "id": "cribl-stream",
     "slug": "cribl-stream",
     "vendorId": "cribl",
@@ -1479,6 +1739,102 @@ export const categoryFillSources: Source[] = [
     "excerpt": "Stairwell says it preserves every executable from enrolled endpoints in a dedicated environment with no arbitrary retention window."
   },
   {
+    "id": "src-fill-stairwell-backstory-launch",
+    "title": "Stairwell — Backstory launch press release (GlobeNewswire)",
+    "url": "https://www.globenewswire.com/news-release/2026/07/29/3335300/0/en/stairwell-launches-backstory-the-first-agentic-investigation-platform-for-malware-blast-radius.html",
+    "canonicalUrl": "https://www.globenewswire.com/news-release/2026/07/29/3335300/0/en/stairwell-launches-backstory-the-first-agentic-investigation-platform-for-malware-blast-radius.html",
+    "publisher": "Stairwell",
+    "sourceType": "vendor_marketing",
+    "publishedAt": "2026-07-29",
+    "retrievedAt": "2026-11-22",
+    "volatility": "stable",
+    "excerpt": "Stairwell announced Backstory as an agentic investigation product that traces related malware variants, identifies affected systems and maps an incident's scope."
+  },
+  {
+    "id": "src-fill-velociraptor-overview",
+    "title": "Velociraptor \u2014 What is Velociraptor? (docs)",
+    "url": "https://docs.velociraptor.app/docs/overview/",
+    "canonicalUrl": "https://docs.velociraptor.app/docs/overview/",
+    "publisher": "Velocidex / Rapid7",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-23",
+    "volatility": "moderate",
+    "excerpt": "Velociraptor's documentation describes it as an open-source platform for endpoint monitoring, digital forensics and cyber response."
+  },
+  {
+    "id": "src-fill-thinkst-canarytokens",
+    "title": "Thinkst Canary \u2014 Canarytoken overview and use cases (help center)",
+    "url": "https://help.canary.tools/hc/en-gb/articles/10905485310109-Canarytoken-Overview-and-Use-Cases",
+    "canonicalUrl": "https://help.canary.tools/hc/en-gb/articles/10905485310109-Canarytoken-Overview-and-Use-Cases",
+    "publisher": "Thinkst Applied Research",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-23",
+    "volatility": "moderate",
+    "excerpt": "Thinkst describes Canarytokens as free tripwires, including document, web bug, API key, VPN profile and QR code tokens, that alert when accessed."
+  },
+  {
+    "id": "src-fill-opswat-deep-cdr",
+    "title": "OPSWAT \u2014 Deep CDR technology",
+    "url": "https://www.opswat.com/technologies/deep-cdr",
+    "canonicalUrl": "https://www.opswat.com/technologies/deep-cdr",
+    "publisher": "OPSWAT",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-23",
+    "volatility": "moderate",
+    "excerpt": "OPSWAT says Deep CDR disarms and regenerates each file so only sanitized, usable content reaches the user, and lists 200+ supported file types."
+  },
+  {
+    "id": "src-fill-binalyze-home",
+    "title": "Binalyze \u2014 homepage (AIR)",
+    "url": "https://www.binalyze.com/",
+    "canonicalUrl": "https://www.binalyze.com/",
+    "publisher": "Binalyze",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-23",
+    "volatility": "moderate",
+    "excerpt": "Binalyze describes AIR as automating DFIR, with remote evidence collection and analysis across operating systems and integrations with existing tools."
+  },
+  {
+    "id": "src-fill-acalvio-home",
+    "title": "Acalvio \u2014 homepage (ShadowPlex)",
+    "url": "https://www.acalvio.com/",
+    "canonicalUrl": "https://www.acalvio.com/",
+    "publisher": "Acalvio",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-23",
+    "volatility": "moderate",
+    "excerpt": "Acalvio describes ShadowPlex as a deception platform with agentless deployment across identity, cloud, network, endpoints and OT/ICS."
+  },
+  {
+    "id": "src-fill-votiro-cdr-support",
+    "title": "Votiro \u2014 Content Disarm and Reconstruction (support article)",
+    "url": "https://support.votiro.com/hc/en-us/articles/360014301677-Content-Disarm-and-Reconstruction-CDR",
+    "canonicalUrl": "https://support.votiro.com/hc/en-us/articles/360014301677-Content-Disarm-and-Reconstruction-CDR",
+    "publisher": "Votiro",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "retrievedAt": "2026-11-23",
+    "volatility": "moderate",
+    "excerpt": "Votiro says its CDR disarms malware from incoming files and reconstructs them while preserving functionality, covering email attachments, downloads, file sharing and removable devices."
+  },
+  {
+    "id": "src-fill-menlo-acquires-votiro",
+    "title": "Menlo Security \u2014 Menlo Security acquires Votiro (blog)",
+    "url": "https://www.menlosecurity.com/blog/menlo-security-acquires-votiro",
+    "canonicalUrl": "https://www.menlosecurity.com/blog/menlo-security-acquires-votiro",
+    "publisher": "Menlo Security",
+    "sourceType": "vendor_marketing",
+    "publishedAt": "2025-02-19",
+    "retrievedAt": "2026-11-23",
+    "volatility": "stable",
+    "excerpt": "Menlo Security announced it acquired Votiro, describing Votiro as a CDR and data detection and response vendor that will form the data security pillar of its workspace security strategy."
+  },
+  {
     "id": "src-fill-cribl-stream",
     "title": "Cribl Stream — product page",
     "url": "https://www.cribl.io/stream",
@@ -2116,6 +2472,166 @@ export const categoryFillClaims: Claim[] = [
     "lastCheckedAt": "2026-11-11",
     "conflictsWith": [],
     "notes": "Publisher-reported, not independently tested; no direct-competitor claim. See docs/market-research/file-analysis-ai-investigation-landscape-2026-11.md."
+  },
+  {
+    "id": "claim-fill-stairwell-backstory-launch",
+    "statement": "Stairwell says Backstory, announced July 29, 2026, traces related malware variants, identifies affected systems and maps an incident's scope by reasoning over preserved executable files rather than alerts.",
+    "subjectType": "product",
+    "subjectId": "stairwell-platform",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-stairwell-backstory-launch",
+    "sourceUrl": "https://www.globenewswire.com/news-release/2026/07/29/3335300/0/en/stairwell-launches-backstory-the-first-agentic-investigation-platform-for-malware-blast-radius.html",
+    "sourceType": "vendor_marketing",
+    "publishedAt": "2026-07-29",
+    "observedAt": "2026-11-22",
+    "effectiveFrom": "2026-07-29",
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-22",
+    "conflictsWith": [],
+    "notes": "Vendor press release; investigation quality not independently tested. 'First agentic investigation platform' is the vendor's own label and is not adopted here. See docs/market-research/file-analysis-ai-investigation-landscape-2026-11.md (2026-11-23 update)."
+  },
+  {
+    "id": "claim-fill-velociraptor-overview",
+    "statement": "Velociraptor's documentation describes it as an open-source platform for endpoint monitoring, digital forensics and incident response.",
+    "subjectType": "product",
+    "subjectId": "velociraptor",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-velociraptor-overview",
+    "sourceUrl": "https://docs.velociraptor.app/docs/overview/",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-11-23",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-23",
+    "conflictsWith": [],
+    "notes": "Official page opened and checked 2026-11-23. Publisher-reported, not tested; no competitor or parity claim. See docs/market-research/adjacent-file-evidence-categories-2026-11-23.md."
+  },
+  {
+    "id": "claim-fill-thinkst-canarytokens",
+    "statement": "Thinkst says Canarytokens are free tripwires, such as document, API key, DNS and VPN profile tokens, that send an alert when accessed.",
+    "subjectType": "product",
+    "subjectId": "thinkst-canary",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-thinkst-canarytokens",
+    "sourceUrl": "https://help.canary.tools/hc/en-gb/articles/10905485310109-Canarytoken-Overview-and-Use-Cases",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-11-23",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-23",
+    "conflictsWith": [],
+    "notes": "Official page opened and checked 2026-11-23. Publisher-reported, not tested; no competitor or parity claim. See docs/market-research/adjacent-file-evidence-categories-2026-11-23.md."
+  },
+  {
+    "id": "claim-fill-opswat-deep-cdr",
+    "statement": "OPSWAT says Deep CDR disarms and regenerates each file so only sanitized, usable content is delivered, and claims support for more than 200 file types.",
+    "subjectType": "product",
+    "subjectId": "opswat-deep-cdr",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-opswat-deep-cdr",
+    "sourceUrl": "https://www.opswat.com/technologies/deep-cdr",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-23",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-23",
+    "conflictsWith": [],
+    "notes": "Official page opened and checked 2026-11-23. Publisher-reported, not tested; no competitor or parity claim. See docs/market-research/adjacent-file-evidence-categories-2026-11-23.md."
+  },
+  {
+    "id": "claim-fill-binalyze-home",
+    "statement": "Binalyze says AIR automates digital forensics and incident response, collecting and analysing evidence remotely across operating systems.",
+    "subjectType": "product",
+    "subjectId": "binalyze-air",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-binalyze-home",
+    "sourceUrl": "https://www.binalyze.com/",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-23",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-23",
+    "conflictsWith": [],
+    "notes": "Official page opened and checked 2026-11-23. Publisher-reported, not tested; no competitor or parity claim. See docs/market-research/adjacent-file-evidence-categories-2026-11-23.md."
+  },
+  {
+    "id": "claim-fill-acalvio-home",
+    "statement": "Acalvio says ShadowPlex deploys deception agentlessly across identity, cloud, network, endpoint and OT/ICS environments.",
+    "subjectType": "product",
+    "subjectId": "acalvio-shadowplex",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-acalvio-home",
+    "sourceUrl": "https://www.acalvio.com/",
+    "sourceType": "vendor_marketing",
+    "publishedAt": null,
+    "observedAt": "2026-11-23",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "medium",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-23",
+    "conflictsWith": [],
+    "notes": "Official page opened and checked 2026-11-23. Publisher-reported, not tested; no competitor or parity claim. See docs/market-research/adjacent-file-evidence-categories-2026-11-23.md."
+  },
+  {
+    "id": "claim-fill-votiro-cdr-support",
+    "statement": "Votiro says its CDR disarms incoming files and rebuilds them with their functionality intact, for email attachments, downloads, file sharing and removable devices.",
+    "subjectType": "product",
+    "subjectId": "votiro-cdr",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-votiro-cdr-support",
+    "sourceUrl": "https://support.votiro.com/hc/en-us/articles/360014301677-Content-Disarm-and-Reconstruction-CDR",
+    "sourceType": "official_docs",
+    "publishedAt": null,
+    "observedAt": "2026-11-23",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "confidence": "low",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-23",
+    "conflictsWith": [],
+    "notes": "Official page opened and checked on 2026-11-26 (it lists email, downloads and file transfers, and removable devices). The support article may predate Menlo Security's 2025 acquisition of Votiro. Publisher-reported, not tested; no competitor or parity claim. See docs/market-research/adjacent-file-evidence-categories-2026-11-23.md."
+  },
+  {
+    "id": "claim-fill-menlo-acquires-votiro",
+    "statement": "Menlo Security announced on February 19, 2025 that it had acquired Votiro, a content disarm and reconstruction vendor.",
+    "subjectType": "vendor",
+    "subjectId": "menlo-security",
+    "capabilityId": null,
+    "polarity": "asserts",
+    "sourceId": "src-fill-menlo-acquires-votiro",
+    "sourceUrl": "https://www.menlosecurity.com/blog/menlo-security-acquires-votiro",
+    "sourceType": "vendor_marketing",
+    "publishedAt": "2025-02-19",
+    "observedAt": "2026-11-23",
+    "effectiveFrom": "2025-02-19",
+    "effectiveTo": null,
+    "confidence": "high",
+    "verificationStatus": "vendor_published",
+    "lastCheckedAt": "2026-11-23",
+    "conflictsWith": [],
+    "notes": "Acquirer's own announcement, opened and checked on 2026-11-26 (dated February 19, 2025); corroborated by Business Wire, SiliconANGLE and Help Net Security reports, and by votiro.com redirecting to menlosecurity.com on 2026-11-23."
   },
   {
     "id": "claim-fill-cribl-stream",

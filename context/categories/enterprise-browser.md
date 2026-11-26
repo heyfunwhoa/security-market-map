@@ -3,7 +3,7 @@ id: "enterprise-browser"
 type: "category"
 name: "Enterprise browser"
 layer: "core"
-vendors: 3
+vendors: 4
 ---
 
 # Enterprise browser
@@ -28,6 +28,7 @@ A managed browser as the work surface, used alongside virtual desktop and secure
 ## Vendors (primary)
 
 - Island: Enterprise browser vendor. It still depends on the workforce identity provider.
+- Menlo Security: Menlo Security sells secure enterprise browser and workspace security. It announced the acquisition of Votiro, a CDR and data detection and response vendor, on 2025-02-19, and votiro.com now redirects to Menlo.
 - Push Security: Browser-based security vendor. It says it observes how users actually log in, including accounts, authentication methods and shadow apps, and guides MFA and SSO adoption in the browser.
 
 ## Vendors (adjacent)
