@@ -3,7 +3,7 @@ import { isCiamProduct } from "./data/ciam-profiles";
 import { evidenceCell } from "./compare";
 import { developerEndpointCapabilities } from "./data/developer-endpoint-comparison";
 import { agenticEndpointCapabilities } from "./data/agentic-endpoint-comparison";
-import { hasRegroupedLayout } from "./product-fit";
+import { hasProfileSteps } from "./product-profile";
 
 export { PRODUCT_RESEARCH_SLUGS, isProductResearchSlug, type ProductResearchSlug } from "./product-destination";
 import type { ProductResearchSlug } from "./product-destination";
@@ -24,13 +24,21 @@ export function productResearchCategory(slug: ProductResearchSlug): { href: stri
 export type SectionLink = { id: string; label: string };
 
 export function productResearchSections(slug: ProductResearchSlug): SectionLink[] {
+  if (!isCiamProduct(slug) && hasProfileSteps(slug)) {
+    return [
+      { id: "where-it-fits", label: "Where it fits" },
+      { id: "how-it-works", label: "How it works" },
+      ...(slug === "kingfisher" ? [{ id: "kingfisher-upstream", label: "Upstream" }] : []),
+      { id: "limitations", label: "Limitations" },
+      { id: "company", label: "Company and news" },
+      { id: "investigate", label: "Pilot questions" },
+      { id: "evidence", label: "All sources" },
+    ];
+  }
   return [
     { id: "how-it-works", label: "How it works" },
-    ...(slug === "kingfisher" || slug === "aikido-device-protection" || slug === "bay-platform" ? [{ id: "product-focus-title", label: "Zoom in" }] : []),
-    ...(slug === "kingfisher" ? [{ id: "kingfisher-upstream", label: "Upstream" }] : []),
     ...(isCiamProduct(slug) ? [{ id: "market-context", label: "Buyer and economics" }] : []),
     { id: "limitations", label: "Limitations" },
-    ...(hasRegroupedLayout(slug) ? [{ id: "market-fit", label: "Market fit" }] : []),
     { id: "evidence", label: "Evidence" },
     { id: "investigate", label: "Pilot questions" },
     { id: "adjacency", label: "Categories" },

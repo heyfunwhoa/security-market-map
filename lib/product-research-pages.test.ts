@@ -122,25 +122,24 @@ describe("product research pages", () => {
     expect(moveFocusStage(4, "next", 5)).toBe(4);
   });
 
-  it("renders Kingfisher in secrets detection with one workflow and atlas handoff", async () => {
+  it("renders Kingfisher as a source-based profile in secrets detection with atlas handoff", async () => {
     const html = await pageHtml("kingfisher");
     expect(html).toContain('href="/categories/secrets-detection"');
     expect(html).toContain("Secrets detection");
-    expect(html).not.toContain('href="/categories/endpoint-control"');
     expect(html).not.toContain("/compare?category=endpoint-control");
-    expect(html).toContain("How it works");
-    expect(html).toContain("Show all stages");
-    expect(html).toContain("Overview mode: all stages are available.");
-    expect(html).toContain('aria-disabled="true"');
-    expect(html.match(/aria-pressed="false"/g)).toHaveLength(5);
-    expect(html).not.toContain(">Previous<");
+    expect(html).toContain("Buyer question");
+    expect(html).toContain("How it works, with proof");
+    expect(html).toContain("1. Detect");
+    expect(html).toContain("5. Revoke");
+    // Steps without a recorded claim say so instead of implying support.
+    expect(html).toContain("No recorded source for this step.");
     expect(html).toContain("not evaluated");
     expect(html).not.toContain("detector coverage is evaluated");
-    // The caveat lives in the source badge (accessible name and tooltip), not repeated in body text.
     expect(html).toMatch(/Vendor published\. Not independently tested\./);
     expect(html).toContain("Vendor said this");
     expect(html).toContain("https://github.com/mongodb/kingfisher");
     expect(html).toContain("https://github.com/heyfunwhoa/detector-coverage-atlas");
+    expect(html).toContain("No sourced pricing recorded.");
     for (const section of productResearchSections("kingfisher")) {
       expect(anchorIds(html)).toContain(section.id);
       expect(html).toContain(`id="${section.id}"`);
@@ -148,18 +147,22 @@ describe("product research pages", () => {
     }
   });
 
-  it("renders endpoint products with source links, unknown boundaries and comparison as secondary", async () => {
+  it("renders endpoint products with proof per step, stated gaps and comparison as secondary", async () => {
     const gitguardian = await pageHtml("gitguardian-developer-endpoint");
     expect(gitguardian).toContain('href="/categories/endpoint-control"');
-    expect(gitguardian).toContain("Unknown control boundaries");
-    expect(gitguardian).toContain("Supported package install interception");
+    expect(gitguardian).toContain("1. Scan the workstation");
     expect(gitguardian).toContain("https://docs.gitguardian.com/endpoint-protection/home");
+    expect(gitguardian).toContain("Unknown: AI provider and MCP usage inventory.");
+    expect(gitguardian).toContain("Not shown by any recorded source");
+    expect(gitguardian).toContain("Supported package install interception");
     expect(gitguardian).toContain("Compare GitGuardian and Aikido");
     expect(gitguardian).not.toContain("product-focus-title");
     expect(anchorIds(gitguardian).every((id) => gitguardian.includes(`id="${id}"`))).toBe(true);
 
     const aikido = await pageHtml("aikido-device-protection");
     expect(aikido).toContain("Availability unknown");
+    expect(aikido).toContain("1. Intercept installs");
+    expect(aikido).toContain("Not shown by any recorded source");
     expect(aikido).toContain("AI coding assistant tool-call hooks");
     expect(aikido).toContain("Endpoint honeytoken alert");
     expect(aikido).toContain("https://help.aikido.dev/aikido-device-protection/miscellaneous-aikido-endpoint/how-does-endpoint-protection-work");
@@ -167,21 +170,30 @@ describe("product research pages", () => {
     expect(anchorIds(aikido).every((id) => aikido.includes(`id="${id}"`))).toBe(true);
   });
 
-  it("renders Bay with the regrouped layout, agentic capability set and grouped evidence", async () => {
+  it("renders Bay as a source-based profile with peers, proof per step and grouped sources", async () => {
     const html = await pageHtml("bay-platform");
     expect(html).toContain('href="/categories/agentic-runtime"');
     expect(html).toContain('href="/vendors/bay-security"');
     expect(html).toContain("Buyer question");
+    expect(html).toContain("Can we see and stop risky AI agent actions on our devices without deploying a new agent?");
     expect(html).toContain("Compare with peers");
     expect(html).not.toContain("Compare GitGuardian and Aikido");
-    expect(html).toContain("Where it fits in the market");
+    // One "Where it fits" section: market context plus categories.
+    expect(html.match(/id="where-it-fits"/g)).toHaveLength(1);
+    expect(html).not.toContain('id="market-fit"');
+    expect(html).not.toContain('id="adjacency"');
+    expect(html).toContain("Nearest peers by approach");
     expect(html).toContain('href="/vendors/crowdstrike"');
+    expect(html).toContain("3. Decide");
+    expect(html).toContain("Unknown: Coverage for AI tools without hooks.");
+    expect(html).toContain("detection mode");
+    expect(html).toContain("Company, customers and news");
+    expect(html).toContain("Bay launches from stealth");
+    expect(html).toContain("No sourced pricing recorded.");
     expect(html).toContain("What the vendor says");
     expect(html).toContain("What analysts say");
     expect(html).toContain("Press and third parties");
     expect(html).toContain("https://softwareanalyst.substack.com/p/the-ciso-guide-to-endpoint-control");
-    expect(html).toContain("detection mode");
-    expect(html.match(/aria-pressed="false"/g)).toHaveLength(4);
     expect(anchorIds(html).every((id) => html.includes(`id="${id}"`))).toBe(true);
     expect(unknownControlBoundaries("bay-platform", catalog.asOf)).toEqual([
       "Coverage for AI tools without hooks",
