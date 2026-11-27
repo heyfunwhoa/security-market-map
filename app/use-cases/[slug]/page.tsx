@@ -5,6 +5,7 @@ import { DiscoveryQuestions } from "@/components/discovery-questions";
 import { notFound } from "next/navigation";
 import { PageIntro, StatusPill } from "@/components/chrome";
 import { catalog, findUseCase, vendorById } from "@/lib/catalog";
+import { pageMetadata } from "@/lib/page-metadata";
 import { shortlistUrl } from "@/lib/landscape-shortlist";
 import { relationshipLabel } from "@/lib/format";
 
@@ -15,7 +16,8 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const useCase = findUseCase(slug);
-  return { title: useCase?.name ?? "Use case" };
+  if (!useCase) return { title: "Use case" };
+  return pageMetadata({ title: useCase.name, description: `${useCase.buyerQuestion} ${useCase.problem}`, path: `/use-cases/${useCase.slug}` });
 }
 
 export default async function UseCasePage({ params }: { params: Promise<{ slug: string }> }) {

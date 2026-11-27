@@ -318,7 +318,7 @@ export default async function PersonaPage({ params }: { params: Promise<{ id: st
 
       <nav aria-label="Broaden" className="mt-10 flex flex-wrap gap-4 text-sm">
         <Link href="/personas" className={linkClass}>All buyer seats</Link>
-        <Link href="/use-cases" className={linkClass}>Buyer use cases</Link>
+        <Link href="/use-cases" className={linkClass}>Use cases</Link>
         <Link href="/domains" className={linkClass}>Security domains</Link>
       </nav>
     </main>

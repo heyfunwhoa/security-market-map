@@ -6,7 +6,7 @@ import { Menu } from "lucide-react";
 import { formatDate } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import { ANSWER_LABELS, readableStatus, TRUST_TONES, trustLabel } from "@/lib/evidence-labels";
-import type { SearchHit } from "@/lib/search";
+import type { AliasGroups, SearchHit } from "@/lib/search";
 import { SearchCommand } from "@/components/search-panel";
 import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetClose } from "@/components/ui/sheet";
 
@@ -19,7 +19,7 @@ const NAV_GROUPS = [
     { href: "/domains", label: "Explore domains", description: "Start with broad security areas and their categories." },
     { href: "/categories", label: "Categories A–Z", description: "Find a category by name or acronym and see its domains." },
     { href: "/landscape", label: "Browse products", description: "Filter vendors and products, inspect details, and build a shortlist." },
-    { href: "/use-cases", label: "Buyer use cases", description: "Browse the problems buyers are evaluating." },
+    { href: "/use-cases", label: "Use cases", description: "Browse the problems buyers are evaluating." },
     { href: "/compare", label: "Compare evidence", description: "Compare product evidence for a specific use case." },
   ] },
   { title: "Prepare a conversation", links: [
@@ -49,12 +49,12 @@ export const NAV_HREFS = NAV_GROUPS.flatMap((group) => group.links.map((link) =>
 
 const navLinkClass = "inline-flex min-h-11 items-center rounded-md px-3 text-sm hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring";
 
-export function SiteHeader({ hits, asOf, profileComparisons }: { hits: SearchHit[]; asOf: string; profileComparisons: Record<string, string> }) {
+export function SiteHeader({ hits, aliases = [], asOf, profileComparisons }: { hits: SearchHit[]; aliases?: AliasGroups; asOf: string; profileComparisons: Record<string, string> }) {
   const pathname = usePathname();
   const destination = (href: string) => href === "/compare" ? profileComparisons[pathname] ?? href : href;
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
   return (
-    <header className="relative z-40 border-b border-border bg-background">
+    <header data-site-chrome className="relative z-40 border-b border-border bg-background">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-4 gap-y-2 px-4 py-3">
         <Link href="/" aria-label="Security Market Map home" className="min-w-0 flex-1 rounded-sm py-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring">
           <span className="block font-heading text-lg leading-snug tracking-tight">Security Market Map</span>
@@ -64,7 +64,7 @@ export function SiteHeader({ hits, asOf, profileComparisons }: { hits: SearchHit
           {HEADER_LINKS.map((link) => <Link key={link.href} href={destination(link.href)} aria-current={pathname === link.href ? "page" : undefined} className={cn(navLinkClass, isActive(link.href) ? "bg-muted font-semibold" : "text-muted-foreground")}>{link.label}</Link>)}
         </nav>
         <div className="flex shrink-0 items-center gap-2">
-          <SearchCommand hits={hits} />
+          <SearchCommand hits={hits} aliases={aliases} />
           <Sheet>
             <SheetTrigger className={`${navLinkClass} gap-2 border border-border`}>
               <Menu className="size-4" aria-hidden="true" />Menu
@@ -96,7 +96,7 @@ export function SiteHeader({ hits, asOf, profileComparisons }: { hits: SearchHit
 
 export function SiteFooter({ asOf }: { asOf: string }) {
   return (
-    <footer className="mt-16 border-t border-border">
+    <footer data-site-chrome className="mt-16 border-t border-border">
       <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-8 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
         <p>
           Independent research notes. Not an official Gartner, Forrester, IDC, SACR, or vendor classification,

@@ -2,7 +2,7 @@ import { productDestination } from "./product-destination";
 import { z } from "zod";
 import { identityProblems, provenanceProblems } from "./catalog-integrity";
 import { latestClaimDate } from "./as-of";
-import { searchHits as filterSearchHits, type SearchHit } from "./search";
+import { EXTRA_ALIASES, aliasesFromGlossary, searchHits as filterSearchHits, type AliasGroups, type SearchHit } from "./search";
 import {
   AS_OF,
   capabilitySchema,
@@ -665,6 +665,12 @@ export function searchIndex(): SearchHit[] {
       title: item.name,
       text: `${item.problem} ${item.buyerQuestion}`,
     })),
+    ...catalog.personas.map((item) => ({
+      href: `/personas/${item.id}`,
+      kind: "Buyer seat",
+      title: item.name,
+      text: `${item.title} ${item.caresAbout} ${item.questions.join(" ")}`,
+    })),
     ...catalog.glossary.map((item) => ({
       href: `/learn#${item.id}`,
       kind: "Glossary",
@@ -680,7 +686,12 @@ export function searchIndex(): SearchHit[] {
   ];
 }
 
+/** Acronym and full-name pairs from the glossary, so "NHI" and "non-human identity" match alike. */
+export function searchAliases(): AliasGroups {
+  return [...aliasesFromGlossary(catalog.glossary), ...EXTRA_ALIASES];
+}
+
 export function searchHits(query: string, hits: SearchHit[] = searchIndex()): SearchHit[] {
-  return filterSearchHits(query, hits);
+  return filterSearchHits(query, hits, searchAliases());
 }
 

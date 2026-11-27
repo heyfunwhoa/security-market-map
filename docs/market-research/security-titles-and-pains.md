@@ -1,6 +1,6 @@
 # Security seats — functions, titles, acronyms, and pains
 
-As of: 2026-11-25. Generated from `lib/data/persona-profiles.ts`, `lib/data/stakeholders.ts`, and `lib/data/titles.ts` by `renderTitlesAndPains()`. Do not hand-edit; run `npm run docs:personas`.
+As of: 2026-11-26. Generated from `lib/data/persona-profiles.ts`, `lib/data/stakeholders.ts`, and `lib/data/titles.ts` by `renderTitlesAndPains()`. Do not hand-edit; run `npm run docs:personas`.
 
 Use `matchTitle("Sr. Manager, Product Security")` in `lib/title-match.ts` to resolve a real title to seat, function, seniority, and confidence. Titles and roles are hypotheses for routing research; confirm authority and budget in discovery.
 

@@ -7,6 +7,8 @@ import { isProductResearchSlug } from "@/lib/product-research";
 import { ProfileBreadcrumbs, ProfileLink } from "@/components/catalog-profile-navigation";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { correctionUrl } from "@/lib/corrections";
+import { pageMetadata } from "@/lib/page-metadata";
 import { ClaimList } from "@/components/claims";
 import { PageIntro, StatusPill } from "@/components/chrome";
 import { ResearchPanelLive } from "@/components/research-panel-live";
@@ -21,6 +23,7 @@ import {
   vendorBySlug,
 } from "@/lib/catalog";
 import { availabilityLabel, formatDate, scopeLabel } from "@/lib/format";
+import { evidenceSummary } from "@/lib/evidence-summary";
 import { previewHashicorpMonitor } from "@/lib/research/vendor-monitor";
 
 export function generateStaticParams() {
@@ -29,7 +32,9 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  return { title: vendorBySlug(slug)?.name ?? "Vendor" };
+  const vendor = vendorBySlug(slug);
+  if (!vendor) return { title: "Vendor" };
+  return pageMetadata({ title: vendor.name, description: vendor.positioning, path: `/vendors/${vendor.slug}` });
 }
 
 export default async function VendorPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -49,11 +54,12 @@ export default async function VendorPage({ params }: { params: Promise<{ slug: s
     (b.publishedAt ?? b.observedAt).localeCompare(a.publishedAt ?? a.observedAt),
   );
   const monitor = vendor.id === "hashicorp" ? await previewHashicorpMonitor() : null;
+  const summary = evidenceSummary([...vendorClaims, ...productClaims], catalog.capabilities);
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
       <ProfileBreadcrumbs catalogFallback={{ href: landscapeFilterUrl(initialLandscapeFilters, vendor.name), label: "Catalog results" }} current={vendor.name} />
-      <PageIntro kicker="Research candidate" title={vendor.name} lede={vendor.positioning} />
+      <PageIntro kicker="Company" title={vendor.name} lede={vendor.positioning} />
       <div className="mt-4 flex flex-wrap items-center gap-2">
         <StatusPill status={vendor.verificationStatus} />
         {vendor.formerNames.map((name) => (
@@ -64,13 +70,20 @@ export default async function VendorPage({ params }: { params: Promise<{ slug: s
         <a className="text-sm text-primary underline-offset-4 hover:underline" href={vendor.website}>
           Official site
         </a>
+        <a
+          className="inline-flex min-h-11 items-center text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground"
+          href={correctionUrl({ path: `/vendors/${vendor.slug}`, title: vendor.name, record: `vendor:${vendor.id}` })}
+          data-print="hide"
+        >
+          Suggest a correction
+        </a>
       </div>
       <p className="mt-3 text-sm text-muted-foreground">
         Scope marked for filtering: {vendor.identityScopes.map(scopeLabel).join(", ")}. Scope is a
         research starting point, not a certified coverage claim.
       </p>
       {gaps && <a href="#research-gaps" className="inline-flex min-h-11 items-center text-sm text-primary underline underline-offset-4">Research gaps</a>}
-      {products.length > 1 && <nav aria-label="Find a product on this company page" className="mt-4">
+      {products.length > 1 && <nav aria-label="Find a product on this company page" className="mt-4" data-print="hide">
         <details className="rounded-lg border border-border bg-card px-4">
           <summary className="min-h-11 cursor-pointer py-3 text-sm font-semibold">Jump to a product ({products.length})</summary>
           <ul className="grid gap-x-5 pb-2 sm:grid-cols-2">
@@ -80,6 +93,30 @@ export default async function VendorPage({ params }: { params: Promise<{ slug: s
           </ul>
         </details>
       </nav>}
+      <section aria-labelledby="evidence-summary" className="mt-6 rounded-xl border border-border bg-card p-4">
+        <h2 id="evidence-summary" className="text-lg font-semibold">Evidence on this page</h2>
+        {summary.total === 0 ? (
+          <p className="mt-2 text-sm leading-6 text-muted-foreground">
+            No current sourced claim yet. Everything below is the map&apos;s placement, not evidence about the product.
+          </p>
+        ) : (
+          <>
+            <p className="mt-2 text-sm leading-6">
+              {summary.labelCounts.map(([label, count]) => `${count} ${label}`).join(" · ")}
+              {summary.lastChecked ? ` · last checked ${formatDate(summary.lastChecked)}` : ""}
+            </p>
+            {summary.capabilityNames.length > 0 ? (
+              <ul aria-label="Capabilities with a claim" className="mt-3 flex flex-wrap gap-2">
+                {summary.capabilityNames.map((name) => (
+                  <li key={name} className="rounded-full border border-border px-3 py-1 text-sm">{name}</li>
+                ))}
+              </ul>
+            ) : (
+              <p className="mt-2 text-sm text-muted-foreground">No claim is tied to a specific capability yet.</p>
+            )}
+          </>
+        )}
+      </section>
       {monitor ? <ResearchPanelLive initial={monitor} /> : null}
 
       <section className="mt-8">
@@ -97,7 +134,7 @@ export default async function VendorPage({ params }: { params: Promise<{ slug: s
             <li key={product.id} id={productSectionId(product.id)} tabIndex={-1} className="scroll-mt-24 rounded-xl border border-border bg-card p-4 target:ring-2 target:ring-ring">
               <div className="flex flex-wrap items-center gap-2">
                 <h3 className="text-lg font-semibold">{isProductResearchSlug(product.slug) ? <ProfileLink href={`/products/${product.slug}`} className="inline-flex min-h-11 items-center break-words text-primary underline underline-offset-4 hover:underline">{product.name}</ProfileLink> : product.name}</h3>
-                <StatusPill status={product.availability} />
+                {product.availability !== "unknown" && <StatusPill status={product.availability} />}
               </div>
               <p className="mt-2 text-sm leading-6">{product.positioning}</p>
               <p className="mt-2 text-sm text-muted-foreground">
@@ -108,9 +145,11 @@ export default async function VendorPage({ params }: { params: Promise<{ slug: s
               </a>
               <ProfileLink href={productComparisonUrl(product)} className="ml-3 inline-flex min-h-11 items-center text-sm font-medium text-primary underline underline-offset-4">Compare {product.name}</ProfileLink>
               <div className="mt-3">
-                <ProductBuyerContext categories={catalog.categories} primaryIds={product.primaryCategoryIds} adjacentIds={product.adjacentCategoryIds} />
-                <h4 className="mb-3 mt-4 font-semibold">Product evidence and research gaps</h4>
+                <h4 className="mb-3 font-semibold">Product evidence and research gaps</h4>
                 <ClaimList claims={claimsForSubject("product", product.id)} linkable />
+                <div className="mt-4">
+                  <ProductBuyerContext categories={catalog.categories} primaryIds={product.primaryCategoryIds} adjacentIds={product.adjacentCategoryIds} />
+                </div>
               </div>
             </li>
           ))}

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { correctionUrl } from "@/lib/corrections";
 import { RecheckBadge } from "@/components/recheck-badge";
 import { SourceBadge } from "@/components/source-badge";
 import { catalog, sourceById } from "@/lib/catalog";
@@ -36,6 +37,13 @@ export function ClaimList({ claims, labels, linkable = false }: { claims: Claim[
             <p className="mt-2 text-sm leading-6 text-muted-foreground">{noteWithoutCaveat(claim.notes)}</p>
           ) : null}
           <ClaimSource claim={claim} />
+          <a
+            href={correctionUrl({ path: `/sources?claim=${encodeURIComponent(claim.id)}`, title: claim.statement.slice(0, 60), record: `${claim.subjectType}:${claim.subjectId}`, claimId: claim.id })}
+            className="mt-2 inline-flex min-h-11 items-center text-xs text-muted-foreground underline underline-offset-4 hover:text-foreground"
+            data-print="hide"
+          >
+            Suggest a correction
+          </a>
         </li>
       ))}
     </ul>

@@ -37,7 +37,7 @@ From 4 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 
 - Palo Alto Networks: Closed the CyberArk acquisition on 11 Feb 2026 and introduced Idira on 12 May 2026. Brand changes toward Idira began 31 May 2026. Prisma Cloud remains a cloud-security product. Do not merge Idira, secrets, and CNAPP into one capability row. Palo Alto Networks markets Cortex DSPM for cloud and AI data exposure. Vendor-reported DSPM scope reviewed 2026-10-13.
 - Delinea: PAM vendor known for Secret Server and privileged access. Confirm whether the deal is vaulting, session control, or both.
-- HashiCorp: Vault is the reference product for dynamic secrets and PKI in this atlas. IBM completed the acquisition on 27 Feb 2025. Vault competes in a secrets-management evaluation and complements IGA when the question is issuance.
+- HashiCorp: Vault is the reference product for dynamic secrets and PKI in this atlas. IBM completed the acquisition on 27 Feb 2025. On 12 Nov 2026 IBM said it acquired AuthMind to show how Vault-issued credentials are used afterward. Vault competes in a secrets-management evaluation and complements IGA when the question is issuance.
 - Akeyless: Secrets management and machine-credential vendor. Shortlist it against Vault for issuance. Do not assume NHI governance parity.
 - Amazon Web Services: AWS offers services for storing secrets, managing cloud access, checking configurations and prioritizing exposures. Amazon Cognito serves application teams managing customer sign-in.
 - Google: Google Secret Manager is the cloud secret store on GCP. Same boundary as the other cloud secret stores: issuance and storage, not governance of every identity.
