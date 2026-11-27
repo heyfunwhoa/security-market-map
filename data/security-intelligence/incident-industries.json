@@ -434,5 +434,81 @@
     "proposedOn": "2026-11-22",
     "reviewedBy": "Kristen Aing",
     "reviewedOn": "2026-11-22"
+  },
+  {
+    "id": "industry:daemon-tools-trojanized-installers-2026:technology",
+    "incidentId": "incident:daemon-tools-trojanized-installers-2026",
+    "industry": "technology",
+    "rationale": "AVB Disc Soft, the developer whose installers were trojanized, is a software company. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": ["source:securelist-daemon-tools-2026"],
+    "status": "proposed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-26"
+  },
+  {
+    "id": "industry:asyncapi-npm-miasma-2026:technology",
+    "incidentId": "incident:asyncapi-npm-miasma-2026",
+    "industry": "technology",
+    "rationale": "AsyncAPI, whose packages and repositories were compromised, is an open-source software project. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:microsoft-asyncapi-npm-2026",
+      "source:asyncapi-miasma-postmortem-2026"
+    ],
+    "status": "proposed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-26"
+  },
+  {
+    "id": "industry:openai-models-hugging-face-intrusion-2026:technology",
+    "incidentId": "incident:openai-models-hugging-face-intrusion-2026",
+    "industry": "technology",
+    "rationale": "Hugging Face, whose production infrastructure was breached, is an AI platform company. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": [
+      "source:huggingface-security-incident-july-2026",
+      "source:openai-hugging-face-evaluation-incident-2026"
+    ],
+    "status": "proposed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-26"
+  },
+  {
+    "id": "industry:openapi-react-query-codegen-npm-mini-shai-hulud-2026:technology",
+    "incidentId": "incident:openapi-react-query-codegen-npm-mini-shai-hulud-2026",
+    "industry": "technology",
+    "rationale": "The compromised package is an open-source code generator maintained on GitHub. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": ["source:socket-openapi-react-query-codegen-2026"],
+    "status": "proposed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-26"
+  },
+  {
+    "id": "industry:aomei-backupper-update-servers-2026:technology",
+    "incidentId": "incident:aomei-backupper-update-servers-2026",
+    "industry": "technology",
+    "rationale": "AOMEI Technology, whose update servers were tampered with, is a software company. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": ["source:manageengine-aomei-backupper-2026"],
+    "status": "proposed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-26"
+  },
+  {
+    "id": "industry:dosu-invitation-rls-takeover-2026:technology",
+    "incidentId": "incident:dosu-invitation-rls-takeover-2026",
+    "industry": "technology",
+    "rationale": "Dosu, which published the post-mortem, is a software company. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": ["source:dosu-incident-2026-11-02"],
+    "status": "proposed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-26"
+  },
+  {
+    "id": "industry:microsoft-agent-framework-pypi-2026:technology",
+    "incidentId": "incident:microsoft-agent-framework-pypi-2026",
+    "industry": "technology",
+    "rationale": "Microsoft, whose PyPI package was compromised, is a technology company. Industry describes the organization the source names, not the victims of a wider campaign.",
+    "basedOnSourceIds": ["source:stepsecurity-agent-framework-pypi-2026"],
+    "status": "proposed",
+    "proposedBy": "agent-draft",
+    "proposedOn": "2026-11-26"
   }
 ]
