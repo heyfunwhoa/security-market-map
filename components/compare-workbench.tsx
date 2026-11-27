@@ -17,7 +17,7 @@ import type {
   UseCase,
 } from "@/lib/schema";
 import { Button } from "@/components/ui/button";
-import { ComparisonEvidence } from "@/components/comparison-evidence";
+import { ComparisonEvidence, ComparisonLimits } from "@/components/comparison-evidence";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
@@ -182,7 +182,9 @@ export function CompareWorkbench({
   const filtered = candidates
     .filter((product) => needle ? product.name.toLowerCase().includes(needle) : !useCase || product.useCaseIds.includes(useCase.id))
     .sort((a, b) => a.name.localeCompare(b.name));
-  const matches = filtered.slice(0, 8);
+  // Suggest products only once a use case is chosen; a typed name always searches.
+  const showMatches = Boolean(useCase) || needle.length > 0;
+  const matches = showMatches ? filtered.slice(0, 8) : [];
   const matchCount = filtered.length;
   const category = categories.find((item) => item.id === categoryId);
   const availableUses = useCases.filter(
@@ -199,7 +201,7 @@ export function CompareWorkbench({
           Back to {category.name}
         </Link>
       ) : null}
-      <details className="mb-3 rounded-lg border border-border">
+      <details open={editInitiallyOpen} className="mb-3 rounded-lg border border-border">
         <summary className="min-h-11 cursor-pointer px-3 py-2 font-medium">Example comparisons</summary>
         <div className="flex flex-wrap gap-2 px-3 pb-3">
         {PRESETS.map((preset) => (
@@ -284,10 +286,12 @@ export function CompareWorkbench({
           <p role="status" className="mt-2 text-xs text-muted-foreground">
             {isPending
               ? "Updating comparison…"
-              : `${matchCount} matching products · ${selected.length} of 4 selected`}
+              : showMatches
+                ? `${matchCount} matching products · ${selected.length} of 4 selected`
+                : `Choose a use case for suggestions, or type a product name · ${selected.length} of 4 selected`}
           </p>
           <ul id="compare-matches" className="mt-2 space-y-2">
-            {matches.length === 0 ? (
+            {showMatches && matches.length === 0 ? (
               <li className="text-sm text-muted-foreground">
                 No products match this category and name.
                 {needle ? (
@@ -326,7 +330,7 @@ export function CompareWorkbench({
               );
             })}
           </ul>
-          {matchCount > matches.length ? (
+          {showMatches && matchCount > matches.length ? (
             <p className="mt-2 text-xs text-muted-foreground">
               Type more of the name to narrow the list.
             </p>
@@ -364,11 +368,12 @@ export function CompareWorkbench({
           instead.
         </p>
       ) : (
+        <>
         <div
           role="region"
           aria-label="Product capability comparison"
           tabIndex={0}
-          className="relative mt-6 max-w-full overflow-x-auto rounded-xl border border-border focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+          className="relative mt-6 hidden max-w-full overflow-x-auto rounded-xl border border-border focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring md:block"
         >
           <table className="w-full min-w-[44rem] border-collapse text-sm">
             <caption className="p-3 text-left text-sm text-muted-foreground">
@@ -424,6 +429,42 @@ export function CompareWorkbench({
             </tbody>
           </table>
         </div>
+        {/* Phones: one section per capability, one card per product. Same cells as the table. */}
+        <div className="mt-6 space-y-6 md:hidden">
+          <p className="text-sm text-muted-foreground">
+            {useCase.name} · {asOf}. Not a product ranking.
+          </p>
+          {rows.map((row) => (
+            <section key={row.capabilityId} aria-labelledby={`cap-${row.capabilityId}`}>
+              <h3 id={`cap-${row.capabilityId}`} className="text-lg font-medium">
+                {capabilityName(row.capabilityId)}
+              </h3>
+              <ul className="mt-2 space-y-3">
+                {selected.map((id) => {
+                  const cell = row.cells[id];
+                  return (
+                    <li key={id} className="rounded-xl border border-border bg-card p-3">
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <span className="font-semibold">{productName(id)}</span>
+                        <StatusPill status={cellPillStatus(cell)} />
+                      </div>
+                      <ComparisonEvidence
+                        key={`m-${useCase.id}-${id}-${row.capabilityId}`}
+                        cell={cell}
+                        sources={sources}
+                        productName={productName(id)}
+                        capabilityName={capabilityName(row.capabilityId)}
+                        asOf={asOf}
+                      />
+                    </li>
+                  );
+                })}
+              </ul>
+            </section>
+          ))}
+        </div>
+        <ComparisonLimits />
+        </>
       )}
 
       {useCase ? (
