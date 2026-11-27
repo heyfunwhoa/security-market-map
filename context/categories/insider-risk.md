@@ -3,7 +3,7 @@ id: "insider-risk"
 type: "category"
 name: "Insider risk"
 layer: "core"
-vendors: 7
+vendors: 9
 ---
 
 # Insider risk
@@ -38,6 +38,8 @@ Behavior that suggests data theft or misuse by someone who already has access. T
 - Forcepoint
 - Code42
 - Fortra
+- Ent
+- Bold Security
 
 ## What buyers do instead
 

@@ -75,7 +75,7 @@ export const agentSecurityProducts: Product[] = [
     availability: "generally_available",
     availabilityNote: "Runtime Boundaries and Exposure Management were announced 27 Jul 2026; check which modules a given edition includes.",
     officialUrl: "https://zenity.io/platform",
-    useCaseIds: [],
+    useCaseIds: ["uc-agentic-endpoint"],
   },
   {
     id: "pillar-platform",

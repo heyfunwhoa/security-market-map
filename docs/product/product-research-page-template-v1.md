@@ -1,6 +1,6 @@
 # Product Research Page Template v1
 
-Status: reusable product onboarding contract, implemented baseline is Kingfisher + GitGuardian Developer Endpoint Protection + Aikido Device Protection. This document describes the existing routes; it does not claim all future product pages use the template automatically.
+Status: reusable product onboarding contract, implemented baseline is Kingfisher + GitGuardian Developer Endpoint Protection + Aikido Device Protection + Bay platform ([pilot](../verification/bay-product-template-pilot.md), first agentic runtime page) + Island Agentic Endpoint Posture + Koi (Palo Alto Networks) + CrowdStrike Falcon Guardian. This document describes the existing routes; it does not claim all future product pages use the template automatically.
 
 ## Ownership
 - Canonical vendor/product/category records and claims live in the Market Map catalog.
@@ -53,3 +53,26 @@ Use the [Atlas handoff checklist proposed in M2](https://github.com/heyfunwhoa/d
 - Kingfisher's verified source audit concerns five first-party exception identities only. M2 proposes YAML-aware parsing and immutable-blob verification. Betterleaks/Veles import parsing, validator registration and measured scanning remain outside that implementation. Do not turn the five identities into a complete coverage count or vendor comparison claim.
 
 Placement remains category → vendor → product → source evidence → optional Atlas. Reuse existing product IDs and navigation; no catalog, component, public capability or deployment change accompanies this handoff guidance. Keep rule-level records in Atlas.
+
+## Source-based profile layout (2026-11-25)
+
+Kingfisher, GitGuardian Developer Endpoint Protection, Aikido Device Protection, Bay platform, Island Agentic Endpoint Posture, Koi and CrowdStrike Falcon Guardian use this layout. Agentic endpoint profiles link to a comparison that starts with their own product (`agenticEndpointComparisonUrl`); a profile with no recorded analyst coverage says so instead of leaving the line out. CIAM product pages keep the original layout.
+
+Order: header (short product name; compare, About vendor, official docs) → buyer question (from the product's use case record) → **Where it fits** (deployment, analyst view and nearest peers by approach when recorded in [product-fit.ts](../../lib/product-fit.ts); categories always) → **How it works, with proof** → limitations → **Company, customers and news** → pilot questions → **All sources** (collapsed, grouped by vendor, analysts, press and third parties).
+
+How a step works ([product-profile.ts](../../lib/product-profile.ts)):
+
+- Each step lists the recorded claims behind it, pulled by capability ID and, for claims recorded without a capability, by claim ID. No step text is a claim.
+- Under each step: **Proof** (claims with source badge and link), **Not proven** (the step's boundary plus any capability in that step with no current claim), **Test it in a pilot**.
+- A step with no recorded claim says "No recorded source for this step." Capabilities in the product's comparison set that no step covers are listed once under "Not shown by any recorded source".
+- Company, customers and news show only recorded events, vendor claims, customer stories and pricing signals, each with its source. Empty states say what is missing.
+
+Rules:
+
+- Source-based throughout: every statement on the page is a recorded claim, event, story or price with a source link, or an explicit Unknown.
+- The comparison set must match the buyer question. Agent-security products use the agentic endpoint set ([agentic-endpoint-comparison.ts](../../lib/data/agentic-endpoint-comparison.ts), `uc-agentic-endpoint`); developer-workstation products keep `uc-developer-endpoint`.
+- Limited, conflicting and needs-review evidence is shown as evidence with its caveat, not as Unknown. Conflicting sources stay visible (for Bay, Lighthouse's baselining period).
+- Peer groups describe deployment approach only; they are not a ranking or a direct-competitor edge.
+- Keep personal selling angles out of the repo; it is public and neutral.
+
+Adding a product: add its steps to `productProfileSteps`, its learning entry (limitation, pilot questions) in the product page, and, if sourced, a `productFit` entry. Tag new claims with a capability where the source states one.

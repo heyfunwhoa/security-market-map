@@ -80,6 +80,7 @@ import { secretsManagementProducts, secretsManagementResearch, secretsManagement
 import { monitoringModeEvidence, registerProductEvidence, publicMonitoringVendors, publicMonitoringClaims, publicMonitoringProducts, publicMonitoringSources } from "./data/public-monitoring";
 import { workstationEvents, workstationProducts, workstationResearch, workstationVendors } from "./data/workstation-investigation";
 import { developerEndpointCapabilities, developerEndpointUseCases, workstationEvidenceCapabilities } from "./data/developer-endpoint-comparison";
+import { agenticEndpointCapabilities, agenticEndpointUseCases } from "./data/agentic-endpoint-comparison";
 import { ciamEvents, ciamPricing, ciamStories, ciamProfileSources, ciamWorkflowEvidence } from "./data/ciam-profiles";
 import { ciamSsoRelationships, ciamSsoResearch } from "./data/ciam-sso";
 import { events, products, vendors } from "./data/market";
@@ -115,6 +116,7 @@ import { agentSecurityVendors, agentSecurityProducts, agentSecuritySources, agen
 import { appsecGapVendors, appsecGapProducts, appsecGapSources, appsecGapClaims } from "./data/appsec-category-gaps";
 import { gapBatch2Vendors, gapBatch2Products, gapBatch2Sources, gapBatch2Claims } from "./data/category-gaps-batch2";
 import { bayGhosteyeVendors, bayGhosteyeProducts, bayGhosteyeSources, bayGhosteyeClaims, bayGhosteyeEvents } from "./data/bay-ghosteye";
+import { agenticEndpointVendors, agenticEndpointProducts, agenticEndpointSources, agenticEndpointClaims, agenticEndpointSacrClaims, agenticEndpointCapabilityClaims, agenticEndpointEvents, agenticEndpointRelationships } from "./data/agentic-endpoint";
 import { runtimeHumanVendors, runtimeHumanProducts, runtimeHumanSources, runtimeHumanClaims, runtimeHumanEvents } from "./data/agent-runtime-human-layer-profiles";
 import { ispmWimVendors, ispmWimProducts, ispmWimSources, ispmWimClaims } from "./data/ispm-wim";
 import { identityAnalystSources, identityAnalystClaims } from "./data/identity-analyst";
@@ -168,16 +170,16 @@ function parseCatalog(): Catalog {
   const workforce = registerProductEvidence(workforceGuideResearch);
   const management = registerProductEvidence(secretsManagementResearch);
   const workstation = registerProductEvidence(workstationResearch);
-  const parsedClaims = z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims, ...developerEndpointClaims, ...categoryFillClaims, ...gapBatch2Claims, ...bayGhosteyeClaims, ...runtimeHumanClaims, ...mcpSecurityClaims, ...agentSecurityClaims, ...appsecGapClaims, ...ispmWimClaims, ...identityAnalystClaims, ...publicMonitoringClaims, ...monitoringModeEvidence.claims, ...management.claims, ...workstation.claims, ...workforce.claims, ...ciam.claims, ...ciamWorkflowEvidence.claims, ...appsecAnalystClaims, ...secopsDataAnalystClaims, ...cloudCorpAnalystClaims, ...standardsClaims]);
+  const parsedClaims = z.array(claimSchema).parse([...claims, ...secretsSweepClaims, ...expandedClaims, ...developerEndpointClaims, ...categoryFillClaims, ...gapBatch2Claims, ...bayGhosteyeClaims, ...agenticEndpointClaims, ...agenticEndpointSacrClaims, ...agenticEndpointCapabilityClaims, ...runtimeHumanClaims, ...mcpSecurityClaims, ...agentSecurityClaims, ...appsecGapClaims, ...ispmWimClaims, ...identityAnalystClaims, ...publicMonitoringClaims, ...monitoringModeEvidence.claims, ...management.claims, ...workstation.claims, ...workforce.claims, ...ciam.claims, ...ciamWorkflowEvidence.claims, ...appsecAnalystClaims, ...secopsDataAnalystClaims, ...cloudCorpAnalystClaims, ...standardsClaims]);
   return {
     // Generated from the data so the header matches the newest claim card. AS_OF is only a fallback.
     asOf: latestClaimDate(parsedClaims) ?? AS_OF,
     domains: z.array(domainSchema).parse(domains),
     categories: z.array(categorySchema).parse(allCategories),
-    vendors: z.array(vendorSchema).parse([...vendors, ...ecosystemVendors, ...secretsSweepVendors, ...expandedVendors, ...categoryFillVendors, ...gapBatch2Vendors, ...bayGhosteyeVendors, ...runtimeHumanVendors, ...mcpSecurityVendors, ...agentSecurityVendors, ...appsecGapVendors, ...ispmWimVendors, ...publicMonitoringVendors, ...secretsManagementVendors, ...workforceGuideVendors, ...workstationVendors, ...emailSecurityVendors].map(includeSecretsDetection).map(includeExpandedDspm)),
-    products: z.array(productSchema).parse([...products, ...ecosystemProducts, ...secretsSweepProducts, ...expandedProducts, ...developerEndpointProducts, ...categoryFillProducts, ...gapBatch2Products, ...bayGhosteyeProducts, ...runtimeHumanProducts, ...mcpSecurityProducts, ...agentSecurityProducts, ...appsecGapProducts, ...ispmWimProducts, ...publicMonitoringProducts, ...secretsManagementProducts, ...workforceGuideProducts, ...workstationProducts, ...emailSecurityProducts]),
-    capabilities: z.array(capabilitySchema).parse([...capabilities, ...ecosystemCapabilities, ...developerEndpointCapabilities, ...workstationEvidenceCapabilities, ...emailSecurityCapabilities]),
-    useCases: z.array(useCaseSchema).parse([...useCases, ...ecosystemUseCases, ...developerEndpointUseCases, ...emailSecurityUseCases]),
+    vendors: z.array(vendorSchema).parse([...vendors, ...ecosystemVendors, ...secretsSweepVendors, ...expandedVendors, ...categoryFillVendors, ...gapBatch2Vendors, ...bayGhosteyeVendors, ...agenticEndpointVendors, ...runtimeHumanVendors, ...mcpSecurityVendors, ...agentSecurityVendors, ...appsecGapVendors, ...ispmWimVendors, ...publicMonitoringVendors, ...secretsManagementVendors, ...workforceGuideVendors, ...workstationVendors, ...emailSecurityVendors].map(includeSecretsDetection).map(includeExpandedDspm)),
+    products: z.array(productSchema).parse([...products, ...ecosystemProducts, ...secretsSweepProducts, ...expandedProducts, ...developerEndpointProducts, ...categoryFillProducts, ...gapBatch2Products, ...bayGhosteyeProducts, ...agenticEndpointProducts, ...runtimeHumanProducts, ...mcpSecurityProducts, ...agentSecurityProducts, ...appsecGapProducts, ...ispmWimProducts, ...publicMonitoringProducts, ...secretsManagementProducts, ...workforceGuideProducts, ...workstationProducts, ...emailSecurityProducts]),
+    capabilities: z.array(capabilitySchema).parse([...capabilities, ...ecosystemCapabilities, ...developerEndpointCapabilities, ...workstationEvidenceCapabilities, ...agenticEndpointCapabilities, ...emailSecurityCapabilities]),
+    useCases: z.array(useCaseSchema).parse([...useCases, ...ecosystemUseCases, ...developerEndpointUseCases, ...agenticEndpointUseCases, ...emailSecurityUseCases]),
     personas: z.array(personaSchema).parse([...personas, ...ecosystemPersonas]).map(withOrphanCategories),
     personaProfiles: z.array(personaProfileSchema).parse([...personaProfiles, ...stakeholderProfiles]),
     // A typed persona with the same id replaces the stakeholder entry (e.g. legal-counsel from the
@@ -194,12 +196,12 @@ function parseCatalog(): Catalog {
     buyingTriggers: z.array(buyingTriggerSchema).parse(buyingTriggers),
     qualificationQuestions: z.array(qualificationQuestionSchema).parse(qualificationQuestions),
     vendorSeatTargeting: z.array(vendorSeatTargetingSchema).parse(vendorSeatTargeting),
-    sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources, ...developerEndpointSources, ...personaSources, ...categoryFillSources, ...gapBatch2Sources, ...bayGhosteyeSources, ...runtimeHumanSources, ...mcpSecuritySources, ...agentSecuritySources, ...appsecGapSources, ...ispmWimSources, ...identityAnalystSources, ...industryIdentitySources, ...publicMonitoringSources, ...monitoringModeEvidence.sources, ...management.sources, ...workstation.sources, ...workforce.sources, ...ciam.sources, ...ciamWorkflowEvidence.sources, ...ciamProfileSources, ...issuerReferenceSources, ...accessScenarioSources, ...appsecAnalystSources, ...secopsDataAnalystSources, ...cloudCorpAnalystSources, ...standardsSources, ...emailSecuritySources]),
+    sources: z.array(sourceSchema).parse([...sources, ...secretsSweepSources, ...expandedSources, ...developerEndpointSources, ...personaSources, ...categoryFillSources, ...gapBatch2Sources, ...bayGhosteyeSources, ...agenticEndpointSources, ...runtimeHumanSources, ...mcpSecuritySources, ...agentSecuritySources, ...appsecGapSources, ...ispmWimSources, ...identityAnalystSources, ...industryIdentitySources, ...publicMonitoringSources, ...monitoringModeEvidence.sources, ...management.sources, ...workstation.sources, ...workforce.sources, ...ciam.sources, ...ciamWorkflowEvidence.sources, ...ciamProfileSources, ...issuerReferenceSources, ...accessScenarioSources, ...appsecAnalystSources, ...secopsDataAnalystSources, ...cloudCorpAnalystSources, ...standardsSources, ...emailSecuritySources]),
     claims: parsedClaims,
-    relationships: z.array(relationshipSchema).parse([...relationships, ...ecosystemRelationships, ...ciamSsoRelationships]),
+    relationships: z.array(relationshipSchema).parse([...relationships, ...ecosystemRelationships, ...ciamSsoRelationships, ...agenticEndpointRelationships]),
     stories: z.array(customerStorySchema).parse([...customerStories, ...ciamStories]),
     pricing: z.array(pricingSignalSchema).parse([...pricingSignals, ...ciamPricing]),
-    events: z.array(eventSchema).parse([...events, ...bayGhosteyeEvents, ...runtimeHumanEvents, ...ciamEvents, ...workstationEvents]),
+    events: z.array(eventSchema).parse([...events, ...bayGhosteyeEvents, ...agenticEndpointEvents, ...runtimeHumanEvents, ...ciamEvents, ...workstationEvents]),
     glossary: z.array(glossaryTermSchema).parse(glossary),
     scenarios: z.array(scenarioSchema).parse(scenarios),
     distinctions: z.array(distinctionSchema).parse(distinctions),

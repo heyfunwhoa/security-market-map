@@ -67,7 +67,7 @@ export function LandscapeBrowser({
     framework: frameworkTopics.map((item) => item.id),
     deployment: ["saas", "self_hosted", "hybrid", "cloud_native", "open_source", "unknown"],
     scope: ["human", "nhi", "agent", "not_an_identity_control"],
-    relation: ["direct_competitor", "bundled_alternative", "complement", "adjacent_budget"],
+    relation: ["direct_competitor", "bundled_alternative", "complement", "partial_overlap", "adjacent_budget"],
     focusedProduct: productIds,
   });
   const selectedView = personaFrameworks.find(({ topics }) => topics.some(({ id }) => id === filters.framework));
@@ -194,6 +194,7 @@ export function LandscapeBrowser({
               "direct_competitor",
               "bundled_alternative",
               "complement",
+              "partial_overlap",
               "adjacent_budget",
             ].map((id) => ({ id, label: relationshipLabel(id) }))}
           />

@@ -6,14 +6,16 @@ import { PageIntro, StatusPill } from "@/components/chrome";
 import { ProductEvidenceExplorer } from "@/components/product-evidence-explorer";
 import { CiamMarketContext } from "@/components/ciam-market-context";
 import { ciamProfiles, isCiamProduct, type CiamProductSlug } from "@/lib/data/ciam-profiles";
-import { ProductFocus } from "@/components/product-focus";
 import { ProductSectionNav } from "@/components/product-section-nav";
 import { catalog, claimsForSubject, vendorById } from "@/lib/catalog";
 import { claimNeedsRecheck } from "@/lib/coverage";
 import { availabilityLabel } from "@/lib/format";
-import { DEVELOPER_ENDPOINT_COMPARISON_URL } from "@/lib/comparison-selection";
+import { agenticEndpointComparisonUrl, DEVELOPER_ENDPOINT_COMPARISON_URL } from "@/lib/comparison-selection";
+import { productFit } from "@/lib/product-fit";
+import { AnchorHeading } from "@/components/anchor-heading";
+import { ProductProfile } from "@/components/product-profile";
+import { hasProfileSteps } from "@/lib/product-profile";
 import {
-  PRODUCT_ANCHOR_CLASS,
   isProductResearchSlug,
   productResearchCategory,
   productResearchSections,
@@ -47,6 +49,55 @@ const learning: Record<Exclude<ProductResearchSlug, CiamProductSlug>, { action: 
     limitation: "Detection does not prove a credential is live. Live validation, blast-radius mapping and revocation depend on provider support, authorization and explicit operator decisions. Detector coverage is not evaluated.",
     questions: ["Which source and rule produced this candidate?", "Is validation supported for this credential and is live testing authorized?", "Are blast-radius queries read-only and scoped?", "Who can approve revocation and verify operational impact?", "Does the pinned release and ruleset match the evaluation evidence?"],
   },
+  "bay-platform": {
+    action: "An AI agent on a laptop, browser or cloud workspace proposes an action, such as a shell command, file write, tool call or MCP request",
+    control: "A short-lived collector pushed through existing MDM or EDR inventories agents and their tools; Bay Enforcer receives each proposed action through the AI tool's native hook and returns Allow, Ask or Deny on the device, weighing the whole session",
+    evidence: "Agent, MCP server, extension and skill inventory; the proposed action, session context, matched team policy and verdict",
+    limitation: "Enforcement needs the on-device enforcement component; a collector-only deployment runs in detection mode (per SACR). Coverage depends on which AI tools expose hooks and which events they expose. No public supported-agent list; latency and false-positive figures are vendor claims.",
+    questions: ["Which agents, versions and hook events are covered today, and what happens for tools without hooks?", "Does the pilot run collector-only (detect) or with Bay Enforcer (prevent)?", "How do Lighthouse's 30-day policies treat a new team or a new agent?", "What does Ask look like to the developer, and how are exceptions approved?", "What session data leaves the device, and where is it stored?"],
+  },
+  "island-agentic-endpoint-posture": {
+    action: "An MCP server, skill, hook, AI client, package or extension is installed or changed on a device",
+    control: "Island Desktop, or an agentless deployment through existing MDM or EDR, inventories AI assets; Island scores each one in its cloud and policy blocks, allow-lists, removes or locks components that cross a risk threshold",
+    evidence: "AI asset inventory, per-asset risk score with impact, likelihood and findings, and the matched policy action",
+    limitation: "This product governs AI assets and their settings. Island places control of individual agent actions in its separate AI Runtime Protection product. Island does not say which enforcement actions work in agentless mode or which operating systems are supported. Scores are Island's own analysis and are not independently tested.",
+    questions: ["Which enforcement actions work in agentless mode?", "Does stopping a single agent action need AI Runtime Protection, and is that priced separately?", "Which operating systems are supported today?", "What device data goes to Island's cloud for scoring?", "Can it be bought without Island Enterprise Browser or Island Desktop?"],
+  },
+  "palo-alto-koi": {
+    action: "A developer or agent installs a package, extension, plugin or MCP server, or an agent proposes a shell, file, MCP, skill or network action",
+    control: "An endpoint component and registry proxy inventory and govern non-binary software; runtime policies block or ask before named agent actions for Cursor, Claude Code and Antigravity",
+    evidence: "Software and agent inventory, developer-agent session timeline, blocked or approved actions, and remediation records",
+    limitation: "Runtime blocking is described for Cursor, Claude Code and Antigravity only, and Palo Alto does not say how those actions are intercepted. Deployment descriptions differ: Palo Alto describes an endpoint deployment portal, Koi's page an MDM-pushed script, and SACR a network supply-chain gateway. Customer figures come from a vendor-published story.",
+    questions: ["Which components does the pilot need: endpoint package, registry proxy, SASE routing, or all three?", "Which agents get pre-execution runtime policies today, and what happens for other AI tools?", "Is Koi bought standalone, through Cortex XDR or through Prisma AIRS, and does packaging change what is included?", "What session data leaves the device, and how long is it kept?", "What does Ask look like to a developer, and who approves it?"],
+  },
+  "crowdstrike-falcon-guardian": {
+    action: "An AI agent runs, or tries to run, on a managed Windows or macOS endpoint",
+    control: "The existing Falcon sensor inventories known and shadow agents and links prompts, identity, tool calls and skills to endpoint activity; Agent Access Controls block unapproved agents, and hooks for five named agents block harmful actions before they run",
+    evidence: "Agent inventory with deployer and status, the agent execution chain, detections, and agent data in Falcon Next-Gen SIEM",
+    limitation: "Per-action blocking is a vendor claim, made only for hooks in Claude Code, OpenAI Codex, GitHub Copilot, OpenCode and Cursor; other agents can only be allowed or blocked as a whole. Linux, cloud workload and Kubernetes coverage is announced, not shipped. No formal GA date for the core product was found.",
+    questions: ["Which Falcon Guardian components are licensed separately from the sensor?", "Which actions do the hooks cover in each of the five agents, and what happens for agents without hooks?", "Does the AI kill switch target one agent type or all model access?", "What covers Linux hosts and developer containers?", "Which agent fields reach Next-Gen SIEM, and how long are they kept?"],
+  },
+  "backslash-agentic-endpoint": {
+    action: "An AI coding agent proposes code execution, credential access or sending data somewhere unapproved",
+    control: "An MDM-pushed script inventories agents and their tools; an on-host component blocks risky actions inline before they run",
+    evidence: "Point-in-time inventory and graph of agents, MCP servers, skills and connectors; blocked actions under per-team policy",
+    limitation: "The agentless script cannot block anything; prevention needs the on-host component. Scan cadence, OS support and action logging are not stated. All recorded sources are Backslash's own.",
+    questions: ["How often does the MDM script run, and what triggers a new scan?", "What is the on-host component, how heavy is it, and which OS versions does it support?", "What happens for agents outside the six named?", "What is logged when an action is blocked, and where is it exported?"],
+  },
+  "knostic-kirin": {
+    action: "A coding agent makes a tool call, or a developer installs a skill, extension or MCP server",
+    control: "Kirin runs inside supported agents and checks each tool call against policy before it runs; AgentMesh verdicts let Kirin block dangerous installs",
+    evidence: "Prevented alerts, drift and vulnerability findings in the dashboard and SIEM; AgentMesh verdicts",
+    limitation: "Knostic does not say how Kirin is installed or which operating systems it supports; deployment comes from a third-party profile. Discovery outside agents where Kirin runs is not described.",
+    questions: ["How is Kirin installed and updated across a fleet?", "What prevents a developer from turning Kirin off?", "Does the inventory find agents Kirin is not running in?", "Which fields reach the SIEM, and how long are they kept?"],
+  },
+  "zenity-platform": {
+    action: "A coding or personal agent on a laptop makes a tool call, MCP request or command",
+    control: "Native agent hooks and the Zenity MCP gateway block or modify dangerous tool calls before they run, using prompts, tool calls, commands and memory to infer intent",
+    evidence: "Agent and MCP inventory, intent analysis, blocked or modified tool calls, audit trails",
+    limitation: "Zenity covers listed agents through their hooks and its MCP gateway; coverage for tools that do neither is not stated. OS support and the audit trail format are not described. Endpoint is one surface of a wider SaaS and cloud agent platform.",
+    questions: ["How does endpoint discovery reach a laptop without an endpoint sensor?", "Which actions can each hook block, and what passes through the MCP gateway?", "What happens for agents with no hooks?", "Is the endpoint capability sold separately from the SaaS agent platform?"],
+  },
   "aikido-device-protection": {
     action: "Developer or agent requests a package from a supported registry",
     control: "Local selective interception evaluates package-domain traffic against synchronized policy and intelligence",
@@ -56,13 +107,6 @@ const learning: Record<Exclude<ProductResearchSlug, CiamProductSlug>, { action: 
   },
 };
 
-function AnchorHeading({ id, className, children }: { id: string; className: string; children: string }) {
-  return (
-    <h2 id={id} tabIndex={-1} className={`${PRODUCT_ANCHOR_CLASS} ${className}`}>
-      {children}
-    </h2>
-  );
-}
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -78,6 +122,9 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     .map((item) => ({ slug: item.slug, label: item.name }));
   const category = productResearchCategory(slug);
   const unknownBoundaries = unknownControlBoundaries(product.id, catalog.asOf);
+  const fit = productFit[slug];
+  const profile = !ciam && hasProfileSteps(slug);
+  const buyerQuestion = profile ? catalog.useCases.find((useCase) => useCase.id === product.useCaseIds[0])?.buyerQuestion : undefined;
 
   return (
     <main className="mx-auto min-w-0 max-w-6xl px-4 py-10">
@@ -85,13 +132,36 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       <PageIntro kicker="Product research" title={product.name} lede={product.positioning} />
       <div className="mt-4 flex flex-wrap items-center gap-3 text-sm">
         <StatusPill status={product.availability} />
-        <ProfileLink href={productComparisonUrl(product)} className="inline-flex min-h-11 items-center font-medium text-primary underline underline-offset-4">Compare {product.name}</ProfileLink>
+        <ProfileLink href={fit ? agenticEndpointComparisonUrl(product.id) : productComparisonUrl(product)} className="inline-flex min-h-11 items-center font-medium text-primary underline underline-offset-4">{fit ? "Compare with peers" : `Compare ${product.name}`}</ProfileLink>
         {vendor ? <ProfileLink className="inline-flex min-h-11 items-center text-primary underline underline-offset-4" href={`/vendors/${vendor.slug}`}>About {vendor.name}</ProfileLink> : null}
         <a className="inline-flex min-h-11 max-w-full items-center text-primary underline underline-offset-4 [overflow-wrap:anywhere]" href={product.officialUrl}>Official product documentation</a>
       </div>
       <p className="mt-2 text-sm leading-6 text-muted-foreground">{availabilityLabel(product.availability)}. {product.availabilityNote}</p>
+      {buyerQuestion ? (
+        <p className="mt-4 rounded-lg border-l-4 border-primary bg-card p-4 text-base leading-7"><span className="block text-xs font-semibold uppercase tracking-wide text-muted-foreground">Buyer question</span>{buyerQuestion}</p>
+      ) : null}
 
       <ProductSectionNav sections={productResearchSections(slug)} />
+      {profile && details ? (
+        <ProductProfile
+          product={product}
+          vendor={vendor}
+          primaryCategories={categoryLinks(product.primaryCategoryIds)}
+          adjacentCategories={categoryLinks(product.adjacentCategoryIds.filter((id) => !product.primaryCategoryIds.includes(id)))}
+          limitation={details.limitation}
+          questions={details.questions}
+          extraAfterSteps={slug === "kingfisher" ? (
+            <section aria-labelledby="kingfisher-upstream" className="mt-9">
+              <AnchorHeading id="kingfisher-upstream" className="text-2xl font-semibold">Upstream project</AnchorHeading>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">Five distinct stages, not one universal control. Provider-specific support and the active release must be checked in upstream documentation.</p>
+              <p className="mt-4 text-sm leading-6"><strong>Open source:</strong> Rust-based, Apache-2.0 according to the upstream project. Its stated benchmarks and feature coverage are publisher reports, not independently tested results.</p>
+              <a href="https://github.com/mongodb/kingfisher" className="mt-3 inline-flex min-h-11 items-center text-sm text-primary underline underline-offset-4">Read Kingfisher source and documentation</a>
+              <p className="mt-4 text-sm leading-6"><strong>Detector coverage:</strong> not evaluated. Technical rule and analyzer coverage stays in Detector Coverage Atlas until its separate pinned-source parser is implemented. This page does not treat an imported scanner report as native Kingfisher detector coverage.</p>
+            </section>
+          ) : null}
+        />
+      ) : (
+        <>
       <section aria-labelledby="how-it-works" className="mt-9">
         <AnchorHeading id="how-it-works" className="text-2xl font-semibold">How it works</AnchorHeading>
         <p className="mt-2 text-sm text-muted-foreground">{ciam ? "Follow one customer through sign-in and use the pilot to check what the application enforces." : "Illustrative control sequence. Vendor documentation is not an independently verified blocking test."}</p>
@@ -105,41 +175,16 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         </ol>
       </section>
 
-      {slug === "aikido-device-protection" ? <ProductFocus stages={[
-        { title: "Request", summary: "A developer or coding agent requests a package from a supported registry.", check: "Confirm the actual package manager, network route, mirror, operating system and device enrollment.", boundary: "An unsupported registry, offline cache, container or WSL path must not be assumed covered." },
-        { title: "Inspect", summary: "A local device component evaluates traffic on supported domains.", check: "Review selective interception, TLS trust configuration, privacy, and proxy compatibility.", boundary: "Network inspection does not mean universal device or malware visibility." },
-        { title: "Decide", summary: "The agent applies available package policy and threat-intelligence decisions.", check: "Use a benign synthetic policy block to test decision timing and exception behavior.", boundary: "A detection or post-install alert is not necessarily a pre-install block." },
-        { title: "Report", summary: "Device events and package inventory provide investigation context.", check: "Confirm event timestamp, allowed/blocked decision, metadata minimization, and response owner.", boundary: "Package or AI-provider usage inventory does not establish AI prompt or MCP tool-call prevention." },
-      ]} /> : null}
-      {slug === "kingfisher" ? <ProductFocus stages={[
-        { title: "Detect", summary: "Match candidate secrets in authorized targets.", check: "Inspect source, pinned rule ID, location and redacted finding.", boundary: "A match is a candidate, not proof that the credential is active." },
-        { title: "Validate", summary: "Optionally ask a supported issuer whether a credential works.", check: "Confirm provider support, test authorization, outcomes and network side effects.", boundary: "Timeouts and unsupported credential types are inconclusive, not invalid." },
-        { title: "Map", summary: "Investigate available identity and permission context.", check: "Confirm mapped provider, read-only scope and least-privilege permissions.", boundary: "Provider-specific mapping is not universal blast-radius coverage." },
-        { title: "Triage", summary: "Prioritize evidence and assign an owner.", check: "Confirm output format, fingerprint, redaction and reviewer handoff.", boundary: "Importing other scanner results is not native detector support." },
-        { title: "Revoke", summary: "Contain an exposed credential with explicit approval.", check: "Confirm supported provider, authority, impact assessment and rollback.", boundary: "No live revocation in this research workflow; it can disrupt applications." },
-      ]} /> : null}
-      {slug === "kingfisher" ? (
-        <section aria-labelledby="kingfisher-upstream" className="mt-9">
-          <AnchorHeading id="kingfisher-upstream" className="text-2xl font-semibold">Upstream project</AnchorHeading>
-          <p className="mt-2 text-sm leading-6 text-muted-foreground">Five distinct stages, not one universal control. Provider-specific support and the active release must be checked in upstream documentation.</p>
-          <p className="mt-4 text-sm leading-6"><strong>Open source:</strong> Rust-based, Apache-2.0 according to the upstream project. Its stated benchmarks and feature coverage are publisher reports, not independently tested results.</p>
-          <a href="https://github.com/mongodb/kingfisher" className="mt-3 inline-flex min-h-11 items-center text-sm text-primary underline underline-offset-4">Read Kingfisher source and documentation</a>
-        </section>
-      ) : null}
       {ciam ? <CiamMarketContext slug={slug} /> : null}
       <section aria-labelledby="limitations" className="mt-8 rounded-xl border border-border p-4">
         <AnchorHeading id="limitations" className="text-xl font-semibold">What this does not establish</AnchorHeading>
         <p className="mt-2 text-sm leading-6">{details.limitation}</p>
       </section>
 
+
       <section aria-labelledby="evidence" className="mt-9 min-w-0">
         <AnchorHeading id="evidence" className="text-2xl font-semibold">Source-backed product evidence</AnchorHeading>
         <p className="mt-2 mb-4 text-sm text-muted-foreground">Every statement links to its publisher source and review date. Missing evidence remains Unknown, not unsupported.</p>
-        {slug === "kingfisher" ? (
-          <p className="mb-4 text-sm leading-6">
-            <strong>Detector coverage:</strong> not evaluated. Technical rule and analyzer coverage stays in Detector Coverage Atlas until its separate pinned-source parser is implemented. This page does not treat an imported scanner report as native Kingfisher detector coverage.
-          </p>
-        ) : null}
         {unknownBoundaries.length > 0 ? (
           <div className="mb-4 rounded-lg border border-dashed border-border p-4">
             <h3 className="font-semibold">Unknown control boundaries</h3>
@@ -167,6 +212,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <ProductCategoryLinks primary={categoryLinks(product.primaryCategoryIds)} adjacent={categoryLinks(product.adjacentCategoryIds.filter((id) => !product.primaryCategoryIds.includes(id)))} />
         </dl>
       </section>
+        </>
+      )}
 
       {slug === "kingfisher" ? (
         <aside className="mt-10 border-t border-border pt-6">
@@ -178,7 +225,11 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <aside className="mt-10 border-t border-border pt-6">
           <h2 className="text-xl font-semibold">Compare only when needed</h2>
           <p className="mt-2 text-sm leading-6 text-muted-foreground">Start with the product&apos;s own control points and limitations. The comparison matrix combines documented evidence with explicit Unknown states, not a winner or score.</p>
-          <ProfileLink href={DEVELOPER_ENDPOINT_COMPARISON_URL} className="mt-3 inline-flex min-h-11 items-center text-sm font-medium text-primary underline underline-offset-4">Compare GitGuardian and Aikido</ProfileLink>
+          {fit ? (
+            <ProfileLink href={agenticEndpointComparisonUrl(product.id)} className="mt-3 inline-flex min-h-11 items-center text-sm font-medium text-primary underline underline-offset-4">Compare with agentic endpoint peers</ProfileLink>
+          ) : (
+            <ProfileLink href={DEVELOPER_ENDPOINT_COMPARISON_URL} className="mt-3 inline-flex min-h-11 items-center text-sm font-medium text-primary underline underline-offset-4">Compare GitGuardian and Aikido</ProfileLink>
+          )}
         </aside>
       )}
     </main>
