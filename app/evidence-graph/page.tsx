@@ -17,8 +17,13 @@ export default function EvidenceGraphPage() {
         id="evidence-graph-introduction"
         kicker="Evidence graph · v1"
         title="Identity, secrets, and non-human identity"
-        lede="A read-only projection of the validated catalog. Lines are taxonomy mappings, catalog comparisons, or sourced statements. A category listing is not a product capability. A comparison without a source stays Unknown. A research candidate is not promoted to a verified relationship."
+        lede="A read-only view of the validated catalog. Each line is a taxonomy mapping, a catalog comparison, or a sourced statement."
       />
+      <details className="mt-4 rounded-xl border border-border bg-card px-4">
+        <summary className="min-h-11 cursor-pointer py-3 font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring">How to read this graph</summary>
+        <p className="max-w-3xl text-sm leading-6 text-muted-foreground">
+          A category listing is not a product capability. A comparison without a source stays Unknown. A research candidate is not promoted to a verified relationship.
+        </p>
       <PageJourney
         steps={[
           { href: "#graph-nodes", title: "Find a record", description: "Search the node list or filter by category." },
@@ -27,9 +32,10 @@ export default function EvidenceGraphPage() {
         ]}
         back={{ href: "/connections", label: "Broaden to how these tools connect" }}
       />
-      <p className="mt-4 max-w-3xl text-sm leading-6 text-muted-foreground">
+      <p className="my-4 max-w-3xl text-sm leading-6 text-muted-foreground">
         The diagram opens on the first category in this slice. Choose another category, or All in this slice, to widen it. Zoom out through Connections or the identity domain. Zoom in from a category, use case, or vendor detail link. Products that only have a category tag stay in the landscape and are counted here as omissions.
       </p>
+      </details>
       <EvidenceGraphExplorer
         graph={identitySecretsNhiGraph}
         initialCategoryId={IDENTITY_SECRETS_NHI_SLICE.categoryIds[0]}

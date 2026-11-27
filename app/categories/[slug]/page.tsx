@@ -57,6 +57,11 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
   const categoryAlternatives = catalog.alternatives.filter((alt) => alt.categoryId === category.id);
   const categoryTriggers = catalog.buyingTriggers.filter((trigger) => trigger.categoryIds.includes(category.id));
   const categoryObjections = catalog.objections.filter((objection) => objection.categoryIds.includes(category.id));
+  // Shows on each product tile whether the map holds any current claim for it.
+  const productEvidenceNote = (productId: string) => {
+    const current = claimsForSubject("product", productId).filter((claim) => claim.verificationStatus !== "superseded");
+    return current.length === 0 ? "No sourced claim yet" : `${current.length} ${current.length === 1 ? "claim" : "claims"}`;
+  };
   const sourcingLabel = categoryClaims.length > 0
     ? "The description, buyer question, owner, budget, triggers, outcomes, workflow, and illustrative flow are the map's wording. The sourced sentences are the claims below."
     : "The description, buyer question, owner, budget, triggers, outcomes, workflow, and illustrative flow are the map's wording. No source is attached to them yet.";
@@ -93,9 +98,10 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
               <li key={product.id}>
                 <Link
                   href={productDestination(product, vendorById(product.vendorId)!.slug)}
-                  className="block min-h-11 break-words rounded-lg border border-border px-3 py-2 text-sm hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                  className="flex min-h-11 flex-wrap items-baseline justify-between gap-x-3 break-words rounded-lg border border-border px-3 py-2 text-sm hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
                 >
-                  {product.name}
+                  <span>{product.name}</span>
+                  <span className="text-xs text-muted-foreground">{productEvidenceNote(product.id)}</span>
                 </Link>
               </li>
             ))}
