@@ -1217,7 +1217,7 @@
   {
     "incidentId": "incident:npm-bindinggyp-miasma-wave-2026",
     "status": "draft",
-    "headline": "A self-spreading npm worm put its payload in binding.gyp, a build file npm runs automatically, so it didn't need an install script. It stole CI and cloud credentials and wiped the home directory if its stolen GitHub token was revoked.",
+    "headline": "A self-spreading npm worm put its payload in binding.gyp, a build file npm runs automatically, so it didn't need an install script. It collected CI and cloud credentials and wiped the home directory if its stolen GitHub token was revoked.",
     "discoveryQuestion": "If a package stole your CI runner's credentials, could you rotate them without triggering a destructive fallback on the machine?",
     "avoid": "Don't give one package count as fact; researchers' counts differ. Don't say install-script blocking failed in general; this used a different trigger.",
     "sellerCaveat": "ReversingLabs says the payload only exfiltrated when it detected a CI runner, and advises isolating machines before revoking credentials.",
@@ -1243,7 +1243,7 @@
     "status": "draft",
     "headline": "An attacker used a pull_request_target workflow to get AsyncAPI's bot token, then pushed malicious releases that npm published with valid provenance and that ran when the package was imported.",
     "discoveryQuestion": "Which of your workflows run code from forks with access to a bot or release token?",
-    "avoid": "Don't say provenance was forged; the attestations were valid. Don't say credentials were stolen from users; Microsoft found those modules disabled.",
+    "avoid": "Don't say provenance was forged; the attestations were valid. Don't say users' credentials were confirmed stolen; Microsoft found the harvesting modules disabled in the build it analyzed.",
     "sellerCaveat": "Microsoft says its evidence doesn't establish how the bot credential was obtained; AsyncAPI's post-mortem says it was taken through that workflow.",
     "roleNotes": [
       {
@@ -1353,7 +1353,7 @@
     "incidentId": "incident:aomei-backupper-update-servers-2026",
     "status": "draft",
     "headline": "Attackers changed AOMEI Backupper's update files for a few minutes at a time, so the software fetched and ran a backdoor, and each change reverted within minutes.",
-    "discoveryQuestion": "How would you notice a vendor's update channel serving a bad file for only five minutes?",
+    "discoveryQuestion": "How would you notice a vendor's update channel serving a bad file for only a few minutes?",
     "avoid": "Don't say AOMEI confirmed containment; ManageEngine hadn't verified it. Don't present it as a credential theft incident.",
     "sellerCaveat": "The attacker changed both the download URL and the expected checksum, so the hash check passed. Google tracks the group as UNC7017.",
     "roleNotes": [
