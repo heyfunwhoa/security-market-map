@@ -728,5 +728,135 @@
     "lastReviewedOn": "2026-11-22",
     "cadence": "event_driven",
     "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:wiz-gheist-github-tokens-2026",
+    "publisher": "Wiz Research",
+    "type": "security_research",
+    "url": "https://www.wiz.io/blog/gheist-attempted-scaled-abuse-of-stolen-github-tokens-stumbles",
+    "publishedOn": "2026-10-25",
+    "lastReviewedOn": "2026-11-26",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:stepsecurity-agent-framework-pypi-2026",
+    "publisher": "StepSecurity",
+    "type": "security_research",
+    "url": "https://www.stepsecurity.io/blog/microsoft-agent-framework-pypi-package-compromised",
+    "publishedOn": "2026-11-18",
+    "lastReviewedOn": "2026-11-26",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:dosu-incident-2026-11-02",
+    "publisher": "Dosu",
+    "type": "company_incident_report",
+    "url": "https://dosu.dev/security/incident-2026-11-02",
+    "publishedOn": "2026-11-08",
+    "lastReviewedOn": "2026-11-26",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:manageengine-aomei-backupper-2026",
+    "publisher": "ManageEngine Threat Analysis Lab",
+    "type": "security_research",
+    "url": "https://www.manageengine.com/threat-analysis-lab/aomei-backupper-supply-chain-compromise.html",
+    "publishedOn": "2026-10-16",
+    "lastReviewedOn": "2026-11-26",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:securelist-daemon-tools-2026",
+    "publisher": "Kaspersky Securelist",
+    "type": "security_research",
+    "url": "https://securelist.com/daemon-tools-backdoor/119654/",
+    "publishedOn": "2026-05-05",
+    "lastReviewedOn": "2026-11-26",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:sonatype-miasma-bindinggyp-2026",
+    "publisher": "Sonatype",
+    "type": "security_research",
+    "url": "https://www.sonatype.com/blog/new-shai-hulud-miasma-wave-hits-hundreds-of-npm-packages",
+    "publishedOn": "2026-06-04",
+    "lastReviewedOn": "2026-11-26",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:reversinglabs-bindinggyp-cicd-2026",
+    "publisher": "ReversingLabs",
+    "type": "security_research",
+    "url": "https://www.reversinglabs.com/blog/npm-bindinggyp-cicd-secrets",
+    "publishedOn": null,
+    "lastReviewedOn": "2026-11-26",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:microsoft-asyncapi-npm-2026",
+    "publisher": "Microsoft Threat Intelligence",
+    "type": "security_research",
+    "url": "https://www.microsoft.com/en-us/security/blog/2026/07/15/unpacking-asyncapi-npm-supply-chain-compromise-import-time-payload-delivery",
+    "publishedOn": "2026-07-15",
+    "lastReviewedOn": "2026-11-26",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:asyncapi-miasma-postmortem-2026",
+    "publisher": "AsyncAPI",
+    "type": "company_incident_report",
+    "url": "https://www.asyncapi.com/blog/miasma-supply-chain-attck",
+    "publishedOn": "2026-07-21",
+    "lastReviewedOn": "2026-11-26",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:checkmarx-indexed-btree-2026",
+    "publisher": "Checkmarx Zero",
+    "type": "security_research",
+    "url": "https://checkmarx.com/zero-post/npm-btree-malware-campaign-affects-millions-of-downloads-no-need-for-install-script/",
+    "publishedOn": "2026-09-17",
+    "lastReviewedOn": "2026-11-26",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:socket-openapi-react-query-codegen-2026",
+    "publisher": "Socket",
+    "type": "security_research",
+    "url": "https://socket.dev/blog/openapi-react-query-codegen-npm-compromise",
+    "publishedOn": "2026-08-28",
+    "lastReviewedOn": "2026-11-26",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:huggingface-security-incident-july-2026",
+    "publisher": "Hugging Face",
+    "type": "company_incident_report",
+    "url": "https://huggingface.co/blog/security-incident-july-2026",
+    "publishedOn": "2026-07-16",
+    "lastReviewedOn": "2026-11-26",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+  },
+  {
+    "id": "source:openai-hugging-face-evaluation-incident-2026",
+    "publisher": "OpenAI",
+    "type": "company_incident_report",
+    "url": "https://openai.com/index/hugging-face-model-evaluation-security-incident",
+    "publishedOn": "2026-07-21",
+    "lastReviewedOn": "2026-11-26",
+    "cadence": "event_driven",
+    "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
   }
 ]

@@ -44,6 +44,31 @@ Use explicit relationship values for each buyer decision:
 
 No sourced evidence means **candidate** or **unknown**, never an asserted direct competitor.
 
+### Place one product in several categories
+
+Keep one vendor record and reuse the same product ID everywhere that offering appears. Give the vendor a plain-language summary of its portfolio. Classify each product against a buyer question and a documented action. A suite can span several markets through different products, editions or modules.
+
+| What the buyer needs to know | How to record it |
+| --- | --- |
+| Where would a buyer start looking for this product? | Use a primary category when its core buying decision matches what the product delivers. State that decision in the buyer's words. |
+| Why would someone in another category want to find it? | Use an adjacent category when the product performs a documented part of that category's workflow. Name the action, its output and where its coverage ends. |
+| Which part depends on another tool? | Describe the handoff and which system performs the next action. An integration belongs on the workflow. A partner's capabilities need their own product evidence. |
+| What else might this buyer evaluate? | Scope each comparison to one use case and its success criterion. Identify the alternative, the overlapping step, and what evidence would establish substitutability. |
+
+A placement can read like this. **When [trigger], [buyer] uses [product] to [action] on [input], producing [output]. This requires [condition]. To establish [unproven outcome], check [evidence].** Attach a dated original source to the capability claim. Record the vendor's description separately from the editor's category judgment. Reuse the catalog's product, category, use-case, claim and relationship records. [Catalog schema](../../lib/schema.ts)
+
+**Worked examples, sources checked November 26, 2026.** These placements illustrate editorial judgment. The links document the product actions.
+
+A market report can suggest a buyer question before any product enters the map. For example, Unit 42 reports that 87% of the intrusions it investigated involved several attack surfaces. That supports asking how responders connect evidence across systems. Use product documentation or a scoped test to establish which part each offering covers. [2026 Unit 42 Incident Response Report, executive summary](https://www.paloaltonetworks.com/resources/research/unit-42-incident-response-report)
+
+| Buyer question | Product placement and boundary |
+| --- | --- |
+| Did we collect files linked to this newly reported campaign? | Stairwell fits file and malware analysis. It also belongs in a threat-intelligence search for *matching report indicators against collected files*. Collection policy and intake filters matter when interpreting a search with zero results. [Threat reports](https://docs.stairwell.com/docs/what-is-a-threat-report) · [Intake filters](https://docs.stairwell.com/docs/intake-filters) |
+| What happened on the affected endpoints, and in what order? | Binalyze AIR can assemble a forensic timeline from timestamped evidence in an investigation. Stairwell and AIR may both enter an incident-scoping evaluation. Ask whether the required output is a historical file sighting, a sequence of endpoint events, or both before proposing a shortlist. [AIR Timeline](https://kb.binalyze.com/air/features/timeline) · [Stairwell sightings](https://docs.stairwell.com/docs/sightings) |
+| When a customer removes an employee, when does that person lose access to our app? | WorkOS Directory Sync delivers the directory change. WorkOS also documents session revocation. For the customer's implementation, follow the event into the app and test an already signed-in session. This connects provisioning and session management while identifying who owns each step. [Directory Sync](https://workos.com/docs/directory-sync) · [Sessions API](https://workos.com/changelog/sessions-api) |
+
+Apply this on intake and when an existing profile changes. For backfill, start with a category where a broad label gives buyers the wrong shortlist. Follow the category and the use-case routes to the same product, then return to the use case to find another candidate. The reader should be able to explain why each product appears, identify a meaningful limit and open the source. [Market exploration guidance](../product/progressive-exploration.md) · [Existing profile pilots](profile-pilot-evidence-2026-11-24.md)
+
 ## 3. Evidence collection workflow
 
 1. Register canonical **original** URLs: product docs, current pricing, case studies, release notes, APIs and partner pages, with publisher and as-of dates.
