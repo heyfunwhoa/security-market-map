@@ -3,11 +3,12 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
-import { searchHits, type SearchHit } from "@/lib/search";
+import { groupSearchHits, searchHits, type AliasGroups, type SearchHit } from "@/lib/search";
 import { Button } from "@/components/ui/button";
 import {
   CommandDialog,
   CommandEmpty,
+  CommandGroup,
   CommandInput,
   CommandItem,
   CommandList,
@@ -19,13 +20,13 @@ export function openSearch() {
   window.dispatchEvent(new Event(OPEN_SEARCH_EVENT));
 }
 
-export function SearchCommand({ hits }: { hits: SearchHit[] }) {
+export function SearchCommand({ hits, aliases = [] }: { hits: SearchHit[]; aliases?: AliasGroups }) {
   const router = useRouter();
   const triggerRef = useRef<HTMLButtonElement>(null);
   const navigating = useRef(false);
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const results = useMemo(() => searchHits(query, hits), [query, hits]);
+  const groups = useMemo(() => groupSearchHits(searchHits(query, hits, aliases)), [query, hits, aliases]);
 
   useEffect(() => {
     function onKey(event: KeyboardEvent) {
@@ -79,29 +80,33 @@ export function SearchCommand({ hits }: { hits: SearchHit[] }) {
           if (!next) setQuery("");
         }}
         title="Search the map"
-        description="Search domains, vendors, products, use cases, glossary terms, and claims."
+        description="Search vendors, products, use cases, categories, buyer seats, terms, incidents and claims."
       >
         <CommandInput
           value={query}
           onValueChange={setQuery}
-          placeholder="Try Opal Zero, standing privilege, or vault"
+          placeholder="Try a vendor, a problem, or a term like NHI"
           aria-label="Search the map"
         />
         <CommandList aria-label="Search results">
           <CommandEmpty>
             {query.trim().length < 2 ? "Type at least two letters." : "Nothing in the seed matches that."}
           </CommandEmpty>
-          {results.map((hit) => (
-            <CommandItem
-              key={`${hit.kind}-${hit.href}-${hit.title}`}
-              value={`${hit.kind} ${hit.href} ${hit.title}`}
-              onSelect={() => choose(hit.href)}
-            >
-              <span className="mt-0.5 shrink-0 text-xs tracking-wide text-muted-foreground uppercase">
-                {hit.kind}
-              </span>
-              <span className="min-w-0 font-medium">{hit.title}</span>
-            </CommandItem>
+          {groups.map((group) => (
+            <CommandGroup key={group.label} heading={group.label}>
+              {group.hits.map((hit) => (
+                <CommandItem
+                  key={`${hit.kind}-${hit.href}-${hit.title}`}
+                  value={`${hit.kind} ${hit.href} ${hit.title}`}
+                  onSelect={() => choose(hit.href)}
+                >
+                  <span className="min-w-0 font-medium">{hit.title}</span>
+                  {["Vendors and products", "Categories and domains", "Claims and graph", "Other"].includes(group.label) && (
+                    <span className="ml-auto shrink-0 text-xs text-muted-foreground">{hit.kind}</span>
+                  )}
+                </CommandItem>
+              ))}
+            </CommandGroup>
           ))}
         </CommandList>
       </CommandDialog>
@@ -114,7 +119,7 @@ export function SearchPanel() {
     <div className="rounded-xl border border-border bg-card p-4">
       <p className="text-sm font-semibold">Search the map</p>
       <p className="mt-1 text-sm leading-6 text-muted-foreground">
-        Domains, vendors, products, use cases, glossary terms, and claims. The same search is in the header.
+        Vendors, products, use cases, categories, buyer seats, terms and incidents. The same search is in the header.
       </p>
       <Button type="button" variant="outline" className="mt-3" onClick={openSearch}>
         <Search />
