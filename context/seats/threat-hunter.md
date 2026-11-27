@@ -26,6 +26,7 @@ Tier-3 proactive hunting and major escalations.
 - Threat intelligence (`threat-intelligence`)
 - Cloud detection and response (`cloud-detection`)
 - File and malware analysis (`malware-analysis`)
+- Deception and decoys (`deception`)
 
 ## Pains
 

@@ -90,6 +90,7 @@ Research notes checked 2026-11-24 against primary vendor sources. These are docu
 | Dropzone AI | $37M Series B, Theory Ventures, July 2025 [MS1]; markets AI agents that investigate alerts, hunt and respond on existing tools [OF2] | Partial overlap | Official homepage inspected 2026-11-11 (OF2); funding secondary |
 | Torq | $140M Series D at $1.2B valuation, January 2026 [MS1] | Partial overlap; also in [agentic SecOps note](agentic-secops-competitive-landscape.md) | Secondary |
 | Intezer | AI SOC combining agentic triage with forensic tools [ID1] | Partial overlap | Vendor-published (competitor-authored) |
+| Binalyze (AIR, Fleet) | DFIR collection vendor that now pitches AIR as the forensic evidence layer for AI SOC workflows, including other vendors' AI SOC products (see [adjacent file-evidence categories](adjacent-file-evidence-categories-2026-11-23.md), OF13) | Adjacent: collects host evidence after an alert rather than retaining executables over time. A buyer may run it alongside a retained-evidence tool | Vendor-published; AI SOC page inspected 2026-11-25 |
 | Others named in 2026 roundups | BlinkOps, Swimlane, Exaforce, D3 Security, Radiant Security, Conifers, 7AI, Command Zero [BO1, MS1] | Candidates only | Secondary; several roundups are vendor-authored |
 
 Category caveat: a vendor-authored analysis notes the "agentic SOC" label now spans autonomous investigation, fixed enrichment and chatbot-style workflow generation [NH1]. Do not infer direct competition from the label.
@@ -97,6 +98,19 @@ Category caveat: a vendor-authored analysis notes the "agentic SOC" label now sp
 ## Layer 4 — Incumbent platform AI (often the real alternative)
 
 CrowdStrike (Charlotte AI), SentinelOne (Purple AI), Palo Alto Networks (Cortex XSIAM), Google SecOps, Microsoft (Sentinel / Security Copilot) [MS1, BO1]. Relationship: incumbent/no-decision or complementary (Stairwell integrates with several of these as sources/destinations [SW4]). Evidence: secondary; official pages not inspected.
+
+## Update 2026-11-23 — Stairwell enrichment
+
+Placement unchanged: Stairwell stays in `malware-analysis` (Layer 2), adjacent to `ai-soc-investigation`, `threat-intelligence` and `soar`. One new typed claim (`claim-fill-stairwell-backstory-launch`, vendor press release [SW5]); everything else below is research-only.
+
+- **Backstory launch (vendor-published) [SW5]:** announced 2026-07-29. Stairwell says Backstory traces related variants, identifies affected endpoints, maps blast radius, and re-examines preserved file history as new intelligence arrives, reasoning over executables rather than alerts. The release contrasts this with AI SOC tools focused on alert noise and triage speed. That framing is the vendor's, not an adopted category boundary.
+- **Vendor research stat [SW5]:** Stairwell's Hidden Malware Report says that across 1,085 public threat reports, each published hash had on average 2.4 more related malicious variants. The method has not been reviewed here.
+- **Vendor-stated corpus [SW5]:** 1.5B+ preserved executables, 110K+ detection rules, 20+ public intel sources. Not verified.
+- **Named public reference [SW5]:** H&M Group's CSO is quoted in the release. A quote is not a deployment-scale claim.
+- **Leadership (secondary, unverified) [SV1]:** a third-party profile says Emmy Linder (formerly Cybereason COO) became CEO in July 2025 and founder Mike Wiacek moved to CTO. The press release does call Wiacek "Founder and CTO", which supports the CTO half. Stairwell's own leadership page was not inspected.
+- **Funding (secondary) [FD1]:** $45M Series B in October 2022, $69.5M total reported. No later round was found; that is not proof none exists.
+
+Adjacent categories that sit around this buyer decision (DFIR collection, deception, CDR) are mapped in [Adjacent file and evidence categories](adjacent-file-evidence-categories-2026-11-23.md).
 
 ## Differentiation hypotheses (with falsification tests)
 
@@ -116,6 +130,9 @@ Direct win/loss frequency; which layer buyers budget from; coverage and host att
 | SW2 | Stairwell — Rehunt | https://stairwell.com/rehunt/ | Vendor | 2026-11-11 |
 | SW3 | Stairwell — Backstory | https://stairwell.com/backstory/ | Vendor | 2026-11-11 |
 | SW4 | Stairwell — Pricing; Integrations | https://stairwell.com/pricing/ · https://stairwell.com/integrations/ | Vendor | 2026-11-11 |
+| SW5 | Stairwell — Backstory launch press release (GlobeNewswire, 2026-07-29) | https://www.globenewswire.com/news-release/2026/07/29/3335300/0/en/stairwell-launches-backstory-the-first-agentic-investigation-platform-for-malware-blast-radius.html | Vendor press release | 2026-11-22 |
+| SV1 | Silicon Valley Investclub — Emmy Linder profile | https://siliconvalleyinvestclub.com/zh-TW/companies/stairwell/team/emmy-linder/ | Secondary profile | 2026-11-22 |
+| FD1 | Built In — Stairwell Series B; The SaaS News | https://builtin.com/articles/stairwell-raises-45m-series-b-hiring · https://www.thesaasnews.com/news/stairwell-raises-45-million-in-series-b/ | Secondary news | 2026-11-22 |
 | RL1 | Carahsoft — ReversingLabs vs VirusTotal | https://www.carahsoft.com/resources/25645-reversinglabs-vs-virustotal | Vendor via reseller | 2026-11-11 |
 | CT1 | CybersecTools — Intezer alternatives | https://cybersectools.com/alternatives/intezer.md | Directory | 2026-11-11 |
 | CT2 | CybersecTools — Stairwell Variant Discovery vs ANY.RUN | https://cybersectools.com/compare/stairwell-variant-discovery-vs-anyrun | Directory | 2026-11-11 |

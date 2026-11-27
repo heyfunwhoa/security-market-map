@@ -1165,7 +1165,7 @@ export const ecosystemCategories: Category[] = [
     budgetSource: "SecOps. Sometimes bundled with threat intelligence or an EDR renewal; verify with the buyer.",
     triggers: ["Analysts pasting hashes into public lookup sites", "A new campaign report", "Sandbox backlog", "Concern about uploading internal binaries publicly"],
     outcomes: ["An explained verdict per file", "Related variants identified", "Known presence or absence in the estate"],
-    adjacentCategoryIds: ["threat-intelligence", "soar", "xdr", "endpoint-security", "detection-engineering", "ai-soc-investigation"],
+    adjacentCategoryIds: ["threat-intelligence", "soar", "xdr", "endpoint-security", "detection-engineering", "ai-soc-investigation", "dfir-collection", "cdr-file-sanitization"],
     exampleWorkflow:
       "An EDR alert names an unknown executable. The analyst gets a verdict and a plain explanation, finds related variants, and checks which hosts have seen any of them before deciding what to contain.",
     flow: {
@@ -1199,6 +1199,78 @@ export const ecosystemCategories: Category[] = [
       decision: "Agent reasoning plus human approval rules",
       action: "Close, escalate or contain",
       evidence: "The investigation record: sources queried, steps taken, verdict and approvals",
+    },
+  }),
+  category({
+    id: "dfir-collection",
+    name: "Digital forensics and IR collection",
+    group: "secops",
+    domainIds: ["secops"],
+    definition:
+      "Remotely collecting and preserving forensic evidence (disk and memory artifacts, logs, volatile data) from endpoints and cloud workloads, then triaging it to scope an incident and build a timeline. EDR telemetry is continuous but usually not forensic-grade; an incident response retainer is people under contract, not a tool the team runs.",
+    buyerQuestion: "During an incident, how fast can we collect defensible evidence from every affected host, and who runs the collection: our team or the retainer firm?",
+    buyerOwner: "Incident response or digital forensics, sometimes the SOC lead.",
+    budgetSource: "SecOps or incident response. Often bundled into an IR retainer, MDR or EDR add-on; verify with the buyer.",
+    triggers: ["A ransomware or intrusion investigation", "Retainer scope that doesn't match the incident", "Legal hold or regulator request", "Slow manual collection across many hosts"],
+    outcomes: ["Evidence collected from every in-scope host", "A defensible timeline", "Chain of custody recorded"],
+    adjacentCategoryIds: ["endpoint-security", "xdr", "malware-analysis", "mdr", "siem"],
+    exampleWorkflow:
+      "Responders push a collection to 300 hosts, pull memory and key artifacts from the ten that matter, hand suspicious files to analysis, and build the timeline that decides what to rebuild.",
+    flow: {
+      actor: "Incident responder or forensic analyst",
+      credential: "Collector agent or remote access to hosts",
+      permission: "Which hosts and data may be collected, under what legal or HR constraints",
+      decision: "Collection scope and triage rules",
+      action: "Collect, preserve and analyse evidence",
+      evidence: "Collected artifacts, hashes and the chain-of-custody record",
+    },
+  }),
+  category({
+    id: "deception",
+    name: "Deception and decoys",
+    group: "secops",
+    domainIds: ["secops", "identity"],
+    definition:
+      "Decoy hosts, services, credentials, files and cloud keys placed where legitimate users have no reason to go, so that any touch is a strong signal of an intruder. A honeytoken alert says someone used the decoy; it does not by itself say how they got in or what else they reached.",
+    buyerQuestion: "Can we get alerts that are almost never false positives, without deploying agents everywhere?",
+    buyerOwner: "SOC lead, threat hunting or detection engineering; identity security for credential decoys.",
+    budgetSource: "SecOps. Increasingly bundled into EDR, XDR or identity platforms; verify with the buyer.",
+    triggers: ["Alert fatigue and low-fidelity detections", "Concern about lateral movement on unmanaged or OT assets", "Red-team findings that went undetected"],
+    outcomes: ["High-confidence intrusion alerts", "Early warning of lateral movement or credential theft"],
+    adjacentCategoryIds: ["xdr", "siem", "itdr", "ndr", "secrets-detection"],
+    exampleWorkflow:
+      "A fake cloud key is left in an internal wiki. Weeks later someone calls the cloud API with it. The SOC gets one alert with the source address and starts an investigation.",
+    flow: {
+      actor: "Intruder, or an insider where no one should be",
+      credential: "A decoy credential, key or token",
+      permission: "None legitimate: the decoy grants nothing real",
+      decision: "Any use of the decoy",
+      action: "Alert and hand to investigation",
+      evidence: "The decoy trigger: when, from where, and with what",
+    },
+  }),
+  category({
+    id: "cdr-file-sanitization",
+    name: "Content disarm and reconstruction",
+    group: "corporate",
+    domainIds: ["corporate", "secops"],
+    definition:
+      "Prevention-first file sanitization: strip active or risky content (macros, scripts, embedded objects) from incoming files and rebuild a usable copy, instead of deciding whether the original is malicious. Usually placed on email, web download, file transfer and removable-media paths. CDR gives no verdict; file and malware analysis does.",
+    buyerQuestion: "Can people open files from outside without each one being detonated or scanned to a verdict first?",
+    buyerOwner: "IT security or email security; OT and critical-infrastructure teams for removable media and file transfer.",
+    budgetSource: "Email or web security, or an OT/critical-infrastructure program. Sometimes bundled in a gateway; verify with the buyer.",
+    triggers: ["Weaponized documents getting past the gateway", "Sandbox delay blocking business files", "Removable media into an isolated network"],
+    outcomes: ["Usable files delivered without active content", "Fewer file-borne incidents at entry points"],
+    adjacentCategoryIds: ["email-security", "malware-analysis", "network-edge", "ot-security"],
+    exampleWorkflow:
+      "A supplier emails a spreadsheet with macros. The gateway delivers a rebuilt copy with the macros removed, and keeps the original for analysis if someone asks for it.",
+    flow: {
+      actor: "External sender or file source",
+      credential: "Not the point",
+      permission: "Which file types and channels are sanitized, and who may request the original",
+      decision: "Sanitization policy per file type",
+      action: "Deliver the rebuilt file; quarantine or keep the original",
+      evidence: "The sanitization log and the retained original",
     },
   }),
   category({
@@ -2027,7 +2099,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "What may a playbook disable without human approval?",
       "Is the pain coverage, noise, or staffing for investigations?",
     ],
-    categoryIds: ["siem", "soar", "itdr", "cloud-detection", "xdr", "mdr", "ai-soc-investigation"],
+    categoryIds: ["siem", "soar", "itdr", "cloud-detection", "xdr", "mdr", "ai-soc-investigation", "deception"],
     aliases: [
       "SOC",
       "Security operations center manager",
@@ -2165,7 +2237,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "What evidence must survive for forensics or legal?",
       "Walk through your last representative investigation, including every tool and handoff.",
     ],
-    categoryIds: ["soar", "siem", "xdr", "mdr", "endpoint-security", "itdr", "malware-analysis", "ai-soc-investigation"],
+    categoryIds: ["soar", "siem", "xdr", "mdr", "endpoint-security", "itdr", "malware-analysis", "ai-soc-investigation", "dfir-collection"],
     aliases: [
       "IR",
       "Incident response",
@@ -2188,7 +2260,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "How do hunt findings become detections or controls?",
       "Is hunting staffed separately from Tier-1 triage?",
     ],
-    categoryIds: ["siem", "xdr", "ndr", "threat-intelligence", "cloud-detection", "malware-analysis"],
+    categoryIds: ["siem", "xdr", "ndr", "threat-intelligence", "cloud-detection", "malware-analysis", "deception"],
     aliases: [
       "Threat hunter",
       "Tier 3 analyst",
@@ -2230,7 +2302,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "What systems are in scope for collection?",
       "Do legal or HR constraints change the playbook?",
     ],
-    categoryIds: ["endpoint-security", "siem", "xdr", "insider-risk", "malware-analysis"],
+    categoryIds: ["endpoint-security", "siem", "xdr", "insider-risk", "malware-analysis", "dfir-collection"],
     aliases: [
       "DFIR",
       "Digital forensics",
@@ -2312,7 +2384,7 @@ export const ecosystemPersonas: BuyerPersona[] = [
       "Who approves changes—OT engineering or IT security?",
       "Is the purchase monitoring, segmentation, or both?",
     ],
-    categoryIds: ["ot-security", "network-edge", "ndr", "microsegmentation"],
+    categoryIds: ["ot-security", "network-edge", "ndr", "microsegmentation", "cdr-file-sanitization"],
     aliases: [
       "OT security",
       "ICS security",
@@ -3077,7 +3149,7 @@ export const ecosystemVendors: Vendor[] = [
     positioning:
       "Homepage retrieved 26 Oct 2026 lists MDR, exposure management, attack surface management, SIEM, cloud security, vulnerability management, and threat intelligence as separate offers. None of those blurbs fills a patch, misconfiguration, or detection-content cell.",
     primaryCategoryIds: ["it-vulnerability-management", "siem"],
-    adjacentCategoryIds: ["breach-simulation", "cloud-vulnerability"],
+    adjacentCategoryIds: ["breach-simulation", "cloud-vulnerability", "dfir-collection"],
     identityScopes: ["not_an_identity_control"],
     verificationStatus: "research_candidate",
     openQuestions: ["Vulnerability management, detection, or managed detection?"],

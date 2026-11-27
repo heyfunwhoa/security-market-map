@@ -29,6 +29,7 @@ Investigate, analyze, and respond to incidents; contain.
 - Identity threat detection and posture (ITDR, ISPM) (`itdr`)
 - File and malware analysis (`malware-analysis`)
 - AI SOC investigation (`ai-soc-investigation`)
+- Digital forensics and IR collection (`dfir-collection`)
 
 ## Pains
 
