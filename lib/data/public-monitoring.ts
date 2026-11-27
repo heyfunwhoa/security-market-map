@@ -343,6 +343,7 @@ const evidence: ProductEvidence[] = [
     caveat: "The provider handling the site can affect whether and when it is removed.",
   }, {
     key: "searchlight-credentials", productId: "searchlight-threat", publisher: "Searchlight Cyber", title: "Searchlight Threat",
+    checkedAt: "2026-11-26",
     url: "https://www.slcyber.io/threat", type: "vendor_marketing", section: "Organization-linked activity and credential alerts",
     statement: "Searchlight says it connects credentials circulating on external sources to an organization and surfaces alerts with context for an analyst.",
     caveat: "The cited material leaves current password validity, successful account use and identity-provider remediation unconfirmed.",
@@ -439,6 +440,7 @@ const evidence: ProductEvidence[] = [
   },
   {
     key: "recorded-future-threat", productId: "recorded-future", publisher: "Recorded Future", title: "Threat Intelligence",
+    checkedAt: "2026-11-26",
     url: "https://www.recordedfuture.com/products/threat-intelligence",
     type: "vendor_marketing", section: "Threat actors and intelligence reporting",
     statement: "Recorded Future describes reporting on threat actors and campaigns, with context for assessing which threats matter to an organization.",
@@ -593,10 +595,25 @@ const evidence: ProductEvidence[] = [
   },
   {
     key: "google-threat-intelligence", productId: "google-threat-intelligence", publisher: "Google Cloud", title: "Google Threat Intelligence",
+    checkedAt: "2026-11-26",
     url: "https://cloud.google.com/security/products/threat-intelligence", type: "vendor_marketing",
     section: "Threat intelligence workbench and intelligence sources",
     statement: "Google Threat Intelligence combines Mandiant intelligence, VirusTotal data and Google visibility in a workbench for investigating threats and their relevance.",
     caveat: "Confirm entitlement to the required intelligence and corroborate any suspected impact in customer telemetry.",
+  },
+  {
+    key: "stairwell-threat-reports", productId: "stairwell-platform", publisher: "Stairwell", title: "What Is a Threat Report?",
+    url: "https://docs.stairwell.com/docs/what-is-a-threat-report", type: "official_docs", checkedAt: "2026-11-26",
+    section: "Threat reports and environment subscriptions",
+    statement: "When an environment subscribes to a threat report, Stairwell checks its indicators against files already collected and files collected afterward.",
+    caveat: "Record the collection scope and search period. Establishing execution or impact requires additional evidence.",
+  },
+  {
+    key: "binalyze-case-timeline", productId: "binalyze-air", publisher: "Binalyze", title: "Timeline",
+    url: "https://kb.binalyze.com/air/features/timeline", type: "official_docs", checkedAt: "2026-11-26",
+    section: "Timeline and key timeline features",
+    statement: "For cases created in AIR 5 or later, the Investigation Hub builds a timeline from timestamped case evidence that investigators can filter by asset, time or event details.",
+    caveat: "The timeline covers evidence available to that case. A responder still needs to establish which events are related and what impact they support.",
   },
   {
     key: "netcraft-phishing", productId: "netcraft-phishing-protection", publisher: "Netcraft", title: "Phishing Protection",
