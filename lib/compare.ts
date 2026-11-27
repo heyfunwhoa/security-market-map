@@ -81,6 +81,17 @@ function activeEvidenceCell(
   return { status: "unverified", claims: relevant };
 }
 
+/**
+ * The status a cell's pill should show. A supported ("evidenced") cell is only as strong
+ * as its claims: vendor-published support reads "Vendor said this", never "Sourced".
+ */
+export function cellPillStatus(cell: EvidenceCell): string {
+  if (cell.status !== "evidenced") return cell.status;
+  return cell.claims.some((claim) => claim.verificationStatus === "verified")
+    ? "verified"
+    : "vendor_published";
+}
+
 /** Superseded statements stay attributable but never support the current cell. */
 export function evidenceCell(
   claims: Claim[],
