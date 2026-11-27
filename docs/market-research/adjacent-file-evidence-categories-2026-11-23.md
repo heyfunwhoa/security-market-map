@@ -37,9 +37,11 @@ These fill a gap the repo already records: the `digital-forensics` seat has an u
 | Vendor / product | Public context | Evidence status |
 | --- | --- | --- |
 | Velociraptor (open source; Rapid7-backed) | Open-source endpoint monitoring, forensic collection and hunting: an agent on each host plus a central server [OF6, DF1] | **Typed** (`velociraptor`); official docs opened 2026-11-23 |
-| Binalyze AIR | Says AIR automates DFIR with remote evidence collection and analysis across operating systems [OF9]; brochure mentions an agentic investigator [DF4] | **Typed** (`binalyze-air`); official homepage opened 2026-11-23 |
+| Binalyze AIR | Says AIR automates DFIR with remote evidence collection and analysis across operating systems [OF9]; brochure mentions an agentic investigator [DF4]. Update 2026-11-25: binalyze.com now redirects to binalyze.ai, and an AI SOC use case pitches AIR as the evidence layer for AI SOC workflows via APIs, MCP and its Fleet workspace [OF13] | **Typed** (`binalyze-air`); official homepage opened 2026-11-23; AI SOC page opened 2026-11-25 |
 | Magnet Forensics (AXIOM Cyber) | Digital investigation platform for acquiring and analysing forensic data; also strong in law-enforcement and corporate investigations [DF5, DF6] | Secondary |
 | CrowdStrike Falcon Forensics; Cyber Triage; OpenText Endpoint Investigator; F-Response; Volexity; Darktrace (forensic acquisition, ex-Cado) | Named in DFIR tool roundups [DF5, DF6, DF7] | Candidates only |
+
+**Binalyze update (2026-11-25):** the AI SOC page lists AI SOC vendors and MSSPs as partner audiences, and names Fleet (agentic investigation workspace) and Outpost (browser-based investigation) alongside AIR [OF13]. Binalyze is therefore mapped as adjacent to `ai-soc-investigation`, not primary. Secondary context, not verified: a $19M Series A in September 2023 led by Molten Ventures, with Cisco Investments, Citi Ventures and Deutsche Bank's venture arm; a binalyze.com pricing page captured in search results showed per-asset monthly tiers. Current pricing is Unknown.
 
 **Open questions:** how many buyers get DFIR tooling through an IR retainer or MDR rather than buying it directly; overlap with EDR "forensics" add-ons; open-source versus commercial support cost.
 
@@ -110,6 +112,7 @@ Budget ownership for each proposed category; how far EDR and XDR suites bundle e
 | OF10 | Acalvio — homepage / ShadowPlex | https://www.acalvio.com/ · https://www.acalvio.com/shadowplex-platform/ | Vendor (opened) | 2026-11-23 |
 | OF11 | Votiro — CDR support article | https://support.votiro.com/hc/en-us/articles/360014301677-Content-Disarm-and-Reconstruction-CDR | Vendor (opened 2026-11-26) | 2026-11-23 |
 | OF12 | Menlo Security — Menlo Security acquires Votiro (2025-02-19); corroborated by Business Wire, SiliconANGLE | https://www.menlosecurity.com/blog/menlo-security-acquires-votiro | Acquirer announcement (search-index text) | 2026-11-23 |
+| OF13 | Binalyze — AI SOC & Agentic Investigations use case | https://binalyze.ai/use-case/ai-soc/ | Vendor (opened) | 2026-11-25 |
 | CD4 | Slashdot — CDR software directory | https://slashdot.org/software/content-disarm-reconstruction-cdr/ | Directory | 2026-11-23 |
 
 Rights: short paraphrase only; no reproduced vendor copy.
