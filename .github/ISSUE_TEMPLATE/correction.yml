@@ -1,0 +1,49 @@
+name: Suggest a correction
+description: Report a wrong, outdated or unsourced statement on the Security Market Map.
+title: "Correction: "
+labels: ["correction"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping keep the map accurate. Corrections go through the same review as any other claim: a source is required, and vendor-published sources stay labeled "Vendor said this".
+  - type: input
+    id: page
+    attributes:
+      label: Page
+      description: The page where you saw it.
+    validations:
+      required: true
+  - type: input
+    id: record
+    attributes:
+      label: Record
+      description: Vendor, product or category ID, if known.
+  - type: input
+    id: claim
+    attributes:
+      label: Claim ID
+      description: Filled in when you used a claim's link.
+  - type: textarea
+    id: correction
+    attributes:
+      label: What should it say?
+      description: The corrected statement, or what is wrong or out of date.
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source URL
+      description: A public page that supports the correction.
+    validations:
+      required: true
+  - type: dropdown
+    id: relationship
+    attributes:
+      label: Your relationship to the vendor
+      options:
+        - None
+        - I work for this vendor
+        - I work for a competitor
+        - Prefer not to say

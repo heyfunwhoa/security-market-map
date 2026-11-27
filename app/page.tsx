@@ -83,9 +83,9 @@ export default function HomePage() {
 
       <section className="mt-12" aria-labelledby="questions-heading">
         <h2 id="questions-heading" className="text-3xl tracking-tight">
-          Questions to explore
+          Use cases
         </h2>
-        <Link href="/use-cases" className="inline-flex min-h-11 items-center text-sm text-primary underline">Browse buyer questions</Link>
+        <Link href="/use-cases" className="inline-flex min-h-11 items-center text-sm text-primary underline">Browse all use cases</Link>
         <ul className="mt-2 grid gap-3 md:grid-cols-3">
           {[
             { href: "/use-cases/customer-auth", title: "How do customers sign in to our product?", context: "Customer identity" },

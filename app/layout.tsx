@@ -8,6 +8,7 @@ import { incidentSearchHits } from "@/lib/incident-feed";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
 import { SITE_URL } from "@/lib/site";
+import { PrintPrep } from "@/components/print-prep";
 
 const sourceSans = Source_Sans_3({
   subsets: ["latin"],
@@ -63,6 +64,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             Skip to content
           </a>
           <SiteHeader profileComparisons={profileComparisons} hits={[...searchIndex(), ...incidentSearchHits()]} aliases={searchAliases()} asOf={catalog.asOf} />
+          <PrintPrep />
           <div id="content" tabIndex={-1}>{children}</div>
           <SiteFooter asOf={catalog.asOf} />
         </TooltipProvider>

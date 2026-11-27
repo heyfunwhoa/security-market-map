@@ -47,7 +47,7 @@ export default async function DomainPage({ params }: { params: Promise<{ slug: s
       <PageIntro
         kicker={domainStatusLabel(domain.depth)}
         title={domain.name}
-        lede="Choose a category to explore its products and sources, or jump to the buyer questions for this domain."
+        lede="Choose a category to explore its products and sources, or jump to the use cases for this domain."
       />
       {domain.id === "secops" && <p className="mt-4 text-sm"><a href="#secops-buyer-guide" className="text-primary underline underline-offset-4">Compare seven SecOps buying decisions</a></p>}
       {domain.id === "identity" ? (

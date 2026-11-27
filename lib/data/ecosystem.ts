@@ -2763,12 +2763,16 @@ export const ecosystemVendors: Vendor[] = [
     name: "Zscaler",
     formerNames: [],
     website: "https://www.zscaler.com/",
-    positioning: "Security service edge vendor. Network-edge budget. Not an IdP, though it depends on one.",
+    positioning:
+      "Security service edge vendor. Network-edge budget. Not an IdP, though it depends on one. On 23 Nov 2026 CrowdStrike agreed to acquire Zscaler; until a close is announced, treat Zscaler as an independent vendor.",
     primaryCategoryIds: ["network-edge"],
     adjacentCategoryIds: ["workforce-identity", "sspm", "dlp"],
     identityScopes: ["not_an_identity_control"],
     verificationStatus: "research_candidate",
-    openQuestions: ["Internet access, private access, or both?"],
+    openQuestions: [
+      "Internet access, private access, or both?",
+      "After the CrowdStrike deal closes, does Zscaler stay sold on its own, or only inside Falcon?",
+    ],
   }),
   vendor({
     id: "proofpoint",

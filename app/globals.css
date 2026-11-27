@@ -197,3 +197,34 @@
     transition: none !important;
   }
 }
+/* Print: a clean one-pager for taking a vendor, category or use case into a call. */
+@media print {
+  [data-site-chrome],
+  [data-print="hide"],
+  button {
+    display: none !important;
+  }
+  body {
+    background: #fff !important;
+    color: #000 !important;
+    font-size: 11pt;
+  }
+  main {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+  main a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    word-break: break-all;
+  }
+  h2, h3, h4 {
+    break-after: avoid;
+  }
+  /* Trust labels keep their words; borders keep them readable in black and white. */
+  [data-slot="badge"], .rounded-full {
+    border: 1px solid #000 !important;
+    color: #000 !important;
+    background: #fff !important;
+  }
+}

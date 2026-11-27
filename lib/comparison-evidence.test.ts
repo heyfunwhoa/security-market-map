@@ -1,8 +1,9 @@
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
-import { ComparisonEvidence } from "../components/comparison-evidence";
-import { evidenceCell } from "./compare";
+import { ComparisonEvidence, ComparisonLimits } from "../components/comparison-evidence";
+import { cellPillStatus, evidenceCell } from "./compare";
+import { cellStatusLabel } from "./format";
 import type { Claim, Source } from "./schema";
 
 const claim: Claim = {
@@ -51,7 +52,6 @@ describe("comparison source disclosure", () => {
       "2026-10-01",
       "fixture-source",
       "Only the named edition",
-      "Limits:",
     ])
       expect(html).toContain(text);
     expect(html).toContain('href="https://example.test/docs"');
@@ -230,5 +230,46 @@ describe("synthetic correction acceptance", () => {
         "<details",
       )[0],
     ).toContain("Stale:");
+  });
+});
+
+describe("compare cell pill", () => {
+  it("labels vendor-only support as Vendor said this, not Sourced", () => {
+    const cell = evidenceCell([claim], "fixture-product", "fixture-capability", "2026-10-02");
+    expect(cell.status).toBe("evidenced");
+    expect(cellStatusLabel(cellPillStatus(cell))).toBe("Vendor said this");
+  });
+
+  it("labels support with a verified claim as Verified", () => {
+    const verified = { ...claim, id: "fixture-verified", verificationStatus: "verified" as const };
+    const cell = evidenceCell([claim, verified], "fixture-product", "fixture-capability", "2026-10-02");
+    expect(cellStatusLabel(cellPillStatus(cell))).toBe("Verified");
+  });
+
+  it("leaves non-supported states unchanged", () => {
+    const cell = evidenceCell([], "fixture-product", "fixture-capability", "2026-10-02");
+    expect(cellPillStatus(cell)).toBe("unknown");
+  });
+});
+
+describe("compact compare cell", () => {
+  it("leads with the claim and keeps the trust note visible before the sources", () => {
+    const visible = render([claim]).split("<details")[0];
+    expect(visible).toContain(claim.statement);
+    expect(visible).toContain("Vendor-reported; not independently validated");
+    expect(visible).toContain("1 claim, 1 source");
+    expect(visible).toContain("checked 2026-10-01");
+  });
+
+  it("does not repeat the general limits inside each cell", () => {
+    expect(render([claim])).not.toContain("Limits:");
+    expect(render([])).not.toContain("Limits:");
+  });
+
+  it("states the general limits once for the whole comparison", () => {
+    const html = renderToStaticMarkup(createElement(ComparisonLimits));
+    expect(html).toContain("Limits:");
+    expect(html).toContain("Vendor statements are not independent validation");
+    expect(html).toContain("not that the capability is absent");
   });
 });

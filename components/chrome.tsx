@@ -19,7 +19,7 @@ const NAV_GROUPS = [
     { href: "/domains", label: "Explore domains", description: "Start with broad security areas and their categories." },
     { href: "/categories", label: "Categories A–Z", description: "Find a category by name or acronym and see its domains." },
     { href: "/landscape", label: "Browse products", description: "Filter vendors and products, inspect details, and build a shortlist." },
-    { href: "/use-cases", label: "Buyer use cases", description: "Browse the problems buyers are evaluating." },
+    { href: "/use-cases", label: "Use cases", description: "Browse the problems buyers are evaluating." },
     { href: "/compare", label: "Compare evidence", description: "Compare product evidence for a specific use case." },
   ] },
   { title: "Prepare a conversation", links: [
@@ -54,7 +54,7 @@ export function SiteHeader({ hits, aliases = [], asOf, profileComparisons }: { h
   const destination = (href: string) => href === "/compare" ? profileComparisons[pathname] ?? href : href;
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
   return (
-    <header className="relative z-40 border-b border-border bg-background">
+    <header data-site-chrome className="relative z-40 border-b border-border bg-background">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-4 gap-y-2 px-4 py-3">
         <Link href="/" aria-label="Security Market Map home" className="min-w-0 flex-1 rounded-sm py-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring">
           <span className="block font-heading text-lg leading-snug tracking-tight">Security Market Map</span>
@@ -96,7 +96,7 @@ export function SiteHeader({ hits, aliases = [], asOf, profileComparisons }: { h
 
 export function SiteFooter({ asOf }: { asOf: string }) {
   return (
-    <footer className="mt-16 border-t border-border">
+    <footer data-site-chrome className="mt-16 border-t border-border">
       <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-8 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
         <p>
           Independent research notes. Not an official Gartner, Forrester, IDC, SACR, or vendor classification,
