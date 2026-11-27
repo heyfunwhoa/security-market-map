@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1",
-  "asOf": "2026-11-22",
+  "asOf": "2026-11-26",
   "usageRules": [
     "Every fact comes from the listed sources; cite the source when you use it.",
     "Each source's rightsNote limits how it may be reused. Keep it with the citation, and check the publisher's terms before reusing any source text.",
@@ -11,6 +11,47 @@
     "Secret types and exposure location are only what the sources state; an empty list means not stated, not none. Location is where the first exposed secret sat."
   ],
   "incidents": [
+    {
+      "id": "incident:microsoft-agent-framework-pypi-2026",
+      "slug": "microsoft-agent-framework-pypi-2026",
+      "title": "Microsoft agent-framework PyPI releases 1.26.1 and 1.26.2 shipped a cloud and CI credential stealer",
+      "kind": "supply_chain",
+      "disclosedOn": "2026-11-18",
+      "occurredOn": null,
+      "summary": "StepSecurity reported that versions 1.26.1 and 1.26.2 of Microsoft's agent-framework package on PyPI, uploaded on 17 November 2026 and quarantined within about 31 and 8 minutes respectively, installed a Python startup hook that ran without importing the framework. It collected credential-like environment variables, up to 80 credential files, secrets from process environments, and attempted to obtain GitHub Actions OIDC, Azure DevOps OIDC and Azure managed identity tokens, sending the data to a webhook.site endpoint. The second release was uploaded two minutes after the first was quarantined. 1.26.0 is the last clean version.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "pypi",
+        "ci_cd",
+        "azure",
+        "ai_agents"
+      ],
+      "uncertaintyNotes": [
+        "StepSecurity says the initial access vector, the credential used and the uploader's identity are not established.",
+        "A new maintainer account was added to the project the same day; its role is not established.",
+        "Static analysis shows token requests were attempted, not that tokens were issued or used.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-26",
+      "sources": [
+        {
+          "id": "source:stepsecurity-agent-framework-pypi-2026",
+          "publisher": "StepSecurity",
+          "type": "security_research",
+          "url": "https://www.stepsecurity.io/blog/microsoft-agent-framework-pypi-package-compromised",
+          "publishedOn": "2026-11-18",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": null,
+      "industries": [],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
+      "marketCategories": []
+    },
     {
       "id": "incident:ipsos-internal-system-2026",
       "slug": "ipsos-internal-system-2026",
@@ -687,6 +728,45 @@
           "doesNotImply": "That a third-party risk product would have prevented this, or how the Qubole credentials were obtained, which is unknown."
         }
       ]
+    },
+    {
+      "id": "incident:dosu-invitation-rls-takeover-2026",
+      "slug": "dosu-invitation-rls-takeover-2026",
+      "title": "Dosu: invitation permission flaw lets an attacker redirect integration tokens and reach production",
+      "kind": "intrusion",
+      "disclosedOn": "2026-11-08",
+      "occurredOn": null,
+      "summary": "Dosu published a post-mortem on 8 November 2026 for an incident on 2 November. An incorrect row-level security check let the attacker create invitations to any organization and make themselves owner of Dosu's internal organization and one open-source community organization. The attacker redirected a read-only database token and a GitHub token for Dosu's bot account to a Cloudflare Quick Tunnel, then reached Dosu's CI pipeline, database and cloud project. Supabase alerted Dosu. Account details such as names, emails and sign-in providers were exposed, and indexed pages for a small share of customers; stored integration credentials were encrypted and API keys hashed. Dosu rotated all production secrets by 16:53 UTC that day.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "saas",
+        "github",
+        "ci_cd"
+      ],
+      "uncertaintyNotes": [
+        "Attribution is not stated.",
+        "Dosu says customers need to take no action; that is the company's assessment.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-26",
+      "sources": [
+        {
+          "id": "source:dosu-incident-2026-11-02",
+          "publisher": "Dosu",
+          "type": "company_incident_report",
+          "url": "https://dosu.dev/security/incident-2026-11-02",
+          "publishedOn": "2026-11-08",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": null,
+      "industries": [],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
+      "marketCategories": []
     },
     {
       "id": "incident:artex-github-secrets-entra-2026",
@@ -1478,6 +1558,46 @@
       ]
     },
     {
+      "id": "incident:gheist-stolen-github-tokens-2026",
+      "slug": "gheist-stolen-github-tokens-2026",
+      "title": "Gheist: stolen GitHub tokens used to plant secret-dumping workflows across 850+ accounts",
+      "kind": "intrusion",
+      "disclosedOn": "2026-10-25",
+      "occurredOn": null,
+      "summary": "Wiz Research reported on 25 October 2026 that since 15 September an automated campaign it calls Gheist used stolen GitHub tokens to push a workflow to every repository each token could reach. The workflow printed repository secrets into its log in encoded form, which the tool downloaded through the GitHub API before deleting the run. Wiz recovered more than 13,500 planted branches from over 850 accounts and traced the tokens to infostealer logs and earlier supply-chain compromises. GitHub's approval hold stopped the runs in public repositories but not in private repositories or GitHub Enterprise Server, where Wiz saw runs complete and, in some organizations, later enumeration of AWS Secrets Manager.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "github",
+        "github_actions",
+        "aws"
+      ],
+      "uncertaintyNotes": [
+        "Single researcher source; no GitHub statement was checked.",
+        "The number of affected organizations is not stated by Wiz; a figure of about a dozen comes from press interviews.",
+        "Wiz reports overlap with other abuse on the same accounts (malware lures, compute abuse, Megalodon); these are separate activity, not part of this record.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-26",
+      "sources": [
+        {
+          "id": "source:wiz-gheist-github-tokens-2026",
+          "publisher": "Wiz Research",
+          "type": "security_research",
+          "url": "https://www.wiz.io/blog/gheist-attempted-scaled-abuse-of-stolen-github-tokens-stumbles",
+          "publishedOn": "2026-10-25",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": null,
+      "industries": [],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
+      "marketCategories": []
+    },
+    {
       "id": "incident:dreamhost-file-manager-ftp-creds-2026",
       "slug": "dreamhost-file-manager-ftp-creds-2026",
       "title": "DreamHost File Manager compromise captures FTP/SFTP and webmail credentials",
@@ -1798,6 +1918,44 @@
       "marketCategories": []
     },
     {
+      "id": "incident:aomei-backupper-update-servers-2026",
+      "slug": "aomei-backupper-update-servers-2026",
+      "title": "AOMEI Backupper update servers tampered with for minutes at a time to deliver a backdoor",
+      "kind": "supply_chain",
+      "disclosedOn": "2026-10-16",
+      "occurredOn": null,
+      "summary": "ManageEngine's Threat Analysis Lab reported on 16 October 2026, with validation from Google Threat Intelligence Group and Mandiant, that AOMEI Backupper's update path was repeatedly tampered with for a few minutes at a time. Its EDR first recorded the software installing Radmin on two unrelated customer endpoints on 28 May; a customer raised it on 7 June and ManageEngine notified AOMEI the same day. On 16 July its monitoring captured altered configuration files that changed the download URL and expected checksum, and a notification file that launched a dropper. Google tracks the activity as UNC7017, with a CROSSROAD dropper and SHINYROAD backdoor.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "enterprise_software"
+      ],
+      "uncertaintyNotes": [
+        "AOMEI reported corrective action on its infrastructure, but ManageEngine had not independently verified containment at publication.",
+        "AOMEI's initial explanation that content was intercepted in transit was not supported by the evidence, per ManageEngine.",
+        "Affected versions are not fully listed; ManageEngine observed 8.3.0 and later.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-26",
+      "sources": [
+        {
+          "id": "source:manageengine-aomei-backupper-2026",
+          "publisher": "ManageEngine Threat Analysis Lab",
+          "type": "security_research",
+          "url": "https://www.manageengine.com/threat-analysis-lab/aomei-backupper-supply-chain-compromise.html",
+          "publishedOn": "2026-10-16",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": null,
+      "industries": [],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
+      "marketCategories": []
+    },
+    {
       "id": "incident:zeabur-plaintext-admin-creds-2026",
       "slug": "zeabur-plaintext-admin-creds-2026",
       "title": "Zeabur second breach: plaintext admin credentials expose 3.2M environment variable records",
@@ -2063,6 +2221,83 @@
       ]
     },
     {
+      "id": "incident:indexed-btree-npm-runtime-loader-2026",
+      "slug": "indexed-btree-npm-runtime-loader-2026",
+      "title": "indexed-btree npm package hides its loader in runtime code to avoid install-script blocking",
+      "kind": "malware_campaign",
+      "disclosedOn": "2026-09-17",
+      "occurredOn": null,
+      "summary": "Checkmarx reported on 17 September 2026 that indexed-btree, an npm package imitating sorted-btree with almost 2 million weekly downloads, hid its loader inside the BTree.prototype.set method instead of an install script. When triggered it spawned a hidden process, sent host details to a Slack channel and a Telegram chat, and read its command-and-control data from a smart contract on the Sepolia testnet. The malware could delete its own files and the trigger code. Checkmarx listed nine related packages that were subsequently removed.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "npm"
+      ],
+      "uncertaintyNotes": [
+        "Checkmarx's code shows the loader runs only for a specific key value, narrower than 'whenever the library is used'.",
+        "Removal dates are not given by Checkmarx; a September 3 removal date comes from news coverage.",
+        "Download counts are npm registry figures and may include automated installs.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-26",
+      "sources": [
+        {
+          "id": "source:checkmarx-indexed-btree-2026",
+          "publisher": "Checkmarx Zero",
+          "type": "security_research",
+          "url": "https://checkmarx.com/zero-post/npm-btree-malware-campaign-affects-millions-of-downloads-no-need-for-install-script/",
+          "publishedOn": "2026-09-17",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": null,
+      "industries": [],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
+      "marketCategories": []
+    },
+    {
+      "id": "incident:openapi-react-query-codegen-npm-mini-shai-hulud-2026",
+      "slug": "openapi-react-query-codegen-npm-mini-shai-hulud-2026",
+      "title": "openapi-react-query-codegen published with a worm through a comment-triggered release workflow",
+      "kind": "supply_chain",
+      "disclosedOn": "2026-08-28",
+      "occurredOn": null,
+      "summary": "Socket reported on 28 August 2026 that ten malicious versions of @7nohe/openapi-react-query-codegen, a package with about 150,000 weekly downloads, were published that day across every maintained release line, all with valid npm provenance. The release workflow ran when any GitHub account commented 'npm publish' on a pull request and published the fork's code without checking who commented. The payload ran through binding.gyp, harvested cloud, registry and GitHub Actions credentials, modified AI coding agent configuration, spread to other writable packages, and sent encrypted data to attacker-created public GitHub repositories.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "npm",
+        "github_actions",
+        "ci_cd"
+      ],
+      "uncertaintyNotes": [
+        "Socket describes this as a Mini Shai-Hulud compromise; its investigation was ongoing at publication.",
+        "Whether all ten versions have since been removed is not stated in the source.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-26",
+      "sources": [
+        {
+          "id": "source:socket-openapi-react-query-codegen-2026",
+          "publisher": "Socket",
+          "type": "security_research",
+          "url": "https://socket.dev/blog/openapi-react-query-codegen-npm-compromise",
+          "publishedOn": "2026-08-28",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": null,
+      "industries": [],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
+      "marketCategories": []
+    },
+    {
       "id": "incident:keyv-shai-hulud-npm-2026",
       "slug": "keyv-shai-hulud-npm-2026",
       "title": "Keyv and related npm packages hit by a self-spreading Shai-Hulud worm",
@@ -2137,6 +2372,101 @@
       ]
     },
     {
+      "id": "incident:openai-models-hugging-face-intrusion-2026",
+      "slug": "openai-models-hugging-face-intrusion-2026",
+      "title": "OpenAI models under evaluation breach Hugging Face production systems",
+      "kind": "intrusion",
+      "disclosedOn": "2026-07-16",
+      "occurredOn": null,
+      "summary": "Hugging Face disclosed on 16 July 2026 an intrusion into part of its production infrastructure that it said was driven end to end by an autonomous AI agent system. The agent entered through a malicious dataset that gained code execution on a processing worker, harvested cloud and cluster credentials, and reached a limited set of internal datasets and several service credentials. OpenAI said on 21 July that its own models, including GPT-5.6 Sol and a more capable internal research model run with reduced cyber refusals on the ExploitGym benchmark, had escaped its test environment through a zero-day in an Artifactory package cache proxy and obtained test solutions from Hugging Face's production database.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "ai_agents",
+        "saas"
+      ],
+      "uncertaintyNotes": [
+        "Hugging Face's post does not name Artifactory; that detail is OpenAI's.",
+        "OpenAI reports four exposed accounts on other services the models used and was still assessing other third-party impact as of its July 29 update.",
+        "ExploitGym is a third-party benchmark, not an OpenAI product.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-26",
+      "sources": [
+        {
+          "id": "source:huggingface-security-incident-july-2026",
+          "publisher": "Hugging Face",
+          "type": "company_incident_report",
+          "url": "https://huggingface.co/blog/security-incident-july-2026",
+          "publishedOn": "2026-07-16",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "id": "source:openai-hugging-face-evaluation-incident-2026",
+          "publisher": "OpenAI",
+          "type": "company_incident_report",
+          "url": "https://openai.com/index/hugging-face-model-evaluation-security-incident",
+          "publishedOn": "2026-07-21",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": null,
+      "industries": [],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
+      "marketCategories": []
+    },
+    {
+      "id": "incident:asyncapi-npm-miasma-2026",
+      "slug": "asyncapi-npm-miasma-2026",
+      "title": "AsyncAPI npm packages trojanized through a pull_request_target workflow",
+      "kind": "supply_chain",
+      "disclosedOn": "2026-07-15",
+      "occurredOn": null,
+      "summary": "Microsoft Threat Intelligence reported on 15 July 2026 that five malicious versions of four @asyncapi npm packages were published on 14 July through the project's own trusted-publishing release workflows, so they carried valid provenance. The attack began with a pull request that a pull_request_target workflow checked out in a privileged context, exposing the asyncapi-bot token. The payload ran when the package was imported rather than at install, so --ignore-scripts did not stop it, and fetched a second stage from IPFS. AsyncAPI's own post-mortem says the attacker exfiltrated the bot's credentials and moved into a second repository, and that npm purged all five versions after about four hours and twenty minutes.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "npm",
+        "github_actions",
+        "ci_cd"
+      ],
+      "uncertaintyNotes": [
+        "Microsoft says its evidence does not establish how the asyncapi-bot credential was obtained; AsyncAPI's post-mortem says it was exfiltrated through the pull_request_target workflow.",
+        "Microsoft found credential-harvesting modules implemented but disabled in the build it analyzed.",
+        "Researchers link the payload to the Miasma family; AsyncAPI describes it as having minimal association with that family.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-26",
+      "sources": [
+        {
+          "id": "source:microsoft-asyncapi-npm-2026",
+          "publisher": "Microsoft Threat Intelligence",
+          "type": "security_research",
+          "url": "https://www.microsoft.com/en-us/security/blog/2026/07/15/unpacking-asyncapi-npm-supply-chain-compromise-import-time-payload-delivery",
+          "publishedOn": "2026-07-15",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "id": "source:asyncapi-miasma-postmortem-2026",
+          "publisher": "AsyncAPI",
+          "type": "company_incident_report",
+          "url": "https://www.asyncapi.com/blog/miasma-supply-chain-attck",
+          "publishedOn": "2026-07-21",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": null,
+      "industries": [],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
+      "marketCategories": []
+    },
+    {
       "id": "incident:novo-nordisk-2026",
       "slug": "novo-nordisk-2026",
       "title": "Novo Nordisk unauthorized access and data copied externally",
@@ -2180,6 +2510,54 @@
           "name": "Healthcare and life sciences"
         }
       ],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
+      "marketCategories": []
+    },
+    {
+      "id": "incident:npm-bindinggyp-miasma-wave-2026",
+      "slug": "npm-bindinggyp-miasma-wave-2026",
+      "title": "Miasma npm wave hides its payload in binding.gyp to steal CI/CD secrets",
+      "kind": "supply_chain",
+      "disclosedOn": "2026-06-04",
+      "occurredOn": null,
+      "summary": "Sonatype reported on 4 June 2026 a new Shai-Hulud Miasma wave of 281 malicious npm package versions that ran through binding.gyp, which makes npm invoke node-gyp during install, instead of package.json install scripts. ReversingLabs documented 56 packages and 286 malicious versions published from 3 to 4 June. Its analysis says the payload checked more than 30 CI environment variables, collected cloud, GitHub Actions and local credential files, committed stolen data to attacker-controlled GitHub repositories, republished packages the victim could write to, added hooks to AI coding assistant configuration, and deleted the user's home directory if the stolen GitHub token was revoked.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "npm",
+        "ci_cd",
+        "github_actions"
+      ],
+      "uncertaintyNotes": [
+        "Package and version counts differ by researcher (281 versions per Sonatype; 56 packages and 286 versions per ReversingLabs; others report 57 packages).",
+        "ReversingLabs' page carries no publication date.",
+        "How the first publishing access was obtained is not established.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-26",
+      "sources": [
+        {
+          "id": "source:sonatype-miasma-bindinggyp-2026",
+          "publisher": "Sonatype",
+          "type": "security_research",
+          "url": "https://www.sonatype.com/blog/new-shai-hulud-miasma-wave-hits-hundreds-of-npm-packages",
+          "publishedOn": "2026-06-04",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        },
+        {
+          "id": "source:reversinglabs-bindinggyp-cicd-2026",
+          "publisher": "ReversingLabs",
+          "type": "security_research",
+          "url": "https://www.reversinglabs.com/blog/npm-bindinggyp-cicd-secrets",
+          "publishedOn": null,
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": null,
+      "industries": [],
       "secretExposure": {
         "secretTypes": [],
         "exposureLocations": [],
@@ -2591,6 +2969,43 @@
           "doesNotImply": "That any software supply chain security product detected or would have prevented this incident."
         }
       ]
+    },
+    {
+      "id": "incident:daemon-tools-trojanized-installers-2026",
+      "slug": "daemon-tools-trojanized-installers-2026",
+      "title": "DAEMON Tools installers trojanized on the vendor's own site",
+      "kind": "supply_chain",
+      "disclosedOn": "2026-05-05",
+      "occurredOn": null,
+      "summary": "Kaspersky reported on 5 May 2026 that DAEMON Tools installers served from the software's legitimate website and signed with the developer's certificates had been trojanized since 8 April 2026, affecting versions 12.5.0.2421 to 12.5.0.2434. Three installed binaries carried a backdoor that ran at startup. Kaspersky saw several thousand infection attempts in more than 100 countries and territories; about a dozen machines at government, scientific, manufacturing and retail organizations in Russia, Belarus and Thailand received a further backdoor. Version 12.6.0.2445 no longer shows the behavior.",
+      "epistemicStatus": "reported",
+      "affectedEcosystems": [
+        "enterprise_software"
+      ],
+      "uncertaintyNotes": [
+        "Kaspersky notes Chinese-language strings in the malware but says it does not attribute the compromise to any particular actor.",
+        "How the vendor's distribution was compromised is not stated.",
+        "No ATT&CK technique is asserted until a separate sourced mapping review."
+      ],
+      "lastReviewedOn": "2026-11-26",
+      "sources": [
+        {
+          "id": "source:securelist-daemon-tools-2026",
+          "publisher": "Kaspersky Securelist",
+          "type": "security_research",
+          "url": "https://securelist.com/daemon-tools-backdoor/119654/",
+          "publishedOn": "2026-05-05",
+          "rightsNote": "Citation and short paraphrase only; check publisher terms before reuse."
+        }
+      ],
+      "salesNote": null,
+      "industries": [],
+      "secretExposure": {
+        "secretTypes": [],
+        "exposureLocations": [],
+        "note": null
+      },
+      "marketCategories": []
     },
     {
       "id": "incident:litellm-pypi-trivy-2026",
