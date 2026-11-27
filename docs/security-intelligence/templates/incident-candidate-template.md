@@ -35,3 +35,5 @@ Copy [`incident-candidate-batch.template.json`](incident-candidate-batch.templat
 - Conflicting sources are both kept and attributed.
 - No sales claim that a product would have prevented the incident.
 - `npm test` passes.
+
+When candidates are approved for the feed, follow the [promotion template](incident-promotion-template.md).
