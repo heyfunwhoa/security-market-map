@@ -28,7 +28,7 @@ Firewalls, secure web gateways, ZTNA, and SASE. Buyers collapse these into one d
 
 ## Vendors (primary)
 
-- Zscaler: Security service edge vendor. Network-edge budget. Not an IdP, though it depends on one.
+- Zscaler: Security service edge vendor. Network-edge budget. Not an IdP, though it depends on one. On 23 Nov 2026 CrowdStrike agreed to acquire Zscaler; until a close is announced, treat Zscaler as an independent vendor.
 - Netskope: Security service edge vendor named beside Zscaler. Not an identity provider.
 - Fortinet: Network security vendor on firewall and SASE shortlists beside Palo Alto Networks. Modules unverified.
 - Check Point: Firewall and network security incumbent. A shortlist name, not a sourced feature comparison.
