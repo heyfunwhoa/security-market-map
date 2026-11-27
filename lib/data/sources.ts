@@ -2,6 +2,30 @@ import type { Source } from "../schema";
 
 export const sources: Source[] = [
   {
+    id: "src-anzenna-ai-dlp",
+    title: "Anzenna AI DLP",
+    url: "https://www.anzenna.ai/usecases/ai-dlp/",
+    canonicalUrl: "https://www.anzenna.ai/usecases/ai-dlp/",
+    publisher: "Anzenna",
+    sourceType: "vendor_marketing",
+    publishedAt: null,
+    retrievedAt: "2026-11-27",
+    volatility: "fast",
+    excerpt: "The product FAQ describes the endpoint agent checking Claude Desktop prompts and Claude Code MCP requests. The illustrated policy decisions use sample data.",
+  },
+  {
+    id: "src-anzenna-insider-risk",
+    title: "Anzenna Insider Threat Detection and Behavioral Risk Monitoring",
+    url: "https://www.anzenna.ai/usecases/insider/",
+    canonicalUrl: "https://www.anzenna.ai/usecases/insider/",
+    publisher: "Anzenna",
+    sourceType: "vendor_marketing",
+    publishedAt: null,
+    retrievedAt: "2026-11-27",
+    volatility: "fast",
+    excerpt: "The departure example and investigation overview describe comparing employee data movement with HR status, past activity and peer behavior to prioritize cases for analysts.",
+  },
+  {
     id: "src-descope-customer-auth",
     title: "Descope Documentation",
     url: "https://docs.descope.com/",

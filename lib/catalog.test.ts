@@ -299,6 +299,7 @@ describe("catalog integrity", () => {
       "cap-cspm",
       "cap-endpoint-detect",
       "cap-backup-restore",
+      "cap-dlp",
       // Developer endpoint research slice (PR #111): vendor-published claims only.
       "cap-dev-local-secret-scan",
       "cap-dev-package-install-policy",
@@ -333,6 +334,7 @@ describe("catalog integrity", () => {
     );
     expect(evidenceCell(catalog.claims, "crowdstrike-identity", "cap-itdr", "2026-10-26").status).toBe("unknown");
     expect(evidenceCell(catalog.claims, "proofpoint", "cap-dlp", "2026-10-26").status).toBe("unknown");
+    expect(evidenceCell(catalog.claims, "anzenna-platform", "cap-dlp", "2026-11-27").status).toBe("evidenced");
     expect(evidenceCell(catalog.claims, "gitguardian-developer-endpoint", "cap-dev-local-secret-scan", "2026-10-30").status).toBe("evidenced");
     expect(evidenceCell(catalog.claims, "gitguardian-developer-endpoint", "cap-dev-package-install-policy", "2026-10-30").status).toBe("unknown");
     expect(evidenceCell(catalog.claims, "kingfisher", "cap-dev-local-secret-scan", "2026-10-30").status).toBe("unknown");

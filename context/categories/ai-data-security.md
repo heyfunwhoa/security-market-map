@@ -3,7 +3,7 @@ id: "ai-data-security"
 type: "category"
 name: "AI data security"
 layer: "core"
-vendors: 6
+vendors: 7
 ---
 
 # AI data security
@@ -30,6 +30,7 @@ _None recorded._
 
 ## Vendors (adjacent)
 
+- Anzenna
 - Nightfall
 - Metomic
 - Cyera

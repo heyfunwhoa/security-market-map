@@ -12,6 +12,23 @@ const unknown = "Packaging, general availability, and which identity types are i
 
 export const vendors: Vendor[] = [
   vendor({
+    id: "anzenna",
+    slug: "anzenna",
+    name: "Anzenna",
+    formerNames: [],
+    website: "https://www.anzenna.ai/",
+    positioning:
+      "Anzenna helps security teams control what employees send to AI tools and investigate unusual data movement when someone leaves the company.",
+    primaryCategoryIds: ["dlp", "insider-risk"],
+    adjacentCategoryIds: ["ai-data-security"],
+    identityScopes: ["human", "agent"],
+    verificationStatus: "research_candidate",
+    openQuestions: [
+      "Which AI clients and channels can the deployed policy block, and which only record activity?",
+      "Who can see HR details in an investigation, and how long does the case retain them?",
+    ],
+  }),
+  vendor({
     id: "c1",
     slug: "c1",
     name: "C1",
@@ -696,6 +713,22 @@ export const vendors: Vendor[] = [
 ];
 
 export const products: Product[] = [
+  product({
+    id: "anzenna-platform",
+    slug: "anzenna-platform",
+    vendorId: "anzenna",
+    name: "Anzenna AI DLP and Insider Risk",
+    positioning:
+      "Anzenna says its endpoint agent can block a sensitive prompt in Claude Desktop before it leaves the device. For insider investigations, the platform uses HR and activity data to show analysts how a file transfer compares with the employee’s history and peers.",
+    primaryCategoryIds: ["dlp", "insider-risk"],
+    adjacentCategoryIds: ["ai-data-security"],
+    deployment: ["unknown"],
+    identityScopes: ["human", "agent"],
+    availability: "unknown",
+    availabilityNote: "Anzenna describes both workflows publicly. Edition requirements and regional availability are unconfirmed.",
+    officialUrl: "https://www.anzenna.ai/",
+    useCaseIds: ["uc-sensitive-data"],
+  }),
   {
     id: "rapid7-mdr",
     slug: "rapid7-mdr",
