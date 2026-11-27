@@ -1682,7 +1682,7 @@ export const events: CatalogEvent[] = [
   {
     id: "evt-crowdstrike-fiddler-intent",
     vendorId: "crowdstrike",
-    date: "2026-11-04",
+    date: "2026-11-03",
     kind: "acquisition",
     title: "Intent to acquire Fiddler",
     summary: "AI agent observability, planned as Falcon Observe (GA Q4 FY27 per CrowdStrike). Intent announced; no price or close disclosed.",

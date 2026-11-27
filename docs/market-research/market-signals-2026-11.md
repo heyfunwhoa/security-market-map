@@ -15,7 +15,7 @@ Market → domain → vendor timeline. Each recorded signal sits on an existing 
 | CrowdStrike to acquire Zscaler, all stock, about $43.9B enterprise value, 1.135 CRWD shares per ZS share | Definitive agreement 2026-11-23. Expected close in the second half of CrowdStrike FY2028, subject to Zscaler shareholder and regulatory approval. **Not closed.** | [CrowdStrike IR](https://ir.crowdstrike.com/news-releases/news-release-details/crowdstrike-acquire-zscaler-bringing-network-security-and-zero) (also filed as [SEC EX-99.1](https://www.sec.gov/Archives/edgar/data/1535527/000110465926130801/tm2630454d2_ex99-1.htm)) | `evt-zscaler-crowdstrike-agree`, `evt-crowdstrike-zscaler-agree` | `zscaler` positioning notes the deal and says to treat Zscaler as independent until close. New open question about standalone availability. |
 | IBM acquires AuthMind (identity observability) for HashiCorp Vault | Announced 2026-11-12. The post says "with the acquisition"; close date and price are **Unknown**. | [IBM Newsroom](https://newsroom.ibm.com/blog-ibm-advances-agent-identity-security-with-new-vault-capabilities) | `evt-hashicorp-authmind` | `hashicorp` positioning gains one sentence. |
 | Palo Alto Networks to acquire Applied Compute (open-weight AI post-training and inference), all stock, $4.5B | Definitive agreement 2026-11-18. Expected to close in PANW fiscal Q3 2027. **Not closed.** | [PANW press release](https://www.paloaltonetworks.com/company/press/2026/palo-alto-networks-to-acquire-applied-compute--bringing-secure-open-weight-ai-to-the-enterprise) | `evt-panw-applied-compute-agree` | None |
-| CrowdStrike intends to acquire Fiddler (AI agent observability), planned as Falcon Observe, GA Q4 FY27 per CrowdStrike | Intent announced around 2026-11-04 at Fal.Con EU. Price and close are **Unknown**. | [CrowdStrike blog](https://www.crowdstrike.com/en-us/blog/crowdstrike-to-acquire-fiddler/) | `evt-crowdstrike-fiddler-intent` | None |
+| CrowdStrike intends to acquire Fiddler (AI agent observability), planned as Falcon Observe, GA Q4 FY27 per CrowdStrike | Intent announced 2026-11-03 (CrowdStrike blog date). Price and close are **Unknown**. | [CrowdStrike blog](https://www.crowdstrike.com/en-us/blog/crowdstrike-to-acquire-fiddler/) | `evt-crowdstrike-fiddler-intent` | None |
 
 ## Not recorded: needs a primary source
 
@@ -34,3 +34,5 @@ Market → domain → vendor timeline. Each recorded signal sits on an existing 
 ## Recheck
 
 When a deal closes, add a separate close event (the `evt-panw-close` pattern) and update the vendor positioning. Don't edit the agreement event to say it closed.
+
+**Source recheck (2026-11-27):** CrowdStrike/Zscaler (IR release and SEC exhibit), Palo Alto Networks/Applied Compute, IBM/AuthMind and CrowdStrike/Fiddler were opened and match the figures above. Fiddler's date corrected to 2026-11-03.
