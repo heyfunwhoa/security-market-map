@@ -3,7 +3,7 @@ id: "insider-risk"
 type: "category"
 name: "Insider risk"
 layer: "core"
-vendors: 7
+vendors: 8
 ---
 
 # Insider risk
@@ -28,6 +28,7 @@ Behavior that suggests data theft or misuse by someone who already has access. T
 
 ## Vendors (primary)
 
+- Anzenna: Anzenna helps security teams control what employees send to AI tools and investigate unusual data movement when someone leaves the company.
 - Proofpoint: Homepage retrieved 26 Oct 2026 describes collaboration, data, and AI security, including discovery of AI apps and agents and runtime policy. That page does not describe an email gateway. Not an identity threat product unless a specific SKU is sourced.
 - DTEX Systems: Insider-risk vendor. Monitoring a user is not an access review.
 - Securonix: Security analytics vendor named for insider risk and SIEM. Confirm which budget is buying.

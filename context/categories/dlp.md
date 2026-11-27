@@ -3,7 +3,7 @@ id: "dlp"
 type: "category"
 name: "Data loss prevention"
 layer: "core"
-vendors: 25
+vendors: 26
 ---
 
 # Data loss prevention
@@ -36,6 +36,7 @@ From 3 vendors' own pages, mapped to seats editorially. Vendor audience, not pro
 
 ## Vendors (primary)
 
+- Anzenna: Anzenna helps security teams control what employees send to AI tools and investigate unusual data movement when someone leaves the company.
 - Nightfall: Nightfall markets sensitive-data discovery and classification alongside data exfiltration prevention across SaaS, endpoints, email, and AI workflows. Vendor-reported positioning reviewed 2026-10-13; scope and effectiveness are not independently tested. DSPM is an adjacent discovery use case, not an assertion of full DSPM parity.
 - Forcepoint: DLP incumbent named beside email and web controls. The channel on the order form is the product. No policy is checked.
 - Code42: Endpoint data-movement candidate, often discussed as insider risk. Not assumed to be email DLP or DSPM.
