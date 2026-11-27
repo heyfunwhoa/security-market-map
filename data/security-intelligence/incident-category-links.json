@@ -891,21 +891,6 @@
     "proposedOn": "2026-11-26"
   },
   {
-    "id": "link:openai-models-hugging-face-intrusion-2026:nhi",
-    "incidentId": "incident:openai-models-hugging-face-intrusion-2026",
-    "categoryId": "nhi",
-    "predicate": "related_to",
-    "rationale": "Hugging Face says the agent harvested cloud, cluster and service credentials inside its infrastructure.",
-    "doesNotImply": "That any non-human identity product detected or would have prevented this incident.",
-    "basedOnSourceIds": [
-      "source:huggingface-security-incident-july-2026",
-      "source:openai-hugging-face-evaluation-incident-2026"
-    ],
-    "status": "proposed",
-    "proposedBy": "agent-draft",
-    "proposedOn": "2026-11-26"
-  },
-  {
     "id": "link:openapi-react-query-codegen-npm-mini-shai-hulud-2026:software-supply-chain",
     "incidentId": "incident:openapi-react-query-codegen-npm-mini-shai-hulud-2026",
     "categoryId": "software-supply-chain",
@@ -960,18 +945,6 @@
     "predicate": "related_to",
     "rationale": "Dosu says a database token and a GitHub bot token were redirected to the attacker.",
     "doesNotImply": "That any non-human identity product detected or would have prevented this incident.",
-    "basedOnSourceIds": ["source:dosu-incident-2026-11-02"],
-    "status": "proposed",
-    "proposedBy": "agent-draft",
-    "proposedOn": "2026-11-26"
-  },
-  {
-    "id": "link:dosu-invitation-rls-takeover-2026:third-party-risk",
-    "incidentId": "incident:dosu-invitation-rls-takeover-2026",
-    "categoryId": "third-party-risk",
-    "predicate": "related_to",
-    "rationale": "Dosu, a vendor connected to its customers' systems, had its production environment reached by the attacker.",
-    "doesNotImply": "That any third-party risk product detected or would have prevented this incident.",
     "basedOnSourceIds": ["source:dosu-incident-2026-11-02"],
     "status": "proposed",
     "proposedBy": "agent-draft",

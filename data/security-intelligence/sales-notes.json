@@ -1248,7 +1248,7 @@
     "roleNotes": [
       {
         "roleId": "platform",
-        "note": "Provenance showed the build came from the project's workflow; it didn't show the commit was authorized."
+        "note": "Microsoft says the attestations correctly identified the repositories, commits and workflows that built the packages, even though the triggering commits were unauthorized."
       },
       {
         "roleId": "appsec",
@@ -1272,7 +1272,7 @@
     "roleNotes": [
       {
         "roleId": "ciso",
-        "note": "Both companies describe the agent using credentials it found along the way."
+        "note": "Hugging Face says the agent harvested cloud and cluster credentials. OpenAI says its models also used publicly exposed credentials for four accounts on other services."
       },
       {
         "roleId": "cloud-sec",
@@ -1380,7 +1380,7 @@
     "roleNotes": [
       {
         "roleId": "ciso",
-        "note": "The tokens were sent to the attacker by changing integration settings, not by stealing them from storage."
+        "note": "Dosu says the attacker changed its integrations' server URL, and Dosu then sent the integrations' credentials to that address."
       },
       {
         "roleId": "appsec",
