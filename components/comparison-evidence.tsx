@@ -4,7 +4,7 @@ import { isSourceStale } from "../lib/coverage";
 import type { EvidenceCell } from "../lib/compare";
 import { sourceTypeLabel, verificationLabel } from "../lib/format";
 
-/** Reuses native disclosure: status and limits remain visible before expansion. */
+/** Reuses native disclosure: the answer, status and warnings stay visible before expansion. */
 export function ComparisonEvidence({
   cell,
   productName,
@@ -75,29 +75,19 @@ export function ComparisonEvidence({
       ) : null}
       {cell.claims.length > 0 ? (
         <>
-          <p className="text-xs font-medium">
-            Evidence state:{" "}
-            {[
-              ...new Set(
-                cell.claims.map((claim) =>
-                  claim.verificationStatus === "verified"
-                    ? "Reviewed · independent source"
-                    : verificationLabel(claim.verificationStatus),
-                ),
-              ),
-            ].join("; ")}
-            .
-            {cell.claims.some(
-              (claim) => claim.verificationStatus === "vendor_published",
-            )
-              ? " Vendor-reported; not independently validated."
-              : ""}
-          </p>
+          {/* The answer first: the first current statement, clamped; full text stays in the sources. */}
+          <p className="line-clamp-3 text-sm leading-5">{cell.claims[0].statement}</p>
           <p className="text-xs text-muted-foreground">
-            {cell.claims.length} source-linked{" "}
-            {cell.claims.length === 1 ? "claim" : "claims"} across{" "}
+            {cell.claims.some((claim) => claim.verificationStatus === "verified")
+              ? "Reviewed · independent source"
+              : cell.claims.some(
+                    (claim) => claim.verificationStatus === "vendor_published",
+                  )
+                ? "Vendor-reported; not independently validated"
+                : verificationLabel(cell.claims[0].verificationStatus)}{" "}
+            · {cell.claims.length} {cell.claims.length === 1 ? "claim" : "claims"},{" "}
             {sourceIds.length} {sourceIds.length === 1 ? "source" : "sources"} ·
-            comparison as of {asOf}
+            checked {latestCheck(cell.claims)}
           </p>
           {cell.status === "limited" ||
           cell.status === "conflicting" ||
@@ -125,7 +115,7 @@ export function ComparisonEvidence({
           ) : null}
           <details className="rounded-md border border-border p-2">
             <summary className="min-h-11 cursor-pointer py-2 font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring">
-              Supporting sources
+              Supporting sources ({cell.claims.length})
               <span className="sr-only">
                 {" "}
                 for {productName}: {capabilityName}
@@ -208,11 +198,22 @@ export function ComparisonEvidence({
           </details>
         </>
       ) : null}
-      <p className="text-xs leading-5 text-muted-foreground">
-        <strong>Limits: </strong>Claims describe the cited scope at the recorded
-        date. Vendor statements are not independent validation. Verify current
-        edition, deployment and availability before a decision.
-      </p>
     </div>
+  );
+}
+
+function latestCheck(claims: { lastCheckedAt: string }[]): string {
+  return claims.map((claim) => claim.lastCheckedAt).sort().at(-1) ?? "date not recorded";
+}
+
+/** One always-visible note for the whole comparison, instead of repeating it in every cell. */
+export function ComparisonLimits() {
+  return (
+    <p className="mt-3 text-sm leading-6 text-muted-foreground">
+      <strong>Limits: </strong>Claims describe the cited scope at the recorded
+      date. Vendor statements are not independent validation. Verify current
+      edition, deployment and availability before a decision. Unknown means no
+      current sourced claim, not that the capability is absent.
+    </p>
   );
 }

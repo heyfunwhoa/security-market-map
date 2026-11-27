@@ -55,6 +55,9 @@ export function ExposureIntelligenceResearch({ categoryId }: { categoryId: strin
       </p>
       <p className="max-w-3xl leading-7">{market.intro}</p>
       <p className="max-w-3xl text-sm leading-6"><strong>Ask the buyer. </strong>{market.discoveryQuestion}</p>
+      {categoryId === "threat-intelligence" && (
+        <p className="text-sm"><Link className={textLink} href="/landscape/public-exposure#cti">Assess whether a published campaign affected your organization</Link></p>
+      )}
       <PublicSecretMonitoring categoryId={categoryId} />
       <h3 className="text-lg">Companies by buyer need</h3>
       <div className="space-y-2">

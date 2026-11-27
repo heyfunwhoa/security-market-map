@@ -293,29 +293,41 @@
     "cases": [
       {
         "id": "cti",
-        "title": "Cyber threat intelligence",
+        "title": "Does this published threat affect us?",
         "categoryId": "threat-intelligence",
-        "scenario": "A peer in the same sector reports a threat campaign. What should our SOC investigate this week?",
-        "visibility": "Providers collect external intelligence, which can include restricted sources. Customer identifiers and internal telemetry help establish relevance and impact.",
-        "attribution": "Separate an actor targeting the sector from an observation naming the organization. Check for corroborating evidence in internal systems.",
-        "owner": "The threat intelligence lead briefs the SOC or detection team with a question it can investigate.",
+        "scenario": "A campaign report names your industry and lists file indicators. Your SOC lead wants to know by the next briefing whether anyone found evidence in your environment and what still needs investigation.",
+        "visibility": "Start with the report date, targeting and indicators. Check which devices, file types and dates your team can search before interpreting a result.",
+        "attribution": "Record the host, time and source for a match. A file sighting establishes presence. Use process, identity or other case evidence to assess execution and impact. For an empty search, record the scope and any gaps.",
+        "owner": "Threat intelligence chooses indicators worth checking. The SOC searches local evidence and sends any matches to incident response. The responder briefs the owner on corroborated activity, no match within the searched scope, or insufficient coverage.",
         "options": [
           {
-            "label": "Recorded Future Threat Intelligence",
+            "label": "Prioritize the campaign with Recorded Future Threat Intelligence",
             "claimIds": [
               "claim-public-recorded-future-threat"
             ]
           },
           {
-            "label": "Searchlight Threat",
+            "label": "Investigate the reported threat with Google Threat Intelligence",
             "claimIds": [
-              "claim-public-searchlight-credentials"
+              "claim-public-google-threat-intelligence"
             ]
           },
           {
-            "label": "Google Threat Intelligence",
+            "label": "Match report indicators against collected files with Stairwell",
             "claimIds": [
-              "claim-public-google-threat-intelligence"
+              "claim-public-stairwell-threat-reports"
+            ]
+          },
+          {
+            "label": "Reconstruct activity around a local finding with Binalyze AIR",
+            "claimIds": [
+              "claim-public-binalyze-case-timeline"
+            ]
+          },
+          {
+            "label": "Check for exposed credentials with Searchlight Threat when the report names accounts",
+            "claimIds": [
+              "claim-public-searchlight-credentials"
             ]
           }
         ]
