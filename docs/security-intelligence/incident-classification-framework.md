@@ -98,6 +98,8 @@ Fixture evaluation cases:
 - D3FEND inferred via ATT&CK -> label as potential countermeasure, not known deployed or effective.
 - Correction retracts an assertion -> revised history and public link removal without deleting provenance.
 
+Templates: [adding candidates](templates/incident-candidate-template.md) and [promoting them to the feed](templates/incident-promotion-template.md).
+
 ## Acceptance and next milestone
 
 - [x] Define complementary framework roles, evidence states, reviewer gate, fixture cases and cross-project boundaries (documentation only).
