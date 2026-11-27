@@ -7,7 +7,7 @@ import { useMemo, useRef, useState, useTransition } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { StatusPill } from "@/components/chrome";
 import { cellStatusLabel } from "@/lib/format";
-import { compareProducts } from "@/lib/compare";
+import { cellPillStatus, compareProducts } from "@/lib/compare";
 import type {
   Capability,
   Category,
@@ -404,9 +404,9 @@ export function CompareWorkbench({
                     const cell = row.cells[id];
                     return (
                       <td key={id} className="p-3">
-                        <StatusPill status={cell.status} />
+                        <StatusPill status={cellPillStatus(cell)} />
                         <p className="sr-only">
-                          {cellStatusLabel(cell.status)}
+                          {cellStatusLabel(cellPillStatus(cell))}
                         </p>
                         <ComparisonEvidence
                           key={`${useCase.id}-${id}-${row.capabilityId}`}

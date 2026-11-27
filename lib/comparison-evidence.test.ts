@@ -2,7 +2,8 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { ComparisonEvidence } from "../components/comparison-evidence";
-import { evidenceCell } from "./compare";
+import { cellPillStatus, evidenceCell } from "./compare";
+import { cellStatusLabel } from "./format";
 import type { Claim, Source } from "./schema";
 
 const claim: Claim = {
@@ -230,5 +231,24 @@ describe("synthetic correction acceptance", () => {
         "<details",
       )[0],
     ).toContain("Stale:");
+  });
+});
+
+describe("compare cell pill", () => {
+  it("labels vendor-only support as Vendor said this, not Sourced", () => {
+    const cell = evidenceCell([claim], "fixture-product", "fixture-capability", "2026-10-02");
+    expect(cell.status).toBe("evidenced");
+    expect(cellStatusLabel(cellPillStatus(cell))).toBe("Vendor said this");
+  });
+
+  it("labels support with a verified claim as Verified", () => {
+    const verified = { ...claim, id: "fixture-verified", verificationStatus: "verified" as const };
+    const cell = evidenceCell([claim, verified], "fixture-product", "fixture-capability", "2026-10-02");
+    expect(cellStatusLabel(cellPillStatus(cell))).toBe("Verified");
+  });
+
+  it("leaves non-supported states unchanged", () => {
+    const cell = evidenceCell([], "fixture-product", "fixture-capability", "2026-10-02");
+    expect(cellPillStatus(cell)).toBe("unknown");
   });
 });
